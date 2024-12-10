@@ -184,6 +184,14 @@ public class ReleaseBiSearchGroupDTO extends DTOBase implements Serializable {
     @ApiModelProperty(value = "标识", position = 17)
     private String id;
 
+    /**
+     * 项目是否删除
+     */
+    @JsonProperty("project_is_deleted")
+    @JSONField(name = "project_is_deleted")
+    @ApiModelProperty(value = "项目是否删除", position = 18)
+    private Integer projectIsDeleted;
+
 
     /**
      * 设置 [类别]
@@ -299,6 +307,15 @@ public class ReleaseBiSearchGroupDTO extends DTOBase implements Serializable {
     public ReleaseBiSearchGroupDTO setStatus(String status) {
         this.status = status;
         this.modify("status", status);
+        return this;
+    }
+
+    /**
+     * 设置 [项目是否删除]
+     */
+    public ReleaseBiSearchGroupDTO setProjectIsDeleted(Integer projectIsDeleted) {
+        this.projectIsDeleted = projectIsDeleted;
+        this.modify("project_is_deleted", projectIsDeleted);
         return this;
     }
 

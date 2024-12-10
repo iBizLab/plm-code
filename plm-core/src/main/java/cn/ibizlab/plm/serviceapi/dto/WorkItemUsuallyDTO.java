@@ -295,6 +295,48 @@ public class WorkItemUsuallyDTO extends DTOBase implements Serializable {
     @ApiModelProperty(value = "是否超时", position = 31)
     private Integer isOvertime;
 
+    /**
+     * 多人任务
+     */
+    @JsonProperty("multiple_people")
+    @JSONField(name = "multiple_people")
+    @ApiModelProperty(value = "多人任务", position = 32)
+    private Integer multiplePeople;
+
+    /**
+     * 逾期天数
+     */
+    @JsonProperty("overdue_time")
+    @JSONField(name = "overdue_time")
+    @ApiModelProperty(value = "逾期天数", position = 33)
+    private String overdueTime;
+
+    /**
+     * 完成人
+     */
+    @JsonProperty("finisher")
+    @JSONField(name = "finisher")
+    @ApiModelProperty(value = "完成人", position = 34)
+    private String finisher;
+
+    /**
+     * 实际结束时间
+     */
+    @JsonProperty("actual_end_at")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "actual_end_at" , format = "yyyy-MM-dd HH:mm:ss")
+    @ApiModelProperty(value = "实际结束时间", position = 35)
+    private Date actualEndAt;
+
+    /**
+     * 实际开始时间
+     */
+    @JsonProperty("actual_start_at")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "actual_start_at" , format = "yyyy-MM-dd HH:mm:ss")
+    @ApiModelProperty(value = "实际开始时间", position = 36)
+    private Date actualStartAt;
+
 
     /**
      * 设置 [标题]
@@ -527,6 +569,51 @@ public class WorkItemUsuallyDTO extends DTOBase implements Serializable {
     public WorkItemUsuallyDTO setIsOvertime(Integer isOvertime) {
         this.isOvertime = isOvertime;
         this.modify("is_overtime", isOvertime);
+        return this;
+    }
+
+    /**
+     * 设置 [多人任务]
+     */
+    public WorkItemUsuallyDTO setMultiplePeople(Integer multiplePeople) {
+        this.multiplePeople = multiplePeople;
+        this.modify("multiple_people", multiplePeople);
+        return this;
+    }
+
+    /**
+     * 设置 [逾期天数]
+     */
+    public WorkItemUsuallyDTO setOverdueTime(String overdueTime) {
+        this.overdueTime = overdueTime;
+        this.modify("overdue_time", overdueTime);
+        return this;
+    }
+
+    /**
+     * 设置 [完成人]
+     */
+    public WorkItemUsuallyDTO setFinisher(String finisher) {
+        this.finisher = finisher;
+        this.modify("finisher", finisher);
+        return this;
+    }
+
+    /**
+     * 设置 [实际结束时间]
+     */
+    public WorkItemUsuallyDTO setActualEndAt(Date actualEndAt) {
+        this.actualEndAt = actualEndAt;
+        this.modify("actual_end_at", actualEndAt);
+        return this;
+    }
+
+    /**
+     * 设置 [实际开始时间]
+     */
+    public WorkItemUsuallyDTO setActualStartAt(Date actualStartAt) {
+        this.actualStartAt = actualStartAt;
+        this.modify("actual_start_at", actualStartAt);
         return this;
     }
 

@@ -196,11 +196,19 @@ public class WorkItemFilterDTO extends FilterBase implements Serializable {
 	private String backlogFromEQ;
 
     /**
+     * 描述EQ
+     */
+    @JsonProperty("n_description_eq")
+    @JSONField(name = "n_description_eq")
+    @ApiModelProperty(value = "描述EQ", position = 120)
+	private String descriptionEQ;
+
+    /**
      * 描述LIKE
      */
     @JsonProperty("n_description_like")
     @JSONField(name = "n_description_like")
-    @ApiModelProperty(value = "描述LIKE", position = 120)
+    @ApiModelProperty(value = "描述LIKE", position = 121)
 	private String descriptionLIKE;
 
     /**
@@ -364,11 +372,59 @@ public class WorkItemFilterDTO extends FilterBase implements Serializable {
 	private Integer recentCreateDaysLTANDEQ;
 
     /**
+     * 原始状态EQ
+     */
+    @JsonProperty("n_work_item_origin_state_eq")
+    @JSONField(name = "n_work_item_origin_state_eq")
+    @ApiModelProperty(value = "原始状态EQ", position = 610)
+	private String workItemOriginStateEQ;
+
+    /**
+     * 执行人EXISTS
+     */
+    @JsonProperty("n_executors_exists__n_user_id_eq")
+    @JSONField(name = "n_executors_exists__n_user_id_eq")
+    @ApiModelProperty(value = "执行人EXISTS执行人标识EQ", position = 630)
+	private String executorsEXISTSuser_idEQ;
+
+    /**
+     * 逾期天数EQ
+     */
+    @JsonProperty("n_overdue_time_eq")
+    @JSONField(name = "n_overdue_time_eq")
+    @ApiModelProperty(value = "逾期天数EQ", position = 680)
+	private String overdueTimeEQ;
+
+    /**
+     * 逾期天数GT
+     */
+    @JsonProperty("n_overdue_time_gt")
+    @JSONField(name = "n_overdue_time_gt")
+    @ApiModelProperty(value = "逾期天数GT", position = 681)
+	private String overdueTimeGT;
+
+    /**
+     * 逾期天数GTANDEQ
+     */
+    @JsonProperty("n_overdue_time_gtandeq")
+    @JSONField(name = "n_overdue_time_gtandeq")
+    @ApiModelProperty(value = "逾期天数GTANDEQ", position = 682)
+	private String overdueTimeGTANDEQ;
+
+    /**
+     * 逾期天数LT
+     */
+    @JsonProperty("n_overdue_time_lt")
+    @JSONField(name = "n_overdue_time_lt")
+    @ApiModelProperty(value = "逾期天数LT", position = 683)
+	private String overdueTimeLT;
+
+    /**
      * 标识EQ
      */
     @JsonProperty("n_id_eq")
     @JSONField(name = "n_id_eq")
-    @ApiModelProperty(value = "标识EQ", position = 630)
+    @ApiModelProperty(value = "标识EQ", position = 720)
 	private String idEQ;
 
     /**
@@ -376,7 +432,7 @@ public class WorkItemFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_id_exists__n_id_eq")
     @JSONField(name = "n_id_exists__n_id_eq")
-    @ApiModelProperty(value = "标识EXISTS标识EQ", position = 631)
+    @ApiModelProperty(value = "标识EXISTS标识EQ", position = 721)
 	private String idEXISTSidEQ;
 
     /**
@@ -384,7 +440,7 @@ public class WorkItemFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_id_in")
     @JSONField(name = "n_id_in")
-    @ApiModelProperty(value = "标识IN", position = 632)
+    @ApiModelProperty(value = "标识IN", position = 722)
 	private String idIN;
 
     /**
@@ -392,7 +448,7 @@ public class WorkItemFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_id_noteq")
     @JSONField(name = "n_id_noteq")
-    @ApiModelProperty(value = "标识NOTEQ", position = 633)
+    @ApiModelProperty(value = "标识NOTEQ", position = 723)
 	private String idNOTEQ;
 
     /**
@@ -400,7 +456,7 @@ public class WorkItemFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_id_notin")
     @JSONField(name = "n_id_notin")
-    @ApiModelProperty(value = "标识NOTIN", position = 634)
+    @ApiModelProperty(value = "标识NOTIN", position = 724)
 	private String idNOTIN;
 
     /**
@@ -408,7 +464,7 @@ public class WorkItemFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_create_man_eq")
     @JSONField(name = "n_create_man_eq")
-    @ApiModelProperty(value = "建立人EQ", position = 640)
+    @ApiModelProperty(value = "建立人EQ", position = 730)
 	private String createManEQ;
 
     /**
@@ -416,7 +472,7 @@ public class WorkItemFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_create_man_in")
     @JSONField(name = "n_create_man_in")
-    @ApiModelProperty(value = "建立人IN", position = 641)
+    @ApiModelProperty(value = "建立人IN", position = 731)
 	private String createManIN;
 
     /**
@@ -424,7 +480,7 @@ public class WorkItemFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_create_man_isnotnull")
     @JSONField(name = "n_create_man_isnotnull")
-    @ApiModelProperty(value = "建立人ISNOTNULL", position = 642)
+    @ApiModelProperty(value = "建立人ISNOTNULL", position = 732)
 	private String createManISNOTNULL;
 
     /**
@@ -432,7 +488,7 @@ public class WorkItemFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_create_man_isnull")
     @JSONField(name = "n_create_man_isnull")
-    @ApiModelProperty(value = "建立人ISNULL", position = 643)
+    @ApiModelProperty(value = "建立人ISNULL", position = 733)
 	private String createManISNULL;
 
     /**
@@ -440,7 +496,7 @@ public class WorkItemFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_create_man_noteq")
     @JSONField(name = "n_create_man_noteq")
-    @ApiModelProperty(value = "建立人NOTEQ", position = 644)
+    @ApiModelProperty(value = "建立人NOTEQ", position = 734)
 	private String createManNOTEQ;
 
     /**
@@ -448,7 +504,7 @@ public class WorkItemFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_create_man_notin")
     @JSONField(name = "n_create_man_notin")
-    @ApiModelProperty(value = "建立人NOTIN", position = 645)
+    @ApiModelProperty(value = "建立人NOTIN", position = 735)
 	private String createManNOTIN;
 
     /**
@@ -457,7 +513,7 @@ public class WorkItemFilterDTO extends FilterBase implements Serializable {
     @JsonProperty("n_create_time_eq")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "n_create_time_eq" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "建立时间EQ", position = 650)
+    @ApiModelProperty(value = "建立时间EQ", position = 740)
 	private Date createTimeEQ;
 
     /**
@@ -466,7 +522,7 @@ public class WorkItemFilterDTO extends FilterBase implements Serializable {
     @JsonProperty("n_create_time_gtandeq")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "n_create_time_gtandeq" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "建立时间GTANDEQ", position = 651)
+    @ApiModelProperty(value = "建立时间GTANDEQ", position = 741)
 	private Date createTimeGTANDEQ;
 
     /**
@@ -475,7 +531,7 @@ public class WorkItemFilterDTO extends FilterBase implements Serializable {
     @JsonProperty("n_create_time_ltandeq")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "n_create_time_ltandeq" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "建立时间LTANDEQ", position = 652)
+    @ApiModelProperty(value = "建立时间LTANDEQ", position = 742)
 	private Date createTimeLTANDEQ;
 
     /**
@@ -484,7 +540,7 @@ public class WorkItemFilterDTO extends FilterBase implements Serializable {
     @JsonProperty("n_update_time_gtandeq")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "n_update_time_gtandeq" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "更新时间GTANDEQ", position = 670)
+    @ApiModelProperty(value = "更新时间GTANDEQ", position = 760)
 	private Date updateTimeGTANDEQ;
 
     /**
@@ -493,7 +549,7 @@ public class WorkItemFilterDTO extends FilterBase implements Serializable {
     @JsonProperty("n_update_time_ltandeq")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "n_update_time_ltandeq" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "更新时间LTANDEQ", position = 671)
+    @ApiModelProperty(value = "更新时间LTANDEQ", position = 761)
 	private Date updateTimeLTANDEQ;
 
     /**
@@ -501,7 +557,7 @@ public class WorkItemFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_project_id_eq")
     @JSONField(name = "n_project_id_eq")
-    @ApiModelProperty(value = "项目EQ", position = 680)
+    @ApiModelProperty(value = "项目EQ", position = 770)
 	private String projectIdEQ;
 
     /**
@@ -509,7 +565,7 @@ public class WorkItemFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_project_id_in")
     @JSONField(name = "n_project_id_in")
-    @ApiModelProperty(value = "项目IN", position = 681)
+    @ApiModelProperty(value = "项目IN", position = 771)
 	private String projectIdIN;
 
     /**
@@ -517,7 +573,7 @@ public class WorkItemFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_work_item_type_id_eq")
     @JSONField(name = "n_work_item_type_id_eq")
-    @ApiModelProperty(value = "工作项类型EQ", position = 690)
+    @ApiModelProperty(value = "工作项类型EQ", position = 780)
 	private String workItemTypeIdEQ;
 
     /**
@@ -525,7 +581,7 @@ public class WorkItemFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_work_item_type_id_in")
     @JSONField(name = "n_work_item_type_id_in")
-    @ApiModelProperty(value = "工作项类型IN", position = 691)
+    @ApiModelProperty(value = "工作项类型IN", position = 781)
 	private String workItemTypeIdIN;
 
     /**
@@ -533,7 +589,7 @@ public class WorkItemFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_work_item_type_id_like")
     @JSONField(name = "n_work_item_type_id_like")
-    @ApiModelProperty(value = "工作项类型LIKE", position = 692)
+    @ApiModelProperty(value = "工作项类型LIKE", position = 782)
 	private String workItemTypeIdLIKE;
 
     /**
@@ -541,7 +597,7 @@ public class WorkItemFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_project_name_eq")
     @JSONField(name = "n_project_name_eq")
-    @ApiModelProperty(value = "所属项目EQ", position = 700)
+    @ApiModelProperty(value = "所属项目EQ", position = 790)
 	private String projectNameEQ;
 
     /**
@@ -549,7 +605,7 @@ public class WorkItemFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_project_name_like")
     @JSONField(name = "n_project_name_like")
-    @ApiModelProperty(value = "所属项目LIKE", position = 701)
+    @ApiModelProperty(value = "所属项目LIKE", position = 791)
 	private String projectNameLIKE;
 
     /**
@@ -557,7 +613,7 @@ public class WorkItemFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_work_item_type_name_eq")
     @JSONField(name = "n_work_item_type_name_eq")
-    @ApiModelProperty(value = "工作项类型EQ", position = 710)
+    @ApiModelProperty(value = "工作项类型EQ", position = 800)
 	private String workItemTypeNameEQ;
 
     /**
@@ -565,7 +621,7 @@ public class WorkItemFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_work_item_type_name_like")
     @JSONField(name = "n_work_item_type_name_like")
-    @ApiModelProperty(value = "工作项类型LIKE", position = 711)
+    @ApiModelProperty(value = "工作项类型LIKE", position = 801)
 	private String workItemTypeNameLIKE;
 
     /**
@@ -573,7 +629,7 @@ public class WorkItemFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_pid_eq")
     @JSONField(name = "n_pid_eq")
-    @ApiModelProperty(value = "父标识EQ", position = 720)
+    @ApiModelProperty(value = "父标识EQ", position = 810)
 	private String pidEQ;
 
     /**
@@ -581,7 +637,7 @@ public class WorkItemFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_ptitle_eq")
     @JSONField(name = "n_ptitle_eq")
-    @ApiModelProperty(value = "父工作项EQ", position = 730)
+    @ApiModelProperty(value = "父工作项EQ", position = 820)
 	private String ptitleEQ;
 
     /**
@@ -589,7 +645,7 @@ public class WorkItemFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_ptitle_like")
     @JSONField(name = "n_ptitle_like")
-    @ApiModelProperty(value = "父工作项LIKE", position = 731)
+    @ApiModelProperty(value = "父工作项LIKE", position = 821)
 	private String ptitleLIKE;
 
     /**
@@ -597,7 +653,7 @@ public class WorkItemFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_sprint_id_eq")
     @JSONField(name = "n_sprint_id_eq")
-    @ApiModelProperty(value = "迭代标识EQ", position = 740)
+    @ApiModelProperty(value = "迭代标识EQ", position = 830)
 	private String sprintIdEQ;
 
     /**
@@ -605,7 +661,7 @@ public class WorkItemFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_sprint_id_isnull")
     @JSONField(name = "n_sprint_id_isnull")
-    @ApiModelProperty(value = "迭代标识ISNULL", position = 741)
+    @ApiModelProperty(value = "迭代标识ISNULL", position = 831)
 	private String sprintIdISNULL;
 
     /**
@@ -613,7 +669,7 @@ public class WorkItemFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_board_id_eq")
     @JSONField(name = "n_board_id_eq")
-    @ApiModelProperty(value = "看板标识EQ", position = 750)
+    @ApiModelProperty(value = "看板标识EQ", position = 840)
 	private String boardIdEQ;
 
     /**
@@ -621,7 +677,7 @@ public class WorkItemFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_entry_id_eq")
     @JSONField(name = "n_entry_id_eq")
-    @ApiModelProperty(value = "看板栏标识EQ", position = 760)
+    @ApiModelProperty(value = "看板栏标识EQ", position = 850)
 	private String entryIdEQ;
 
     /**
@@ -629,7 +685,7 @@ public class WorkItemFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_swimlane_id_eq")
     @JSONField(name = "n_swimlane_id_eq")
-    @ApiModelProperty(value = "泳道标识EQ", position = 770)
+    @ApiModelProperty(value = "泳道标识EQ", position = 860)
 	private String swimlaneIdEQ;
 
     /**
@@ -637,7 +693,7 @@ public class WorkItemFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_entry_name_eq")
     @JSONField(name = "n_entry_name_eq")
-    @ApiModelProperty(value = "看板栏名称EQ", position = 780)
+    @ApiModelProperty(value = "看板栏名称EQ", position = 870)
 	private String entryNameEQ;
 
     /**
@@ -645,7 +701,7 @@ public class WorkItemFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_entry_name_like")
     @JSONField(name = "n_entry_name_like")
-    @ApiModelProperty(value = "看板栏名称LIKE", position = 781)
+    @ApiModelProperty(value = "看板栏名称LIKE", position = 871)
 	private String entryNameLIKE;
 
     /**
@@ -653,7 +709,7 @@ public class WorkItemFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_board_name_eq")
     @JSONField(name = "n_board_name_eq")
-    @ApiModelProperty(value = "看板名称EQ", position = 790)
+    @ApiModelProperty(value = "看板名称EQ", position = 880)
 	private String boardNameEQ;
 
     /**
@@ -661,7 +717,7 @@ public class WorkItemFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_board_name_like")
     @JSONField(name = "n_board_name_like")
-    @ApiModelProperty(value = "看板名称LIKE", position = 791)
+    @ApiModelProperty(value = "看板名称LIKE", position = 881)
 	private String boardNameLIKE;
 
     /**
@@ -669,7 +725,7 @@ public class WorkItemFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_top_id_eq")
     @JSONField(name = "n_top_id_eq")
-    @ApiModelProperty(value = "顶级工作项标识EQ", position = 800)
+    @ApiModelProperty(value = "顶级工作项标识EQ", position = 890)
 	private String topIdEQ;
 
     /**
@@ -677,7 +733,7 @@ public class WorkItemFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_top_id_in")
     @JSONField(name = "n_top_id_in")
-    @ApiModelProperty(value = "顶级工作项标识IN", position = 801)
+    @ApiModelProperty(value = "顶级工作项标识IN", position = 891)
 	private String topIdIN;
 
     /**
@@ -685,7 +741,7 @@ public class WorkItemFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_top_title_eq")
     @JSONField(name = "n_top_title_eq")
-    @ApiModelProperty(value = "顶级工作项标题EQ", position = 810)
+    @ApiModelProperty(value = "顶级工作项标题EQ", position = 900)
 	private String topTitleEQ;
 
     /**
@@ -693,7 +749,7 @@ public class WorkItemFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_top_title_like")
     @JSONField(name = "n_top_title_like")
-    @ApiModelProperty(value = "顶级工作项标题LIKE", position = 811)
+    @ApiModelProperty(value = "顶级工作项标题LIKE", position = 901)
 	private String topTitleLIKE;
 
     /**
@@ -701,7 +757,7 @@ public class WorkItemFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_sprint_name_eq")
     @JSONField(name = "n_sprint_name_eq")
-    @ApiModelProperty(value = "迭代名称EQ", position = 820)
+    @ApiModelProperty(value = "迭代名称EQ", position = 910)
 	private String sprintNameEQ;
 
     /**
@@ -709,7 +765,7 @@ public class WorkItemFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_sprint_name_like")
     @JSONField(name = "n_sprint_name_like")
-    @ApiModelProperty(value = "迭代名称LIKE", position = 821)
+    @ApiModelProperty(value = "迭代名称LIKE", position = 911)
 	private String sprintNameLIKE;
 
     /**
@@ -717,7 +773,7 @@ public class WorkItemFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_release_id_eq")
     @JSONField(name = "n_release_id_eq")
-    @ApiModelProperty(value = "项目发布标识EQ", position = 830)
+    @ApiModelProperty(value = "项目发布标识EQ", position = 920)
 	private String releaseIdEQ;
 
     /**
@@ -725,7 +781,7 @@ public class WorkItemFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_release_name_eq")
     @JSONField(name = "n_release_name_eq")
-    @ApiModelProperty(value = "项目发布名称EQ", position = 840)
+    @ApiModelProperty(value = "项目发布名称EQ", position = 930)
 	private String releaseNameEQ;
 
     /**
@@ -733,7 +789,7 @@ public class WorkItemFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_release_name_like")
     @JSONField(name = "n_release_name_like")
-    @ApiModelProperty(value = "项目发布名称LIKE", position = 841)
+    @ApiModelProperty(value = "项目发布名称LIKE", position = 931)
 	private String releaseNameLIKE;
 
 

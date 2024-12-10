@@ -138,6 +138,47 @@ export default {
           showIcon: true,
           id: 'deuiaction1',
         },
+        {
+          itemType: 'SEPERATOR',
+          id: 'seperator1',
+        },
+        {
+          actionLevel: 100,
+          buttonStyle: 'STYLE2',
+          detoolbarItems: [
+            {
+              actionLevel: 100,
+              noPrivDisplayMode: 2,
+              uiactionId: 'gridview_exportaction',
+              valid: true,
+              capLanguageRes: {
+                lanResTag: 'TBB.TEXT.*.EXPORT',
+              },
+              caption: '导出页面',
+              itemType: 'DEUIACTION',
+              sysImage: {
+                cssClass: 'fa fa-file-excel-o',
+                glyph: 'xf1c3@FontAwesome',
+              },
+              tooltip: '导出页面',
+              tooltipLanguageRes: {
+                lanResTag: 'TBB.TOOLTIP.*.EXPORT',
+              },
+              showCaption: true,
+              showIcon: true,
+              id: 'deuiaction2',
+            },
+          ],
+          valid: true,
+          itemType: 'ITEMS',
+          sysImage: {
+            cssClass: 'fa fa-list-ul',
+            glyph: 'xf0ca@FontAwesome',
+          },
+          showCaption: true,
+          showIcon: true,
+          id: 'items1',
+        },
       ],
       xdataControlName: 'grid',
       codeName: 'space_grid_view_toolbar',

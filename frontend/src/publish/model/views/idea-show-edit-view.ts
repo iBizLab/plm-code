@@ -243,6 +243,7 @@ export default {
                 layoutPos: {
                   grow: 1,
                   shrink: 1,
+                  heightMode: 'FULL',
                   layout: 'FLEX',
                 },
                 showCaption: true,
@@ -308,17 +309,17 @@ export default {
                                                 QUOTECODELISTMAP:
                                                   '{"type":"plmweb.base__recent_visite"}',
                                                 QUOTEFIELDMAP:
-                                                  '{"identifier":"show_identifier","name":"name","id":"id","type":"owner_subtype"}',
+                                                  '{"identifier":"show_identifier","name":"name","id":"id","type":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
                                                 QUOTEPARAMS:
                                                   '{"page":0,"size":20,"sort":"update_time,desc"}',
                                                 QUOTEINSCRIPT:
-                                                  'value.replaceAll(/\\#\\{\\"id\\":\\"(.+?)\\",\\"name\\":\\"(.+?)\\",\\"identifier\\":\\"(.+?)\\",\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g,(x, id, name, identifier, icon) => {return controller.getNodeInfo({ id, name, identifier, icon })}).replaceAll(/\\#\\{id=(.+?),name=(.+?),identifier=(.+?),icon=((.|[\\t\\r\\f\\n\\s])+?)\\}/g,(x, id, name, identifier, icon) => {return controller.getNodeInfo({ id, name, identifier, icon })})',
+                                                  'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\"),\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); return controller.getNodeInfo({ icon, ...item })})',
                                                 USERSCRIPT:
                                                   '`@{"id":"${data.id}","name":"${data.name}"}`',
                                                 QUOTESCRIPT:
-                                                  '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","icon":"${data.icon}"}`',
+                                                  '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.type}","recent_parent":"${data.recent_parent}","icon":"${data.icon}"}`',
                                                 REPLYSCRIPT:
-                                                  'value?.replace(/@{[^,]*,"name":"(.*?)"}/g,"<span class=\\\'comment-tag\\\'>@$1</span>").replace(/@{[^,]*,name=(.*?)}/g,"<span class=\\\'comment-tag\\\'>@$1</span>").replace(/#{"id":"(.+?)","name":"(.+?)","identifier":"(.+?)","icon":"((.|[\\t\\r\\f\\n\\s])+?)"}/g, "<span class=\\\'comment-tag\\\'>$4 $3 $2</span>").replace(/#{id=(.+?),name=(.+?),identifier=(.+?),icon=((.|[\\t\\r\\f\\n\\s])+?)}/g, "<span class=\\\'comment-tag\\\'>$4 $3 $2</span>")',
+                                                  'value?.replace(/@{[^,]*,"name":"(.*?)"}/g,"<span class=\'comment-tag\'>@$1</span>").replace(/@{[^,]*,name=(.*?)}/g,"<span class=\'comment-tag\'>@$1</span>").replaceAll(/\\#\\{(\\".+?\\":\\".+?\\"),\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g, (x, value, icon) => {const item = JSON.parse("{" + value + "}"); const tempIcon = icon.trim(); return `<span class=\'comment-tag\' data-value=\'${JSON.stringify(item)}\'>${tempIcon} ${item.identifier} ${item.name}</span>`;})',
                                                 USERFIELDMAP:
                                                   '{"id":"user_id","name":"name"}',
                                                 USERURL:
@@ -956,7 +957,7 @@ export default {
                             contenttype: 'HTML',
                             TITLE: 'name',
                             PARSESCRIPT:
-                              'value?.replace(/@{[^,]*,"name":"(.*?)"}/g,"<span class=\\\'comment-tag\\\'>@$1</span>").replace(/@{[^,]*,name=(.*?)}/g,"<span class=\\\'comment-tag\\\'>@$1</span>").replace(/#{"id":"(.+?)","name":"(.+?)","identifier":"(.+?)","type":"(.+?)","icon":"((.|[\\t\\r\\f\\n\\s])+?)"}/g,(match, id, name, identifier, type, icon) => { const tempIcon = icon.trim(); const params = JSON.stringify({ id, name, identifier, type, }); return `<span markerClick=\'marker\' params=\'${params}\' class=\'comment-tag is-click\'>${tempIcon} ${identifier} ${name}</span>`;}).replace(/#{"id":"(.+?)","name":"(.+?)","identifier":"(.+?)","icon":"((.|[\\t\\r\\f\\n\\s])+?)"}/g, "<span class=\\\'comment-tag\\\'>$4 $3 $2</span>").replace(/#{id=(.+?),name=(.+?),identifier=(.+?),icon=((.|[\\t\\r\\f\\n\\s])+?)}/g, "<span class=\\\'comment-tag\\\'>$4 $3 $2</span>").replaceAll(/\\{\\"\\emoji\\":\\"(.+?)\\"\\}/g,(x, emoji) => {const tempVal = decodeURIComponent(atob(emoji)); return `<span class="emoji-tag">${tempVal}</span>`})',
+                              'value?.replace(/@{[^,]*,"name":"(.*?)"}/g,"<span class=\\\'comment-tag\\\'>@$1</span>").replace(/@{[^,]*,name=(.*?)}/g,"<span class=\\\'comment-tag\\\'>@$1</span>").replaceAll(/\\#\\{(\\".+?\\":\\".+?\\"),\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); const tempIcon = icon.trim(); const params = JSON.stringify(item); return `<span markerClick=\'marker\' params=\'${params}\' class=\'comment-tag is-click\'>${tempIcon} ${item.identifier} ${item.name}</span>`;}).replaceAll(/\\{\\"\\emoji\\":\\"(.+?)\\"\\}/g,(x, emoji) => {const tempVal = decodeURIComponent(atob(emoji)); return `<span class="emoji-tag">${tempVal}</span>`})',
                           },
                           editorStyle: 'ANCHO_HTML',
                           editorType: 'RAW',
@@ -1025,6 +1026,7 @@ export default {
                               dataItemName: 'name',
                               excelCaption: '名称',
                               appDEFieldId: 'name',
+                              deuiactionId: 'attachment_preview@attachment',
                               valueType: 'SIMPLE',
                               aggMode: 'NONE',
                               align: 'LEFT',
@@ -1379,11 +1381,61 @@ export default {
                     codeName: 'grouppanel2',
                     detailStyle: 'DEFAULT',
                     detailType: 'GROUPPANEL',
+                    defdgroupLogics: [
+                      {
+                        logicCat: 'PANELVISIBLE',
+                        relatedDetailNames: ['create_time'],
+                        groupOP: 'AND',
+                        defdlogics: [
+                          {
+                            condOP: 'ISNULL',
+                            defdname: 'create_time',
+                            logicType: 'SINGLE',
+                          },
+                        ],
+                        logicType: 'GROUP',
+                        id: '表单成员[grouppanel2][面板显示]逻辑',
+                      },
+                    ],
                     layoutPos: {
                       colMD: 24,
                       layout: 'TABLE_24COL',
                     },
                     id: 'grouppanel2',
+                  },
+                  {
+                    layout: {
+                      columnCount: 24,
+                      layout: 'TABLE_24COL',
+                    },
+                    deformDetails: [
+                      {
+                        appViewId: 'plmweb.comment_list_view_idea',
+                        parentDataJO: {
+                          srfparentdename: 'IDEA',
+                          SRFPARENTTYPE: 'CUSTOM',
+                        },
+                        codeName: 'druipart1',
+                        detailStyle: 'DEFAULT',
+                        detailType: 'DRUIPART',
+                        layoutPos: {
+                          colMD: 24,
+                          layout: 'TABLE_24COL',
+                        },
+                        showCaption: true,
+                        id: 'druipart1',
+                      },
+                    ],
+                    caption: '评论',
+                    codeName: 'grouppanel3',
+                    detailStyle: 'DEFAULT',
+                    detailType: 'GROUPPANEL',
+                    layoutPos: {
+                      colMD: 24,
+                      layout: 'TABLE_24COL',
+                    },
+                    showCaption: true,
+                    id: 'grouppanel3',
                   },
                 ],
                 codeName: 'left_grouppanel',
@@ -1737,7 +1789,7 @@ export default {
                         editorParams: {
                           contenttype: 'HTML',
                           SCRIPTCODE:
-                            'data.content?.replace(/@{[^,]*,"name":"(.*?)"}/g,"<span class=\'comment-tag\'>@$1</span>").replace(/@{[^,]*,name=(.*?)}/g,"<span class=\'comment-tag\'>@$1</span>").replace(/#{"id":"(.+?)","name":"(.+?)","identifier":"(.+?)","icon":"((.|[\\t\\r\\f\\n\\s])+?)"}/g, "<span class=\'comment-tag\'>$4 $3 $2</span>").replace(/#{id=(.+?),name=(.+?),identifier=(.+?),icon=((.|[\\t\\r\\f\\n\\s])+?)}/g, "<span class=\'comment-tag\'>$4 $3 $2</span>").replaceAll(/\\{\\"\\emoji\\":\\"(.+?)\\"\\}/g,(x, emoji) => {const tempVal = decodeURIComponent(atob(emoji)); return `<span class="emoji-tag">${tempVal}</span>`})',
+                            'data.content?.replace(/@{[^,]*,"name":"(.*?)"}/g,"<span class=\'comment-tag\'>@$1</span>").replace(/@{[^,]*,name=(.*?)}/g,"<span class=\'comment-tag\'>@$1</span>").replaceAll(/\\#\\{(\\".+?\\":\\".+?\\"),\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g, (x, value, icon) => {const item = JSON.parse("{" + value + "}"); const tempIcon = icon.trim(); return `<span class=\'comment-tag\' data-value=\'${JSON.stringify(item)}\'>${tempIcon} ${item.identifier} ${item.name}</span>`;}).replaceAll(/\\{\\"\\emoji\\":\\"(.+?)\\"\\}/g,(x, emoji) => {const tempVal = decodeURIComponent(atob(emoji)); return `<span class="emoji-tag">${tempVal}</span>`})',
                         },
                         editorStyle: 'COMMENT_ITEM',
                         editorType: 'RAW',
@@ -1919,14 +1971,14 @@ export default {
         minorSortAppDEFieldId: 'create_time',
         delistDataItems: [
           {
-            appDEFieldId: 'pid',
-            dataType: 25,
-            id: 'pid',
-          },
-          {
             appDEFieldId: 'content',
             dataType: 21,
             id: 'content',
+          },
+          {
+            appDEFieldId: 'id',
+            dataType: 25,
+            id: 'id',
           },
           {
             appDEFieldId: 'create_time',
@@ -1935,14 +1987,15 @@ export default {
             id: 'create_time',
           },
           {
+            appDEFieldId: 'pcreate_man',
+            frontCodeListId: 'plmweb.sysoperator',
+            dataType: 25,
+            id: 'pcreate_man',
+          },
+          {
             appDEFieldId: 'pcontent',
             dataType: 21,
             id: 'pcontent',
-          },
-          {
-            appDEFieldId: 'id',
-            dataType: 25,
-            id: 'id',
           },
           {
             appDEFieldId: 'create_man',
@@ -1951,10 +2004,9 @@ export default {
             id: 'create_man',
           },
           {
-            appDEFieldId: 'pcreate_man',
-            frontCodeListId: 'plmweb.sysoperator',
+            appDEFieldId: 'pid',
             dataType: 25,
-            id: 'pcreate_man',
+            id: 'pid',
           },
           {
             appDEFieldId: 'id',

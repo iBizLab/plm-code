@@ -416,23 +416,33 @@ export default {
                           actionType: 'UIACTION',
                           buttonStyle: 'STYLE2',
                           buttonType: 'PANELBUTTON',
-                          uiactionId:
-                            'panel_usr0103471499_button_calluilogic2_click@comment',
+                          uiactionId: 'del_comment@comment',
                           renderMode: 'BUTTON',
-                          tooltip: '回复',
-                          uiactionTarget: 'SINGLEDATA',
-                          caption: '回复',
+                          tooltip: '删除',
+                          uiactionTarget: 'SINGLEKEY',
+                          caption: '删除',
                           itemStyle: 'STYLE2',
                           itemType: 'BUTTON',
+                          controlLogics: [
+                            {
+                              itemName: 'BUTTON_CALLUILOGIC',
+                              logicTag: 'list_itempanel',
+                              logicType: 'SCRIPT',
+                              scriptCode:
+                                'data.create_man === context.srfuserid',
+                              triggerType: 'ITEMVISIBLE',
+                              id: 'trash',
+                            },
+                          ],
                           layoutPos: {
                             shrink: 1,
                             layout: 'FLEX',
                           },
                           sysImage: {
-                            cssClass: 'fa fa-comment-o',
-                            glyph: 'xf0e5@FontAwesome',
+                            cssClass: 'fa fa-trash',
+                            glyph: 'xf1f8@FontAwesome',
                           },
-                          id: 'button_calluilogic2',
+                          id: 'button_calluilogic',
                         },
                         {
                           actionType: 'UIACTION',
@@ -452,9 +462,9 @@ export default {
                               logicTag: 'list_itempanel',
                               logicType: 'SCRIPT',
                               scriptCode:
-                                'data?.create_man === context?.srfuserid',
+                                'data.create_man === context.srfuserid',
                               triggerType: 'ITEMVISIBLE',
-                              id: 'logic_edit',
+                              id: 'logic',
                             },
                           ],
                           layoutPos: {
@@ -471,37 +481,27 @@ export default {
                           actionType: 'UIACTION',
                           buttonStyle: 'STYLE2',
                           buttonType: 'PANELBUTTON',
-                          uiactionId: 'del_comment@comment',
+                          uiactionId:
+                            'panel_usr0103471499_button_calluilogic2_click@comment',
                           renderMode: 'BUTTON',
-                          tooltip: '删除',
-                          uiactionTarget: 'SINGLEKEY',
-                          caption: '删除',
+                          tooltip: '回复',
+                          uiactionTarget: 'SINGLEDATA',
+                          caption: '回复',
                           itemStyle: 'STYLE2',
                           itemType: 'BUTTON',
-                          controlLogics: [
-                            {
-                              itemName: 'BUTTON_CALLUILOGIC',
-                              logicTag: 'list_itempanel',
-                              logicType: 'SCRIPT',
-                              scriptCode:
-                                'data?.create_man === context?.srfuserid',
-                              triggerType: 'ITEMVISIBLE',
-                              id: 'logic_dele',
-                            },
-                          ],
                           layoutPos: {
                             shrink: 1,
                             layout: 'FLEX',
                           },
                           sysImage: {
-                            cssClass: 'fa fa-trash',
-                            glyph: 'xf1f8@FontAwesome',
+                            cssClass: 'fa fa-comment-o',
+                            glyph: 'xf0e5@FontAwesome',
                           },
-                          id: 'button_calluilogic',
+                          id: 'button_calluilogic2',
                         },
                       ],
                       layout: {
-                        dir: 'row',
+                        dir: 'row-reverse',
                         layout: 'FLEX',
                       },
                       dataRegionType: 'INHERIT',
@@ -515,7 +515,8 @@ export default {
                           logicType: 'SCRIPT',
                           scriptCode: 'context.srfreadonly != true',
                           triggerType: 'ITEMVISIBLE',
-                          id: 'show_logic',
+                          name: 'readOnly',
+                          id: 'readonly',
                         },
                       ],
                       layoutPos: {
@@ -567,7 +568,7 @@ export default {
                         editorParams: {
                           contenttype: 'HTML',
                           SCRIPTCODE:
-                            'data.content?.replace(/@{[^,]*,"name":"(.*?)"}/g,"<span class=\'comment-tag\'>@$1</span>").replace(/@{[^,]*,name=(.*?)}/g,"<span class=\'comment-tag\'>@$1</span>").replace(/#{"id":"(.+?)","name":"(.+?)","identifier":"(.+?)","icon":"((.|[\\t\\r\\f\\n\\s])+?)"}/g, "<span class=\'comment-tag\'>$4 $3 $2</span>").replace(/#{id=(.+?),name=(.+?),identifier=(.+?),icon=((.|[\\t\\r\\f\\n\\s])+?)}/g, "<span class=\'comment-tag\'>$4 $3 $2</span>").replaceAll(/\\{\\"\\emoji\\":\\"(.+?)\\"\\}/g,(x, emoji) => {const tempVal = decodeURIComponent(atob(emoji)); return `<span class="emoji-tag">${tempVal}</span>`})',
+                            'data.content?.replace(/@{[^,]*,"name":"(.*?)"}/g,"<span class=\'comment-tag\'>@$1</span>").replace(/@{[^,]*,name=(.*?)}/g,"<span class=\'comment-tag\'>@$1</span>").replaceAll(/\\#\\{(\\".+?\\":\\".+?\\"),\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g, (x, value, icon) => {const item = JSON.parse("{" + value + "}"); const tempIcon = icon.trim(); return `<span class=\'comment-tag\' data-value=\'${JSON.stringify(item)}\'>${tempIcon} ${item.identifier} ${item.name}</span>`;}).replaceAll(/\\{\\"\\emoji\\":\\"(.+?)\\"\\}/g,(x, emoji) => {const tempVal = decodeURIComponent(atob(emoji)); return `<span class="emoji-tag">${tempVal}</span>`})',
                         },
                         editorStyle: 'COMMENT_ITEM',
                         editorType: 'RAW',
@@ -657,7 +658,7 @@ export default {
                           controlRenders: [
                             {
                               layoutPanelModel:
-                                'data.pcontent?.replace(/@{[^,]*,"name":"(.*?)"}/g,"<span class=\'comment-tag\'>@$1</span>").replace(/@{[^,]*,name=(.*?)}/g,"<span class=\'comment-tag\'>@$1</span>").replace(/#{"id":"(.+?)","name":"(.+?)","identifier":"(.+?)","icon":"((.|[\\t\\r\\f\\n\\s])+?)"}/g, "<span class=\'comment-tag\'>$4 $3 $2</span>").replace(/#{id=(.+?),name=(.+?),identifier=(.+?),icon=((.|[\\t\\r\\f\\n\\s])+?)}/g, "<span class=\'comment-tag\'>$4 $3 $2</span>").replaceAll(/<span data-w-e-type="emoji" class=\'emoji\'>(.+?)<\\/span>/g,(x, emoji) => {const tempVal = decodeURIComponent(atob(emoji));return `<span data-w-e-type="emoji" class=\'emoji\'>${tempVal}</span>`;}).replaceAll(/{"emoji":"(.+?)"}/g, (x, emoji) => {const tempVal = decodeURIComponent(atob(emoji));return `<span data-w-e-type="emoji" class=\'emoji\'>${tempVal}</span>`;})',
+                                'data.pcontent?.replace(/@{[^,]*,"name":"(.*?)"}/g,"<span class=\'comment-tag\'>@$1</span>").replace(/@{[^,]*,name=(.*?)}/g,"<span class=\'comment-tag\'>@$1</span>").replaceAll(/#{(".+?":".+?"),"icon":"((.|[\\t\\r\\f\\n\\s])+?)"}/g, (x, value, icon) => {const item = JSON.parse("{" + value + "}"); const tempIcon = icon.trim(); return `<span class=\'comment-tag\' data-value=\'${JSON.stringify(item)}\'>${tempIcon} ${item.identifier} ${item.name}</span>`;}).replaceAll(/<span data-w-e-type="emoji" class=\'emoji\'>(.+?)<\\/span>/g,(x, emoji) => {const tempVal = decodeURIComponent(atob(emoji));return `<span data-w-e-type="emoji" class=\'emoji\'>${tempVal}</span>`;}).replaceAll(/{"emoji":"(.+?)"}/g, (x, emoji) => {const tempVal = decodeURIComponent(atob(emoji));return `<span data-w-e-type="emoji" class=\'emoji\'>${tempVal}</span>`;})',
                               renderType: 'LAYOUTPANEL_MODEL',
                               id: 'logic1',
                             },
@@ -740,18 +741,6 @@ export default {
           controlType: 'PANEL',
           logicName: 'list_列表项面板',
           appDataEntityId: 'plmweb.comment',
-          controlLogics: [
-            {
-              eventNames: 'onClick',
-              itemName: 'BUTTON_CALLUILOGIC2',
-              logicTag: 'list_itempanel',
-              logicType: 'SCRIPT',
-              scriptCode:
-                'const panelItems = view.layoutPanel.panelItems;\r\n panelItems.container_comment.state.visible = true;',
-              triggerType: 'CTRLEVENT',
-              id: 'logic',
-            },
-          ],
           controlParam: {},
           modelId: 'ee886f58af63fee0ca6e9603df7aaa8e',
           modelType: 'PSSYSVIEWPANEL',
@@ -762,9 +751,30 @@ export default {
         minorSortAppDEFieldId: 'create_time',
         delistDataItems: [
           {
+            appDEFieldId: 'create_time',
+            dataType: 5,
+            format: 'YYYY-MM-DD HH:mm:ss',
+            id: 'create_time',
+          },
+          {
             appDEFieldId: 'pcontent',
             dataType: 21,
             id: 'pcontent',
+          },
+          {
+            appDEFieldId: 'id',
+            dataType: 25,
+            id: 'id',
+          },
+          {
+            appDEFieldId: 'pid',
+            dataType: 25,
+            id: 'pid',
+          },
+          {
+            appDEFieldId: 'content',
+            dataType: 21,
+            id: 'content',
           },
           {
             appDEFieldId: 'pcreate_man',
@@ -773,31 +783,10 @@ export default {
             id: 'pcreate_man',
           },
           {
-            appDEFieldId: 'pid',
-            dataType: 25,
-            id: 'pid',
-          },
-          {
-            appDEFieldId: 'create_time',
-            dataType: 5,
-            format: 'YYYY-MM-DD HH:mm:ss',
-            id: 'create_time',
-          },
-          {
             appDEFieldId: 'create_man',
             frontCodeListId: 'plmweb.sysoperator',
             dataType: 25,
             id: 'create_man',
-          },
-          {
-            appDEFieldId: 'content',
-            dataType: 21,
-            id: 'content',
-          },
-          {
-            appDEFieldId: 'id',
-            dataType: 25,
-            id: 'id',
           },
           {
             appDEFieldId: 'id',
@@ -812,6 +801,7 @@ export default {
         ],
         pagingSize: 1000,
         showHeader: true,
+        singleSelect: true,
         navViewPos: 'NONE',
         createControlAction: {
           appDEMethodId: 'create',

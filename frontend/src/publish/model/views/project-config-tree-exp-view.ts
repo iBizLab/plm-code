@@ -70,6 +70,12 @@ export default {
           id: 'expitem:node_14',
         },
         {
+          realTitle: '混合项目流程全局配置分页视图',
+          refAppViewId: 'plmweb.project_hybrid_flow_setting_tab_view',
+          name: 'EXPITEM:node_15',
+          id: 'expitem:node_15',
+        },
+        {
           realTitle: '项目集管理分页导航视图',
           refAppViewId: 'plmweb.portfolio_project_set_tab_exp_view',
           name: 'EXPITEM:node_2',
@@ -123,19 +129,19 @@ export default {
               id: '通用 - 项目管理',
             },
             {
-              childDETreeNodeId: 'node_6',
-              parentDETreeNodeId: 'node_12',
-              parentValueLevel: 1,
-              searchMode: 3,
-              id: '配置 - 工作项配置',
-            },
-            {
               childDETreeNodeId: 'node_3',
               parentDETreeNodeId: 'node_11',
               parentValueLevel: 1,
               searchMode: 3,
               name: '流程 - Scrum项目',
               id: '流程 - scrum项目',
+            },
+            {
+              childDETreeNodeId: 'node_6',
+              parentDETreeNodeId: 'node_12',
+              parentValueLevel: 1,
+              searchMode: 3,
+              id: '配置 - 工作项配置',
             },
             {
               childDETreeNodeId: 'node_9',
@@ -150,14 +156,6 @@ export default {
               parentValueLevel: 1,
               searchMode: 3,
               id: '默认根节点 - 通用',
-            },
-            {
-              childDETreeNodeId: 'node_4',
-              parentDETreeNodeId: 'node_11',
-              parentValueLevel: 1,
-              searchMode: 3,
-              name: '流程 - Kanban项目',
-              id: '流程 - kanban项目',
             },
             {
               childDETreeNodeId: 'node_11',
@@ -181,11 +179,12 @@ export default {
               id: '配置 - 项目配置',
             },
             {
-              childDETreeNodeId: 'node_5',
+              childDETreeNodeId: 'node_4',
               parentDETreeNodeId: 'node_11',
               parentValueLevel: 1,
               searchMode: 3,
-              id: '流程 - 瀑布项目',
+              name: '流程 - Kanban项目',
+              id: '流程 - kanban项目',
             },
             {
               childDETreeNodeId: 'node_12',
@@ -207,6 +206,20 @@ export default {
               parentValueLevel: 1,
               searchMode: 3,
               id: '配置 - 发布配置',
+            },
+            {
+              childDETreeNodeId: 'node_5',
+              parentDETreeNodeId: 'node_11',
+              parentValueLevel: 1,
+              searchMode: 3,
+              id: '流程 - 瀑布项目',
+            },
+            {
+              childDETreeNodeId: 'node_15',
+              parentDETreeNodeId: 'node_11',
+              parentValueLevel: 1,
+              searchMode: 3,
+              id: '流程 - 混合项目',
             },
           ],
           detreeNodes: [
@@ -280,6 +293,15 @@ export default {
               treeNodeType: 'STATIC',
               name: '工时设置',
               id: 'node_14',
+            },
+            {
+              text: '混合项目',
+              navAppViewId: 'plmweb.project_hybrid_flow_setting_tab_view',
+              nodeType: 'node_15',
+              treeNodeType: 'STATIC',
+              enableCheck: true,
+              name: '混合项目',
+              id: 'node_15',
             },
             {
               text: '项目集管理',

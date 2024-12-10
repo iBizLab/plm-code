@@ -74,8 +74,9 @@ export default {
                   appDEFieldId: 'role_id',
                   editor: {
                     singleSelect: true,
-                    appCodeListId: 'plmweb.base__role_type',
+                    appCodeListId: 'plmweb.base__product_role_type',
                     editorType: 'DROPDOWNLIST',
+                    placeHolder: '请选择角色',
                     valueType: 'SIMPLE',
                     editable: true,
                     id: 'role_id',

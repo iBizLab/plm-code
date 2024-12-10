@@ -843,7 +843,8 @@ export default {
                   itemName: 'deuiaction3',
                   logicTag: 'treeexpbar_toolbar',
                   logicType: 'SCRIPT',
-                  scriptCode: '!context.product',
+                  scriptCode:
+                    '!context.product && !context.srfreadonly && context.user_role != \'reader\' && context.user_role != "user"',
                   triggerType: 'ITEMVISIBLE',
                   id: 'project',
                 },

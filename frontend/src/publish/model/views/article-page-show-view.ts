@@ -47,108 +47,28 @@ export default {
                 actionGroupExtractMode: 'ITEM',
                 panelItems: [
                   {
-                    rawItem: {
-                      sysImage: {
-                        cssClass: 'fa fa-file-text-o',
-                        glyph: 'xf0f6@FontAwesome',
-                      },
-                      contentType: 'IMAGE',
-                      predefinedType: 'STATIC_IMAGE',
-                      id: 'static_image1',
-                    },
-                    caption: '图片',
-                    itemStyle: 'DEFAULT',
-                    itemType: 'RAWITEM',
-                    layoutPos: {
-                      shrink: 1,
-                      layout: 'FLEX',
-                    },
-                    panelItemGroupLogics: [
-                      {
-                        logicCat: 'PANELVISIBLE',
-                        relatedItemNames: ['icon'],
-                        groupOP: 'AND',
-                        panelItemLogics: [
-                          {
-                            condOp: 'ISNULL',
-                            dstModelField: 'icon',
-                            logicType: 'SINGLE',
-                            id: '逻辑项',
-                          },
-                        ],
-                        logicType: 'GROUP',
-                        id: '面板成员[static_image1][面板显示]逻辑',
-                      },
-                    ],
-                    sysImage: {
-                      cssClass: 'fa fa-file-text-o',
-                      glyph: 'xf0f6@FontAwesome',
-                    },
-                    showCaption: true,
-                    id: 'static_image1',
-                  },
-                  {
                     editor: {
                       halign: 'LEFT',
+                      renderMode: 'HEADING1',
                       valign: 'MIDDLE',
                       wrapMode: 'NOWRAP',
                       editorType: 'SPAN',
-                      predefinedType: 'FIELD_IMAGE',
+                      predefinedType: 'CAPTIONBAR',
                       valueType: 'SIMPLE',
                       editable: true,
-                      id: 'icon',
+                      id: 'view_pagecaption',
                     },
-                    viewFieldName: 'icon',
                     allowEmpty: true,
-                    caption: '图片(动态)',
-                    itemStyle: 'DEFAULT',
-                    itemType: 'FIELD',
-                    layoutPos: {
-                      shrink: 1,
-                      layout: 'FLEX',
-                      spacingRight: 'OUTERNONE',
-                    },
-                    panelItemGroupLogics: [
-                      {
-                        logicCat: 'PANELVISIBLE',
-                        relatedItemNames: ['icon'],
-                        groupOP: 'AND',
-                        panelItemLogics: [
-                          {
-                            condOp: 'ISNOTNULL',
-                            dstModelField: 'icon',
-                            logicType: 'SINGLE',
-                            id: '逻辑项',
-                          },
-                        ],
-                        logicType: 'GROUP',
-                        id: '面板成员[icon][面板显示]逻辑',
-                      },
-                    ],
-                    id: 'icon',
-                  },
-                  {
-                    editor: {
-                      halign: 'LEFT',
-                      renderMode: 'TEXT_DYNAMIC',
-                      valign: 'MIDDLE',
-                      wrapMode: 'NOWRAP',
-                      editorType: 'SPAN',
-                      predefinedType: 'FIELD_TEXT_DYNAMIC',
-                      valueType: 'SIMPLE',
-                      editable: true,
-                      id: 'name',
-                    },
-                    viewFieldName: 'PUBLISH_NAME',
-                    allowEmpty: true,
-                    caption: '文本(动态)',
+                    caption: '页面标题',
                     itemStyle: 'DEFAULT',
                     itemType: 'FIELD',
                     layoutPos: {
                       shrink: 1,
                       layout: 'FLEX',
                     },
-                    id: 'name',
+                    sysPFPluginId: 'identifier_title',
+                    userTag: 'identifier',
+                    id: 'view_pagecaption',
                   },
                   {
                     rawItem: {
@@ -475,17 +395,17 @@ export default {
                                             QUOTECODELISTMAP:
                                               '{"type":"plmweb.base__recent_visite"}',
                                             QUOTEFIELDMAP:
-                                              '{"identifier":"show_identifier","name":"name","id":"id","type":"owner_subtype"}',
+                                              '{"identifier":"show_identifier","name":"name","id":"id","type":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
                                             QUOTEPARAMS:
                                               '{"page":0,"size":20,"sort":"update_time,desc"}',
                                             QUOTEINSCRIPT:
-                                              'value.replaceAll(/\\#\\{\\"id\\":\\"(.+?)\\",\\"name\\":\\"(.+?)\\",\\"identifier\\":\\"(.+?)\\",\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g,(x, id, name, identifier, icon) => {return controller.getNodeInfo({ id, name, identifier, icon })}).replaceAll(/\\#\\{id=(.+?),name=(.+?),identifier=(.+?),icon=((.|[\\t\\r\\f\\n\\s])+?)\\}/g,(x, id, name, identifier, icon) => {return controller.getNodeInfo({ id, name, identifier, icon })})',
+                                              'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\"),\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); return controller.getNodeInfo({ icon, ...item })})',
                                             USERSCRIPT:
                                               '`@{"id":"${data.id}","name":"${data.name}"}`',
                                             QUOTESCRIPT:
-                                              '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","icon":"${data.icon}"}`',
+                                              '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.type}","recent_parent":"${data.recent_parent}","icon":"${data.icon}"}`',
                                             REPLYSCRIPT:
-                                              'value?.replace(/@{[^,]*,"name":"(.*?)"}/g,"<span class=\\\'comment-tag\\\'>@$1</span>").replace(/@{[^,]*,name=(.*?)}/g,"<span class=\\\'comment-tag\\\'>@$1</span>").replace(/#{"id":"(.+?)","name":"(.+?)","identifier":"(.+?)","icon":"((.|[\\t\\r\\f\\n\\s])+?)"}/g, "<span class=\\\'comment-tag\\\'>$4 $3 $2</span>").replace(/#{id=(.+?),name=(.+?),identifier=(.+?),icon=((.|[\\t\\r\\f\\n\\s])+?)}/g, "<span class=\\\'comment-tag\\\'>$4 $3 $2</span>")',
+                                              'value?.replace(/@{[^,]*,"name":"(.*?)"}/g,"<span class=\'comment-tag\'>@$1</span>").replace(/@{[^,]*,name=(.*?)}/g,"<span class=\'comment-tag\'>@$1</span>").replaceAll(/\\#\\{(\\".+?\\":\\".+?\\"),\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g, (x, value, icon) => {const item = JSON.parse("{" + value + "}"); const tempIcon = icon.trim(); return `<span class=\'comment-tag\' data-value=\'${JSON.stringify(item)}\'>${tempIcon} ${item.identifier} ${item.name}</span>`;})',
                                             USERFIELDMAP:
                                               '{"id":"user_id","name":"name"}',
                                             USERURL:
@@ -1108,6 +1028,23 @@ export default {
               {
                 actionLevel: 100,
                 noPrivDisplayMode: 2,
+                uiactionId: 'open_page_info@article_page',
+                uiactionTarget: 'SINGLEKEY',
+                valid: true,
+                caption: '页面信息',
+                itemType: 'DEUIACTION',
+                sysImage: {
+                  cssClass: 'fa fa-info-circle',
+                  glyph: 'xf05a@FontAwesome',
+                },
+                tooltip: '页面信息',
+                showCaption: true,
+                showIcon: true,
+                id: 'deuiaction17',
+              },
+              {
+                actionLevel: 100,
+                noPrivDisplayMode: 2,
                 uiactionId: 'save_to_stencil@article_page',
                 uiactionTarget: 'SINGLEDATA',
                 valid: true,
@@ -1468,7 +1405,7 @@ export default {
                             contenttype: 'HTML',
                             TITLE: 'name',
                             PARSESCRIPT:
-                              'value?.replace(/@{[^,]*,"name":"(.*?)"}/g,"<span class=\\\'comment-tag\\\'>@$1</span>").replace(/@{[^,]*,name=(.*?)}/g,"<span class=\\\'comment-tag\\\'>@$1</span>").replace(/#{"id":"(.+?)","name":"(.+?)","identifier":"(.+?)","type":"(.+?)","icon":"((.|[\\t\\r\\f\\n\\s])+?)"}/g,(match, id, name, identifier, type, icon) => { const tempIcon = icon.trim(); const params = JSON.stringify({ id, name, identifier, type, }); return `<span markerClick=\'marker\' params=\'${params}\' class=\'comment-tag is-click\'>${tempIcon} ${identifier} ${name}</span>`;}).replace(/#{"id":"(.+?)","name":"(.+?)","identifier":"(.+?)","icon":"((.|[\\t\\r\\f\\n\\s])+?)"}/g, "<span class=\\\'comment-tag\\\'>$4 $3 $2</span>").replace(/#{id=(.+?),name=(.+?),identifier=(.+?),icon=((.|[\\t\\r\\f\\n\\s])+?)}/g, "<span class=\\\'comment-tag\\\'>$4 $3 $2</span>").replaceAll(/\\{\\"\\emoji\\":\\"(.+?)\\"\\}/g,(x, emoji) => {const tempVal = decodeURIComponent(atob(emoji)); return `<span class="emoji-tag">${tempVal}</span>`})',
+                              'value?.replace(/@{[^,]*,"name":"(.*?)"}/g,"<span class=\\\'comment-tag\\\'>@$1</span>").replace(/@{[^,]*,name=(.*?)}/g,"<span class=\\\'comment-tag\\\'>@$1</span>").replaceAll(/\\#\\{(\\".+?\\":\\".+?\\"),\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); const tempIcon = icon.trim(); const params = JSON.stringify(item); return `<span markerClick=\'marker\' params=\'${params}\' class=\'comment-tag is-click\'>${tempIcon} ${item.identifier} ${item.name}</span>`;}).replaceAll(/\\{\\"\\emoji\\":\\"(.+?)\\"\\}/g,(x, emoji) => {const tempVal = decodeURIComponent(atob(emoji)); return `<span class="emoji-tag">${tempVal}</span>`})',
                           },
                           editorStyle: 'ANCHO_HTML',
                           editorType: 'RAW',
@@ -1686,6 +1623,7 @@ export default {
                               dataItemName: 'name',
                               excelCaption: '名称',
                               appDEFieldId: 'name',
+                              deuiactionId: 'attachment_preview@attachment',
                               valueType: 'SIMPLE',
                               aggMode: 'NONE',
                               align: 'LEFT',
@@ -2457,7 +2395,7 @@ export default {
                         editorParams: {
                           contenttype: 'HTML',
                           SCRIPTCODE:
-                            'data.content?.replace(/@{[^,]*,"name":"(.*?)"}/g,"<span class=\'comment-tag\'>@$1</span>").replace(/@{[^,]*,name=(.*?)}/g,"<span class=\'comment-tag\'>@$1</span>").replace(/#{"id":"(.+?)","name":"(.+?)","identifier":"(.+?)","icon":"((.|[\\t\\r\\f\\n\\s])+?)"}/g, "<span class=\'comment-tag\'>$4 $3 $2</span>").replace(/#{id=(.+?),name=(.+?),identifier=(.+?),icon=((.|[\\t\\r\\f\\n\\s])+?)}/g, "<span class=\'comment-tag\'>$4 $3 $2</span>").replaceAll(/\\{\\"\\emoji\\":\\"(.+?)\\"\\}/g,(x, emoji) => {const tempVal = decodeURIComponent(atob(emoji)); return `<span class="emoji-tag">${tempVal}</span>`})',
+                            'data.content?.replace(/@{[^,]*,"name":"(.*?)"}/g,"<span class=\'comment-tag\'>@$1</span>").replace(/@{[^,]*,name=(.*?)}/g,"<span class=\'comment-tag\'>@$1</span>").replaceAll(/\\#\\{(\\".+?\\":\\".+?\\"),\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g, (x, value, icon) => {const item = JSON.parse("{" + value + "}"); const tempIcon = icon.trim(); return `<span class=\'comment-tag\' data-value=\'${JSON.stringify(item)}\'>${tempIcon} ${item.identifier} ${item.name}</span>`;}).replaceAll(/\\{\\"\\emoji\\":\\"(.+?)\\"\\}/g,(x, emoji) => {const tempVal = decodeURIComponent(atob(emoji)); return `<span class="emoji-tag">${tempVal}</span>`})',
                         },
                         editorStyle: 'COMMENT_ITEM',
                         editorType: 'RAW',
@@ -2639,14 +2577,14 @@ export default {
         minorSortAppDEFieldId: 'create_time',
         delistDataItems: [
           {
-            appDEFieldId: 'pid',
-            dataType: 25,
-            id: 'pid',
-          },
-          {
             appDEFieldId: 'content',
             dataType: 21,
             id: 'content',
+          },
+          {
+            appDEFieldId: 'id',
+            dataType: 25,
+            id: 'id',
           },
           {
             appDEFieldId: 'create_time',
@@ -2655,14 +2593,15 @@ export default {
             id: 'create_time',
           },
           {
+            appDEFieldId: 'pcreate_man',
+            frontCodeListId: 'plmweb.sysoperator',
+            dataType: 25,
+            id: 'pcreate_man',
+          },
+          {
             appDEFieldId: 'pcontent',
             dataType: 21,
             id: 'pcontent',
-          },
-          {
-            appDEFieldId: 'id',
-            dataType: 25,
-            id: 'id',
           },
           {
             appDEFieldId: 'create_man',
@@ -2671,10 +2610,9 @@ export default {
             id: 'create_man',
           },
           {
-            appDEFieldId: 'pcreate_man',
-            frontCodeListId: 'plmweb.sysoperator',
+            appDEFieldId: 'pid',
             dataType: 25,
-            id: 'pcreate_man',
+            id: 'pid',
           },
           {
             appDEFieldId: 'id',

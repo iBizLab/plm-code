@@ -156,6 +156,16 @@ public interface RecentService extends IService<Recent> {
     boolean save(List<Recent> list);
 
     /**
+    * customGet
+    * 
+    * @param key
+    * @return
+    */
+    default Recent customGet(String key) {
+        return getSelf().customGet(new Recent().setId(key));
+    }
+
+    /**
     * myChargeEntry
     * 
     * @param et
@@ -172,6 +182,16 @@ public interface RecentService extends IService<Recent> {
     * @return
     */
     default Recent myCreatedEntry(Recent et) {
+        return et;
+    }
+
+    /**
+    * mySummary
+    * 
+    * @param et
+    * @return
+    */
+    default Recent mySummary(Recent et) {
         return et;
     }
 
@@ -495,6 +515,16 @@ public interface RecentService extends IService<Recent> {
     * @return
     */
     boolean saveByDercustomRecentWorkItem(WorkItem workItem, List<Recent> list);
+
+    /**
+    * customGet
+    * 
+    * @param et
+    * @return
+    */
+    default Recent customGet(Recent et) {
+        return et;
+    }
 
     /**
     * fetchView

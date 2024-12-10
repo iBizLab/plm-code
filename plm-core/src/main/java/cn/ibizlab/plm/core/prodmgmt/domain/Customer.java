@@ -119,7 +119,7 @@ public class Customer extends EntityMP implements Serializable
     * 类别
     */
     @TableField(value = "categories")
-    @DEField(name = "categories" , dict = "category")
+    @DEField(name = "categories")
     @JSONField(name = "categories")
     @JsonProperty("categories")
     @ApiModelProperty(value = "categories", notes = "类别")
@@ -174,6 +174,16 @@ public class Customer extends EntityMP implements Serializable
     @JsonProperty("attentions")
     @ApiModelProperty(value = "attentions", notes = "关注")
     private List<Attention> attentions;
+
+    /**
+    * 产品是否归档
+    */
+    @TableField(value = "product_is_archived" , exist = false)
+    @DEField(name = "product_is_archived" , dict = "YesNo")
+    @JSONField(name = "product_is_archived")
+    @JsonProperty("product_is_archived")
+    @ApiModelProperty(value = "product_is_archived", notes = "产品是否归档")
+    private Integer productIsArchived;
 
     /**
     * 工单总数
@@ -412,6 +422,15 @@ public class Customer extends EntityMP implements Serializable
     public Customer setAttentions(List<Attention> attentions) {
         this.attentions = attentions;
         this.modify("attentions", attentions);
+        return this;
+    }
+
+    /**
+    * 设置 [产品是否归档]
+    */
+    public Customer setProductIsArchived(Integer productIsArchived) {
+        this.productIsArchived = productIsArchived;
+        this.modify("product_is_archived", productIsArchived);
         return this;
     }
 

@@ -227,6 +227,12 @@ export default {
           id: 'srfdataaccaction',
         },
         {
+          appDEFieldId: 'state',
+          valueType: 'SIMPLE',
+          dataType: 25,
+          id: 'state',
+        },
+        {
           appDEFieldId: 'name',
           valueType: 'SIMPLE',
           dataType: 25,

@@ -22,6 +22,7 @@ import cn.ibizlab.plm.core.projmgmt.domain.Sprint;
 import cn.ibizlab.plm.core.prodmgmt.domain.Customer;
 import cn.ibizlab.plm.core.wiki.domain.ArticlePage;
 import cn.ibizlab.plm.core.prodmgmt.domain.ProductPlan;
+import cn.ibizlab.plm.core.testmgmt.domain.Run;
 import cn.ibizlab.plm.core.testmgmt.domain.TestCase;
 import cn.ibizlab.plm.core.prodmgmt.domain.Ticket;
 import cn.ibizlab.plm.core.projmgmt.domain.WorkItem;
@@ -894,6 +895,21 @@ public interface RelationService extends IService<Relation> {
     * @return
     */
     boolean saveByTargetProductPlanCategory(ProductPlan productPlan, List<Relation> list);
+
+    /**
+    * findByTargetRun
+    * @param run
+    * @return
+    */
+    List<Relation> findByTargetRun(Run run);
+
+    /**
+    * saveByTargetRun
+    * @param run
+    * @param list
+    * @return
+    */
+    boolean saveByTargetRun(Run run, List<Relation> list);
 
     /**
     * findByTargetTestCase

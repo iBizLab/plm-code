@@ -1,5 +1,4 @@
 export default {
-  gridRowActiveMode: 1,
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'global_test_case_grid_view',

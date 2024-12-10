@@ -165,8 +165,8 @@ export default {
                                 dataItemName: 'name',
                                 excelCaption: '名称',
                                 appDEFieldId: 'name',
+                                deuiactionId: 'attachment_preview@attachment',
                                 valueType: 'SIMPLE',
-                                enableRowEdit: true,
                                 aggMode: 'NONE',
                                 align: 'LEFT',
                                 capLanguageRes: {
@@ -345,21 +345,6 @@ export default {
                               },
                             ],
                             degridEditItems: [
-                              {
-                                caption: '名称',
-                                codeName: 'name',
-                                enableCond: 3,
-                                appDEFieldId: 'name',
-                                editor: {
-                                  maxLength: 200,
-                                  editorType: 'TEXTBOX',
-                                  valueType: 'SIMPLE',
-                                  editable: true,
-                                  id: 'name',
-                                },
-                                allowEmpty: true,
-                                id: 'name',
-                              },
                               {
                                 caption: '所属数据标识',
                                 codeName: 'owner_id',

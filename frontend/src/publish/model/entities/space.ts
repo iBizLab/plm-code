@@ -4103,6 +4103,13 @@ export default {
       id: 'remove_batch_temp',
     },
   ],
+  appPortletCats: [
+    {
+      codeName: 'Wiki__index_knowledge_management',
+      name: '知识管理',
+      id: 'wiki__index_knowledge_management',
+    },
+  ],
   deopprivs: [
     {
       logicName: '建立',

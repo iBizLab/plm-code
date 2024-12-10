@@ -143,6 +143,9 @@ export default {
       logicName: '用户多项数据选择表格视图_表格',
       appDataEntityId: 'plmweb.user',
       controlParam: {
+        ctrlParams: {
+          ENABLESELECTALL: 'true',
+        },
         id: 'grid',
       },
       sysPFPluginId: 'checkbox_grid',

@@ -589,6 +589,22 @@ public abstract class AbstractDynaDashboardResource {
     }
 
     /**
+    * only_get 动态数据看板
+    * 
+    *
+    * @param dynaDashboardId dynaDashboardId
+    * @return Mono<ResponseEntity<DynaDashboardDTO>>
+    */
+    @ApiOperation(value = "only_get", tags = {"动态数据看板" },  notes = "DynaDashboard-only_get ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-DynaDashboard-only_get-all') or hasPermission(this.dynaDashboardService.get(#dynaDashboardId),'ibizplm-DynaDashboard-only_get')")
+    @GetMapping("dyna_dashboards/{dynaDashboardId}/only_get")
+    public Mono<ResponseEntity<DynaDashboardDTO>> onlyGetByDynaDashboardId
+            (@PathVariable("dynaDashboardId") String dynaDashboardId) {
+        DynaDashboard rt = dynaDashboardService.onlyGet(dynaDashboardId);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(dynaDashboardDtoMapping.toDto(rt)));
+    }
+
+    /**
     * 查询fetch_default 动态数据看板
     * 
     *
@@ -743,6 +759,23 @@ public abstract class AbstractDynaDashboardResource {
         DynaDashboard domain = dynaDashboardDtoMapping.toDomain(dto);
         domain.setOwnerId(ownerId);
         DynaDashboard rt = dynaDashboardService.getDraft(domain);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(dynaDashboardDtoMapping.toDto(rt)));
+    }
+
+    /**
+    * only_get 动态数据看板
+    * 
+    *
+    * @param ownerId ownerId
+    * @param dynaDashboardId dynaDashboardId
+    * @return Mono<ResponseEntity<DynaDashboardDTO>>
+    */
+    @ApiOperation(value = "only_get", tags = {"动态数据看板" },  notes = "DynaDashboard-only_get ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-DynaDashboard-only_get-all') or hasPermission('insight_view',#ownerId,this.dynaDashboardService.get(#dynaDashboardId),'ibizplm-DynaDashboard-only_get')")
+    @GetMapping("insight_views/{ownerId}/dyna_dashboards/{dynaDashboardId}/only_get")
+    public Mono<ResponseEntity<DynaDashboardDTO>> onlyGetByOwnerIdAndDynaDashboardId
+            (@PathVariable("ownerId") String ownerId, @PathVariable("dynaDashboardId") String dynaDashboardId) {
+        DynaDashboard rt = dynaDashboardService.onlyGet(dynaDashboardId);
         return Mono.just(ResponseEntity.status(HttpStatus.OK).body(dynaDashboardDtoMapping.toDto(rt)));
     }
 

@@ -252,6 +252,25 @@ public interface WorkItemMapper extends BaseMapper<WorkItem> {
     List<WorkItem> listChild(@Param("ctx") WorkItemSearchContext context, @Param("ew") Wrapper<WorkItem> wrapper);
 
     /**
+     * 数据集合choose分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<WorkItem> searchChoose(IPage<WorkItem> page, @Param("ctx") WorkItemSearchContext context, @Param("ew") Wrapper<WorkItem> wrapper);
+    
+    /**
+     * 数据集合choose查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<WorkItem> listChoose(@Param("ctx") WorkItemSearchContext context, @Param("ew") Wrapper<WorkItem> wrapper);
+
+    /**
      * 数据集合choose_child分页查询
      * 
      * @param page
@@ -288,6 +307,25 @@ public interface WorkItemMapper extends BaseMapper<WorkItem> {
      * @return
      */
     List<WorkItem> listChooseDependency(@Param("ctx") WorkItemSearchContext context, @Param("ew") Wrapper<WorkItem> wrapper);
+
+    /**
+     * 数据集合choose_parent_work_item分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<WorkItem> searchChooseParentWorkItem(IPage<WorkItem> page, @Param("ctx") WorkItemSearchContext context, @Param("ew") Wrapper<WorkItem> wrapper);
+    
+    /**
+     * 数据集合choose_parent_work_item查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<WorkItem> listChooseParentWorkItem(@Param("ctx") WorkItemSearchContext context, @Param("ew") Wrapper<WorkItem> wrapper);
 
     /**
      * 数据集合comment_notify_assignee分页查询
@@ -537,6 +575,63 @@ public interface WorkItemMapper extends BaseMapper<WorkItem> {
     List<WorkItem> listMyFilter(@Param("ctx") WorkItemSearchContext context, @Param("ew") Wrapper<WorkItem> wrapper);
 
     /**
+     * 数据集合my_summary_bug分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<WorkItem> searchMySummaryBug(IPage<WorkItem> page, @Param("ctx") WorkItemSearchContext context, @Param("ew") Wrapper<WorkItem> wrapper);
+    
+    /**
+     * 数据集合my_summary_bug查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<WorkItem> listMySummaryBug(@Param("ctx") WorkItemSearchContext context, @Param("ew") Wrapper<WorkItem> wrapper);
+
+    /**
+     * 数据集合my_summary_other分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<WorkItem> searchMySummaryOther(IPage<WorkItem> page, @Param("ctx") WorkItemSearchContext context, @Param("ew") Wrapper<WorkItem> wrapper);
+    
+    /**
+     * 数据集合my_summary_other查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<WorkItem> listMySummaryOther(@Param("ctx") WorkItemSearchContext context, @Param("ew") Wrapper<WorkItem> wrapper);
+
+    /**
+     * 数据集合my_summary_task分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<WorkItem> searchMySummaryTask(IPage<WorkItem> page, @Param("ctx") WorkItemSearchContext context, @Param("ew") Wrapper<WorkItem> wrapper);
+    
+    /**
+     * 数据集合my_summary_task查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<WorkItem> listMySummaryTask(@Param("ctx") WorkItemSearchContext context, @Param("ew") Wrapper<WorkItem> wrapper);
+
+    /**
      * 数据集合my_todo分页查询
      * 
      * @param page
@@ -573,6 +668,25 @@ public interface WorkItemMapper extends BaseMapper<WorkItem> {
      * @return
      */
     List<WorkItem> listNoBugWorkItem(@Param("ctx") WorkItemSearchContext context, @Param("ew") Wrapper<WorkItem> wrapper);
+
+    /**
+     * 数据集合no_completed分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<WorkItem> searchNoCompleted(IPage<WorkItem> page, @Param("ctx") WorkItemSearchContext context, @Param("ew") Wrapper<WorkItem> wrapper);
+    
+    /**
+     * 数据集合no_completed查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<WorkItem> listNoCompleted(@Param("ctx") WorkItemSearchContext context, @Param("ew") Wrapper<WorkItem> wrapper);
 
     /**
      * 数据集合normal分页查询
@@ -668,6 +782,25 @@ public interface WorkItemMapper extends BaseMapper<WorkItem> {
      * @return
      */
     List<WorkItem> listNotifyAssignee(@Param("ctx") WorkItemSearchContext context, @Param("ew") Wrapper<WorkItem> wrapper);
+
+    /**
+     * 数据集合overdue_work_item分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<WorkItem> searchOverdueWorkItem(IPage<WorkItem> page, @Param("ctx") WorkItemSearchContext context, @Param("ew") Wrapper<WorkItem> wrapper);
+    
+    /**
+     * 数据集合overdue_work_item查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<WorkItem> listOverdueWorkItem(@Param("ctx") WorkItemSearchContext context, @Param("ew") Wrapper<WorkItem> wrapper);
 
     /**
      * 数据集合overview_chart分页查询

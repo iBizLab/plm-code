@@ -368,6 +368,7 @@ public abstract class AbstractReviewService extends ServiceImpl<ReviewMapper,Rev
             }
             if(!ObjectUtils.isEmpty(library)) {
                 et.setLibraryIdentifier(library.getIdentifier());
+                et.setLibraryIsDeleted(library.getIsDeleted());
                 et.setLibraryId(library.getId());
                 et.setLibraryName(library.getName());
             }

@@ -237,11 +237,27 @@ public class TicketDTO extends DTOBase implements Serializable {
     private String commentCount;
 
     /**
+     * 产品是否删除
+     */
+    @JsonProperty("product_is_deleted")
+    @JSONField(name = "product_is_deleted")
+    @ApiModelProperty(value = "产品是否删除", position = 25)
+    private Integer productIsDeleted;
+
+    /**
+     * 产品是否归档
+     */
+    @JsonProperty("product_is_archived")
+    @JSONField(name = "product_is_archived")
+    @ApiModelProperty(value = "产品是否归档", position = 26)
+    private Integer productIsArchived;
+
+    /**
      * 关注人
      */
     @JsonProperty("attentions_imp")
     @JSONField(name = "attentions_imp")
-    @ApiModelProperty(value = "关注人", position = 25)
+    @ApiModelProperty(value = "关注人", position = 27)
     private String attentionsImp;
 
     /**
@@ -249,7 +265,7 @@ public class TicketDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("recent_create_days")
     @JSONField(name = "recent_create_days")
-    @ApiModelProperty(value = "最近创建日期", position = 26)
+    @ApiModelProperty(value = "最近创建日期", position = 28)
     private Integer recentCreateDays;
 
     /**
@@ -257,7 +273,7 @@ public class TicketDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("create_man")
     @JSONField(name = "create_man")
-    @ApiModelProperty(value = "建立人", position = 27)
+    @ApiModelProperty(value = "建立人", position = 29)
     private String createMan;
 
     /**
@@ -266,7 +282,7 @@ public class TicketDTO extends DTOBase implements Serializable {
     @JsonProperty("create_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "create_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "建立时间", position = 28)
+    @ApiModelProperty(value = "建立时间", position = 30)
     private Date createTime;
 
     /**
@@ -274,7 +290,7 @@ public class TicketDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("customer_id")
     @JSONField(name = "customer_id")
-    @ApiModelProperty(value = "客户标识", position = 29)
+    @ApiModelProperty(value = "客户标识", position = 31)
     private String customerId;
 
     /**
@@ -282,7 +298,7 @@ public class TicketDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("customer_name")
     @JSONField(name = "customer_name")
-    @ApiModelProperty(value = "客户", position = 30)
+    @ApiModelProperty(value = "客户", position = 32)
     private String customerName;
 
     /**
@@ -290,7 +306,7 @@ public class TicketDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("id")
     @JSONField(name = "id")
-    @ApiModelProperty(value = "标识", position = 31)
+    @ApiModelProperty(value = "标识", position = 33)
     private String id;
 
     /**
@@ -298,7 +314,7 @@ public class TicketDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("name")
     @JSONField(name = "name")
-    @ApiModelProperty(value = "名称", position = 32)
+    @ApiModelProperty(value = "名称", position = 34)
     private String name;
 
     /**
@@ -306,7 +322,7 @@ public class TicketDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("product_id")
     @JSONField(name = "product_id")
-    @ApiModelProperty(value = "产品标识", position = 33)
+    @ApiModelProperty(value = "产品标识", position = 35)
     private String productId;
 
     /**
@@ -314,7 +330,7 @@ public class TicketDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("product_name")
     @JSONField(name = "product_name")
-    @ApiModelProperty(value = "所属产品", position = 34)
+    @ApiModelProperty(value = "所属产品", position = 36)
     private String productName;
 
     /**
@@ -322,7 +338,7 @@ public class TicketDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("update_man")
     @JSONField(name = "update_man")
-    @ApiModelProperty(value = "更新人", position = 35)
+    @ApiModelProperty(value = "更新人", position = 37)
     private String updateMan;
 
     /**
@@ -331,7 +347,7 @@ public class TicketDTO extends DTOBase implements Serializable {
     @JsonProperty("update_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "update_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "更新时间", position = 36)
+    @ApiModelProperty(value = "更新时间", position = 38)
     private Date updateTime;
 
 
@@ -557,6 +573,24 @@ public class TicketDTO extends DTOBase implements Serializable {
     public TicketDTO setCommentCount(String commentCount) {
         this.commentCount = commentCount;
         this.modify("comment_count", commentCount);
+        return this;
+    }
+
+    /**
+     * 设置 [产品是否删除]
+     */
+    public TicketDTO setProductIsDeleted(Integer productIsDeleted) {
+        this.productIsDeleted = productIsDeleted;
+        this.modify("product_is_deleted", productIsDeleted);
+        return this;
+    }
+
+    /**
+     * 设置 [产品是否归档]
+     */
+    public TicketDTO setProductIsArchived(Integer productIsArchived) {
+        this.productIsArchived = productIsArchived;
+        this.modify("product_is_archived", productIsArchived);
         return this;
     }
 

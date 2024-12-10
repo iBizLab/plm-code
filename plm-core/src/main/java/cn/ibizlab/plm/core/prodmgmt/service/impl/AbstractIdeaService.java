@@ -445,6 +445,17 @@ public abstract class AbstractIdeaService extends ServiceImpl<IdeaMapper,Idea> i
         return list;
    }
 	
+   public Page<Idea> fetchMySummaryIdea(IdeaSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Idea> pages=baseMapper.searchMySummaryIdea(context.getPages(),context,context.getSelectCond());
+        List<Idea> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<Idea> listMySummaryIdea(IdeaSearchContext context) {
+        List<Idea> list = baseMapper.listMySummaryIdea(context,context.getSelectCond());
+        return list;
+   }
+	
    public Page<Idea> fetchNormal(IdeaSearchContext context) {
         if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
             context.setSort("SHOW_IDENTIFIER,DESC");
@@ -739,6 +750,8 @@ public abstract class AbstractIdeaService extends ServiceImpl<IdeaMapper,Idea> i
             }
             if(!ObjectUtils.isEmpty(product)) {
                 et.setProductIdentifier(product.getIdentifier());
+                et.setProductIsDeleted(product.getIsDeleted());
+                et.setProductIsArchived(product.getIsArchived());
                 et.setProductId(product.getId());
                 et.setProductName(product.getName());
             }

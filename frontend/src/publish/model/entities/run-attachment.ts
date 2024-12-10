@@ -1025,6 +1025,16 @@ export default {
   logicName: '执行用例结果附件',
   mainStateAppDEFieldIds: ['name'],
   majorAppDEFieldId: 'name',
+  minorAppDERSs: [
+    {
+      actionRSMode: 1,
+      codeName: 'run_attachments',
+      majorAppDataEntityId: 'plmweb.run',
+      rsmode: 2,
+      name: '执行用例-执行用例附件',
+      id: 'run_attachments',
+    },
+  ],
   quickSearchAppDEFieldIds: ['name'],
   sysAPITag: 'ServiceAPI',
   defaultMode: true,
@@ -1034,5 +1044,5 @@ export default {
   name: 'RUN_ATTACHMENT',
   id: 'plmweb.run_attachment',
   codeName2: 'run_attachments',
-  requestPaths: [],
+  requestPaths: ['runs/${run}/run_attachments/${run_attachment}'],
 };

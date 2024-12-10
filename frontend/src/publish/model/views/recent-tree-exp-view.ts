@@ -104,6 +104,7 @@ export default {
       ],
       controls: [
         {
+          appCounterRefId: 'a53bd25f15a3aa8c631ceae20db553cc',
           detreeNodeRSs: [
             {
               childDETreeNodeId: 'node_3',
@@ -186,6 +187,8 @@ export default {
             },
             {
               text: '待完成事项',
+              counterId: 'my_todo_count',
+              counterMode: 1,
               navAppViewId: 'plmweb.work_item_my_todo_gird_view',
               nodeType: 'node_3',
               sysImage: {
@@ -285,6 +288,22 @@ export default {
           },
           autoLoad: true,
           showBusyIndicator: true,
+          appCounterRefs: [
+            {
+              appCounter: {
+                codeName: 'count_my_todo',
+                counterType: 'DEDR',
+                getAppDEActionId: 'count_my_todo',
+                appDataEntityId: 'plmweb.work_item',
+                uniqueTag: 'count_my_todo',
+                name: '首页待完成项计数器',
+                id: 'plmweb.count_my_todo',
+              },
+              tag: 'a53bd25f15a3aa8c631ceae20db553cc',
+              uniqueTag: 'count_my_todo',
+              id: 'a53bd25f15a3aa8c631ceae20db553cc',
+            },
+          ],
           codeName: 'tree_exp_view_tree_view',
           controlStyle: 'LIST_TREE',
           controlType: 'TREEVIEW',

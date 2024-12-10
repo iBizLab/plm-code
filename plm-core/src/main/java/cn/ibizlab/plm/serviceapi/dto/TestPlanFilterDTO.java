@@ -107,7 +107,7 @@ public class TestPlanFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_id_eq")
     @JSONField(name = "n_id_eq")
-    @ApiModelProperty(value = "标识EQ", position = 120)
+    @ApiModelProperty(value = "标识EQ", position = 130)
 	private String idEQ;
 
     /**
@@ -115,7 +115,7 @@ public class TestPlanFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_name_like")
     @JSONField(name = "n_name_like")
-    @ApiModelProperty(value = "计划名称LIKE", position = 130)
+    @ApiModelProperty(value = "计划名称LIKE", position = 140)
 	private String nameLIKE;
 
     /**
@@ -123,7 +123,7 @@ public class TestPlanFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_create_man_eq")
     @JSONField(name = "n_create_man_eq")
-    @ApiModelProperty(value = "建立人EQ", position = 140)
+    @ApiModelProperty(value = "建立人EQ", position = 150)
 	private String createManEQ;
 
     /**
@@ -131,7 +131,7 @@ public class TestPlanFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_create_man_in")
     @JSONField(name = "n_create_man_in")
-    @ApiModelProperty(value = "建立人IN", position = 141)
+    @ApiModelProperty(value = "建立人IN", position = 151)
 	private String createManIN;
 
     /**
@@ -139,7 +139,7 @@ public class TestPlanFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_create_man_isnotnull")
     @JSONField(name = "n_create_man_isnotnull")
-    @ApiModelProperty(value = "建立人ISNOTNULL", position = 142)
+    @ApiModelProperty(value = "建立人ISNOTNULL", position = 152)
 	private String createManISNOTNULL;
 
     /**
@@ -147,7 +147,7 @@ public class TestPlanFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_create_man_isnull")
     @JSONField(name = "n_create_man_isnull")
-    @ApiModelProperty(value = "建立人ISNULL", position = 143)
+    @ApiModelProperty(value = "建立人ISNULL", position = 153)
 	private String createManISNULL;
 
     /**
@@ -155,7 +155,7 @@ public class TestPlanFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_create_man_notin")
     @JSONField(name = "n_create_man_notin")
-    @ApiModelProperty(value = "建立人NOTIN", position = 144)
+    @ApiModelProperty(value = "建立人NOTIN", position = 154)
 	private String createManNOTIN;
 
     /**
@@ -164,7 +164,7 @@ public class TestPlanFilterDTO extends FilterBase implements Serializable {
     @JsonProperty("n_create_time_gtandeq")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "n_create_time_gtandeq" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "建立时间GTANDEQ", position = 150)
+    @ApiModelProperty(value = "建立时间GTANDEQ", position = 160)
 	private Date createTimeGTANDEQ;
 
     /**
@@ -173,7 +173,7 @@ public class TestPlanFilterDTO extends FilterBase implements Serializable {
     @JsonProperty("n_create_time_ltandeq")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "n_create_time_ltandeq" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "建立时间LTANDEQ", position = 151)
+    @ApiModelProperty(value = "建立时间LTANDEQ", position = 161)
 	private Date createTimeLTANDEQ;
 
     /**
@@ -182,7 +182,7 @@ public class TestPlanFilterDTO extends FilterBase implements Serializable {
     @JsonProperty("n_update_time_gtandeq")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "n_update_time_gtandeq" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "更新时间GTANDEQ", position = 170)
+    @ApiModelProperty(value = "更新时间GTANDEQ", position = 180)
 	private Date updateTimeGTANDEQ;
 
     /**
@@ -191,7 +191,7 @@ public class TestPlanFilterDTO extends FilterBase implements Serializable {
     @JsonProperty("n_update_time_ltandeq")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "n_update_time_ltandeq" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "更新时间LTANDEQ", position = 171)
+    @ApiModelProperty(value = "更新时间LTANDEQ", position = 181)
 	private Date updateTimeLTANDEQ;
 
     /**
@@ -199,7 +199,7 @@ public class TestPlanFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_library_id_eq")
     @JSONField(name = "n_library_id_eq")
-    @ApiModelProperty(value = "测试库标识EQ", position = 180)
+    @ApiModelProperty(value = "测试库标识EQ", position = 190)
 	private String libraryIdEQ;
 
     /**
@@ -207,7 +207,7 @@ public class TestPlanFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_project_id_eq")
     @JSONField(name = "n_project_id_eq")
-    @ApiModelProperty(value = "关联项目EQ", position = 190)
+    @ApiModelProperty(value = "关联项目EQ", position = 200)
 	private String projectIdEQ;
 
     /**
@@ -215,7 +215,7 @@ public class TestPlanFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_sprint_id_eq")
     @JSONField(name = "n_sprint_id_eq")
-    @ApiModelProperty(value = "关联迭代EQ", position = 200)
+    @ApiModelProperty(value = "关联迭代EQ", position = 210)
 	private String sprintIdEQ;
 
     /**
@@ -223,7 +223,7 @@ public class TestPlanFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_project_name_eq")
     @JSONField(name = "n_project_name_eq")
-    @ApiModelProperty(value = "关联项目EQ", position = 210)
+    @ApiModelProperty(value = "关联项目EQ", position = 220)
 	private String projectNameEQ;
 
     /**
@@ -231,7 +231,7 @@ public class TestPlanFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_project_name_like")
     @JSONField(name = "n_project_name_like")
-    @ApiModelProperty(value = "关联项目LIKE", position = 211)
+    @ApiModelProperty(value = "关联项目LIKE", position = 221)
 	private String projectNameLIKE;
 
     /**
@@ -239,7 +239,7 @@ public class TestPlanFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_sprint_name_eq")
     @JSONField(name = "n_sprint_name_eq")
-    @ApiModelProperty(value = "关联迭代EQ", position = 220)
+    @ApiModelProperty(value = "关联迭代EQ", position = 230)
 	private String sprintNameEQ;
 
     /**
@@ -247,7 +247,7 @@ public class TestPlanFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_sprint_name_like")
     @JSONField(name = "n_sprint_name_like")
-    @ApiModelProperty(value = "关联迭代LIKE", position = 221)
+    @ApiModelProperty(value = "关联迭代LIKE", position = 231)
 	private String sprintNameLIKE;
 
     /**
@@ -255,7 +255,7 @@ public class TestPlanFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_library_name_eq")
     @JSONField(name = "n_library_name_eq")
-    @ApiModelProperty(value = "所属测试库EQ", position = 230)
+    @ApiModelProperty(value = "所属测试库EQ", position = 240)
 	private String libraryNameEQ;
 
     /**
@@ -263,7 +263,7 @@ public class TestPlanFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_library_name_like")
     @JSONField(name = "n_library_name_like")
-    @ApiModelProperty(value = "所属测试库LIKE", position = 231)
+    @ApiModelProperty(value = "所属测试库LIKE", position = 241)
 	private String libraryNameLIKE;
 
     /**
@@ -271,7 +271,7 @@ public class TestPlanFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_release_id_eq")
     @JSONField(name = "n_release_id_eq")
-    @ApiModelProperty(value = "项目发布标识EQ", position = 240)
+    @ApiModelProperty(value = "项目发布标识EQ", position = 250)
 	private String releaseIdEQ;
 
     /**
@@ -279,7 +279,7 @@ public class TestPlanFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_release_name_eq")
     @JSONField(name = "n_release_name_eq")
-    @ApiModelProperty(value = "名称EQ", position = 250)
+    @ApiModelProperty(value = "名称EQ", position = 260)
 	private String releaseNameEQ;
 
     /**
@@ -287,7 +287,7 @@ public class TestPlanFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_release_name_like")
     @JSONField(name = "n_release_name_like")
-    @ApiModelProperty(value = "名称LIKE", position = 251)
+    @ApiModelProperty(value = "名称LIKE", position = 261)
 	private String releaseNameLIKE;
 
 

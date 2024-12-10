@@ -76,6 +76,12 @@ export default {
           name: 'EXPITEM:node_3',
           id: 'expitem:node_3',
         },
+        {
+          realTitle: '需求模板',
+          refAppViewId: 'plmweb.idea_template_global_all_grid_view',
+          name: 'EXPITEM:node_8',
+          id: 'expitem:node_8',
+        },
       ],
       controls: [
         {
@@ -109,13 +115,6 @@ export default {
               id: '默认根节点 - 通用',
             },
             {
-              childDETreeNodeId: 'node_2',
-              parentDETreeNodeId: 'node_6',
-              parentValueLevel: 1,
-              searchMode: 3,
-              id: '配置 - 工单配置',
-            },
-            {
               childDETreeNodeId: 'node_6',
               parentDETreeNodeId: 'root',
               parentValueLevel: 1,
@@ -123,11 +122,25 @@ export default {
               id: '默认根节点 - 配置',
             },
             {
+              childDETreeNodeId: 'node_2',
+              parentDETreeNodeId: 'node_6',
+              parentValueLevel: 1,
+              searchMode: 3,
+              id: '配置 - 工单配置',
+            },
+            {
               childDETreeNodeId: 'node_3',
               parentDETreeNodeId: 'node_6',
               parentValueLevel: 1,
               searchMode: 3,
               id: '配置 - 产品配置',
+            },
+            {
+              childDETreeNodeId: 'node_8',
+              parentDETreeNodeId: 'node_6',
+              parentValueLevel: 1,
+              searchMode: 3,
+              id: '配置 - 需求模板',
             },
           ],
           detreeNodes: [
@@ -221,6 +234,14 @@ export default {
               expanded: true,
               name: '权限',
               id: 'node_7',
+            },
+            {
+              text: '需求模板',
+              navAppViewId: 'plmweb.idea_template_global_all_grid_view',
+              nodeType: 'node_8',
+              treeNodeType: 'STATIC',
+              name: '需求模板',
+              id: 'node_8',
             },
           ],
           outputIconDefault: true,

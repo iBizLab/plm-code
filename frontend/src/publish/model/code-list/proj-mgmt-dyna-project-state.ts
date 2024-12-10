@@ -1,0 +1,15 @@
+export default {
+  clsAppDEFieldId: 'style',
+  codeListTag: 'ProjMgmt__dyna_project_state',
+  codeListType: 'DYNAMIC',
+  codeName: 'ProjMgmt__dyna_project_state',
+  colorAppDEFieldId: 'color',
+  emptyText: '未定义',
+  appDEDataSetId: 'fetch_default',
+  appDataEntityId: 'plmweb.project_state',
+  textAppDEFieldId: 'name',
+  valueAppDEFieldId: 'id',
+  enableCache: true,
+  name: '项目状态（动态）',
+  id: 'plmweb.projmgmt__dyna_project_state',
+};

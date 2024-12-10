@@ -48,13 +48,13 @@ export default {
       builtinAppUILogic: {
         openDataAppView: {
           openMode: 'POPUPMODAL',
-          refAppViewId: 'plmweb.idea_main_view',
+          refAppViewId: 'plmweb.workload_update_view',
         },
         editMode: true,
         appUILogicRefViews: [
           {
             openMode: 'POPUPMODAL',
-            refAppViewId: 'plmweb.idea_main_view',
+            refAppViewId: 'plmweb.workload_update_view',
           },
         ],
         builtinLogic: true,
@@ -70,11 +70,8 @@ export default {
     {
       openMode: 'POPUPMODAL',
       realOpenMode: 'POPUPMODAL',
-      realTitle: '需求',
-      realTitleLanguageRes: {
-        lanResTag: 'PAGE.TITLE.IDEA.MAIN_VIEW',
-      },
-      refAppViewId: 'plmweb.idea_main_view',
+      realTitle: '修改实际工时视图',
+      refAppViewId: 'plmweb.workload_update_view',
       name: 'EDITDATA',
       id: 'editdata',
     },

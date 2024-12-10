@@ -10,69 +10,6 @@ export default {
   appDataEntityId: 'plmweb.insight_report',
   controls: [
     {
-      layoutMode: 'Flex',
-      layout: {
-        layout: 'FLEX',
-      },
-      rootPanelItems: [
-        {
-          actionGroupExtractMode: 'ITEM',
-          panelItems: [
-            {
-              editor: {
-                halign: 'LEFT',
-                renderMode: 'TEXT_DYNAMIC',
-                valign: 'MIDDLE',
-                wrapMode: 'NOWRAP',
-                editorType: 'SPAN',
-                predefinedType: 'FIELD_TEXT_DYNAMIC',
-                valueType: 'SIMPLE',
-                editable: true,
-                id: 'field_text_dynamic',
-              },
-              allowEmpty: true,
-              caption: '文本(动态)',
-              itemStyle: 'DEFAULT',
-              itemType: 'FIELD',
-              layoutPos: {
-                grow: 1,
-                shrink: 1,
-                layout: 'FLEX',
-              },
-              sysPFPluginId: 'bi_report_panel_content',
-              id: 'field_text_dynamic',
-            },
-          ],
-          layout: {
-            layout: 'FLEX',
-          },
-          dataRegionType: 'INHERIT',
-          caption: '容器',
-          itemStyle: 'DEFAULT',
-          itemType: 'CONTAINER',
-          layoutPos: {
-            grow: 1,
-            shrink: 1,
-            heightMode: 'FULL',
-            layout: 'FLEX',
-          },
-          id: 'container',
-        },
-      ],
-      layoutPanel: true,
-      codeName: 'usr0705249058',
-      controlType: 'PANEL',
-      logicName: 'BI报表呈现态',
-      appDataEntityId: 'plmweb.insight_report',
-      controlParam: {
-        id: 'panel',
-      },
-      modelId: '9AB75D4B-7BF1-4F9B-919B-898F6C95525B',
-      modelType: 'PSSYSVIEWPANEL',
-      name: 'panel',
-      id: 'plmweb.insight_report.usr0705249058',
-    },
-    {
       detoolbarItems: [
         {
           actionLevel: 100,
@@ -96,6 +33,49 @@ export default {
           showCaption: true,
           showIcon: true,
           id: 'deuiaction1',
+        },
+        {
+          actionLevel: 100,
+          groupExtractMode: 'ITEM',
+          uiactionGroup: {
+            uiactionGroupDetails: [
+              {
+                actionLevel: 100,
+                afterItemType: 'NONE',
+                beforeItemType: 'NONE',
+                caption: '导出表格',
+                detailType: 'DEUIACTION',
+                uiactionId: 'export_table@insight_report',
+                showCaption: true,
+                showIcon: true,
+                id: 'uf7b1940',
+              },
+              {
+                actionLevel: 100,
+                afterItemType: 'NONE',
+                beforeItemType: 'NONE',
+                caption: '导出为PDF',
+                detailType: 'DEUIACTION',
+                uiactionId: 'export_pdf@insight_report',
+                showCaption: true,
+                showIcon: true,
+                id: 'ue60ea90',
+              },
+            ],
+            appDataEntityId: 'plmweb.insight_report',
+            uniqueTag: 'insight_report__Usr1121549416',
+            name: '导出界面行为组',
+            id: 'usr1121549416',
+          },
+          valid: true,
+          itemType: 'ITEMS',
+          sysImage: {
+            cssClass: 'fa fa-list-ul',
+            glyph: 'xf0ca@FontAwesome',
+          },
+          showCaption: true,
+          showIcon: true,
+          id: 'items1',
         },
       ],
       codeName: 'bi_report_content_panel_view_toolbar',
@@ -123,6 +103,9 @@ export default {
       id: 'bi_report_content_panel_view_captionbar',
     },
   ],
+  sysCss: {
+    cssName: 'export-canvas-style',
+  },
   viewLayoutPanel: {
     layoutMode: 'Flex',
     layout: {
@@ -133,28 +116,145 @@ export default {
         actionGroupExtractMode: 'ITEM',
         panelItems: [
           {
-            editor: {
-              halign: 'LEFT',
-              renderMode: 'TEXT_DYNAMIC',
-              valign: 'MIDDLE',
-              wrapMode: 'NOWRAP',
-              editorType: 'SPAN',
-              predefinedType: 'FIELD_TEXT_DYNAMIC',
-              valueType: 'SIMPLE',
-              editable: true,
-              id: 'field_text_dynamic',
+            actionGroupExtractMode: 'ITEM',
+            panelItems: [
+              {
+                actionGroupExtractMode: 'ITEM',
+                panelItems: [
+                  {
+                    actionGroupExtractMode: 'ITEM',
+                    panelItems: [
+                      {
+                        itemStyle: 'DEFAULT',
+                        itemType: 'CTRLPOS',
+                        layoutPos: {
+                          shrink: 1,
+                          layout: 'FLEX',
+                        },
+                        id: 'captionbar',
+                      },
+                    ],
+                    layout: {
+                      align: 'center',
+                      layout: 'FLEX',
+                    },
+                    dataRegionType: 'INHERIT',
+                    caption: '容器',
+                    itemStyle: 'DEFAULT',
+                    itemType: 'CONTAINER',
+                    layoutPos: {
+                      shrink: 1,
+                      heightMode: 'FULL',
+                      layout: 'FLEX',
+                    },
+                    id: 'view_captionbar',
+                  },
+                ],
+                layout: {
+                  layout: 'FLEX',
+                },
+                dataRegionType: 'INHERIT',
+                caption: '容器',
+                itemStyle: 'DEFAULT',
+                itemType: 'CONTAINER',
+                layoutPos: {
+                  shrink: 1,
+                  heightMode: 'FULL',
+                  layout: 'FLEX',
+                  spacingLeft: 'INNERSMALL',
+                },
+                id: 'view_header_left',
+              },
+              {
+                actionGroupExtractMode: 'ITEM',
+                panelItems: [
+                  {
+                    caption: '工具栏',
+                    itemStyle: 'DEFAULT',
+                    itemType: 'CTRLPOS',
+                    layoutPos: {
+                      shrink: 1,
+                      layout: 'FLEX',
+                    },
+                    showCaption: true,
+                    id: 'toolbar',
+                  },
+                ],
+                layout: {
+                  align: 'center',
+                  layout: 'FLEX',
+                },
+                dataRegionType: 'INHERIT',
+                caption: '容器',
+                itemStyle: 'DEFAULT',
+                itemType: 'CONTAINER',
+                layoutPos: {
+                  shrink: 1,
+                  heightMode: 'FULL',
+                  layout: 'FLEX',
+                  spacingRight: 'INNERSMALL',
+                },
+                id: 'view_toolbar',
+              },
+            ],
+            predefinedType: 'VIEWHEADER',
+            layout: {
+              align: 'space-between',
+              dir: 'row',
+              layout: 'FLEX',
+              valign: 'center',
             },
-            allowEmpty: true,
-            caption: '文本(动态)',
+            dataRegionType: 'INHERIT',
+            caption: '容器',
             itemStyle: 'DEFAULT',
-            itemType: 'FIELD',
+            itemType: 'CONTAINER',
             layoutPos: {
-              grow: 1,
+              shrink: 0,
+              layout: 'FLEX',
+            },
+            id: 'view_header',
+          },
+          {
+            actionGroupExtractMode: 'ITEM',
+            panelItems: [
+              {
+                editor: {
+                  halign: 'LEFT',
+                  renderMode: 'TEXT_DYNAMIC',
+                  valign: 'MIDDLE',
+                  wrapMode: 'NOWRAP',
+                  editorType: 'SPAN',
+                  predefinedType: 'FIELD_TEXT_DYNAMIC',
+                  valueType: 'SIMPLE',
+                  editable: true,
+                  id: 'field_text_dynamic',
+                },
+                allowEmpty: true,
+                caption: '文本(动态)',
+                itemStyle: 'DEFAULT',
+                itemType: 'FIELD',
+                layoutPos: {
+                  grow: 1,
+                  shrink: 1,
+                  layout: 'FLEX',
+                },
+                sysPFPluginId: 'bi_report_panel_content',
+                id: 'field_text_dynamic',
+              },
+            ],
+            predefinedType: 'VIEWCONTENT',
+            layout: {
+              layout: 'FLEX',
+            },
+            dataRegionType: 'INHERIT',
+            caption: '容器',
+            itemStyle: 'DEFAULT',
+            itemType: 'CONTAINER',
+            layoutPos: {
               shrink: 1,
               layout: 'FLEX',
             },
-            sysPFPluginId: 'bi_report_panel_content',
-            id: 'field_text_dynamic',
+            id: 'view_content',
           },
         ],
         layout: {

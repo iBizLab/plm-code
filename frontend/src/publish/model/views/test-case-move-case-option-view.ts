@@ -81,6 +81,7 @@ export default {
                         id: 'target_library_id',
                       },
                     ],
+                    placeHolder: '请选择测试库',
                     valueType: 'SIMPLE',
                     editable: true,
                     id: 'test_library_name',
@@ -134,6 +135,7 @@ export default {
                       },
                     ],
                     sysPFPluginId: 'model_select',
+                    placeHolder: '请选择所属模块',
                     valueType: 'SIMPLE',
                     editable: true,
                     navigateParams: [

@@ -16,6 +16,12 @@ export default {
       id: 'n_owner_id_eq',
     },
     {
+      rawValue: true,
+      key: 'n_owner_subtype_eq',
+      value: 'sprint',
+      id: 'n_owner_subtype_eq',
+    },
+    {
       key: 'n_project_id_eq',
       value: 'project',
       id: 'n_project_id_eq',

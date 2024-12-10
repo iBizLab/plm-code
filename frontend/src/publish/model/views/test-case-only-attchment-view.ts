@@ -100,6 +100,7 @@ export default {
                         dataItemName: 'name',
                         excelCaption: '名称',
                         appDEFieldId: 'name',
+                        deuiactionId: 'attachment_preview@attachment',
                         valueType: 'SIMPLE',
                         aggMode: 'NONE',
                         align: 'LEFT',

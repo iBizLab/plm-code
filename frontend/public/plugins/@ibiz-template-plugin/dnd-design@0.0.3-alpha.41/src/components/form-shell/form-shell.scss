@@ -1,0 +1,44 @@
+@include b(form-shell) {
+  width: 100%;
+  height: 100%;
+  
+  @include b(light-theme-shell) {
+    #{getCssVarName(color, primary, active, text)}: getCssVar(color, primary) !important;
+  
+    .#{bem(form-item-container)} {
+      #{getCssVarName(form-item-container, label-color)}: getCssVar(color, text, 1) !important;
+    }
+
+    .#{bem(form-group)} {
+      #{getCssVarName(form-group-caption, text-color)}: getCssVar(color, text, 0) !important;
+    }
+
+    .#{bem(form-item)} {
+      #{getCssVarName(editor, default-text-color)}: getCssVar(color, text, 2) !important;
+      #{getCssVarName(form-item, text-color)}: getCssVar(color, text, 2) !important;
+    }
+  
+    @include b(form-page) {
+      #{getCssVarName(form-page, font-size)}: getCssVar(font-size, header-4);
+      #{getCssVarName(form-page, hover-bg-color)}: transparent;
+      #{getCssVarName(form-page, hover-text-color)}: getCssVar(color, primary);
+      #{getCssVarName(form-page, active-bg-color)}: transparent;
+      #{getCssVarName(form-page, active-text-color)}: getCssVar(color, primary);
+    }
+  
+    @include b(form-tab-panel) {
+      #{getCssVarName(form-tab-panel, font-size)}: getCssVar(font-size, header-4);
+      #{getCssVarName(form-tab-panel, hover-bg-color)}: transparent;
+      #{getCssVarName(form-tab-panel, hover-text-color)}: getCssVar(color, primary);
+      #{getCssVarName(form-tab-panel, active-bg-color)}: transparent;
+      #{getCssVarName(form-tab-panel, active-text-color)}: getCssVar(color, primary);
+    }
+    
+    // 表单分组按钮颜色，调整为蓝色
+    .#{bem(form-group-header, right)} {
+      .el-button {
+        --el-button-text-color: getCssVar(color, text, 0);
+      }
+    }
+  }
+}

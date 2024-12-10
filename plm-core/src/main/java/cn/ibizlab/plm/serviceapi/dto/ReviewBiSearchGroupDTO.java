@@ -199,6 +199,14 @@ public class ReviewBiSearchGroupDTO extends DTOBase implements Serializable {
     @ApiModelProperty(value = "标识", position = 19)
     private String id;
 
+    /**
+     * 测试库是否删除
+     */
+    @JsonProperty("library_is_deleted")
+    @JSONField(name = "library_is_deleted")
+    @ApiModelProperty(value = "测试库是否删除", position = 20)
+    private Integer libraryIsDeleted;
+
 
     /**
      * 设置 [类别]
@@ -332,6 +340,15 @@ public class ReviewBiSearchGroupDTO extends DTOBase implements Serializable {
     public ReviewBiSearchGroupDTO setType(String type) {
         this.type = type;
         this.modify("type", type);
+        return this;
+    }
+
+    /**
+     * 设置 [测试库是否删除]
+     */
+    public ReviewBiSearchGroupDTO setLibraryIsDeleted(Integer libraryIsDeleted) {
+        this.libraryIsDeleted = libraryIsDeleted;
+        this.modify("library_is_deleted", libraryIsDeleted);
         return this;
     }
 

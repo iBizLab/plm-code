@@ -26,6 +26,8 @@ import com.baomidou.mybatisplus.core.enums.SqlMethod;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import cn.ibizlab.plm.core.projmgmt.domain.ProjectState;
+import cn.ibizlab.plm.core.projmgmt.service.ProjectStateService;
 import cn.ibizlab.plm.core.base.domain.CommonFlow;
 import cn.ibizlab.plm.core.projmgmt.domain.Board;
 import cn.ibizlab.plm.core.projmgmt.service.BoardService;
@@ -70,6 +72,10 @@ import cn.ibizlab.plm.core.base.service.ReferencesIndexService;
  */
 @Slf4j
 public abstract class AbstractProjectService extends ServiceImpl<ProjectMapper,Project> implements ProjectService {
+
+    @Autowired
+    @Lazy
+    protected ProjectStateService projectStateService;
 
     @Autowired
     @Lazy
@@ -346,12 +352,16 @@ public abstract class AbstractProjectService extends ServiceImpl<ProjectMapper,P
    }
 	
    public Page<Project> fetchMain(ProjectSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("IS_FAVORITE,DESC;UPDATE_TIME,DESC");
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<Project> pages=baseMapper.searchMain(context.getPages(),context,context.getSelectCond());
         List<Project> list = pages.getRecords();
         return new PageImpl<>(list, context.getPageable(), pages.getTotal());
     }
 
    public List<Project> listMain(ProjectSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("IS_FAVORITE,DESC;UPDATE_TIME,DESC");
         List<Project> list = baseMapper.listMain(context,context.getSelectCond());
         return list;
    }
@@ -456,6 +466,57 @@ public abstract class AbstractProjectService extends ServiceImpl<ProjectMapper,P
         return list;
    }
 	
+	public List<Project> findByState(List<String> states){
+        List<Project> list = baseMapper.findByState(states);
+        if(!ObjectUtils.isEmpty(list))
+            projectMemberService.findByProjectId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
+                .stream().collect(Collectors.groupingBy(e->e.getProjectId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setMembers(sub.getValue())));
+        return list;	
+	}
+
+	public List<Project> findByProjectState(ProjectState projectState){
+        List<Project> list = findByState(Arrays.asList(projectState.getId()));
+		return list;
+	}
+	public boolean removeByState(String state){
+        List<String> ids = baseMapper.findByState(Arrays.asList(state)).stream().map(e->e.getId()).collect(Collectors.toList());
+        if(!ObjectUtils.isEmpty(ids))
+            return this.remove(ids);
+        else
+            return true;
+	}
+
+	public boolean resetByState(String state){
+		return this.update(Wrappers.<Project>lambdaUpdate().set(Project::getState, null).eq(Project::getState,state));
+	}
+	public boolean saveByProjectState(ProjectState projectState, List<Project> list){
+        if(list==null)
+            return true;
+
+        Map<String,Project> before = findByProjectState(projectState).stream().collect(Collectors.toMap(Project::getId,e->e));
+        List<Project> update = new ArrayList<>();
+        List<Project> create = new ArrayList<>();
+
+        for(Project sub:list) {
+            sub.setState(projectState.getId());
+            sub.setProjectState(projectState);
+            if(!ObjectUtils.isEmpty(sub.getId())&&before.containsKey(sub.getId())) {
+                before.remove(sub.getId());
+                update.add(sub);
+            }
+            else
+                create.add(sub);
+        }
+        if(!update.isEmpty())
+            update.forEach(item->this.getSelf().update(item));
+        if(!create.isEmpty() && !getSelf().create(create))
+            return false;
+        else if(!before.isEmpty() && !getSelf().remove(before.keySet()))
+            return false;
+        else
+            return true;
+			
+	}
 	public List<Project> findById(List<String> ids){
         List<Project> list = baseMapper.findById(ids);
         if(!ObjectUtils.isEmpty(list))
@@ -527,6 +588,18 @@ public abstract class AbstractProjectService extends ServiceImpl<ProjectMapper,P
 	
 
     public void fillParentData(Project et) {
+        if(Entities.PROJECT_STATE.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
+            et.setState((String)et.getContextParentKey());
+            ProjectState projectState = et.getProjectState();
+            if(projectState == null) {
+                projectState = projectStateService.getById(et.getState());
+                et.setProjectState(projectState);
+            }
+            if(!ObjectUtils.isEmpty(projectState)) {
+                et.setState(projectState.getId());
+                et.setStateType(projectState.getType());
+            }
+        }
     }
 
 

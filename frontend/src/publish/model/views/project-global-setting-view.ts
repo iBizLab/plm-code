@@ -293,6 +293,11 @@ export default {
             ],
             id: 'psde_field',
           },
+          {
+            caption: '项目状态',
+            appViewId: 'plmweb.project_state_grid_view',
+            id: 'pro_state',
+          },
         ],
         dataRelationTag: 'global_setting_view_dr',
         editItemCaption: '项目',

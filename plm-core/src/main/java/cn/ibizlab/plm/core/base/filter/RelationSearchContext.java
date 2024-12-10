@@ -70,11 +70,11 @@ public class RelationSearchContext extends QueryWrapperContext<Relation> {
     private String targetTypeEQ;
 
     /**
-     * 关联目标标识EQ
+     * 目标主体标识EQ
      */
     @JsonProperty("n_target_id_eq")
     @JSONField(name = "n_target_id_eq")
-    @ApiModelProperty("关联目标标识EQ")
+    @ApiModelProperty("目标主体标识EQ")
     private String targetIdEQ;
 
     /**
@@ -131,6 +131,8 @@ public class RelationSearchContext extends QueryWrapperContext<Relation> {
         if(Entities.ARTICLE_PAGE.equals(this.getContextParentEntity())&&contextParentKey!=null)
             this.getFilter().eq("target_id",contextParentKey);
         if(Entities.PRODUCT_PLAN.equals(this.getContextParentEntity())&&contextParentKey!=null)
+            this.getFilter().eq("target_id",contextParentKey);
+        if(Entities.RUN.equals(this.getContextParentEntity())&&contextParentKey!=null)
             this.getFilter().eq("target_id",contextParentKey);
         if(Entities.TEST_CASE.equals(this.getContextParentEntity())&&contextParentKey!=null)
             this.getFilter().eq("target_id",contextParentKey);

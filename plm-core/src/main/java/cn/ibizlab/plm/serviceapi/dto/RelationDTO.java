@@ -76,11 +76,11 @@ public class RelationDTO extends DTOBase implements Serializable {
     private String targetType;
 
     /**
-     * 关联目标标识
+     * 目标主体标识
      */
     @JsonProperty("target_id")
     @JSONField(name = "target_id")
-    @ApiModelProperty(value = "关联目标标识", position = 5)
+    @ApiModelProperty(value = "目标主体标识", position = 5)
     private String targetId;
 
     /**
@@ -316,7 +316,7 @@ public class RelationDTO extends DTOBase implements Serializable {
     }
 
     /**
-     * 设置 [关联目标标识]
+     * 设置 [目标主体标识]
      */
     public RelationDTO setTargetId(String targetId) {
         this.targetId = targetId;

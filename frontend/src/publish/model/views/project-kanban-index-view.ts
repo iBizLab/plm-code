@@ -412,6 +412,14 @@ export default {
             counterMode: 1,
             enableMode: 'COUNT_GTE_ZERO',
             appViewId: 'plmweb.work_item_gantt_view',
+            navigateContexts: [
+              {
+                key: 'PROJECT_TYPE',
+                value: 'project_type',
+                name: 'PROJECT_TYPE',
+                id: 'project_type',
+              },
+            ],
             id: 'plan',
           },
           {
@@ -820,8 +828,8 @@ export default {
             caption: '更多',
             itemType: 'ITEMS',
             sysImage: {
-              cssClass: 'fa fa-exchange',
-              glyph: 'xf0ec@FontAwesome',
+              cssClass: 'fa fa-gear',
+              glyph: 'xf013@FontAwesome',
             },
             tooltip: '更多',
             showIcon: true,

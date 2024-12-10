@@ -65,7 +65,10 @@ export default {
               },
             ],
             layout: {
+              align: 'space-between',
+              dir: 'row',
               layout: 'FLEX',
+              valign: 'center',
             },
             dataRegionType: 'INHERIT',
             caption: '容器',

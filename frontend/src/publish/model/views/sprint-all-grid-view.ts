@@ -901,6 +901,9 @@ export default {
           },
         ],
         controlParam: {
+          ctrlParams: {
+            ENABLECOLUMNSORT: 'true',
+          },
           id: 'grid',
         },
         modelId: 'd105cb0e78cf21339dd9baebf20cb9f1',

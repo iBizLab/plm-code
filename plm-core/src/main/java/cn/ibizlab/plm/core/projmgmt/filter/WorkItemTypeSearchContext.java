@@ -63,6 +63,22 @@ public class WorkItemTypeSearchContext extends QueryWrapperContext<WorkItemType>
     private String codeIN;
 
     /**
+     * 下级类型IN
+     */
+    @JsonProperty("n_sub_type_in")
+    @JSONField(name = "n_sub_type_in")
+    @ApiModelProperty("下级类型IN")
+    private String subTypeIN;
+
+    /**
+     * 下级类型LIKE
+     */
+    @JsonProperty("n_sub_type_like")
+    @JSONField(name = "n_sub_type_like")
+    @ApiModelProperty("下级类型LIKE")
+    private String subTypeLIKE;
+
+    /**
      * 标识LIKE
      */
     @JsonProperty("n_id_like")

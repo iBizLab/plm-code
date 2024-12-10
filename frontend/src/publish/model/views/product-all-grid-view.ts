@@ -76,17 +76,17 @@ export default {
       id: 'opendata',
     },
     {
+      realTitle: '产品',
+      refAppViewId: 'plmweb.product_index_view',
+      name: 'EDITDATA',
+      id: 'editdata',
+    },
+    {
       realOpenMode: 'POPUPMODAL',
       realTitle: '新建产品',
       refAppViewId: 'plmweb.product_create_wizard_view',
       name: 'NEWDATA',
       id: 'newdata',
-    },
-    {
-      realTitle: '产品',
-      refAppViewId: 'plmweb.product_index_view',
-      name: 'EDITDATA',
-      id: 'editdata',
     },
   ],
   controls: [

@@ -204,6 +204,14 @@ public class WorkItemSearchContext extends QueryWrapperContext<WorkItem> {
     private String backlogFromEQ;
 
     /**
+     * 描述EQ
+     */
+    @JsonProperty("n_description_eq")
+    @JSONField(name = "n_description_eq")
+    @ApiModelProperty("描述EQ")
+    private String descriptionEQ;
+
+    /**
      * 描述LIKE
      */
     @JsonProperty("n_description_like")
@@ -370,6 +378,54 @@ public class WorkItemSearchContext extends QueryWrapperContext<WorkItem> {
     @JSONField(name = "n_recent_create_days_ltandeq")
     @ApiModelProperty("最近创建日期LTANDEQ")
     private Integer recentCreateDaysLTANDEQ;
+
+    /**
+     * 原始状态EQ
+     */
+    @JsonProperty("n_work_item_origin_state_eq")
+    @JSONField(name = "n_work_item_origin_state_eq")
+    @ApiModelProperty("原始状态EQ")
+    private String workItemOriginStateEQ;
+
+    /**
+     * 执行人EXISTS
+     */
+    @JsonProperty("n_executors_exists__n_user_id_eq")
+    @JSONField(name = "n_executors_exists__n_user_id_eq")
+    @ApiModelProperty("执行人EXISTS")
+    private String executorsEXISTSuser_idEQ;
+
+    /**
+     * 逾期天数EQ
+     */
+    @JsonProperty("n_overdue_time_eq")
+    @JSONField(name = "n_overdue_time_eq")
+    @ApiModelProperty("逾期天数EQ")
+    private String overdueTimeEQ;
+
+    /**
+     * 逾期天数GT
+     */
+    @JsonProperty("n_overdue_time_gt")
+    @JSONField(name = "n_overdue_time_gt")
+    @ApiModelProperty("逾期天数GT")
+    private String overdueTimeGT;
+
+    /**
+     * 逾期天数GTANDEQ
+     */
+    @JsonProperty("n_overdue_time_gtandeq")
+    @JSONField(name = "n_overdue_time_gtandeq")
+    @ApiModelProperty("逾期天数GTANDEQ")
+    private String overdueTimeGTANDEQ;
+
+    /**
+     * 逾期天数LT
+     */
+    @JsonProperty("n_overdue_time_lt")
+    @JSONField(name = "n_overdue_time_lt")
+    @ApiModelProperty("逾期天数LT")
+    private String overdueTimeLT;
 
     /**
      * 标识EQ
@@ -819,6 +875,13 @@ public class WorkItemSearchContext extends QueryWrapperContext<WorkItem> {
                 + " AND ATTENTION.USER_ID "
                 + " = "
                 + "'" + this.attentionsNOTEXISTSuser_idEQ + "'"
+            );
+        }
+        if (!ObjectUtils.isEmpty(this.executorsEXISTSuser_idEQ)) {
+            queryWrapper.exists("SELECT 1 FROM EXECUTOR WHERE EXECUTOR. = T1. "
+                + " AND EXECUTOR.USER_ID "
+                + " = "
+                + "'" + this.executorsEXISTSuser_idEQ + "'"
             );
         }
         if (!ObjectUtils.isEmpty(this.idEXISTSidEQ)) {

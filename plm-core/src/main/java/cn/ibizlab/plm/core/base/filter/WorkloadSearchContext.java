@@ -55,6 +55,46 @@ public class WorkloadSearchContext extends QueryWrapperContext<Workload> {
     private String principalIdEQ;
 
     /**
+     * 时长EQ
+     */
+    @JsonProperty("n_duration_eq")
+    @JSONField(name = "n_duration_eq")
+    @ApiModelProperty("时长EQ")
+    private BigDecimal durationEQ;
+
+    /**
+     * 时长GT
+     */
+    @JsonProperty("n_duration_gt")
+    @JSONField(name = "n_duration_gt")
+    @ApiModelProperty("时长GT")
+    private BigDecimal durationGT;
+
+    /**
+     * 时长GTANDEQ
+     */
+    @JsonProperty("n_duration_gtandeq")
+    @JSONField(name = "n_duration_gtandeq")
+    @ApiModelProperty("时长GTANDEQ")
+    private BigDecimal durationGTANDEQ;
+
+    /**
+     * 时长LT
+     */
+    @JsonProperty("n_duration_lt")
+    @JSONField(name = "n_duration_lt")
+    @ApiModelProperty("时长LT")
+    private BigDecimal durationLT;
+
+    /**
+     * 时长LTANDEQ
+     */
+    @JsonProperty("n_duration_ltandeq")
+    @JSONField(name = "n_duration_ltandeq")
+    @ApiModelProperty("时长LTANDEQ")
+    private BigDecimal durationLTANDEQ;
+
+    /**
      * 工作日期EQ
      */
     @JsonProperty("n_register_date_eq")

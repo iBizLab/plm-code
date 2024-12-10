@@ -1,9 +1,12 @@
 export default {
+  clsAppDEFieldId: 'style',
   codeListTag: 'ProjMgmt__project_state',
-  codeListType: 'STATIC',
+  codeListType: 'DYNAMIC',
   codeName: 'ProjMgmt__project_state',
+  colorAppDEFieldId: 'color',
   emptyText: '未定义',
-  appDataEntityId: 'plmweb.project',
+  appDEDataSetId: 'fetch_default',
+  appDataEntityId: 'plmweb.project_state',
   codeItems: [
     {
       codeName: 'pending',
@@ -61,6 +64,8 @@ export default {
       id: 'end',
     },
   ],
+  textAppDEFieldId: 'name',
+  valueAppDEFieldId: 'id',
   enableCache: true,
   name: '项目状态',
   id: 'plmweb.projmgmt__project_state',

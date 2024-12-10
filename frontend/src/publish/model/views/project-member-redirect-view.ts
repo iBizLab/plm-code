@@ -1,0 +1,73 @@
+export default {
+  redirectAppViewRefs: [
+    {
+      realOpenMode: 'POPUPMODAL',
+      realTitle: '项目成员编辑视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.PROJECT_MEMBER.EDITVIEW',
+      },
+      refAppViewId: 'plmweb.project_member_edit_view',
+      name: 'PROJECT_MEMBER:EDITVIEW',
+      id: 'project_member:editview',
+    },
+    {
+      realOpenMode: 'POPUPMODAL',
+      realTitle: '项目成员编辑视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.PROJECT_MEMBER.EDITVIEW',
+      },
+      refAppViewId: 'plmweb.project_member_edit_view',
+      name: 'EDITVIEW',
+      id: 'editview',
+    },
+  ],
+  enableWorkflow: true,
+  funcViewMode: 'REDIRECTVIEW',
+  deviewCodeName: 'RedirectView',
+  deviewId: '2aadda240b4f97e7b49e75f0206af87d',
+  accUserMode: 2,
+  capLanguageRes: {
+    lanResTag: 'DE.LNAME.PROJECT_MEMBER',
+  },
+  caption: '项目成员',
+  codeName: 'project_member_redirect_view',
+  appDataEntityId: 'plmweb.project_member',
+  controls: [
+    {
+      capLanguageRes: {
+        lanResTag: 'DE.LNAME.PROJECT_MEMBER',
+      },
+      caption: '项目成员',
+      codeName: 'redirect_view_captionbar',
+      controlType: 'CAPTIONBAR',
+      appDataEntityId: 'plmweb.project_member',
+      controlParam: {},
+      name: 'captionbar',
+      id: 'redirect_view_captionbar',
+    },
+  ],
+  viewLayoutPanel: {
+    layoutBodyOnly: true,
+    useDefaultLayout: true,
+    layoutPanel: true,
+    codeName: 'layoutpanel',
+    controlStyle: 'APPDEREDIRECTVIEW',
+    controlType: 'VIEWLAYOUTPANEL',
+    appDataEntityId: 'plmweb.project_member',
+    controlParam: {},
+    id: 'layoutpanel',
+  },
+  title: '项目成员数据重定向视图',
+  titleLanguageRes: {
+    lanResTag: 'PAGE.TITLE.PROJECT_MEMBER.REDIRECTVIEW',
+  },
+  viewStyle: 'DEFAULT',
+  viewType: 'DEREDIRECTVIEW',
+  enableDP: true,
+  redirectView: true,
+  showCaptionBar: true,
+  modelId: 'd1105372dc9722812d0a9acc23df64e1',
+  modelType: 'PSAPPDEVIEW',
+  name: 'project_memberRedirectView',
+  id: 'plmweb.project_member_redirect_view',
+};

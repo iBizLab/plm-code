@@ -140,11 +140,19 @@ public class CustomerDTO extends DTOBase implements Serializable {
     private List<AttentionDTO> attentions;
 
     /**
+     * 产品是否归档
+     */
+    @JsonProperty("product_is_archived")
+    @JSONField(name = "product_is_archived")
+    @ApiModelProperty(value = "产品是否归档", position = 13)
+    private Integer productIsArchived;
+
+    /**
      * 工单总数
      */
     @JsonProperty("ticket_total")
     @JSONField(name = "ticket_total")
-    @ApiModelProperty(value = "工单总数", position = 13)
+    @ApiModelProperty(value = "工单总数", position = 14)
     private Integer ticketTotal;
 
     /**
@@ -152,7 +160,7 @@ public class CustomerDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("ticket_finish")
     @JSONField(name = "ticket_finish")
-    @ApiModelProperty(value = "已完成工单数", position = 14)
+    @ApiModelProperty(value = "已完成工单数", position = 15)
     private Integer ticketFinish;
 
     /**
@@ -160,7 +168,7 @@ public class CustomerDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("attentions_imp")
     @JSONField(name = "attentions_imp")
-    @ApiModelProperty(value = "关注人", position = 15)
+    @ApiModelProperty(value = "关注人", position = 16)
     private String attentionsImp;
 
     /**
@@ -168,7 +176,7 @@ public class CustomerDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("create_man")
     @JSONField(name = "create_man")
-    @ApiModelProperty(value = "建立人", position = 16)
+    @ApiModelProperty(value = "建立人", position = 17)
     private String createMan;
 
     /**
@@ -177,7 +185,7 @@ public class CustomerDTO extends DTOBase implements Serializable {
     @JsonProperty("create_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "create_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "建立时间", position = 17)
+    @ApiModelProperty(value = "建立时间", position = 18)
     private Date createTime;
 
     /**
@@ -185,7 +193,7 @@ public class CustomerDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("id")
     @JSONField(name = "id")
-    @ApiModelProperty(value = "标识", position = 18)
+    @ApiModelProperty(value = "标识", position = 19)
     private String id;
 
     /**
@@ -193,7 +201,7 @@ public class CustomerDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("name")
     @JSONField(name = "name")
-    @ApiModelProperty(value = "客户名称", position = 19)
+    @ApiModelProperty(value = "客户名称", position = 20)
     private String name;
 
     /**
@@ -201,7 +209,7 @@ public class CustomerDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("product_id")
     @JSONField(name = "product_id")
-    @ApiModelProperty(value = "产品标识", position = 20)
+    @ApiModelProperty(value = "产品标识", position = 21)
     private String productId;
 
     /**
@@ -209,7 +217,7 @@ public class CustomerDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("update_man")
     @JSONField(name = "update_man")
-    @ApiModelProperty(value = "更新人", position = 21)
+    @ApiModelProperty(value = "更新人", position = 22)
     private String updateMan;
 
     /**
@@ -218,7 +226,7 @@ public class CustomerDTO extends DTOBase implements Serializable {
     @JsonProperty("update_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "update_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "更新时间", position = 22)
+    @ApiModelProperty(value = "更新时间", position = 23)
     private Date updateTime;
 
 
@@ -336,6 +344,15 @@ public class CustomerDTO extends DTOBase implements Serializable {
     public CustomerDTO setAttentions(List<AttentionDTO> attentions) {
         this.attentions = attentions;
         this.modify("attentions", attentions);
+        return this;
+    }
+
+    /**
+     * 设置 [产品是否归档]
+     */
+    public CustomerDTO setProductIsArchived(Integer productIsArchived) {
+        this.productIsArchived = productIsArchived;
+        this.modify("product_is_archived", productIsArchived);
         return this;
     }
 

@@ -1093,6 +1093,27 @@ export default {
       id: 'save',
     },
     {
+      codeName: 'test_counter',
+      methodType: 'DEACTION',
+      appDEMethodInput: {
+        appDEMethodDTOId: 'product_dto',
+        type: 'DTO',
+        id: '输入对象',
+      },
+      appDEMethodReturn: {
+        type: 'VOID',
+        id: '返回对象',
+      },
+      requestMethod: 'POST',
+      requestParamType: 'ENTITY',
+      requestPath: '/test_counter',
+      needResourceKey: true,
+      actionMode: 'CUSTOM',
+      actionType: 'REMOTE',
+      dataSetType: 'REMOTE',
+      id: 'test_counter',
+    },
+    {
       codeName: 'un_favorite',
       methodType: 'DEACTION',
       appDEMethodInput: {
@@ -2640,19 +2661,11 @@ export default {
     {
       actionLevel: 100,
       actionTarget: 'SINGLEDATA',
-      caption: '表单设计',
+      caption: '需求动态设计',
       codeName: 'panel_usr1021297820_button_calluilogic_click',
-      frontAppViewId: 'plmweb.psdeformdesign_modal',
+      frontAppViewId: 'plmweb.idea_product_dyna_tab_exp_view',
       frontProcessType: 'WIZARD',
       fullCodeName: 'product_panel_usr1021297820_button_calluilogic_click',
-      navigateContexts: [
-        {
-          key: 'PSDEFORM',
-          value: 'FIELD__PRODUCT_ID__${product}@ProdMgmt.idea.Main',
-          name: 'PSDEFORM',
-          id: 'psdeform',
-        },
-      ],
       timeout: 60000,
       uiactionMode: 'FRONT',
       uiactionTag: 'panel_usr1021297820_button_calluilogic_click',
@@ -2778,6 +2791,78 @@ export default {
       startDEUILogicNodeId: 'begin',
       name: '计算表格列行为状态(product)',
       id: 'calc_column_action_state',
+    },
+    {
+      codeName: 'get_table_size',
+      defaultParamName: 'Default',
+      logicName: '获取表格当前页大小',
+      deuilogicNodes: [
+        {
+          codeName: 'Begin',
+          leftPos: 190,
+          logicNodeType: 'BEGIN',
+          deuilogicLinks: [
+            {
+              dstDEUILogicNodeId: 'rawjscode1',
+              srcDEUILogicNodeId: 'begin',
+              id: '连接名称',
+            },
+          ],
+          topPos: 200,
+          parallelOutput: true,
+          name: '开始',
+          id: 'begin',
+        },
+        {
+          code: 'const total = uiLogic.ctrl.state.total;\r\nuiLogic.view.layoutPanel.state.data.total = total;',
+          codeName: 'RAWJSCODE1',
+          leftPos: 360,
+          logicNodeType: 'RAWJSCODE',
+          deuilogicLinks: [
+            {
+              dstDEUILogicNodeId: 'end1',
+              srcDEUILogicNodeId: 'rawjscode1',
+              id: '连接名称',
+            },
+          ],
+          topPos: 208,
+          name: '设置总条数',
+          id: 'rawjscode1',
+        },
+        {
+          codeName: 'END1',
+          leftPos: 650,
+          logicNodeType: 'END',
+          topPos: 200,
+          name: '结束',
+          id: 'end1',
+        },
+      ],
+      deuilogicParams: [
+        {
+          codeName: 'VIEW',
+          activeViewParam: true,
+          name: '当前视图对象',
+          id: 'view',
+        },
+        {
+          codeName: 'Default',
+          default: true,
+          entityParam: true,
+          name: '传入变量',
+          id: 'default',
+        },
+        {
+          codeName: 'CTRL',
+          activeCtrlParam: true,
+          ctrlParam: true,
+          name: '当前部件对象',
+          id: 'ctrl',
+        },
+      ],
+      startDEUILogicNodeId: 'begin',
+      name: '获取表格当前页大小',
+      id: 'get_table_size',
     },
     {
       codeName: 'notify_refresh',
@@ -2907,6 +2992,13 @@ export default {
       startDEUILogicNodeId: 'begin',
       name: '批量删除产品成员临时数据',
       id: 'remove_batch_temp',
+    },
+  ],
+  appPortletCats: [
+    {
+      codeName: 'ProdMgmt__index_product_management',
+      name: '产品管理',
+      id: 'prodmgmt__index_product_management',
     },
   ],
   deopprivs: [

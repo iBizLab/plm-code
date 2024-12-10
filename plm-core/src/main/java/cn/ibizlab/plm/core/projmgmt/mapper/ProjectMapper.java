@@ -366,6 +366,14 @@ public interface ProjectMapper extends BaseMapper<Project> {
     List<Project> listWorkProject(@Param("ctx") ProjectSearchContext context, @Param("ew") Wrapper<Project> wrapper);
 
     /**
+    * 根据state查询
+    *
+    * @param states
+    * @return
+    */
+    List<Project> findByState(@Param("states") List<String> states);
+
+    /**
     * 根据id查询
     *
     * @param ids

@@ -74,6 +74,7 @@ export default {
                     singleSelect: true,
                     appCodeListId: 'plmweb.testmgmt__test_case_level',
                     editorType: 'DROPDOWNLIST',
+                    placeHolder: '请选择重要程度',
                     valueType: 'SIMPLE',
                     editable: true,
                     id: 'level',

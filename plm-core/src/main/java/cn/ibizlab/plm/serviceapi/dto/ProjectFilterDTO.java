@@ -39,11 +39,11 @@ public class ProjectFilterDTO extends FilterBase implements Serializable {
 	private String visibilityEQ;
 
     /**
-     * 状态EQ
+     * 项目状态EQ
      */
     @JsonProperty("n_state_eq")
     @JSONField(name = "n_state_eq")
-    @ApiModelProperty(value = "状态EQ", position = 10)
+    @ApiModelProperty(value = "项目状态EQ", position = 10)
 	private String stateEQ;
 
     /**
@@ -95,11 +95,19 @@ public class ProjectFilterDTO extends FilterBase implements Serializable {
 	private String scopeTypeEQ;
 
     /**
+     * 状态类型NOTEQ
+     */
+    @JsonProperty("n_state_type_noteq")
+    @JSONField(name = "n_state_type_noteq")
+    @ApiModelProperty(value = "状态类型NOTEQ", position = 260)
+	private String stateTypeNOTEQ;
+
+    /**
      * 标识EQ
      */
     @JsonProperty("n_id_eq")
     @JSONField(name = "n_id_eq")
-    @ApiModelProperty(value = "标识EQ", position = 220)
+    @ApiModelProperty(value = "标识EQ", position = 270)
 	private String idEQ;
 
     /**
@@ -107,7 +115,7 @@ public class ProjectFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_id_noteq")
     @JSONField(name = "n_id_noteq")
-    @ApiModelProperty(value = "标识NOTEQ", position = 221)
+    @ApiModelProperty(value = "标识NOTEQ", position = 271)
 	private String idNOTEQ;
 
     /**
@@ -115,7 +123,7 @@ public class ProjectFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_name_like")
     @JSONField(name = "n_name_like")
-    @ApiModelProperty(value = "项目名称LIKE", position = 230)
+    @ApiModelProperty(value = "项目名称LIKE", position = 280)
 	private String nameLIKE;
 
 

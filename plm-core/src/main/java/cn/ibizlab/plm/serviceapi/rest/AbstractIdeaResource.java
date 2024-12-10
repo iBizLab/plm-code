@@ -57,6 +57,10 @@ public abstract class AbstractIdeaResource {
 
     @Autowired
     @Lazy
+    public IdeaDefGroupCommonDTOMapping ideaDefGroupCommonDtoMapping;
+
+    @Autowired
+    @Lazy
     public IdeaDTOMapping ideaDtoMapping;
 
     @Autowired
@@ -325,6 +329,45 @@ public abstract class AbstractIdeaResource {
         domain.setId(id);
         Idea rt = ideaService.delete(domain);
         return ideaDtoMapping.toDto(rt);
+    }
+
+    /**
+    * get_customer_score 需求
+    * 获取客户分数数据
+    *
+    * @param id id
+    * @param dto dto
+    * @return Mono<ResponseEntity<IdeaDefGroupCommonDTO>>
+    */
+    @ApiOperation(value = "get_customer_score", tags = {"需求" },  notes = "Idea-get_customer_score 获取客户分数数据")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Idea-get_customer_score-all') or hasPermission(this.ideaDtoMapping.toDomain(#dto),'ibizplm-Idea-get_customer_score')")
+    @PostMapping("ideas/{id}/get_customer_score")
+    public Mono<ResponseEntity<ResponseWrapper<IdeaDefGroupCommonDTO>>>getCustomerScoreById
+            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<IdeaDTO> dto) {
+        ResponseWrapper<IdeaDefGroupCommonDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(getCustomerScoreById(ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(getCustomerScoreById(id, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * get_customer_score 需求
+    * 获取客户分数数据
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<IdeaDefGroupCommonDTO>
+    */   
+    public IdeaDefGroupCommonDTO getCustomerScoreById
+            (String id, IdeaDTO dto) {
+        Idea domain = ideaDtoMapping.toDomain(dto);
+        domain.setId(id);
+        Idea rt = ideaService.getCustomerScore(domain);
+        return ideaDefGroupCommonDtoMapping.toDto(rt);
     }
 
     /**
@@ -787,6 +830,45 @@ public abstract class AbstractIdeaResource {
     }
 
     /**
+    * update_idea_progress 需求
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return Mono<ResponseEntity<IdeaDTO>>
+    */
+    @ApiOperation(value = "update_idea_progress", tags = {"需求" },  notes = "Idea-update_idea_progress ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Idea-update_idea_progress-all') or hasPermission(this.ideaDtoMapping.toDomain(#dto),'ibizplm-Idea-update_idea_progress')")
+    @PutMapping("ideas/{id}/update_idea_progress")
+    public Mono<ResponseEntity<ResponseWrapper<IdeaDTO>>>updateIdeaProgressById
+            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<IdeaDTO> dto) {
+        ResponseWrapper<IdeaDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(updateIdeaProgressById(ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(updateIdeaProgressById(id, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * update_idea_progress 需求
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<IdeaDTO>
+    */   
+    public IdeaDTO updateIdeaProgressById
+            (String id, IdeaDTO dto) {
+        Idea domain = ideaDtoMapping.toDomain(dto);
+        domain.setId(id);
+        Idea rt = ideaService.updateIdeaProgress(domain);
+        return ideaDtoMapping.toDto(rt);
+    }
+
+    /**
     * 创建Create 需求
     * 
     *
@@ -1064,6 +1146,47 @@ public abstract class AbstractIdeaResource {
         domain.setId(id);
         Idea rt = ideaService.delete(domain);
         return ideaDtoMapping.toDto(rt);
+    }
+
+    /**
+    * get_customer_score 需求
+    * 获取客户分数数据
+    *
+    * @param productId productId
+    * @param id id
+    * @param dto dto
+    * @return Mono<ResponseEntity<IdeaDefGroupCommonDTO>>
+    */
+    @ApiOperation(value = "get_customer_score", tags = {"需求" },  notes = "Idea-get_customer_score 获取客户分数数据")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Idea-get_customer_score-all') or hasPermission('product',#productId,this.ideaDtoMapping.toDomain(#dto),'ibizplm-Idea-get_customer_score')")
+    @PostMapping("products/{productId}/ideas/{id}/get_customer_score")
+    public Mono<ResponseEntity<ResponseWrapper<IdeaDefGroupCommonDTO>>>getCustomerScoreByProductIdAndId
+            (@PathVariable("productId") String productId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<IdeaDTO> dto) {
+        ResponseWrapper<IdeaDefGroupCommonDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(getCustomerScoreByProductIdAndId(productId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(getCustomerScoreByProductIdAndId(productId, id, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * get_customer_score 需求
+    * 获取客户分数数据
+    *
+    * @param productId productId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<IdeaDefGroupCommonDTO>
+    */   
+    public IdeaDefGroupCommonDTO getCustomerScoreByProductIdAndId
+            (String productId, String id, IdeaDTO dto) {
+        Idea domain = ideaDtoMapping.toDomain(dto);
+        domain.setId(id);
+        Idea rt = ideaService.getCustomerScore(domain);
+        return ideaDefGroupCommonDtoMapping.toDto(rt);
     }
 
     /**
@@ -1550,6 +1673,47 @@ public abstract class AbstractIdeaResource {
         return ideaDtoMapping.toDto(rt);
     }
 
+    /**
+    * update_idea_progress 需求
+    * 
+    *
+    * @param productId productId
+    * @param id id
+    * @param dto dto
+    * @return Mono<ResponseEntity<IdeaDTO>>
+    */
+    @ApiOperation(value = "update_idea_progress", tags = {"需求" },  notes = "Idea-update_idea_progress ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Idea-update_idea_progress-all') or hasPermission('product',#productId,this.ideaDtoMapping.toDomain(#dto),'ibizplm-Idea-update_idea_progress')")
+    @PutMapping("products/{productId}/ideas/{id}/update_idea_progress")
+    public Mono<ResponseEntity<ResponseWrapper<IdeaDTO>>>updateIdeaProgressByProductIdAndId
+            (@PathVariable("productId") String productId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<IdeaDTO> dto) {
+        ResponseWrapper<IdeaDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(updateIdeaProgressByProductIdAndId(productId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(updateIdeaProgressByProductIdAndId(productId, id, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * update_idea_progress 需求
+    * 
+    *
+    * @param productId productId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<IdeaDTO>
+    */   
+    public IdeaDTO updateIdeaProgressByProductIdAndId
+            (String productId, String id, IdeaDTO dto) {
+        Idea domain = ideaDtoMapping.toDomain(dto);
+        domain.setId(id);
+        Idea rt = ideaService.updateIdeaProgress(domain);
+        return ideaDtoMapping.toDto(rt);
+    }
+
 
     /**
     * 获取Get 需求
@@ -1628,22 +1792,6 @@ public abstract class AbstractIdeaResource {
     public Mono<ResponseEntity<IdeaDTO>> getBaselineNameById
             (@PathVariable("id") String id) {
         Idea rt = ideaService.getBaselineName(id);
-        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(ideaDtoMapping.toDto(rt)));
-    }
-
-    /**
-    * get_customer_score 需求
-    * 获取客户分数数据
-    *
-    * @param id id
-    * @return Mono<ResponseEntity<IdeaDTO>>
-    */
-    @ApiOperation(value = "get_customer_score", tags = {"需求" },  notes = "Idea-get_customer_score 获取客户分数数据")
-    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Idea-get_customer_score-all') or hasPermission(this.ideaService.get(#id),'ibizplm-Idea-get_customer_score')")
-    @PostMapping("ideas/{id}/get_customer_score")
-    public Mono<ResponseEntity<IdeaDTO>> getCustomerScoreById
-            (@PathVariable("id") String id) {
-        Idea rt = ideaService.getCustomerScore(id);
         return Mono.just(ResponseEntity.status(HttpStatus.OK).body(ideaDtoMapping.toDto(rt)));
     }
 
@@ -2071,6 +2219,28 @@ public abstract class AbstractIdeaResource {
     }
 
     /**
+    * 查询fetch_my_summary_idea 需求
+    * 
+    *
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<IdeaDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_my_summary_idea", tags = {"需求" },  notes = "Idea-fetch_my_summary_idea ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Idea-fetch_my_summary_idea-all') or hasPermission(#dto,'ibizplm-Idea-fetch_my_summary_idea')")
+    @PostMapping("ideas/fetch_my_summary_idea")
+    public Mono<ResponseEntity<List<IdeaDTO>>> fetchMySummaryIdea
+            (@Validated @RequestBody IdeaFilterDTO dto) {
+        IdeaSearchContext context = ideaFilterDtoMapping.toDomain(dto);
+        Page<Idea> domains = ideaService.fetchMySummaryIdea(context) ;
+        List<IdeaDTO> list = ideaDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
     * 查询fetch_normal 需求
     * 状态非删除，如果上下文传递了子产品参数，查询当前子产品下的需求
     *
@@ -2305,23 +2475,6 @@ public abstract class AbstractIdeaResource {
     public Mono<ResponseEntity<IdeaDTO>> getBaselineNameByProductIdAndId
             (@PathVariable("productId") String productId, @PathVariable("id") String id) {
         Idea rt = ideaService.getBaselineName(id);
-        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(ideaDtoMapping.toDto(rt)));
-    }
-
-    /**
-    * get_customer_score 需求
-    * 获取客户分数数据
-    *
-    * @param productId productId
-    * @param id id
-    * @return Mono<ResponseEntity<IdeaDTO>>
-    */
-    @ApiOperation(value = "get_customer_score", tags = {"需求" },  notes = "Idea-get_customer_score 获取客户分数数据")
-    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Idea-get_customer_score-all') or hasPermission('product',#productId,this.ideaService.get(#id),'ibizplm-Idea-get_customer_score')")
-    @PostMapping("products/{productId}/ideas/{id}/get_customer_score")
-    public Mono<ResponseEntity<IdeaDTO>> getCustomerScoreByProductIdAndId
-            (@PathVariable("productId") String productId, @PathVariable("id") String id) {
-        Idea rt = ideaService.getCustomerScore(id);
         return Mono.just(ResponseEntity.status(HttpStatus.OK).body(ideaDtoMapping.toDto(rt)));
     }
 
@@ -2779,6 +2932,30 @@ public abstract class AbstractIdeaResource {
         dto.setProductIdEQ(productId);
         IdeaSearchContext context = ideaFilterDtoMapping.toDomain(dto);
         Page<Idea> domains = ideaService.fetchMyFilter(context) ;
+        List<IdeaDTO> list = ideaDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
+    * 查询fetch_my_summary_idea 需求
+    * 
+    *
+    * @param productId productId
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<IdeaDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_my_summary_idea", tags = {"需求" },  notes = "Idea-fetch_my_summary_idea ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Idea-fetch_my_summary_idea-all') or hasPermission('product',#productId,#dto,'ibizplm-Idea-fetch_my_summary_idea')")
+    @PostMapping("products/{productId}/ideas/fetch_my_summary_idea")
+    public Mono<ResponseEntity<List<IdeaDTO>>> fetchMySummaryIdeaByProductId
+            (@PathVariable("productId") String productId, @Validated @RequestBody IdeaFilterDTO dto) {
+        dto.setProductIdEQ(productId);
+        IdeaSearchContext context = ideaFilterDtoMapping.toDomain(dto);
+        Page<Idea> domains = ideaService.fetchMySummaryIdea(context) ;
         List<IdeaDTO> list = ideaDtoMapping.toDto(domains.getContent());
             return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))

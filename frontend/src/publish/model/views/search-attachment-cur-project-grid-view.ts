@@ -94,6 +94,7 @@ export default {
           dataItemName: 'name',
           excelCaption: '文件名称',
           appDEFieldId: 'name',
+          deuiactionId: 'attachment_preview@attachment',
           deuiactionGroup: {
             uiactionGroupDetails: [
               {

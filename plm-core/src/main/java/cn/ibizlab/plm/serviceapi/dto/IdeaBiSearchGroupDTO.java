@@ -378,6 +378,14 @@ public class IdeaBiSearchGroupDTO extends DTOBase implements Serializable {
     @ApiModelProperty(value = "子产品标识", position = 41)
     private String sectionId;
 
+    /**
+     * 产品是否删除
+     */
+    @JsonProperty("product_is_deleted")
+    @JSONField(name = "product_is_deleted")
+    @ApiModelProperty(value = "产品是否删除", position = 42)
+    private Integer productIsDeleted;
+
 
     /**
      * 设置 [是否已删除]
@@ -709,6 +717,15 @@ public class IdeaBiSearchGroupDTO extends DTOBase implements Serializable {
     public IdeaBiSearchGroupDTO setSectionId(String sectionId) {
         this.sectionId = sectionId;
         this.modify("section_id", sectionId);
+        return this;
+    }
+
+    /**
+     * 设置 [产品是否删除]
+     */
+    public IdeaBiSearchGroupDTO setProductIsDeleted(Integer productIsDeleted) {
+        this.productIsDeleted = productIsDeleted;
+        this.modify("product_is_deleted", productIsDeleted);
         return this;
     }
 

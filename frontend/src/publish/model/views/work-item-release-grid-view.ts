@@ -20,6 +20,17 @@ export default {
   ],
   appViewLogics: [
     {
+      eventNames: 'onSelectionChange',
+      logicTrigger: 'CTRLEVENT',
+      logicType: 'APPDEUILOGIC',
+      appDEUILogicId: 'before_state_change_grid',
+      appDataEntityId: 'plmweb.work_item',
+      ctrlName: 'grid',
+      builtinLogic: true,
+      name: 'STATE_LOGIC',
+      id: 'state_logic',
+    },
+    {
       logicTrigger: 'CUSTOM',
       logicType: 'APPUILOGIC',
       builtinAppUILogic: {
@@ -111,6 +122,13 @@ export default {
       },
       builtinLogic: true,
       id: 'opendata',
+    },
+  ],
+  appViewNavParams: [
+    {
+      key: 'n_release_id_eq',
+      value: 'release',
+      id: 'n_release_id_eq',
     },
   ],
   appViewRefs: [
@@ -1164,6 +1182,7 @@ export default {
         },
       ],
       codeName: 'release_work_item_grid',
+      controlStyle: 'NUMBER_GRID',
       controlType: 'GRID',
       logicName: '发布工作项表格',
       appDataEntityId: 'plmweb.work_item',
@@ -1181,6 +1200,7 @@ export default {
       controlParam: {
         id: 'grid',
       },
+      sysPFPluginId: 'number_grid',
       modelId: '0eccdb4fa9bec6ce5f39b7b66d60618c',
       modelType: 'PSDEGRID',
       name: 'grid',
@@ -1214,6 +1234,47 @@ export default {
           showCaption: true,
           showIcon: true,
           id: 'deuiaction1',
+        },
+        {
+          itemType: 'SEPERATOR',
+          id: 'seperator1',
+        },
+        {
+          actionLevel: 100,
+          buttonStyle: 'STYLE2',
+          detoolbarItems: [
+            {
+              actionLevel: 100,
+              noPrivDisplayMode: 2,
+              uiactionId: 'gridview_exportaction',
+              valid: true,
+              capLanguageRes: {
+                lanResTag: 'TBB.TEXT.*.EXPORT',
+              },
+              caption: '导出工作项',
+              itemType: 'DEUIACTION',
+              sysImage: {
+                cssClass: 'fa fa-file-excel-o',
+                glyph: 'xf1c3@FontAwesome',
+              },
+              tooltip: '导出工作项',
+              tooltipLanguageRes: {
+                lanResTag: 'TBB.TOOLTIP.*.EXPORT',
+              },
+              showCaption: true,
+              showIcon: true,
+              id: 'deuiaction2',
+            },
+          ],
+          valid: true,
+          itemType: 'ITEMS',
+          sysImage: {
+            cssClass: 'fa fa-list-ul',
+            glyph: 'xf0ca@FontAwesome',
+          },
+          showCaption: true,
+          showIcon: true,
+          id: 'items1',
         },
       ],
       xdataControlName: 'grid',

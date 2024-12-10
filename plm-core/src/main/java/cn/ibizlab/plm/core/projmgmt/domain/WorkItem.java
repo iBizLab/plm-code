@@ -34,6 +34,7 @@ import cn.ibizlab.plm.core.base.domain.CommonFlow;
 import cn.ibizlab.plm.core.projmgmt.domain.SprintAlteration;
 import cn.ibizlab.plm.core.base.domain.Attention;
 import cn.ibizlab.plm.core.base.domain.Comment;
+import cn.ibizlab.plm.core.base.domain.Executor;
 import cn.ibizlab.plm.core.base.domain.Recent;
 import cn.ibizlab.plm.core.base.domain.Relation;
 import cn.ibizlab.plm.core.projmgmt.domain.TransitionHistory;
@@ -424,8 +425,8 @@ public class WorkItem extends EntityMP implements Serializable
     private List<Deliverable> deliverable;
 
     /**
-    * 父工作项类型
-    */
+     * 父工作项类型
+     */
     @TableField(value = "p_work_item_type_id" , exist = false)
     @DEField(name = "p_work_item_type_id")
     @JSONField(name = "p_work_item_type_id")
@@ -695,6 +696,98 @@ public class WorkItem extends EntityMP implements Serializable
     private Integer isOvertime;
 
     /**
+    * 执行人
+    */
+    @TableField(exist = false)
+    @DEField(name = "executors")
+    @JSONField(name = "executors")
+    @JsonProperty("executors")
+    @ApiModelProperty(value = "executors", notes = "执行人")
+    private List<Executor> executors;
+
+    /**
+    * 多人任务
+    */
+    @TableField(value = "multiple_people")
+    @DEField(name = "multiple_people" , defaultValue = "0" , dict = "YesNo")
+    @JSONField(name = "multiple_people")
+    @JsonProperty("multiple_people")
+    @ApiModelProperty(value = "multiple_people", notes = "多人任务")
+    private Integer multiplePeople;
+
+    /**
+    * 实际开始时间
+    */
+    @TableField(value = "actual_start_at")
+    @DEField(name = "actual_start_at" , fieldType = "DATETIME", format = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "actual_start_at" , format = "yyyy-MM-dd HH:mm:ss")
+    @JsonProperty("actual_start_at")
+    @ApiModelProperty(value = "actual_start_at", notes = "实际开始时间")
+    private Date actualStartAt;
+
+    /**
+    * 实际结束时间
+    */
+    @TableField(value = "actual_end_at")
+    @DEField(name = "actual_end_at" , fieldType = "DATETIME", format = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "actual_end_at" , format = "yyyy-MM-dd HH:mm:ss")
+    @JsonProperty("actual_end_at")
+    @ApiModelProperty(value = "actual_end_at", notes = "实际结束时间")
+    private Date actualEndAt;
+
+    /**
+    * 完成人
+    */
+    @TableField(value = "finisher")
+    @DEField(name = "finisher")
+    @JSONField(name = "finisher")
+    @JsonProperty("finisher")
+    @ApiModelProperty(value = "finisher", notes = "完成人")
+    private String finisher;
+
+    /**
+    * 逾期天数
+    */
+    @TableField(value = "overdue_time" , exist = false)
+    @DEField(name = "overdue_time")
+    @JSONField(name = "overdue_time")
+    @JsonProperty("overdue_time")
+    @ApiModelProperty(value = "overdue_time", notes = "逾期天数")
+    private String overdueTime;
+
+    /**
+    * 交付物
+    */
+    @TableField(value = "deliverable_imp" , exist = false)
+    @DEField(name = "deliverable_imp")
+    @JSONField(name = "deliverable_imp")
+    @JsonProperty("deliverable_imp")
+    @ApiModelProperty(value = "deliverable_imp", notes = "交付物")
+    private String deliverableImp;
+
+    /**
+    * 项目是否删除
+    */
+    @TableField(value = "project_is_deleted" , exist = false)
+    @DEField(name = "project_is_deleted" , dict = "YesNo")
+    @JSONField(name = "project_is_deleted")
+    @JsonProperty("project_is_deleted")
+    @ApiModelProperty(value = "project_is_deleted", notes = "项目是否删除")
+    private Integer projectIsDeleted;
+
+    /**
+    * 项目是否归档
+    */
+    @TableField(value = "project_is_archived" , exist = false)
+    @DEField(name = "project_is_archived" , dict = "YesNo")
+    @JSONField(name = "project_is_archived")
+    @JsonProperty("project_is_archived")
+    @ApiModelProperty(value = "project_is_archived", notes = "项目是否归档")
+    private Integer projectIsArchived;
+
+    /**
     * 标识
     */
     @Id
@@ -821,7 +914,7 @@ public class WorkItem extends EntityMP implements Serializable
     * 看板标识
     */
     @TableField(value = "board_id")
-    @DEField(name = "board_id" , dict = "project_board")
+    @DEField(name = "board_id")
     @JSONField(name = "board_id")
     @JsonProperty("board_id")
     @ApiModelProperty(value = "board_id", notes = "看板标识")
@@ -1355,9 +1448,9 @@ public class WorkItem extends EntityMP implements Serializable
     /**
     * 设置 [父工作项类型]
     */
-    public WorkItem setPWorkItemTypeId(String PWorkItemTypeId) {
-        this.PWorkItemTypeId = PWorkItemTypeId;
-        this.modify("p_work_item_type_id", PWorkItemTypeId);
+    public WorkItem setPWorkItemTypeId(String pWorkItemTypeId) {
+        this.PWorkItemTypeId = pWorkItemTypeId;
+        this.modify("p_work_item_type_id", pWorkItemTypeId);
         return this;
     }
 
@@ -1583,6 +1676,87 @@ public class WorkItem extends EntityMP implements Serializable
     public WorkItem setIsOvertime(Integer isOvertime) {
         this.isOvertime = isOvertime;
         this.modify("is_overtime", isOvertime);
+        return this;
+    }
+
+    /**
+    * 设置 [执行人]
+    */
+    public WorkItem setExecutors(List<Executor> executors) {
+        this.executors = executors;
+        this.modify("executors", executors);
+        return this;
+    }
+
+    /**
+    * 设置 [多人任务]
+    */
+    public WorkItem setMultiplePeople(Integer multiplePeople) {
+        this.multiplePeople = multiplePeople;
+        this.modify("multiple_people", multiplePeople);
+        return this;
+    }
+
+    /**
+    * 设置 [实际开始时间]
+    */
+    public WorkItem setActualStartAt(Date actualStartAt) {
+        this.actualStartAt = actualStartAt;
+        this.modify("actual_start_at", actualStartAt);
+        return this;
+    }
+
+    /**
+    * 设置 [实际结束时间]
+    */
+    public WorkItem setActualEndAt(Date actualEndAt) {
+        this.actualEndAt = actualEndAt;
+        this.modify("actual_end_at", actualEndAt);
+        return this;
+    }
+
+    /**
+    * 设置 [完成人]
+    */
+    public WorkItem setFinisher(String finisher) {
+        this.finisher = finisher;
+        this.modify("finisher", finisher);
+        return this;
+    }
+
+    /**
+    * 设置 [逾期天数]
+    */
+    public WorkItem setOverdueTime(String overdueTime) {
+        this.overdueTime = overdueTime;
+        this.modify("overdue_time", overdueTime);
+        return this;
+    }
+
+    /**
+    * 设置 [交付物]
+    */
+    public WorkItem setDeliverableImp(String deliverableImp) {
+        this.deliverableImp = deliverableImp;
+        this.modify("deliverable_imp", deliverableImp);
+        return this;
+    }
+
+    /**
+    * 设置 [项目是否删除]
+    */
+    public WorkItem setProjectIsDeleted(Integer projectIsDeleted) {
+        this.projectIsDeleted = projectIsDeleted;
+        this.modify("project_is_deleted", projectIsDeleted);
+        return this;
+    }
+
+    /**
+    * 设置 [项目是否归档]
+    */
+    public WorkItem setProjectIsArchived(Integer projectIsArchived) {
+        this.projectIsArchived = projectIsArchived;
+        this.modify("project_is_archived", projectIsArchived);
         return this;
     }
 

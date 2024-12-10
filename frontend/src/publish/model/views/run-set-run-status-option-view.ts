@@ -67,6 +67,7 @@ export default {
                 singleSelect: true,
                 appCodeListId: 'plmweb.testmgmt__run_status',
                 editorType: 'DROPDOWNLIST',
+                placeHolder: '请选择执行结果',
                 valueType: 'SIMPLE',
                 editable: true,
                 id: 'status',

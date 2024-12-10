@@ -213,6 +213,7 @@ export default {
                 beforeItemType: 'NONE',
                 detailType: 'DEUIACTION',
                 uiactionId: 'remove_member@project_member',
+                tooltip: '移除成员',
                 showIcon: true,
                 sysImage: {
                   cssClass: 'fa fa-trash-o',

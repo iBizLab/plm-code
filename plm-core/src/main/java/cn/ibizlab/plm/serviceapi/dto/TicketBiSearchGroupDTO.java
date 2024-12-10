@@ -254,6 +254,14 @@ public class TicketBiSearchGroupDTO extends DTOBase implements Serializable {
     @ApiModelProperty(value = "标签", position = 26)
     private String tags;
 
+    /**
+     * 产品是否删除
+     */
+    @JsonProperty("product_is_deleted")
+    @JSONField(name = "product_is_deleted")
+    @ApiModelProperty(value = "产品是否删除", position = 27)
+    private Integer productIsDeleted;
+
 
     /**
      * 设置 [是否已归档]
@@ -450,6 +458,15 @@ public class TicketBiSearchGroupDTO extends DTOBase implements Serializable {
     public TicketBiSearchGroupDTO setTags(String tags) {
         this.tags = tags;
         this.modify("tags", tags);
+        return this;
+    }
+
+    /**
+     * 设置 [产品是否删除]
+     */
+    public TicketBiSearchGroupDTO setProductIsDeleted(Integer productIsDeleted) {
+        this.productIsDeleted = productIsDeleted;
+        this.modify("product_is_deleted", productIsDeleted);
         return this;
     }
 

@@ -341,7 +341,7 @@ public class WorkItemDTO extends DTOBase implements Serializable {
     @JsonProperty("p_work_item_type_id")
     @JSONField(name = "p_work_item_type_id")
     @ApiModelProperty(value = "父工作项类型", position = 37)
-    private String PWorkItemTypeId;
+    private String pWorkItemTypeId;
 
     /**
      * 评论数
@@ -545,11 +545,85 @@ public class WorkItemDTO extends DTOBase implements Serializable {
     private Integer isOvertime;
 
     /**
+     * 执行人
+     */
+    @JsonProperty("executors")
+    @JSONField(name = "executors")
+    @ApiModelProperty(value = "执行人", position = 63)
+    private List<ExecutorDTO> executors;
+
+    /**
+     * 多人任务
+     */
+    @JsonProperty("multiple_people")
+    @JSONField(name = "multiple_people")
+    @ApiModelProperty(value = "多人任务", position = 64)
+    private Integer multiplePeople;
+
+    /**
+     * 实际开始时间
+     */
+    @JsonProperty("actual_start_at")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "actual_start_at" , format = "yyyy-MM-dd HH:mm:ss")
+    @ApiModelProperty(value = "实际开始时间", position = 65)
+    private Date actualStartAt;
+
+    /**
+     * 实际结束时间
+     */
+    @JsonProperty("actual_end_at")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "actual_end_at" , format = "yyyy-MM-dd HH:mm:ss")
+    @ApiModelProperty(value = "实际结束时间", position = 66)
+    private Date actualEndAt;
+
+    /**
+     * 完成人
+     */
+    @JsonProperty("finisher")
+    @JSONField(name = "finisher")
+    @ApiModelProperty(value = "完成人", position = 67)
+    private String finisher;
+
+    /**
+     * 逾期天数
+     */
+    @JsonProperty("overdue_time")
+    @JSONField(name = "overdue_time")
+    @ApiModelProperty(value = "逾期天数", position = 68)
+    private String overdueTime;
+
+    /**
+     * 交付物
+     */
+    @JsonProperty("deliverable_imp")
+    @JSONField(name = "deliverable_imp")
+    @ApiModelProperty(value = "交付物", position = 69)
+    private String deliverableImp;
+
+    /**
+     * 项目是否删除
+     */
+    @JsonProperty("project_is_deleted")
+    @JSONField(name = "project_is_deleted")
+    @ApiModelProperty(value = "项目是否删除", position = 70)
+    private Integer projectIsDeleted;
+
+    /**
+     * 项目是否归档
+     */
+    @JsonProperty("project_is_archived")
+    @JSONField(name = "project_is_archived")
+    @ApiModelProperty(value = "项目是否归档", position = 71)
+    private Integer projectIsArchived;
+
+    /**
      * 看板标识
      */
     @JsonProperty("board_id")
     @JSONField(name = "board_id")
-    @ApiModelProperty(value = "看板标识", position = 63)
+    @ApiModelProperty(value = "看板标识", position = 72)
     private String boardId;
 
     /**
@@ -557,7 +631,7 @@ public class WorkItemDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("board_name")
     @JSONField(name = "board_name")
-    @ApiModelProperty(value = "看板名称", position = 64)
+    @ApiModelProperty(value = "看板名称", position = 73)
     private String boardName;
 
     /**
@@ -565,7 +639,7 @@ public class WorkItemDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("create_man")
     @JSONField(name = "create_man")
-    @ApiModelProperty(value = "建立人", position = 65)
+    @ApiModelProperty(value = "建立人", position = 74)
     private String createMan;
 
     /**
@@ -574,7 +648,7 @@ public class WorkItemDTO extends DTOBase implements Serializable {
     @JsonProperty("create_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "create_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "建立时间", position = 66)
+    @ApiModelProperty(value = "建立时间", position = 75)
     private Date createTime;
 
     /**
@@ -582,7 +656,7 @@ public class WorkItemDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("entry_id")
     @JSONField(name = "entry_id")
-    @ApiModelProperty(value = "看板栏标识", position = 67)
+    @ApiModelProperty(value = "看板栏标识", position = 76)
     private String entryId;
 
     /**
@@ -590,7 +664,7 @@ public class WorkItemDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("entry_name")
     @JSONField(name = "entry_name")
-    @ApiModelProperty(value = "看板栏名称", position = 68)
+    @ApiModelProperty(value = "看板栏名称", position = 77)
     private String entryName;
 
     /**
@@ -598,7 +672,7 @@ public class WorkItemDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("id")
     @JSONField(name = "id")
-    @ApiModelProperty(value = "标识", position = 69)
+    @ApiModelProperty(value = "标识", position = 78)
     private String id;
 
     /**
@@ -606,7 +680,7 @@ public class WorkItemDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("pid")
     @JSONField(name = "pid")
-    @ApiModelProperty(value = "父标识", position = 70)
+    @ApiModelProperty(value = "父标识", position = 79)
     private String pid;
 
     /**
@@ -614,7 +688,7 @@ public class WorkItemDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("project_id")
     @JSONField(name = "project_id")
-    @ApiModelProperty(value = "项目", position = 71)
+    @ApiModelProperty(value = "项目", position = 80)
     private String projectId;
 
     /**
@@ -622,7 +696,7 @@ public class WorkItemDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("project_name")
     @JSONField(name = "project_name")
-    @ApiModelProperty(value = "所属项目", position = 72)
+    @ApiModelProperty(value = "所属项目", position = 81)
     private String projectName;
 
     /**
@@ -630,7 +704,7 @@ public class WorkItemDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("ptitle")
     @JSONField(name = "ptitle")
-    @ApiModelProperty(value = "父工作项", position = 73)
+    @ApiModelProperty(value = "父工作项", position = 82)
     private String ptitle;
 
     /**
@@ -638,7 +712,7 @@ public class WorkItemDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("release_id")
     @JSONField(name = "release_id")
-    @ApiModelProperty(value = "项目发布标识", position = 74)
+    @ApiModelProperty(value = "项目发布标识", position = 83)
     private String releaseId;
 
     /**
@@ -646,7 +720,7 @@ public class WorkItemDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("release_name")
     @JSONField(name = "release_name")
-    @ApiModelProperty(value = "项目发布名称", position = 75)
+    @ApiModelProperty(value = "项目发布名称", position = 84)
     private String releaseName;
 
     /**
@@ -654,7 +728,7 @@ public class WorkItemDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("sprint_id")
     @JSONField(name = "sprint_id")
-    @ApiModelProperty(value = "迭代标识", position = 76)
+    @ApiModelProperty(value = "迭代标识", position = 85)
     private String sprintId;
 
     /**
@@ -662,7 +736,7 @@ public class WorkItemDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("sprint_name")
     @JSONField(name = "sprint_name")
-    @ApiModelProperty(value = "迭代名称", position = 77)
+    @ApiModelProperty(value = "迭代名称", position = 86)
     private String sprintName;
 
     /**
@@ -670,7 +744,7 @@ public class WorkItemDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("swimlane_id")
     @JSONField(name = "swimlane_id")
-    @ApiModelProperty(value = "泳道标识", position = 78)
+    @ApiModelProperty(value = "泳道标识", position = 87)
     private String swimlaneId;
 
     /**
@@ -678,7 +752,7 @@ public class WorkItemDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("top_id")
     @JSONField(name = "top_id")
-    @ApiModelProperty(value = "顶级工作项标识", position = 79)
+    @ApiModelProperty(value = "顶级工作项标识", position = 88)
     private String topId;
 
     /**
@@ -686,7 +760,7 @@ public class WorkItemDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("top_title")
     @JSONField(name = "top_title")
-    @ApiModelProperty(value = "顶级工作项标题", position = 80)
+    @ApiModelProperty(value = "顶级工作项标题", position = 89)
     private String topTitle;
 
     /**
@@ -694,7 +768,7 @@ public class WorkItemDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("update_man")
     @JSONField(name = "update_man")
-    @ApiModelProperty(value = "更新人", position = 81)
+    @ApiModelProperty(value = "更新人", position = 90)
     private String updateMan;
 
     /**
@@ -703,7 +777,7 @@ public class WorkItemDTO extends DTOBase implements Serializable {
     @JsonProperty("update_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "update_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "更新时间", position = 82)
+    @ApiModelProperty(value = "更新时间", position = 91)
     private Date updateTime;
 
     /**
@@ -711,7 +785,7 @@ public class WorkItemDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("work_item_type_id")
     @JSONField(name = "work_item_type_id")
-    @ApiModelProperty(value = "工作项类型", position = 83)
+    @ApiModelProperty(value = "工作项类型", position = 92)
     private String workItemTypeId;
 
     /**
@@ -719,7 +793,7 @@ public class WorkItemDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("work_item_type_name")
     @JSONField(name = "work_item_type_name")
-    @ApiModelProperty(value = "工作项类型", position = 84)
+    @ApiModelProperty(value = "工作项类型", position = 93)
     private String workItemTypeName;
 
 
@@ -1050,9 +1124,9 @@ public class WorkItemDTO extends DTOBase implements Serializable {
     /**
      * 设置 [父工作项类型]
      */
-    public WorkItemDTO setPWorkItemTypeId(String PWorkItemTypeId) {
-        this.PWorkItemTypeId = PWorkItemTypeId;
-        this.modify("p_work_item_type_id", PWorkItemTypeId);
+    public WorkItemDTO setPWorkItemTypeId(String pWorkItemTypeId) {
+        this.pWorkItemTypeId = pWorkItemTypeId;
+        this.modify("p_work_item_type_id", pWorkItemTypeId);
         return this;
     }
 
@@ -1269,6 +1343,87 @@ public class WorkItemDTO extends DTOBase implements Serializable {
     public WorkItemDTO setIsOvertime(Integer isOvertime) {
         this.isOvertime = isOvertime;
         this.modify("is_overtime", isOvertime);
+        return this;
+    }
+
+    /**
+     * 设置 [执行人]
+     */
+    public WorkItemDTO setExecutors(List<ExecutorDTO> executors) {
+        this.executors = executors;
+        this.modify("executors", executors);
+        return this;
+    }
+
+    /**
+     * 设置 [多人任务]
+     */
+    public WorkItemDTO setMultiplePeople(Integer multiplePeople) {
+        this.multiplePeople = multiplePeople;
+        this.modify("multiple_people", multiplePeople);
+        return this;
+    }
+
+    /**
+     * 设置 [实际开始时间]
+     */
+    public WorkItemDTO setActualStartAt(Date actualStartAt) {
+        this.actualStartAt = actualStartAt;
+        this.modify("actual_start_at", actualStartAt);
+        return this;
+    }
+
+    /**
+     * 设置 [实际结束时间]
+     */
+    public WorkItemDTO setActualEndAt(Date actualEndAt) {
+        this.actualEndAt = actualEndAt;
+        this.modify("actual_end_at", actualEndAt);
+        return this;
+    }
+
+    /**
+     * 设置 [完成人]
+     */
+    public WorkItemDTO setFinisher(String finisher) {
+        this.finisher = finisher;
+        this.modify("finisher", finisher);
+        return this;
+    }
+
+    /**
+     * 设置 [逾期天数]
+     */
+    public WorkItemDTO setOverdueTime(String overdueTime) {
+        this.overdueTime = overdueTime;
+        this.modify("overdue_time", overdueTime);
+        return this;
+    }
+
+    /**
+     * 设置 [交付物]
+     */
+    public WorkItemDTO setDeliverableImp(String deliverableImp) {
+        this.deliverableImp = deliverableImp;
+        this.modify("deliverable_imp", deliverableImp);
+        return this;
+    }
+
+    /**
+     * 设置 [项目是否删除]
+     */
+    public WorkItemDTO setProjectIsDeleted(Integer projectIsDeleted) {
+        this.projectIsDeleted = projectIsDeleted;
+        this.modify("project_is_deleted", projectIsDeleted);
+        return this;
+    }
+
+    /**
+     * 设置 [项目是否归档]
+     */
+    public WorkItemDTO setProjectIsArchived(Integer projectIsArchived) {
+        this.projectIsArchived = projectIsArchived;
+        this.modify("project_is_archived", projectIsArchived);
         return this;
     }
 

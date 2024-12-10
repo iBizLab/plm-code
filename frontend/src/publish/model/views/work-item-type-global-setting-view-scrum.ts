@@ -1237,16 +1237,16 @@ export default {
       mobListStyle: 'EXTVIEW1',
       delistDataItems: [
         {
-          dataType: 21,
-          id: 'icon',
+          dataType: 25,
+          id: 'id',
         },
         {
           dataType: 25,
           id: 'name',
         },
         {
-          dataType: 25,
-          id: 'id',
+          dataType: 21,
+          id: 'icon',
         },
         {
           appDEFieldId: 'id',

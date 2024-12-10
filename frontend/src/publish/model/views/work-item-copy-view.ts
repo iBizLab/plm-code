@@ -107,6 +107,7 @@ export default {
                     id: 'target_project_id',
                   },
                 ],
+                placeHolder: '请选择项目',
                 valueType: 'SIMPLE',
                 editable: true,
                 navigateParams: [

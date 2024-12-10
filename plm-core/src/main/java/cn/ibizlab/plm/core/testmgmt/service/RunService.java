@@ -20,6 +20,7 @@ import cn.ibizlab.plm.core.testmgmt.domain.RunHistory;
 import cn.ibizlab.plm.core.testmgmt.domain.Step;
 import cn.ibizlab.plm.core.base.domain.Comment;
 import cn.ibizlab.plm.core.base.domain.Attention;
+import cn.ibizlab.plm.core.base.domain.Relation;
 import cn.ibizlab.plm.core.testmgmt.domain.RunAttachment;
 import cn.ibizlab.plm.core.base.domain.SearchComment;
 
@@ -220,6 +221,36 @@ public interface RunService extends IService<Run> {
     * @return
     */
     default Run programPlan(Run et) {
+        return et;
+    }
+
+    /**
+    * programPlanByRelease
+    * 
+    * @param et
+    * @return
+    */
+    default Run programPlanByRelease(Run et) {
+        return et;
+    }
+
+    /**
+    * programPlanBySprint
+    * 
+    * @param et
+    * @return
+    */
+    default Run programPlanBySprint(Run et) {
+        return et;
+    }
+
+    /**
+    * programPlanByWorkitem
+    * 
+    * @param et
+    * @return
+    */
+    default Run programPlanByWorkitem(Run et) {
         return et;
     }
 

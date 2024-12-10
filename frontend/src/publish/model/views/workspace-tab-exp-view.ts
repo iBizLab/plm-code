@@ -50,6 +50,9 @@ export default {
       controlType: 'DRTAB',
       appDataEntityId: 'plmweb.workspace',
       controlParam: {
+        ctrlParams: {
+          SRFCACHEPOS: 'TRUE',
+        },
         id: 'tabexppanel',
       },
       modelId: '8A849D8F-96E2-43E0-9F23-265A3869C9F5',

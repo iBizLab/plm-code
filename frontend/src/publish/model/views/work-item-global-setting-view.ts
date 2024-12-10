@@ -276,11 +276,6 @@ export default {
       {
         dedrtabPages: [
           {
-            caption: '工作项类型',
-            appViewId: 'plmweb.work_item_type_global_grid_view',
-            id: 'dritem3',
-          },
-          {
             caption: '工作项属性',
             appViewId: 'plmweb.psde_field_grid_view',
             navigateContexts: [

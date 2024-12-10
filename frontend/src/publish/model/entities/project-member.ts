@@ -1097,6 +1097,7 @@ export default {
       refreshMode: 1,
       successMsg: '删除成功',
       timeout: 60000,
+      tooltip: '移除成员',
       uiactionMode: 'BACKEND',
       uiactionTag: 'remove_member',
       uiactionType: 'DEUIACTION',

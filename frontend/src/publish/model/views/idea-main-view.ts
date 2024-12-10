@@ -248,17 +248,17 @@ export default {
                                     QUOTECODELISTMAP:
                                       '{"type":"plmweb.base__recent_visite"}',
                                     QUOTEFIELDMAP:
-                                      '{"identifier":"show_identifier","name":"name","id":"id","type":"owner_subtype"}',
+                                      '{"identifier":"show_identifier","name":"name","id":"id","type":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
                                     QUOTEPARAMS:
                                       '{"page":0,"size":20,"sort":"update_time,desc"}',
                                     QUOTEINSCRIPT:
-                                      'value.replaceAll(/\\#\\{\\"id\\":\\"(.+?)\\",\\"name\\":\\"(.+?)\\",\\"identifier\\":\\"(.+?)\\",\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g,(x, id, name, identifier, icon) => {return controller.getNodeInfo({ id, name, identifier, icon })}).replaceAll(/\\#\\{id=(.+?),name=(.+?),identifier=(.+?),icon=((.|[\\t\\r\\f\\n\\s])+?)\\}/g,(x, id, name, identifier, icon) => {return controller.getNodeInfo({ id, name, identifier, icon })})',
+                                      'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\"),\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); return controller.getNodeInfo({ icon, ...item })})',
                                     USERSCRIPT:
                                       '`@{"id":"${data.id}","name":"${data.name}"}`',
                                     QUOTESCRIPT:
-                                      '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","icon":"${data.icon}"}`',
+                                      '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.type}","recent_parent":"${data.recent_parent}","icon":"${data.icon}"}`',
                                     REPLYSCRIPT:
-                                      'value?.replace(/@{[^,]*,"name":"(.*?)"}/g,"<span class=\\\'comment-tag\\\'>@$1</span>").replace(/@{[^,]*,name=(.*?)}/g,"<span class=\\\'comment-tag\\\'>@$1</span>").replace(/#{"id":"(.+?)","name":"(.+?)","identifier":"(.+?)","icon":"((.|[\\t\\r\\f\\n\\s])+?)"}/g, "<span class=\\\'comment-tag\\\'>$4 $3 $2</span>").replace(/#{id=(.+?),name=(.+?),identifier=(.+?),icon=((.|[\\t\\r\\f\\n\\s])+?)}/g, "<span class=\\\'comment-tag\\\'>$4 $3 $2</span>")',
+                                      'value?.replace(/@{[^,]*,"name":"(.*?)"}/g,"<span class=\'comment-tag\'>@$1</span>").replace(/@{[^,]*,name=(.*?)}/g,"<span class=\'comment-tag\'>@$1</span>").replaceAll(/\\#\\{(\\".+?\\":\\".+?\\"),\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g, (x, value, icon) => {const item = JSON.parse("{" + value + "}"); const tempIcon = icon.trim(); return `<span class=\'comment-tag\' data-value=\'${JSON.stringify(item)}\'>${tempIcon} ${item.identifier} ${item.name}</span>`;})',
                                     USERFIELDMAP:
                                       '{"id":"user_id","name":"name"}',
                                     USERURL:
@@ -1033,6 +1033,23 @@ export default {
         enableAutoSave: true,
         deformItemUpdates: [
           {
+            codeName: 'estimated_update',
+            defiupdateDetails: [
+              {
+                id: 'workload_schedule',
+              },
+              {
+                id: 'remaining_workload',
+              },
+            ],
+            scriptCode:
+              'var form_data = view.layoutPanel.panelItems.form.control.data;\r\nvar actual_workload = form_data.actual_workload;\r\nvar estimated_workload = form_data.estimated_workload;  \r\nvar estimated = 0; // 预估工时\r\nif(estimated_workload){\r\n\testimated = Number(estimated_workload);\r\n}\r\nvar actual = 0; // 已登记的实际工时\r\nvar remaining = 0; // 剩余工时\r\nif(actual_workload){\r\n\tactual = Number(actual_workload);\r\n\tif(estimated_workload){\r\n\t\t// 计算剩余工时\r\n\t\tremaining = (estimated - actual) >= 0 ? (estimated - actual) : 0;\r\n\t\tform_data.remaining_workload = remaining;\r\n\t}\r\n} else {\r\n\tremaining = estimated;\r\n\tform_data.remaining_workload = estimated_workload;\r\n}\r\n// 计算工时进度\r\nif((actual + remaining) != 0){\r\n\tvar schedule = ((actual / (actual + remaining)) * 100).toFixed(1);\r\n\tform_data.workload_schedule = schedule;\r\n}',
+            customCode: true,
+            showBusyIndicator: false,
+            name: '预估工时表单项更新',
+            id: 'estimated_update',
+          },
+          {
             codeName: 'remaining_update',
             defiupdateDetails: [
               {
@@ -1045,23 +1062,6 @@ export default {
             showBusyIndicator: false,
             name: '剩余工时表单项更新',
             id: 'remaining_update',
-          },
-          {
-            codeName: 'estimated_update',
-            defiupdateDetails: [
-              {
-                id: 'remaining_workload',
-              },
-              {
-                id: 'workload_schedule',
-              },
-            ],
-            scriptCode:
-              'var form_data = view.layoutPanel.panelItems.form.control.data;\r\nvar actual_workload = form_data.actual_workload;\r\nvar estimated_workload = form_data.estimated_workload;  \r\nvar estimated = 0; // 预估工时\r\nif(estimated_workload){\r\n\testimated = Number(estimated_workload);\r\n}\r\nvar actual = 0; // 已登记的实际工时\r\nvar remaining = 0; // 剩余工时\r\nif(actual_workload){\r\n\tactual = Number(actual_workload);\r\n\tif(estimated_workload){\r\n\t\t// 计算剩余工时\r\n\t\tremaining = (estimated - actual) >= 0 ? (estimated - actual) : 0;\r\n\t\tform_data.remaining_workload = remaining;\r\n\t}\r\n} else {\r\n\tremaining = estimated;\r\n\tform_data.remaining_workload = estimated_workload;\r\n}\r\n// 计算工时进度\r\nif((actual + remaining) != 0){\r\n\tvar schedule = ((actual / (actual + remaining)) * 100).toFixed(1);\r\n\tform_data.workload_schedule = schedule;\r\n}',
-            customCode: true,
-            showBusyIndicator: false,
-            name: '预估工时表单项更新',
-            id: 'estimated_update',
           },
         ],
         deformPages: [
@@ -1391,17 +1391,17 @@ export default {
                                       '{"type":"plmweb.base__recent_visite"}',
                                     enableEdit: 'true',
                                     QUOTEFIELDMAP:
-                                      '{"identifier":"show_identifier","name":"name","id":"id","type":"owner_subtype"}',
+                                      '{"identifier":"show_identifier","name":"name","id":"id","type":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
                                     QUOTEPARAMS:
                                       '{"page":0,"size":20,"sort":"update_time,desc"}',
                                     enableFullScreen: 'true',
                                     MODE: 'default',
                                     QUOTEINSCRIPT:
-                                      'value.replaceAll(/\\#\\{\\"id\\":\\"(.+?)\\",\\"name\\":\\"(.+?)\\",\\"identifier\\":\\"(.+?)\\",\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g,(x, id, name, identifier, icon) => {return controller.getNodeInfo({ id, name, identifier, icon })}).replaceAll(/\\#\\{id=(.+?),name=(.+?),identifier=(.+?),icon=((.|[\\t\\r\\f\\n\\s])+?)\\}/g,(x, id, name, identifier, icon) => {return controller.getNodeInfo({ id, name, identifier, icon })})',
+                                      'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\"),\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); return controller.getNodeInfo({ icon, ...item })})',
                                     USERSCRIPT:
                                       '`@{"id":"${data.id}","name":"${data.name}"}`',
                                     QUOTESCRIPT:
-                                      '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","icon":"${data.icon}"}`',
+                                      '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.type}","recent_parent":"${data.recent_parent}","icon":"${data.icon}"}`',
                                     USERURL:
                                       "`${context.library ? `libraries/${context.library}/library_members/fetch_default` : context.product ? `products/${context.product}/product_members/fetch_default` : context.project ? `projects/${context.project}/project_members/fetch_default` : ''}`",
                                     USERFIELDMAP:
@@ -1491,8 +1491,9 @@ export default {
                                       dataItemName: 'name',
                                       excelCaption: '名称',
                                       appDEFieldId: 'name',
+                                      deuiactionId:
+                                        'attachment_preview@attachment',
                                       valueType: 'SIMPLE',
-                                      enableRowEdit: true,
                                       aggMode: 'NONE',
                                       align: 'LEFT',
                                       capLanguageRes: {
@@ -1534,7 +1535,6 @@ export default {
                                       excelCaption: '所属数据标识',
                                       appDEFieldId: 'owner_id',
                                       valueType: 'SIMPLE',
-                                      enableRowEdit: true,
                                       aggMode: 'NONE',
                                       align: 'LEFT',
                                       caption: '所属数据标识',
@@ -1644,36 +1644,6 @@ export default {
                                     },
                                   ],
                                   degridEditItems: [
-                                    {
-                                      caption: '名称',
-                                      codeName: 'name',
-                                      enableCond: 3,
-                                      appDEFieldId: 'name',
-                                      editor: {
-                                        maxLength: 200,
-                                        editorType: 'TEXTBOX',
-                                        valueType: 'SIMPLE',
-                                        editable: true,
-                                        id: 'name',
-                                      },
-                                      allowEmpty: true,
-                                      id: 'name',
-                                    },
-                                    {
-                                      caption: '所属数据标识',
-                                      codeName: 'owner_id',
-                                      enableCond: 3,
-                                      appDEFieldId: 'owner_id',
-                                      editor: {
-                                        maxLength: 100,
-                                        editorType: 'TEXTBOX',
-                                        valueType: 'SIMPLE',
-                                        editable: true,
-                                        id: 'owner_id',
-                                      },
-                                      allowEmpty: true,
-                                      id: 'owner_id',
-                                    },
                                     {
                                       caption: '标识',
                                       codeName: 'srfkey',
@@ -2375,7 +2345,6 @@ export default {
                           },
                           {
                             dataType: 6,
-                            enableCond: 3,
                             labelPos: 'LEFT',
                             labelWidth: 130,
                             noPrivDisplayMode: 1,
@@ -2396,11 +2365,48 @@ export default {
                             detailStyle: 'DEFAULT',
                             detailType: 'FORMITEM',
                             layoutPos: {
-                              colMD: 24,
+                              colLG: 21,
+                              colMD: 21,
                               layout: 'TABLE_24COL',
                             },
                             showCaption: true,
                             id: 'progress',
+                          },
+                          {
+                            layout: {
+                              columnCount: 24,
+                              layout: 'TABLE_24COL',
+                            },
+                            deformDetails: [
+                              {
+                                actionType: 'UIACTION',
+                                uiactionId: 'update_idea_progress@idea',
+                                tooltip: '更新需求进度',
+                                uiactionTarget: 'SINGLEKEY',
+                                caption: '更新需求进度',
+                                codeName: 'button4',
+                                detailStyle: 'STYLE2',
+                                detailType: 'BUTTON',
+                                layoutPos: {
+                                  colMD: 24,
+                                  layout: 'TABLE_24COL',
+                                },
+                                sysImage: {
+                                  cssClass: 'fa fa-refresh',
+                                  glyph: 'xf021@FontAwesome',
+                                },
+                                id: 'button4',
+                              },
+                            ],
+                            codeName: 'grouppanel13',
+                            detailStyle: 'DEFAULT',
+                            detailType: 'GROUPPANEL',
+                            layoutPos: {
+                              colLG: 3,
+                              colMD: 3,
+                              layout: 'TABLE_24COL',
+                            },
+                            id: 'grouppanel13',
                           },
                           {
                             dataType: 25,
@@ -3623,6 +3629,7 @@ export default {
         ],
         codeName: 'main',
         controlType: 'FORM',
+        dynaSysMode: 1,
         logicName: '主编辑表单',
         appDataEntityId: 'plmweb.idea',
         controlLogics: [

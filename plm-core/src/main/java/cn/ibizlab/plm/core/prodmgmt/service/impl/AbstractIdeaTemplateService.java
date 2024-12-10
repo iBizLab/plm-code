@@ -155,6 +155,21 @@ public abstract class AbstractIdeaTemplateService extends ServiceImpl<IdeaTempla
         return list;
    }
 	
+   public Page<IdeaTemplate> fetchGlobal(IdeaTemplateSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("IS_GLOBAL,ASC;UPDATE_TIME,DESC");
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<IdeaTemplate> pages=baseMapper.searchGlobal(context.getPages(),context,context.getSelectCond());
+        List<IdeaTemplate> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<IdeaTemplate> listGlobal(IdeaTemplateSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("IS_GLOBAL,ASC;UPDATE_TIME,DESC");
+        List<IdeaTemplate> list = baseMapper.listGlobal(context,context.getSelectCond());
+        return list;
+   }
+	
 	public List<IdeaTemplate> findByCategoryId(List<String> categoryIds){
         List<IdeaTemplate> list = baseMapper.findByCategoryId(categoryIds);
         return list;	

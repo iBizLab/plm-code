@@ -407,6 +407,8 @@ public abstract class AbstractSprintService extends ServiceImpl<SprintMapper,Spr
             }
             if(!ObjectUtils.isEmpty(project)) {
                 et.setProjectName(project.getName());
+                et.setProjectIsDeleted(project.getIsDeleted());
+                et.setProjectType(project.getType());
                 et.setProjectId(project.getId());
             }
         }

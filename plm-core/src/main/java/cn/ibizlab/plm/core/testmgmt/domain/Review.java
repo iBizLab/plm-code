@@ -219,6 +219,16 @@ public class Review extends EntityMP implements Serializable
     private List<ReviewActionRule> actionRule;
 
     /**
+    * 测试库是否删除
+    */
+    @TableField(value = "library_is_deleted" , exist = false)
+    @DEField(name = "library_is_deleted" , dict = "YesNo")
+    @JSONField(name = "library_is_deleted")
+    @JsonProperty("library_is_deleted")
+    @ApiModelProperty(value = "library_is_deleted", notes = "测试库是否删除")
+    private Integer libraryIsDeleted;
+
+    /**
     * 编号
     */
     @TableField(value = "show_identifier" , exist = false)
@@ -501,6 +511,15 @@ public class Review extends EntityMP implements Serializable
     public Review setActionRule(List<ReviewActionRule> actionRule) {
         this.actionRule = actionRule;
         this.modify("action_rule", actionRule);
+        return this;
+    }
+
+    /**
+    * 设置 [测试库是否删除]
+    */
+    public Review setLibraryIsDeleted(Integer libraryIsDeleted) {
+        this.libraryIsDeleted = libraryIsDeleted;
+        this.modify("library_is_deleted", libraryIsDeleted);
         return this;
     }
 

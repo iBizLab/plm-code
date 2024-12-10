@@ -173,6 +173,22 @@ public interface IdeaTemplateService extends IService<IdeaTemplate> {
     List<IdeaTemplate> listDefault(IdeaTemplateSearchContext context);
 
     /**
+    * fetchGlobal
+    * 
+    * @param context
+    * @return
+    */
+    Page<IdeaTemplate> fetchGlobal(IdeaTemplateSearchContext context);
+
+    /**
+    * listGlobal
+    * 
+    * @param context
+    * @return
+    */
+    List<IdeaTemplate> listGlobal(IdeaTemplateSearchContext context);
+
+    /**
     * findByCategoryId
     * @param categoryIds
     * @return

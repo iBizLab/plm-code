@@ -59,7 +59,7 @@ public class ReviewFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_id_eq")
     @JSONField(name = "n_id_eq")
-    @ApiModelProperty(value = "标识EQ", position = 190)
+    @ApiModelProperty(value = "标识EQ", position = 200)
 	private String idEQ;
 
     /**
@@ -67,7 +67,7 @@ public class ReviewFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_name_like")
     @JSONField(name = "n_name_like")
-    @ApiModelProperty(value = "名称LIKE", position = 200)
+    @ApiModelProperty(value = "名称LIKE", position = 210)
 	private String nameLIKE;
 
     /**
@@ -75,7 +75,7 @@ public class ReviewFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_create_man_eq")
     @JSONField(name = "n_create_man_eq")
-    @ApiModelProperty(value = "建立人EQ", position = 210)
+    @ApiModelProperty(value = "建立人EQ", position = 220)
 	private String createManEQ;
 
     /**
@@ -83,7 +83,7 @@ public class ReviewFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_library_id_eq")
     @JSONField(name = "n_library_id_eq")
-    @ApiModelProperty(value = "测试库标识EQ", position = 250)
+    @ApiModelProperty(value = "测试库标识EQ", position = 260)
 	private String libraryIdEQ;
 
     /**
@@ -91,7 +91,7 @@ public class ReviewFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_library_name_eq")
     @JSONField(name = "n_library_name_eq")
-    @ApiModelProperty(value = "测试库名称EQ", position = 260)
+    @ApiModelProperty(value = "测试库名称EQ", position = 270)
 	private String libraryNameEQ;
 
     /**
@@ -99,7 +99,7 @@ public class ReviewFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_library_name_like")
     @JSONField(name = "n_library_name_like")
-    @ApiModelProperty(value = "测试库名称LIKE", position = 261)
+    @ApiModelProperty(value = "测试库名称LIKE", position = 271)
 	private String libraryNameLIKE;
 
     /**
@@ -107,7 +107,7 @@ public class ReviewFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_guideline_id_eq")
     @JSONField(name = "n_guideline_id_eq")
-    @ApiModelProperty(value = "流程准则标识EQ", position = 270)
+    @ApiModelProperty(value = "流程准则标识EQ", position = 280)
 	private String guidelineIdEQ;
 
 

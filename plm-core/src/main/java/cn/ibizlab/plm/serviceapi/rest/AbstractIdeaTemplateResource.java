@@ -369,6 +369,28 @@ public abstract class AbstractIdeaTemplateResource {
     }
 
     /**
+    * 查询fetch_global 需求模板
+    * 
+    *
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<IdeaTemplateDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_global", tags = {"需求模板" },  notes = "IdeaTemplate-fetch_global ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-IdeaTemplate-fetch_global-all') or hasPermission(#dto,'ibizplm-IdeaTemplate-fetch_global')")
+    @PostMapping("idea_templates/fetch_global")
+    public Mono<ResponseEntity<List<IdeaTemplateDTO>>> fetchGlobal
+            (@Validated @RequestBody IdeaTemplateFilterDTO dto) {
+        IdeaTemplateSearchContext context = ideaTemplateFilterDtoMapping.toDomain(dto);
+        Page<IdeaTemplate> domains = ideaTemplateService.fetchGlobal(context) ;
+        List<IdeaTemplateDTO> list = ideaTemplateDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
     * 获取Get 需求模板
     * 
     *
@@ -454,6 +476,30 @@ public abstract class AbstractIdeaTemplateResource {
         dto.setProductIdEQ(productId);
         IdeaTemplateSearchContext context = ideaTemplateFilterDtoMapping.toDomain(dto);
         Page<IdeaTemplate> domains = ideaTemplateService.fetchDefault(context) ;
+        List<IdeaTemplateDTO> list = ideaTemplateDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
+    * 查询fetch_global 需求模板
+    * 
+    *
+    * @param productId productId
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<IdeaTemplateDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_global", tags = {"需求模板" },  notes = "IdeaTemplate-fetch_global ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-IdeaTemplate-fetch_global-all') or hasPermission('product',#productId,#dto,'ibizplm-IdeaTemplate-fetch_global')")
+    @PostMapping("products/{productId}/idea_templates/fetch_global")
+    public Mono<ResponseEntity<List<IdeaTemplateDTO>>> fetchGlobalByProductId
+            (@PathVariable("productId") String productId, @Validated @RequestBody IdeaTemplateFilterDTO dto) {
+        dto.setProductIdEQ(productId);
+        IdeaTemplateSearchContext context = ideaTemplateFilterDtoMapping.toDomain(dto);
+        Page<IdeaTemplate> domains = ideaTemplateService.fetchGlobal(context) ;
         List<IdeaTemplateDTO> list = ideaTemplateDtoMapping.toDto(domains.getContent());
             return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))

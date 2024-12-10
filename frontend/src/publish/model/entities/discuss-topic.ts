@@ -2479,6 +2479,25 @@ export default {
     {
       actionLevel: 100,
       actionTarget: 'NONE',
+      caption: '打开话题',
+      codeName: 'open_topic',
+      frontProcessType: 'OTHER',
+      fullCodeName: 'discuss_topic_open_topic',
+      scriptCode:
+        'const item = data[0];\r\nwindow.location.hash=`/-/index/-/discuss_topic_tree_exp_view/srfnav=root%3Anode_2%3Anode_10/discuss_topic_all_grid_view/-`',
+      timeout: 60000,
+      uiactionMode: 'FRONT',
+      uiactionTag: 'open_topic',
+      uiactionType: 'DEUIACTION',
+      showBusyIndicator: true,
+      noPrivDisplayMode: 2,
+      appDataEntityId: 'plmweb.discuss_topic',
+      name: '打开话题',
+      id: 'open_topic@discuss_topic',
+    },
+    {
+      actionLevel: 100,
+      actionTarget: 'NONE',
       caption: '打开话题导航页',
       codeName: 'open_topic_exp_page',
       frontAppViewId: 'plmweb.discuss_topic_tree_exp_view',
@@ -2769,6 +2788,13 @@ export default {
       startDEUILogicNodeId: 'begin',
       name: '批量删除话题成员临时数据',
       id: 'remove_batch_temp',
+    },
+  ],
+  appPortletCats: [
+    {
+      codeName: 'Team__index_space_management',
+      name: '协作空间',
+      id: 'team__index_space_management',
     },
   ],
   deopprivs: [

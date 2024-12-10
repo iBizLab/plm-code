@@ -1,5 +1,4 @@
 export default {
-  gridRowActiveMode: 1,
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'global_ticket_grid_view',
@@ -82,15 +81,15 @@ export default {
       realOpenMode: 'POPUPMODAL',
       realTitle: '实体属性选项操作视图',
       refAppViewId: 'plmweb.psde_field_quick_create_view',
-      name: 'EDITDATA',
-      id: 'editdata',
+      name: 'NEWDATA',
+      id: 'newdata',
     },
     {
       realOpenMode: 'POPUPMODAL',
       realTitle: '实体属性选项操作视图',
       refAppViewId: 'plmweb.psde_field_quick_create_view',
-      name: 'NEWDATA',
-      id: 'newdata',
+      name: 'EDITDATA',
+      id: 'editdata',
     },
   ],
   controls: [

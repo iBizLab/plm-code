@@ -193,11 +193,11 @@ public class ProjectBiSearchGroupDTO extends DTOBase implements Serializable {
     private String type;
 
     /**
-     * 状态
+     * 项目状态
      */
     @JsonProperty("state")
     @JSONField(name = "state")
-    @ApiModelProperty(value = "状态", position = 19)
+    @ApiModelProperty(value = "项目状态", position = 19)
     private String state;
 
     /**
@@ -345,7 +345,7 @@ public class ProjectBiSearchGroupDTO extends DTOBase implements Serializable {
     }
 
     /**
-     * 设置 [状态]
+     * 设置 [项目状态]
      */
     public ProjectBiSearchGroupDTO setState(String state) {
         this.state = state;

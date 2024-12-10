@@ -392,7 +392,7 @@ export default {
             {
               clconvertMode: 'FRONT',
               dataItemName: 'state',
-              appCodeListId: 'plmweb.projmgmt__project_state',
+              appCodeListId: 'plmweb.projmgmt__dyna_project_state',
               appDEFieldId: 'state',
               valueType: 'SIMPLE',
               codeName: 'state',
@@ -529,7 +529,7 @@ export default {
             {
               clconvertMode: 'FRONT',
               dataItemName: 'state',
-              appCodeListId: 'plmweb.projmgmt__project_state',
+              appCodeListId: 'plmweb.projmgmt__dyna_project_state',
               appDEFieldId: 'state',
               valueType: 'SIMPLE',
               codeName: 'state',

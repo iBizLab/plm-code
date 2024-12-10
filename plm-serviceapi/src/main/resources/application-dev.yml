@@ -13,6 +13,13 @@ spring:
     driver-class-name: com.mysql.jdbc.Driver
     defaultSchema: plm
     isSyncDBSchema: true
+    dynamic:
+      datasource:
+        db2:
+          username: a_lab01_3f9ebc219
+          password: '9d@A178@'
+          url: jdbc:mysql://nacos.ibizcloud.cn:30006/a_lab01_3f9ebc219?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8&useOldAliasMetadataBehavior=true&useSSL=false&serverTimezone=Asia/Shanghai
+          defaultSchema: a_lab01_3f9ebc219
   cloud:
     nacos:
       discovery:

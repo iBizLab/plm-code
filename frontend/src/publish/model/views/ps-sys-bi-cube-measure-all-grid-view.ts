@@ -284,7 +284,7 @@ export default {
           id: 'srfkey',
         },
       ],
-      pagingSize: 20,
+      pagingSize: 100,
       sortMode: 'REMOTE',
       enableCustomized: true,
       singleSelect: true,

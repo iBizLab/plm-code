@@ -1,0 +1,153 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.6.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+    <changeSet author="mac (generated)" id="1733742988796-4">
+        <preConditions onFail="MARK_RAN"  >
+            <not >
+                <tableExists tableName="EXECUTOR" />
+            </not>
+        </preConditions>
+        <createTable tableName="EXECUTOR">
+            <column name="OWNER_ID" type="VARCHAR(100)"/>
+            <column name="OWNER_TYPE" type="VARCHAR(100)"/>
+            <column name="OWNER_SUBTYPE" type="VARCHAR(100)"/>
+            <column name="USER_ID" type="VARCHAR(100)"/>
+            <column name="ESTIMATED_WORKLOAD" type="DECIMAL(10, 1)"/>
+            <column name="USER_NAME" type="VARCHAR(200)"/>
+            <column name="IS_ASSIGNEE" type="INT"/>
+            <column name="SEQUENCE" type="DECIMAL(10)"/>
+            <column name="ID" type="VARCHAR(100)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_EXECUTOR_ID"/>
+            </column>
+            <column name="NAME" type="VARCHAR(200)"/>
+            <column name="CREATE_MAN" type="VARCHAR(100)"/>
+            <column name="CREATE_TIME" type="TIMESTAMP"/>
+            <column name="UPDATE_MAN" type="VARCHAR(100)"/>
+            <column name="UPDATE_TIME" type="TIMESTAMP"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="mac (generated)" id="1733742988796-6">
+        <preConditions onFail="MARK_RAN"  >
+            <not >
+                <tableExists tableName="PROJECT_STATE" />
+            </not>
+        </preConditions>
+        <createTable tableName="PROJECT_STATE">
+            <column name="SEQUENCE" type="DECIMAL(10)"/>
+            <column name="IS_SYSTEM" type="INT"/>
+            <column name="COLOR" type="VARCHAR(100)"/>
+            <column name="STYLE" type="VARCHAR(100)"/>
+            <column name="TYPE" type="VARCHAR(60)"/>
+            <column name="ID" type="VARCHAR(100)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_PROJECT_STATE_ID"/>
+            </column>
+            <column name="NAME" type="VARCHAR(200)"/>
+            <column name="CREATE_MAN" type="VARCHAR(100)"/>
+            <column name="CREATE_TIME" type="TIMESTAMP"/>
+            <column name="UPDATE_MAN" type="VARCHAR(100)"/>
+            <column name="UPDATE_TIME" type="TIMESTAMP"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="mac (generated)" id="1733742988796-7">
+        <preConditions onFail="MARK_RAN"  >
+            <not >
+                <columnExists tableName="IDEA_TEMPLATE" columnName="IS_GLOBAL" />
+            </not>
+        </preConditions>
+        <addColumn tableName="IDEA_TEMPLATE">
+            <column name="IS_GLOBAL" type="INTEGER"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mac (generated)" id="1733742988796-8">
+        <preConditions onFail="MARK_RAN"  >
+            <not >
+                <columnExists tableName="PROJECT" columnName="ACTUAL_START_AT" />
+            </not>
+        </preConditions>
+        <addColumn tableName="PROJECT">
+            <column name="ACTUAL_START_AT" type="TIMESTAMP"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mac (generated)" id="1733742988796-9">
+        <preConditions onFail="MARK_RAN"  >
+            <not >
+                <columnExists tableName="PROJECT" columnName="ACTUAL_END_AT" />
+            </not>
+        </preConditions>
+        <addColumn tableName="PROJECT">
+            <column name="ACTUAL_END_AT" type="TIMESTAMP"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mac (generated)" id="1733742988796-10">
+        <preConditions onFail="MARK_RAN"  >
+            <not >
+                <columnExists tableName="PROJECT" columnName="EXPECTED_TIME" />
+            </not>
+        </preConditions>
+        <addColumn tableName="PROJECT">
+            <column name="EXPECTED_TIME" type="VARCHAR(100 BYTE)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mac (generated)" id="1733742988796-11">
+        <preConditions onFail="MARK_RAN"  >
+            <not >
+                <columnExists tableName="PROJECT" columnName="CONSUME_TIME" />
+            </not>
+        </preConditions>
+        <addColumn tableName="PROJECT">
+            <column name="CONSUME_TIME" type="VARCHAR(100 BYTE)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mac (generated)" id="1733742988796-12">
+        <preConditions onFail="MARK_RAN"  >
+            <not >
+                <columnExists tableName="WORK_ITEM" columnName="MULTIPLE_PEOPLE" />
+            </not>
+        </preConditions>
+        <addColumn tableName="WORK_ITEM">
+            <column name="MULTIPLE_PEOPLE" type="INTEGER"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mac (generated)" id="1733742988796-13">
+        <preConditions onFail="MARK_RAN"  >
+            <not >
+                <columnExists tableName="WORK_ITEM" columnName="ACTUAL_START_AT" />
+            </not>
+        </preConditions>
+        <addColumn tableName="WORK_ITEM">
+            <column name="ACTUAL_START_AT" type="TIMESTAMP"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mac (generated)" id="1733742988796-14">
+        <preConditions onFail="MARK_RAN"  >
+            <not >
+                <columnExists tableName="WORK_ITEM" columnName="ACTUAL_END_AT" />
+            </not>
+        </preConditions>
+        <addColumn tableName="WORK_ITEM">
+            <column name="ACTUAL_END_AT" type="TIMESTAMP"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mac (generated)" id="1733742988796-15">
+        <preConditions onFail="MARK_RAN"  >
+            <not >
+                <columnExists tableName="WORK_ITEM" columnName="FINISHER" />
+            </not>
+        </preConditions>
+        <addColumn tableName="WORK_ITEM">
+            <column name="FINISHER" type="VARCHAR(100 BYTE)"/>
+        </addColumn>
+    </changeSet>
+
+    <changeSet author="mac (generated)" id="1733742988796-1">
+        <preConditions onFail="MARK_RAN"  >
+            <columnExists tableName="TICKET" columnName="DESCRIPTION" />
+        </preConditions>
+        <modifyDataType columnName="DESCRIPTION" newDataType="clob" tableName="TICKET"/>
+    </changeSet>
+    <changeSet author="mac (generated)" id="1733742988796-2">
+        <preConditions onFail="MARK_RAN"  >
+            <columnExists tableName="PROJECT" columnName="STATE" />
+        </preConditions>
+        <modifyDataType columnName="STATE" newDataType="varchar(100)" tableName="PROJECT"/>
+    </changeSet>
+</databaseChangeLog>

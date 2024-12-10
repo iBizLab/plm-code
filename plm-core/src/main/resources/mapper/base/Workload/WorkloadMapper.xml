@@ -280,7 +280,7 @@
         ) t1 
         <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
         <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
-         group by PRINCIPAL_ID,REGISTER_DATE
+         group by PRINCIPAL_ID
     </select>
 
 
@@ -291,7 +291,7 @@
         ) t1
         <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
         <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
-         group by PRINCIPAL_ID,REGISTER_DATE
+         group by PRINCIPAL_ID
     </select>
 
     <select id="searchMyCalendar"  parameterType="cn.ibizlab.plm.core.base.filter.WorkloadSearchContext"  resultMap="WorkloadResultMap">

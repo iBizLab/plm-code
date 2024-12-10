@@ -46,6 +46,14 @@ public class IdeaTemplateSearchContext extends QueryWrapperContext<IdeaTemplate>
     private String titleLIKE;
 
     /**
+     * 全局模板EQ
+     */
+    @JsonProperty("n_is_global_eq")
+    @JSONField(name = "n_is_global_eq")
+    @ApiModelProperty("全局模板EQ")
+    private Integer isGlobalEQ;
+
+    /**
      * 标识EQ
      */
     @JsonProperty("n_id_eq")
@@ -122,7 +130,7 @@ public class IdeaTemplateSearchContext extends QueryWrapperContext<IdeaTemplate>
     public void setQuery(String query) {
         this.query=query;
         if(!ObjectUtils.isEmpty(query))
-            this.getFilter().and(QueryFilter.createQuery().or(QueryFilter.createQuery().like("title",query)));
+            this.getFilter().and(QueryFilter.createQuery().or(QueryFilter.createQuery().like("name",query)));
     }
 
     @JsonIgnore

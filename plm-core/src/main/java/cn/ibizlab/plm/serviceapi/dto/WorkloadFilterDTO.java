@@ -4,6 +4,7 @@
 package cn.ibizlab.plm.serviceapi.dto;
 
 import java.util.*;
+import java.math.BigDecimal;
 import java.io.Serializable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -45,6 +46,46 @@ public class WorkloadFilterDTO extends FilterBase implements Serializable {
     @JSONField(name = "n_principal_id_eq")
     @ApiModelProperty(value = "工时主体标识EQ", position = 10)
 	private String principalIdEQ;
+
+    /**
+     * 时长EQ
+     */
+    @JsonProperty("n_duration_eq")
+    @JSONField(name = "n_duration_eq")
+    @ApiModelProperty(value = "时长EQ", position = 40)
+	private BigDecimal durationEQ;
+
+    /**
+     * 时长GT
+     */
+    @JsonProperty("n_duration_gt")
+    @JSONField(name = "n_duration_gt")
+    @ApiModelProperty(value = "时长GT", position = 41)
+	private BigDecimal durationGT;
+
+    /**
+     * 时长GTANDEQ
+     */
+    @JsonProperty("n_duration_gtandeq")
+    @JSONField(name = "n_duration_gtandeq")
+    @ApiModelProperty(value = "时长GTANDEQ", position = 42)
+	private BigDecimal durationGTANDEQ;
+
+    /**
+     * 时长LT
+     */
+    @JsonProperty("n_duration_lt")
+    @JSONField(name = "n_duration_lt")
+    @ApiModelProperty(value = "时长LT", position = 43)
+	private BigDecimal durationLT;
+
+    /**
+     * 时长LTANDEQ
+     */
+    @JsonProperty("n_duration_ltandeq")
+    @JSONField(name = "n_duration_ltandeq")
+    @ApiModelProperty(value = "时长LTANDEQ", position = 44)
+	private BigDecimal durationLTANDEQ;
 
     /**
      * 工作日期EQ

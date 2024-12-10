@@ -70,20 +70,20 @@ export default {
   ],
   appViewRefs: [
     {
-      openMode: 'INDEXVIEWTAB_POPUPMODAL',
-      realOpenMode: 'INDEXVIEWTAB_POPUPMODAL',
-      realTitle: '用例',
-      refAppViewId: 'plmweb.test_case_main_view',
-      name: 'EDITDATA',
-      id: 'editdata',
-    },
-    {
       openMode: 'POPUPMODAL',
       realOpenMode: 'POPUPMODAL',
       realTitle: '新建用例',
       refAppViewId: 'plmweb.test_case_quick_create_view',
       name: 'NEWDATA',
       id: 'newdata',
+    },
+    {
+      openMode: 'INDEXVIEWTAB_POPUPMODAL',
+      realOpenMode: 'INDEXVIEWTAB_POPUPMODAL',
+      realTitle: '用例',
+      refAppViewId: 'plmweb.test_case_main_view',
+      name: 'EDITDATA',
+      id: 'editdata',
     },
   ],
   controls: [

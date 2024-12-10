@@ -2266,6 +2266,29 @@ export default {
       id: 'create',
     },
     {
+      codeName: 'custom_get',
+      methodType: 'DEACTION',
+      appDEMethodInput: {
+        keyAppDEFieldId: 'id',
+        type: 'KEYFIELD',
+        id: '输入对象',
+      },
+      appDEMethodReturn: {
+        appDEMethodDTOId: 'recent_dto',
+        type: 'DTO',
+        id: '返回对象',
+      },
+      requestField: 'ID',
+      requestMethod: 'GET',
+      requestParamType: 'FIELD',
+      requestPath: '/custom_get',
+      needResourceKey: true,
+      actionMode: 'READ',
+      actionType: 'REMOTE',
+      dataSetType: 'REMOTE',
+      id: 'custom_get',
+    },
+    {
       codeName: 'get',
       methodType: 'DEACTION',
       appDEMethodInput: {
@@ -2354,6 +2377,27 @@ export default {
       actionType: 'REMOTE',
       dataSetType: 'REMOTE',
       id: 'my_created_entry',
+    },
+    {
+      codeName: 'my_summary',
+      methodType: 'DEACTION',
+      appDEMethodInput: {
+        appDEMethodDTOId: 'recent_dto',
+        type: 'DTO',
+        id: '输入对象',
+      },
+      appDEMethodReturn: {
+        appDEMethodDTOId: 'recent_dto',
+        type: 'DTO',
+        id: '返回对象',
+      },
+      requestMethod: 'POST',
+      requestParamType: 'ENTITY',
+      requestPath: '/my_summary',
+      actionMode: 'GETDRAFT',
+      actionType: 'REMOTE',
+      dataSetType: 'REMOTE',
+      id: 'my_summary',
     },
     {
       codeName: 'remove',
@@ -3015,6 +3059,24 @@ export default {
           id: 'idea',
         },
       ],
+      navigateParams: [
+        {
+          key: 'need_fill',
+          value: 'true',
+          rawValue: true,
+          id: 'need_fill',
+        },
+        {
+          key: 'fill_id',
+          value: 'principal_id',
+          id: 'fill_id',
+        },
+        {
+          key: 'fill_type',
+          value: 'principal_type',
+          id: 'fill_type',
+        },
+      ],
       sysImage: {
         cssClass: 'fa fa-plus',
         glyph: 'xf067@FontAwesome',
@@ -3081,6 +3143,24 @@ export default {
           id: 'ticket',
         },
       ],
+      navigateParams: [
+        {
+          key: 'need_fill',
+          value: 'true',
+          rawValue: true,
+          id: 'need_fill',
+        },
+        {
+          key: 'fill_id',
+          value: 'principal_id',
+          id: 'fill_id',
+        },
+        {
+          key: 'fill_type',
+          value: 'principal_type',
+          id: 'fill_type',
+        },
+      ],
       sysImage: {
         cssClass: 'fa fa-plus',
         glyph: 'xf067@FontAwesome',
@@ -3112,6 +3192,24 @@ export default {
           rawValue: true,
           name: 'WORK_ITEM',
           id: 'work_item',
+        },
+      ],
+      navigateParams: [
+        {
+          key: 'need_fill',
+          value: 'true',
+          rawValue: true,
+          id: 'need_fill',
+        },
+        {
+          key: 'fill_id',
+          value: 'principal_id',
+          id: 'fill_id',
+        },
+        {
+          key: 'fill_type',
+          value: 'principal_type',
+          id: 'fill_type',
         },
       ],
       sysImage: {
@@ -3219,6 +3317,25 @@ export default {
     },
     {
       actionLevel: 100,
+      actionTarget: 'NONE',
+      caption: '打开首页',
+      codeName: 'open_home_page',
+      frontProcessType: 'OTHER',
+      fullCodeName: 'recent_open_home_page',
+      scriptCode:
+        'const item = data[0];\r\nwindow.location.hash=`/-/index/-/workspace_tab_exp_view/srfnav=overview/recent_tree_exp_view/srfnav=root%3Aoverview/recent_data_view/-`',
+      timeout: 60000,
+      uiactionMode: 'FRONT',
+      uiactionTag: 'open_home_page',
+      uiactionType: 'DEUIACTION',
+      showBusyIndicator: true,
+      noPrivDisplayMode: 2,
+      appDataEntityId: 'plmweb.recent',
+      name: '打开首页',
+      id: 'open_home_page@recent',
+    },
+    {
+      actionLevel: 100,
       actionTarget: 'SINGLEKEY',
       caption: '打开工作项主视图',
       codeName: 'open_work_item_main_view',
@@ -3298,6 +3415,15 @@ export default {
       frontProcessType: 'WIZARD',
       fullCodeName: 'recent_run_create_new_work_item_bug',
       nextId: 'after_creat_double_relation@recent',
+      navigateContexts: [
+        {
+          key: 'TARGET_TYPE',
+          value: 'work_item',
+          rawValue: true,
+          name: 'TARGET_TYPE',
+          id: 'target_type',
+        },
+      ],
       navigateParams: [
         {
           key: 'work_item_type_group_bug',
@@ -3397,95 +3523,6 @@ export default {
           id: 'begin',
         },
         {
-          invokeCtrlId: 'grid',
-          invokeMethod: 'refresh',
-          invokeParamId: 'grid',
-          codeName: 'VIEWCTRLINVOKE1',
-          leftPos: 310,
-          logicNodeType: 'VIEWCTRLINVOKE',
-          deuilogicLinks: [
-            {
-              dstDEUILogicNodeId: 'rawjscode3',
-              srcDEUILogicNodeId: 'viewctrlinvoke1',
-              id: '连接名称',
-            },
-          ],
-          topPos: 1020,
-          name: '表格刷新',
-          id: 'viewctrlinvoke1',
-        },
-        {
-          dstAppDEActionId: 'create',
-          dstAppDataEntityId: 'plmweb.relation',
-          codeName: 'DEACTION2',
-          dstDEUILogicParamId: 'relation2',
-          leftPos: 310,
-          logicNodeType: 'DEACTION',
-          deuilogicLinks: [
-            {
-              dstDEUILogicNodeId: 'preparejsparam2',
-              srcDEUILogicNodeId: 'deaction2',
-              id: '其他关联',
-            },
-            {
-              dstDEUILogicNodeId: 'preparejsparam3',
-              deuilogicLinkGroupCond: {
-                groupOP: 'AND',
-                deuilogicLinkConds: [
-                  {
-                    condOP: 'ISNOTNULL',
-                    dstFieldName: 'run',
-                    dstLogicParamId: 'ctx',
-                    logicType: 'SINGLE',
-                    name: 'ctx[run] 值不为空(NotNil)',
-                    id: 'ctx[run] 值不为空(notnil)',
-                  },
-                  {
-                    condOP: 'EQ',
-                    dstFieldName: 'target_type',
-                    dstLogicParamId: 'ctx',
-                    paramValue: 'bug',
-                    value: 'bug',
-                    logicType: 'SINGLE',
-                    id: 'ctx[target_type] 等于(=) bug',
-                  },
-                  {
-                    condOP: 'EQ',
-                    dstFieldName: 'principal_type',
-                    dstLogicParamId: 'ctx',
-                    paramValue: 'run',
-                    value: 'run',
-                    logicType: 'SINGLE',
-                    id: 'ctx[principal_type] 等于(=) run',
-                  },
-                ],
-                logicType: 'GROUP',
-              },
-              srcDEUILogicNodeId: 'deaction2',
-              id: '执行用例同步新建测试用例',
-            },
-          ],
-          topPos: 550,
-          name: '建立关联关系',
-          id: 'deaction2',
-        },
-        {
-          code: 'const panel = view.layoutPanel.panelItems.choose_data;\r\nif (panel) {\r\n    panel.state.visible = false;\r\n}',
-          codeName: 'RAWJSCODE2',
-          leftPos: 310,
-          logicNodeType: 'RAWJSCODE',
-          deuilogicLinks: [
-            {
-              dstDEUILogicNodeId: 'viewctrlinvoke1',
-              srcDEUILogicNodeId: 'rawjscode2',
-              id: '连接名称',
-            },
-          ],
-          topPos: 910,
-          name: '隐藏下拉框',
-          id: 'rawjscode2',
-        },
-        {
           codeName: 'PREPAREJSPARAM3',
           leftPos: 660,
           logicNodeType: 'PREPAREJSPARAM',
@@ -3544,6 +3581,112 @@ export default {
           topPos: 450,
           name: '填充测试用例属性',
           id: 'preparejsparam3',
+        },
+        {
+          dstAppDEActionId: 'create',
+          dstAppDataEntityId: 'plmweb.relation',
+          codeName: 'DEACTION2',
+          dstDEUILogicParamId: 'relation2',
+          leftPos: 310,
+          logicNodeType: 'DEACTION',
+          deuilogicLinks: [
+            {
+              dstDEUILogicNodeId: 'preparejsparam3',
+              deuilogicLinkGroupCond: {
+                groupOP: 'AND',
+                deuilogicLinkConds: [
+                  {
+                    condOP: 'ISNOTNULL',
+                    dstFieldName: 'run',
+                    dstLogicParamId: 'ctx',
+                    logicType: 'SINGLE',
+                    name: 'ctx[run] 值不为空(NotNil)',
+                    id: 'ctx[run] 值不为空(notnil)',
+                  },
+                  {
+                    condOP: 'EQ',
+                    dstFieldName: 'principal_type',
+                    dstLogicParamId: 'ctx',
+                    paramValue: 'run',
+                    value: 'run',
+                    logicType: 'SINGLE',
+                    id: 'ctx[principal_type] 等于(=) run',
+                  },
+                ],
+                logicType: 'GROUP',
+              },
+              srcDEUILogicNodeId: 'deaction2',
+              id: '执行用例同步新建测试用例',
+            },
+            {
+              dstDEUILogicNodeId: 'preparejsparam2',
+              srcDEUILogicNodeId: 'deaction2',
+              id: '其他关联',
+            },
+          ],
+          topPos: 550,
+          name: '建立关联关系',
+          id: 'deaction2',
+        },
+        {
+          codeName: 'PREPAREJSPARAM2',
+          leftPos: 310,
+          logicNodeType: 'PREPAREJSPARAM',
+          deuilogicLinks: [
+            {
+              dstDEUILogicNodeId: 'rawjscode2',
+              srcDEUILogicNodeId: 'preparejsparam2',
+              id: '连接名称',
+            },
+          ],
+          deuilogicNodeParams: [
+            {
+              dstDEUILogicParamId: 'grid',
+              paramAction: 'SETPARAMVALUE',
+              srcFieldName: 'layoutPanel.panelItems.grid.control',
+              srcDEUILogicParamId: 'view',
+              srcValueType: 'SRCDLPARAM',
+              name: 'view[layoutPanel.panelItems.grid.control] ==> grid',
+              id: 'view[layoutpanel.panelitems.grid.control] ==> grid',
+            },
+          ],
+          topPos: 810,
+          name: '绑定表格部件',
+          id: 'preparejsparam2',
+        },
+        {
+          code: 'const panel = view.layoutPanel.panelItems.choose_data;\r\nif (panel) {\r\n    panel.state.visible = false;\r\n}',
+          codeName: 'RAWJSCODE2',
+          leftPos: 310,
+          logicNodeType: 'RAWJSCODE',
+          deuilogicLinks: [
+            {
+              dstDEUILogicNodeId: 'viewctrlinvoke1',
+              srcDEUILogicNodeId: 'rawjscode2',
+              id: '连接名称',
+            },
+          ],
+          topPos: 910,
+          name: '隐藏下拉框',
+          id: 'rawjscode2',
+        },
+        {
+          invokeCtrlId: 'grid',
+          invokeMethod: 'refresh',
+          invokeParamId: 'grid',
+          codeName: 'VIEWCTRLINVOKE1',
+          leftPos: 310,
+          logicNodeType: 'VIEWCTRLINVOKE',
+          deuilogicLinks: [
+            {
+              dstDEUILogicNodeId: 'rawjscode3',
+              srcDEUILogicNodeId: 'viewctrlinvoke1',
+              id: '连接名称',
+            },
+          ],
+          topPos: 1020,
+          name: '表格刷新',
+          id: 'viewctrlinvoke1',
         },
         {
           codeName: 'PREPAREJSPARAM1',
@@ -3651,6 +3794,22 @@ export default {
           id: 'end1',
         },
         {
+          code: 'ibiz.mc.command.update.send({ srfdecodename: context.principal_type})',
+          codeName: 'RAWJSCODE3',
+          leftPos: 310,
+          logicNodeType: 'RAWJSCODE',
+          deuilogicLinks: [
+            {
+              dstDEUILogicNodeId: 'end1',
+              srcDEUILogicNodeId: 'rawjscode3',
+              id: '连接名称',
+            },
+          ],
+          topPos: 1113,
+          name: '更新srfdecodename',
+          id: 'rawjscode3',
+        },
+        {
           dstAppDEActionId: 'create',
           dstAppDataEntityId: 'plmweb.relation',
           retDEUILogicParamId: 'relation',
@@ -3669,50 +3828,13 @@ export default {
           name: '建立关联关系',
           id: 'deaction1',
         },
-        {
-          codeName: 'PREPAREJSPARAM2',
-          leftPos: 310,
-          logicNodeType: 'PREPAREJSPARAM',
-          deuilogicLinks: [
-            {
-              dstDEUILogicNodeId: 'rawjscode2',
-              srcDEUILogicNodeId: 'preparejsparam2',
-              id: '连接名称',
-            },
-          ],
-          deuilogicNodeParams: [
-            {
-              dstDEUILogicParamId: 'grid',
-              paramAction: 'SETPARAMVALUE',
-              srcFieldName: 'layoutPanel.panelItems.grid.control',
-              srcDEUILogicParamId: 'view',
-              srcValueType: 'SRCDLPARAM',
-              name: 'view[layoutPanel.panelItems.grid.control] ==> grid',
-              id: 'view[layoutpanel.panelitems.grid.control] ==> grid',
-            },
-          ],
-          topPos: 810,
-          name: '绑定表格部件',
-          id: 'preparejsparam2',
-        },
-        {
-          code: 'ibiz.mc.command.update.send({ srfdecodename: context.principal_type})',
-          codeName: 'RAWJSCODE3',
-          leftPos: 310,
-          logicNodeType: 'RAWJSCODE',
-          deuilogicLinks: [
-            {
-              dstDEUILogicNodeId: 'end1',
-              srcDEUILogicNodeId: 'rawjscode3',
-              id: '连接名称',
-            },
-          ],
-          topPos: 1113,
-          name: '更新srfdecodename',
-          id: 'rawjscode3',
-        },
       ],
       deuilogicParams: [
+        {
+          codeName: 'ctx',
+          navContextParam: true,
+          id: 'ctx',
+        },
         {
           codeName: 'Default',
           default: true,
@@ -3727,17 +3849,6 @@ export default {
           id: 'grid',
         },
         {
-          codeName: 'view',
-          activeViewParam: true,
-          name: '当前视图对象',
-          id: 'view',
-        },
-        {
-          codeName: 'ctx',
-          navContextParam: true,
-          id: 'ctx',
-        },
-        {
           codeName: 'relation',
           entityParam: true,
           name: '正向关联对象',
@@ -3748,6 +3859,12 @@ export default {
           entityParam: true,
           name: '反向关联对象',
           id: 'relation2',
+        },
+        {
+          codeName: 'view',
+          activeViewParam: true,
+          name: '当前视图对象',
+          id: 'view',
         },
       ],
       startDEUILogicNodeId: 'begin',
@@ -4633,6 +4750,16 @@ export default {
     },
   ],
   appPortletCats: [
+    {
+      codeName: 'TestMgmt__index_test_management',
+      name: '测试管理',
+      id: 'testmgmt__index_test_management',
+    },
+    {
+      codeName: 'ProjMgmt__index_project_management',
+      name: '项目管理',
+      id: 'projmgmt__index_project_management',
+    },
     {
       codeName: 'Base__index_dashboard',
       name: '首页仪表盘',

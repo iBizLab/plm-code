@@ -166,6 +166,16 @@ public class TestPlan extends EntityMP implements Serializable
     private String libraryIdentifier;
 
     /**
+    * 测试库是否删除
+    */
+    @TableField(value = "library_is_deleted" , exist = false)
+    @DEField(name = "library_is_deleted" , dict = "YesNo")
+    @JSONField(name = "library_is_deleted")
+    @JsonProperty("library_is_deleted")
+    @ApiModelProperty(value = "library_is_deleted", notes = "测试库是否删除")
+    private Integer libraryIsDeleted;
+
+    /**
     * 标识
     */
     @Id
@@ -463,6 +473,15 @@ public class TestPlan extends EntityMP implements Serializable
     public TestPlan setLibraryIdentifier(String libraryIdentifier) {
         this.libraryIdentifier = libraryIdentifier;
         this.modify("library_identifier", libraryIdentifier);
+        return this;
+    }
+
+    /**
+    * 设置 [测试库是否删除]
+    */
+    public TestPlan setLibraryIsDeleted(Integer libraryIsDeleted) {
+        this.libraryIsDeleted = libraryIsDeleted;
+        this.modify("library_is_deleted", libraryIsDeleted);
         return this;
     }
 

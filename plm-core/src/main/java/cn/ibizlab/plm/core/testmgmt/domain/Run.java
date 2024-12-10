@@ -27,6 +27,7 @@ import cn.ibizlab.plm.core.testmgmt.domain.RunHistory;
 import cn.ibizlab.plm.core.testmgmt.domain.Step;
 import cn.ibizlab.plm.core.base.domain.Comment;
 import cn.ibizlab.plm.core.base.domain.Attention;
+import cn.ibizlab.plm.core.base.domain.Relation;
 import cn.ibizlab.plm.core.testmgmt.domain.RunAttachment;
 import cn.ibizlab.plm.core.base.domain.SearchComment;
 
@@ -416,6 +417,26 @@ public class Run extends EntityMP implements Serializable
     @JsonProperty("comment_count")
     @ApiModelProperty(value = "comment_count", notes = "评论数")
     private String commentCount;
+
+    /**
+    * 测试库是否删除
+    */
+    @TableField(value = "library_is_deleted" , exist = false)
+    @DEField(name = "library_is_deleted" , dict = "YesNo")
+    @JSONField(name = "library_is_deleted")
+    @JsonProperty("library_is_deleted")
+    @ApiModelProperty(value = "library_is_deleted", notes = "测试库是否删除")
+    private Integer libraryIsDeleted;
+
+    /**
+    * 测试库是否归档
+    */
+    @TableField(value = "library_is_archived" , exist = false)
+    @DEField(name = "library_is_archived" , dict = "YesNo")
+    @JSONField(name = "library_is_archived")
+    @JsonProperty("library_is_archived")
+    @ApiModelProperty(value = "library_is_archived", notes = "测试库是否归档")
+    private Integer libraryIsArchived;
 
     /**
     * 关注人
@@ -862,6 +883,24 @@ public class Run extends EntityMP implements Serializable
     public Run setCommentCount(String commentCount) {
         this.commentCount = commentCount;
         this.modify("comment_count", commentCount);
+        return this;
+    }
+
+    /**
+    * 设置 [测试库是否删除]
+    */
+    public Run setLibraryIsDeleted(Integer libraryIsDeleted) {
+        this.libraryIsDeleted = libraryIsDeleted;
+        this.modify("library_is_deleted", libraryIsDeleted);
+        return this;
+    }
+
+    /**
+    * 设置 [测试库是否归档]
+    */
+    public Run setLibraryIsArchived(Integer libraryIsArchived) {
+        this.libraryIsArchived = libraryIsArchived;
+        this.modify("library_is_archived", libraryIsArchived);
         return this;
     }
 

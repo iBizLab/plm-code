@@ -249,11 +249,11 @@ public interface IdeaService extends IService<Idea> {
     /**
     * getCustomerScore
     * 获取客户分数数据
-    * @param key
+    * @param et
     * @return
     */
-    default Idea getCustomerScore(String key) {
-        return getSelf().getCustomerScore(new Idea().setId(key));
+    default Idea getCustomerScore(Idea et) {
+        return et;
     }
 
     /**
@@ -383,6 +383,16 @@ public interface IdeaService extends IService<Idea> {
     * @return
     */
     default Idea recover(Idea et) {
+        return et;
+    }
+
+    /**
+    * updateIdeaProgress
+    * 
+    * @param et
+    * @return
+    */
+    default Idea updateIdeaProgress(Idea et) {
         return et;
     }
 
@@ -675,6 +685,22 @@ public interface IdeaService extends IService<Idea> {
     List<Idea> listMyFilter(IdeaSearchContext context);
 
     /**
+    * fetchMySummaryIdea
+    * 
+    * @param context
+    * @return
+    */
+    Page<Idea> fetchMySummaryIdea(IdeaSearchContext context);
+
+    /**
+    * listMySummaryIdea
+    * 
+    * @param context
+    * @return
+    */
+    List<Idea> listMySummaryIdea(IdeaSearchContext context);
+
+    /**
     * fetchNormal
     * 状态非删除，如果上下文传递了子产品参数，查询当前子产品下的需求
     * @param context
@@ -948,16 +974,6 @@ public interface IdeaService extends IService<Idea> {
     * @return
     */
     default Idea getBaselineName(Idea et) {
-        return et;
-    }
-
-    /**
-    * getCustomerScore
-    * 获取客户分数数据
-    * @param et
-    * @return
-    */
-    default Idea getCustomerScore(Idea et) {
         return et;
     }
 

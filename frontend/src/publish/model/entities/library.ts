@@ -2755,6 +2755,13 @@ export default {
       id: 'remove_batch_temp',
     },
   ],
+  appPortletCats: [
+    {
+      codeName: 'TestMgmt__index_test_management',
+      name: '测试管理',
+      id: 'testmgmt__index_test_management',
+    },
+  ],
   deopprivs: [
     {
       logicName: '建立',

@@ -12,6 +12,7 @@ export default {
   },
   caption: '新建需求',
   codeName: 'idea_quick_create_view',
+  dynaSysMode: 1,
   height: 90,
   appDataEntityId: 'plmweb.idea',
   appViewEngines: [
@@ -136,16 +137,16 @@ export default {
                           QUOTECODELISTMAP:
                             '{"type":"plmweb.base__recent_visite"}',
                           QUOTEFIELDMAP:
-                            '{"identifier":"show_identifier","name":"name","id":"id","type":"owner_subtype"}',
+                            '{"identifier":"show_identifier","name":"name","id":"id","type":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
                           QUOTEPARAMS:
                             '{"page":0,"size":20,"sort":"update_time,desc"}',
                           MODE: 'default',
                           QUOTEINSCRIPT:
-                            'value.replaceAll(/\\#\\{\\"id\\":\\"(.+?)\\",\\"name\\":\\"(.+?)\\",\\"identifier\\":\\"(.+?)\\",\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g,(x, id, name, identifier, icon) => {return controller.getNodeInfo({ id, name, identifier, icon })}).replaceAll(/\\#\\{id=(.+?),name=(.+?),identifier=(.+?),icon=((.|[\\t\\r\\f\\n\\s])+?)\\}/g,(x, id, name, identifier, icon) => {return controller.getNodeInfo({ id, name, identifier, icon })})',
+                            'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\"),\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); return controller.getNodeInfo({ icon, ...item })})',
                           USERSCRIPT:
                             '`@{"id":"${data.id}","name":"${data.name}"}`',
                           QUOTESCRIPT:
-                            '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","icon":"${data.icon}"}`',
+                            '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.type}","recent_parent":"${data.recent_parent}","icon":"${data.icon}"}`',
                           USERURL:
                             "`${context.library ? `libraries/${context.library}/library_members/fetch_default` : context.product ? `products/${context.product}/product_members/fetch_default` : context.project ? `projects/${context.project}/project_members/fetch_default` : ''}`",
                           USERFIELDMAP: '{"id":"user_id","name":"name"}',
@@ -235,8 +236,8 @@ export default {
                             dataItemName: 'name',
                             excelCaption: '名称',
                             appDEFieldId: 'name',
+                            deuiactionId: 'attachment_preview@attachment',
                             valueType: 'SIMPLE',
-                            enableRowEdit: true,
                             aggMode: 'NONE',
                             align: 'LEFT',
                             capLanguageRes: {
@@ -278,7 +279,6 @@ export default {
                             excelCaption: '所属数据标识',
                             appDEFieldId: 'owner_id',
                             valueType: 'SIMPLE',
-                            enableRowEdit: true,
                             aggMode: 'NONE',
                             align: 'LEFT',
                             caption: '所属数据标识',
@@ -388,36 +388,6 @@ export default {
                           },
                         ],
                         degridEditItems: [
-                          {
-                            caption: '名称',
-                            codeName: 'name',
-                            enableCond: 3,
-                            appDEFieldId: 'name',
-                            editor: {
-                              maxLength: 200,
-                              editorType: 'TEXTBOX',
-                              valueType: 'SIMPLE',
-                              editable: true,
-                              id: 'name',
-                            },
-                            allowEmpty: true,
-                            id: 'name',
-                          },
-                          {
-                            caption: '所属数据标识',
-                            codeName: 'owner_id',
-                            enableCond: 3,
-                            appDEFieldId: 'owner_id',
-                            editor: {
-                              maxLength: 100,
-                              editorType: 'TEXTBOX',
-                              valueType: 'SIMPLE',
-                              editable: true,
-                              id: 'owner_id',
-                            },
-                            allowEmpty: true,
-                            id: 'owner_id',
-                          },
                           {
                             caption: '标识',
                             codeName: 'srfkey',
@@ -852,9 +822,16 @@ export default {
                   editor: {
                     appCodeListId: 'plmweb.prodmgmt__product_customer',
                     editorParams: {
+                      multiple: 'true',
                       'SRFNAVPARAM.n_product_id_eq': '%product%',
                     },
                     editorType: 'MDROPDOWNLIST',
+                    editorItems: [
+                      {
+                        id: 'customer_id',
+                      },
+                    ],
+                    placeHolder: '选择客户',
                     valueType: 'SIMPLE',
                     editable: true,
                     navigateParams: [
@@ -886,6 +863,28 @@ export default {
                       ],
                       logicType: 'GROUP',
                       id: '表单成员[customer][表单项启用]逻辑',
+                    },
+                    {
+                      logicCat: 'SCRIPTCODE_CHANGE',
+                      groupOP: 'AND',
+                      defdlogics: [
+                        {
+                          logicType: 'SINGLE',
+                        },
+                      ],
+                      logicType: 'GROUP',
+                      id: '表单成员[customer][表单项值变更（脚本处理）]逻辑',
+                    },
+                    {
+                      logicCat: 'SCRIPTCODE_CLICK',
+                      groupOP: 'AND',
+                      defdlogics: [
+                        {
+                          logicType: 'SINGLE',
+                        },
+                      ],
+                      logicType: 'GROUP',
+                      id: '表单成员[customer][表单项点击（脚本处理）]逻辑',
                     },
                   ],
                   layoutPos: {
@@ -1098,6 +1097,31 @@ export default {
                   },
                   id: 'idea_template',
                 },
+                {
+                  dataType: 25,
+                  enableCond: 3,
+                  fieldName: 'customer_id',
+                  labelPos: 'TOP',
+                  labelWidth: 130,
+                  noPrivDisplayMode: 1,
+                  editor: {
+                    editorType: 'HIDDEN',
+                    valueType: 'SIMPLE',
+                    editable: true,
+                    id: 'customer_id',
+                  },
+                  allowEmpty: true,
+                  hidden: true,
+                  caption: '客户id',
+                  codeName: 'customer_id',
+                  detailStyle: 'DEFAULT',
+                  detailType: 'FORMITEM',
+                  layoutPos: {
+                    colMD: 24,
+                    layout: 'TABLE_24COL',
+                  },
+                  id: 'customer_id',
+                },
               ],
               capLanguageRes: {
                 lanResTag: 'CONTROL.DEFORM.IDEA.QUICK_CREATE.GROUPPANEL.GROUP1',
@@ -1164,10 +1188,30 @@ export default {
       showBusyIndicator: true,
       codeName: 'quick_create',
       controlType: 'FORM',
+      dynaSysMode: 1,
       logicName: '需求快速建立视图_表单',
       appDataEntityId: 'plmweb.idea',
       controlParam: {
         id: 'form',
+      },
+      ctrlMsg: {
+        codeName: 'UsrCtrlMsg0228593610',
+        ctrlMsgItems: [
+          {
+            name: 'BEFOREREMOVE_HIDDEN',
+            id: 'beforeremove_hidden',
+          },
+          {
+            name: 'CREATESUCCESS_HIDDEN',
+            id: 'createsuccess_hidden',
+          },
+          {
+            name: 'UPDATESUCCESS_HIDDEN',
+            id: 'updatesuccess_hidden',
+          },
+        ],
+        name: '编辑表单自定义消息(隐藏)',
+        id: 'usrctrlmsg0228593610',
       },
       modelId: 'b29a8f327d94b30713aaa263efa61c93',
       modelType: 'PSDEFORM_EDITFORM',

@@ -29,6 +29,7 @@ import cn.ibizlab.plm.core.projmgmt.domain.Sprint;
 import cn.ibizlab.plm.core.prodmgmt.domain.Customer;
 import cn.ibizlab.plm.core.wiki.domain.ArticlePage;
 import cn.ibizlab.plm.core.prodmgmt.domain.ProductPlan;
+import cn.ibizlab.plm.core.testmgmt.domain.Run;
 import cn.ibizlab.plm.core.testmgmt.domain.TestCase;
 import cn.ibizlab.plm.core.prodmgmt.domain.Ticket;
 import cn.ibizlab.plm.core.projmgmt.domain.WorkItem;
@@ -100,13 +101,13 @@ public class Relation extends EntityMP implements Serializable
     private String targetType;
 
     /**
-    * 关联目标标识
+    * 目标主体标识
     */
     @TableField(value = "target_id")
     @DEField(name = "target_id")
     @JSONField(name = "target_id")
     @JsonProperty("target_id")
-    @ApiModelProperty(value = "target_id", notes = "关联目标标识")
+    @ApiModelProperty(value = "target_id", notes = "目标主体标识")
     private String targetId;
 
     /**
@@ -443,6 +444,16 @@ public class Relation extends EntityMP implements Serializable
     private ProductPlan targetProductPlanCategory;
 
     /**
+    * 执行用例-关联目标
+    */
+    @Transient
+    @TableField(exist = false)
+    @JsonIgnore
+    @JSONField(serialize = false)
+    @ApiModelProperty(value = "target_run", notes = "执行用例-关联目标")
+    private Run targetRun;
+
+    /**
     * 用例-关联目标
     */
     @Transient
@@ -538,7 +549,7 @@ public class Relation extends EntityMP implements Serializable
     }
 
     /**
-    * 设置 [关联目标标识]
+    * 设置 [目标主体标识]
     */
     public Relation setTargetId(String targetId) {
         this.targetId = targetId;
@@ -694,7 +705,7 @@ public class Relation extends EntityMP implements Serializable
     @Override
     public Serializable getDefaultKey(boolean gen) {
         //Assert.notNull(getPrincipalId(),"未设置关联主体标识");
-        //Assert.notNull(getTargetId(),"未设置关联目标标识");
+        //Assert.notNull(getTargetId(),"未设置目标主体标识");
         //Assert.notNull(getPrincipalType(),"未设置关联主体类型");
         String key = String.format("%s||%s||%s"
             ,getPrincipalId(),getTargetId(),getPrincipalType());

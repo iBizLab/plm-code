@@ -174,11 +174,19 @@ public class ReviewDTO extends DTOBase implements Serializable {
     private List<ReviewActionRuleDTO> actionRule;
 
     /**
+     * 测试库是否删除
+     */
+    @JsonProperty("library_is_deleted")
+    @JSONField(name = "library_is_deleted")
+    @ApiModelProperty(value = "测试库是否删除", position = 17)
+    private Integer libraryIsDeleted;
+
+    /**
      * 编号
      */
     @JsonProperty("show_identifier")
     @JSONField(name = "show_identifier")
-    @ApiModelProperty(value = "编号", position = 17)
+    @ApiModelProperty(value = "编号", position = 18)
     private String showIdentifier;
 
     /**
@@ -186,7 +194,7 @@ public class ReviewDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("attentions_imp")
     @JSONField(name = "attentions_imp")
-    @ApiModelProperty(value = "关注人", position = 18)
+    @ApiModelProperty(value = "关注人", position = 19)
     private String attentionsImp;
 
     /**
@@ -194,7 +202,7 @@ public class ReviewDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("create_man")
     @JSONField(name = "create_man")
-    @ApiModelProperty(value = "建立人", position = 19)
+    @ApiModelProperty(value = "建立人", position = 20)
     private String createMan;
 
     /**
@@ -203,7 +211,7 @@ public class ReviewDTO extends DTOBase implements Serializable {
     @JsonProperty("create_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "create_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "建立时间", position = 20)
+    @ApiModelProperty(value = "建立时间", position = 21)
     private Date createTime;
 
     /**
@@ -211,7 +219,7 @@ public class ReviewDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("guideline_id")
     @JSONField(name = "guideline_id")
-    @ApiModelProperty(value = "流程准则标识", position = 21)
+    @ApiModelProperty(value = "流程准则标识", position = 22)
     private String guidelineId;
 
     /**
@@ -219,7 +227,7 @@ public class ReviewDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("id")
     @JSONField(name = "id")
-    @ApiModelProperty(value = "标识", position = 22)
+    @ApiModelProperty(value = "标识", position = 23)
     private String id;
 
     /**
@@ -227,7 +235,7 @@ public class ReviewDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("library_id")
     @JSONField(name = "library_id")
-    @ApiModelProperty(value = "测试库标识", position = 23)
+    @ApiModelProperty(value = "测试库标识", position = 24)
     private String libraryId;
 
     /**
@@ -235,7 +243,7 @@ public class ReviewDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("library_name")
     @JSONField(name = "library_name")
-    @ApiModelProperty(value = "测试库名称", position = 24)
+    @ApiModelProperty(value = "测试库名称", position = 25)
     private String libraryName;
 
     /**
@@ -243,7 +251,7 @@ public class ReviewDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("name")
     @JSONField(name = "name")
-    @ApiModelProperty(value = "名称", position = 25)
+    @ApiModelProperty(value = "名称", position = 26)
     private String name;
 
     /**
@@ -251,7 +259,7 @@ public class ReviewDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("update_man")
     @JSONField(name = "update_man")
-    @ApiModelProperty(value = "更新人", position = 26)
+    @ApiModelProperty(value = "更新人", position = 27)
     private String updateMan;
 
     /**
@@ -260,7 +268,7 @@ public class ReviewDTO extends DTOBase implements Serializable {
     @JsonProperty("update_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "update_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "更新时间", position = 27)
+    @ApiModelProperty(value = "更新时间", position = 28)
     private Date updateTime;
 
 
@@ -414,6 +422,15 @@ public class ReviewDTO extends DTOBase implements Serializable {
     public ReviewDTO setActionRule(List<ReviewActionRuleDTO> actionRule) {
         this.actionRule = actionRule;
         this.modify("action_rule", actionRule);
+        return this;
+    }
+
+    /**
+     * 设置 [测试库是否删除]
+     */
+    public ReviewDTO setLibraryIsDeleted(Integer libraryIsDeleted) {
+        this.libraryIsDeleted = libraryIsDeleted;
+        this.modify("library_is_deleted", libraryIsDeleted);
         return this;
     }
 

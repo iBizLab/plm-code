@@ -148,6 +148,16 @@ export default {
           codeName: 'formpage1',
           detailStyle: 'DEFAULT',
           detailType: 'FORMPAGE',
+          controlLogics: [
+            {
+              itemName: 'formpage1',
+              logicTag: 'form',
+              logicType: 'SCRIPT',
+              scriptCode: 'context.srfreadonly != true',
+              triggerType: 'ITEMENABLE',
+              id: 'logic',
+            },
+          ],
           id: 'formpage1',
         },
       ],

@@ -1850,6 +1850,28 @@ public abstract class AbstractTestCaseResource {
     }
 
     /**
+    * 查询fetch_my_summary_case 用例
+    * 
+    *
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<TestCaseDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_my_summary_case", tags = {"用例" },  notes = "TestCase-fetch_my_summary_case ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-TestCase-fetch_my_summary_case-all') or hasPermission(#dto,'ibizplm-TestCase-fetch_my_summary_case')")
+    @PostMapping("test_cases/fetch_my_summary_case")
+    public Mono<ResponseEntity<List<TestCaseDTO>>> fetchMySummaryCase
+            (@Validated @RequestBody TestCaseFilterDTO dto) {
+        TestCaseSearchContext context = testCaseFilterDtoMapping.toDomain(dto);
+        Page<TestCase> domains = testCaseService.fetchMySummaryCase(context) ;
+        List<TestCaseDTO> list = testCaseDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
     * 查询fetch_normal 用例
     * 
     *
@@ -2675,6 +2697,30 @@ public abstract class AbstractTestCaseResource {
         dto.setTestLibraryIdEQ(testLibraryId);
         TestCaseSearchContext context = testCaseFilterDtoMapping.toDomain(dto);
         Page<TestCase> domains = testCaseService.fetchMyFilter(context) ;
+        List<TestCaseDTO> list = testCaseDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
+    * 查询fetch_my_summary_case 用例
+    * 
+    *
+    * @param testLibraryId testLibraryId
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<TestCaseDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_my_summary_case", tags = {"用例" },  notes = "TestCase-fetch_my_summary_case ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-TestCase-fetch_my_summary_case-all') or hasPermission('library',#testLibraryId,#dto,'ibizplm-TestCase-fetch_my_summary_case')")
+    @PostMapping("libraries/{testLibraryId}/test_cases/fetch_my_summary_case")
+    public Mono<ResponseEntity<List<TestCaseDTO>>> fetchMySummaryCaseByTestLibraryId
+            (@PathVariable("testLibraryId") String testLibraryId, @Validated @RequestBody TestCaseFilterDTO dto) {
+        dto.setTestLibraryIdEQ(testLibraryId);
+        TestCaseSearchContext context = testCaseFilterDtoMapping.toDomain(dto);
+        Page<TestCase> domains = testCaseService.fetchMySummaryCase(context) ;
         List<TestCaseDTO> list = testCaseDtoMapping.toDto(domains.getContent());
             return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))

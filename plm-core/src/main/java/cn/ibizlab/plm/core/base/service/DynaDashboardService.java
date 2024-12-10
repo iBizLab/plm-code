@@ -177,6 +177,16 @@ public interface DynaDashboardService extends IService<DynaDashboard> {
     }
 
     /**
+    * onlyGet
+    * 
+    * @param key
+    * @return
+    */
+    default DynaDashboard onlyGet(String key) {
+        return getSelf().onlyGet(new DynaDashboard().setDynaDashboardId(key));
+    }
+
+    /**
     * useCurTemplate
     * 
     * @param et
@@ -298,6 +308,16 @@ public interface DynaDashboardService extends IService<DynaDashboard> {
     * @return
     */
     boolean saveByInsightView(InsightView insightView, List<DynaDashboard> list);
+
+    /**
+    * onlyGet
+    * 
+    * @param et
+    * @return
+    */
+    default DynaDashboard onlyGet(DynaDashboard et) {
+        return et;
+    }
 
     /**
     * fetchView

@@ -395,6 +395,46 @@ public class TestCase extends EntityMP implements Serializable
     private String commentCount;
 
     /**
+    * 步骤描述
+    */
+    @TableField(value = "step_desc_imp" , exist = false)
+    @DEField(name = "step_desc_imp")
+    @JSONField(name = "step_desc_imp")
+    @JsonProperty("step_desc_imp")
+    @ApiModelProperty(value = "step_desc_imp", notes = "步骤描述")
+    private String stepDescImp;
+
+    /**
+    * 预期结果
+    */
+    @TableField(value = "step_value_imp" , exist = false)
+    @DEField(name = "step_value_imp")
+    @JSONField(name = "step_value_imp")
+    @JsonProperty("step_value_imp")
+    @ApiModelProperty(value = "step_value_imp", notes = "预期结果")
+    private String stepValueImp;
+
+    /**
+    * 测试库是否删除
+    */
+    @TableField(value = "library_is_deleted" , exist = false)
+    @DEField(name = "library_is_deleted" , dict = "YesNo")
+    @JSONField(name = "library_is_deleted")
+    @JsonProperty("library_is_deleted")
+    @ApiModelProperty(value = "library_is_deleted", notes = "测试库是否删除")
+    private Integer libraryIsDeleted;
+
+    /**
+    * 测试库是否归档
+    */
+    @TableField(value = "library_is_archived" , exist = false)
+    @DEField(name = "library_is_archived" , dict = "YesNo")
+    @JSONField(name = "library_is_archived")
+    @JsonProperty("library_is_archived")
+    @ApiModelProperty(value = "library_is_archived", notes = "测试库是否归档")
+    private Integer libraryIsArchived;
+
+    /**
     * 当前版本名称
     */
     @TableField(value = "cur_version_name" , exist = false)
@@ -871,6 +911,42 @@ public class TestCase extends EntityMP implements Serializable
     public TestCase setCommentCount(String commentCount) {
         this.commentCount = commentCount;
         this.modify("comment_count", commentCount);
+        return this;
+    }
+
+    /**
+    * 设置 [步骤描述]
+    */
+    public TestCase setStepDescImp(String stepDescImp) {
+        this.stepDescImp = stepDescImp;
+        this.modify("step_desc_imp", stepDescImp);
+        return this;
+    }
+
+    /**
+    * 设置 [预期结果]
+    */
+    public TestCase setStepValueImp(String stepValueImp) {
+        this.stepValueImp = stepValueImp;
+        this.modify("step_value_imp", stepValueImp);
+        return this;
+    }
+
+    /**
+    * 设置 [测试库是否删除]
+    */
+    public TestCase setLibraryIsDeleted(Integer libraryIsDeleted) {
+        this.libraryIsDeleted = libraryIsDeleted;
+        this.modify("library_is_deleted", libraryIsDeleted);
+        return this;
+    }
+
+    /**
+    * 设置 [测试库是否归档]
+    */
+    public TestCase setLibraryIsArchived(Integer libraryIsArchived) {
+        this.libraryIsArchived = libraryIsArchived;
+        this.modify("library_is_archived", libraryIsArchived);
         return this;
     }
 

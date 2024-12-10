@@ -385,6 +385,25 @@ public interface TicketMapper extends BaseMapper<Ticket> {
     List<Ticket> listMyFilter(@Param("ctx") TicketSearchContext context, @Param("ew") Wrapper<Ticket> wrapper);
 
     /**
+     * 数据集合my_summary_ticket分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Ticket> searchMySummaryTicket(IPage<Ticket> page, @Param("ctx") TicketSearchContext context, @Param("ew") Wrapper<Ticket> wrapper);
+    
+    /**
+     * 数据集合my_summary_ticket查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Ticket> listMySummaryTicket(@Param("ctx") TicketSearchContext context, @Param("ew") Wrapper<Ticket> wrapper);
+
+    /**
      * 数据集合normal分页查询
      * 
      * @param page

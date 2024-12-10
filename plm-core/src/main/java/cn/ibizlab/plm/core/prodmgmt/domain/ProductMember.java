@@ -52,7 +52,7 @@ public class ProductMember extends EntityMP implements Serializable
     * 角色
     */
     @TableField(value = "role_id")
-    @DEField(name = "role_id" , defaultValue = "user" , dict = "role_type")
+    @DEField(name = "role_id" , defaultValue = "user" , dict = "product_role_type")
     @JSONField(name = "role_id")
     @JsonProperty("role_id")
     @ApiModelProperty(value = "role_id", notes = "角色")

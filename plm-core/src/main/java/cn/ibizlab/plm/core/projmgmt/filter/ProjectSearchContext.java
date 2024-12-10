@@ -47,11 +47,11 @@ public class ProjectSearchContext extends QueryWrapperContext<Project> {
     private String visibilityEQ;
 
     /**
-     * 状态EQ
+     * 项目状态EQ
      */
     @JsonProperty("n_state_eq")
     @JSONField(name = "n_state_eq")
-    @ApiModelProperty("状态EQ")
+    @ApiModelProperty("项目状态EQ")
     private String stateEQ;
 
     /**
@@ -103,6 +103,14 @@ public class ProjectSearchContext extends QueryWrapperContext<Project> {
     private String scopeTypeEQ;
 
     /**
+     * 状态类型NOTEQ
+     */
+    @JsonProperty("n_state_type_noteq")
+    @JSONField(name = "n_state_type_noteq")
+    @ApiModelProperty("状态类型NOTEQ")
+    private String stateTypeNOTEQ;
+
+    /**
      * 标识EQ
      */
     @JsonProperty("n_id_eq")
@@ -129,6 +137,8 @@ public class ProjectSearchContext extends QueryWrapperContext<Project> {
     @Override
     public void setContextParentKey(Serializable contextParentKey) {
         super.setContextParentKey(contextParentKey);
+        if(Entities.PROJECT_STATE.equals(this.getContextParentEntity())&&contextParentKey!=null)
+            this.getFilter().eq("state",contextParentKey);
         if(Entities.COMMON_FLOW.equals(this.getContextParentEntity())&&contextParentKey!=null)
             this.getFilter().eq("id",contextParentKey);
     }

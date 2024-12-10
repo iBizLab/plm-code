@@ -54,6 +54,89 @@ export default {
                 },
                 id: 'view_captionbar',
               },
+              {
+                actionGroupExtractMode: 'ITEM',
+                panelItems: [
+                  {
+                    rawItem: {
+                      content: '<p><span style="color: #ced4d9;">共</span></p>',
+                      contentType: 'HTML',
+                      predefinedType: 'STATIC_TEXT',
+                      id: 'static_text',
+                    },
+                    caption: '文本',
+                    itemStyle: 'DEFAULT',
+                    itemType: 'RAWITEM',
+                    layoutPos: {
+                      shrink: 1,
+                      layout: 'FLEX',
+                      spacingLeft: 'OUTERSMALL',
+                    },
+                    showCaption: true,
+                    id: 'static_text',
+                  },
+                  {
+                    editor: {
+                      halign: 'LEFT',
+                      renderMode: 'TEXT_DYNAMIC',
+                      valign: 'MIDDLE',
+                      wrapMode: 'NOWRAP',
+                      editorType: 'SPAN',
+                      predefinedType: 'FIELD_TEXT_DYNAMIC',
+                      valueType: 'SIMPLE',
+                      editable: true,
+                      id: 'total',
+                    },
+                    viewFieldName: 'total',
+                    allowEmpty: true,
+                    caption: '文本(动态)',
+                    itemStyle: 'DEFAULT',
+                    itemType: 'FIELD',
+                    layoutPos: {
+                      shrink: 1,
+                      layout: 'FLEX',
+                      spacingLeft: 'OUTERSMALL',
+                      spacingRight: 'OUTERSMALL',
+                    },
+                    id: 'total',
+                  },
+                  {
+                    rawItem: {
+                      content:
+                        '<p><span style="color: #ced4d9;">个工作项</span></p>',
+                      contentType: 'HTML',
+                      predefinedType: 'STATIC_TEXT',
+                      id: 'static_text1',
+                    },
+                    caption: '文本',
+                    itemStyle: 'DEFAULT',
+                    itemType: 'RAWITEM',
+                    layoutPos: {
+                      shrink: 1,
+                      layout: 'FLEX',
+                    },
+                    showCaption: true,
+                    id: 'static_text1',
+                  },
+                ],
+                layout: {
+                  align: 'flex-start',
+                  dir: 'row',
+                  layout: 'FLEX',
+                  valign: 'center',
+                },
+                dataRegionType: 'INHERIT',
+                caption: '容器',
+                itemStyle: 'DEFAULT',
+                itemType: 'CONTAINER',
+                layoutPos: {
+                  shrink: 1,
+                  layout: 'FLEX',
+                  spacingBottom: 'OUTERSMALL',
+                  spacingLeft: 'OUTERLARGE',
+                },
+                id: 'container',
+              },
             ],
             layout: {
               layout: 'FLEX',
@@ -74,6 +157,19 @@ export default {
             panelItems: [
               {
                 actionGroupExtractMode: 'ITEM',
+                panelItems: [
+                  {
+                    caption: '工具栏',
+                    itemStyle: 'DEFAULT',
+                    itemType: 'CTRLPOS',
+                    layoutPos: {
+                      shrink: 1,
+                      layout: 'FLEX',
+                    },
+                    showCaption: true,
+                    id: 'toolbar',
+                  },
+                ],
                 layout: {
                   align: 'center',
                   layout: 'FLEX',
@@ -163,6 +259,16 @@ export default {
       },
     ],
     appViewLogics: [
+      {
+        eventNames: 'onLoadSuccess',
+        logicTrigger: 'VIEWEVENT',
+        logicType: 'APPDEUILOGIC',
+        appDEUILogicId: 'get_table_size',
+        appDataEntityId: 'plmweb.product',
+        builtinLogic: true,
+        name: 'LOGIC',
+        id: 'logic',
+      },
       {
         logicTrigger: 'CUSTOM',
         logicType: 'APPUILOGIC',
@@ -786,6 +892,43 @@ export default {
         id: 'plmweb.work_item.kanban_view_search_form',
       },
       {
+        detoolbarItems: [
+          {
+            actionLevel: 100,
+            buttonStyle: 'STYLE2',
+            noPrivDisplayMode: 2,
+            uiactionId: 'query_more_my_assignee@work_item',
+            uiactionTarget: 'NONE',
+            valid: true,
+            caption: '更多',
+            itemType: 'DEUIACTION',
+            sysCss: {
+              cssName: 'swap_icon_text',
+            },
+            sysImage: {
+              rawContent:
+                '<?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg t="1732774437860" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="11278" width="12" height="12" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M767.369846 526.099692a47.261538 47.261538 0 0 0-13.705846-29.538461L328.940308 71.837538a47.419077 47.419077 0 1 0-67.032616 67.032616l391.640616 391.640615-391.640616 391.719385a47.419077 47.419077 0 1 0 66.953846 67.032615l424.802462-424.723692a47.261538 47.261538 0 0 0 13.705846-29.459692z" fill="#999999" p-id="11279"></path></svg>',
+            },
+            tooltip: '查看更多工作项',
+            showCaption: true,
+            showIcon: true,
+            id: 'deuiaction1',
+          },
+        ],
+        xdataControlName: 'grid',
+        codeName: 'index_my_assignee_gird_view_toolbar',
+        controlType: 'TOOLBAR',
+        logicName: '我负责的工作项工具栏',
+        appDataEntityId: 'plmweb.work_item',
+        controlParam: {
+          id: 'toolbar',
+        },
+        modelId: 'F3F082CE-DC49-4935-A89D-237BF62981FC',
+        modelType: 'PSDETOOLBAR',
+        name: 'toolbar',
+        id: 'index_my_assignee_gird_view_toolbar',
+      },
+      {
         groupMode: 'SINGLE',
         quickSearchMode: 1,
         enableQuickSearch: true,
@@ -823,7 +966,7 @@ export default {
   viewStyle: 'DEFAULT',
   viewType: 'DEGRIDVIEW',
   enableDP: true,
-  showCaptionBar: false,
+  showCaptionBar: true,
   modelId: 'e6620074fd79ebc1f63cf108c9e0ed96',
   modelType: 'PSAPPDEVIEW',
   name: 'work_itemindex_my_assignee_gird_view',

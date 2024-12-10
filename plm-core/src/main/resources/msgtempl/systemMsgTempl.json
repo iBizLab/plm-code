@@ -210,10 +210,10 @@
 									<#assign content = content?replace(jsonStr, "<span class='comment-tag'>@" + name + "</span>")>
 							</#if>
 				</#list>
-			<#assign regex = "\\#\\{\"id\":\"(.*?)\",\"name\":\"(.+?)\",\"identifier\":\"(.+?)\",\"icon\":\"((.|[\\t\\r\\f\\n\\s])+?)\"\\}">
+			<#assign regex = "\\#\\{\"id\":\"(.*?)\",\"name\":\"(.+?)\",\"identifier\":\"(.+?)\",\"owner_id\":\"(.*?)\",\"owner_type\":\"(.*?)\",\"owner_subtype\":\"(.*?)\",\"recent_parent\":\"(.*?)\",\"icon\":\"((.|[\\t\\r\\f\\n\\s])+?)\"\\}">
 				<#list content?matches(regex) as match>
 					<#assign jsonStr = match>
-                                                     <#assign content = content?replace(jsonStr,"<span class='comment-tag'>" + match?groups[4]+ match?groups[3] + match?groups[2] + "</span>")>
+                                                     <#assign content = content?replace(jsonStr,"<span class='comment-tag'>"+ "提及："+match?groups[8] + match?groups[3]+ match?groups[2] + "</span>")>
 				</#list>
 			<div class="notice-card-object" style="display: inline-block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%;max-height: 50px;">
 				<span class="notice-card__object-name">${content}</span>
@@ -293,6 +293,46 @@
 </div>"
   },
   {
+    "tid":"cancel_executor_work_item",
+    "template_name":"取消分配执行工作项通知模板",
+    "content":"<div class="notice-card" style="display: flex; align-items: flex-start;">
+			    <div class="notice-card__avatar" style="flex-shrink: 0;">
+			        <span class="notice-card__avatar-icon" style="background-color: skyblue; border-radius: 50%; margin-right: 10px; width: 36px; height: 36px; display: flex; justify-content: center; align-items: center; font-size: 10px;">${data.update_mantext?substring(0,2)!}</span>
+			    </div>
+			    <div class="notice-card__content" style="flex-grow: 1;width: calc(100% - 46px);">
+			        <div class="notice-card__event">
+			            <div class="notice-card__event-title" style="font-size: 14px; color: #000;">
+	<span class="notice-card__event-name" style="color: #999; font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${data.update_mantext}</span> 
+<span class="notice-card__event-name" style="font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">取消分配执行<#if data.owner_type == 'WORK_ITEM'>${data.parent("owner_id").work_item_type_name}<#elseif data.owner_type == 'IDEA'>需求<#elseif data.owner_type== 'TICKET'>工单<#elseif data.owner_type== 'TEST_CASE'>测试用例<#elseif data.owner_type == 'CUSTOMER'>客户<#elseif data.owner_type == 'RUN'>执行用例<#elseif data.owner_type == 'PAGE'>页面</#if></span></div>
+        </div>
+<#if data.parent("owner_id")??>
+<#assign parent= data.parent("owner_id")>
+        <div class="notice-card-object" style="display: inline-block;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;width: 100%;">
+<span class="notice-card__object-id" style="color: #999; font-size: 14px;"><#if parent.show_identifier??>${parent.show_identifier}</#if></span>
+<#if data.owner_type == 'CUSTOMER' || data.owner_type == 'PAGE'>
+<span class="object-name" title="${parent.name}"> ${parent.name}</span>
+<#else>
+<span class="object-name" title="${parent.title}"> ${parent.title}</span></#if>
+
+        </div>
+    <#if parent.parent("project_id")??>
+    <#assign project= parent.parent("project_id")>
+        <div class="notice-card-pilot" style="font-size: 12px;color: #999;text-transform: lowercase;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;"><span class="notice-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span><span class="notice-pilot-info">· 项目管理 · ${project.name}</span></div>
+    <#elseif parent.parent("product_id")??>
+        <#assign product= parent.parent("product_id")>
+  <div class="notice-card-pilot" style="font-size: 12px;color: #999;text-transform: lowercase;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;"><span class="notice-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span><span class="notice-pilot-info">· 产品管理 · ${product.name}</span></div>
+    <#elseif parent.parent("plan_id")??>
+        <#assign plan = parent.parent("plan_id")>
+  <div class="notice-card-pilot" style="font-size: 12px;color: #999;text-transform: lowercase;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;"><span class="notice-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span><span class="notice-pilot-info">· 测试管理 · ${plan.library_name}</span></div>
+    <#elseif parent.parent("test_library_id")??>
+        <#assign library= parent.parent("test_library_id")>
+  <div class="notice-card-pilot" style="font-size: 12px;color: #999;text-transform: lowercase;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;"><span class="notice-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span><span class="notice-pilot-info">· 测试管理 · ${library.name}</span></div>
+    </#if>
+    </div>
+    </#if>
+</div>"
+  },
+  {
     "tid":"test_plan_assignee_cancel",
     "template_name":"测试计划通知模板(取消分配负责人)",
     "content":"<div class="notice-card" style="display: flex; align-items: flex-start;">
@@ -353,10 +393,10 @@
 									<#assign content = content?replace(jsonStr, "<span class='comment-tag'>@" + name + "</span>")>
 							</#if>
 				</#list>
-			<#assign regex = "\\#\\{\"id\":\"(.*?)\",\"name\":\"(.+?)\",\"identifier\":\"(.+?)\",\"icon\":\"((.|[\\t\\r\\f\\n\\s])+?)\"\\}">
+			<#assign regex = "\\#\\{\"id\":\"(.*?)\",\"name\":\"(.+?)\",\"identifier\":\"(.+?)\",\"owner_id\":\"(.*?)\",\"owner_type\":\"(.*?)\",\"owner_subtype\":\"(.*?)\",\"recent_parent\":\"(.*?)\",\"icon\":\"((.|[\\t\\r\\f\\n\\s])+?)\"\\}">
 				<#list content?matches(regex) as match>
 					<#assign jsonStr = match>
-                                                     <#assign content = content?replace(jsonStr,"<span class='comment-tag'>" + match?groups[4]+ match?groups[3] + match?groups[2] + "</span>")>
+                                                     <#assign content = content?replace(jsonStr,"<span class='comment-tag'>"+ "提及："+match?groups[8] + match?groups[3]+ match?groups[2] + "</span>")>
 				</#list>
 			<div class="notice-card-object" style="display: inline-block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%;max-height: 50px;">
 				<span class="notice-card__object-name">${content}</span>
@@ -707,10 +747,10 @@
 									<#assign content = content?replace(jsonStr, "<span class='comment-tag'>@" + name + "</span>")>
 							</#if>
 				</#list>
-			<#assign regex = "\\#\\{\"id\":\"(.*?)\",\"name\":\"(.+?)\",\"identifier\":\"(.+?)\",\"icon\":\"((.|[\\t\\r\\f\\n\\s])+?)\"\\}">
+			<#assign regex = "\\#\\{\"id\":\"(.*?)\",\"name\":\"(.+?)\",\"identifier\":\"(.+?)\",\"owner_id\":\"(.*?)\",\"owner_type\":\"(.*?)\",\"owner_subtype\":\"(.*?)\",\"recent_parent\":\"(.*?)\",\"icon\":\"((.|[\\t\\r\\f\\n\\s])+?)\"\\}">
 				<#list content?matches(regex) as match>
 					<#assign jsonStr = match>
-                                                     <#assign content = content?replace(jsonStr,"<span class='comment-tag'>" + match?groups[4]+ match?groups[3] + match?groups[2] + "</span>")>
+                                                     <#assign content = content?replace(jsonStr,"<span class='comment-tag'>"+ "提及："+match?groups[8] + match?groups[3]+ match?groups[2] + "</span>")>
 				</#list>
 			<div class="notice-card-object" style="display: inline-block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%;max-height: 50px;">
 				<span class="notice-card__object-name">${content}</span>
@@ -821,10 +861,10 @@
 									<#assign content = content?replace(jsonStr, "<span class='comment-tag'>@" + name + "</span>")>
 							</#if>
 				</#list>
-			<#assign regex = "\\#\\{\"id\":\"(.*?)\",\"name\":\"(.+?)\",\"identifier\":\"(.+?)\",\"icon\":\"((.|[\\t\\r\\f\\n\\s])+?)\"\\}">
+			<#assign regex = "\\#\\{\"id\":\"(.*?)\",\"name\":\"(.+?)\",\"identifier\":\"(.+?)\",\"owner_id\":\"(.*?)\",\"owner_type\":\"(.*?)\",\"owner_subtype\":\"(.*?)\",\"recent_parent\":\"(.*?)\",\"icon\":\"((.|[\\t\\r\\f\\n\\s])+?)\"\\}">
 				<#list content?matches(regex) as match>
 					<#assign jsonStr = match>
-                                                     <#assign content = content?replace(jsonStr,"<span class='comment-tag'>" + match?groups[4]+ match?groups[3] + match?groups[2] + "</span>")>
+                                                     <#assign content = content?replace(jsonStr,"<span class='comment-tag'>"+ "提及："+match?groups[8] + match?groups[3]+ match?groups[2] + "</span>")>
 				</#list>
 			<div class="notice-card-object" style="display: inline-block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%;max-height: 50px;">
 				<span class="notice-card__object-name">${content}</span>
@@ -928,6 +968,46 @@
             <span class="notice-pilot-info"> · 产品管理 · ${data.product_name}</span>
         </div>
     </div>
+</div>"
+  },
+  {
+    "tid":"notice_executor_work_item",
+    "template_name":"分配执行工作项通知模板",
+    "content":"<div class="notice-card" style="display: flex; align-items: flex-start;">
+			    <div class="notice-card__avatar" style="flex-shrink: 0;">
+			        <span class="notice-card__avatar-icon" style="background-color: skyblue; border-radius: 50%; margin-right: 10px; width: 36px; height: 36px; display: flex; justify-content: center; align-items: center; font-size: 10px;">${data.update_mantext?substring(0,2)!}</span>
+			    </div>
+			    <div class="notice-card__content" style="flex-grow: 1;width: calc(100% - 46px);">
+			        <div class="notice-card__event">
+			            <div class="notice-card__event-title" style="font-size: 14px; color: #000;">
+	<span class="notice-card__event-name" style="color: #999; font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${data.update_mantext}</span> 
+<span class="notice-card__event-name" style="font-size: 14px; text-transform: lowercase; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">给你分配执行<#if data.owner_type == 'WORK_ITEM'>${data.parent("owner_id").work_item_type_name}<#elseif data.owner_type == 'IDEA'>需求<#elseif data.owner_type== 'TICKET'>工单<#elseif data.owner_type== 'TEST_CASE'>测试用例<#elseif data.owner_type == 'CUSTOMER'>客户<#elseif data.owner_type == 'RUN'>执行用例<#elseif data.owner_type == 'PAGE'>页面</#if></span></div>
+        </div>
+<#if data.parent("owner_id")??>
+<#assign parent= data.parent("owner_id")>
+        <div class="notice-card-object" style="display: inline-block;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;width: 100%;">
+<span class="notice-card__object-id" style="color: #999; font-size: 14px;"><#if parent.show_identifier??>${parent.show_identifier}</#if></span>
+<#if data.owner_type == 'CUSTOMER' || data.owner_type == 'PAGE'>
+<span class="object-name" title="${parent.name}"> ${parent.name}</span>
+<#else>
+<span class="object-name" title="${parent.title}"> ${parent.title}</span></#if>
+
+        </div>
+    <#if parent.parent("project_id")??>
+    <#assign project= parent.parent("project_id")>
+        <div class="notice-card-pilot" style="font-size: 12px;color: #999;text-transform: lowercase;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;"><span class="notice-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span><span class="notice-pilot-info">· 项目管理 · ${project.name}</span></div>
+    <#elseif parent.parent("product_id")??>
+        <#assign product= parent.parent("product_id")>
+  <div class="notice-card-pilot" style="font-size: 12px;color: #999;text-transform: lowercase;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;"><span class="notice-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span><span class="notice-pilot-info">· 产品管理 · ${product.name}</span></div>
+    <#elseif parent.parent("plan_id")??>
+        <#assign plan = parent.parent("plan_id")>
+  <div class="notice-card-pilot" style="font-size: 12px;color: #999;text-transform: lowercase;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;"><span class="notice-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span><span class="notice-pilot-info">· 测试管理 · ${plan.library_name}</span></div>
+    <#elseif parent.parent("test_library_id")??>
+        <#assign library= parent.parent("test_library_id")>
+  <div class="notice-card-pilot" style="font-size: 12px;color: #999;text-transform: lowercase;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;"><span class="notice-time">${data.update_time?string("yyyy-MM-dd HH:mm:ss")}</span><span class="notice-pilot-info">· 测试管理 · ${library.name}</span></div>
+    </#if>
+    </div>
+    </#if>
 </div>"
   },
   {
@@ -1075,10 +1155,10 @@
 									<#assign content = content?replace(jsonStr, "<span class='comment-tag'>@" + name + "</span>")>
 							</#if>
 				</#list>
-			<#assign regex = "\\#\\{\"id\":\"(.*?)\",\"name\":\"(.+?)\",\"identifier\":\"(.+?)\",\"icon\":\"((.|[\\t\\r\\f\\n\\s])+?)\"\\}">
+			<#assign regex = "\\#\\{\"id\":\"(.*?)\",\"name\":\"(.+?)\",\"identifier\":\"(.+?)\",\"owner_id\":\"(.*?)\",\"owner_type\":\"(.*?)\",\"owner_subtype\":\"(.*?)\",\"recent_parent\":\"(.*?)\",\"icon\":\"((.|[\\t\\r\\f\\n\\s])+?)\"\\}">
 				<#list content?matches(regex) as match>
 					<#assign jsonStr = match>
-                                                     <#assign content = content?replace(jsonStr,"<span class='comment-tag'>" + match?groups[4]+ match?groups[3] + match?groups[2] + "</span>")>
+                                                     <#assign content = content?replace(jsonStr,"<span class='comment-tag'>"+ "提及："+match?groups[8] + match?groups[3]+ match?groups[2] + "</span>")>
 				</#list>
 			<div class="notice-card-object" style="display: inline-block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%;max-height: 50px;">
 				<span class="notice-card__object-name">${content}</span>
@@ -1208,10 +1288,10 @@
 									<#assign content = content?replace(jsonStr, "<span class='comment-tag'>@" + name + "</span>")>
 							</#if>
 				</#list>
-			<#assign regex = "\\#\\{\"id\":\"(.*?)\",\"name\":\"(.+?)\",\"identifier\":\"(.+?)\",\"icon\":\"((.|[\\t\\r\\f\\n\\s])+?)\"\\}">
+			<#assign regex = "\\#\\{\"id\":\"(.*?)\",\"name\":\"(.+?)\",\"identifier\":\"(.+?)\",\"owner_id\":\"(.*?)\",\"owner_type\":\"(.*?)\",\"owner_subtype\":\"(.*?)\",\"recent_parent\":\"(.*?)\",\"icon\":\"((.|[\\t\\r\\f\\n\\s])+?)\"\\}">
 				<#list content?matches(regex) as match>
 					<#assign jsonStr = match>
-                                                     <#assign content = content?replace(jsonStr,"<span class='comment-tag'>" + match?groups[4]+ match?groups[3] + match?groups[2] + "</span>")>
+                                                     <#assign content = content?replace(jsonStr,"<span class='comment-tag'>"+ "提及："+match?groups[8] + match?groups[3]+ match?groups[2] + "</span>")>
 				</#list>
 			<div class="notice-card-object" style="display: inline-block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%;max-height: 50px;">
 				<span class="notice-card__object-name">${content}</span>
@@ -1512,10 +1592,10 @@
 									<#assign content = content?replace(jsonStr, "<span class='comment-tag'>@" + name + "</span>")>
 							</#if>
 				</#list>
-			<#assign regex = "\\#\\{\"id\":\"(.*?)\",\"name\":\"(.+?)\",\"identifier\":\"(.+?)\",\"icon\":\"((.|[\\t\\r\\f\\n\\s])+?)\"\\}">
+			<#assign regex = "\\#\\{\"id\":\"(.*?)\",\"name\":\"(.+?)\",\"identifier\":\"(.+?)\",\"owner_id\":\"(.*?)\",\"owner_type\":\"(.*?)\",\"owner_subtype\":\"(.*?)\",\"recent_parent\":\"(.*?)\",\"icon\":\"((.|[\\t\\r\\f\\n\\s])+?)\"\\}">
 				<#list content?matches(regex) as match>
 					<#assign jsonStr = match>
-                                                     <#assign content = content?replace(jsonStr,"<span class='comment-tag'>" + match?groups[4]+ match?groups[3] + match?groups[2] + "</span>")>
+                                                     <#assign content = content?replace(jsonStr,"<span class='comment-tag'>"+ "提及："+match?groups[8] + match?groups[3]+ match?groups[2] + "</span>")>
 				</#list>
 			<div class="notice-card-object" style="display: inline-block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%;max-height: 50px;">
 				<span class="notice-card__object-name">${content}</span>
@@ -1828,10 +1908,10 @@
 									<#assign content = content?replace(jsonStr, "<span class='comment-tag'>@" + name + "</span>")>
 							</#if>
 				</#list>
-			<#assign regex = "\\#\\{\"id\":\"(.*?)\",\"name\":\"(.+?)\",\"identifier\":\"(.+?)\",\"icon\":\"((.|[\\t\\r\\f\\n\\s])+?)\"\\}">
+			<#assign regex = "\\#\\{\"id\":\"(.*?)\",\"name\":\"(.+?)\",\"identifier\":\"(.+?)\",\"owner_id\":\"(.*?)\",\"owner_type\":\"(.*?)\",\"owner_subtype\":\"(.*?)\",\"recent_parent\":\"(.*?)\",\"icon\":\"((.|[\\t\\r\\f\\n\\s])+?)\"\\}">
 				<#list content?matches(regex) as match>
 					<#assign jsonStr = match>
-                                                     <#assign content = content?replace(jsonStr,"<span class='comment-tag'>" + match?groups[4]+ match?groups[3] + match?groups[2] + "</span>")>
+                                                     <#assign content = content?replace(jsonStr,"<span class='comment-tag'>"+ "提及："+match?groups[8] + match?groups[3]+ match?groups[2] + "</span>")>
 				</#list>
 			<div class="notice-card-object" style="display: inline-block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%;max-height: 50px;">
 				<span class="notice-card__object-name">${content}</span>

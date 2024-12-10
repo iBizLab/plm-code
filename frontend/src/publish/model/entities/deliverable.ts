@@ -968,7 +968,15 @@ export default {
           id: 'begin',
         },
         {
-          code: "setTimeout(() => {\r\n\tconst rows = uiLogic.grid.state.rows;\r\n\tconst srfreadonly = context.srfreadonly;\r\n\tif (rows && rows.length > 0) {\r\n\t\trows.forEach(row => {\r\n\t\t\tconst actionColumn = row.uiActionGroupStates.create_time;\r\n\t\t\tif (actionColumn && Object.values(actionColumn).length > 0) {\r\n\t\t\t\tObject.values(actionColumn).forEach(action => {\r\n                    if(srfreadonly == true){\r\n\t\t\t\t\t    // 提交\r\n\t\t\t\t\t    if (action.uiActionId === 'submit_form@deliverable') {\r\n                            action.disabled = true;\r\n                        }\r\n                        // 删除\r\n\t\t\t\t\t    if (action.uiActionId === 'del_form@deliverable') {\r\n                            action.disabled = true;\r\n                        }\r\n\t\t\t\t\t}\r\n\t\t\t\t})\r\n\t\t\t}\r\n\t\t})\r\n\t}\r\n}, 1000);",
+          codeName: 'END1',
+          leftPos: 200,
+          logicNodeType: 'END',
+          topPos: 571,
+          name: '结束',
+          id: 'end1',
+        },
+        {
+          code: "setTimeout(() => {\r\n\tconst rows = uiLogic.grid.state.rows;\r\n\tconst srfreadonly = context.srfreadonly;\r\n\tif (rows && rows.length > 0) {\r\n\t\trows.forEach(row => {\r\n\t\t\tconst actionColumn = row.uiActionGroupStates.create_time;\r\n\t\t\tif (actionColumn && Object.values(actionColumn).length > 0) {\r\n\t\t\t\tObject.values(actionColumn).forEach(action => {\r\n                    if(srfreadonly == true){\r\n                        console.log(\"123\")\r\n\t\t\t\t\t    // 提交\r\n\t\t\t\t\t    if (action.uiActionId === 'submit_form@deliverable') {\r\n                            action.disabled = true;\r\n                        }\r\n                        // 删除\r\n\t\t\t\t\t    if (action.uiActionId === 'del_form@deliverable') {\r\n                            action.disabled = true;\r\n                        }\r\n                        // 提交\r\n\t\t\t\t\t    if (action.uiActionId === 'submit@deliverable') {\r\n                            action.visible = false;\r\n                        }\r\n                        // 删除\r\n\t\t\t\t\t    if (action.uiActionId === 'del@deliverable') {\r\n                            action.visible = false;;\r\n                        }\r\n                        // 编辑\r\n\t\t\t\t\t    if (action.uiActionId === 'edit@deliverable') {\r\n                            action.visible = false;;\r\n                        }\r\n\t\t\t\t\t}\r\n\t\t\t\t})\r\n\t\t\t}\r\n\t\t})\r\n\t}\r\n}, 1000);",
           codeName: 'RAWJSCODE1',
           leftPos: 160,
           logicNodeType: 'RAWJSCODE',
@@ -983,6 +991,48 @@ export default {
           name: '计算表格列行为状态',
           id: 'rawjscode1',
         },
+      ],
+      deuilogicParams: [
+        {
+          codeName: 'Default',
+          default: true,
+          entityParam: true,
+          name: '传入变量',
+          id: 'default',
+        },
+        {
+          codeName: 'Grid',
+          activeCtrlParam: true,
+          ctrlParam: true,
+          name: '表格',
+          id: 'grid',
+        },
+      ],
+      startDEUILogicNodeId: 'begin',
+      name: '计算表格列行为状态',
+      id: 'calc_column_action_state',
+    },
+    {
+      codeName: 'calc_grid_column_action_state',
+      defaultParamName: 'Default',
+      logicName: '计算交付物表格列行为状态',
+      deuilogicNodes: [
+        {
+          codeName: 'Begin',
+          leftPos: 200,
+          logicNodeType: 'BEGIN',
+          deuilogicLinks: [
+            {
+              dstDEUILogicNodeId: 'rawjscode1',
+              srcDEUILogicNodeId: 'begin',
+              id: '连接名称',
+            },
+          ],
+          topPos: 200,
+          parallelOutput: true,
+          name: '开始',
+          id: 'begin',
+        },
         {
           codeName: 'END1',
           leftPos: 200,
@@ -991,15 +1041,24 @@ export default {
           name: '结束',
           id: 'end1',
         },
+        {
+          code: "setTimeout(() => {\r\n\tconst rows = uiLogic.grid.state.rows;\r\n\tconst srfreadonly = context.srfreadonly;\r\n\tif (rows && rows.length > 0) {\r\n\t\trows.forEach(row => {\r\n\t\t\tconst actionColumn = row.uiActionGroupStates.title;\r\n\t\t\tif (actionColumn && Object.values(actionColumn).length > 0) {\r\n\t\t\t\tObject.values(actionColumn).forEach(action => {\r\n                    if(srfreadonly == true){\r\n\t\t\t\t\t    // 提交\r\n\t\t\t\t\t    if (action.uiActionId === 'submit_form@deliverable') {\r\n                            action.disabled = true;\r\n                        }\r\n                        // 删除\r\n\t\t\t\t\t    if (action.uiActionId === 'del_form@deliverable') {\r\n                            action.disabled = true;\r\n                        }\r\n                        // 提交\r\n\t\t\t\t\t    if (action.uiActionId === 'submit@deliverable') {\r\n                            action.visible = false;\r\n                        }\r\n                        // 删除\r\n\t\t\t\t\t    if (action.uiActionId === 'del_grid@deliverable') {\r\n                            action.visible = false;;\r\n                        }\r\n                        // 编辑\r\n\t\t\t\t\t    if (action.uiActionId === 'edit@deliverable') {\r\n                            action.visible = false;;\r\n                        }\r\n\t\t\t\t\t}\r\n\t\t\t\t})\r\n\t\t\t}\r\n\t\t})\r\n\t}\r\n}, 1000);",
+          codeName: 'RAWJSCODE1',
+          leftPos: 160,
+          logicNodeType: 'RAWJSCODE',
+          deuilogicLinks: [
+            {
+              dstDEUILogicNodeId: 'end1',
+              srcDEUILogicNodeId: 'rawjscode1',
+              id: '连接名称',
+            },
+          ],
+          topPos: 420,
+          name: '计算表格列行为状态',
+          id: 'rawjscode1',
+        },
       ],
       deuilogicParams: [
-        {
-          codeName: 'Grid',
-          activeCtrlParam: true,
-          ctrlParam: true,
-          name: '表格',
-          id: 'grid',
-        },
         {
           codeName: 'Default',
           default: true,
@@ -1007,10 +1066,17 @@ export default {
           name: '传入变量',
           id: 'default',
         },
+        {
+          codeName: 'Grid',
+          activeCtrlParam: true,
+          ctrlParam: true,
+          name: '表格',
+          id: 'grid',
+        },
       ],
       startDEUILogicNodeId: 'begin',
-      name: '计算表格列行为状态',
-      id: 'calc_column_action_state',
+      name: '计算交付物表格列行为状态',
+      id: 'calc_grid_column_action_state',
     },
     {
       codeName: 'create_deliverable',

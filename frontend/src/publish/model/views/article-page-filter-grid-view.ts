@@ -260,7 +260,7 @@ export default {
         logicType: 'APPUILOGIC',
         builtinAppUILogic: {
           openDataAppView: {
-            openMode: 'POPUPMODAL',
+            openMode: 'INDEXVIEWTAB_POPUPMODAL',
             navigateContexts: [
               {
                 key: 'SPACE',
@@ -274,7 +274,7 @@ export default {
           editMode: true,
           appUILogicRefViews: [
             {
-              openMode: 'POPUPMODAL',
+              openMode: 'INDEXVIEWTAB_POPUPMODAL',
               navigateContexts: [
                 {
                   key: 'SPACE',
@@ -297,7 +297,7 @@ export default {
     ],
     appViewRefs: [
       {
-        openMode: 'POPUPMODAL',
+        openMode: 'INDEXVIEWTAB_POPUPMODAL',
         navigateContexts: [
           {
             key: 'SPACE',
@@ -306,7 +306,7 @@ export default {
             id: 'space',
           },
         ],
-        realOpenMode: 'POPUPMODAL',
+        realOpenMode: 'INDEXVIEWTAB_POPUPMODAL',
         realTitle: '页面',
         refAppViewId: 'plmweb.article_page_model_show_view',
         name: 'EDITDATA',

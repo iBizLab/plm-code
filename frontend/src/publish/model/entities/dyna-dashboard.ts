@@ -662,6 +662,29 @@ export default {
       id: 'move_order',
     },
     {
+      codeName: 'only_get',
+      methodType: 'DEACTION',
+      appDEMethodInput: {
+        keyAppDEFieldId: 'dyna_dashboard_id',
+        type: 'KEYFIELD',
+        id: '输入对象',
+      },
+      appDEMethodReturn: {
+        appDEMethodDTOId: 'dyna_dashboard_dto',
+        type: 'DTO',
+        id: '返回对象',
+      },
+      requestField: 'DYNADASHBOARDID',
+      requestMethod: 'GET',
+      requestParamType: 'FIELD',
+      requestPath: '/only_get',
+      needResourceKey: true,
+      actionMode: 'READ',
+      actionType: 'REMOTE',
+      dataSetType: 'REMOTE',
+      id: 'only_get',
+    },
+    {
       codeName: 'remove',
       methodType: 'DEACTION',
       appDEMethodInput: {
@@ -994,6 +1017,14 @@ export default {
       fullCodeName: 'dyna_dashboard_new_dynadashboard',
       nextId: 'open_new_board@dyna_dashboard',
       deopprivId: 'insight_view__update',
+      navigateParams: [
+        {
+          key: 'only_get',
+          value: 'true',
+          rawValue: true,
+          id: 'only_get',
+        },
+      ],
       sysImage: {
         cssClass: 'fa fa-plus',
         glyph: 'xf067@FontAwesome',

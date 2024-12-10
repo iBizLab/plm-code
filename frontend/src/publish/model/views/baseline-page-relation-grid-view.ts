@@ -129,15 +129,6 @@ export default {
   ],
   appViewRefs: [
     {
-      realTitle: '基线页面编辑视图',
-      realTitleLanguageRes: {
-        lanResTag: 'PAGE.TITLE.BASELINE_PAGE.EDITVIEW',
-      },
-      refAppViewId: 'plmweb.baseline_page_edit_view',
-      name: 'NEWDATA',
-      id: 'newdata',
-    },
-    {
       openMode: 'POPUPMODAL',
       navigateContexts: [
         {
@@ -172,6 +163,15 @@ export default {
       refAppViewId: 'plmweb.article_page_with_version_view',
       name: 'EDITDATA',
       id: 'editdata',
+    },
+    {
+      realTitle: '基线页面编辑视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.BASELINE_PAGE.EDITVIEW',
+      },
+      refAppViewId: 'plmweb.baseline_page_edit_view',
+      name: 'NEWDATA',
+      id: 'newdata',
     },
   ],
   controls: [
@@ -430,6 +430,7 @@ export default {
         },
       ],
       codeName: 'relation_grid_view_grid',
+      controlStyle: 'NUMBER_GRID',
       controlType: 'GRID',
       logicName: '基线页面实体表格视图_表格',
       appDataEntityId: 'plmweb.baseline_page',
@@ -439,6 +440,7 @@ export default {
         },
         id: 'grid',
       },
+      sysPFPluginId: 'number_grid',
       modelId: 'BAD99314-B84C-4C4C-B5A5-73480454A118',
       modelType: 'PSDEGRID',
       name: 'grid',
@@ -508,6 +510,47 @@ export default {
           showCaption: true,
           showIcon: true,
           id: 'deuiaction1',
+        },
+        {
+          itemType: 'SEPERATOR',
+          id: 'seperator1',
+        },
+        {
+          actionLevel: 100,
+          buttonStyle: 'STYLE2',
+          detoolbarItems: [
+            {
+              actionLevel: 100,
+              noPrivDisplayMode: 2,
+              uiactionId: 'gridview_exportaction',
+              valid: true,
+              capLanguageRes: {
+                lanResTag: 'TBB.TEXT.*.EXPORT',
+              },
+              caption: '导出页面',
+              itemType: 'DEUIACTION',
+              sysImage: {
+                cssClass: 'fa fa-file-excel-o',
+                glyph: 'xf1c3@FontAwesome',
+              },
+              tooltip: '导出页面',
+              tooltipLanguageRes: {
+                lanResTag: 'TBB.TOOLTIP.*.EXPORT',
+              },
+              showCaption: true,
+              showIcon: true,
+              id: 'deuiaction2',
+            },
+          ],
+          valid: true,
+          itemType: 'ITEMS',
+          sysImage: {
+            cssClass: 'fa fa-list-ul',
+            glyph: 'xf0ca@FontAwesome',
+          },
+          showCaption: true,
+          showIcon: true,
+          id: 'items1',
         },
       ],
       xdataControlName: 'grid',

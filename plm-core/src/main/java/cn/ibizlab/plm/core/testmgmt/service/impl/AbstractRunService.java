@@ -37,6 +37,8 @@ import cn.ibizlab.plm.core.base.domain.Comment;
 import cn.ibizlab.plm.core.base.service.CommentService;
 import cn.ibizlab.plm.core.base.domain.Attention;
 import cn.ibizlab.plm.core.base.service.AttentionService;
+import cn.ibizlab.plm.core.base.domain.Relation;
+import cn.ibizlab.plm.core.base.service.RelationService;
 import cn.ibizlab.plm.core.testmgmt.domain.RunAttachment;
 import cn.ibizlab.plm.core.testmgmt.service.RunAttachmentService;
 import cn.ibizlab.plm.core.base.domain.SearchComment;
@@ -69,6 +71,10 @@ public abstract class AbstractRunService extends ServiceImpl<RunMapper,Run> impl
     @Autowired
     @Lazy
     protected AttentionService attentionService;
+
+    @Autowired
+    @Lazy
+    protected RelationService relationService;
 
     @Autowired
     @Lazy
@@ -493,6 +499,8 @@ public abstract class AbstractRunService extends ServiceImpl<RunMapper,Run> impl
                 et.setSuiteName(testCase.getSuiteName());
                 et.setPrecondition(testCase.getPrecondition());
                 et.setSuites(testCase.getSuites());
+                et.setLibraryIsDeleted(testCase.getLibraryIsDeleted());
+                et.setLibraryIsArchived(testCase.getLibraryIsArchived());
                 et.setCaseId(testCase.getId());
                 et.setCaseName(testCase.getName());
             }

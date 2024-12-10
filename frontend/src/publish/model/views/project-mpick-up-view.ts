@@ -103,6 +103,11 @@ export default {
           dataType: 25,
           id: 'srfmajortext',
         },
+        {
+          appDEFieldId: 'state',
+          dataType: 25,
+          id: 'state',
+        },
       ],
       pagingSize: 1000,
       showHeader: true,

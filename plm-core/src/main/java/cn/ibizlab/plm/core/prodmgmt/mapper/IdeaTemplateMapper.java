@@ -43,6 +43,25 @@ public interface IdeaTemplateMapper extends BaseMapper<IdeaTemplate> {
     List<IdeaTemplate> listDefault(@Param("ctx") IdeaTemplateSearchContext context, @Param("ew") Wrapper<IdeaTemplate> wrapper);
 
     /**
+     * 数据集合global分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<IdeaTemplate> searchGlobal(IPage<IdeaTemplate> page, @Param("ctx") IdeaTemplateSearchContext context, @Param("ew") Wrapper<IdeaTemplate> wrapper);
+    
+    /**
+     * 数据集合global查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<IdeaTemplate> listGlobal(@Param("ctx") IdeaTemplateSearchContext context, @Param("ew") Wrapper<IdeaTemplate> wrapper);
+
+    /**
     * 根据categoryId查询
     *
     * @param categoryIds

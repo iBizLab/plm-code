@@ -45,11 +45,11 @@ public class ProjectDTO extends DTOBase implements Serializable {
     private String visibility;
 
     /**
-     * 状态
+     * 项目状态
      */
     @JsonProperty("state")
     @JSONField(name = "state")
-    @ApiModelProperty(value = "状态", position = 1)
+    @ApiModelProperty(value = "项目状态", position = 1)
     private String state;
 
     /**
@@ -215,11 +215,53 @@ public class ProjectDTO extends DTOBase implements Serializable {
     private BigDecimal schedule;
 
     /**
+     * 实际开始时间
+     */
+    @JsonProperty("actual_start_at")
+    @JsonFormat(pattern = "yyyy-MM-dd", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "actual_start_at" , format = "yyyy-MM-dd")
+    @ApiModelProperty(value = "实际开始时间", position = 22)
+    private Date actualStartAt;
+
+    /**
+     * 实际结束时间
+     */
+    @JsonProperty("actual_end_at")
+    @JsonFormat(pattern = "yyyy-MM-dd", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "actual_end_at" , format = "yyyy-MM-dd")
+    @ApiModelProperty(value = "实际结束时间", position = 23)
+    private Date actualEndAt;
+
+    /**
+     * 预计工时
+     */
+    @JsonProperty("expected_time")
+    @JSONField(name = "expected_time")
+    @ApiModelProperty(value = "预计工时", position = 24)
+    private String expectedTime;
+
+    /**
+     * 消耗工时
+     */
+    @JsonProperty("consume_time")
+    @JSONField(name = "consume_time")
+    @ApiModelProperty(value = "消耗工时", position = 25)
+    private String consumeTime;
+
+    /**
+     * 状态类型
+     */
+    @JsonProperty("state_type")
+    @JSONField(name = "state_type")
+    @ApiModelProperty(value = "状态类型", position = 26)
+    private String stateType;
+
+    /**
      * 建立人
      */
     @JsonProperty("create_man")
     @JSONField(name = "create_man")
-    @ApiModelProperty(value = "建立人", position = 22)
+    @ApiModelProperty(value = "建立人", position = 27)
     private String createMan;
 
     /**
@@ -228,7 +270,7 @@ public class ProjectDTO extends DTOBase implements Serializable {
     @JsonProperty("create_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "create_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "建立时间", position = 23)
+    @ApiModelProperty(value = "建立时间", position = 28)
     private Date createTime;
 
     /**
@@ -236,7 +278,7 @@ public class ProjectDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("id")
     @JSONField(name = "id")
-    @ApiModelProperty(value = "标识", position = 24)
+    @ApiModelProperty(value = "标识", position = 29)
     private String id;
 
     /**
@@ -244,7 +286,7 @@ public class ProjectDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("name")
     @JSONField(name = "name")
-    @ApiModelProperty(value = "项目名称", position = 25)
+    @ApiModelProperty(value = "项目名称", position = 30)
     private String name;
 
     /**
@@ -252,7 +294,7 @@ public class ProjectDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("update_man")
     @JSONField(name = "update_man")
-    @ApiModelProperty(value = "更新人", position = 26)
+    @ApiModelProperty(value = "更新人", position = 31)
     private String updateMan;
 
     /**
@@ -261,7 +303,7 @@ public class ProjectDTO extends DTOBase implements Serializable {
     @JsonProperty("update_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "update_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "更新时间", position = 27)
+    @ApiModelProperty(value = "更新时间", position = 32)
     private Date updateTime;
 
 
@@ -275,7 +317,7 @@ public class ProjectDTO extends DTOBase implements Serializable {
     }
 
     /**
-     * 设置 [状态]
+     * 设置 [项目状态]
      */
     public ProjectDTO setState(String state) {
         this.state = state;
@@ -460,6 +502,51 @@ public class ProjectDTO extends DTOBase implements Serializable {
     public ProjectDTO setSchedule(BigDecimal schedule) {
         this.schedule = schedule;
         this.modify("schedule", schedule);
+        return this;
+    }
+
+    /**
+     * 设置 [实际开始时间]
+     */
+    public ProjectDTO setActualStartAt(Date actualStartAt) {
+        this.actualStartAt = actualStartAt;
+        this.modify("actual_start_at", actualStartAt);
+        return this;
+    }
+
+    /**
+     * 设置 [实际结束时间]
+     */
+    public ProjectDTO setActualEndAt(Date actualEndAt) {
+        this.actualEndAt = actualEndAt;
+        this.modify("actual_end_at", actualEndAt);
+        return this;
+    }
+
+    /**
+     * 设置 [预计工时]
+     */
+    public ProjectDTO setExpectedTime(String expectedTime) {
+        this.expectedTime = expectedTime;
+        this.modify("expected_time", expectedTime);
+        return this;
+    }
+
+    /**
+     * 设置 [消耗工时]
+     */
+    public ProjectDTO setConsumeTime(String consumeTime) {
+        this.consumeTime = consumeTime;
+        this.modify("consume_time", consumeTime);
+        return this;
+    }
+
+    /**
+     * 设置 [状态类型]
+     */
+    public ProjectDTO setStateType(String stateType) {
+        this.stateType = stateType;
+        this.modify("state_type", stateType);
         return this;
     }
 

@@ -117,13 +117,18 @@ export default {
                                               },
                                               contentType: 'IMAGE',
                                               predefinedType: 'STATIC_IMAGE',
+                                              rawItemHeight: 22,
                                               id: 'static_image1',
                                             },
                                             caption: '图片',
+                                            contentHeight: 22,
+                                            height: 22,
                                             itemStyle: 'DEFAULT',
                                             itemType: 'RAWITEM',
                                             layoutPos: {
                                               shrink: 1,
+                                              height: 22,
+                                              heightMode: 'PX',
                                               layout: 'FLEX',
                                             },
                                             sysImage: {
@@ -188,10 +193,14 @@ export default {
                                         },
                                         dataRegionType: 'INHERIT',
                                         caption: '容器',
+                                        contentHeight: 48,
+                                        height: 48,
                                         itemStyle: 'DEFAULT',
                                         itemType: 'CONTAINER',
                                         layoutPos: {
                                           colMD: 24,
+                                          height: 48,
+                                          heightMode: 'PX',
                                           layout: 'TABLE_24COL',
                                         },
                                         id: 'container3',
@@ -220,6 +229,8 @@ export default {
                                         panelItems: [
                                           {
                                             actionType: 'UIACTION',
+                                            buttonCssStyle:
+                                              'srfnavctx.psdeform=ProdMgmt.idea.Main',
                                             buttonStyle: 'DEFAULT',
                                             buttonType: 'PANELBUTTON',
                                             uiactionId:

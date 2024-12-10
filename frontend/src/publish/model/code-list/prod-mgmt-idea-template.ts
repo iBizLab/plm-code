@@ -3,7 +3,7 @@ export default {
   codeListType: 'DYNAMIC',
   codeName: 'ProdMgmt__idea_template',
   emptyText: '未定义',
-  appDEDataSetId: 'fetch_default',
+  appDEDataSetId: 'fetch_global',
   appDataEntityId: 'plmweb.idea_template',
   textAppDEFieldId: 'name',
   valueAppDEFieldId: 'id',

@@ -72,6 +72,7 @@ export default {
                   editor: {
                     appCodeListId: 'plmweb.prodmgmt__product_tag',
                     editorType: 'MDROPDOWNLIST',
+                    placeHolder: '请选择标签',
                     valueType: 'SIMPLE',
                     editable: true,
                     id: 'tags',

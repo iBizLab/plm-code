@@ -253,6 +253,14 @@ public class TestCaseBiSearchGroupDTO extends DTOBase implements Serializable {
     @ApiModelProperty(value = "建立人", position = 26)
     private String createMan;
 
+    /**
+     * 测试库是否删除
+     */
+    @JsonProperty("library_is_deleted")
+    @JSONField(name = "library_is_deleted")
+    @ApiModelProperty(value = "测试库是否删除", position = 27)
+    private Integer libraryIsDeleted;
+
 
     /**
      * 设置 [执行人]
@@ -458,6 +466,15 @@ public class TestCaseBiSearchGroupDTO extends DTOBase implements Serializable {
     public TestCaseBiSearchGroupDTO setIsDeleted(Integer isDeleted) {
         this.isDeleted = isDeleted;
         this.modify("is_deleted", isDeleted);
+        return this;
+    }
+
+    /**
+     * 设置 [测试库是否删除]
+     */
+    public TestCaseBiSearchGroupDTO setLibraryIsDeleted(Integer libraryIsDeleted) {
+        this.libraryIsDeleted = libraryIsDeleted;
+        this.modify("library_is_deleted", libraryIsDeleted);
         return this;
     }
 

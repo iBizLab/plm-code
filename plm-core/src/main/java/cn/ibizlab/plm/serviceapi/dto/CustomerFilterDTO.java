@@ -123,7 +123,7 @@ public class CustomerFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_id_eq")
     @JSONField(name = "n_id_eq")
-    @ApiModelProperty(value = "标识EQ", position = 160)
+    @ApiModelProperty(value = "标识EQ", position = 170)
 	private String idEQ;
 
     /**
@@ -131,7 +131,7 @@ public class CustomerFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_name_like")
     @JSONField(name = "n_name_like")
-    @ApiModelProperty(value = "客户名称LIKE", position = 170)
+    @ApiModelProperty(value = "客户名称LIKE", position = 180)
 	private String nameLIKE;
 
     /**
@@ -139,7 +139,7 @@ public class CustomerFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_create_man_eq")
     @JSONField(name = "n_create_man_eq")
-    @ApiModelProperty(value = "建立人EQ", position = 180)
+    @ApiModelProperty(value = "建立人EQ", position = 190)
 	private String createManEQ;
 
     /**
@@ -147,7 +147,7 @@ public class CustomerFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_create_man_in")
     @JSONField(name = "n_create_man_in")
-    @ApiModelProperty(value = "建立人IN", position = 181)
+    @ApiModelProperty(value = "建立人IN", position = 191)
 	private String createManIN;
 
     /**
@@ -155,7 +155,7 @@ public class CustomerFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_create_man_isnotnull")
     @JSONField(name = "n_create_man_isnotnull")
-    @ApiModelProperty(value = "建立人ISNOTNULL", position = 182)
+    @ApiModelProperty(value = "建立人ISNOTNULL", position = 192)
 	private String createManISNOTNULL;
 
     /**
@@ -163,7 +163,7 @@ public class CustomerFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_create_man_isnull")
     @JSONField(name = "n_create_man_isnull")
-    @ApiModelProperty(value = "建立人ISNULL", position = 183)
+    @ApiModelProperty(value = "建立人ISNULL", position = 193)
 	private String createManISNULL;
 
     /**
@@ -171,7 +171,7 @@ public class CustomerFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_create_man_notin")
     @JSONField(name = "n_create_man_notin")
-    @ApiModelProperty(value = "建立人NOTIN", position = 184)
+    @ApiModelProperty(value = "建立人NOTIN", position = 194)
 	private String createManNOTIN;
 
     /**
@@ -180,7 +180,7 @@ public class CustomerFilterDTO extends FilterBase implements Serializable {
     @JsonProperty("n_create_time_gtandeq")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "n_create_time_gtandeq" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "建立时间GTANDEQ", position = 190)
+    @ApiModelProperty(value = "建立时间GTANDEQ", position = 200)
 	private Date createTimeGTANDEQ;
 
     /**
@@ -189,7 +189,7 @@ public class CustomerFilterDTO extends FilterBase implements Serializable {
     @JsonProperty("n_create_time_ltandeq")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "n_create_time_ltandeq" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "建立时间LTANDEQ", position = 191)
+    @ApiModelProperty(value = "建立时间LTANDEQ", position = 201)
 	private Date createTimeLTANDEQ;
 
     /**
@@ -198,7 +198,7 @@ public class CustomerFilterDTO extends FilterBase implements Serializable {
     @JsonProperty("n_update_time_gtandeq")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "n_update_time_gtandeq" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "更新时间GTANDEQ", position = 210)
+    @ApiModelProperty(value = "更新时间GTANDEQ", position = 220)
 	private Date updateTimeGTANDEQ;
 
     /**
@@ -207,7 +207,7 @@ public class CustomerFilterDTO extends FilterBase implements Serializable {
     @JsonProperty("n_update_time_ltandeq")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "n_update_time_ltandeq" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "更新时间LTANDEQ", position = 211)
+    @ApiModelProperty(value = "更新时间LTANDEQ", position = 221)
 	private Date updateTimeLTANDEQ;
 
     /**
@@ -215,7 +215,7 @@ public class CustomerFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_product_id_eq")
     @JSONField(name = "n_product_id_eq")
-    @ApiModelProperty(value = "产品标识EQ", position = 220)
+    @ApiModelProperty(value = "产品标识EQ", position = 230)
 	private String productIdEQ;
 
 

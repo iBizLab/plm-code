@@ -423,6 +423,25 @@ public interface TestCaseMapper extends BaseMapper<TestCase> {
     List<TestCase> listMyFilter(@Param("ctx") TestCaseSearchContext context, @Param("ew") Wrapper<TestCase> wrapper);
 
     /**
+     * 数据集合my_summary_case分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<TestCase> searchMySummaryCase(IPage<TestCase> page, @Param("ctx") TestCaseSearchContext context, @Param("ew") Wrapper<TestCase> wrapper);
+    
+    /**
+     * 数据集合my_summary_case查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<TestCase> listMySummaryCase(@Param("ctx") TestCaseSearchContext context, @Param("ew") Wrapper<TestCase> wrapper);
+
+    /**
      * 数据集合normal分页查询
      * 
      * @param page

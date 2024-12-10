@@ -130,12 +130,16 @@ public abstract class AbstractActivityService extends ServiceImpl<ActivityMapper
     }
 	
    public Page<Activity> fetchAll(ActivitySearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("UPDATE_TIME,DESC");
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<Activity> pages=baseMapper.searchAll(context.getPages(),context,context.getSelectCond());
         List<Activity> list = pages.getRecords();
         return new PageImpl<>(list, context.getPageable(), pages.getTotal());
     }
 
    public List<Activity> listAll(ActivitySearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("UPDATE_TIME,DESC");
         List<Activity> list = baseMapper.listAll(context,context.getSelectCond());
         return list;
    }

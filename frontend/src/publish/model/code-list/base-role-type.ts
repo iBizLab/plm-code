@@ -3,7 +3,6 @@ export default {
   codeListType: 'STATIC',
   codeName: 'Base__role_type',
   emptyText: '未定义',
-  appDataEntityId: 'plmweb.product',
   codeItems: [
     {
       codeName: 'admin',
@@ -22,12 +21,6 @@ export default {
       text: '只读成员',
       value: 'reader',
       id: 'reader',
-    },
-    {
-      codeName: 'customer',
-      text: '特定成员',
-      value: 'customer',
-      id: 'customer',
     },
   ],
   enableCache: true,

@@ -447,6 +447,17 @@ public abstract class AbstractTicketService extends ServiceImpl<TicketMapper,Tic
         return list;
    }
 	
+   public Page<Ticket> fetchMySummaryTicket(TicketSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Ticket> pages=baseMapper.searchMySummaryTicket(context.getPages(),context,context.getSelectCond());
+        List<Ticket> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<Ticket> listMySummaryTicket(TicketSearchContext context) {
+        List<Ticket> list = baseMapper.listMySummaryTicket(context,context.getSelectCond());
+        return list;
+   }
+	
    public Page<Ticket> fetchNormal(TicketSearchContext context) {
         if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
             context.setSort("SHOW_IDENTIFIER,DESC");
@@ -777,6 +788,8 @@ public abstract class AbstractTicketService extends ServiceImpl<TicketMapper,Tic
             }
             if(!ObjectUtils.isEmpty(product)) {
                 et.setProductIdentifier(product.getIdentifier());
+                et.setProductIsDeleted(product.getIsDeleted());
+                et.setProductIsArchived(product.getIsArchived());
                 et.setProductId(product.getId());
                 et.setProductName(product.getName());
             }

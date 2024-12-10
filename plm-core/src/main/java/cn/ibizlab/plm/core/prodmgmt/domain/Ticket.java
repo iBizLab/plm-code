@@ -171,7 +171,7 @@ public class Ticket extends EntityMP implements Serializable
     * 标签
     */
     @TableField(value = "tags")
-    @DEField(name = "tags" , dict = "product_tag")
+    @DEField(name = "tags")
     @JSONField(name = "tags")
     @JsonProperty("tags")
     @ApiModelProperty(value = "tags", notes = "标签")
@@ -296,6 +296,26 @@ public class Ticket extends EntityMP implements Serializable
     @JsonProperty("comment_count")
     @ApiModelProperty(value = "comment_count", notes = "评论数")
     private String commentCount;
+
+    /**
+    * 产品是否删除
+    */
+    @TableField(value = "product_is_deleted" , exist = false)
+    @DEField(name = "product_is_deleted" , dict = "YesNo")
+    @JSONField(name = "product_is_deleted")
+    @JsonProperty("product_is_deleted")
+    @ApiModelProperty(value = "product_is_deleted", notes = "产品是否删除")
+    private Integer productIsDeleted;
+
+    /**
+    * 产品是否归档
+    */
+    @TableField(value = "product_is_archived" , exist = false)
+    @DEField(name = "product_is_archived" , dict = "YesNo")
+    @JSONField(name = "product_is_archived")
+    @JsonProperty("product_is_archived")
+    @ApiModelProperty(value = "product_is_archived", notes = "产品是否归档")
+    private Integer productIsArchived;
 
     /**
     * 关注人
@@ -672,6 +692,24 @@ public class Ticket extends EntityMP implements Serializable
     public Ticket setCommentCount(String commentCount) {
         this.commentCount = commentCount;
         this.modify("comment_count", commentCount);
+        return this;
+    }
+
+    /**
+    * 设置 [产品是否删除]
+    */
+    public Ticket setProductIsDeleted(Integer productIsDeleted) {
+        this.productIsDeleted = productIsDeleted;
+        this.modify("product_is_deleted", productIsDeleted);
+        return this;
+    }
+
+    /**
+    * 设置 [产品是否归档]
+    */
+    public Ticket setProductIsArchived(Integer productIsArchived) {
+        this.productIsArchived = productIsArchived;
+        this.modify("product_is_archived", productIsArchived);
         return this;
     }
 

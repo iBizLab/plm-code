@@ -286,6 +286,108 @@ public abstract class AbstractRunResource {
     }
 
     /**
+    * program_plan_by_release 执行用例
+    * 
+    *
+    * @param dto dto
+    * @return Mono<ResponseEntity<RunDTO>>
+    */
+    @ApiOperation(value = "program_plan_by_release", tags = {"执行用例" },  notes = "Run-program_plan_by_release ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-program_plan_by_release-all') or hasPermission(this.runDtoMapping.toDomain(#dto),'ibizplm-Run-program_plan_by_release')")
+    @PostMapping("runs/program_plan_by_release")
+    public Mono<ResponseEntity<ResponseWrapper<RunDTO>>>programPlanByRelease
+            (@Validated @RequestBody RequestWrapper<RunDTO> dto) {
+        ResponseWrapper<RunDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray())
+            dto.getList().forEach(item -> rt.add(programPlanByRelease(item)));
+        else
+            rt.set(programPlanByRelease(dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * program_plan_by_release 执行用例
+    * 
+    *
+    * @param dto dto
+    * @return ResponseEntity<RunDTO>
+    */   
+    public RunDTO programPlanByRelease
+            (RunDTO dto) {
+        Run domain = runDtoMapping.toDomain(dto);
+        Run rt = runService.programPlanByRelease(domain);
+        return runDtoMapping.toDto(rt);
+    }
+
+    /**
+    * program_plan_by_sprint 执行用例
+    * 
+    *
+    * @param dto dto
+    * @return Mono<ResponseEntity<RunDTO>>
+    */
+    @ApiOperation(value = "program_plan_by_sprint", tags = {"执行用例" },  notes = "Run-program_plan_by_sprint ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-program_plan_by_sprint-all') or hasPermission(this.runDtoMapping.toDomain(#dto),'ibizplm-Run-program_plan_by_sprint')")
+    @PostMapping("runs/program_plan_by_sprint")
+    public Mono<ResponseEntity<ResponseWrapper<RunDTO>>>programPlanBySprint
+            (@Validated @RequestBody RequestWrapper<RunDTO> dto) {
+        ResponseWrapper<RunDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray())
+            dto.getList().forEach(item -> rt.add(programPlanBySprint(item)));
+        else
+            rt.set(programPlanBySprint(dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * program_plan_by_sprint 执行用例
+    * 
+    *
+    * @param dto dto
+    * @return ResponseEntity<RunDTO>
+    */   
+    public RunDTO programPlanBySprint
+            (RunDTO dto) {
+        Run domain = runDtoMapping.toDomain(dto);
+        Run rt = runService.programPlanBySprint(domain);
+        return runDtoMapping.toDto(rt);
+    }
+
+    /**
+    * program_plan_by_workitem 执行用例
+    * 
+    *
+    * @param dto dto
+    * @return Mono<ResponseEntity<RunDTO>>
+    */
+    @ApiOperation(value = "program_plan_by_workitem", tags = {"执行用例" },  notes = "Run-program_plan_by_workitem ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-program_plan_by_workitem-all') or hasPermission(this.runDtoMapping.toDomain(#dto),'ibizplm-Run-program_plan_by_workitem')")
+    @PostMapping("runs/program_plan_by_workitem")
+    public Mono<ResponseEntity<ResponseWrapper<RunDTO>>>programPlanByWorkitem
+            (@Validated @RequestBody RequestWrapper<RunDTO> dto) {
+        ResponseWrapper<RunDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray())
+            dto.getList().forEach(item -> rt.add(programPlanByWorkitem(item)));
+        else
+            rt.set(programPlanByWorkitem(dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * program_plan_by_workitem 执行用例
+    * 
+    *
+    * @param dto dto
+    * @return ResponseEntity<RunDTO>
+    */   
+    public RunDTO programPlanByWorkitem
+            (RunDTO dto) {
+        Run domain = runDtoMapping.toDomain(dto);
+        Run rt = runService.programPlanByWorkitem(domain);
+        return runDtoMapping.toDto(rt);
+    }
+
+    /**
     * reset_not_test 执行用例
     * 
     *
@@ -709,6 +811,117 @@ public abstract class AbstractRunResource {
         Run domain = runDtoMapping.toDomain(dto);
         domain.setCaseId(caseId);
         Run rt = runService.programPlan(domain);
+        return runDtoMapping.toDto(rt);
+    }
+
+    /**
+    * program_plan_by_release 执行用例
+    * 
+    *
+    * @param caseId caseId
+    * @param dto dto
+    * @return Mono<ResponseEntity<RunDTO>>
+    */
+    @ApiOperation(value = "program_plan_by_release", tags = {"执行用例" },  notes = "Run-program_plan_by_release ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-program_plan_by_release-all') or hasPermission('test_case',#caseId,this.runDtoMapping.toDomain(#dto),'ibizplm-Run-program_plan_by_release')")
+    @PostMapping("test_cases/{caseId}/runs/program_plan_by_release")
+    public Mono<ResponseEntity<ResponseWrapper<RunDTO>>>programPlanByReleaseByCaseId
+            (@PathVariable("caseId") String caseId, @Validated @RequestBody RequestWrapper<RunDTO> dto) {
+        ResponseWrapper<RunDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray())
+            dto.getList().forEach(item -> rt.add(programPlanByReleaseByCaseId(caseId, item)));
+        else
+            rt.set(programPlanByReleaseByCaseId(caseId, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * program_plan_by_release 执行用例
+    * 
+    *
+    * @param caseId caseId
+    * @param dto dto
+    * @return ResponseEntity<RunDTO>
+    */   
+    public RunDTO programPlanByReleaseByCaseId
+            (String caseId, RunDTO dto) {
+        Run domain = runDtoMapping.toDomain(dto);
+        domain.setCaseId(caseId);
+        Run rt = runService.programPlanByRelease(domain);
+        return runDtoMapping.toDto(rt);
+    }
+
+    /**
+    * program_plan_by_sprint 执行用例
+    * 
+    *
+    * @param caseId caseId
+    * @param dto dto
+    * @return Mono<ResponseEntity<RunDTO>>
+    */
+    @ApiOperation(value = "program_plan_by_sprint", tags = {"执行用例" },  notes = "Run-program_plan_by_sprint ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-program_plan_by_sprint-all') or hasPermission('test_case',#caseId,this.runDtoMapping.toDomain(#dto),'ibizplm-Run-program_plan_by_sprint')")
+    @PostMapping("test_cases/{caseId}/runs/program_plan_by_sprint")
+    public Mono<ResponseEntity<ResponseWrapper<RunDTO>>>programPlanBySprintByCaseId
+            (@PathVariable("caseId") String caseId, @Validated @RequestBody RequestWrapper<RunDTO> dto) {
+        ResponseWrapper<RunDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray())
+            dto.getList().forEach(item -> rt.add(programPlanBySprintByCaseId(caseId, item)));
+        else
+            rt.set(programPlanBySprintByCaseId(caseId, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * program_plan_by_sprint 执行用例
+    * 
+    *
+    * @param caseId caseId
+    * @param dto dto
+    * @return ResponseEntity<RunDTO>
+    */   
+    public RunDTO programPlanBySprintByCaseId
+            (String caseId, RunDTO dto) {
+        Run domain = runDtoMapping.toDomain(dto);
+        domain.setCaseId(caseId);
+        Run rt = runService.programPlanBySprint(domain);
+        return runDtoMapping.toDto(rt);
+    }
+
+    /**
+    * program_plan_by_workitem 执行用例
+    * 
+    *
+    * @param caseId caseId
+    * @param dto dto
+    * @return Mono<ResponseEntity<RunDTO>>
+    */
+    @ApiOperation(value = "program_plan_by_workitem", tags = {"执行用例" },  notes = "Run-program_plan_by_workitem ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-program_plan_by_workitem-all') or hasPermission('test_case',#caseId,this.runDtoMapping.toDomain(#dto),'ibizplm-Run-program_plan_by_workitem')")
+    @PostMapping("test_cases/{caseId}/runs/program_plan_by_workitem")
+    public Mono<ResponseEntity<ResponseWrapper<RunDTO>>>programPlanByWorkitemByCaseId
+            (@PathVariable("caseId") String caseId, @Validated @RequestBody RequestWrapper<RunDTO> dto) {
+        ResponseWrapper<RunDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray())
+            dto.getList().forEach(item -> rt.add(programPlanByWorkitemByCaseId(caseId, item)));
+        else
+            rt.set(programPlanByWorkitemByCaseId(caseId, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * program_plan_by_workitem 执行用例
+    * 
+    *
+    * @param caseId caseId
+    * @param dto dto
+    * @return ResponseEntity<RunDTO>
+    */   
+    public RunDTO programPlanByWorkitemByCaseId
+            (String caseId, RunDTO dto) {
+        Run domain = runDtoMapping.toDomain(dto);
+        domain.setCaseId(caseId);
+        Run rt = runService.programPlanByWorkitem(domain);
         return runDtoMapping.toDto(rt);
     }
 
@@ -1163,6 +1376,123 @@ public abstract class AbstractRunResource {
     }
 
     /**
+    * program_plan_by_release 执行用例
+    * 
+    *
+    * @param testLibraryId testLibraryId
+    * @param caseId caseId
+    * @param dto dto
+    * @return Mono<ResponseEntity<RunDTO>>
+    */
+    @ApiOperation(value = "program_plan_by_release", tags = {"执行用例" },  notes = "Run-program_plan_by_release ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-program_plan_by_release-all') or hasPermission('library',#testLibraryId,this.runDtoMapping.toDomain(#dto),'ibizplm-Run-program_plan_by_release')")
+    @PostMapping("libraries/{testLibraryId}/test_cases/{caseId}/runs/program_plan_by_release")
+    public Mono<ResponseEntity<ResponseWrapper<RunDTO>>>programPlanByReleaseByTestLibraryIdAndCaseId
+            (@PathVariable("testLibraryId") String testLibraryId, @PathVariable("caseId") String caseId, @Validated @RequestBody RequestWrapper<RunDTO> dto) {
+        ResponseWrapper<RunDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray())
+            dto.getList().forEach(item -> rt.add(programPlanByReleaseByTestLibraryIdAndCaseId(testLibraryId, caseId, item)));
+        else
+            rt.set(programPlanByReleaseByTestLibraryIdAndCaseId(testLibraryId, caseId, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * program_plan_by_release 执行用例
+    * 
+    *
+    * @param testLibraryId testLibraryId
+    * @param caseId caseId
+    * @param dto dto
+    * @return ResponseEntity<RunDTO>
+    */   
+    public RunDTO programPlanByReleaseByTestLibraryIdAndCaseId
+            (String testLibraryId, String caseId, RunDTO dto) {
+        Run domain = runDtoMapping.toDomain(dto);
+        domain.setCaseId(caseId);
+        Run rt = runService.programPlanByRelease(domain);
+        return runDtoMapping.toDto(rt);
+    }
+
+    /**
+    * program_plan_by_sprint 执行用例
+    * 
+    *
+    * @param testLibraryId testLibraryId
+    * @param caseId caseId
+    * @param dto dto
+    * @return Mono<ResponseEntity<RunDTO>>
+    */
+    @ApiOperation(value = "program_plan_by_sprint", tags = {"执行用例" },  notes = "Run-program_plan_by_sprint ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-program_plan_by_sprint-all') or hasPermission('library',#testLibraryId,this.runDtoMapping.toDomain(#dto),'ibizplm-Run-program_plan_by_sprint')")
+    @PostMapping("libraries/{testLibraryId}/test_cases/{caseId}/runs/program_plan_by_sprint")
+    public Mono<ResponseEntity<ResponseWrapper<RunDTO>>>programPlanBySprintByTestLibraryIdAndCaseId
+            (@PathVariable("testLibraryId") String testLibraryId, @PathVariable("caseId") String caseId, @Validated @RequestBody RequestWrapper<RunDTO> dto) {
+        ResponseWrapper<RunDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray())
+            dto.getList().forEach(item -> rt.add(programPlanBySprintByTestLibraryIdAndCaseId(testLibraryId, caseId, item)));
+        else
+            rt.set(programPlanBySprintByTestLibraryIdAndCaseId(testLibraryId, caseId, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * program_plan_by_sprint 执行用例
+    * 
+    *
+    * @param testLibraryId testLibraryId
+    * @param caseId caseId
+    * @param dto dto
+    * @return ResponseEntity<RunDTO>
+    */   
+    public RunDTO programPlanBySprintByTestLibraryIdAndCaseId
+            (String testLibraryId, String caseId, RunDTO dto) {
+        Run domain = runDtoMapping.toDomain(dto);
+        domain.setCaseId(caseId);
+        Run rt = runService.programPlanBySprint(domain);
+        return runDtoMapping.toDto(rt);
+    }
+
+    /**
+    * program_plan_by_workitem 执行用例
+    * 
+    *
+    * @param testLibraryId testLibraryId
+    * @param caseId caseId
+    * @param dto dto
+    * @return Mono<ResponseEntity<RunDTO>>
+    */
+    @ApiOperation(value = "program_plan_by_workitem", tags = {"执行用例" },  notes = "Run-program_plan_by_workitem ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-program_plan_by_workitem-all') or hasPermission('library',#testLibraryId,this.runDtoMapping.toDomain(#dto),'ibizplm-Run-program_plan_by_workitem')")
+    @PostMapping("libraries/{testLibraryId}/test_cases/{caseId}/runs/program_plan_by_workitem")
+    public Mono<ResponseEntity<ResponseWrapper<RunDTO>>>programPlanByWorkitemByTestLibraryIdAndCaseId
+            (@PathVariable("testLibraryId") String testLibraryId, @PathVariable("caseId") String caseId, @Validated @RequestBody RequestWrapper<RunDTO> dto) {
+        ResponseWrapper<RunDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray())
+            dto.getList().forEach(item -> rt.add(programPlanByWorkitemByTestLibraryIdAndCaseId(testLibraryId, caseId, item)));
+        else
+            rt.set(programPlanByWorkitemByTestLibraryIdAndCaseId(testLibraryId, caseId, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * program_plan_by_workitem 执行用例
+    * 
+    *
+    * @param testLibraryId testLibraryId
+    * @param caseId caseId
+    * @param dto dto
+    * @return ResponseEntity<RunDTO>
+    */   
+    public RunDTO programPlanByWorkitemByTestLibraryIdAndCaseId
+            (String testLibraryId, String caseId, RunDTO dto) {
+        Run domain = runDtoMapping.toDomain(dto);
+        domain.setCaseId(caseId);
+        Run rt = runService.programPlanByWorkitem(domain);
+        return runDtoMapping.toDto(rt);
+    }
+
+    /**
     * reset_not_test 执行用例
     * 
     *
@@ -1607,6 +1937,117 @@ public abstract class AbstractRunResource {
         Run domain = runDtoMapping.toDomain(dto);
         domain.setPlanId(planId);
         Run rt = runService.programPlan(domain);
+        return runDtoMapping.toDto(rt);
+    }
+
+    /**
+    * program_plan_by_release 执行用例
+    * 
+    *
+    * @param planId planId
+    * @param dto dto
+    * @return Mono<ResponseEntity<RunDTO>>
+    */
+    @ApiOperation(value = "program_plan_by_release", tags = {"执行用例" },  notes = "Run-program_plan_by_release ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-program_plan_by_release-all') or hasPermission('test_plan',#planId,this.runDtoMapping.toDomain(#dto),'ibizplm-Run-program_plan_by_release')")
+    @PostMapping("test_plans/{planId}/runs/program_plan_by_release")
+    public Mono<ResponseEntity<ResponseWrapper<RunDTO>>>programPlanByReleaseByPlanId
+            (@PathVariable("planId") String planId, @Validated @RequestBody RequestWrapper<RunDTO> dto) {
+        ResponseWrapper<RunDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray())
+            dto.getList().forEach(item -> rt.add(programPlanByReleaseByPlanId(planId, item)));
+        else
+            rt.set(programPlanByReleaseByPlanId(planId, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * program_plan_by_release 执行用例
+    * 
+    *
+    * @param planId planId
+    * @param dto dto
+    * @return ResponseEntity<RunDTO>
+    */   
+    public RunDTO programPlanByReleaseByPlanId
+            (String planId, RunDTO dto) {
+        Run domain = runDtoMapping.toDomain(dto);
+        domain.setPlanId(planId);
+        Run rt = runService.programPlanByRelease(domain);
+        return runDtoMapping.toDto(rt);
+    }
+
+    /**
+    * program_plan_by_sprint 执行用例
+    * 
+    *
+    * @param planId planId
+    * @param dto dto
+    * @return Mono<ResponseEntity<RunDTO>>
+    */
+    @ApiOperation(value = "program_plan_by_sprint", tags = {"执行用例" },  notes = "Run-program_plan_by_sprint ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-program_plan_by_sprint-all') or hasPermission('test_plan',#planId,this.runDtoMapping.toDomain(#dto),'ibizplm-Run-program_plan_by_sprint')")
+    @PostMapping("test_plans/{planId}/runs/program_plan_by_sprint")
+    public Mono<ResponseEntity<ResponseWrapper<RunDTO>>>programPlanBySprintByPlanId
+            (@PathVariable("planId") String planId, @Validated @RequestBody RequestWrapper<RunDTO> dto) {
+        ResponseWrapper<RunDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray())
+            dto.getList().forEach(item -> rt.add(programPlanBySprintByPlanId(planId, item)));
+        else
+            rt.set(programPlanBySprintByPlanId(planId, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * program_plan_by_sprint 执行用例
+    * 
+    *
+    * @param planId planId
+    * @param dto dto
+    * @return ResponseEntity<RunDTO>
+    */   
+    public RunDTO programPlanBySprintByPlanId
+            (String planId, RunDTO dto) {
+        Run domain = runDtoMapping.toDomain(dto);
+        domain.setPlanId(planId);
+        Run rt = runService.programPlanBySprint(domain);
+        return runDtoMapping.toDto(rt);
+    }
+
+    /**
+    * program_plan_by_workitem 执行用例
+    * 
+    *
+    * @param planId planId
+    * @param dto dto
+    * @return Mono<ResponseEntity<RunDTO>>
+    */
+    @ApiOperation(value = "program_plan_by_workitem", tags = {"执行用例" },  notes = "Run-program_plan_by_workitem ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-program_plan_by_workitem-all') or hasPermission('test_plan',#planId,this.runDtoMapping.toDomain(#dto),'ibizplm-Run-program_plan_by_workitem')")
+    @PostMapping("test_plans/{planId}/runs/program_plan_by_workitem")
+    public Mono<ResponseEntity<ResponseWrapper<RunDTO>>>programPlanByWorkitemByPlanId
+            (@PathVariable("planId") String planId, @Validated @RequestBody RequestWrapper<RunDTO> dto) {
+        ResponseWrapper<RunDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray())
+            dto.getList().forEach(item -> rt.add(programPlanByWorkitemByPlanId(planId, item)));
+        else
+            rt.set(programPlanByWorkitemByPlanId(planId, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * program_plan_by_workitem 执行用例
+    * 
+    *
+    * @param planId planId
+    * @param dto dto
+    * @return ResponseEntity<RunDTO>
+    */   
+    public RunDTO programPlanByWorkitemByPlanId
+            (String planId, RunDTO dto) {
+        Run domain = runDtoMapping.toDomain(dto);
+        domain.setPlanId(planId);
+        Run rt = runService.programPlanByWorkitem(domain);
         return runDtoMapping.toDto(rt);
     }
 
@@ -2057,6 +2498,123 @@ public abstract class AbstractRunResource {
         Run domain = runDtoMapping.toDomain(dto);
         domain.setPlanId(planId);
         Run rt = runService.programPlan(domain);
+        return runDtoMapping.toDto(rt);
+    }
+
+    /**
+    * program_plan_by_release 执行用例
+    * 
+    *
+    * @param libraryId libraryId
+    * @param planId planId
+    * @param dto dto
+    * @return Mono<ResponseEntity<RunDTO>>
+    */
+    @ApiOperation(value = "program_plan_by_release", tags = {"执行用例" },  notes = "Run-program_plan_by_release ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-program_plan_by_release-all') or hasPermission('library',#libraryId,this.runDtoMapping.toDomain(#dto),'ibizplm-Run-program_plan_by_release')")
+    @PostMapping("libraries/{libraryId}/test_plans/{planId}/runs/program_plan_by_release")
+    public Mono<ResponseEntity<ResponseWrapper<RunDTO>>>programPlanByReleaseByLibraryIdAndPlanId
+            (@PathVariable("libraryId") String libraryId, @PathVariable("planId") String planId, @Validated @RequestBody RequestWrapper<RunDTO> dto) {
+        ResponseWrapper<RunDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray())
+            dto.getList().forEach(item -> rt.add(programPlanByReleaseByLibraryIdAndPlanId(libraryId, planId, item)));
+        else
+            rt.set(programPlanByReleaseByLibraryIdAndPlanId(libraryId, planId, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * program_plan_by_release 执行用例
+    * 
+    *
+    * @param libraryId libraryId
+    * @param planId planId
+    * @param dto dto
+    * @return ResponseEntity<RunDTO>
+    */   
+    public RunDTO programPlanByReleaseByLibraryIdAndPlanId
+            (String libraryId, String planId, RunDTO dto) {
+        Run domain = runDtoMapping.toDomain(dto);
+        domain.setPlanId(planId);
+        Run rt = runService.programPlanByRelease(domain);
+        return runDtoMapping.toDto(rt);
+    }
+
+    /**
+    * program_plan_by_sprint 执行用例
+    * 
+    *
+    * @param libraryId libraryId
+    * @param planId planId
+    * @param dto dto
+    * @return Mono<ResponseEntity<RunDTO>>
+    */
+    @ApiOperation(value = "program_plan_by_sprint", tags = {"执行用例" },  notes = "Run-program_plan_by_sprint ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-program_plan_by_sprint-all') or hasPermission('library',#libraryId,this.runDtoMapping.toDomain(#dto),'ibizplm-Run-program_plan_by_sprint')")
+    @PostMapping("libraries/{libraryId}/test_plans/{planId}/runs/program_plan_by_sprint")
+    public Mono<ResponseEntity<ResponseWrapper<RunDTO>>>programPlanBySprintByLibraryIdAndPlanId
+            (@PathVariable("libraryId") String libraryId, @PathVariable("planId") String planId, @Validated @RequestBody RequestWrapper<RunDTO> dto) {
+        ResponseWrapper<RunDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray())
+            dto.getList().forEach(item -> rt.add(programPlanBySprintByLibraryIdAndPlanId(libraryId, planId, item)));
+        else
+            rt.set(programPlanBySprintByLibraryIdAndPlanId(libraryId, planId, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * program_plan_by_sprint 执行用例
+    * 
+    *
+    * @param libraryId libraryId
+    * @param planId planId
+    * @param dto dto
+    * @return ResponseEntity<RunDTO>
+    */   
+    public RunDTO programPlanBySprintByLibraryIdAndPlanId
+            (String libraryId, String planId, RunDTO dto) {
+        Run domain = runDtoMapping.toDomain(dto);
+        domain.setPlanId(planId);
+        Run rt = runService.programPlanBySprint(domain);
+        return runDtoMapping.toDto(rt);
+    }
+
+    /**
+    * program_plan_by_workitem 执行用例
+    * 
+    *
+    * @param libraryId libraryId
+    * @param planId planId
+    * @param dto dto
+    * @return Mono<ResponseEntity<RunDTO>>
+    */
+    @ApiOperation(value = "program_plan_by_workitem", tags = {"执行用例" },  notes = "Run-program_plan_by_workitem ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-program_plan_by_workitem-all') or hasPermission('library',#libraryId,this.runDtoMapping.toDomain(#dto),'ibizplm-Run-program_plan_by_workitem')")
+    @PostMapping("libraries/{libraryId}/test_plans/{planId}/runs/program_plan_by_workitem")
+    public Mono<ResponseEntity<ResponseWrapper<RunDTO>>>programPlanByWorkitemByLibraryIdAndPlanId
+            (@PathVariable("libraryId") String libraryId, @PathVariable("planId") String planId, @Validated @RequestBody RequestWrapper<RunDTO> dto) {
+        ResponseWrapper<RunDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray())
+            dto.getList().forEach(item -> rt.add(programPlanByWorkitemByLibraryIdAndPlanId(libraryId, planId, item)));
+        else
+            rt.set(programPlanByWorkitemByLibraryIdAndPlanId(libraryId, planId, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * program_plan_by_workitem 执行用例
+    * 
+    *
+    * @param libraryId libraryId
+    * @param planId planId
+    * @param dto dto
+    * @return ResponseEntity<RunDTO>
+    */   
+    public RunDTO programPlanByWorkitemByLibraryIdAndPlanId
+            (String libraryId, String planId, RunDTO dto) {
+        Run domain = runDtoMapping.toDomain(dto);
+        domain.setPlanId(planId);
+        Run rt = runService.programPlanByWorkitem(domain);
         return runDtoMapping.toDto(rt);
     }
 

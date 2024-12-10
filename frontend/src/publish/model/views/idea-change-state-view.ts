@@ -73,6 +73,7 @@ export default {
                     singleSelect: true,
                     appCodeListId: 'plmweb.prodmgmt__idea_state',
                     editorType: 'DROPDOWNLIST',
+                    placeHolder: '请选择状态',
                     valueType: 'SIMPLE',
                     editable: true,
                     id: 'state',

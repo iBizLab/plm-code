@@ -44,11 +44,19 @@ public class IdeaTemplateDTO extends DTOBase implements Serializable {
     private String title;
 
     /**
+     * 全局模板
+     */
+    @JsonProperty("is_global")
+    @JSONField(name = "is_global")
+    @ApiModelProperty(value = "全局模板", position = 1)
+    private Integer isGlobal;
+
+    /**
      * 产品标识
      */
     @JsonProperty("product_identifier")
     @JSONField(name = "product_identifier")
-    @ApiModelProperty(value = "产品标识", position = 1)
+    @ApiModelProperty(value = "产品标识", position = 2)
     private String productIdentifier;
 
     /**
@@ -56,7 +64,7 @@ public class IdeaTemplateDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("description")
     @JSONField(name = "description")
-    @ApiModelProperty(value = "描述", position = 2)
+    @ApiModelProperty(value = "描述", position = 3)
     private String description;
 
     /**
@@ -64,7 +72,7 @@ public class IdeaTemplateDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("section_name")
     @JSONField(name = "section_name")
-    @ApiModelProperty(value = "子产品名称", position = 3)
+    @ApiModelProperty(value = "子产品名称", position = 4)
     private String sectionName;
 
     /**
@@ -72,7 +80,7 @@ public class IdeaTemplateDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("section_id")
     @JSONField(name = "section_id")
-    @ApiModelProperty(value = "子产品标识", position = 4)
+    @ApiModelProperty(value = "子产品标识", position = 5)
     private String sectionId;
 
     /**
@@ -80,7 +88,7 @@ public class IdeaTemplateDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("categories")
     @JSONField(name = "categories")
-    @ApiModelProperty(value = "类别路径", position = 5)
+    @ApiModelProperty(value = "类别路径", position = 6)
     private String categories;
 
     /**
@@ -88,7 +96,7 @@ public class IdeaTemplateDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("category_id")
     @JSONField(name = "category_id")
-    @ApiModelProperty(value = "类别标识", position = 6)
+    @ApiModelProperty(value = "类别标识", position = 7)
     private String categoryId;
 
     /**
@@ -96,7 +104,7 @@ public class IdeaTemplateDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("category_name")
     @JSONField(name = "category_name")
-    @ApiModelProperty(value = "名称", position = 7)
+    @ApiModelProperty(value = "名称", position = 8)
     private String categoryName;
 
     /**
@@ -104,7 +112,7 @@ public class IdeaTemplateDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("create_man")
     @JSONField(name = "create_man")
-    @ApiModelProperty(value = "建立人", position = 8)
+    @ApiModelProperty(value = "建立人", position = 9)
     private String createMan;
 
     /**
@@ -113,7 +121,7 @@ public class IdeaTemplateDTO extends DTOBase implements Serializable {
     @JsonProperty("create_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "create_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "建立时间", position = 9)
+    @ApiModelProperty(value = "建立时间", position = 10)
     private Date createTime;
 
     /**
@@ -121,7 +129,7 @@ public class IdeaTemplateDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("id")
     @JSONField(name = "id")
-    @ApiModelProperty(value = "标识", position = 10)
+    @ApiModelProperty(value = "标识", position = 11)
     private String id;
 
     /**
@@ -129,7 +137,7 @@ public class IdeaTemplateDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("name")
     @JSONField(name = "name")
-    @ApiModelProperty(value = "名称", position = 11)
+    @ApiModelProperty(value = "名称", position = 12)
     private String name;
 
     /**
@@ -137,7 +145,7 @@ public class IdeaTemplateDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("product_id")
     @JSONField(name = "product_id")
-    @ApiModelProperty(value = "产品", position = 12)
+    @ApiModelProperty(value = "产品", position = 13)
     private String productId;
 
     /**
@@ -145,7 +153,7 @@ public class IdeaTemplateDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("product_name")
     @JSONField(name = "product_name")
-    @ApiModelProperty(value = "产品名称", position = 13)
+    @ApiModelProperty(value = "产品名称", position = 14)
     private String productName;
 
     /**
@@ -153,7 +161,7 @@ public class IdeaTemplateDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("update_man")
     @JSONField(name = "update_man")
-    @ApiModelProperty(value = "更新人", position = 14)
+    @ApiModelProperty(value = "更新人", position = 15)
     private String updateMan;
 
     /**
@@ -162,7 +170,7 @@ public class IdeaTemplateDTO extends DTOBase implements Serializable {
     @JsonProperty("update_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "update_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "更新时间", position = 15)
+    @ApiModelProperty(value = "更新时间", position = 16)
     private Date updateTime;
 
 
@@ -172,6 +180,15 @@ public class IdeaTemplateDTO extends DTOBase implements Serializable {
     public IdeaTemplateDTO setTitle(String title) {
         this.title = title;
         this.modify("title", title);
+        return this;
+    }
+
+    /**
+     * 设置 [全局模板]
+     */
+    public IdeaTemplateDTO setIsGlobal(Integer isGlobal) {
+        this.isGlobal = isGlobal;
+        this.modify("is_global", isGlobal);
         return this;
     }
 

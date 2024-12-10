@@ -165,6 +165,26 @@ public class Release extends EntityMP implements Serializable
     private BigDecimal allWorkItems;
 
     /**
+    * 项目是否删除
+    */
+    @TableField(value = "project_is_deleted" , exist = false)
+    @DEField(name = "project_is_deleted" , dict = "YesNo")
+    @JSONField(name = "project_is_deleted")
+    @JsonProperty("project_is_deleted")
+    @ApiModelProperty(value = "project_is_deleted", notes = "项目是否删除")
+    private Integer projectIsDeleted;
+
+    /**
+    * 项目类型
+    */
+    @TableField(value = "project_type" , exist = false)
+    @DEField(name = "project_type" , dict = "project_type")
+    @JSONField(name = "project_type")
+    @JsonProperty("project_type")
+    @ApiModelProperty(value = "project_type", notes = "项目类型")
+    private String projectType;
+
+    /**
     * 标识
     */
     @Id
@@ -362,6 +382,24 @@ public class Release extends EntityMP implements Serializable
     public Release setAllWorkItems(BigDecimal allWorkItems) {
         this.allWorkItems = allWorkItems;
         this.modify("all_work_items", allWorkItems);
+        return this;
+    }
+
+    /**
+    * 设置 [项目是否删除]
+    */
+    public Release setProjectIsDeleted(Integer projectIsDeleted) {
+        this.projectIsDeleted = projectIsDeleted;
+        this.modify("project_is_deleted", projectIsDeleted);
+        return this;
+    }
+
+    /**
+    * 设置 [项目类型]
+    */
+    public Release setProjectType(String projectType) {
+        this.projectType = projectType;
+        this.modify("project_type", projectType);
         return this;
     }
 

@@ -388,6 +388,16 @@ public interface ProductService extends IService<Product> {
     }
 
     /**
+    * testCounter
+    * 
+    * @param et
+    * @return
+    */
+    default Product testCounter(Product et) {
+        return et;
+    }
+
+    /**
     * unFavorite
     * 
     * @param et

@@ -334,11 +334,27 @@ public class RunDTO extends DTOBase implements Serializable {
     private String commentCount;
 
     /**
+     * 测试库是否删除
+     */
+    @JsonProperty("library_is_deleted")
+    @JSONField(name = "library_is_deleted")
+    @ApiModelProperty(value = "测试库是否删除", position = 37)
+    private Integer libraryIsDeleted;
+
+    /**
+     * 测试库是否归档
+     */
+    @JsonProperty("library_is_archived")
+    @JSONField(name = "library_is_archived")
+    @ApiModelProperty(value = "测试库是否归档", position = 38)
+    private Integer libraryIsArchived;
+
+    /**
      * 关注人
      */
     @JsonProperty("attentions_imp")
     @JSONField(name = "attentions_imp")
-    @ApiModelProperty(value = "关注人", position = 37)
+    @ApiModelProperty(value = "关注人", position = 39)
     private String attentionsImp;
 
     /**
@@ -346,7 +362,7 @@ public class RunDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("recent_create_days")
     @JSONField(name = "recent_create_days")
-    @ApiModelProperty(value = "最近创建日期", position = 38)
+    @ApiModelProperty(value = "最近创建日期", position = 40)
     private Integer recentCreateDays;
 
     /**
@@ -354,7 +370,7 @@ public class RunDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("case_id")
     @JSONField(name = "case_id")
-    @ApiModelProperty(value = "测试用例标识", position = 39)
+    @ApiModelProperty(value = "测试用例标识", position = 41)
     private String caseId;
 
     /**
@@ -362,7 +378,7 @@ public class RunDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("case_name")
     @JSONField(name = "case_name")
-    @ApiModelProperty(value = "名称", position = 40)
+    @ApiModelProperty(value = "名称", position = 42)
     private String caseName;
 
     /**
@@ -370,7 +386,7 @@ public class RunDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("create_man")
     @JSONField(name = "create_man")
-    @ApiModelProperty(value = "建立人", position = 41)
+    @ApiModelProperty(value = "建立人", position = 43)
     private String createMan;
 
     /**
@@ -379,7 +395,7 @@ public class RunDTO extends DTOBase implements Serializable {
     @JsonProperty("create_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "create_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "建立时间", position = 42)
+    @ApiModelProperty(value = "建立时间", position = 44)
     private Date createTime;
 
     /**
@@ -387,7 +403,7 @@ public class RunDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("id")
     @JSONField(name = "id")
-    @ApiModelProperty(value = "标识", position = 43)
+    @ApiModelProperty(value = "标识", position = 45)
     private String id;
 
     /**
@@ -395,7 +411,7 @@ public class RunDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("name")
     @JSONField(name = "name")
-    @ApiModelProperty(value = "名称", position = 44)
+    @ApiModelProperty(value = "名称", position = 46)
     private String name;
 
     /**
@@ -403,7 +419,7 @@ public class RunDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("plan_id")
     @JSONField(name = "plan_id")
-    @ApiModelProperty(value = "测试计划标识", position = 45)
+    @ApiModelProperty(value = "测试计划标识", position = 47)
     private String planId;
 
     /**
@@ -411,7 +427,7 @@ public class RunDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("update_man")
     @JSONField(name = "update_man")
-    @ApiModelProperty(value = "更新人", position = 46)
+    @ApiModelProperty(value = "更新人", position = 48)
     private String updateMan;
 
     /**
@@ -420,7 +436,7 @@ public class RunDTO extends DTOBase implements Serializable {
     @JsonProperty("update_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "update_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "更新时间", position = 47)
+    @ApiModelProperty(value = "更新时间", position = 49)
     private Date updateTime;
 
 
@@ -736,6 +752,24 @@ public class RunDTO extends DTOBase implements Serializable {
     public RunDTO setCommentCount(String commentCount) {
         this.commentCount = commentCount;
         this.modify("comment_count", commentCount);
+        return this;
+    }
+
+    /**
+     * 设置 [测试库是否删除]
+     */
+    public RunDTO setLibraryIsDeleted(Integer libraryIsDeleted) {
+        this.libraryIsDeleted = libraryIsDeleted;
+        this.modify("library_is_deleted", libraryIsDeleted);
+        return this;
+    }
+
+    /**
+     * 设置 [测试库是否归档]
+     */
+    public RunDTO setLibraryIsArchived(Integer libraryIsArchived) {
+        this.libraryIsArchived = libraryIsArchived;
+        this.modify("library_is_archived", libraryIsArchived);
         return this;
     }
 

@@ -366,6 +366,25 @@ public interface IdeaMapper extends BaseMapper<Idea> {
     List<Idea> listMyFilter(@Param("ctx") IdeaSearchContext context, @Param("ew") Wrapper<Idea> wrapper);
 
     /**
+     * 数据集合my_summary_idea分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Idea> searchMySummaryIdea(IPage<Idea> page, @Param("ctx") IdeaSearchContext context, @Param("ew") Wrapper<Idea> wrapper);
+    
+    /**
+     * 数据集合my_summary_idea查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Idea> listMySummaryIdea(@Param("ctx") IdeaSearchContext context, @Param("ew") Wrapper<Idea> wrapper);
+
+    /**
      * 数据集合normal分页查询
      * 
      * @param page

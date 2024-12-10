@@ -94,10 +94,10 @@ export default {
           codeName: 'estimated_update',
           defiupdateDetails: [
             {
-              id: 'workload_schedule',
+              id: 'remaining_workload',
             },
             {
-              id: 'remaining_workload',
+              id: 'workload_schedule',
             },
           ],
           scriptCode:
@@ -431,17 +431,17 @@ export default {
                                     '{"type":"plmweb.base__recent_visite"}',
                                   enableEdit: 'true',
                                   QUOTEFIELDMAP:
-                                    '{"identifier":"show_identifier","name":"name","id":"id","type":"owner_subtype"}',
+                                    '{"identifier":"show_identifier","name":"name","id":"id","type":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
                                   QUOTEPARAMS:
                                     '{"page":0,"size":20,"sort":"update_time,desc"}',
                                   enableFullScreen: 'true',
                                   MODE: 'default',
                                   QUOTEINSCRIPT:
-                                    'value.replaceAll(/\\#\\{\\"id\\":\\"(.+?)\\",\\"name\\":\\"(.+?)\\",\\"identifier\\":\\"(.+?)\\",\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g,(x, id, name, identifier, icon) => {return controller.getNodeInfo({ id, name, identifier, icon })}).replaceAll(/\\#\\{id=(.+?),name=(.+?),identifier=(.+?),icon=((.|[\\t\\r\\f\\n\\s])+?)\\}/g,(x, id, name, identifier, icon) => {return controller.getNodeInfo({ id, name, identifier, icon })})',
+                                    'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\"),\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); return controller.getNodeInfo({ icon, ...item })})',
                                   USERSCRIPT:
                                     '`@{"id":"${data.id}","name":"${data.name}"}`',
                                   QUOTESCRIPT:
-                                    '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","icon":"${data.icon}"}`',
+                                    '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.type}","recent_parent":"${data.recent_parent}","icon":"${data.icon}"}`',
                                   USERURL:
                                     "`${context.library ? `libraries/${context.library}/library_members/fetch_default` : context.product ? `products/${context.product}/product_members/fetch_default` : context.project ? `projects/${context.project}/project_members/fetch_default` : ''}`",
                                   USERFIELDMAP:
@@ -747,17 +747,17 @@ export default {
                                     '{"type":"plmweb.base__recent_visite"}',
                                   enableEdit: 'true',
                                   QUOTEFIELDMAP:
-                                    '{"identifier":"show_identifier","name":"name","id":"id","type":"owner_subtype"}',
+                                    '{"identifier":"show_identifier","name":"name","id":"id","type":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
                                   QUOTEPARAMS:
                                     '{"page":0,"size":20,"sort":"update_time,desc"}',
                                   enableFullScreen: 'true',
                                   MODE: 'default',
                                   QUOTEINSCRIPT:
-                                    'value.replaceAll(/\\#\\{\\"id\\":\\"(.+?)\\",\\"name\\":\\"(.+?)\\",\\"identifier\\":\\"(.+?)\\",\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g,(x, id, name, identifier, icon) => {return controller.getNodeInfo({ id, name, identifier, icon })}).replaceAll(/\\#\\{id=(.+?),name=(.+?),identifier=(.+?),icon=((.|[\\t\\r\\f\\n\\s])+?)\\}/g,(x, id, name, identifier, icon) => {return controller.getNodeInfo({ id, name, identifier, icon })})',
+                                    'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\"),\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); return controller.getNodeInfo({ icon, ...item })})',
                                   USERSCRIPT:
                                     '`@{"id":"${data.id}","name":"${data.name}"}`',
                                   QUOTESCRIPT:
-                                    '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","icon":"${data.icon}"}`',
+                                    '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.type}","recent_parent":"${data.recent_parent}","icon":"${data.icon}"}`',
                                   USERURL:
                                     "`${context.library ? `libraries/${context.library}/library_members/fetch_default` : context.product ? `products/${context.product}/product_members/fetch_default` : context.project ? `projects/${context.project}/project_members/fetch_default` : ''}`",
                                   USERFIELDMAP:
@@ -839,8 +839,9 @@ export default {
                                     dataItemName: 'name',
                                     excelCaption: '名称',
                                     appDEFieldId: 'name',
+                                    deuiactionId:
+                                      'attachment_preview@attachment',
                                     valueType: 'SIMPLE',
-                                    enableRowEdit: true,
                                     aggMode: 'NONE',
                                     align: 'LEFT',
                                     capLanguageRes: {
@@ -882,7 +883,6 @@ export default {
                                     excelCaption: '所属数据标识',
                                     appDEFieldId: 'owner_id',
                                     valueType: 'SIMPLE',
-                                    enableRowEdit: true,
                                     aggMode: 'NONE',
                                     align: 'LEFT',
                                     caption: '所属数据标识',
@@ -992,36 +992,6 @@ export default {
                                   },
                                 ],
                                 degridEditItems: [
-                                  {
-                                    caption: '名称',
-                                    codeName: 'name',
-                                    enableCond: 3,
-                                    appDEFieldId: 'name',
-                                    editor: {
-                                      maxLength: 200,
-                                      editorType: 'TEXTBOX',
-                                      valueType: 'SIMPLE',
-                                      editable: true,
-                                      id: 'name',
-                                    },
-                                    allowEmpty: true,
-                                    id: 'name',
-                                  },
-                                  {
-                                    caption: '所属数据标识',
-                                    codeName: 'owner_id',
-                                    enableCond: 3,
-                                    appDEFieldId: 'owner_id',
-                                    editor: {
-                                      maxLength: 100,
-                                      editorType: 'TEXTBOX',
-                                      valueType: 'SIMPLE',
-                                      editable: true,
-                                      id: 'owner_id',
-                                    },
-                                    allowEmpty: true,
-                                    id: 'owner_id',
-                                  },
                                   {
                                     caption: '标识',
                                     codeName: 'srfkey',
@@ -2698,6 +2668,16 @@ export default {
           appDataEntityId: 'plmweb.test_case',
           triggerType: 'CTRLEVENT',
           id: 'get_actual_workload',
+        },
+        {
+          eventNames: 'onClick',
+          itemName: 'precondition',
+          logicTag: 'form',
+          logicType: 'SCRIPT',
+          scriptCode:
+            "const tempContext = context.clone();\r\ntempContext.srfkey = data[0].id;\r\nibiz.commands.execute(\r\n    'ibiz.app-view.open',\r\n    'plmweb.work_item_main_view',\r\n    tempContext,\r\n    viewParam,\r\n);",
+          triggerType: 'CTRLEVENT',
+          id: 'openlink',
         },
       ],
       controlParam: {

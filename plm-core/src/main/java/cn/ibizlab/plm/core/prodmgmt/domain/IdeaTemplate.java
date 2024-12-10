@@ -49,6 +49,16 @@ public class IdeaTemplate extends EntityMP implements Serializable
     private String title;
 
     /**
+    * 全局模板
+    */
+    @TableField(value = "is_global")
+    @DEField(name = "is_global" , defaultValue = "0" , dict = "YesNo")
+    @JSONField(name = "is_global")
+    @JsonProperty("is_global")
+    @ApiModelProperty(value = "is_global", notes = "全局模板")
+    private Integer isGlobal;
+
+    /**
     * 产品标识
     */
     @TableField(value = "product_identifier" , exist = false)
@@ -227,6 +237,15 @@ public class IdeaTemplate extends EntityMP implements Serializable
     public IdeaTemplate setTitle(String title) {
         this.title = title;
         this.modify("title", title);
+        return this;
+    }
+
+    /**
+    * 设置 [全局模板]
+    */
+    public IdeaTemplate setIsGlobal(Integer isGlobal) {
+        this.isGlobal = isGlobal;
+        this.modify("is_global", isGlobal);
         return this;
     }
 

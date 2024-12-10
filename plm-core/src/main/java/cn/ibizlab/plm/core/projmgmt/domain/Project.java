@@ -21,6 +21,7 @@ import lombok.experimental.Accessors;
 import io.swagger.annotations.*;
 import com.baomidou.mybatisplus.annotation.*;
 import com.baomidou.mybatisplus.core.toolkit.IdWorker;
+import cn.ibizlab.plm.core.projmgmt.domain.ProjectState;
 import cn.ibizlab.plm.core.base.domain.CommonFlow;
 import cn.ibizlab.plm.core.projmgmt.domain.Board;
 import cn.ibizlab.plm.core.projmgmt.domain.Entry;
@@ -67,13 +68,13 @@ public class Project extends EntityMP implements Serializable
     private String visibility;
 
     /**
-    * 状态
+    * 项目状态
     */
     @TableField(value = "state")
-    @DEField(name = "state" , dict = "project_state")
+    @DEField(name = "state" , defaultValue = "pending" , dict = "dyna_project_state")
     @JSONField(name = "state")
     @JsonProperty("state")
-    @ApiModelProperty(value = "state", notes = "状态")
+    @ApiModelProperty(value = "state", notes = "项目状态")
     private String state;
 
     /**
@@ -279,6 +280,58 @@ public class Project extends EntityMP implements Serializable
     private BigDecimal schedule;
 
     /**
+    * 实际开始时间
+    */
+    @TableField(value = "actual_start_at")
+    @DEField(name = "actual_start_at")
+    @JsonFormat(pattern = "yyyy-MM-dd", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "actual_start_at" , format = "yyyy-MM-dd")
+    @JsonProperty("actual_start_at")
+    @ApiModelProperty(value = "actual_start_at", notes = "实际开始时间")
+    private Date actualStartAt;
+
+    /**
+    * 实际结束时间
+    */
+    @TableField(value = "actual_end_at")
+    @DEField(name = "actual_end_at")
+    @JsonFormat(pattern = "yyyy-MM-dd", locale = "zh", timezone = "GMT+8")
+    @JSONField(name = "actual_end_at" , format = "yyyy-MM-dd")
+    @JsonProperty("actual_end_at")
+    @ApiModelProperty(value = "actual_end_at", notes = "实际结束时间")
+    private Date actualEndAt;
+
+    /**
+    * 预计工时
+    */
+    @TableField(value = "expected_time")
+    @DEField(name = "expected_time")
+    @JSONField(name = "expected_time")
+    @JsonProperty("expected_time")
+    @ApiModelProperty(value = "expected_time", notes = "预计工时")
+    private String expectedTime;
+
+    /**
+    * 消耗工时
+    */
+    @TableField(value = "consume_time")
+    @DEField(name = "consume_time")
+    @JSONField(name = "consume_time")
+    @JsonProperty("consume_time")
+    @ApiModelProperty(value = "consume_time", notes = "消耗工时")
+    private String consumeTime;
+
+    /**
+    * 状态类型
+    */
+    @TableField(value = "state_type" , exist = false)
+    @DEField(name = "state_type" , dict = "project_state_type")
+    @JSONField(name = "state_type")
+    @JsonProperty("state_type")
+    @ApiModelProperty(value = "state_type", notes = "状态类型")
+    private String stateType;
+
+    /**
     * 标识
     */
     @Id
@@ -342,6 +395,16 @@ public class Project extends EntityMP implements Serializable
     private Date updateTime;
 
     /**
+    * 名称
+    */
+    @Transient
+    @TableField(exist = false)
+    @JsonIgnore
+    @JSONField(serialize = false)
+    @ApiModelProperty(value = "project_state", notes = "名称")
+    private ProjectState projectState;
+
+    /**
     * 通用自动规则
     */
     @Transient
@@ -361,7 +424,7 @@ public class Project extends EntityMP implements Serializable
     }
 
     /**
-    * 设置 [状态]
+    * 设置 [项目状态]
     */
     public Project setState(String state) {
         this.state = state;
@@ -546,6 +609,51 @@ public class Project extends EntityMP implements Serializable
     public Project setSchedule(BigDecimal schedule) {
         this.schedule = schedule;
         this.modify("schedule", schedule);
+        return this;
+    }
+
+    /**
+    * 设置 [实际开始时间]
+    */
+    public Project setActualStartAt(Date actualStartAt) {
+        this.actualStartAt = actualStartAt;
+        this.modify("actual_start_at", actualStartAt);
+        return this;
+    }
+
+    /**
+    * 设置 [实际结束时间]
+    */
+    public Project setActualEndAt(Date actualEndAt) {
+        this.actualEndAt = actualEndAt;
+        this.modify("actual_end_at", actualEndAt);
+        return this;
+    }
+
+    /**
+    * 设置 [预计工时]
+    */
+    public Project setExpectedTime(String expectedTime) {
+        this.expectedTime = expectedTime;
+        this.modify("expected_time", expectedTime);
+        return this;
+    }
+
+    /**
+    * 设置 [消耗工时]
+    */
+    public Project setConsumeTime(String consumeTime) {
+        this.consumeTime = consumeTime;
+        this.modify("consume_time", consumeTime);
+        return this;
+    }
+
+    /**
+    * 设置 [状态类型]
+    */
+    public Project setStateType(String stateType) {
+        this.stateType = stateType;
+        this.modify("state_type", stateType);
         return this;
     }
 

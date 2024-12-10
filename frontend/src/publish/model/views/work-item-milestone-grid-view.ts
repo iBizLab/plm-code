@@ -100,11 +100,22 @@ export default {
         {
           actionLevel: 100,
           noPrivDisplayMode: 2,
-          uiactionId: 'new_waterfall_milestone@work_item',
+          uiactionId: 'new_dyna_waterfall_milestone@work_item',
           uiactionTarget: 'NONE',
           valid: true,
           caption: '新建里程碑',
           itemType: 'DEUIACTION',
+          controlLogics: [
+            {
+              itemName: 'deuiaction1',
+              logicTag: 'toolbar',
+              logicType: 'SCRIPT',
+              scriptCode:
+                "context.project_type == 'waterfall' && context.srfreadonly == false",
+              triggerType: 'ITEMVISIBLE',
+              id: 'deuiaction1',
+            },
+          ],
           sysImage: {
             cssClass: 'fa fa-plus',
             glyph: 'xf067@FontAwesome',
@@ -113,6 +124,34 @@ export default {
           showCaption: true,
           showIcon: true,
           id: 'deuiaction1',
+        },
+        {
+          actionLevel: 100,
+          noPrivDisplayMode: 2,
+          uiactionId: 'dyna_new_hybrid_milestone@work_item',
+          uiactionTarget: 'NONE',
+          valid: true,
+          caption: '新建里程碑',
+          itemType: 'DEUIACTION',
+          controlLogics: [
+            {
+              itemName: 'deuiaction3',
+              logicTag: 'toolbar',
+              logicType: 'SCRIPT',
+              scriptCode:
+                "context.project_type == 'hybrid' && context.srfreadonly == false",
+              triggerType: 'ITEMVISIBLE',
+              id: 'deuiaction3',
+            },
+          ],
+          sysImage: {
+            cssClass: 'fa fa-plus',
+            glyph: 'xf067@FontAwesome',
+          },
+          tooltip: '新建里程碑',
+          showCaption: true,
+          showIcon: true,
+          id: 'deuiaction3',
         },
         {
           itemType: 'SEPERATOR',

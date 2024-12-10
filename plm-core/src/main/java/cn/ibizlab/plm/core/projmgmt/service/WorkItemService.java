@@ -27,6 +27,7 @@ import cn.ibizlab.plm.core.base.domain.CommonFlow;
 import cn.ibizlab.plm.core.projmgmt.domain.SprintAlteration;
 import cn.ibizlab.plm.core.base.domain.Attention;
 import cn.ibizlab.plm.core.base.domain.Comment;
+import cn.ibizlab.plm.core.base.domain.Executor;
 import cn.ibizlab.plm.core.base.domain.Recent;
 import cn.ibizlab.plm.core.base.domain.Relation;
 import cn.ibizlab.plm.core.projmgmt.domain.TransitionHistory;
@@ -148,6 +149,16 @@ public interface WorkItemService extends IService<WorkItem> {
     * @return
     */
     List<WorkItem> get(List<WorkItem> entities);
+
+    /**
+    * getTemp
+    * 
+    * @param key
+    * @return
+    */
+    default WorkItem getTemp(String key) {
+        return null;
+    }
 
     /**
     * 草稿
@@ -278,12 +289,32 @@ public interface WorkItemService extends IService<WorkItem> {
     }
 
     /**
+    * countMyTodo
+    * 
+    * @param et
+    * @return
+    */
+    default WorkItem countMyTodo(WorkItem et) {
+        return et;
+    }
+
+    /**
     * createPlanSnapshot
     * 
     * @param et
     * @return
     */
     default WorkItem createPlanSnapshot(WorkItem et) {
+        return et;
+    }
+
+    /**
+    * customDraft
+    * 
+    * @param et
+    * @return
+    */
+    default WorkItem customDraft(WorkItem et) {
         return et;
     }
 
@@ -750,6 +781,22 @@ public interface WorkItemService extends IService<WorkItem> {
     List<WorkItem> listChild(WorkItemSearchContext context);
 
     /**
+    * fetchChoose
+    * 
+    * @param context
+    * @return
+    */
+    Page<WorkItem> fetchChoose(WorkItemSearchContext context);
+
+    /**
+    * listChoose
+    * 
+    * @param context
+    * @return
+    */
+    List<WorkItem> listChoose(WorkItemSearchContext context);
+
+    /**
     * fetchChooseChild
     * 
     * @param context
@@ -780,6 +827,22 @@ public interface WorkItemService extends IService<WorkItem> {
     * @return
     */
     List<WorkItem> listChooseDependency(WorkItemSearchContext context);
+
+    /**
+    * fetchChooseParentWorkItem
+    * 
+    * @param context
+    * @return
+    */
+    Page<WorkItem> fetchChooseParentWorkItem(WorkItemSearchContext context);
+
+    /**
+    * listChooseParentWorkItem
+    * 
+    * @param context
+    * @return
+    */
+    List<WorkItem> listChooseParentWorkItem(WorkItemSearchContext context);
 
     /**
     * fetchCommentNotifyAssignee
@@ -990,6 +1053,54 @@ public interface WorkItemService extends IService<WorkItem> {
     List<WorkItem> listMyFilter(WorkItemSearchContext context);
 
     /**
+    * fetchMySummaryBug
+    * 
+    * @param context
+    * @return
+    */
+    Page<WorkItem> fetchMySummaryBug(WorkItemSearchContext context);
+
+    /**
+    * listMySummaryBug
+    * 
+    * @param context
+    * @return
+    */
+    List<WorkItem> listMySummaryBug(WorkItemSearchContext context);
+
+    /**
+    * fetchMySummaryOther
+    * 
+    * @param context
+    * @return
+    */
+    Page<WorkItem> fetchMySummaryOther(WorkItemSearchContext context);
+
+    /**
+    * listMySummaryOther
+    * 
+    * @param context
+    * @return
+    */
+    List<WorkItem> listMySummaryOther(WorkItemSearchContext context);
+
+    /**
+    * fetchMySummaryTask
+    * 
+    * @param context
+    * @return
+    */
+    Page<WorkItem> fetchMySummaryTask(WorkItemSearchContext context);
+
+    /**
+    * listMySummaryTask
+    * 
+    * @param context
+    * @return
+    */
+    List<WorkItem> listMySummaryTask(WorkItemSearchContext context);
+
+    /**
     * fetchMyTodo
     * 
     * @param context
@@ -1020,6 +1131,22 @@ public interface WorkItemService extends IService<WorkItem> {
     * @return
     */
     List<WorkItem> listNoBugWorkItem(WorkItemSearchContext context);
+
+    /**
+    * fetchNoCompleted
+    * 
+    * @param context
+    * @return
+    */
+    Page<WorkItem> fetchNoCompleted(WorkItemSearchContext context);
+
+    /**
+    * listNoCompleted
+    * 
+    * @param context
+    * @return
+    */
+    List<WorkItem> listNoCompleted(WorkItemSearchContext context);
 
     /**
     * fetchNormal
@@ -1100,6 +1227,22 @@ public interface WorkItemService extends IService<WorkItem> {
     * @return
     */
     List<WorkItem> listNotifyAssignee(WorkItemSearchContext context);
+
+    /**
+    * fetchOverdueWorkItem
+    * 
+    * @param context
+    * @return
+    */
+    Page<WorkItem> fetchOverdueWorkItem(WorkItemSearchContext context);
+
+    /**
+    * listOverdueWorkItem
+    * 
+    * @param context
+    * @return
+    */
+    List<WorkItem> listOverdueWorkItem(WorkItemSearchContext context);
 
     /**
     * fetchOverviewChart
@@ -2026,6 +2169,10 @@ public interface WorkItemService extends IService<WorkItem> {
     boolean saveByCommonFlow(CommonFlow commonFlow, List<WorkItem> list);
 
     default List<Attention> getAttentions(WorkItem et) {
+        return new ArrayList<>();
+    }
+
+    default List<Executor> getExecutors(WorkItem et) {
         return new ArrayList<>();
     }
 

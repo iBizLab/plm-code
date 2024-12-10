@@ -14,6 +14,7 @@ import cn.ibizlab.util.domain.ImportResult;
 import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.core.projmgmt.domain.Project;
 import cn.ibizlab.plm.core.projmgmt.filter.ProjectSearchContext;
+import cn.ibizlab.plm.core.projmgmt.domain.ProjectState;
 import cn.ibizlab.plm.core.base.domain.CommonFlow;
 import cn.ibizlab.plm.core.projmgmt.domain.Board;
 import cn.ibizlab.plm.core.projmgmt.domain.Entry;
@@ -345,6 +346,16 @@ public interface ProjectService extends IService<Project> {
     }
 
     /**
+    * hybridIndexAddonCounter
+    * 
+    * @param et
+    * @return
+    */
+    default Project hybridIndexAddonCounter(Project et) {
+        return et;
+    }
+
+    /**
     * kanbanIndexAddonCounter
     * 
     * @param et
@@ -371,6 +382,16 @@ public interface ProjectService extends IService<Project> {
     * @return
     */
     default Project otherReSpace(Project et) {
+        return et;
+    }
+
+    /**
+    * projectAutomaticChangeState
+    * 
+    * @param et
+    * @return
+    */
+    default Project projectAutomaticChangeState(Project et) {
         return et;
     }
 
@@ -421,6 +442,16 @@ public interface ProjectService extends IService<Project> {
     * @return
     */
     default Project unFavorite(Project et) {
+        return et;
+    }
+
+    /**
+    * warningCountLogic
+    * 
+    * @param et
+    * @return
+    */
+    default Project warningCountLogic(Project et) {
         return et;
     }
 
@@ -721,6 +752,55 @@ public interface ProjectService extends IService<Project> {
     * @return
     */
     List<Project> listWorkProject(ProjectSearchContext context);
+
+    /**
+    * findByState
+    * @param states
+    * @return
+    */
+    List<Project> findByState(List<String> states);
+    default List<Project> findByState(String state){
+        return findByProjectState(new ProjectState().setId(state));
+    }
+
+    /**
+    * findByProjectState
+    * @param projectState
+    * @return
+    */
+    List<Project> findByProjectState(ProjectState projectState);
+
+    /**
+    * removeByState
+    * @param state
+    * @return
+    */
+    boolean removeByState(String state);
+
+    /**
+    * resetByState
+    * @param state
+    * @return
+    */
+    boolean resetByState(String state);
+
+    /**
+    * saveByState
+    * @param state
+    * @param list
+    * @return
+    */
+    default boolean saveByState(String state, List<Project> list){
+        return getSelf().saveByProjectState(new ProjectState().setId(state),list);
+    }
+
+    /**
+    * saveByProjectState
+    * @param projectState
+    * @param list
+    * @return
+    */
+    boolean saveByProjectState(ProjectState projectState, List<Project> list);
 
     /**
     * findById

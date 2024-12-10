@@ -276,16 +276,16 @@ export default {
                       MAXHEIGHT: '600',
                       QUOTECODELISTMAP: '{"type":"plmweb.base__recent_visite"}',
                       QUOTEFIELDMAP:
-                        '{"identifier":"show_identifier","name":"name","id":"id","type":"owner_subtype"}',
+                        '{"identifier":"show_identifier","name":"name","id":"id","type":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
                       QUOTEPARAMS:
                         '{"page":0,"size":20,"sort":"update_time,desc"}',
                       MODE: 'default',
                       QUOTEINSCRIPT:
-                        'value?.replaceAll(/\\#\\{\\"id\\":\\"(.+?)\\",\\"name\\":\\"(.+?)\\",\\"identifier\\":\\"(.+?)\\",\\"type\\":\\"(.+?)\\",\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g, (x, id, name, identifier, type, icon) => { return controller.getNodeInfo({ id, name, identifier, type, icon })}).replaceAll(/\\#\\{\\"id\\":\\"(.+?)\\",\\"name\\":\\"(.+?)\\",\\"identifier\\":\\"(.+?)\\",\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g,(x, id, name, identifier, icon) => {return controller.getNodeInfo({ id, name, identifier, icon })}).replaceAll(/\\#\\{id=(.+?),name=(.+?),identifier=(.+?),icon=((.|[\\t\\r\\f\\n\\s])+?)\\}/g,(x, id, name, identifier, icon) => {return controller.getNodeInfo({ id, name, identifier, icon })})',
+                        'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\"),\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); return controller.getNodeInfo({ icon, ...item })})',
                       USERSCRIPT:
                         '`@{"id":"${data.id}","name":"${data.name}"}`',
                       QUOTESCRIPT:
-                        '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","type":"${data.type}","icon":"${data.icon}"}`',
+                        '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.type}","recent_parent":"${data.recent_parent}","icon":"${data.icon}"}`',
                       USERURL:
                         '`spaces/${context.space}/space_members/fetch_default`',
                       USERFIELDMAP: '{"id":"user_id","name":"name"}',
@@ -569,8 +569,8 @@ export default {
                         dataItemName: 'name',
                         excelCaption: '名称',
                         appDEFieldId: 'name',
+                        deuiactionId: 'attachment_preview@attachment',
                         valueType: 'SIMPLE',
-                        enableRowEdit: true,
                         aggMode: 'NONE',
                         align: 'LEFT',
                         capLanguageRes: {
@@ -612,7 +612,6 @@ export default {
                         excelCaption: '所属数据标识',
                         appDEFieldId: 'owner_id',
                         valueType: 'SIMPLE',
-                        enableRowEdit: true,
                         aggMode: 'NONE',
                         align: 'LEFT',
                         caption: '所属数据标识',
@@ -722,36 +721,6 @@ export default {
                       },
                     ],
                     degridEditItems: [
-                      {
-                        caption: '名称',
-                        codeName: 'name',
-                        enableCond: 3,
-                        appDEFieldId: 'name',
-                        editor: {
-                          maxLength: 200,
-                          editorType: 'TEXTBOX',
-                          valueType: 'SIMPLE',
-                          editable: true,
-                          id: 'name',
-                        },
-                        allowEmpty: true,
-                        id: 'name',
-                      },
-                      {
-                        caption: '所属数据标识',
-                        codeName: 'owner_id',
-                        enableCond: 3,
-                        appDEFieldId: 'owner_id',
-                        editor: {
-                          maxLength: 100,
-                          editorType: 'TEXTBOX',
-                          valueType: 'SIMPLE',
-                          editable: true,
-                          id: 'owner_id',
-                        },
-                        allowEmpty: true,
-                        id: 'owner_id',
-                      },
                       {
                         caption: '标识',
                         codeName: 'srfkey',

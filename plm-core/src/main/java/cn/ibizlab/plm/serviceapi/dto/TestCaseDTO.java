@@ -310,11 +310,43 @@ public class TestCaseDTO extends DTOBase implements Serializable {
     private String commentCount;
 
     /**
+     * 步骤描述
+     */
+    @JsonProperty("step_desc_imp")
+    @JSONField(name = "step_desc_imp")
+    @ApiModelProperty(value = "步骤描述", position = 34)
+    private String stepDescImp;
+
+    /**
+     * 预期结果
+     */
+    @JsonProperty("step_value_imp")
+    @JSONField(name = "step_value_imp")
+    @ApiModelProperty(value = "预期结果", position = 35)
+    private String stepValueImp;
+
+    /**
+     * 测试库是否删除
+     */
+    @JsonProperty("library_is_deleted")
+    @JSONField(name = "library_is_deleted")
+    @ApiModelProperty(value = "测试库是否删除", position = 36)
+    private Integer libraryIsDeleted;
+
+    /**
+     * 测试库是否归档
+     */
+    @JsonProperty("library_is_archived")
+    @JSONField(name = "library_is_archived")
+    @ApiModelProperty(value = "测试库是否归档", position = 37)
+    private Integer libraryIsArchived;
+
+    /**
      * 当前版本名称
      */
     @JsonProperty("cur_version_name")
     @JSONField(name = "cur_version_name")
-    @ApiModelProperty(value = "当前版本名称", position = 34)
+    @ApiModelProperty(value = "当前版本名称", position = 38)
     private String curVersionName;
 
     /**
@@ -322,7 +354,7 @@ public class TestCaseDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("choose_version_id")
     @JSONField(name = "choose_version_id")
-    @ApiModelProperty(value = "选择版本标识", position = 35)
+    @ApiModelProperty(value = "选择版本标识", position = 39)
     private String chooseVersionId;
 
     /**
@@ -330,7 +362,7 @@ public class TestCaseDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("choose_version_name")
     @JSONField(name = "choose_version_name")
-    @ApiModelProperty(value = "选择版本名称", position = 36)
+    @ApiModelProperty(value = "选择版本名称", position = 40)
     private String chooseVersionName;
 
     /**
@@ -338,7 +370,7 @@ public class TestCaseDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("attentions_imp")
     @JSONField(name = "attentions_imp")
-    @ApiModelProperty(value = "关注人", position = 37)
+    @ApiModelProperty(value = "关注人", position = 41)
     private String attentionsImp;
 
     /**
@@ -346,7 +378,7 @@ public class TestCaseDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("recent_create_days")
     @JSONField(name = "recent_create_days")
-    @ApiModelProperty(value = "最近创建日期", position = 38)
+    @ApiModelProperty(value = "最近创建日期", position = 42)
     private Integer recentCreateDays;
 
     /**
@@ -354,7 +386,7 @@ public class TestCaseDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("create_man")
     @JSONField(name = "create_man")
-    @ApiModelProperty(value = "建立人", position = 39)
+    @ApiModelProperty(value = "建立人", position = 43)
     private String createMan;
 
     /**
@@ -363,7 +395,7 @@ public class TestCaseDTO extends DTOBase implements Serializable {
     @JsonProperty("create_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "create_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "建立时间", position = 40)
+    @ApiModelProperty(value = "建立时间", position = 44)
     private Date createTime;
 
     /**
@@ -371,7 +403,7 @@ public class TestCaseDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("id")
     @JSONField(name = "id")
-    @ApiModelProperty(value = "标识", position = 41)
+    @ApiModelProperty(value = "标识", position = 45)
     private String id;
 
     /**
@@ -379,7 +411,7 @@ public class TestCaseDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("name")
     @JSONField(name = "name")
-    @ApiModelProperty(value = "名称", position = 42)
+    @ApiModelProperty(value = "名称", position = 46)
     private String name;
 
     /**
@@ -387,7 +419,7 @@ public class TestCaseDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("suite_id")
     @JSONField(name = "suite_id")
-    @ApiModelProperty(value = "用例模块标识", position = 43)
+    @ApiModelProperty(value = "用例模块标识", position = 47)
     private String suiteId;
 
     /**
@@ -395,7 +427,7 @@ public class TestCaseDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("suite_name")
     @JSONField(name = "suite_name")
-    @ApiModelProperty(value = "所属模块", position = 44)
+    @ApiModelProperty(value = "所属模块", position = 48)
     private String suiteName;
 
     /**
@@ -403,7 +435,7 @@ public class TestCaseDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("test_library_id")
     @JSONField(name = "test_library_id")
-    @ApiModelProperty(value = "测试库", position = 45)
+    @ApiModelProperty(value = "测试库", position = 49)
     private String testLibraryId;
 
     /**
@@ -411,7 +443,7 @@ public class TestCaseDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("test_library_name")
     @JSONField(name = "test_library_name")
-    @ApiModelProperty(value = "所属测试库", position = 46)
+    @ApiModelProperty(value = "所属测试库", position = 50)
     private String testLibraryName;
 
     /**
@@ -419,7 +451,7 @@ public class TestCaseDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("update_man")
     @JSONField(name = "update_man")
-    @ApiModelProperty(value = "更新人", position = 47)
+    @ApiModelProperty(value = "更新人", position = 51)
     private String updateMan;
 
     /**
@@ -428,7 +460,7 @@ public class TestCaseDTO extends DTOBase implements Serializable {
     @JsonProperty("update_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "update_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "更新时间", position = 48)
+    @ApiModelProperty(value = "更新时间", position = 52)
     private Date updateTime;
 
 
@@ -726,6 +758,42 @@ public class TestCaseDTO extends DTOBase implements Serializable {
     public TestCaseDTO setCommentCount(String commentCount) {
         this.commentCount = commentCount;
         this.modify("comment_count", commentCount);
+        return this;
+    }
+
+    /**
+     * 设置 [步骤描述]
+     */
+    public TestCaseDTO setStepDescImp(String stepDescImp) {
+        this.stepDescImp = stepDescImp;
+        this.modify("step_desc_imp", stepDescImp);
+        return this;
+    }
+
+    /**
+     * 设置 [预期结果]
+     */
+    public TestCaseDTO setStepValueImp(String stepValueImp) {
+        this.stepValueImp = stepValueImp;
+        this.modify("step_value_imp", stepValueImp);
+        return this;
+    }
+
+    /**
+     * 设置 [测试库是否删除]
+     */
+    public TestCaseDTO setLibraryIsDeleted(Integer libraryIsDeleted) {
+        this.libraryIsDeleted = libraryIsDeleted;
+        this.modify("library_is_deleted", libraryIsDeleted);
+        return this;
+    }
+
+    /**
+     * 设置 [测试库是否归档]
+     */
+    public TestCaseDTO setLibraryIsArchived(Integer libraryIsArchived) {
+        this.libraryIsArchived = libraryIsArchived;
+        this.modify("library_is_archived", libraryIsArchived);
         return this;
     }
 

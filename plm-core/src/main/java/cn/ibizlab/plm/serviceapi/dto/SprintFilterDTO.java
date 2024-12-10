@@ -131,7 +131,7 @@ public class SprintFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_id_eq")
     @JSONField(name = "n_id_eq")
-    @ApiModelProperty(value = "标识EQ", position = 140)
+    @ApiModelProperty(value = "标识EQ", position = 160)
 	private String idEQ;
 
     /**
@@ -139,7 +139,7 @@ public class SprintFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_name_like")
     @JSONField(name = "n_name_like")
-    @ApiModelProperty(value = "名称LIKE", position = 150)
+    @ApiModelProperty(value = "名称LIKE", position = 170)
 	private String nameLIKE;
 
     /**
@@ -147,7 +147,7 @@ public class SprintFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_create_man_eq")
     @JSONField(name = "n_create_man_eq")
-    @ApiModelProperty(value = "建立人EQ", position = 160)
+    @ApiModelProperty(value = "建立人EQ", position = 180)
 	private String createManEQ;
 
     /**
@@ -155,7 +155,7 @@ public class SprintFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_create_man_in")
     @JSONField(name = "n_create_man_in")
-    @ApiModelProperty(value = "建立人IN", position = 161)
+    @ApiModelProperty(value = "建立人IN", position = 181)
 	private String createManIN;
 
     /**
@@ -163,7 +163,7 @@ public class SprintFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_create_man_isnotnull")
     @JSONField(name = "n_create_man_isnotnull")
-    @ApiModelProperty(value = "建立人ISNOTNULL", position = 162)
+    @ApiModelProperty(value = "建立人ISNOTNULL", position = 182)
 	private String createManISNOTNULL;
 
     /**
@@ -171,7 +171,7 @@ public class SprintFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_create_man_isnull")
     @JSONField(name = "n_create_man_isnull")
-    @ApiModelProperty(value = "建立人ISNULL", position = 163)
+    @ApiModelProperty(value = "建立人ISNULL", position = 183)
 	private String createManISNULL;
 
     /**
@@ -179,7 +179,7 @@ public class SprintFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_create_man_notin")
     @JSONField(name = "n_create_man_notin")
-    @ApiModelProperty(value = "建立人NOTIN", position = 164)
+    @ApiModelProperty(value = "建立人NOTIN", position = 184)
 	private String createManNOTIN;
 
     /**
@@ -187,7 +187,7 @@ public class SprintFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_project_id_eq")
     @JSONField(name = "n_project_id_eq")
-    @ApiModelProperty(value = "项目标识EQ", position = 200)
+    @ApiModelProperty(value = "项目标识EQ", position = 220)
 	private String projectIdEQ;
 
     /**
@@ -195,7 +195,7 @@ public class SprintFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_pid_eq")
     @JSONField(name = "n_pid_eq")
-    @ApiModelProperty(value = "父标识EQ", position = 210)
+    @ApiModelProperty(value = "父标识EQ", position = 230)
 	private String pidEQ;
 
 

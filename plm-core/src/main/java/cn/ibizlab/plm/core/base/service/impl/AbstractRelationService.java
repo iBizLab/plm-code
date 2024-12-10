@@ -43,6 +43,8 @@ import cn.ibizlab.plm.core.wiki.domain.ArticlePage;
 import cn.ibizlab.plm.core.wiki.service.ArticlePageService;
 import cn.ibizlab.plm.core.prodmgmt.domain.ProductPlan;
 import cn.ibizlab.plm.core.prodmgmt.service.ProductPlanService;
+import cn.ibizlab.plm.core.testmgmt.domain.Run;
+import cn.ibizlab.plm.core.testmgmt.service.RunService;
 import cn.ibizlab.plm.core.testmgmt.domain.TestCase;
 import cn.ibizlab.plm.core.testmgmt.service.TestCaseService;
 import cn.ibizlab.plm.core.prodmgmt.domain.Ticket;
@@ -95,6 +97,10 @@ public abstract class AbstractRelationService extends ServiceImpl<RelationMapper
     @Autowired
     @Lazy
     protected ProductPlanService productPlanService;
+
+    @Autowired
+    @Lazy
+    protected RunService runService;
 
     @Autowired
     @Lazy
@@ -928,6 +934,42 @@ public abstract class AbstractRelationService extends ServiceImpl<RelationMapper
             return true;
 			
 	}
+	public List<Relation> findByTargetRun(Run run){
+        List<Relation> list = findByTargetId(Arrays.asList(run.getId()));
+		return list;
+	}
+	public boolean saveByTargetRun(Run run, List<Relation> list){
+        if(list==null)
+            return true;
+
+        Map<String,Relation> before = findByTargetRun(run).stream().collect(Collectors.toMap(Relation::getId,e->e));
+        List<Relation> update = new ArrayList<>();
+        List<Relation> create = new ArrayList<>();
+
+        for(Relation sub:list) {
+            sub.setTargetId(run.getId());
+            sub.setTargetRun(run);
+            if(ObjectUtils.isEmpty(sub.getId()))
+                before.values().stream()
+                        .filter(e->ObjectUtils.nullSafeEquals(sub.getDefaultKey(true),e.getDefaultKey(true)))
+                        .findFirst().ifPresent(e->sub.setId(e.getId()));
+            if(!ObjectUtils.isEmpty(sub.getId())&&before.containsKey(sub.getId())) {
+                before.remove(sub.getId());
+                update.add(sub);
+            }
+            else
+                create.add(sub);
+        }
+        if(!update.isEmpty())
+            update.forEach(item->this.getSelf().update(item));
+        if(!create.isEmpty() && !getSelf().create(create))
+            return false;
+        else if(!before.isEmpty() && !getSelf().remove(before.keySet()))
+            return false;
+        else
+            return true;
+			
+	}
 	public List<Relation> findByTargetTestCase(TestCase testCase){
         List<Relation> list = findByTargetId(Arrays.asList(testCase.getId()));
 		return list;
@@ -1185,6 +1227,9 @@ public abstract class AbstractRelationService extends ServiceImpl<RelationMapper
             et.setTargetId((String)et.getContextParentKey());
         }
         if(Entities.PRODUCT_PLAN.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
+            et.setTargetId((String)et.getContextParentKey());
+        }
+        if(Entities.RUN.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
             et.setTargetId((String)et.getContextParentKey());
         }
         if(Entities.TEST_CASE.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {

@@ -42,7 +42,7 @@ export default {
     },
     {
       codeName: 'target_id',
-      logicName: '关联目标标识',
+      logicName: '目标主体标识',
       stdDataType: 25,
       stringLength: 100,
       name: 'TARGET_ID',
@@ -306,11 +306,12 @@ export default {
         },
         {
           codeName: 'target_id',
-          logicName: '关联目标标识',
+          logicName: '目标主体标识',
           appDEFieldId: 'target_id',
           sourceType: 'DEFIELD',
           stdDataType: 25,
           type: 'SIMPLE',
+          allowEmpty: true,
           id: 'target_id',
         },
         {
@@ -616,7 +617,7 @@ export default {
         },
         {
           codeName: 'n_target_id_eq',
-          logicName: '关联目标标识',
+          logicName: '目标主体标识',
           appDEFieldId: 'target_id',
           sourceType: 'DEFSEARCHMODE',
           stdDataType: 25,
@@ -1667,8 +1668,10 @@ export default {
       caption: '取消依赖',
       codeName: 'del_dependency',
       confirmMsg: '确认取消依赖?',
+      dataAccessAction: 'UPDATE',
       fullCodeName: 'relation_del_dependency',
       appDEMethodId: 'remove',
+      deopprivId: 'update',
       sysImage: {
         rawContent:
           '<svg xmlns="http://www.w3.org/2000/svg" class="icon design-iconfont" viewBox="0 0 1024 1024" width="16" height="16" fill="currentColor">\n  <path d="M640 640H448V576h192V192H64v384h192v64H0V128h704v512h-64zM384 384h192v64H384v384h576V448h-192V384h256v512H320V384h64z"></path>\n</svg>',
@@ -2695,6 +2698,22 @@ export default {
     {
       actionRSMode: 1,
       codeName: 'relations',
+      majorAppDataEntityId: 'plmweb.ticket',
+      rsmode: 2,
+      name: '工单-关联',
+      id: 'relations',
+    },
+    {
+      actionRSMode: 1,
+      codeName: 'relations',
+      majorAppDataEntityId: 'plmweb.run',
+      rsmode: 2,
+      name: '执行用例-关联',
+      id: 'relations',
+    },
+    {
+      actionRSMode: 1,
+      codeName: 'relations',
       majorAppDataEntityId: 'plmweb.test_case',
       rsmode: 2,
       name: '用例-关联',
@@ -2728,6 +2747,8 @@ export default {
   codeName2: 'relations',
   requestPaths: [
     'work_items/${work_item}/relations/${relation}',
+    'tickets/${ticket}/relations/${relation}',
+    'runs/${run}/relations/${relation}',
     'test_cases/${test_case}/relations/${relation}',
     'ideas/${idea}/relations/${relation}',
     'article_pages/${article_page}/relations/${relation}',

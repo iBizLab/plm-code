@@ -45,6 +45,14 @@ public class ProjectRedirctDefGroupDTO extends DTOBase implements Serializable {
     private String id;
 
     /**
+     * 进度
+     */
+    @JsonProperty("schedule")
+    @JSONField(name = "schedule")
+    @ApiModelProperty(value = "进度", position = 20)
+    private BigDecimal schedule;
+
+    /**
      * 类型
      */
     @JsonProperty("type")
@@ -53,11 +61,11 @@ public class ProjectRedirctDefGroupDTO extends DTOBase implements Serializable {
     private String type;
 
     /**
-     * 状态
+     * 项目状态
      */
     @JsonProperty("state")
     @JSONField(name = "state")
-    @ApiModelProperty(value = "状态", position = 2)
+    @ApiModelProperty(value = "项目状态", position = 2)
     private String state;
 
     /**
@@ -200,14 +208,6 @@ public class ProjectRedirctDefGroupDTO extends DTOBase implements Serializable {
     @ApiModelProperty(value = "描述", position = 19)
     private String description;
 
-    /**
-     * 进度
-     */
-    @JsonProperty("schedule")
-    @JSONField(name = "schedule")
-    @ApiModelProperty(value = "进度", position = 20)
-    private BigDecimal schedule;
-
 
     /**
      * 设置 [类型]
@@ -219,7 +219,7 @@ public class ProjectRedirctDefGroupDTO extends DTOBase implements Serializable {
     }
 
     /**
-     * 设置 [状态]
+     * 设置 [项目状态]
      */
     public ProjectRedirctDefGroupDTO setState(String state) {
         this.state = state;

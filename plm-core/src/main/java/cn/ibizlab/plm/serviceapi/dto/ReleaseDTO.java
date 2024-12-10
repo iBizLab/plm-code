@@ -135,11 +135,27 @@ public class ReleaseDTO extends DTOBase implements Serializable {
     private BigDecimal allWorkItems;
 
     /**
+     * 项目是否删除
+     */
+    @JsonProperty("project_is_deleted")
+    @JSONField(name = "project_is_deleted")
+    @ApiModelProperty(value = "项目是否删除", position = 12)
+    private Integer projectIsDeleted;
+
+    /**
+     * 项目类型
+     */
+    @JsonProperty("project_type")
+    @JSONField(name = "project_type")
+    @ApiModelProperty(value = "项目类型", position = 13)
+    private String projectType;
+
+    /**
      * 建立人
      */
     @JsonProperty("create_man")
     @JSONField(name = "create_man")
-    @ApiModelProperty(value = "建立人", position = 12)
+    @ApiModelProperty(value = "建立人", position = 14)
     private String createMan;
 
     /**
@@ -148,7 +164,7 @@ public class ReleaseDTO extends DTOBase implements Serializable {
     @JsonProperty("create_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "create_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "建立时间", position = 13)
+    @ApiModelProperty(value = "建立时间", position = 15)
     private Date createTime;
 
     /**
@@ -156,7 +172,7 @@ public class ReleaseDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("id")
     @JSONField(name = "id")
-    @ApiModelProperty(value = "标识", position = 14)
+    @ApiModelProperty(value = "标识", position = 16)
     private String id;
 
     /**
@@ -164,7 +180,7 @@ public class ReleaseDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("name")
     @JSONField(name = "name")
-    @ApiModelProperty(value = "名称", position = 15)
+    @ApiModelProperty(value = "名称", position = 17)
     private String name;
 
     /**
@@ -172,7 +188,7 @@ public class ReleaseDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("project_id")
     @JSONField(name = "project_id")
-    @ApiModelProperty(value = "项目标识", position = 16)
+    @ApiModelProperty(value = "项目标识", position = 18)
     private String projectId;
 
     /**
@@ -180,7 +196,7 @@ public class ReleaseDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("project_name")
     @JSONField(name = "project_name")
-    @ApiModelProperty(value = "项目名称", position = 17)
+    @ApiModelProperty(value = "项目名称", position = 19)
     private String projectName;
 
     /**
@@ -188,7 +204,7 @@ public class ReleaseDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("update_man")
     @JSONField(name = "update_man")
-    @ApiModelProperty(value = "更新人", position = 18)
+    @ApiModelProperty(value = "更新人", position = 20)
     private String updateMan;
 
     /**
@@ -197,7 +213,7 @@ public class ReleaseDTO extends DTOBase implements Serializable {
     @JsonProperty("update_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "update_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "更新时间", position = 19)
+    @ApiModelProperty(value = "更新时间", position = 21)
     private Date updateTime;
 
 
@@ -306,6 +322,24 @@ public class ReleaseDTO extends DTOBase implements Serializable {
     public ReleaseDTO setAllWorkItems(BigDecimal allWorkItems) {
         this.allWorkItems = allWorkItems;
         this.modify("all_work_items", allWorkItems);
+        return this;
+    }
+
+    /**
+     * 设置 [项目是否删除]
+     */
+    public ReleaseDTO setProjectIsDeleted(Integer projectIsDeleted) {
+        this.projectIsDeleted = projectIsDeleted;
+        this.modify("project_is_deleted", projectIsDeleted);
+        return this;
+    }
+
+    /**
+     * 设置 [项目类型]
+     */
+    public ReleaseDTO setProjectType(String projectType) {
+        this.projectType = projectType;
+        this.modify("project_type", projectType);
         return this;
     }
 

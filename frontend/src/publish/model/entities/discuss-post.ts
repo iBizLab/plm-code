@@ -1365,6 +1365,25 @@ export default {
     },
     {
       actionLevel: 100,
+      actionTarget: 'NONE',
+      caption: '打开讨论',
+      codeName: 'open_discuss_post',
+      frontProcessType: 'OTHER',
+      fullCodeName: 'discuss_post_open_discuss_post',
+      scriptCode:
+        'const item = data[0];\r\nwindow.location.hash=`/-/index/-/discuss_topic_tab_exp_view/srfnav=discuss/discuss_topic_tree_exp_view/srfnav=root%3Anode%3Anode_5/discuss_post_recent_grid_view/-`',
+      timeout: 60000,
+      uiactionMode: 'FRONT',
+      uiactionTag: 'open_discuss_post',
+      uiactionType: 'DEUIACTION',
+      showBusyIndicator: true,
+      noPrivDisplayMode: 2,
+      appDataEntityId: 'plmweb.discuss_post',
+      name: '打开讨论',
+      id: 'open_discuss_post@discuss_post',
+    },
+    {
+      actionLevel: 100,
       actionTarget: 'SINGLEDATA',
       caption: '编辑',
       codeName: 'panel_usr0516087018_button_calluilogic1_click',
@@ -2406,6 +2425,13 @@ export default {
       startDEUILogicNodeId: 'begin',
       name: '讨论关闭时隐藏回复输入框',
       id: 'status_control_visible',
+    },
+  ],
+  appPortletCats: [
+    {
+      codeName: 'Team__index_space_management',
+      name: '协作空间',
+      id: 'team__index_space_management',
     },
   ],
   deopprivs: [

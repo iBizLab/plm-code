@@ -268,7 +268,7 @@ export default {
                           contenttype: 'HTML',
                           TITLE: 'name',
                           PARSESCRIPT:
-                            'value?.replace(/@{[^,]*,"name":"(.*?)"}/g,"<span class=\\\'comment-tag\\\'>@$1</span>").replace(/@{[^,]*,name=(.*?)}/g,"<span class=\\\'comment-tag\\\'>@$1</span>").replace(/#{"id":"(.+?)","name":"(.+?)","identifier":"(.+?)","type":"(.+?)","icon":"((.|[\\t\\r\\f\\n\\s])+?)"}/g,(match, id, name, identifier, type, icon) => { const tempIcon = icon.trim(); const params = JSON.stringify({ id, name, identifier, type, }); return `<span markerClick=\'marker\' params=\'${params}\' class=\'comment-tag is-click\'>${tempIcon} ${identifier} ${name}</span>`;}).replace(/#{"id":"(.+?)","name":"(.+?)","identifier":"(.+?)","icon":"((.|[\\t\\r\\f\\n\\s])+?)"}/g, "<span class=\\\'comment-tag\\\'>$4 $3 $2</span>").replace(/#{id=(.+?),name=(.+?),identifier=(.+?),icon=((.|[\\t\\r\\f\\n\\s])+?)}/g, "<span class=\\\'comment-tag\\\'>$4 $3 $2</span>").replaceAll(/\\{\\"\\emoji\\":\\"(.+?)\\"\\}/g,(x, emoji) => {const tempVal = decodeURIComponent(atob(emoji)); return `<span class="emoji-tag">${tempVal}</span>`})',
+                            'value?.replace(/@{[^,]*,"name":"(.*?)"}/g,"<span class=\\\'comment-tag\\\'>@$1</span>").replace(/@{[^,]*,name=(.*?)}/g,"<span class=\\\'comment-tag\\\'>@$1</span>").replaceAll(/\\#\\{(\\".+?\\":\\".+?\\"),\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); const tempIcon = icon.trim(); const params = JSON.stringify(item); return `<span markerClick=\'marker\' params=\'${params}\' class=\'comment-tag is-click\'>${tempIcon} ${item.identifier} ${item.name}</span>`;}).replaceAll(/\\{\\"\\emoji\\":\\"(.+?)\\"\\}/g,(x, emoji) => {const tempVal = decodeURIComponent(atob(emoji)); return `<span class="emoji-tag">${tempVal}</span>`})',
                         },
                         editorStyle: 'ANCHO_HTML',
                         editorType: 'RAW',
@@ -486,6 +486,7 @@ export default {
                             dataItemName: 'name',
                             excelCaption: '名称',
                             appDEFieldId: 'name',
+                            deuiactionId: 'attachment_preview@attachment',
                             valueType: 'SIMPLE',
                             aggMode: 'NONE',
                             align: 'LEFT',
@@ -1255,7 +1256,7 @@ export default {
                       editorParams: {
                         contenttype: 'HTML',
                         SCRIPTCODE:
-                          'data.content?.replace(/@{[^,]*,"name":"(.*?)"}/g,"<span class=\'comment-tag\'>@$1</span>").replace(/@{[^,]*,name=(.*?)}/g,"<span class=\'comment-tag\'>@$1</span>").replace(/#{"id":"(.+?)","name":"(.+?)","identifier":"(.+?)","icon":"((.|[\\t\\r\\f\\n\\s])+?)"}/g, "<span class=\'comment-tag\'>$4 $3 $2</span>").replace(/#{id=(.+?),name=(.+?),identifier=(.+?),icon=((.|[\\t\\r\\f\\n\\s])+?)}/g, "<span class=\'comment-tag\'>$4 $3 $2</span>").replaceAll(/\\{\\"\\emoji\\":\\"(.+?)\\"\\}/g,(x, emoji) => {const tempVal = decodeURIComponent(atob(emoji)); return `<span class="emoji-tag">${tempVal}</span>`})',
+                          'data.content?.replace(/@{[^,]*,"name":"(.*?)"}/g,"<span class=\'comment-tag\'>@$1</span>").replace(/@{[^,]*,name=(.*?)}/g,"<span class=\'comment-tag\'>@$1</span>").replaceAll(/\\#\\{(\\".+?\\":\\".+?\\"),\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g, (x, value, icon) => {const item = JSON.parse("{" + value + "}"); const tempIcon = icon.trim(); return `<span class=\'comment-tag\' data-value=\'${JSON.stringify(item)}\'>${tempIcon} ${item.identifier} ${item.name}</span>`;}).replaceAll(/\\{\\"\\emoji\\":\\"(.+?)\\"\\}/g,(x, emoji) => {const tempVal = decodeURIComponent(atob(emoji)); return `<span class="emoji-tag">${tempVal}</span>`})',
                       },
                       editorStyle: 'COMMENT_ITEM',
                       editorType: 'RAW',
@@ -1437,14 +1438,14 @@ export default {
       minorSortAppDEFieldId: 'create_time',
       delistDataItems: [
         {
-          appDEFieldId: 'pid',
-          dataType: 25,
-          id: 'pid',
-        },
-        {
           appDEFieldId: 'content',
           dataType: 21,
           id: 'content',
+        },
+        {
+          appDEFieldId: 'id',
+          dataType: 25,
+          id: 'id',
         },
         {
           appDEFieldId: 'create_time',
@@ -1453,14 +1454,15 @@ export default {
           id: 'create_time',
         },
         {
+          appDEFieldId: 'pcreate_man',
+          frontCodeListId: 'plmweb.sysoperator',
+          dataType: 25,
+          id: 'pcreate_man',
+        },
+        {
           appDEFieldId: 'pcontent',
           dataType: 21,
           id: 'pcontent',
-        },
-        {
-          appDEFieldId: 'id',
-          dataType: 25,
-          id: 'id',
         },
         {
           appDEFieldId: 'create_man',
@@ -1469,10 +1471,9 @@ export default {
           id: 'create_man',
         },
         {
-          appDEFieldId: 'pcreate_man',
-          frontCodeListId: 'plmweb.sysoperator',
+          appDEFieldId: 'pid',
           dataType: 25,
-          id: 'pcreate_man',
+          id: 'pid',
         },
         {
           appDEFieldId: 'id',

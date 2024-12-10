@@ -28,6 +28,13 @@ export class ModelLoader implements ModelLoaderProvider {
   }
 
   async initApp(_id?: string): Promise<boolean> {
+    const app = await getAppModel();
+    const { appPFPluginRefs } = app;
+    if(appPFPluginRefs && appPFPluginRefs.length >0){
+      appPFPluginRefs.forEach(appPFPluginRef =>{
+        ibiz.hub.setPlugin(appPFPluginRef);
+      })
+    }
     return true;
   }
 

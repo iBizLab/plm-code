@@ -63,11 +63,11 @@ public class RelationFilterDTO extends FilterBase implements Serializable {
 	private String targetTypeEQ;
 
     /**
-     * 关联目标标识EQ
+     * 目标主体标识EQ
      */
     @JsonProperty("n_target_id_eq")
     @JSONField(name = "n_target_id_eq")
-    @ApiModelProperty(value = "关联目标标识EQ", position = 50)
+    @ApiModelProperty(value = "目标主体标识EQ", position = 50)
 	private String targetIdEQ;
 
     /**

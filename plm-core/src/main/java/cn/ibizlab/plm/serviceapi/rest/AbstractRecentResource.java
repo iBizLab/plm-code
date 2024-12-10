@@ -204,6 +204,39 @@ public abstract class AbstractRecentResource {
     }
 
     /**
+    * my_summary 最近访问
+    * 
+    *
+    * @param dto dto
+    * @return Mono<ResponseEntity<RecentDTO>>
+    */
+    @ApiOperation(value = "my_summary", tags = {"最近访问" },  notes = "Recent-my_summary ")
+    @PostMapping("recents/my_summary")
+    public Mono<ResponseEntity<ResponseWrapper<RecentDTO>>>mySummary
+            (@Validated @RequestBody RequestWrapper<RecentDTO> dto) {
+        ResponseWrapper<RecentDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray())
+            dto.getList().forEach(item -> rt.add(mySummary(item)));
+        else
+            rt.set(mySummary(dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * my_summary 最近访问
+    * 
+    *
+    * @param dto dto
+    * @return ResponseEntity<RecentDTO>
+    */   
+    public RecentDTO mySummary
+            (RecentDTO dto) {
+        Recent domain = recentDtoMapping.toDomain(dto);
+        Recent rt = recentService.mySummary(domain);
+        return recentDtoMapping.toDto(rt);
+    }
+
+    /**
     * 保存Save 最近访问
     * 
     *
@@ -285,6 +318,21 @@ public abstract class AbstractRecentResource {
         Recent domain = recentDtoMapping.toDomain(dto);
         CheckKeyStatus rt = recentService.checkKey(domain);
         return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * custom_get 最近访问
+    * 
+    *
+    * @param id id
+    * @return Mono<ResponseEntity<RecentDTO>>
+    */
+    @ApiOperation(value = "custom_get", tags = {"最近访问" },  notes = "Recent-custom_get ")
+    @GetMapping("recents/{id}/custom_get")
+    public Mono<ResponseEntity<RecentDTO>> customGetById
+            (@PathVariable("id") String id) {
+        Recent rt = recentService.customGet(id);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(recentDtoMapping.toDto(rt)));
     }
 
     /**

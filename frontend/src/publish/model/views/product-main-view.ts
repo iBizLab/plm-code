@@ -378,8 +378,8 @@ export default {
             caption: '更多',
             itemType: 'ITEMS',
             sysImage: {
-              cssClass: 'fa fa-exchange',
-              glyph: 'xf0ec@FontAwesome',
+              cssClass: 'fa fa-gear',
+              glyph: 'xf013@FontAwesome',
             },
             tooltip: '更多',
             showIcon: true,

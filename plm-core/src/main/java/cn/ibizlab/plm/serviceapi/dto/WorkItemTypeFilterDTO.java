@@ -55,6 +55,22 @@ public class WorkItemTypeFilterDTO extends FilterBase implements Serializable {
 	private String codeIN;
 
     /**
+     * 下级类型IN
+     */
+    @JsonProperty("n_sub_type_in")
+    @JSONField(name = "n_sub_type_in")
+    @ApiModelProperty(value = "下级类型IN", position = 60)
+	private String subTypeIN;
+
+    /**
+     * 下级类型LIKE
+     */
+    @JsonProperty("n_sub_type_like")
+    @JSONField(name = "n_sub_type_like")
+    @ApiModelProperty(value = "下级类型LIKE", position = 61)
+	private String subTypeLIKE;
+
+    /**
      * 标识LIKE
      */
     @JsonProperty("n_id_like")

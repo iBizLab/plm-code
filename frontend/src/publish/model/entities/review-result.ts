@@ -569,6 +569,7 @@ export default {
       codeName: 'pass',
       frontProcessType: 'OTHER',
       fullCodeName: 'review_result_pass',
+      nextId: 'refresh',
       timeout: 60000,
       uiactionMode: 'FRONT',
       uiactionTag: 'pass',

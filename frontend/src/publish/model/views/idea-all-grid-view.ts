@@ -310,11 +310,9 @@ export default {
           {
             actionLevel: 100,
             noPrivDisplayMode: 2,
-            uiactionId: 'new_subdata',
+            uiactionId: 'create_idea_and_relation_customer@idea',
+            uiactionTarget: 'NONE',
             valid: true,
-            capLanguageRes: {
-              lanResTag: 'TBB.TEXT.*.NEW',
-            },
             caption: '新建需求',
             itemType: 'DEUIACTION',
             controlLogics: [
@@ -332,9 +330,6 @@ export default {
               glyph: 'xf067@FontAwesome',
             },
             tooltip: '新建需求',
-            tooltipLanguageRes: {
-              lanResTag: 'TBB.TOOLTIP.*.NEW',
-            },
             showCaption: true,
             showIcon: true,
             id: 'deuiaction1',

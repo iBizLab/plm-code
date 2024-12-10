@@ -301,9 +301,11 @@ export default {
           clconvertMode: 'NONE',
           dataItemName: 'ptitle',
           excelCaption: '父工作项',
+          linkAppViewId: 'plmweb.work_item_dyna_main_view',
+          linkValueItem: 'pid',
           appDEFieldId: 'ptitle',
-          deuiactionId: 'open_under_project_set_pview@work_item',
           valueType: 'SIMPLE',
+          enableLinkView: true,
           aggMode: 'NONE',
           align: 'LEFT',
           caption: '父工作项',
@@ -313,6 +315,13 @@ export default {
           width: 150,
           widthUnit: 'PX',
           enableSort: true,
+          userParam: {
+            'SRFNAVCTX.project': '%project_id%',
+            'SRFNAVCTX.work_item': '%pid%',
+            'SRFNAVCTX.srfdatatype': '%p_work_item_type_id%',
+            'SRFNAVPARAM.srfdatatype': '%p_work_item_type_id%',
+            'SRFNAVCTX.work_item_type_id': '%p_work_item_type_id%',
+          },
           id: 'ptitle',
         },
         {
@@ -580,6 +589,12 @@ export default {
           valueType: 'SIMPLE',
           dataType: 25,
           id: 'pid',
+        },
+        {
+          appDEFieldId: 'p_work_item_type_id',
+          valueType: 'SIMPLE',
+          dataType: 25,
+          id: 'p_work_item_type_id',
         },
         {
           appDEFieldId: 'id',
@@ -1599,7 +1614,7 @@ export default {
         },
         {
           caption: '我负责的工作项',
-          data: '{"theme_model": {"searchconds": [{"condtype":"GROUP", "condop":"AND", "bnotmode":false, "searchconds": [{"condtype":"DEFIELD","fieldname":"assignee_id","condop":"EQ","value":"${context.srfpersonid}"},{"condtype":"DEFIELD","fieldname":"is_archived","condop":"EQ","value":"0"}]}]}}',
+          data: '{\n  "theme_model": {\n    "searchconds": [\n      {\n        "condtype": "GROUP",\n        "condop": "AND",\n        "bnotmode": false,\n        "searchconds": [\n          {\n            "condtype": "DEFIELD",\n            "fieldname": "is_archived",\n            "condop": "EQ",\n            "value": "0"\n          },\n          {\n            "condtype": "GROUP",\n            "condop": "OR",\n            "bnotmode": false,\n            "searchconds": [\n              {\n                "condtype": "DEFIELD",\n                "fieldname": "assignee_id",\n                "condop": "EQ",\n                "value": "${context.srfpersonid}"\n              },\n              {\n\t\t\t\t\t\t\t\t"condtype": "ITEMS",\n\t\t\t\t\t\t\t\t"fieldname": "executors",\n\t\t\t\t\t\t\t\t"condop": "EXISTS",\n\t\t\t\t\t\t\t\t"simple": true,\n\t\t\t\t\t\t\t\t"searchconds": [\n\t\t\t\t\t\t\t\t\t{\n\t\t\t\t\t\t\t\t\t\t"condtype": "DEFIELD",\n\t\t\t\t\t\t\t\t\t\t"fieldname": "USER_ID",\n\t\t\t\t\t\t\t\t\t\t"condop": "EQ",\n\t\t\t\t\t\t\t\t\t\t"value": "${context.srfpersonid}"\n\t\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\t]\n\t\t\t\t\t\t\t}\n            ]\n          }\n        ]\n      }\n    ]\n  }\n}',
           itemType: 'GROUP',
           id: 'my_assignee',
         },

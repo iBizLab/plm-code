@@ -628,6 +628,22 @@ public interface TicketService extends IService<Ticket> {
     List<Ticket> listMyFilter(TicketSearchContext context);
 
     /**
+    * fetchMySummaryTicket
+    * 
+    * @param context
+    * @return
+    */
+    Page<Ticket> fetchMySummaryTicket(TicketSearchContext context);
+
+    /**
+    * listMySummaryTicket
+    * 
+    * @param context
+    * @return
+    */
+    List<Ticket> listMySummaryTicket(TicketSearchContext context);
+
+    /**
     * fetchNormal
     * 非归档，非删除数据
     * @param context

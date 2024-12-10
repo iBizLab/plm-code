@@ -151,11 +151,27 @@ public class SprintDTO extends DTOBase implements Serializable {
     private BigDecimal pastDays;
 
     /**
+     * 项目是否删除
+     */
+    @JsonProperty("project_is_deleted")
+    @JSONField(name = "project_is_deleted")
+    @ApiModelProperty(value = "项目是否删除", position = 14)
+    private Integer projectIsDeleted;
+
+    /**
+     * 项目类型
+     */
+    @JsonProperty("project_type")
+    @JSONField(name = "project_type")
+    @ApiModelProperty(value = "项目类型", position = 15)
+    private String projectType;
+
+    /**
      * 建立人
      */
     @JsonProperty("create_man")
     @JSONField(name = "create_man")
-    @ApiModelProperty(value = "建立人", position = 14)
+    @ApiModelProperty(value = "建立人", position = 16)
     private String createMan;
 
     /**
@@ -164,7 +180,7 @@ public class SprintDTO extends DTOBase implements Serializable {
     @JsonProperty("create_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "create_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "建立时间", position = 15)
+    @ApiModelProperty(value = "建立时间", position = 17)
     private Date createTime;
 
     /**
@@ -172,7 +188,7 @@ public class SprintDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("id")
     @JSONField(name = "id")
-    @ApiModelProperty(value = "标识", position = 16)
+    @ApiModelProperty(value = "标识", position = 18)
     private String id;
 
     /**
@@ -180,7 +196,7 @@ public class SprintDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("name")
     @JSONField(name = "name")
-    @ApiModelProperty(value = "名称", position = 17)
+    @ApiModelProperty(value = "名称", position = 19)
     private String name;
 
     /**
@@ -188,7 +204,7 @@ public class SprintDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("pid")
     @JSONField(name = "pid")
-    @ApiModelProperty(value = "父标识", position = 18)
+    @ApiModelProperty(value = "父标识", position = 20)
     private String pid;
 
     /**
@@ -196,7 +212,7 @@ public class SprintDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("project_id")
     @JSONField(name = "project_id")
-    @ApiModelProperty(value = "项目标识", position = 19)
+    @ApiModelProperty(value = "项目标识", position = 21)
     private String projectId;
 
     /**
@@ -204,7 +220,7 @@ public class SprintDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("update_man")
     @JSONField(name = "update_man")
-    @ApiModelProperty(value = "更新人", position = 20)
+    @ApiModelProperty(value = "更新人", position = 22)
     private String updateMan;
 
     /**
@@ -213,7 +229,7 @@ public class SprintDTO extends DTOBase implements Serializable {
     @JsonProperty("update_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "update_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "更新时间", position = 21)
+    @ApiModelProperty(value = "更新时间", position = 23)
     private Date updateTime;
 
 
@@ -340,6 +356,24 @@ public class SprintDTO extends DTOBase implements Serializable {
     public SprintDTO setPastDays(BigDecimal pastDays) {
         this.pastDays = pastDays;
         this.modify("past_days", pastDays);
+        return this;
+    }
+
+    /**
+     * 设置 [项目是否删除]
+     */
+    public SprintDTO setProjectIsDeleted(Integer projectIsDeleted) {
+        this.projectIsDeleted = projectIsDeleted;
+        this.modify("project_is_deleted", projectIsDeleted);
+        return this;
+    }
+
+    /**
+     * 设置 [项目类型]
+     */
+    public SprintDTO setProjectType(String projectType) {
+        this.projectType = projectType;
+        this.modify("project_type", projectType);
         return this;
     }
 

@@ -330,6 +330,45 @@ public abstract class AbstractProjectResource {
     }
 
     /**
+    * hybrid_index_addon_counter 项目
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return Mono<ResponseEntity<ProjectDTO>>
+    */
+    @ApiOperation(value = "hybrid_index_addon_counter", tags = {"项目" },  notes = "Project-hybrid_index_addon_counter ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Project-hybrid_index_addon_counter-all') or hasPermission(this.projectDtoMapping.toDomain(#dto),'ibizplm-Project-hybrid_index_addon_counter')")
+    @PostMapping("projects/{id}/hybrid_index_addon_counter")
+    public Mono<ResponseEntity<ResponseWrapper<ProjectDTO>>>hybridIndexAddonCounterById
+            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<ProjectDTO> dto) {
+        ResponseWrapper<ProjectDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(hybridIndexAddonCounterById(ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(hybridIndexAddonCounterById(id, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * hybrid_index_addon_counter 项目
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<ProjectDTO>
+    */   
+    public ProjectDTO hybridIndexAddonCounterById
+            (String id, ProjectDTO dto) {
+        Project domain = projectDtoMapping.toDomain(dto);
+        domain.setId(id);
+        Project rt = projectService.hybridIndexAddonCounter(domain);
+        return projectDtoMapping.toDto(rt);
+    }
+
+    /**
     * kanban_index_addon_counter 项目
     * 
     *
@@ -404,6 +443,45 @@ public abstract class AbstractProjectResource {
         Project domain = projectDtoMapping.toDomain(dto);
         domain.setId(id);
         Project rt = projectService.otherReSpace(domain);
+        return projectDtoMapping.toDto(rt);
+    }
+
+    /**
+    * project_automatic_change_state 项目
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return Mono<ResponseEntity<ProjectDTO>>
+    */
+    @ApiOperation(value = "project_automatic_change_state", tags = {"项目" },  notes = "Project-project_automatic_change_state ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Project-project_automatic_change_state-all') or hasPermission(this.projectDtoMapping.toDomain(#dto),'ibizplm-Project-project_automatic_change_state')")
+    @PostMapping("projects/{id}/project_automatic_change_state")
+    public Mono<ResponseEntity<ResponseWrapper<ProjectDTO>>>projectAutomaticChangeStateById
+            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<ProjectDTO> dto) {
+        ResponseWrapper<ProjectDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(projectAutomaticChangeStateById(ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(projectAutomaticChangeStateById(id, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * project_automatic_change_state 项目
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<ProjectDTO>
+    */   
+    public ProjectDTO projectAutomaticChangeStateById
+            (String id, ProjectDTO dto) {
+        Project domain = projectDtoMapping.toDomain(dto);
+        domain.setId(id);
+        Project rt = projectService.projectAutomaticChangeState(domain);
         return projectDtoMapping.toDto(rt);
     }
 
@@ -628,6 +706,45 @@ public abstract class AbstractProjectResource {
         Project domain = projectDtoMapping.toDomain(dto);
         domain.setId(id);
         Project rt = projectService.unFavorite(domain);
+        return projectDtoMapping.toDto(rt);
+    }
+
+    /**
+    * warning_count_logic 项目
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return Mono<ResponseEntity<ProjectDTO>>
+    */
+    @ApiOperation(value = "warning_count_logic", tags = {"项目" },  notes = "Project-warning_count_logic ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Project-warning_count_logic-all') or hasPermission(this.projectDtoMapping.toDomain(#dto),'ibizplm-Project-warning_count_logic')")
+    @PostMapping("projects/{id}/warning_count_logic")
+    public Mono<ResponseEntity<ResponseWrapper<ProjectDTO>>>warningCountLogicById
+            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<ProjectDTO> dto) {
+        ResponseWrapper<ProjectDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(warningCountLogicById(ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(warningCountLogicById(id, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * warning_count_logic 项目
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<ProjectDTO>
+    */   
+    public ProjectDTO warningCountLogicById
+            (String id, ProjectDTO dto) {
+        Project domain = projectDtoMapping.toDomain(dto);
+        domain.setId(id);
+        Project rt = projectService.warningCountLogic(domain);
         return projectDtoMapping.toDto(rt);
     }
 

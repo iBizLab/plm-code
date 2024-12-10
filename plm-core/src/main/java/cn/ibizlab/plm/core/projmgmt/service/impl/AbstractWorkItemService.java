@@ -50,6 +50,8 @@ import cn.ibizlab.plm.core.base.domain.Attention;
 import cn.ibizlab.plm.core.base.service.AttentionService;
 import cn.ibizlab.plm.core.base.domain.Comment;
 import cn.ibizlab.plm.core.base.service.CommentService;
+import cn.ibizlab.plm.core.base.domain.Executor;
+import cn.ibizlab.plm.core.base.service.ExecutorService;
 import cn.ibizlab.plm.core.base.domain.Recent;
 import cn.ibizlab.plm.core.base.service.RecentService;
 import cn.ibizlab.plm.core.base.domain.Relation;
@@ -123,6 +125,10 @@ public abstract class AbstractWorkItemService extends ServiceImpl<WorkItemMapper
 
     @Autowired
     @Lazy
+    protected ExecutorService executorService;
+
+    @Autowired
+    @Lazy
     protected RecentService recentService;
 
     @Autowired
@@ -170,9 +176,11 @@ public abstract class AbstractWorkItemService extends ServiceImpl<WorkItemMapper
         if(this.baseMapper.insert(et) < 1)
             return false;
         attentionService.saveByWorkItem(et,et.getAttentions());
+        executorService.saveByWorkItem(et,et.getExecutors());
         attachmentService.saveByWorkItem(et,et.getAttachments());
         deliverableService.saveByWorkItem(et,et.getDeliverable());
         get(et);
+        updateParentData(et);
         return true;
     }
 	
@@ -180,6 +188,7 @@ public abstract class AbstractWorkItemService extends ServiceImpl<WorkItemMapper
     public boolean create(List<WorkItem> list) {
         list.forEach(this::fillParentData);
         this.saveBatch(list, batchSize);
+        updateParentDataBatch(list);
         return true;
     }
 	
@@ -191,9 +200,11 @@ public abstract class AbstractWorkItemService extends ServiceImpl<WorkItemMapper
         if(!update(et, qw))
             return false;
         attentionService.saveByWorkItem(et,et.getAttentions());
+        executorService.saveByWorkItem(et,et.getExecutors());
         attachmentService.saveByWorkItem(et,et.getAttachments());
         deliverableService.saveByWorkItem(et,et.getDeliverable());
         get(et);
+        updateParentData(et);
         return true;
     }
 
@@ -201,19 +212,24 @@ public abstract class AbstractWorkItemService extends ServiceImpl<WorkItemMapper
     public boolean update(List<WorkItem> list) {
         list.forEach(this::fillParentData);
         updateBatchById(list, batchSize);
+        updateParentDataBatch(list);
         return true;
     }
 	
    @Transactional
     public boolean remove(WorkItem et) {
+        get(et); 
         if(!remove(Wrappers.<WorkItem>lambdaQuery().eq(WorkItem::getId, et.getId())))
             return false;
+        updateParentData(et);
         return true;
     }
 
     @Transactional
     public boolean remove(List<WorkItem> entities) {
-        this.baseMapper.deleteEntities(entities);
+        for (WorkItem et : entities)
+            if(!getSelf().remove(et))
+                return false;
         return true;
     }		
     public WorkItem get(WorkItem et) {
@@ -223,6 +239,8 @@ public abstract class AbstractWorkItemService extends ServiceImpl<WorkItemMapper
         rt.copyTo(et,true);
         //设置 [关注]
         getAttentions(et);
+        //设置 [执行人]
+        getExecutors(et);
         //设置 [附件]
         getAttachments(et);
         //设置 [交付物]
@@ -428,6 +446,21 @@ public abstract class AbstractWorkItemService extends ServiceImpl<WorkItemMapper
         return list;
    }
 	
+   public Page<WorkItem> fetchChoose(WorkItemSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("IDENTIFIER,DESC");
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<WorkItem> pages=baseMapper.searchChoose(context.getPages(),context,context.getSelectCond());
+        List<WorkItem> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<WorkItem> listChoose(WorkItemSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("IDENTIFIER,DESC");
+        List<WorkItem> list = baseMapper.listChoose(context,context.getSelectCond());
+        return list;
+   }
+	
    public Page<WorkItem> fetchChooseChild(WorkItemSearchContext context) {
         if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
             context.setSort("IDENTIFIER,DESC");
@@ -451,6 +484,17 @@ public abstract class AbstractWorkItemService extends ServiceImpl<WorkItemMapper
 
    public List<WorkItem> listChooseDependency(WorkItemSearchContext context) {
         List<WorkItem> list = baseMapper.listChooseDependency(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<WorkItem> fetchChooseParentWorkItem(WorkItemSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<WorkItem> pages=baseMapper.searchChooseParentWorkItem(context.getPages(),context,context.getSelectCond());
+        List<WorkItem> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<WorkItem> listChooseParentWorkItem(WorkItemSearchContext context) {
+        List<WorkItem> list = baseMapper.listChooseParentWorkItem(context,context.getSelectCond());
         return list;
    }
 	
@@ -623,6 +667,39 @@ public abstract class AbstractWorkItemService extends ServiceImpl<WorkItemMapper
         return list;
    }
 	
+   public Page<WorkItem> fetchMySummaryBug(WorkItemSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<WorkItem> pages=baseMapper.searchMySummaryBug(context.getPages(),context,context.getSelectCond());
+        List<WorkItem> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<WorkItem> listMySummaryBug(WorkItemSearchContext context) {
+        List<WorkItem> list = baseMapper.listMySummaryBug(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<WorkItem> fetchMySummaryOther(WorkItemSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<WorkItem> pages=baseMapper.searchMySummaryOther(context.getPages(),context,context.getSelectCond());
+        List<WorkItem> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<WorkItem> listMySummaryOther(WorkItemSearchContext context) {
+        List<WorkItem> list = baseMapper.listMySummaryOther(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<WorkItem> fetchMySummaryTask(WorkItemSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<WorkItem> pages=baseMapper.searchMySummaryTask(context.getPages(),context,context.getSelectCond());
+        List<WorkItem> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<WorkItem> listMySummaryTask(WorkItemSearchContext context) {
+        List<WorkItem> list = baseMapper.listMySummaryTask(context,context.getSelectCond());
+        return list;
+   }
+	
    public Page<WorkItem> fetchMyTodo(WorkItemSearchContext context) {
         if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
             context.setSort("SHOW_IDENTIFIER,DESC");
@@ -650,6 +727,21 @@ public abstract class AbstractWorkItemService extends ServiceImpl<WorkItemMapper
         if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
             context.setSort("IDENTIFIER,DESC");
         List<WorkItem> list = baseMapper.listNoBugWorkItem(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<WorkItem> fetchNoCompleted(WorkItemSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("IDENTIFIER,DESC");
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<WorkItem> pages=baseMapper.searchNoCompleted(context.getPages(),context,context.getSelectCond());
+        List<WorkItem> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<WorkItem> listNoCompleted(WorkItemSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("IDENTIFIER,DESC");
+        List<WorkItem> list = baseMapper.listNoCompleted(context,context.getSelectCond());
         return list;
    }
 	
@@ -721,6 +813,21 @@ public abstract class AbstractWorkItemService extends ServiceImpl<WorkItemMapper
 
    public List<WorkItem> listNotifyAssignee(WorkItemSearchContext context) {
         List<WorkItem> list = baseMapper.listNotifyAssignee(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<WorkItem> fetchOverdueWorkItem(WorkItemSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("OVERDUE_TIME,DESC");
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<WorkItem> pages=baseMapper.searchOverdueWorkItem(context.getPages(),context,context.getSelectCond());
+        List<WorkItem> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<WorkItem> listOverdueWorkItem(WorkItemSearchContext context) {
+        if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
+            context.setSort("OVERDUE_TIME,DESC");
+        List<WorkItem> list = baseMapper.listOverdueWorkItem(context,context.getSelectCond());
         return list;
    }
 	
@@ -1007,6 +1114,9 @@ public abstract class AbstractWorkItemService extends ServiceImpl<WorkItemMapper
             attentionService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
                 .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setAttentions(sub.getValue())));
         if(!ObjectUtils.isEmpty(list))
+            executorService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
+                .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setExecutors(sub.getValue())));
+        if(!ObjectUtils.isEmpty(list))
             attachmentService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
                 .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setAttachments(sub.getValue())));
         if(!ObjectUtils.isEmpty(list))
@@ -1020,7 +1130,11 @@ public abstract class AbstractWorkItemService extends ServiceImpl<WorkItemMapper
 		return list;
 	}
 	public boolean removeByBoardId(String boardId){
-        return this.remove(Wrappers.<WorkItem>lambdaQuery().eq(WorkItem::getBoardId,boardId));
+        List<String> ids = baseMapper.findByBoardId(Arrays.asList(boardId)).stream().map(e->e.getId()).collect(Collectors.toList());
+        if(!ObjectUtils.isEmpty(ids))
+            return this.remove(ids);
+        else
+            return true;
 	}
 
 	public boolean resetByBoardId(String boardId){
@@ -1060,6 +1174,9 @@ public abstract class AbstractWorkItemService extends ServiceImpl<WorkItemMapper
             attentionService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
                 .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setAttentions(sub.getValue())));
         if(!ObjectUtils.isEmpty(list))
+            executorService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
+                .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setExecutors(sub.getValue())));
+        if(!ObjectUtils.isEmpty(list))
             attachmentService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
                 .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setAttachments(sub.getValue())));
         if(!ObjectUtils.isEmpty(list))
@@ -1073,7 +1190,11 @@ public abstract class AbstractWorkItemService extends ServiceImpl<WorkItemMapper
 		return list;
 	}
 	public boolean removeByEntryId(String entryId){
-        return this.remove(Wrappers.<WorkItem>lambdaQuery().eq(WorkItem::getEntryId,entryId));
+        List<String> ids = baseMapper.findByEntryId(Arrays.asList(entryId)).stream().map(e->e.getId()).collect(Collectors.toList());
+        if(!ObjectUtils.isEmpty(ids))
+            return this.remove(ids);
+        else
+            return true;
 	}
 
 	public boolean resetByEntryId(String entryId){
@@ -1113,6 +1234,9 @@ public abstract class AbstractWorkItemService extends ServiceImpl<WorkItemMapper
             attentionService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
                 .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setAttentions(sub.getValue())));
         if(!ObjectUtils.isEmpty(list))
+            executorService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
+                .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setExecutors(sub.getValue())));
+        if(!ObjectUtils.isEmpty(list))
             attachmentService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
                 .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setAttachments(sub.getValue())));
         if(!ObjectUtils.isEmpty(list))
@@ -1126,7 +1250,11 @@ public abstract class AbstractWorkItemService extends ServiceImpl<WorkItemMapper
 		return list;
 	}
 	public boolean removeByProjectId(String projectId){
-        return this.remove(Wrappers.<WorkItem>lambdaQuery().eq(WorkItem::getProjectId,projectId));
+        List<String> ids = baseMapper.findByProjectId(Arrays.asList(projectId)).stream().map(e->e.getId()).collect(Collectors.toList());
+        if(!ObjectUtils.isEmpty(ids))
+            return this.remove(ids);
+        else
+            return true;
 	}
 
 	public boolean resetByProjectId(String projectId){
@@ -1166,6 +1294,9 @@ public abstract class AbstractWorkItemService extends ServiceImpl<WorkItemMapper
             attentionService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
                 .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setAttentions(sub.getValue())));
         if(!ObjectUtils.isEmpty(list))
+            executorService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
+                .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setExecutors(sub.getValue())));
+        if(!ObjectUtils.isEmpty(list))
             attachmentService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
                 .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setAttachments(sub.getValue())));
         if(!ObjectUtils.isEmpty(list))
@@ -1179,7 +1310,11 @@ public abstract class AbstractWorkItemService extends ServiceImpl<WorkItemMapper
 		return list;
 	}
 	public boolean removeByReleaseId(String releaseId){
-        return this.remove(Wrappers.<WorkItem>lambdaQuery().eq(WorkItem::getReleaseId,releaseId));
+        List<String> ids = baseMapper.findByReleaseId(Arrays.asList(releaseId)).stream().map(e->e.getId()).collect(Collectors.toList());
+        if(!ObjectUtils.isEmpty(ids))
+            return this.remove(ids);
+        else
+            return true;
 	}
 
 	public boolean resetByReleaseId(String releaseId){
@@ -1219,6 +1354,9 @@ public abstract class AbstractWorkItemService extends ServiceImpl<WorkItemMapper
             attentionService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
                 .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setAttentions(sub.getValue())));
         if(!ObjectUtils.isEmpty(list))
+            executorService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
+                .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setExecutors(sub.getValue())));
+        if(!ObjectUtils.isEmpty(list))
             attachmentService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
                 .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setAttachments(sub.getValue())));
         if(!ObjectUtils.isEmpty(list))
@@ -1232,7 +1370,11 @@ public abstract class AbstractWorkItemService extends ServiceImpl<WorkItemMapper
 		return list;
 	}
 	public boolean removeBySprintId(String sprintId){
-        return this.remove(Wrappers.<WorkItem>lambdaQuery().eq(WorkItem::getSprintId,sprintId));
+        List<String> ids = baseMapper.findBySprintId(Arrays.asList(sprintId)).stream().map(e->e.getId()).collect(Collectors.toList());
+        if(!ObjectUtils.isEmpty(ids))
+            return this.remove(ids);
+        else
+            return true;
 	}
 
 	public boolean resetBySprintId(String sprintId){
@@ -1272,6 +1414,9 @@ public abstract class AbstractWorkItemService extends ServiceImpl<WorkItemMapper
             attentionService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
                 .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setAttentions(sub.getValue())));
         if(!ObjectUtils.isEmpty(list))
+            executorService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
+                .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setExecutors(sub.getValue())));
+        if(!ObjectUtils.isEmpty(list))
             attachmentService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
                 .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setAttachments(sub.getValue())));
         if(!ObjectUtils.isEmpty(list))
@@ -1285,7 +1430,11 @@ public abstract class AbstractWorkItemService extends ServiceImpl<WorkItemMapper
 		return list;
 	}
 	public boolean removeBySwimlaneId(String swimlaneId){
-        return this.remove(Wrappers.<WorkItem>lambdaQuery().eq(WorkItem::getSwimlaneId,swimlaneId));
+        List<String> ids = baseMapper.findBySwimlaneId(Arrays.asList(swimlaneId)).stream().map(e->e.getId()).collect(Collectors.toList());
+        if(!ObjectUtils.isEmpty(ids))
+            return this.remove(ids);
+        else
+            return true;
 	}
 
 	public boolean resetBySwimlaneId(String swimlaneId){
@@ -1325,6 +1474,9 @@ public abstract class AbstractWorkItemService extends ServiceImpl<WorkItemMapper
             attentionService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
                 .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setAttentions(sub.getValue())));
         if(!ObjectUtils.isEmpty(list))
+            executorService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
+                .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setExecutors(sub.getValue())));
+        if(!ObjectUtils.isEmpty(list))
             attachmentService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
                 .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setAttachments(sub.getValue())));
         if(!ObjectUtils.isEmpty(list))
@@ -1338,7 +1490,11 @@ public abstract class AbstractWorkItemService extends ServiceImpl<WorkItemMapper
 		return list;
 	}
 	public boolean removeByAssigneeId(String assigneeId){
-        return this.remove(Wrappers.<WorkItem>lambdaQuery().eq(WorkItem::getAssigneeId,assigneeId));
+        List<String> ids = baseMapper.findByAssigneeId(Arrays.asList(assigneeId)).stream().map(e->e.getId()).collect(Collectors.toList());
+        if(!ObjectUtils.isEmpty(ids))
+            return this.remove(ids);
+        else
+            return true;
 	}
 
 	public boolean resetByAssigneeId(String assigneeId){
@@ -1378,6 +1534,9 @@ public abstract class AbstractWorkItemService extends ServiceImpl<WorkItemMapper
             attentionService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
                 .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setAttentions(sub.getValue())));
         if(!ObjectUtils.isEmpty(list))
+            executorService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
+                .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setExecutors(sub.getValue())));
+        if(!ObjectUtils.isEmpty(list))
             attachmentService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
                 .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setAttachments(sub.getValue())));
         if(!ObjectUtils.isEmpty(list))
@@ -1391,7 +1550,11 @@ public abstract class AbstractWorkItemService extends ServiceImpl<WorkItemMapper
 		return list;
 	}
 	public boolean removeByPid(String pid){
-        return this.remove(Wrappers.<WorkItem>lambdaQuery().eq(WorkItem::getPid,pid));
+        List<String> ids = baseMapper.findByPid(Arrays.asList(pid)).stream().map(e->e.getId()).collect(Collectors.toList());
+        if(!ObjectUtils.isEmpty(ids))
+            return this.remove(ids);
+        else
+            return true;
 	}
 
 	public boolean resetByPid(String pid){
@@ -1431,6 +1594,9 @@ public abstract class AbstractWorkItemService extends ServiceImpl<WorkItemMapper
             attentionService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
                 .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setAttentions(sub.getValue())));
         if(!ObjectUtils.isEmpty(list))
+            executorService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
+                .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setExecutors(sub.getValue())));
+        if(!ObjectUtils.isEmpty(list))
             attachmentService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
                 .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setAttachments(sub.getValue())));
         if(!ObjectUtils.isEmpty(list))
@@ -1444,7 +1610,11 @@ public abstract class AbstractWorkItemService extends ServiceImpl<WorkItemMapper
 		return list;
 	}
 	public boolean removeByState(String state){
-        return this.remove(Wrappers.<WorkItem>lambdaQuery().eq(WorkItem::getState,state));
+        List<String> ids = baseMapper.findByState(Arrays.asList(state)).stream().map(e->e.getId()).collect(Collectors.toList());
+        if(!ObjectUtils.isEmpty(ids))
+            return this.remove(ids);
+        else
+            return true;
 	}
 
 	public boolean resetByState(String state){
@@ -1484,6 +1654,9 @@ public abstract class AbstractWorkItemService extends ServiceImpl<WorkItemMapper
             attentionService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
                 .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setAttentions(sub.getValue())));
         if(!ObjectUtils.isEmpty(list))
+            executorService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
+                .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setExecutors(sub.getValue())));
+        if(!ObjectUtils.isEmpty(list))
             attachmentService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
                 .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setAttachments(sub.getValue())));
         if(!ObjectUtils.isEmpty(list))
@@ -1497,7 +1670,11 @@ public abstract class AbstractWorkItemService extends ServiceImpl<WorkItemMapper
 		return list;
 	}
 	public boolean removeByTopId(String topId){
-        return this.remove(Wrappers.<WorkItem>lambdaQuery().eq(WorkItem::getTopId,topId));
+        List<String> ids = baseMapper.findByTopId(Arrays.asList(topId)).stream().map(e->e.getId()).collect(Collectors.toList());
+        if(!ObjectUtils.isEmpty(ids))
+            return this.remove(ids);
+        else
+            return true;
 	}
 
 	public boolean resetByTopId(String topId){
@@ -1537,6 +1714,9 @@ public abstract class AbstractWorkItemService extends ServiceImpl<WorkItemMapper
             attentionService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
                 .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setAttentions(sub.getValue())));
         if(!ObjectUtils.isEmpty(list))
+            executorService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
+                .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setExecutors(sub.getValue())));
+        if(!ObjectUtils.isEmpty(list))
             attachmentService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
                 .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setAttachments(sub.getValue())));
         if(!ObjectUtils.isEmpty(list))
@@ -1550,7 +1730,11 @@ public abstract class AbstractWorkItemService extends ServiceImpl<WorkItemMapper
 		return list;
 	}
 	public boolean removeByWorkItemTypeId(String workItemTypeId){
-        return this.remove(Wrappers.<WorkItem>lambdaQuery().eq(WorkItem::getWorkItemTypeId,workItemTypeId));
+        List<String> ids = baseMapper.findByWorkItemTypeId(Arrays.asList(workItemTypeId)).stream().map(e->e.getId()).collect(Collectors.toList());
+        if(!ObjectUtils.isEmpty(ids))
+            return this.remove(ids);
+        else
+            return true;
 	}
 
 	public boolean resetByWorkItemTypeId(String workItemTypeId){
@@ -1590,6 +1774,9 @@ public abstract class AbstractWorkItemService extends ServiceImpl<WorkItemMapper
             attentionService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
                 .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setAttentions(sub.getValue())));
         if(!ObjectUtils.isEmpty(list))
+            executorService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
+                .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setExecutors(sub.getValue())));
+        if(!ObjectUtils.isEmpty(list))
             attachmentService.findByOwnerId(list.stream().map(e->e.getId()).collect(Collectors.toList()))
                 .stream().collect(Collectors.groupingBy(e->e.getOwnerId())).entrySet().forEach(sub->list.stream().filter(item->item.getId().equals(sub.getKey())).findFirst().ifPresent(item->item.setAttachments(sub.getValue())));
         if(!ObjectUtils.isEmpty(list))
@@ -1603,7 +1790,11 @@ public abstract class AbstractWorkItemService extends ServiceImpl<WorkItemMapper
 		return list;
 	}
 	public boolean removeById(String id){
-        return this.remove(Wrappers.<WorkItem>lambdaQuery().eq(WorkItem::getId,id));
+        List<String> ids = baseMapper.findById(Arrays.asList(id)).stream().map(e->e.getId()).collect(Collectors.toList());
+        if(!ObjectUtils.isEmpty(ids))
+            return this.remove(ids);
+        else
+            return true;
 	}
 
 	public boolean resetById(String id){
@@ -1641,6 +1832,13 @@ public abstract class AbstractWorkItemService extends ServiceImpl<WorkItemMapper
     public List<Attention> getAttentions(WorkItem et) {
         List<Attention> list = attentionService.findByWorkItem(et);
         et.setAttentions(list);
+        return list;
+    }
+	
+	@Override
+    public List<Executor> getExecutors(WorkItem et) {
+        List<Executor> list = executorService.findByWorkItem(et);
+        et.setExecutors(list);
         return list;
     }
 	
@@ -1705,6 +1903,8 @@ public abstract class AbstractWorkItemService extends ServiceImpl<WorkItemMapper
             if(!ObjectUtils.isEmpty(project)) {
                 et.setProjectType(project.getType());
                 et.setProjectIdentifier(project.getIdentifier());
+                et.setProjectIsDeleted(project.getIsDeleted());
+                et.setProjectIsArchived(project.getIsArchived());
                 et.setProjectId(project.getId());
                 et.setProjectName(project.getName());
             }
@@ -1791,6 +1991,16 @@ public abstract class AbstractWorkItemService extends ServiceImpl<WorkItemMapper
                 et.setWorkItemTypeName(workItemType.getName());
             }
         }
+    }
+
+    /**
+    * 更新父数据（实体关系属性映射）
+    * @param et
+    */
+    protected void updateParentData(WorkItem et){
+    }
+
+    protected void updateParentDataBatch(List <WorkItem> entities){
     }
 
 

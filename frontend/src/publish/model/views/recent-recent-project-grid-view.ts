@@ -74,6 +74,19 @@ export default {
             panelItems: [
               {
                 actionGroupExtractMode: 'ITEM',
+                panelItems: [
+                  {
+                    caption: '工具栏',
+                    itemStyle: 'DEFAULT',
+                    itemType: 'CTRLPOS',
+                    layoutPos: {
+                      shrink: 1,
+                      layout: 'FLEX',
+                    },
+                    showCaption: true,
+                    id: 'toolbar',
+                  },
+                ],
                 layout: {
                   align: 'center',
                   layout: 'FLEX',
@@ -358,6 +371,43 @@ export default {
         id: 'plmweb.recent.recent_project_grid',
       },
       {
+        detoolbarItems: [
+          {
+            actionLevel: 100,
+            buttonStyle: 'STYLE2',
+            noPrivDisplayMode: 2,
+            uiactionId: 'open_home_page@recent',
+            uiactionTarget: 'NONE',
+            valid: true,
+            caption: '更多',
+            itemType: 'DEUIACTION',
+            sysCss: {
+              cssName: 'swap_icon_text',
+            },
+            sysImage: {
+              rawContent:
+                '<?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg t="1732774437860" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="11278" width="12" height="12" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M767.369846 526.099692a47.261538 47.261538 0 0 0-13.705846-29.538461L328.940308 71.837538a47.419077 47.419077 0 1 0-67.032616 67.032616l391.640616 391.640615-391.640616 391.719385a47.419077 47.419077 0 1 0 66.953846 67.032615l424.802462-424.723692a47.261538 47.261538 0 0 0 13.705846-29.459692z" fill="#999999" p-id="11279"></path></svg>',
+            },
+            tooltip: '查看更多项目',
+            showCaption: true,
+            showIcon: true,
+            id: 'deuiaction1',
+          },
+        ],
+        xdataControlName: 'grid',
+        codeName: 'recent_project_grid_view_toolbar',
+        controlType: 'TOOLBAR',
+        logicName: '最近访问的项目工具栏',
+        appDataEntityId: 'plmweb.recent',
+        controlParam: {
+          id: 'toolbar',
+        },
+        modelId: '5F92215E-3472-4802-A472-4C2BE4B4A254',
+        modelType: 'PSDETOOLBAR',
+        name: 'toolbar',
+        id: 'recent_project_grid_view_toolbar',
+      },
+      {
         groupMode: 'SINGLE',
         quickSearchMode: 1,
         enableQuickSearch: true,
@@ -395,7 +445,7 @@ export default {
   viewStyle: 'DEFAULT',
   viewType: 'DEGRIDVIEW',
   enableDP: true,
-  showCaptionBar: false,
+  showCaptionBar: true,
   modelId: '538294aa29895738ff5d63c37e9ff894',
   modelType: 'PSAPPDEVIEW',
   name: 'recentrecent_project_grid_view',

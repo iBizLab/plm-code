@@ -441,6 +441,14 @@ public class WorkItemBiSearchGroupDTO extends DTOBase implements Serializable {
     @ApiModelProperty(value = "看板标识", position = 49)
     private String boardId;
 
+    /**
+     * 项目是否删除
+     */
+    @JsonProperty("project_is_deleted")
+    @JSONField(name = "project_is_deleted")
+    @ApiModelProperty(value = "项目是否删除", position = 50)
+    private Integer projectIsDeleted;
+
 
     /**
      * 设置 [是否已删除]
@@ -844,6 +852,15 @@ public class WorkItemBiSearchGroupDTO extends DTOBase implements Serializable {
     public WorkItemBiSearchGroupDTO setBoardId(String boardId) {
         this.boardId = boardId;
         this.modify("board_id", boardId);
+        return this;
+    }
+
+    /**
+     * 设置 [项目是否删除]
+     */
+    public WorkItemBiSearchGroupDTO setProjectIsDeleted(Integer projectIsDeleted) {
+        this.projectIsDeleted = projectIsDeleted;
+        this.modify("project_is_deleted", projectIsDeleted);
         return this;
     }
 

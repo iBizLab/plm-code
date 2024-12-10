@@ -590,6 +590,45 @@ public abstract class AbstractProductResource {
     }
 
     /**
+    * test_counter 产品
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return Mono<ResponseEntity<ProductDTO>>
+    */
+    @ApiOperation(value = "test_counter", tags = {"产品" },  notes = "Product-test_counter ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Product-test_counter-all') or hasPermission(this.productDtoMapping.toDomain(#dto),'ibizplm-Product-test_counter')")
+    @PostMapping("products/{id}/test_counter")
+    public Mono<ResponseEntity<ResponseWrapper<ProductDTO>>>testCounterById
+            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<ProductDTO> dto) {
+        ResponseWrapper<ProductDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(testCounterById(ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(testCounterById(id, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * test_counter 产品
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<ProductDTO>
+    */   
+    public ProductDTO testCounterById
+            (String id, ProductDTO dto) {
+        Product domain = productDtoMapping.toDomain(dto);
+        domain.setId(id);
+        Product rt = productService.testCounter(domain);
+        return productDtoMapping.toDto(rt);
+    }
+
+    /**
     * un_favorite 产品
     * 
     *

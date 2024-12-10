@@ -87,6 +87,7 @@ export default {
                       alwaysLoad: 'true',
                     },
                     editorType: 'DROPDOWNLIST',
+                    placeHolder: '请选择状态',
                     valueType: 'SIMPLE',
                     editable: true,
                     navigateParams: [

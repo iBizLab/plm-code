@@ -687,6 +687,22 @@ public interface TestCaseService extends IService<TestCase> {
     List<TestCase> listMyFilter(TestCaseSearchContext context);
 
     /**
+    * fetchMySummaryCase
+    * 
+    * @param context
+    * @return
+    */
+    Page<TestCase> fetchMySummaryCase(TestCaseSearchContext context);
+
+    /**
+    * listMySummaryCase
+    * 
+    * @param context
+    * @return
+    */
+    List<TestCase> listMySummaryCase(TestCaseSearchContext context);
+
+    /**
     * fetchNormal
     * 
     * @param context

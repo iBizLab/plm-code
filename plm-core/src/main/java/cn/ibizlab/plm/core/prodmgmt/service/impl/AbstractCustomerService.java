@@ -375,6 +375,7 @@ public abstract class AbstractCustomerService extends ServiceImpl<CustomerMapper
             }
             if(!ObjectUtils.isEmpty(product)) {
                 et.setProductName(product.getName());
+                et.setProductIsArchived(product.getIsArchived());
                 et.setProductId(product.getId());
             }
         }

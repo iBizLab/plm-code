@@ -337,6 +337,8 @@ public abstract class AbstractReleaseService extends ServiceImpl<ReleaseMapper,R
                 et.setProject(project);
             }
             if(!ObjectUtils.isEmpty(project)) {
+                et.setProjectIsDeleted(project.getIsDeleted());
+                et.setProjectType(project.getType());
                 et.setProjectId(project.getId());
                 et.setProjectName(project.getName());
             }

@@ -488,6 +488,17 @@ export default {
       controlType: 'GRID',
       logicName: '交付物_表格',
       appDataEntityId: 'plmweb.deliverable',
+      controlLogics: [
+        {
+          eventNames: 'onLoadSuccess',
+          logicTag: 'grid',
+          logicType: 'APPDEUILOGIC',
+          appDEUILogicId: 'calc_grid_column_action_state',
+          appDataEntityId: 'plmweb.deliverable',
+          triggerType: 'CTRLEVENT',
+          id: 'calc_column_action_state',
+        },
+      ],
       controlParam: {
         id: 'grid',
       },

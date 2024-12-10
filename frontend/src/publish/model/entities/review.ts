@@ -174,6 +174,13 @@ export default {
       id: 'action_rule',
     },
     {
+      codeName: 'library_is_deleted',
+      logicName: '测试库是否删除',
+      stdDataType: 9,
+      name: 'LIBRARY_IS_DELETED',
+      id: 'library_is_deleted',
+    },
+    {
       codeName: 'show_identifier',
       lnlanguageRes: {
         lanResTag: 'DEF.LNAME.SHOW_IDENTIFIER',
@@ -524,6 +531,16 @@ export default {
           stdDataType: 25,
           type: 'SIMPLE',
           id: 'id',
+        },
+        {
+          codeName: 'library_is_deleted',
+          logicName: '测试库是否删除',
+          appDEFieldId: 'library_is_deleted',
+          sourceType: 'DEFGROUPDETAIL',
+          stdDataType: 9,
+          type: 'SIMPLE',
+          allowEmpty: true,
+          id: 'library_is_deleted',
         },
       ],
       sourceType: 'DE',
@@ -973,6 +990,16 @@ export default {
           type: 'DTOS',
           allowEmpty: true,
           id: 'action_rule',
+        },
+        {
+          codeName: 'library_is_deleted',
+          logicName: '测试库是否删除',
+          appDEFieldId: 'library_is_deleted',
+          sourceType: 'DEFIELD',
+          stdDataType: 9,
+          type: 'SIMPLE',
+          allowEmpty: true,
+          id: 'library_is_deleted',
         },
         {
           codeName: 'show_identifier',

@@ -2742,6 +2742,7 @@ export default {
                       editorParams: {
                         'SRFNAVPARAM.n_department_id_eq': '%srforgsectorid%',
                         AC: 'TRUE',
+                        readonly: 'true',
                         'SRFNAVPARAM.n_status_eq': '1',
                         TRIGGER: 'TRUE',
                         URL: 'projects/${context.project}/project_members/fetch_default',
@@ -2758,6 +2759,7 @@ export default {
                       sysPFPluginId: 'person_select',
                       valueType: 'SIMPLE',
                       editable: true,
+                      readOnly: true,
                       navigateParams: [
                         {
                           key: 'n_department_id_eq',
