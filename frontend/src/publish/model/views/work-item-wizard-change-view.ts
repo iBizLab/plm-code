@@ -999,7 +999,6 @@ export default {
                                   },
                                 ],
                                 logicType: 'GROUP',
-                                id: '表单成员[grouppanel3][面板显示]逻辑',
                               },
                             ],
                             layoutPos: {

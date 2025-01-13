@@ -123,6 +123,7 @@ export default {
             id: 'root',
           },
           {
+            dataSourceType: 'DEDATASET',
             idAppDEFieldId: 'id',
             leafFlagAppDEFieldId: 'is_leaf',
             appDEDataSetId: 'fetch_space_category_top',
@@ -140,6 +141,7 @@ export default {
             id: 'node',
           },
           {
+            dataSourceType: 'DEDATASET',
             idAppDEFieldId: 'id',
             leafFlagAppDEFieldId: 'is_leaf',
             appDEDataSetId: 'fetch_space_category',

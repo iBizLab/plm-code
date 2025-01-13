@@ -662,7 +662,6 @@ export default {
                             },
                           ],
                           logicType: 'GROUP',
-                          id: '表单成员[ptitle][面板显示]逻辑',
                         },
                       ],
                       layoutPos: {
@@ -927,7 +926,6 @@ export default {
                             },
                           ],
                           logicType: 'GROUP',
-                          id: '表单成员[risk][面板显示]逻辑',
                         },
                       ],
                       layoutPos: {
@@ -990,7 +988,6 @@ export default {
                             },
                           ],
                           logicType: 'GROUP',
-                          id: '表单成员[backlog_type][面板显示]逻辑',
                         },
                       ],
                       layoutPos: {
@@ -1053,7 +1050,6 @@ export default {
                             },
                           ],
                           logicType: 'GROUP',
-                          id: '表单成员[backlog_from][面板显示]逻辑',
                         },
                       ],
                       layoutPos: {
@@ -1098,7 +1094,6 @@ export default {
                             },
                           ],
                           logicType: 'GROUP',
-                          id: '表单成员[severity][面板显示]逻辑',
                         },
                       ],
                       layoutPos: {
@@ -1144,7 +1139,6 @@ export default {
                             },
                           ],
                           logicType: 'GROUP',
-                          id: '表单成员[reappear_probability][面板显示]逻辑',
                         },
                       ],
                       layoutPos: {

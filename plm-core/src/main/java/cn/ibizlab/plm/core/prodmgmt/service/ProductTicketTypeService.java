@@ -15,6 +15,7 @@ import cn.ibizlab.plm.core.prodmgmt.domain.ProductTicketType;
 import cn.ibizlab.plm.core.prodmgmt.filter.ProductTicketTypeSearchContext;
 import cn.ibizlab.plm.core.prodmgmt.domain.Product;
 import cn.ibizlab.plm.core.prodmgmt.domain.TicketType;
+import cn.ibizlab.plm.util.annotation.DEAction;
 
 /**
  * 产品工单类型服务接口[ProductTicketTypeService]

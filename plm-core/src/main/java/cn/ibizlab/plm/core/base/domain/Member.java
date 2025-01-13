@@ -1,5 +1,5 @@
 /**
- * Generate code from /{{projectName}}-core/src/main/java/{{packageName}}/core/{{modules}}/domain/{{entities@SQL}}.java.hbs
+ * Generate code from /{{projectName}}-core/src/main/java/{{packageName}}/core/{{modules}}/domain/{{domains@SQL}}.java.hbs
  */
 package cn.ibizlab.plm.core.base.domain;
 
@@ -20,6 +20,7 @@ import lombok.experimental.Accessors;
 import io.swagger.annotations.*;
 import com.baomidou.mybatisplus.annotation.*;
 import com.baomidou.mybatisplus.core.toolkit.IdWorker;
+import cn.ibizlab.plm.core.base.domain.Position;
 import cn.ibizlab.plm.core.base.domain.User;
 import cn.ibizlab.plm.core.base.domain.CommonFlow;
 import cn.ibizlab.plm.core.base.domain.Group;
@@ -132,6 +133,26 @@ public class Member extends EntityMP implements Serializable
     private Integer reportFlag;
 
     /**
+    * 职位名称
+    */
+    @TableField(value = "position_name" , exist = false)
+    @DEField(name = "position_name")
+    @JSONField(name = "position_name")
+    @JsonProperty("position_name")
+    @ApiModelProperty(value = "position_name", notes = "职位名称")
+    private String positionName;
+
+    /**
+    * 职位
+    */
+    @TableField(value = "title")
+    @DEField(name = "title")
+    @JSONField(name = "title")
+    @JsonProperty("title")
+    @ApiModelProperty(value = "title", notes = "职位")
+    private String title;
+
+    /**
     * 标识
     */
     @Id
@@ -193,6 +214,26 @@ public class Member extends EntityMP implements Serializable
     @JsonProperty("update_time")
     @ApiModelProperty(value = "update_time", notes = "更新时间")
     private Date updateTime;
+
+    /**
+    * 职位标识
+    */
+    @TableField(value = "position_id")
+    @DEField(name = "position_id")
+    @JSONField(name = "position_id")
+    @JsonProperty("position_id")
+    @ApiModelProperty(value = "position_id", notes = "职位标识")
+    private String positionId;
+
+    /**
+    * 职位-成员
+    */
+    @Transient
+    @TableField(exist = false)
+    @JsonIgnore
+    @JSONField(serialize = false)
+    @ApiModelProperty(value = "position", notes = "职位-成员")
+    private Position position;
 
     /**
     * 用户
@@ -299,11 +340,38 @@ public class Member extends EntityMP implements Serializable
     }
 
     /**
+    * 设置 [职位名称]
+    */
+    public Member setPositionName(String positionName) {
+        this.positionName = positionName;
+        this.modify("position_name", positionName);
+        return this;
+    }
+
+    /**
+    * 设置 [职位]
+    */
+    public Member setTitle(String title) {
+        this.title = title;
+        this.modify("title", title);
+        return this;
+    }
+
+    /**
     * 设置 [名称]
     */
     public Member setName(String name) {
         this.name = name;
         this.modify("name", name);
+        return this;
+    }
+
+    /**
+    * 设置 [职位标识]
+    */
+    public Member setPositionId(String positionId) {
+        this.positionId = positionId;
+        this.modify("position_id", positionId);
         return this;
     }
 

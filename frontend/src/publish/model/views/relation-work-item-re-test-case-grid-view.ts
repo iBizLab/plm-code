@@ -531,10 +531,11 @@ export default {
             id: 'target_title',
           },
           {
-            clconvertMode: 'NONE',
+            clconvertMode: 'FRONT',
             dataItemName: 'test_case',
             excelCaption: '维护人',
             objectNameField: 'maintenance_name',
+            appCodeListId: 'plmweb.sysoperator',
             appDEFieldId: 'test_case',
             valueType: 'OBJECT',
             aggMode: 'NONE',
@@ -543,8 +544,13 @@ export default {
             codeName: 'target_maintenance_name',
             columnType: 'DEFGRIDCOLUMN',
             noPrivDisplayMode: 1,
+            sysPFPluginId: 'personal_info_column',
             width: 150,
             widthUnit: 'PX',
+            userParam: {
+              USERFILTERMAP:
+                '{"id":"maintenance_id","name":"maintenance_name"}',
+            },
             id: 'target_maintenance_name',
           },
           {

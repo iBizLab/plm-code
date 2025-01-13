@@ -16,6 +16,7 @@ import cn.ibizlab.plm.core.projmgmt.filter.EntrySearchContext;
 import cn.ibizlab.plm.core.projmgmt.domain.Board;
 import cn.ibizlab.plm.core.projmgmt.domain.Project;
 import cn.ibizlab.plm.core.projmgmt.domain.WorkItem;
+import cn.ibizlab.plm.util.annotation.DEAction;
 
 /**
  * 看板栏服务接口[EntryService]

@@ -682,7 +682,6 @@ export default {
         glyph: 'xf044@FontAwesome',
       },
       refreshMode: 1,
-      timeout: 60000,
       uiactionMode: 'FRONT',
       uiactionTag: 'edit_info',
       uiactionType: 'DEUIACTION',

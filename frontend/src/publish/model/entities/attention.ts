@@ -41,6 +41,14 @@ export default {
       id: 'type',
     },
     {
+      codeName: 'title',
+      logicName: '职位',
+      stdDataType: 25,
+      stringLength: 100,
+      name: 'TITLE',
+      id: 'title',
+    },
+    {
       codeName: 'id',
       lnlanguageRes: {
         lanResTag: 'DEF.LNAME.ID',
@@ -590,6 +598,16 @@ export default {
           type: 'SIMPLE',
           allowEmpty: true,
           id: 'type',
+        },
+        {
+          codeName: 'title',
+          logicName: '职位',
+          appDEFieldId: 'title',
+          sourceType: 'DEFIELD',
+          stdDataType: 25,
+          type: 'SIMPLE',
+          allowEmpty: true,
+          id: 'title',
         },
         {
           codeName: 'create_man',

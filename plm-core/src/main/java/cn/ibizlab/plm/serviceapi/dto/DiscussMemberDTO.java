@@ -68,11 +68,19 @@ public class DiscussMemberDTO extends DTOBase implements Serializable {
     private String roleId;
 
     /**
+     * 职位
+     */
+    @JsonProperty("title")
+    @JSONField(name = "title")
+    @ApiModelProperty(value = "职位", position = 4)
+    private String title;
+
+    /**
      * 建立人
      */
     @JsonProperty("create_man")
     @JSONField(name = "create_man")
-    @ApiModelProperty(value = "建立人", position = 4)
+    @ApiModelProperty(value = "建立人", position = 5)
     private String createMan;
 
     /**
@@ -81,7 +89,7 @@ public class DiscussMemberDTO extends DTOBase implements Serializable {
     @JsonProperty("create_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "create_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "建立时间", position = 5)
+    @ApiModelProperty(value = "建立时间", position = 6)
     private Date createTime;
 
     /**
@@ -89,7 +97,7 @@ public class DiscussMemberDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("id")
     @JSONField(name = "id")
-    @ApiModelProperty(value = "标识", position = 6)
+    @ApiModelProperty(value = "标识", position = 7)
     private String id;
 
     /**
@@ -97,7 +105,7 @@ public class DiscussMemberDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("name")
     @JSONField(name = "name")
-    @ApiModelProperty(value = "名称", position = 7)
+    @ApiModelProperty(value = "名称", position = 8)
     private String name;
 
     /**
@@ -105,7 +113,7 @@ public class DiscussMemberDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("update_man")
     @JSONField(name = "update_man")
-    @ApiModelProperty(value = "更新人", position = 8)
+    @ApiModelProperty(value = "更新人", position = 9)
     private String updateMan;
 
     /**
@@ -114,7 +122,7 @@ public class DiscussMemberDTO extends DTOBase implements Serializable {
     @JsonProperty("update_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "update_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "更新时间", position = 9)
+    @ApiModelProperty(value = "更新时间", position = 10)
     private Date updateTime;
 
     /**
@@ -122,7 +130,7 @@ public class DiscussMemberDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("user_id")
     @JSONField(name = "user_id")
-    @ApiModelProperty(value = "登录名", position = 10)
+    @ApiModelProperty(value = "登录名", position = 11)
     private String userId;
 
 
@@ -159,6 +167,15 @@ public class DiscussMemberDTO extends DTOBase implements Serializable {
     public DiscussMemberDTO setRoleId(String roleId) {
         this.roleId = roleId;
         this.modify("role_id", roleId);
+        return this;
+    }
+
+    /**
+     * 设置 [职位]
+     */
+    public DiscussMemberDTO setTitle(String title) {
+        this.title = title;
+        this.modify("title", title);
         return this;
     }
 

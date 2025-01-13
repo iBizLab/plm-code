@@ -1,5 +1,5 @@
 /**
- * Generate code from /{{projectName}}-core/src/main/java/{{packageName}}/core/{{modules}}/domain/{{entities@ServiceAPI}}.java.hbs
+ * Generate code from /{{projectName}}-core/src/main/java/{{packageName}}/core/{{modules}}/domain/{{domains@ServiceAPI}}.java.hbs
  */
 package cn.ibizlab.plm.core.ibizsysmgr.domain;
 
@@ -214,6 +214,15 @@ public class SysPerson extends EntityClient implements Serializable
     private String uid;
 
     /**
+     * 组织标识
+     */
+    @DEField(name = "organization_id")
+    @JSONField(name = "organization_id")
+    @JsonProperty("organization_id")
+    @ApiModelProperty(value = "organization_id", notes = "组织标识")
+    private String organizationId;
+
+    /**
      * 头像
      */
     @DEField(name = "avatar")
@@ -221,6 +230,15 @@ public class SysPerson extends EntityClient implements Serializable
     @JsonProperty("avatar")
     @ApiModelProperty(value = "avatar", notes = "头像")
     private String avatar;
+
+    /**
+     * 组织名称
+     */
+    @DEField(name = "organization_name")
+    @JSONField(name = "organization_name")
+    @JsonProperty("organization_name")
+    @ApiModelProperty(value = "organization_name", notes = "组织名称")
+    private String organizationName;
 
     /**
      * 标识
@@ -424,11 +442,29 @@ public class SysPerson extends EntityClient implements Serializable
     }
 
     /**
+    * 设置 [组织标识]
+    */
+    public SysPerson setOrganizationId(String organizationId) {
+        this.organizationId = organizationId;
+        this.modify("organization_id", organizationId);
+        return this;
+    }
+
+    /**
     * 设置 [头像]
     */
     public SysPerson setAvatar(String avatar) {
         this.avatar = avatar;
         this.modify("avatar", avatar);
+        return this;
+    }
+
+    /**
+    * 设置 [组织名称]
+    */
+    public SysPerson setOrganizationName(String organizationName) {
+        this.organizationName = organizationName;
+        this.modify("organization_name", organizationName);
         return this;
     }
 

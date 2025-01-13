@@ -560,6 +560,7 @@ export default {
                 id: 'node_1',
               },
               {
+                dataSourceType: 'DEDATASET',
                 idAppDEFieldId: 'id',
                 leafFlagAppDEFieldId: 'is_leaf',
                 appDEDataSetId: 'fetch_root',
@@ -581,6 +582,7 @@ export default {
                 id: 'node_2',
               },
               {
+                dataSourceType: 'DEDATASET',
                 idAppDEFieldId: 'id',
                 leafFlagAppDEFieldId: 'is_leaf',
                 appDEDataSetId: 'fetch_default',

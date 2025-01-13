@@ -166,7 +166,7 @@ export default {
               parentDETreeNodeId: 'root',
               parentValueLevel: 1,
               searchMode: 3,
-              id: '默认根节点 - 全部报表',
+              id: 'null - null',
             },
             {
               childDETreeNodeId: 'node_3',
@@ -188,98 +188,98 @@ export default {
               parentDETreeNodeId: 'node_1',
               parentValueLevel: 1,
               searchMode: 3,
-              id: '报表分组 - 报表类型',
+              id: 'null - null',
             },
             {
               childDETreeNodeId: 'node_4',
               parentDETreeNodeId: 'root',
               parentValueLevel: 1,
               searchMode: 3,
-              id: '默认根节点 - 工作项',
+              id: 'null - null',
             },
             {
               childDETreeNodeId: 'node_11',
               parentDETreeNodeId: 'root',
               parentValueLevel: 1,
               searchMode: 3,
-              id: '默认根节点 - 发布',
+              id: 'null - null',
             },
             {
               childDETreeNodeId: 'node_12',
               parentDETreeNodeId: 'root',
               parentValueLevel: 1,
               searchMode: 3,
-              id: '默认根节点 - 迭代',
+              id: 'null - null',
             },
             {
               childDETreeNodeId: 'node_13',
               parentDETreeNodeId: 'root',
               parentValueLevel: 1,
               searchMode: 3,
-              id: '默认根节点 - 项目',
+              id: 'null - null',
             },
             {
               childDETreeNodeId: 'node_5',
               parentDETreeNodeId: 'root',
               parentValueLevel: 1,
               searchMode: 3,
-              id: '默认根节点 - 测试用例',
+              id: 'null - null',
             },
             {
               childDETreeNodeId: 'node_6',
               parentDETreeNodeId: 'root',
               parentValueLevel: 1,
               searchMode: 3,
-              id: '默认根节点 - 执行用例',
+              id: 'null - null',
             },
             {
               childDETreeNodeId: 'node_7',
               parentDETreeNodeId: 'root',
               parentValueLevel: 1,
               searchMode: 3,
-              id: '默认根节点 - 测试计划',
+              id: 'null - null',
             },
             {
               childDETreeNodeId: 'node_14',
               parentDETreeNodeId: 'root',
               parentValueLevel: 1,
               searchMode: 3,
-              id: '默认根节点 - 测试评审',
+              id: 'null - null',
             },
             {
               childDETreeNodeId: 'node_8',
               parentDETreeNodeId: 'root',
               parentValueLevel: 1,
               searchMode: 3,
-              id: '默认根节点 - 工单',
+              id: 'null - null',
             },
             {
               childDETreeNodeId: 'node_9',
               parentDETreeNodeId: 'root',
               parentValueLevel: 1,
               searchMode: 3,
-              id: '默认根节点 - 产品需求',
+              id: 'null - null',
             },
             {
               childDETreeNodeId: 'node_10',
               parentDETreeNodeId: 'root',
               parentValueLevel: 1,
               searchMode: 3,
-              id: '默认根节点 - 工时',
+              id: 'null - null',
             },
             {
               childDETreeNodeId: 'node_1',
               parentDETreeNodeId: 'root',
               parentValueLevel: 1,
               searchMode: 3,
-              id: '默认根节点 - 报表分组',
+              id: 'null - null',
             },
             {
               childDETreeNodeId: 'node_2',
               parentDETreeNodeId: 'root',
               parentValueLevel: 1,
               searchMode: 3,
-              id: '默认根节点 - 未分组报表类型',
+              id: 'null - null',
             },
           ],
           detreeNodes: [
@@ -297,13 +297,6 @@ export default {
               text: '全部报表',
               navAppViewId: 'plmweb.insight_report_all_report_grid_view',
               nodeType: 'node',
-              navigateParams: [
-                {
-                  key: 'n_view_id_eq',
-                  value: 'insight_view',
-                  id: 'n_view_id_eq',
-                },
-              ],
               sysImage: {
                 rawContent:
                   '<?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fit="" height="1em" width="1em" preserveAspectRatio="xMidYMid meet" focusable="false"><g id="bav1.Base基础/1.icon图标/2.normal/view-tile" stroke-width="1" fill-rule="evenodd"><path d="M1 1.75h5.5v5.5H1v-5.5zm1.2 1.2v3.1h3.1v-3.1H2.2zM1 8.75h5.5v5.5H1v-5.5zm1.2 1.2v3.1h3.1v-3.1H2.2zm6.2-7.7h6a.6.6 0 0 1 0 1.2h-6a.6.6 0 1 1 0-1.2zm0 7h6a.6.6 0 0 1 0 1.2h-6a.6.6 0 0 1 0-1.2zm0 3.3h6a.6.6 0 0 1 0 1.2h-6a.6.6 0 0 1 0-1.2zm0-6.8h6a.6.6 0 0 1 0 1.2h-6a.6.6 0 1 1 0-1.2z" fill="#6698ff"></path></g></svg>',
@@ -313,6 +306,7 @@ export default {
               id: 'node',
             },
             {
+              dataSourceType: 'DEDATASET',
               idAppDEFieldId: 'id',
               leafFlagAppDEFieldId: 'is_leaf',
               moveAppDEActionId: 'move_order',
@@ -419,11 +413,6 @@ export default {
                   rawValue: true,
                   id: 'n_group_eq',
                 },
-                {
-                  key: 'n_view_id_eq',
-                  value: 'insight_view',
-                  id: 'n_view_id_eq',
-                },
               ],
               sysImage: {
                 rawContent:
@@ -443,11 +432,6 @@ export default {
                   value: 'BIScheme.release',
                   rawValue: true,
                   id: 'n_group_eq',
-                },
-                {
-                  key: 'n_view_id_eq',
-                  value: 'insight_view',
-                  id: 'n_view_id_eq',
                 },
               ],
               sysImage: {
@@ -469,11 +453,6 @@ export default {
                   rawValue: true,
                   id: 'n_group_eq',
                 },
-                {
-                  key: 'n_view_id_eq',
-                  value: 'insight_view',
-                  id: 'n_view_id_eq',
-                },
               ],
               sysImage: {
                 rawContent:
@@ -493,11 +472,6 @@ export default {
                   value: 'BIScheme.project',
                   rawValue: true,
                   id: 'n_group_eq',
-                },
-                {
-                  key: 'n_view_id_eq',
-                  value: 'insight_view',
-                  id: 'n_view_id_eq',
                 },
               ],
               sysImage: {
@@ -519,11 +493,6 @@ export default {
                   rawValue: true,
                   id: 'n_group_eq',
                 },
-                {
-                  key: 'n_view_id_eq',
-                  value: 'insight_view',
-                  id: 'n_view_id_eq',
-                },
               ],
               sysImage: {
                 rawContent:
@@ -534,6 +503,7 @@ export default {
               id: 'node_14',
             },
             {
+              dataSourceType: 'DEDATASET',
               idAppDEFieldId: 'id',
               leafFlagAppDEFieldId: 'is_leaf',
               moveAppDEActionId: 'move_order',
@@ -637,6 +607,7 @@ export default {
               id: 'node_2',
             },
             {
+              dataSourceType: 'DEDATASET',
               idAppDEFieldId: 'id',
               leafFlagAppDEFieldId: 'is_leaf',
               moveAppDEActionId: 'move_order',
@@ -748,11 +719,6 @@ export default {
                   rawValue: true,
                   id: 'n_group_eq',
                 },
-                {
-                  key: 'n_view_id_eq',
-                  value: 'insight_view',
-                  id: 'n_view_id_eq',
-                },
               ],
               sysImage: {
                 rawContent:
@@ -772,11 +738,6 @@ export default {
                   value: 'BIScheme.test_case',
                   rawValue: true,
                   id: 'n_group_eq',
-                },
-                {
-                  key: 'n_view_id_eq',
-                  value: 'insight_view',
-                  id: 'n_view_id_eq',
                 },
               ],
               sysImage: {
@@ -798,11 +759,6 @@ export default {
                   rawValue: true,
                   id: 'n_group_eq',
                 },
-                {
-                  key: 'n_view_id_eq',
-                  value: 'insight_view',
-                  id: 'n_view_id_eq',
-                },
               ],
               sysImage: {
                 rawContent:
@@ -822,11 +778,6 @@ export default {
                   value: 'BIScheme.test_plan',
                   rawValue: true,
                   id: 'n_group_eq',
-                },
-                {
-                  key: 'n_view_id_eq',
-                  value: 'insight_view',
-                  id: 'n_view_id_eq',
                 },
               ],
               sysImage: {
@@ -848,11 +799,6 @@ export default {
                   rawValue: true,
                   id: 'n_group_eq',
                 },
-                {
-                  key: 'n_view_id_eq',
-                  value: 'insight_view',
-                  id: 'n_view_id_eq',
-                },
               ],
               sysImage: {
                 rawContent:
@@ -872,11 +818,6 @@ export default {
                   value: 'BIScheme.idea',
                   rawValue: true,
                   id: 'n_group_eq',
-                },
-                {
-                  key: 'n_view_id_eq',
-                  value: 'insight_view',
-                  id: 'n_view_id_eq',
                 },
               ],
               sysImage: {
@@ -917,6 +858,78 @@ export default {
           autoLoad: true,
           showBusyIndicator: true,
           controls: [
+            {
+              detoolbarItems: [
+                {
+                  actionLevel: 100,
+                  noPrivDisplayMode: 2,
+                  uiactionId:
+                    'toolbar_report_tree_exp_view_node3_cm_deuiaction1_click@insight_report',
+                  uiactionTarget: 'SINGLEDATA',
+                  valid: true,
+                  caption: '编辑',
+                  itemType: 'DEUIACTION',
+                  controlLogics: [
+                    {
+                      itemName: 'deuiaction1',
+                      logicTag: 'node_3_cm',
+                      logicType: 'SCRIPT',
+                      scriptCode: 'context.srfreadonly != true',
+                      triggerType: 'ITEMVISIBLE',
+                      id: 'deuiaction1',
+                    },
+                  ],
+                  sysImage: {
+                    cssClass: 'fa fa-edit',
+                    glyph: 'xf044@FontAwesome',
+                  },
+                  tooltip: '编辑',
+                  showCaption: true,
+                  showIcon: true,
+                  id: 'deuiaction1',
+                },
+                {
+                  actionLevel: 100,
+                  noPrivDisplayMode: 2,
+                  uiactionId:
+                    'toolbar_report_tree_exp_view_node3_cm_deuiaction2_click@insight_report',
+                  uiactionTarget: 'SINGLEDATA',
+                  valid: true,
+                  caption: '删除',
+                  itemType: 'DEUIACTION',
+                  controlLogics: [
+                    {
+                      itemName: 'deuiaction2',
+                      logicTag: 'node_3_cm',
+                      logicType: 'SCRIPT',
+                      scriptCode: 'context.srfreadonly != true',
+                      triggerType: 'ITEMVISIBLE',
+                      id: 'deuiaction2',
+                    },
+                  ],
+                  sysImage: {
+                    cssClass: 'fa fa-trash-o',
+                    glyph: 'xf014@FontAwesome',
+                  },
+                  tooltip: '删除',
+                  showCaption: true,
+                  showIcon: true,
+                  id: 'deuiaction2',
+                },
+              ],
+              toolbarStyle: 'CONTEXTMENU',
+              codeName: 'report_tree_exp_view_node3_cm',
+              controlType: 'CONTEXTMENU',
+              logicName: '树节点上下文菜单',
+              appDataEntityId: 'plmweb.insight_report',
+              controlParam: {
+                id: 'node_3_cm',
+              },
+              modelId: '186092ED-74B0-4486-A4DB-A3E0B23A2CCF',
+              modelType: 'PSDETOOLBAR',
+              name: 'node_3_cm',
+              id: 'report_tree_exp_view_node3_cm',
+            },
             {
               detoolbarItems: [
                 {
@@ -1060,78 +1073,6 @@ export default {
               modelType: 'PSDETOOLBAR',
               name: 'node_1_cm',
               id: 'report_tree_exp_view_node1_cm',
-            },
-            {
-              detoolbarItems: [
-                {
-                  actionLevel: 100,
-                  noPrivDisplayMode: 2,
-                  uiactionId:
-                    'toolbar_report_tree_exp_view_node3_cm_deuiaction1_click@insight_report',
-                  uiactionTarget: 'SINGLEDATA',
-                  valid: true,
-                  caption: '编辑',
-                  itemType: 'DEUIACTION',
-                  controlLogics: [
-                    {
-                      itemName: 'deuiaction1',
-                      logicTag: 'node_3_cm',
-                      logicType: 'SCRIPT',
-                      scriptCode: 'context.srfreadonly != true',
-                      triggerType: 'ITEMVISIBLE',
-                      id: 'deuiaction1',
-                    },
-                  ],
-                  sysImage: {
-                    cssClass: 'fa fa-edit',
-                    glyph: 'xf044@FontAwesome',
-                  },
-                  tooltip: '编辑',
-                  showCaption: true,
-                  showIcon: true,
-                  id: 'deuiaction1',
-                },
-                {
-                  actionLevel: 100,
-                  noPrivDisplayMode: 2,
-                  uiactionId:
-                    'toolbar_report_tree_exp_view_node3_cm_deuiaction2_click@insight_report',
-                  uiactionTarget: 'SINGLEDATA',
-                  valid: true,
-                  caption: '删除',
-                  itemType: 'DEUIACTION',
-                  controlLogics: [
-                    {
-                      itemName: 'deuiaction2',
-                      logicTag: 'node_3_cm',
-                      logicType: 'SCRIPT',
-                      scriptCode: 'context.srfreadonly != true',
-                      triggerType: 'ITEMVISIBLE',
-                      id: 'deuiaction2',
-                    },
-                  ],
-                  sysImage: {
-                    cssClass: 'fa fa-trash-o',
-                    glyph: 'xf014@FontAwesome',
-                  },
-                  tooltip: '删除',
-                  showCaption: true,
-                  showIcon: true,
-                  id: 'deuiaction2',
-                },
-              ],
-              toolbarStyle: 'CONTEXTMENU',
-              codeName: 'report_tree_exp_view_node3_cm',
-              controlType: 'CONTEXTMENU',
-              logicName: '树节点上下文菜单',
-              appDataEntityId: 'plmweb.insight_report',
-              controlParam: {
-                id: 'node_3_cm',
-              },
-              modelId: '186092ED-74B0-4486-A4DB-A3E0B23A2CCF',
-              modelType: 'PSDETOOLBAR',
-              name: 'node_3_cm',
-              id: 'report_tree_exp_view_node3_cm',
             },
           ],
           codeName: 'report_tree_exp_view_tree_view',

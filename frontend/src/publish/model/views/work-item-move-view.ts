@@ -209,7 +209,6 @@ export default {
                         },
                       ],
                       logicType: 'GROUP',
-                      id: '表单成员[ptitle][面板显示]逻辑',
                     },
                   ],
                   layoutPos: {

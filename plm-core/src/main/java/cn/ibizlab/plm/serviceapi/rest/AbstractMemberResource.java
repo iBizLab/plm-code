@@ -132,6 +132,45 @@ public abstract class AbstractMemberResource {
     }
 
     /**
+    * add_member_position 成员
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return Mono<ResponseEntity<MemberDTO>>
+    */
+    @ApiOperation(value = "add_member_position", tags = {"成员" },  notes = "Member-add_member_position ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Member-add_member_position-all') or hasPermission(this.memberDtoMapping.toDomain(#dto),'ibizplm-Member-add_member_position')")
+    @PostMapping("members/{id}/add_member_position")
+    public Mono<ResponseEntity<ResponseWrapper<MemberDTO>>>addMemberPositionById
+            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<MemberDTO> dto) {
+        ResponseWrapper<MemberDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(addMemberPositionById(ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(addMemberPositionById(id, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * add_member_position 成员
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<MemberDTO>
+    */   
+    public MemberDTO addMemberPositionById
+            (String id, MemberDTO dto) {
+        Member domain = memberDtoMapping.toDomain(dto);
+        domain.setId(id);
+        Member rt = memberService.addMemberPosition(domain);
+        return memberDtoMapping.toDto(rt);
+    }
+
+    /**
     * add_shared_page_member 成员
     * 
     *
@@ -384,6 +423,47 @@ public abstract class AbstractMemberResource {
         domain.setId(id);
         memberService.update(domain);
         Member rt = domain;
+        return memberDtoMapping.toDto(rt);
+    }
+
+    /**
+    * add_member_position 成员
+    * 
+    *
+    * @param ownerId ownerId
+    * @param id id
+    * @param dto dto
+    * @return Mono<ResponseEntity<MemberDTO>>
+    */
+    @ApiOperation(value = "add_member_position", tags = {"成员" },  notes = "Member-add_member_position ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Member-add_member_position-all') or hasPermission('group',#ownerId,this.memberDtoMapping.toDomain(#dto),'ibizplm-Member-add_member_position')")
+    @PostMapping("groups/{ownerId}/members/{id}/add_member_position")
+    public Mono<ResponseEntity<ResponseWrapper<MemberDTO>>>addMemberPositionByOwnerIdAndId
+            (@PathVariable("ownerId") String ownerId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<MemberDTO> dto) {
+        ResponseWrapper<MemberDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(addMemberPositionByOwnerIdAndId(ownerId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(addMemberPositionByOwnerIdAndId(ownerId, id, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * add_member_position 成员
+    * 
+    *
+    * @param ownerId ownerId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<MemberDTO>
+    */   
+    public MemberDTO addMemberPositionByOwnerIdAndId
+            (String ownerId, String id, MemberDTO dto) {
+        Member domain = memberDtoMapping.toDomain(dto);
+        domain.setId(id);
+        Member rt = memberService.addMemberPosition(domain);
         return memberDtoMapping.toDto(rt);
     }
 
@@ -658,6 +738,49 @@ public abstract class AbstractMemberResource {
         domain.setId(id);
         memberService.update(domain);
         Member rt = domain;
+        return memberDtoMapping.toDto(rt);
+    }
+
+    /**
+    * add_member_position 成员
+    * 
+    *
+    * @param spaceId spaceId
+    * @param ownerId ownerId
+    * @param id id
+    * @param dto dto
+    * @return Mono<ResponseEntity<MemberDTO>>
+    */
+    @ApiOperation(value = "add_member_position", tags = {"成员" },  notes = "Member-add_member_position ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Member-add_member_position-all') or hasPermission('shared_space',#spaceId,this.memberDtoMapping.toDomain(#dto),'ibizplm-Member-add_member_position')")
+    @PostMapping("shared_spaces/{spaceId}/article_pages/{ownerId}/members/{id}/add_member_position")
+    public Mono<ResponseEntity<ResponseWrapper<MemberDTO>>>addMemberPositionBySpaceIdAndOwnerIdAndId
+            (@PathVariable("spaceId") String spaceId, @PathVariable("ownerId") String ownerId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<MemberDTO> dto) {
+        ResponseWrapper<MemberDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(addMemberPositionBySpaceIdAndOwnerIdAndId(spaceId, ownerId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(addMemberPositionBySpaceIdAndOwnerIdAndId(spaceId, ownerId, id, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * add_member_position 成员
+    * 
+    *
+    * @param spaceId spaceId
+    * @param ownerId ownerId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<MemberDTO>
+    */   
+    public MemberDTO addMemberPositionBySpaceIdAndOwnerIdAndId
+            (String spaceId, String ownerId, String id, MemberDTO dto) {
+        Member domain = memberDtoMapping.toDomain(dto);
+        domain.setId(id);
+        Member rt = memberService.addMemberPosition(domain);
         return memberDtoMapping.toDto(rt);
     }
 

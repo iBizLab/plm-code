@@ -203,7 +203,6 @@ export default {
                         },
                       ],
                       logicType: 'GROUP',
-                      id: '表单成员[content][面板显示]逻辑',
                     },
                     {
                       logicCat: 'ITEMENABLE',
@@ -218,7 +217,6 @@ export default {
                         },
                       ],
                       logicType: 'GROUP',
-                      id: '表单成员[content][表单项启用]逻辑',
                     },
                   ],
                   layoutPos: {
@@ -265,7 +263,6 @@ export default {
                         },
                       ],
                       logicType: 'GROUP',
-                      id: '表单成员[formitem1][面板显示]逻辑',
                     },
                     {
                       logicCat: 'ITEMENABLE',
@@ -280,7 +277,6 @@ export default {
                         },
                       ],
                       logicType: 'GROUP',
-                      id: '表单成员[formitem1][表单项启用]逻辑',
                     },
                   ],
                   layoutPos: {
@@ -328,7 +324,6 @@ export default {
                         },
                       ],
                       logicType: 'GROUP',
-                      id: '表单成员[formitem][面板显示]逻辑',
                     },
                     {
                       logicCat: 'ITEMENABLE',
@@ -343,7 +338,6 @@ export default {
                         },
                       ],
                       logicType: 'GROUP',
-                      id: '表单成员[formitem][表单项启用]逻辑',
                     },
                   ],
                   layoutPos: {

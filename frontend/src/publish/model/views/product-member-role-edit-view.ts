@@ -12,7 +12,7 @@ export default {
   },
   caption: '设置角色',
   codeName: 'product_member_role_edit_view',
-  height: 250,
+  height: 220,
   appDataEntityId: 'plmweb.product_member',
   appViewEngines: [
     {
@@ -216,7 +216,7 @@ export default {
   title: '设置角色',
   viewStyle: 'DEFAULT',
   viewType: 'DEOPTVIEW',
-  width: 660,
+  width: 400,
   enableDP: true,
   showCaptionBar: true,
   modelId: 'e4e834181f38f7bd6326f3492564d1aa',

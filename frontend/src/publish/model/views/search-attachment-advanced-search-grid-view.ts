@@ -406,7 +406,6 @@ export default {
                         },
                       ],
                       logicType: 'GROUP',
-                      id: '表单成员[product_id][面板显示]逻辑',
                     },
                   ],
                   layoutPos: {
@@ -455,7 +454,6 @@ export default {
                         },
                       ],
                       logicType: 'GROUP',
-                      id: '表单成员[project_id][面板显示]逻辑',
                     },
                   ],
                   layoutPos: {
@@ -504,7 +502,6 @@ export default {
                         },
                       ],
                       logicType: 'GROUP',
-                      id: '表单成员[library_id][面板显示]逻辑',
                     },
                   ],
                   layoutPos: {
@@ -560,7 +557,6 @@ export default {
                         },
                       ],
                       logicType: 'GROUP',
-                      id: '表单成员[space_id][面板显示]逻辑',
                     },
                   ],
                   layoutPos: {

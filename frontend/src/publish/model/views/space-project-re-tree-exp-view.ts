@@ -58,7 +58,7 @@ export default {
   appViewNavContexts: [
     {
       key: 'PRINCIPAL_ID',
-      value: 'principal_id',
+      value: 'project',
       name: 'PRINCIPAL_ID',
       id: 'principal_id',
     },
@@ -66,7 +66,7 @@ export default {
   appViewNavParams: [
     {
       key: 'principal_id',
-      value: 'principal_id',
+      value: 'project',
       id: 'principal_id',
     },
   ],
@@ -479,6 +479,7 @@ export default {
               id: 'root',
             },
             {
+              dataSourceType: 'DEDATASET',
               idAppDEFieldId: 'id',
               appDEDataSetId: 'fetch_other_re_space',
               textAppDEFieldId: 'name',
@@ -536,6 +537,7 @@ export default {
               id: 'node',
             },
             {
+              dataSourceType: 'DEDATASET',
               idAppDEFieldId: 'id',
               leafFlagAppDEFieldId: 'is_leaf',
               moveAppDEActionId: 'move_order',
@@ -572,6 +574,7 @@ export default {
               id: 'node_1',
             },
             {
+              dataSourceType: 'DEDATASET',
               idAppDEFieldId: 'id',
               leafFlagAppDEFieldId: 'is_leaf',
               moveAppDEActionId: 'move_order',
@@ -608,6 +611,7 @@ export default {
               id: 'node_2',
             },
             {
+              dataSourceType: 'DEDATASET',
               idAppDEFieldId: 'id',
               leafFlagAppDEFieldId: 'is_leaf',
               moveAppDEActionId: 'move_order',
@@ -629,6 +633,7 @@ export default {
               id: 'node_3',
             },
             {
+              dataSourceType: 'DEDATASET',
               idAppDEFieldId: 'id',
               leafFlagAppDEFieldId: 'is_leaf',
               moveAppDEActionId: 'move_order',
@@ -650,6 +655,7 @@ export default {
               id: 'node_4',
             },
             {
+              dataSourceType: 'DEDATASET',
               idAppDEFieldId: 'id',
               leafFlagAppDEFieldId: 'is_leaf',
               appDEDataSetId: 'fetch_home_page',

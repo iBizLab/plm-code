@@ -3574,6 +3574,28 @@ public abstract class AbstractWorkItemResource {
     }
 
     /**
+    * 查询fetch_idea_relation_work_item 工作项
+    * 
+    *
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<WorkItemDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_idea_relation_work_item", tags = {"工作项" },  notes = "WorkItem-fetch_idea_relation_work_item ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-WorkItem-fetch_idea_relation_work_item-all') or hasPermission(#dto,'ibizplm-WorkItem-fetch_idea_relation_work_item')")
+    @PostMapping("work_items/fetch_idea_relation_work_item")
+    public Mono<ResponseEntity<List<WorkItemDTO>>> fetchIdeaRelationWorkItem
+            (@Validated @RequestBody WorkItemFilterDTO dto) {
+        WorkItemSearchContext context = workItemFilterDtoMapping.toDomain(dto);
+        Page<WorkItem> domains = workItemService.fetchIdeaRelationWorkItem(context) ;
+        List<WorkItemDTO> list = workItemDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
     * 查询fetch_kanban_user_stat 工作项
     * 
     *
@@ -4128,6 +4150,28 @@ public abstract class AbstractWorkItemResource {
             (@Validated @RequestBody WorkItemFilterDTO dto) {
         WorkItemSearchContext context = workItemFilterDtoMapping.toDomain(dto);
         Page<WorkItem> domains = workItemService.fetchRecentWorkItem(context) ;
+        List<WorkItemDTO> list = workItemDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
+    * 查询fetch_relation_work_item 工作项
+    * 
+    *
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<WorkItemDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_relation_work_item", tags = {"工作项" },  notes = "WorkItem-fetch_relation_work_item ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-WorkItem-fetch_relation_work_item-all') or hasPermission(#dto,'ibizplm-WorkItem-fetch_relation_work_item')")
+    @PostMapping("work_items/fetch_relation_work_item")
+    public Mono<ResponseEntity<List<WorkItemDTO>>> fetchRelationWorkItem
+            (@Validated @RequestBody WorkItemFilterDTO dto) {
+        WorkItemSearchContext context = workItemFilterDtoMapping.toDomain(dto);
+        Page<WorkItem> domains = workItemService.fetchRelationWorkItem(context) ;
         List<WorkItemDTO> list = workItemDtoMapping.toDto(domains.getContent());
             return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -5083,6 +5127,30 @@ public abstract class AbstractWorkItemResource {
     }
 
     /**
+    * 查询fetch_idea_relation_work_item 工作项
+    * 
+    *
+    * @param projectId projectId
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<WorkItemDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_idea_relation_work_item", tags = {"工作项" },  notes = "WorkItem-fetch_idea_relation_work_item ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-WorkItem-fetch_idea_relation_work_item-all') or hasPermission('project',#projectId,#dto,'ibizplm-WorkItem-fetch_idea_relation_work_item')")
+    @PostMapping("projects/{projectId}/work_items/fetch_idea_relation_work_item")
+    public Mono<ResponseEntity<List<WorkItemDTO>>> fetchIdeaRelationWorkItemByProjectId
+            (@PathVariable("projectId") String projectId, @Validated @RequestBody WorkItemFilterDTO dto) {
+        dto.setProjectIdEQ(projectId);
+        WorkItemSearchContext context = workItemFilterDtoMapping.toDomain(dto);
+        Page<WorkItem> domains = workItemService.fetchIdeaRelationWorkItem(context) ;
+        List<WorkItemDTO> list = workItemDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
     * 查询fetch_kanban_user_stat 工作项
     * 
     *
@@ -5689,6 +5757,30 @@ public abstract class AbstractWorkItemResource {
         dto.setProjectIdEQ(projectId);
         WorkItemSearchContext context = workItemFilterDtoMapping.toDomain(dto);
         Page<WorkItem> domains = workItemService.fetchRecentWorkItem(context) ;
+        List<WorkItemDTO> list = workItemDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
+    * 查询fetch_relation_work_item 工作项
+    * 
+    *
+    * @param projectId projectId
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<WorkItemDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_relation_work_item", tags = {"工作项" },  notes = "WorkItem-fetch_relation_work_item ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-WorkItem-fetch_relation_work_item-all') or hasPermission('project',#projectId,#dto,'ibizplm-WorkItem-fetch_relation_work_item')")
+    @PostMapping("projects/{projectId}/work_items/fetch_relation_work_item")
+    public Mono<ResponseEntity<List<WorkItemDTO>>> fetchRelationWorkItemByProjectId
+            (@PathVariable("projectId") String projectId, @Validated @RequestBody WorkItemFilterDTO dto) {
+        dto.setProjectIdEQ(projectId);
+        WorkItemSearchContext context = workItemFilterDtoMapping.toDomain(dto);
+        Page<WorkItem> domains = workItemService.fetchRelationWorkItem(context) ;
         List<WorkItemDTO> list = workItemDtoMapping.toDto(domains.getContent());
             return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))

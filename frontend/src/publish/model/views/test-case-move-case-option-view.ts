@@ -3,7 +3,7 @@ export default {
   showDataInfoBar: true,
   xdataControlName: 'form',
   loadDefault: true,
-  openMode: 'POPOVER',
+  openMode: 'POPUPMODAL',
   deviewCodeName: 'move_case_option_view',
   deviewId: '2acf46e3750dba0f84bd0d4649aff7db',
   accUserMode: 2,

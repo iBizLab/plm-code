@@ -24,6 +24,7 @@ import cn.ibizlab.plm.core.base.domain.Addon;
 import cn.ibizlab.plm.core.base.domain.Baseline;
 import cn.ibizlab.plm.core.testmgmt.domain.Guideline;
 import cn.ibizlab.plm.core.base.domain.ReferencesIndex;
+import cn.ibizlab.plm.util.annotation.DEAction;
 
 /**
  * 测试库服务接口[LibraryService]

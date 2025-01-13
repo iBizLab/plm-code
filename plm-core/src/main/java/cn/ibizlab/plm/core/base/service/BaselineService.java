@@ -22,6 +22,7 @@ import cn.ibizlab.plm.core.wiki.domain.BaselinePage;
 import cn.ibizlab.plm.core.testmgmt.domain.BaselineTestCase;
 import cn.ibizlab.plm.core.projmgmt.domain.BaselineWorkItem;
 import cn.ibizlab.plm.core.base.domain.Relation;
+import cn.ibizlab.plm.util.annotation.DEAction;
 
 /**
  * 基线服务接口[BaselineService]

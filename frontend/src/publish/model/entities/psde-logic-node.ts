@@ -1054,7 +1054,6 @@ export default {
           id: 'ordervalue',
         },
       ],
-      timeout: 60000,
       uiactionMode: 'FRONT',
       uiactionTag: 'addStatus',
       uiactionType: 'DEUIACTION',

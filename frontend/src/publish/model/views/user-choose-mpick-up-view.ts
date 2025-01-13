@@ -115,6 +115,11 @@ export default {
           dataType: 25,
           id: 'job_id',
         },
+        {
+          appDEFieldId: 'organization_id',
+          dataType: 25,
+          id: 'organization_id',
+        },
       ],
       pagingSize: 1000,
       showHeader: true,
@@ -280,6 +285,7 @@ export default {
               id: 'root',
             },
             {
+              dataSourceType: 'DEDATASET',
               idAppDEFieldId: 'id',
               appDEDataSetId: 'fetch_root',
               textAppDEFieldId: 'name',
@@ -308,6 +314,7 @@ export default {
               id: 'dept',
             },
             {
+              dataSourceType: 'DEDATASET',
               idAppDEFieldId: 'id',
               appDEDataSetId: 'fetch_default',
               textAppDEFieldId: 'name',

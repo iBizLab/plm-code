@@ -14,6 +14,7 @@ import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.core.wiki.domain.SharedSpace;
 import cn.ibizlab.plm.core.wiki.filter.SharedSpaceSearchContext;
 import cn.ibizlab.plm.core.wiki.domain.ArticlePage;
+import cn.ibizlab.plm.util.annotation.DEAction;
 
 /**
  * 共享空间服务接口[SharedSpaceService]

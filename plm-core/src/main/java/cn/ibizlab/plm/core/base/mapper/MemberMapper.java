@@ -100,6 +100,14 @@ public interface MemberMapper extends BaseMapper<Member> {
     List<Member> listUserGroupAdmin(@Param("ctx") MemberSearchContext context, @Param("ew") Wrapper<Member> wrapper);
 
     /**
+    * 根据positionId查询
+    *
+    * @param positionIds
+    * @return
+    */
+    List<Member> findByPositionId(@Param("positionIds") List<String> positionIds);
+
+    /**
     * 根据userId查询
     *
     * @param userIds

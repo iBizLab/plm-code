@@ -15,6 +15,7 @@ import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.core.base.domain.DynaDashboard;
 import cn.ibizlab.plm.core.base.filter.DynaDashboardSearchContext;
 import cn.ibizlab.plm.core.insight.domain.InsightView;
+import cn.ibizlab.plm.util.annotation.DEAction;
 
 /**
  * 动态数据看板服务接口[DynaDashboardService]

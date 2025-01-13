@@ -29,6 +29,7 @@ import cn.ibizlab.plm.core.base.domain.SearchAttachment;
 import cn.ibizlab.plm.core.base.domain.SearchComment;
 import cn.ibizlab.plm.core.base.domain.Workload;
 import cn.ibizlab.plm.core.base.domain.Version;
+import cn.ibizlab.plm.util.annotation.DEAction;
 
 /**
  * 用例服务接口[TestCaseService]
@@ -829,6 +830,22 @@ public interface TestCaseService extends IService<TestCase> {
     * @return
     */
     List<TestCase> listRecentTestCase(TestCaseSearchContext context);
+
+    /**
+    * fetchRelationTestCase
+    * 
+    * @param context
+    * @return
+    */
+    Page<TestCase> fetchRelationTestCase(TestCaseSearchContext context);
+
+    /**
+    * listRelationTestCase
+    * 
+    * @param context
+    * @return
+    */
+    List<TestCase> listRelationTestCase(TestCaseSearchContext context);
 
     /**
     * fetchSuitesTestCase

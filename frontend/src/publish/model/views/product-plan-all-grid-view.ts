@@ -248,12 +248,12 @@ export default {
         logicType: 'APPUILOGIC',
         builtinAppUILogic: {
           openDataAppView: {
-            refAppViewId: 'plmweb.idea_plan_count_grid_view',
+            refAppViewId: 'plmweb.product_plan_tab_exp_view',
           },
           editMode: true,
           appUILogicRefViews: [
             {
-              refAppViewId: 'plmweb.idea_plan_count_grid_view',
+              refAppViewId: 'plmweb.product_plan_tab_exp_view',
             },
           ],
           builtinLogic: true,
@@ -267,6 +267,19 @@ export default {
     ],
     appViewRefs: [
       {
+        realOpenMode: 'POPUPMODAL',
+        realTitle: '新建计划',
+        refAppViewId: 'plmweb.product_plan_quick_create_view',
+        name: 'NEWDATA',
+        id: 'newdata',
+      },
+      {
+        realTitle: '排期分页',
+        refAppViewId: 'plmweb.product_plan_tab_exp_view',
+        name: 'EDITDATA',
+        id: 'editdata',
+      },
+      {
         realTitle: '计划内容',
         realTitleLanguageRes: {
           lanResTag: 'PAGE.TITLE.IDEA.MAIN_VIEW_PLAN',
@@ -275,22 +288,6 @@ export default {
         name: 'OPENDATA',
         id: 'opendata',
       },
-      {
-        realOpenMode: 'POPUPMODAL',
-        realTitle: '新建计划',
-        refAppViewId: 'plmweb.product_plan_quick_create_view',
-        name: 'NEWDATA',
-        id: 'newdata',
-      },
-      {
-        realTitle: '计划内容',
-        realTitleLanguageRes: {
-          lanResTag: 'PAGE.TITLE.IDEA.MAIN_VIEW_PLAN',
-        },
-        refAppViewId: 'plmweb.idea_plan_count_grid_view',
-        name: 'EDITDATA',
-        id: 'editdata',
-      },
     ],
     controls: [
       {
@@ -298,7 +295,7 @@ export default {
           {
             actionLevel: 100,
             noPrivDisplayMode: 2,
-            uiactionId: 'new_subdata',
+            uiactionId: 'gridview_newaction',
             valid: true,
             capLanguageRes: {
               lanResTag: 'TBB.TEXT.*.NEW',

@@ -8,6 +8,9 @@ export default {
   caption: '配置中心',
   codeName: 'management_setting_view',
   appDataEntityId: 'plmweb.management',
+  sysCss: {
+    cssName: 'management_setting_style',
+  },
   viewLayoutPanel: {
     viewProxyMode: true,
     layoutMode: 'FLEX',
@@ -78,6 +81,12 @@ export default {
                 panelItems: [
                   {
                     rawItem: {
+                      rawItemParams: [
+                        {
+                          key: 'SHOW_BREADCRUMB',
+                          value: 'false',
+                        },
+                      ],
                       predefinedType: 'NAV_POS',
                       id: 'nav_pos',
                     },
@@ -91,6 +100,7 @@ export default {
                       spacingLeft: 'INNERSMALL',
                       widthMode: 'FULL',
                     },
+                    sysPFPluginId: 'breadcrumb_nav_pos',
                     showCaption: true,
                     id: 'nav_pos',
                   },

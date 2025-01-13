@@ -13,6 +13,7 @@ import cn.ibizlab.util.domain.ImportResult;
 import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.core.base.domain.VersionData;
 import cn.ibizlab.plm.core.base.filter.VersionDataSearchContext;
+import cn.ibizlab.plm.util.annotation.DEAction;
 
 /**
  * 附加数据版本服务接口[VersionDataService]

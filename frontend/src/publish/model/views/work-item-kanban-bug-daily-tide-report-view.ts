@@ -435,7 +435,6 @@ export default {
                       },
                     ],
                     logicType: 'GROUP',
-                    id: '表单成员[n_sprint_name_eq][面板显示]逻辑',
                   },
                 ],
                 layoutPos: {

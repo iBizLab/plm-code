@@ -155,6 +155,14 @@ export default {
           codeName: 'start_at',
           columnType: 'DEFGRIDCOLUMN',
           noPrivDisplayMode: 1,
+          controlAttributes: [
+            {
+              attrName: 'disabledDate',
+              attrValue:
+                '(time) => {\r\n    if (!data.end_at) {\r\n        return false;\r\n    }\r\n    const end_at = new Date(data.end_at);\r\n    // 比对天\r\n    time.setHours(0, 0, 0, 0);\r\n    end_at.setHours(0, 0, 0, 0);\r\n    return time.getTime() > end_at.getTime();\r\n}',
+              id: 'start_at',
+            },
+          ],
           width: 150,
           widthUnit: 'PX',
           enableSort: true,
@@ -174,6 +182,14 @@ export default {
           codeName: 'end_at',
           columnType: 'DEFGRIDCOLUMN',
           noPrivDisplayMode: 1,
+          controlAttributes: [
+            {
+              attrName: 'disabledDate',
+              attrValue:
+                '(time) => {\r\n    if (!data.start_at) {\r\n        return false;\r\n    }\r\n    const start_at = new Date(data.start_at);\r\n    // 比对天\r\n    start_at.setHours(0, 0, 0, 0);\r\n    time.setHours(0, 0, 0, 0);\r\n    return time.getTime() < start_at.getTime();\r\n}',
+              id: 'end_at',
+            },
+          ],
           width: 150,
           widthUnit: 'PX',
           enableSort: true,

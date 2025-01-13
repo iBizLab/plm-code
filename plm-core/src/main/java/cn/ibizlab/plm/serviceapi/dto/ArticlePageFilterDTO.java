@@ -341,5 +341,37 @@ public class ArticlePageFilterDTO extends FilterBase implements Serializable {
     @ApiModelProperty(value = "空间名称LIKE", position = 441)
 	private String spaceNameLIKE;
 
+    /**
+     * 用户标记EQ
+     */
+    @JsonProperty("n_user_tag_eq")
+    @JSONField(name = "n_user_tag_eq")
+    @ApiModelProperty(value = "用户标记EQ", position = 450)
+	private String userTagEQ;
+
+    /**
+     * 用户标记LIKE
+     */
+    @JsonProperty("n_user_tag_like")
+    @JSONField(name = "n_user_tag_like")
+    @ApiModelProperty(value = "用户标记LIKE", position = 451)
+	private String userTagLIKE;
+
+    /**
+     * 用户标记2EQ
+     */
+    @JsonProperty("n_user_tag2_eq")
+    @JSONField(name = "n_user_tag2_eq")
+    @ApiModelProperty(value = "用户标记2EQ", position = 460)
+	private String userTag2EQ;
+
+    /**
+     * 用户标记2LIKE
+     */
+    @JsonProperty("n_user_tag2_like")
+    @JSONField(name = "n_user_tag2_like")
+    @ApiModelProperty(value = "用户标记2LIKE", position = 461)
+	private String userTag2LIKE;
+
 
 }

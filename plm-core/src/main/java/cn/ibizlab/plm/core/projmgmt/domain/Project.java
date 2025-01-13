@@ -1,5 +1,5 @@
 /**
- * Generate code from /{{projectName}}-core/src/main/java/{{packageName}}/core/{{modules}}/domain/{{entities@SQL}}.java.hbs
+ * Generate code from /{{projectName}}-core/src/main/java/{{packageName}}/core/{{modules}}/domain/{{domains@SQL}}.java.hbs
  */
 package cn.ibizlab.plm.core.projmgmt.domain;
 
@@ -39,6 +39,7 @@ import cn.ibizlab.plm.core.base.domain.Addon;
 import cn.ibizlab.plm.core.base.domain.AddonResource;
 import cn.ibizlab.plm.core.base.domain.Baseline;
 import cn.ibizlab.plm.core.base.domain.Member;
+import cn.ibizlab.plm.core.base.domain.Relation;
 import cn.ibizlab.plm.core.base.domain.Work;
 import cn.ibizlab.plm.core.base.domain.ReferencesIndex;
 

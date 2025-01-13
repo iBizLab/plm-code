@@ -35,15 +35,15 @@ public class PSCorePrdFuncFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_pscoreprdfuncid_eq")
     @JSONField(name = "n_pscoreprdfuncid_eq")
-    @ApiModelProperty(value = "核心产品功能标识EQ", position = 10)
+    @ApiModelProperty(value = "核心产品功能标识EQ", position = 60)
 	private String psCorePrdFuncIdEQ;
 
     /**
-     * 核心产品功能名称LIKE
+     * 应用名称LIKE
      */
     @JsonProperty("n_pscoreprdfuncname_like")
     @JSONField(name = "n_pscoreprdfuncname_like")
-    @ApiModelProperty(value = "核心产品功能名称LIKE", position = 20)
+    @ApiModelProperty(value = "应用名称LIKE", position = 70)
 	private String psCorePrdFuncNameLIKE;
 
     /**
@@ -51,7 +51,7 @@ public class PSCorePrdFuncFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_pscoreprdid_eq")
     @JSONField(name = "n_pscoreprdid_eq")
-    @ApiModelProperty(value = "核心产品EQ", position = 190)
+    @ApiModelProperty(value = "核心产品EQ", position = 240)
 	private String psCorePrdIdEQ;
 
     /**
@@ -59,7 +59,7 @@ public class PSCorePrdFuncFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_funcstate_eq")
     @JSONField(name = "n_funcstate_eq")
-    @ApiModelProperty(value = "功能状态EQ", position = 210)
+    @ApiModelProperty(value = "功能状态EQ", position = 260)
 	private String funcStateEQ;
 
     /**
@@ -67,7 +67,7 @@ public class PSCorePrdFuncFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_funcstate_noteq")
     @JSONField(name = "n_funcstate_noteq")
-    @ApiModelProperty(value = "功能状态NOTEQ", position = 211)
+    @ApiModelProperty(value = "功能状态NOTEQ", position = 261)
 	private String funcStateNOTEQ;
 
 

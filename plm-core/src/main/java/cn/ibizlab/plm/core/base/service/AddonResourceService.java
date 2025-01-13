@@ -15,6 +15,7 @@ import cn.ibizlab.plm.core.base.domain.AddonResource;
 import cn.ibizlab.plm.core.base.filter.AddonResourceSearchContext;
 import cn.ibizlab.plm.core.projmgmt.domain.Project;
 import cn.ibizlab.plm.core.base.domain.ResourceMember;
+import cn.ibizlab.plm.util.annotation.DEAction;
 
 /**
  * 资源组件服务接口[AddonResourceService]

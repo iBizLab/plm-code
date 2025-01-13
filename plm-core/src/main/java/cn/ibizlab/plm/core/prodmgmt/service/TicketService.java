@@ -22,6 +22,7 @@ import cn.ibizlab.plm.core.base.domain.Relation;
 import cn.ibizlab.plm.core.base.domain.Attachment;
 import cn.ibizlab.plm.core.base.domain.SearchAttachment;
 import cn.ibizlab.plm.core.base.domain.SearchComment;
+import cn.ibizlab.plm.util.annotation.DEAction;
 
 /**
  * 工单服务接口[TicketService]
@@ -722,6 +723,22 @@ public interface TicketService extends IService<Ticket> {
     * @return
     */
     List<Ticket> listRecentTicket(TicketSearchContext context);
+
+    /**
+    * fetchRelationTicket
+    * 
+    * @param context
+    * @return
+    */
+    Page<Ticket> fetchRelationTicket(TicketSearchContext context);
+
+    /**
+    * listRelationTicket
+    * 
+    * @param context
+    * @return
+    */
+    List<Ticket> listRelationTicket(TicketSearchContext context);
 
     /**
     * fetchTicketReProductTag

@@ -240,20 +240,21 @@ export default {
                                   editorParams: {
                                     USERINSCRIPT:
                                       'value.replaceAll(/\\@\\{\\"(user)?id\\":\\"(.+?)\\",\\"name\\":\\"(.+?)\\"\\}/g,(x, user, id, name) => {return controller.getNodeInfo({ id, name })}).replaceAll(/\\@\\{userid=(.+?),name=(.+?)\\}/g,(x, id, name) => {return controller.getNodeInfo({ id, name })})',
+                                    LINKVIEWID:
+                                      'plmweb.recent_custom_redirect_view',
                                     QUOTECODELISTMAP:
                                       '{"type":"plmweb.base__recent_visite"}',
                                     QUOTEFIELDMAP:
-                                      '{"identifier":"show_identifier","name":"name","id":"id","type":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
-                                    QUOTEPARAMS:
-                                      '{"page":0,"size":20,"sort":"update_time,desc"}',
+                                      '{"identifier":"show_identifier","name":"name","id":"id","owner_subtype":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
+                                    QUOTEPARAMS: '{"sort":"update_time,desc"}',
                                     QUOTEINSCRIPT:
-                                      'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\"),\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); return controller.getNodeInfo({ icon, ...item })})',
+                                      'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\")(,\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\")*\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); if (icon) { icon = icon.slice(8).slice(1, -1); } return controller.getNodeInfo({ icon, ...item })})',
                                     USERSCRIPT:
                                       '`@{"id":"${data.id}","name":"${data.name}"}`',
                                     QUOTESCRIPT:
-                                      '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.type}","recent_parent":"${data.recent_parent}","icon":"${data.icon}"}`',
+                                      '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.owner_subtype}","recent_parent":"${data.recent_parent}"}`',
                                     REPLYSCRIPT:
-                                      'value?.replace(/@{[^,]*,"name":"(.*?)"}/g,"<span class=\'comment-tag\'>@$1</span>").replace(/@{[^,]*,name=(.*?)}/g,"<span class=\'comment-tag\'>@$1</span>").replaceAll(/\\#\\{(\\".+?\\":\\".+?\\"),\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g, (x, value, icon) => {const item = JSON.parse("{" + value + "}"); const tempIcon = icon.trim(); return `<span class=\'comment-tag\' data-value=\'${JSON.stringify(item)}\'>${tempIcon} ${item.identifier} ${item.name}</span>`;})',
+                                      'value?.replace(/@{[^,]*,"name":"(.*?)"}/g,"<span class=\'comment-tag\'>@$1</span>").replace(/@{[^,]*,name=(.*?)}/g,"<span class=\'comment-tag\'>@$1</span>").replaceAll(/\\#\\{(\\".+?\\":\\".+?\\")(,\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\")*\\}/g, (x, value, icon) => {const item = JSON.parse("{" + value + "}"); if (icon) { icon = icon.slice(8).slice(1, -1).trim(); } return controller.markerController.parseCommentTag({icon, ...item});})',
                                     USERFIELDMAP:
                                       '{"id":"user_id","name":"name"}',
                                     USERURL:
@@ -1326,22 +1327,23 @@ export default {
                                   editorParams: {
                                     USERINSCRIPT:
                                       'value.replaceAll(/\\@\\{\\"(user)?id\\":\\"(.+?)\\",\\"name\\":\\"(.+?)\\"\\}/g,(x, user, id, name) => {return controller.getNodeInfo({ id, name })}).replaceAll(/\\@\\{userid=(.+?),name=(.+?)\\}/g,(x, id, name) => {return controller.getNodeInfo({ id, name })})',
+                                    LINKVIEWID:
+                                      'plmweb.recent_custom_redirect_view',
                                     MAXHEIGHT: '450',
                                     QUOTECODELISTMAP:
                                       '{"type":"plmweb.base__recent_visite"}',
                                     enableEdit: 'true',
                                     QUOTEFIELDMAP:
-                                      '{"identifier":"show_identifier","name":"name","id":"id","type":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
-                                    QUOTEPARAMS:
-                                      '{"page":0,"size":20,"sort":"update_time,desc"}',
+                                      '{"identifier":"show_identifier","name":"name","id":"id","owner_subtype":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
+                                    QUOTEPARAMS: '{"sort":"update_time,desc"}',
                                     enableFullScreen: 'true',
                                     MODE: 'default',
                                     QUOTEINSCRIPT:
-                                      'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\"),\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); return controller.getNodeInfo({ icon, ...item })})',
+                                      'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\")(,\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\")*\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); if (icon) { icon = icon.slice(8).slice(1, -1); } return controller.getNodeInfo({ icon, ...item })})',
                                     USERSCRIPT:
                                       '`@{"id":"${data.id}","name":"${data.name}"}`',
                                     QUOTESCRIPT:
-                                      '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.type}","recent_parent":"${data.recent_parent}","icon":"${data.icon}"}`',
+                                      '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.owner_subtype}","recent_parent":"${data.recent_parent}"}`',
                                     USERURL:
                                       "`${context.library ? `libraries/${context.library}/library_members/fetch_default` : context.product ? `products/${context.product}/product_members/fetch_default` : context.project ? `projects/${context.project}/project_members/fetch_default` : ''}`",
                                     USERFIELDMAP:
@@ -1427,7 +1429,6 @@ export default {
                                           },
                                         ],
                                         logicType: 'GROUP',
-                                        id: '表单成员[name][面板显示]逻辑',
                                       },
                                     ],
                                     layoutPos: {
@@ -1469,7 +1470,6 @@ export default {
                                           },
                                         ],
                                         logicType: 'GROUP',
-                                        id: '表单成员[description][面板显示]逻辑',
                                       },
                                     ],
                                     layoutPos: {
@@ -1511,7 +1511,6 @@ export default {
                                           },
                                         ],
                                         logicType: 'GROUP',
-                                        id: '表单成员[expected_value][面板显示]逻辑',
                                       },
                                     ],
                                     layoutPos: {
@@ -1642,22 +1641,23 @@ export default {
                                   editorParams: {
                                     USERINSCRIPT:
                                       'value.replaceAll(/\\@\\{\\"(user)?id\\":\\"(.+?)\\",\\"name\\":\\"(.+?)\\"\\}/g,(x, user, id, name) => {return controller.getNodeInfo({ id, name })}).replaceAll(/\\@\\{userid=(.+?),name=(.+?)\\}/g,(x, id, name) => {return controller.getNodeInfo({ id, name })})',
+                                    LINKVIEWID:
+                                      'plmweb.recent_custom_redirect_view',
                                     MAXHEIGHT: '450',
                                     QUOTECODELISTMAP:
                                       '{"type":"plmweb.base__recent_visite"}',
                                     enableEdit: 'true',
                                     QUOTEFIELDMAP:
-                                      '{"identifier":"show_identifier","name":"name","id":"id","type":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
-                                    QUOTEPARAMS:
-                                      '{"page":0,"size":20,"sort":"update_time,desc"}',
+                                      '{"identifier":"show_identifier","name":"name","id":"id","owner_subtype":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
+                                    QUOTEPARAMS: '{"sort":"update_time,desc"}',
                                     enableFullScreen: 'true',
                                     MODE: 'default',
                                     QUOTEINSCRIPT:
-                                      'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\"),\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); return controller.getNodeInfo({ icon, ...item })})',
+                                      'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\")(,\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\")*\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); if (icon) { icon = icon.slice(8).slice(1, -1); } return controller.getNodeInfo({ icon, ...item })})',
                                     USERSCRIPT:
                                       '`@{"id":"${data.id}","name":"${data.name}"}`',
                                     QUOTESCRIPT:
-                                      '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.type}","recent_parent":"${data.recent_parent}","icon":"${data.icon}"}`',
+                                      '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.owner_subtype}","recent_parent":"${data.recent_parent}"}`',
                                     USERURL:
                                       "`${context.library ? `libraries/${context.library}/library_members/fetch_default` : context.product ? `products/${context.product}/product_members/fetch_default` : context.project ? `projects/${context.project}/project_members/fetch_default` : ''}`",
                                     USERFIELDMAP:
@@ -3042,7 +3042,6 @@ export default {
                                       },
                                     ],
                                     logicType: 'GROUP',
-                                    id: '表单成员[button1][面板显示]逻辑',
                                   },
                                 ],
                                 layoutPos: {
@@ -3396,7 +3395,6 @@ export default {
                           },
                         ],
                         logicType: 'GROUP',
-                        id: '表单成员[grouppanel9][面板显示]逻辑',
                       },
                     ],
                     layoutPos: {
@@ -3453,7 +3451,6 @@ export default {
                           },
                         ],
                         logicType: 'GROUP',
-                        id: '表单成员[baseline][面板显示]逻辑',
                       },
                     ],
                     layoutPos: {
@@ -3502,7 +3499,6 @@ export default {
                           },
                         ],
                         logicType: 'GROUP',
-                        id: '表单成员[grouppanel11][面板显示]逻辑',
                       },
                     ],
                     layoutPos: {
@@ -3570,16 +3566,6 @@ export default {
             appDataEntityId: 'plmweb.test_case',
             triggerType: 'CTRLEVENT',
             id: 'get_actual_workload',
-          },
-          {
-            eventNames: 'onClick',
-            itemName: 'precondition',
-            logicTag: 'form',
-            logicType: 'SCRIPT',
-            scriptCode:
-              "const tempContext = context.clone();\r\ntempContext.srfkey = data[0].id;\r\nibiz.commands.execute(\r\n    'ibiz.app-view.open',\r\n    'plmweb.work_item_main_view',\r\n    tempContext,\r\n    viewParam,\r\n);",
-            triggerType: 'CTRLEVENT',
-            id: 'openlink',
           },
         ],
         controlParam: {

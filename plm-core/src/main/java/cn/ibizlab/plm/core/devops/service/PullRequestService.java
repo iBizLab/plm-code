@@ -15,6 +15,7 @@ import cn.ibizlab.plm.core.devops.domain.PullRequest;
 import cn.ibizlab.plm.core.devops.filter.PullRequestSearchContext;
 import cn.ibizlab.plm.core.devops.domain.Repository;
 import cn.ibizlab.plm.core.devops.domain.ScmReview;
+import cn.ibizlab.plm.util.annotation.DEAction;
 
 /**
  * 拉取提交服务接口[PullRequestService]

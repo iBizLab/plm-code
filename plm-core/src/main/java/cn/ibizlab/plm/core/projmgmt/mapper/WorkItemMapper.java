@@ -423,6 +423,25 @@ public interface WorkItemMapper extends BaseMapper<WorkItem> {
     List<WorkItem> listDeleted(@Param("ctx") WorkItemSearchContext context, @Param("ew") Wrapper<WorkItem> wrapper);
 
     /**
+     * 数据集合idea_relation_work_item分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<WorkItem> searchIdeaRelationWorkItem(IPage<WorkItem> page, @Param("ctx") WorkItemSearchContext context, @Param("ew") Wrapper<WorkItem> wrapper);
+    
+    /**
+     * 数据集合idea_relation_work_item查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<WorkItem> listIdeaRelationWorkItem(@Param("ctx") WorkItemSearchContext context, @Param("ew") Wrapper<WorkItem> wrapper);
+
+    /**
      * 数据集合kanban_user_stat分页查询
      * 
      * @param page
@@ -915,6 +934,25 @@ public interface WorkItemMapper extends BaseMapper<WorkItem> {
      * @return
      */
     List<WorkItem> listRecentWorkItem(@Param("ctx") WorkItemSearchContext context, @Param("ew") Wrapper<WorkItem> wrapper);
+
+    /**
+     * 数据集合relation_work_item分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<WorkItem> searchRelationWorkItem(IPage<WorkItem> page, @Param("ctx") WorkItemSearchContext context, @Param("ew") Wrapper<WorkItem> wrapper);
+    
+    /**
+     * 数据集合relation_work_item查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<WorkItem> listRelationWorkItem(@Param("ctx") WorkItemSearchContext context, @Param("ew") Wrapper<WorkItem> wrapper);
 
     /**
      * 数据集合release分页查询

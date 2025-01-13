@@ -530,7 +530,6 @@ export default {
                                   },
                                 ],
                                 logicType: 'GROUP',
-                                id: '表单成员[events][面板显示]逻辑',
                               },
                             ],
                             layoutPos: {
@@ -575,7 +574,6 @@ export default {
                                   },
                                 ],
                                 logicType: 'GROUP',
-                                id: '表单成员[attachtopsdedatasetname][面板显示]逻辑',
                               },
                             ],
                             layoutPos: {
@@ -620,7 +618,6 @@ export default {
                                   },
                                 ],
                                 logicType: 'GROUP',
-                                id: '表单成员[attachtopsdeactionname][面板显示]逻辑',
                               },
                             ],
                             layoutPos: {
@@ -665,7 +662,6 @@ export default {
                                   },
                                 ],
                                 logicType: 'GROUP',
-                                id: '表单成员[timerpolicy][面板显示]逻辑',
                               },
                             ],
                             layoutPos: {
@@ -760,7 +756,6 @@ export default {
                           },
                         ],
                         logicType: 'GROUP',
-                        id: '表单成员[webhookurl][面板显示]逻辑',
                       },
                     ],
                     layoutPos: {

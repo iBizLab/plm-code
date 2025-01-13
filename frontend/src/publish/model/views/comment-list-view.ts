@@ -567,8 +567,9 @@ export default {
                         contentType: 'HTML',
                         editorParams: {
                           contenttype: 'HTML',
+                          LINKVIEWID: 'plmweb.recent_custom_redirect_view',
                           SCRIPTCODE:
-                            'data.content?.replace(/@{[^,]*,"name":"(.*?)"}/g,"<span class=\'comment-tag\'>@$1</span>").replace(/@{[^,]*,name=(.*?)}/g,"<span class=\'comment-tag\'>@$1</span>").replaceAll(/\\#\\{(\\".+?\\":\\".+?\\"),\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g, (x, value, icon) => {const item = JSON.parse("{" + value + "}"); const tempIcon = icon.trim(); return `<span class=\'comment-tag\' data-value=\'${JSON.stringify(item)}\'>${tempIcon} ${item.identifier} ${item.name}</span>`;}).replaceAll(/\\{\\"\\emoji\\":\\"(.+?)\\"\\}/g,(x, emoji) => {const tempVal = decodeURIComponent(atob(emoji)); return `<span class="emoji-tag">${tempVal}</span>`})',
+                            'data.content?.replace(/@{[^,]*,"name":"(.*?)"}/g,"<span class=\'comment-tag\'>@$1</span>").replace(/@{[^,]*,name=(.*?)}/g,"<span class=\'comment-tag\'>@$1</span>").replaceAll(/\\#\\{(\\".+?\\":\\".+?\\")(,\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\")*\\}/g, (x, value, icon) => {const item = JSON.parse("{" + value + "}"); if (icon) { icon = icon.slice(8).slice(1, -1).trim(); } return controller.parseCommentTag({icon, ...item});}).replaceAll(/\\{\\"\\emoji\\":\\"(.+?)\\"\\}/g,(x, emoji) => {const tempVal = decodeURIComponent(atob(emoji)); return `<span class="emoji-tag">${tempVal}</span>`})',
                         },
                         editorStyle: 'COMMENT_ITEM',
                         editorType: 'RAW',
@@ -643,8 +644,12 @@ export default {
                             contentType: 'HTML',
                             editorParams: {
                               contenttype: 'HTML',
+                              SCRIPTCODE:
+                                'data.content?.replace(/@{[^,]*,"name":"(.*?)"}/g,"<span class=\'comment-tag\'>@$1</span>").replace(/@{[^,]*,name=(.*?)}/g,"<span class=\'comment-tag\'>@$1</span>").replaceAll(/\\#\\{(\\".+?\\":\\".+?\\")(,\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\")*\\}/g, (x, value, icon) => {const item = JSON.parse("{" + value + "}"); if (icon) { icon = icon.slice(8).slice(1, -1).trim(); } return controller.parseCommentTag({icon, ...item});}).replaceAll(/\\{\\"\\emoji\\":\\"(.+?)\\"\\}/g,(x, emoji) => {const tempVal = decodeURIComponent(atob(emoji)); return `<span class="emoji-tag">${tempVal}</span>`})',
                             },
+                            editorStyle: 'COMMENT_ITEM',
                             editorType: 'RAW',
+                            sysPFPluginId: 'comment_item',
                             predefinedType: 'FIELD_TEXT_DYNAMIC',
                             valueType: 'SIMPLE',
                             editable: true,
@@ -655,14 +660,6 @@ export default {
                           caption: '文本(动态)',
                           itemStyle: 'DEFAULT',
                           itemType: 'FIELD',
-                          controlRenders: [
-                            {
-                              layoutPanelModel:
-                                'data.pcontent?.replace(/@{[^,]*,"name":"(.*?)"}/g,"<span class=\'comment-tag\'>@$1</span>").replace(/@{[^,]*,name=(.*?)}/g,"<span class=\'comment-tag\'>@$1</span>").replaceAll(/#{(".+?":".+?"),"icon":"((.|[\\t\\r\\f\\n\\s])+?)"}/g, (x, value, icon) => {const item = JSON.parse("{" + value + "}"); const tempIcon = icon.trim(); return `<span class=\'comment-tag\' data-value=\'${JSON.stringify(item)}\'>${tempIcon} ${item.identifier} ${item.name}</span>`;}).replaceAll(/<span data-w-e-type="emoji" class=\'emoji\'>(.+?)<\\/span>/g,(x, emoji) => {const tempVal = decodeURIComponent(atob(emoji));return `<span data-w-e-type="emoji" class=\'emoji\'>${tempVal}</span>`;}).replaceAll(/{"emoji":"(.+?)"}/g, (x, emoji) => {const tempVal = decodeURIComponent(atob(emoji));return `<span data-w-e-type="emoji" class=\'emoji\'>${tempVal}</span>`;})',
-                              renderType: 'LAYOUTPANEL_MODEL',
-                              id: 'logic1',
-                            },
-                          ],
                           layoutPos: {
                             grow: 1,
                             shrink: 1,
@@ -751,30 +748,15 @@ export default {
         minorSortAppDEFieldId: 'create_time',
         delistDataItems: [
           {
-            appDEFieldId: 'create_time',
-            dataType: 5,
-            format: 'YYYY-MM-DD HH:mm:ss',
-            id: 'create_time',
-          },
-          {
-            appDEFieldId: 'pcontent',
-            dataType: 21,
-            id: 'pcontent',
-          },
-          {
             appDEFieldId: 'id',
             dataType: 25,
             id: 'id',
           },
           {
-            appDEFieldId: 'pid',
+            appDEFieldId: 'create_man',
+            frontCodeListId: 'plmweb.sysoperator',
             dataType: 25,
-            id: 'pid',
-          },
-          {
-            appDEFieldId: 'content',
-            dataType: 21,
-            id: 'content',
+            id: 'create_man',
           },
           {
             appDEFieldId: 'pcreate_man',
@@ -783,10 +765,25 @@ export default {
             id: 'pcreate_man',
           },
           {
-            appDEFieldId: 'create_man',
-            frontCodeListId: 'plmweb.sysoperator',
+            appDEFieldId: 'create_time',
+            dataType: 5,
+            format: 'YYYY-MM-DD HH:mm:ss',
+            id: 'create_time',
+          },
+          {
+            appDEFieldId: 'content',
+            dataType: 21,
+            id: 'content',
+          },
+          {
+            appDEFieldId: 'pcontent',
+            dataType: 21,
+            id: 'pcontent',
+          },
+          {
+            appDEFieldId: 'pid',
             dataType: 25,
-            id: 'create_man',
+            id: 'pid',
           },
           {
             appDEFieldId: 'id',

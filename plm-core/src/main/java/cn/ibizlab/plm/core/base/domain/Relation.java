@@ -1,5 +1,5 @@
 /**
- * Generate code from /{{projectName}}-core/src/main/java/{{packageName}}/core/{{modules}}/domain/{{entities@SQL}}.java.hbs
+ * Generate code from /{{projectName}}-core/src/main/java/{{packageName}}/core/{{modules}}/domain/{{domains@SQL}}.java.hbs
  */
 package cn.ibizlab.plm.core.base.domain;
 
@@ -22,6 +22,8 @@ import com.baomidou.mybatisplus.annotation.*;
 import com.baomidou.mybatisplus.core.toolkit.IdWorker;
 import cn.ibizlab.plm.core.base.domain.Baseline;
 import cn.ibizlab.plm.core.prodmgmt.domain.Idea;
+import cn.ibizlab.plm.core.prodmgmt.domain.Product;
+import cn.ibizlab.plm.core.projmgmt.domain.Project;
 import cn.ibizlab.plm.core.projmgmt.domain.Release;
 import cn.ibizlab.plm.core.testmgmt.domain.Review;
 import cn.ibizlab.plm.core.testmgmt.domain.ReviewContentExtend;
@@ -281,6 +283,36 @@ public class Relation extends EntityMP implements Serializable
     private String jobType;
 
     /**
+    * 排序
+    */
+    @TableField(value = "sequence" , exist = false)
+    @DEField(name = "sequence" , defaultValue = "1")
+    @JSONField(name = "sequence")
+    @JsonProperty("sequence")
+    @ApiModelProperty(value = "sequence", notes = "排序")
+    private Integer sequence;
+
+    /**
+    * 产品
+    */
+    @TableField(exist = false)
+    @DEField(name = "product")
+    @JSONField(name = "product")
+    @JsonProperty("product")
+    @ApiModelProperty(value = "product", notes = "产品")
+    private Product product;
+
+    /**
+    * 项目对象
+    */
+    @TableField(exist = false)
+    @DEField(name = "project_obj")
+    @JSONField(name = "project_obj")
+    @JsonProperty("project_obj")
+    @ApiModelProperty(value = "project_obj", notes = "项目对象")
+    private Project projectObj;
+
+    /**
     * 标识
     */
     @Id
@@ -364,6 +396,26 @@ public class Relation extends EntityMP implements Serializable
     private Idea principalIdea;
 
     /**
+    * 产品-关联源
+    */
+    @Transient
+    @TableField(exist = false)
+    @JsonIgnore
+    @JSONField(serialize = false)
+    @ApiModelProperty(value = "principal_product", notes = "产品-关联源")
+    private Product principalProduct;
+
+    /**
+    * 项目-关联源
+    */
+    @Transient
+    @TableField(exist = false)
+    @JsonIgnore
+    @JSONField(serialize = false)
+    @ApiModelProperty(value = "principal_project", notes = "项目-关联源")
+    private Project principalProject;
+
+    /**
     * 发布-关联
     */
     @Transient
@@ -434,6 +486,16 @@ public class Relation extends EntityMP implements Serializable
     private ArticlePage targetPage;
 
     /**
+    * 产品-关联目标
+    */
+    @Transient
+    @TableField(exist = false)
+    @JsonIgnore
+    @JSONField(serialize = false)
+    @ApiModelProperty(value = "target_product", notes = "产品-关联目标")
+    private Product targetProduct;
+
+    /**
     * 排期-关联目标
     */
     @Transient
@@ -442,6 +504,16 @@ public class Relation extends EntityMP implements Serializable
     @JSONField(serialize = false)
     @ApiModelProperty(value = "target_product_plan_category", notes = "排期-关联目标")
     private ProductPlan targetProductPlanCategory;
+
+    /**
+    * 项目-关联目标
+    */
+    @Transient
+    @TableField(exist = false)
+    @JsonIgnore
+    @JSONField(serialize = false)
+    @ApiModelProperty(value = "target_project", notes = "项目-关联目标")
+    private Project targetProject;
 
     /**
     * 执行用例-关联目标
@@ -689,6 +761,33 @@ public class Relation extends EntityMP implements Serializable
     public Relation setJobType(String jobType) {
         this.jobType = jobType;
         this.modify("job_type", jobType);
+        return this;
+    }
+
+    /**
+    * 设置 [排序]
+    */
+    public Relation setSequence(Integer sequence) {
+        this.sequence = sequence;
+        this.modify("sequence", sequence);
+        return this;
+    }
+
+    /**
+    * 设置 [产品]
+    */
+    public Relation setProduct(Product product) {
+        this.product = product;
+        this.modify("product", product);
+        return this;
+    }
+
+    /**
+    * 设置 [项目对象]
+    */
+    public Relation setProjectObj(Project projectObj) {
+        this.projectObj = projectObj;
+        this.modify("project_obj", projectObj);
         return this;
     }
 

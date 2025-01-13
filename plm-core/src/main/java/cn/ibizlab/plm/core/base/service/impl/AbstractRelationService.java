@@ -29,6 +29,10 @@ import cn.ibizlab.plm.core.base.domain.Baseline;
 import cn.ibizlab.plm.core.base.service.BaselineService;
 import cn.ibizlab.plm.core.prodmgmt.domain.Idea;
 import cn.ibizlab.plm.core.prodmgmt.service.IdeaService;
+import cn.ibizlab.plm.core.prodmgmt.domain.Product;
+import cn.ibizlab.plm.core.prodmgmt.service.ProductService;
+import cn.ibizlab.plm.core.projmgmt.domain.Project;
+import cn.ibizlab.plm.core.projmgmt.service.ProjectService;
 import cn.ibizlab.plm.core.projmgmt.domain.Release;
 import cn.ibizlab.plm.core.projmgmt.service.ReleaseService;
 import cn.ibizlab.plm.core.testmgmt.domain.Review;
@@ -69,6 +73,14 @@ public abstract class AbstractRelationService extends ServiceImpl<RelationMapper
     @Autowired
     @Lazy
     protected IdeaService ideaService;
+
+    @Autowired
+    @Lazy
+    protected ProductService productService;
+
+    @Autowired
+    @Lazy
+    protected ProjectService projectService;
 
     @Autowired
     @Lazy
@@ -346,6 +358,39 @@ public abstract class AbstractRelationService extends ServiceImpl<RelationMapper
         return list;
    }
 	
+   public Page<Relation> fetchProductPlanIdea(RelationSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Relation> pages=baseMapper.searchProductPlanIdea(context.getPages(),context,context.getSelectCond());
+        List<Relation> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<Relation> listProductPlanIdea(RelationSearchContext context) {
+        List<Relation> list = baseMapper.listProductPlanIdea(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<Relation> fetchProductReProject(RelationSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Relation> pages=baseMapper.searchProductReProject(context.getPages(),context,context.getSelectCond());
+        List<Relation> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<Relation> listProductReProject(RelationSearchContext context) {
+        List<Relation> list = baseMapper.listProductReProject(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<Relation> fetchProjectReProduct(RelationSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Relation> pages=baseMapper.searchProjectReProduct(context.getPages(),context,context.getSelectCond());
+        List<Relation> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<Relation> listProjectReProduct(RelationSearchContext context) {
+        List<Relation> list = baseMapper.listProjectReProduct(context,context.getSelectCond());
+        return list;
+   }
+	
    public Page<Relation> fetchReviewReTestCase(RelationSearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<Relation> pages=baseMapper.searchReviewReTestCase(context.getPages(),context,context.getSelectCond());
         List<Relation> list = pages.getRecords();
@@ -601,6 +646,78 @@ public abstract class AbstractRelationService extends ServiceImpl<RelationMapper
         for(Relation sub:list) {
             sub.setPrincipalId(idea.getId());
             sub.setPrincipalIdea(idea);
+            if(ObjectUtils.isEmpty(sub.getId()))
+                before.values().stream()
+                        .filter(e->ObjectUtils.nullSafeEquals(sub.getDefaultKey(true),e.getDefaultKey(true)))
+                        .findFirst().ifPresent(e->sub.setId(e.getId()));
+            if(!ObjectUtils.isEmpty(sub.getId())&&before.containsKey(sub.getId())) {
+                before.remove(sub.getId());
+                update.add(sub);
+            }
+            else
+                create.add(sub);
+        }
+        if(!update.isEmpty())
+            update.forEach(item->this.getSelf().update(item));
+        if(!create.isEmpty() && !getSelf().create(create))
+            return false;
+        else if(!before.isEmpty() && !getSelf().remove(before.keySet()))
+            return false;
+        else
+            return true;
+			
+	}
+	public List<Relation> findByPrincipalProduct(Product product){
+        List<Relation> list = findByPrincipalId(Arrays.asList(product.getId()));
+		return list;
+	}
+	public boolean saveByPrincipalProduct(Product product, List<Relation> list){
+        if(list==null)
+            return true;
+
+        Map<String,Relation> before = findByPrincipalProduct(product).stream().collect(Collectors.toMap(Relation::getId,e->e));
+        List<Relation> update = new ArrayList<>();
+        List<Relation> create = new ArrayList<>();
+
+        for(Relation sub:list) {
+            sub.setPrincipalId(product.getId());
+            sub.setPrincipalProduct(product);
+            if(ObjectUtils.isEmpty(sub.getId()))
+                before.values().stream()
+                        .filter(e->ObjectUtils.nullSafeEquals(sub.getDefaultKey(true),e.getDefaultKey(true)))
+                        .findFirst().ifPresent(e->sub.setId(e.getId()));
+            if(!ObjectUtils.isEmpty(sub.getId())&&before.containsKey(sub.getId())) {
+                before.remove(sub.getId());
+                update.add(sub);
+            }
+            else
+                create.add(sub);
+        }
+        if(!update.isEmpty())
+            update.forEach(item->this.getSelf().update(item));
+        if(!create.isEmpty() && !getSelf().create(create))
+            return false;
+        else if(!before.isEmpty() && !getSelf().remove(before.keySet()))
+            return false;
+        else
+            return true;
+			
+	}
+	public List<Relation> findByPrincipalProject(Project project){
+        List<Relation> list = findByPrincipalId(Arrays.asList(project.getId()));
+		return list;
+	}
+	public boolean saveByPrincipalProject(Project project, List<Relation> list){
+        if(list==null)
+            return true;
+
+        Map<String,Relation> before = findByPrincipalProject(project).stream().collect(Collectors.toMap(Relation::getId,e->e));
+        List<Relation> update = new ArrayList<>();
+        List<Relation> create = new ArrayList<>();
+
+        for(Relation sub:list) {
+            sub.setPrincipalId(project.getId());
+            sub.setPrincipalProject(project);
             if(ObjectUtils.isEmpty(sub.getId()))
                 before.values().stream()
                         .filter(e->ObjectUtils.nullSafeEquals(sub.getDefaultKey(true),e.getDefaultKey(true)))
@@ -898,6 +1015,42 @@ public abstract class AbstractRelationService extends ServiceImpl<RelationMapper
             return true;
 			
 	}
+	public List<Relation> findByTargetProduct(Product product){
+        List<Relation> list = findByTargetId(Arrays.asList(product.getId()));
+		return list;
+	}
+	public boolean saveByTargetProduct(Product product, List<Relation> list){
+        if(list==null)
+            return true;
+
+        Map<String,Relation> before = findByTargetProduct(product).stream().collect(Collectors.toMap(Relation::getId,e->e));
+        List<Relation> update = new ArrayList<>();
+        List<Relation> create = new ArrayList<>();
+
+        for(Relation sub:list) {
+            sub.setTargetId(product.getId());
+            sub.setTargetProduct(product);
+            if(ObjectUtils.isEmpty(sub.getId()))
+                before.values().stream()
+                        .filter(e->ObjectUtils.nullSafeEquals(sub.getDefaultKey(true),e.getDefaultKey(true)))
+                        .findFirst().ifPresent(e->sub.setId(e.getId()));
+            if(!ObjectUtils.isEmpty(sub.getId())&&before.containsKey(sub.getId())) {
+                before.remove(sub.getId());
+                update.add(sub);
+            }
+            else
+                create.add(sub);
+        }
+        if(!update.isEmpty())
+            update.forEach(item->this.getSelf().update(item));
+        if(!create.isEmpty() && !getSelf().create(create))
+            return false;
+        else if(!before.isEmpty() && !getSelf().remove(before.keySet()))
+            return false;
+        else
+            return true;
+			
+	}
 	public List<Relation> findByTargetProductPlanCategory(ProductPlan productPlan){
         List<Relation> list = findByTargetId(Arrays.asList(productPlan.getId()));
 		return list;
@@ -913,6 +1066,42 @@ public abstract class AbstractRelationService extends ServiceImpl<RelationMapper
         for(Relation sub:list) {
             sub.setTargetId(productPlan.getId());
             sub.setTargetProductPlanCategory(productPlan);
+            if(ObjectUtils.isEmpty(sub.getId()))
+                before.values().stream()
+                        .filter(e->ObjectUtils.nullSafeEquals(sub.getDefaultKey(true),e.getDefaultKey(true)))
+                        .findFirst().ifPresent(e->sub.setId(e.getId()));
+            if(!ObjectUtils.isEmpty(sub.getId())&&before.containsKey(sub.getId())) {
+                before.remove(sub.getId());
+                update.add(sub);
+            }
+            else
+                create.add(sub);
+        }
+        if(!update.isEmpty())
+            update.forEach(item->this.getSelf().update(item));
+        if(!create.isEmpty() && !getSelf().create(create))
+            return false;
+        else if(!before.isEmpty() && !getSelf().remove(before.keySet()))
+            return false;
+        else
+            return true;
+			
+	}
+	public List<Relation> findByTargetProject(Project project){
+        List<Relation> list = findByTargetId(Arrays.asList(project.getId()));
+		return list;
+	}
+	public boolean saveByTargetProject(Project project, List<Relation> list){
+        if(list==null)
+            return true;
+
+        Map<String,Relation> before = findByTargetProject(project).stream().collect(Collectors.toMap(Relation::getId,e->e));
+        List<Relation> update = new ArrayList<>();
+        List<Relation> create = new ArrayList<>();
+
+        for(Relation sub:list) {
+            sub.setTargetId(project.getId());
+            sub.setTargetProject(project);
             if(ObjectUtils.isEmpty(sub.getId()))
                 before.values().stream()
                         .filter(e->ObjectUtils.nullSafeEquals(sub.getDefaultKey(true),e.getDefaultKey(true)))
@@ -1205,6 +1394,12 @@ public abstract class AbstractRelationService extends ServiceImpl<RelationMapper
         if(Entities.IDEA.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
             et.setPrincipalId((String)et.getContextParentKey());
         }
+        if(Entities.PRODUCT.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
+            et.setPrincipalId((String)et.getContextParentKey());
+        }
+        if(Entities.PROJECT.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
+            et.setPrincipalId((String)et.getContextParentKey());
+        }
         if(Entities.RELEASE.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
             et.setPrincipalId((String)et.getContextParentKey());
         }
@@ -1226,7 +1421,13 @@ public abstract class AbstractRelationService extends ServiceImpl<RelationMapper
         if(Entities.ARTICLE_PAGE.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
             et.setTargetId((String)et.getContextParentKey());
         }
+        if(Entities.PRODUCT.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
+            et.setTargetId((String)et.getContextParentKey());
+        }
         if(Entities.PRODUCT_PLAN.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
+            et.setTargetId((String)et.getContextParentKey());
+        }
+        if(Entities.PROJECT.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
             et.setTargetId((String)et.getContextParentKey());
         }
         if(Entities.RUN.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {

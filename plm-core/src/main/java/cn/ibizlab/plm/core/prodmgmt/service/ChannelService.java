@@ -14,6 +14,7 @@ import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.core.prodmgmt.domain.Channel;
 import cn.ibizlab.plm.core.prodmgmt.filter.ChannelSearchContext;
 import cn.ibizlab.plm.core.prodmgmt.domain.Product;
+import cn.ibizlab.plm.util.annotation.DEAction;
 
 /**
  * 工单渠道服务接口[ChannelService]

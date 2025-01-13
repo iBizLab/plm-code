@@ -45,12 +45,12 @@ export default {
       logicType: 'APPUILOGIC',
       builtinAppUILogic: {
         openDataAppView: {
-          refAppViewId: 'plmweb.insight_view_redirect_view',
+          refAppViewId: 'plmweb.insight_view_index_view',
         },
         editMode: true,
         appUILogicRefViews: [
           {
-            refAppViewId: 'plmweb.insight_view_redirect_view',
+            refAppViewId: 'plmweb.insight_view_index_view',
           },
         ],
         builtinLogic: true,
@@ -72,6 +72,15 @@ export default {
   ],
   appViewRefs: [
     {
+      realTitle: '效能度量首页',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.INSIGHT_VIEW.INDEX_VIEW_2',
+      },
+      refAppViewId: 'plmweb.insight_view_index_view',
+      name: 'EDITDATA',
+      id: 'editdata',
+    },
+    {
       realTitle: '效能视图编辑视图',
       realTitleLanguageRes: {
         lanResTag: 'PAGE.TITLE.INSIGHT_VIEW.EDITVIEW',
@@ -79,15 +88,6 @@ export default {
       refAppViewId: 'plmweb.insight_view_edit_view',
       name: 'NEWDATA',
       id: 'newdata',
-    },
-    {
-      realTitle: '效能视图数据重定向视图',
-      realTitleLanguageRes: {
-        lanResTag: 'PAGE.TITLE.INSIGHT_VIEW.REDIRECTVIEW',
-      },
-      refAppViewId: 'plmweb.insight_view_redirect_view',
-      name: 'EDITDATA',
-      id: 'editdata',
     },
   ],
   controls: [

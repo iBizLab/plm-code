@@ -35,11 +35,56 @@ public class PSCorePrdFunc extends EntityBase implements Serializable
     /**
      * 功能类型
      */
-    @DEField(name = "functype")
+    @DEField(name = "functype" , dict = "pscoreprdfunc_type")
     @JSONField(name = "functype")
     @JsonProperty("functype")
     @ApiModelProperty(value = "functype", notes = "功能类型")
     private String funcType;
+
+    /**
+     * 设置
+     */
+    @DEField(name = "settings")
+    @JSONField(name = "settings")
+    @JsonProperty("settings")
+    @ApiModelProperty(value = "settings", notes = "设置")
+    private String settings;
+
+    /**
+     * 可用版本
+     */
+    @DEField(name = "vers")
+    @JSONField(name = "vers")
+    @JsonProperty("vers")
+    @ApiModelProperty(value = "vers", notes = "可用版本")
+    private String vers;
+
+    /**
+     * 详细信息
+     */
+    @DEField(name = "info")
+    @JSONField(name = "info")
+    @JsonProperty("info")
+    @ApiModelProperty(value = "info", notes = "详细信息")
+    private String info;
+
+    /**
+     * 产品分类
+     */
+    @DEField(name = "category" , dict = "pscoreprdfunc_category")
+    @JSONField(name = "category")
+    @JsonProperty("category")
+    @ApiModelProperty(value = "category", notes = "产品分类")
+    private String category;
+
+    /**
+     * 变更日志
+     */
+    @DEField(name = "changelog")
+    @JSONField(name = "changelog")
+    @JsonProperty("changelog")
+    @ApiModelProperty(value = "changelog", notes = "变更日志")
+    private String changelog;
 
     /**
      * 核心产品功能标识
@@ -52,12 +97,12 @@ public class PSCorePrdFunc extends EntityBase implements Serializable
     private String psCorePrdFuncId;
 
     /**
-     * 核心产品功能名称
+     * 应用名称
      */
     @DEField(name = "pscoreprdfuncname")
     @JSONField(name = "pscoreprdfuncname")
     @JsonProperty("pscoreprdfuncname")
-    @ApiModelProperty(value = "pscoreprdfuncname", notes = "核心产品功能名称")
+    @ApiModelProperty(value = "pscoreprdfuncname", notes = "应用名称")
     private String psCorePrdFuncName;
 
     /**
@@ -234,6 +279,15 @@ public class PSCorePrdFunc extends EntityBase implements Serializable
     private String funcState;
 
     /**
+     * 设置地址
+     */
+    @DEField(name = "settingurl")
+    @JSONField(name = "settingurl")
+    @JsonProperty("settingurl")
+    @ApiModelProperty(value = "settingurl", notes = "设置地址")
+    private String settingUrl;
+
+    /**
     * 设置 [功能类型]
     */
     public PSCorePrdFunc setFuncType(String funcType) {
@@ -243,7 +297,52 @@ public class PSCorePrdFunc extends EntityBase implements Serializable
     }
 
     /**
-    * 设置 [核心产品功能名称]
+    * 设置 [设置]
+    */
+    public PSCorePrdFunc setSettings(String settings) {
+        this.settings = settings;
+        this.modify("settings", settings);
+        return this;
+    }
+
+    /**
+    * 设置 [可用版本]
+    */
+    public PSCorePrdFunc setVers(String vers) {
+        this.vers = vers;
+        this.modify("vers", vers);
+        return this;
+    }
+
+    /**
+    * 设置 [详细信息]
+    */
+    public PSCorePrdFunc setInfo(String info) {
+        this.info = info;
+        this.modify("info", info);
+        return this;
+    }
+
+    /**
+    * 设置 [产品分类]
+    */
+    public PSCorePrdFunc setCategory(String category) {
+        this.category = category;
+        this.modify("category", category);
+        return this;
+    }
+
+    /**
+    * 设置 [变更日志]
+    */
+    public PSCorePrdFunc setChangelog(String changelog) {
+        this.changelog = changelog;
+        this.modify("changelog", changelog);
+        return this;
+    }
+
+    /**
+    * 设置 [应用名称]
     */
     public PSCorePrdFunc setPsCorePrdFuncName(String psCorePrdFuncName) {
         this.psCorePrdFuncName = psCorePrdFuncName;
@@ -374,6 +473,15 @@ public class PSCorePrdFunc extends EntityBase implements Serializable
     public PSCorePrdFunc setFuncState(String funcState) {
         this.funcState = funcState;
         this.modify("funcstate", funcState);
+        return this;
+    }
+
+    /**
+    * 设置 [设置地址]
+    */
+    public PSCorePrdFunc setSettingUrl(String settingUrl) {
+        this.settingUrl = settingUrl;
+        this.modify("settingurl", settingUrl);
         return this;
     }
 

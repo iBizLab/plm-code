@@ -1,5 +1,5 @@
 /**
- * Generate code from /{{projectName}}-core/src/main/java/{{packageName}}/core/{{modules}}/domain/{{entities@NONE}}.java.hbs
+ * Generate code from /{{projectName}}-core/src/main/java/{{packageName}}/core/{{modules}}/domain/{{domains@NONE}}.java.hbs
  */
 package cn.ibizlab.plm.core.base.domain;
 
@@ -32,6 +32,15 @@ import io.swagger.annotations.*;
 @ApiModel(value = "ROLE", description = "角色")
 public class Role extends EntityBase implements Serializable
 {
+    /**
+     * 角色代码标记
+     */
+    @DEField(name = "authority")
+    @JSONField(name = "authority")
+    @JsonProperty("authority")
+    @ApiModelProperty(value = "authority", notes = "角色代码标记")
+    private String authority;
+
     /**
      * 标识
      */
@@ -90,11 +99,56 @@ public class Role extends EntityBase implements Serializable
     private Date updateTime;
 
     /**
+     * 租户系统标识
+     */
+    @DEField(name = "dcsystemid")
+    @JSONField(name = "dcsystemid")
+    @JsonProperty("dcsystemid")
+    @ApiModelProperty(value = "dcsystemid", notes = "租户系统标识")
+    private String dcSystemId;
+
+    /**
+     * 全局标记
+     */
+    @DEField(name = "globalflag" , defaultValue = "0" , dict = "YesNo")
+    @JSONField(name = "globalflag")
+    @JsonProperty("globalflag")
+    @ApiModelProperty(value = "globalflag", notes = "全局标记")
+    private Integer globalFlag;
+
+    /**
+    * 设置 [角色代码标记]
+    */
+    public Role setAuthority(String authority) {
+        this.authority = authority;
+        this.modify("authority", authority);
+        return this;
+    }
+
+    /**
     * 设置 [名称]
     */
     public Role setName(String name) {
         this.name = name;
         this.modify("name", name);
+        return this;
+    }
+
+    /**
+    * 设置 [租户系统标识]
+    */
+    public Role setDcSystemId(String dcSystemId) {
+        this.dcSystemId = dcSystemId;
+        this.modify("dcsystemid", dcSystemId);
+        return this;
+    }
+
+    /**
+    * 设置 [全局标记]
+    */
+    public Role setGlobalFlag(Integer globalFlag) {
+        this.globalFlag = globalFlag;
+        this.modify("globalflag", globalFlag);
         return this;
     }
 

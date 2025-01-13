@@ -1,5 +1,5 @@
 /**
- * Generate code from /{{projectName}}-core/src/main/java/{{packageName}}/core/{{modules}}/domain/{{entities@SQL}}.java.hbs
+ * Generate code from /{{projectName}}-core/src/main/java/{{packageName}}/core/{{modules}}/domain/{{domains@SQL}}.java.hbs
  */
 package cn.ibizlab.plm.core.team.domain;
 
@@ -77,6 +77,16 @@ public class DiscussMember extends EntityMP implements Serializable
     @JsonProperty("role_id")
     @ApiModelProperty(value = "role_id", notes = "角色")
     private String roleId;
+
+    /**
+    * 职位
+    */
+    @TableField(value = "title")
+    @DEField(name = "title")
+    @JSONField(name = "title")
+    @JsonProperty("title")
+    @ApiModelProperty(value = "title", notes = "职位")
+    private String title;
 
     /**
     * 标识
@@ -204,6 +214,15 @@ public class DiscussMember extends EntityMP implements Serializable
     public DiscussMember setRoleId(String roleId) {
         this.roleId = roleId;
         this.modify("role_id", roleId);
+        return this;
+    }
+
+    /**
+    * 设置 [职位]
+    */
+    public DiscussMember setTitle(String title) {
+        this.title = title;
+        this.modify("title", title);
         return this;
     }
 

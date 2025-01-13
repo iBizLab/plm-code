@@ -14,6 +14,7 @@ import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.core.projmgmt.domain.TransitionHistory;
 import cn.ibizlab.plm.core.projmgmt.filter.TransitionHistorySearchContext;
 import cn.ibizlab.plm.core.projmgmt.domain.WorkItem;
+import cn.ibizlab.plm.util.annotation.DEAction;
 
 /**
  * 流转记录服务接口[TransitionHistoryService]

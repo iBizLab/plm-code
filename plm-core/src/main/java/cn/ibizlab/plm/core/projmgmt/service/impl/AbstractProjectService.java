@@ -60,6 +60,8 @@ import cn.ibizlab.plm.core.base.domain.Baseline;
 import cn.ibizlab.plm.core.base.service.BaselineService;
 import cn.ibizlab.plm.core.base.domain.Member;
 import cn.ibizlab.plm.core.base.service.MemberService;
+import cn.ibizlab.plm.core.base.domain.Relation;
+import cn.ibizlab.plm.core.base.service.RelationService;
 import cn.ibizlab.plm.core.base.domain.Work;
 import cn.ibizlab.plm.core.base.service.WorkService;
 import cn.ibizlab.plm.core.base.domain.ReferencesIndex;
@@ -136,6 +138,10 @@ public abstract class AbstractProjectService extends ServiceImpl<ProjectMapper,P
     @Autowired
     @Lazy
     protected MemberService memberService;
+
+    @Autowired
+    @Lazy
+    protected RelationService relationService;
 
     @Autowired
     @Lazy
@@ -381,6 +387,17 @@ public abstract class AbstractProjectService extends ServiceImpl<ProjectMapper,P
         return list;
    }
 	
+   public Page<Project> fetchNoRelation(ProjectSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Project> pages=baseMapper.searchNoRelation(context.getPages(),context,context.getSelectCond());
+        List<Project> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<Project> listNoRelation(ProjectSearchContext context) {
+        List<Project> list = baseMapper.listNoRelation(context,context.getSelectCond());
+        return list;
+   }
+	
    public Page<Project> fetchNormal(ProjectSearchContext context) {
         if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
             context.setSort("NAME,DESC");
@@ -393,6 +410,17 @@ public abstract class AbstractProjectService extends ServiceImpl<ProjectMapper,P
         if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
             context.setSort("NAME,DESC");
         List<Project> list = baseMapper.listNormal(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<Project> fetchProductReProject(ProjectSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Project> pages=baseMapper.searchProductReProject(context.getPages(),context,context.getSelectCond());
+        List<Project> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<Project> listProductReProject(ProjectSearchContext context) {
+        List<Project> list = baseMapper.listProductReProject(context,context.getSelectCond());
         return list;
    }
 	

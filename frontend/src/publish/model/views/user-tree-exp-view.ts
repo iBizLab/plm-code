@@ -166,6 +166,7 @@ export default {
               id: 'root',
             },
             {
+              dataSourceType: 'DEDATASET',
               idAppDEFieldId: 'id',
               appDEDataSetId: 'fetch_root',
               textAppDEFieldId: 'name',
@@ -194,6 +195,7 @@ export default {
               id: 'dept',
             },
             {
+              dataSourceType: 'DEDATASET',
               idAppDEFieldId: 'id',
               appDEDataSetId: 'fetch_default',
               textAppDEFieldId: 'name',

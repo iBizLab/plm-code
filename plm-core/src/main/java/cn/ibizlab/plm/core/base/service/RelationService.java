@@ -15,6 +15,8 @@ import cn.ibizlab.plm.core.base.domain.Relation;
 import cn.ibizlab.plm.core.base.filter.RelationSearchContext;
 import cn.ibizlab.plm.core.base.domain.Baseline;
 import cn.ibizlab.plm.core.prodmgmt.domain.Idea;
+import cn.ibizlab.plm.core.prodmgmt.domain.Product;
+import cn.ibizlab.plm.core.projmgmt.domain.Project;
 import cn.ibizlab.plm.core.projmgmt.domain.Release;
 import cn.ibizlab.plm.core.testmgmt.domain.Review;
 import cn.ibizlab.plm.core.testmgmt.domain.ReviewContentExtend;
@@ -27,6 +29,7 @@ import cn.ibizlab.plm.core.testmgmt.domain.TestCase;
 import cn.ibizlab.plm.core.prodmgmt.domain.Ticket;
 import cn.ibizlab.plm.core.projmgmt.domain.WorkItem;
 import cn.ibizlab.plm.core.testmgmt.domain.TestPlan;
+import cn.ibizlab.plm.util.annotation.DEAction;
 
 /**
  * 关联服务接口[RelationService]
@@ -389,6 +392,54 @@ public interface RelationService extends IService<Relation> {
     List<Relation> listIdeaVersionRelation(RelationSearchContext context);
 
     /**
+    * fetchProductPlanIdea
+    * 
+    * @param context
+    * @return
+    */
+    Page<Relation> fetchProductPlanIdea(RelationSearchContext context);
+
+    /**
+    * listProductPlanIdea
+    * 
+    * @param context
+    * @return
+    */
+    List<Relation> listProductPlanIdea(RelationSearchContext context);
+
+    /**
+    * fetchProductReProject
+    * 
+    * @param context
+    * @return
+    */
+    Page<Relation> fetchProductReProject(RelationSearchContext context);
+
+    /**
+    * listProductReProject
+    * 
+    * @param context
+    * @return
+    */
+    List<Relation> listProductReProject(RelationSearchContext context);
+
+    /**
+    * fetchProjectReProduct
+    * 
+    * @param context
+    * @return
+    */
+    Page<Relation> fetchProjectReProduct(RelationSearchContext context);
+
+    /**
+    * listProjectReProduct
+    * 
+    * @param context
+    * @return
+    */
+    List<Relation> listProjectReProduct(RelationSearchContext context);
+
+    /**
     * fetchReviewReTestCase
     * 
     * @param context
@@ -709,6 +760,36 @@ public interface RelationService extends IService<Relation> {
     boolean saveByPrincipalIdea(Idea idea, List<Relation> list);
 
     /**
+    * findByPrincipalProduct
+    * @param product
+    * @return
+    */
+    List<Relation> findByPrincipalProduct(Product product);
+
+    /**
+    * saveByPrincipalProduct
+    * @param product
+    * @param list
+    * @return
+    */
+    boolean saveByPrincipalProduct(Product product, List<Relation> list);
+
+    /**
+    * findByPrincipalProject
+    * @param project
+    * @return
+    */
+    List<Relation> findByPrincipalProject(Project project);
+
+    /**
+    * saveByPrincipalProject
+    * @param project
+    * @param list
+    * @return
+    */
+    boolean saveByPrincipalProject(Project project, List<Relation> list);
+
+    /**
     * findByRelationRelease
     * @param release
     * @return
@@ -882,6 +963,21 @@ public interface RelationService extends IService<Relation> {
     boolean saveByTargetPage(ArticlePage articlePage, List<Relation> list);
 
     /**
+    * findByTargetProduct
+    * @param product
+    * @return
+    */
+    List<Relation> findByTargetProduct(Product product);
+
+    /**
+    * saveByTargetProduct
+    * @param product
+    * @param list
+    * @return
+    */
+    boolean saveByTargetProduct(Product product, List<Relation> list);
+
+    /**
     * findByTargetProductPlanCategory
     * @param productPlan
     * @return
@@ -895,6 +991,21 @@ public interface RelationService extends IService<Relation> {
     * @return
     */
     boolean saveByTargetProductPlanCategory(ProductPlan productPlan, List<Relation> list);
+
+    /**
+    * findByTargetProject
+    * @param project
+    * @return
+    */
+    List<Relation> findByTargetProject(Project project);
+
+    /**
+    * saveByTargetProject
+    * @param project
+    * @param list
+    * @return
+    */
+    boolean saveByTargetProject(Project project, List<Relation> list);
 
     /**
     * findByTargetRun

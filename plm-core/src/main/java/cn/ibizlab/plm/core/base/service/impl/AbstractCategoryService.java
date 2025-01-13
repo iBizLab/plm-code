@@ -32,6 +32,8 @@ import cn.ibizlab.plm.core.prodmgmt.domain.Idea;
 import cn.ibizlab.plm.core.prodmgmt.service.IdeaService;
 import cn.ibizlab.plm.core.prodmgmt.domain.IdeaTemplate;
 import cn.ibizlab.plm.core.prodmgmt.service.IdeaTemplateService;
+import cn.ibizlab.plm.core.base.domain.Position;
+import cn.ibizlab.plm.core.base.service.PositionService;
 import cn.ibizlab.plm.core.wiki.domain.Space;
 import cn.ibizlab.plm.core.wiki.service.SpaceService;
 
@@ -54,6 +56,10 @@ public abstract class AbstractCategoryService extends ServiceImpl<CategoryMapper
     @Autowired
     @Lazy
     protected IdeaTemplateService ideaTemplateService;
+
+    @Autowired
+    @Lazy
+    protected PositionService positionService;
 
     @Autowired
     @Lazy
@@ -103,6 +109,7 @@ public abstract class AbstractCategoryService extends ServiceImpl<CategoryMapper
         String key = et.getId();
         categoryService.resetByPid(key);
         ideaService.resetByCategoryId(key);
+        positionService.resetByCategoryId(key);
         if(!remove(Wrappers.<Category>lambdaQuery().eq(Category::getId, et.getId())))
             return false;
         return true;
@@ -233,6 +240,17 @@ public abstract class AbstractCategoryService extends ServiceImpl<CategoryMapper
 
    public List<Category> listNoSection(CategorySearchContext context) {
         List<Category> list = baseMapper.listNoSection(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<Category> fetchPositionCategory(CategorySearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Category> pages=baseMapper.searchPositionCategory(context.getPages(),context,context.getSelectCond());
+        List<Category> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<Category> listPositionCategory(CategorySearchContext context) {
+        List<Category> list = baseMapper.listPositionCategory(context,context.getSelectCond());
         return list;
    }
 	

@@ -245,6 +245,45 @@ public abstract class AbstractDiscussPostResource {
     }
 
     /**
+    * discuss_post_count 讨论
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return Mono<ResponseEntity<DiscussPostDTO>>
+    */
+    @ApiOperation(value = "discuss_post_count", tags = {"讨论" },  notes = "DiscussPost-discuss_post_count ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-DiscussPost-discuss_post_count-all') or hasPermission(this.discussPostDtoMapping.toDomain(#dto),'ibizplm-DiscussPost-discuss_post_count')")
+    @PostMapping("discuss_posts/{id}/discuss_post_count")
+    public Mono<ResponseEntity<ResponseWrapper<DiscussPostDTO>>>discussPostCountById
+            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<DiscussPostDTO> dto) {
+        ResponseWrapper<DiscussPostDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(discussPostCountById(ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(discussPostCountById(id, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * discuss_post_count 讨论
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<DiscussPostDTO>
+    */   
+    public DiscussPostDTO discussPostCountById
+            (String id, DiscussPostDTO dto) {
+        DiscussPost domain = discussPostDtoMapping.toDomain(dto);
+        domain.setId(id);
+        DiscussPost rt = discussPostService.discussPostCount(domain);
+        return discussPostDtoMapping.toDto(rt);
+    }
+
+    /**
     * fill_addition 讨论
     * 
     *
@@ -713,6 +752,47 @@ public abstract class AbstractDiscussPostResource {
         DiscussPost domain = discussPostDtoMapping.toDomain(dto);
         domain.setId(id);
         DiscussPost rt = discussPostService.delete(domain);
+        return discussPostDtoMapping.toDto(rt);
+    }
+
+    /**
+    * discuss_post_count 讨论
+    * 
+    *
+    * @param topicId topicId
+    * @param id id
+    * @param dto dto
+    * @return Mono<ResponseEntity<DiscussPostDTO>>
+    */
+    @ApiOperation(value = "discuss_post_count", tags = {"讨论" },  notes = "DiscussPost-discuss_post_count ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-DiscussPost-discuss_post_count-all') or hasPermission('discuss_topic',#topicId,this.discussPostDtoMapping.toDomain(#dto),'ibizplm-DiscussPost-discuss_post_count')")
+    @PostMapping("discuss_topics/{topicId}/discuss_posts/{id}/discuss_post_count")
+    public Mono<ResponseEntity<ResponseWrapper<DiscussPostDTO>>>discussPostCountByTopicIdAndId
+            (@PathVariable("topicId") String topicId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<DiscussPostDTO> dto) {
+        ResponseWrapper<DiscussPostDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(discussPostCountByTopicIdAndId(topicId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(discussPostCountByTopicIdAndId(topicId, id, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * discuss_post_count 讨论
+    * 
+    *
+    * @param topicId topicId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<DiscussPostDTO>
+    */   
+    public DiscussPostDTO discussPostCountByTopicIdAndId
+            (String topicId, String id, DiscussPostDTO dto) {
+        DiscussPost domain = discussPostDtoMapping.toDomain(dto);
+        domain.setId(id);
+        DiscussPost rt = discussPostService.discussPostCount(domain);
         return discussPostDtoMapping.toDto(rt);
     }
 

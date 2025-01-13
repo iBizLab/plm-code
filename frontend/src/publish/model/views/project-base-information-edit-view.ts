@@ -181,7 +181,6 @@ export default {
                         },
                       ],
                       logicType: 'GROUP',
-                      id: '表单成员[name][表单项值变更（脚本处理）]逻辑',
                     },
                   ],
                   layoutPos: {

@@ -78,6 +78,22 @@ public class MemberSearchContext extends QueryWrapperContext<Member> {
     private String roleIdEQ;
 
     /**
+     * 职位名称EQ
+     */
+    @JsonProperty("n_position_name_eq")
+    @JSONField(name = "n_position_name_eq")
+    @ApiModelProperty("职位名称EQ")
+    private String positionNameEQ;
+
+    /**
+     * 职位名称LIKE
+     */
+    @JsonProperty("n_position_name_like")
+    @JSONField(name = "n_position_name_like")
+    @ApiModelProperty("职位名称LIKE")
+    private String positionNameLIKE;
+
+    /**
      * 标识EQ
      */
     @JsonProperty("n_id_eq")
@@ -93,9 +109,19 @@ public class MemberSearchContext extends QueryWrapperContext<Member> {
     @ApiModelProperty("名称LIKE")
     private String nameLIKE;
 
+    /**
+     * 职位标识EQ
+     */
+    @JsonProperty("n_position_id_eq")
+    @JSONField(name = "n_position_id_eq")
+    @ApiModelProperty("职位标识EQ")
+    private String positionIdEQ;
+
     @Override
     public void setContextParentKey(Serializable contextParentKey) {
         super.setContextParentKey(contextParentKey);
+        if(Entities.POSITION.equals(this.getContextParentEntity())&&contextParentKey!=null)
+            this.getFilter().eq("position_id",contextParentKey);
         if(Entities.USER.equals(this.getContextParentEntity())&&contextParentKey!=null)
             this.getFilter().eq("user_id",contextParentKey);
         if(Entities.COMMON_FLOW.equals(this.getContextParentEntity())&&contextParentKey!=null)

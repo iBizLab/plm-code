@@ -2371,6 +2371,28 @@ public abstract class AbstractIdeaResource {
     }
 
     /**
+    * 查询fetch_relation_idea 需求
+    * 
+    *
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<IdeaDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_relation_idea", tags = {"需求" },  notes = "Idea-fetch_relation_idea ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Idea-fetch_relation_idea-all') or hasPermission(#dto,'ibizplm-Idea-fetch_relation_idea')")
+    @PostMapping("ideas/fetch_relation_idea")
+    public Mono<ResponseEntity<List<IdeaDTO>>> fetchRelationIdea
+            (@Validated @RequestBody IdeaFilterDTO dto) {
+        IdeaSearchContext context = ideaFilterDtoMapping.toDomain(dto);
+        Page<Idea> domains = ideaService.fetchRelationIdea(context) ;
+        List<IdeaDTO> list = ideaDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
     * 查询fetch_user 需求
     * 
     *
@@ -3098,6 +3120,30 @@ public abstract class AbstractIdeaResource {
         dto.setProductIdEQ(productId);
         IdeaSearchContext context = ideaFilterDtoMapping.toDomain(dto);
         Page<Idea> domains = ideaService.fetchRecentIdea(context) ;
+        List<IdeaDTO> list = ideaDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
+    * 查询fetch_relation_idea 需求
+    * 
+    *
+    * @param productId productId
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<IdeaDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_relation_idea", tags = {"需求" },  notes = "Idea-fetch_relation_idea ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Idea-fetch_relation_idea-all') or hasPermission('product',#productId,#dto,'ibizplm-Idea-fetch_relation_idea')")
+    @PostMapping("products/{productId}/ideas/fetch_relation_idea")
+    public Mono<ResponseEntity<List<IdeaDTO>>> fetchRelationIdeaByProductId
+            (@PathVariable("productId") String productId, @Validated @RequestBody IdeaFilterDTO dto) {
+        dto.setProductIdEQ(productId);
+        IdeaSearchContext context = ideaFilterDtoMapping.toDomain(dto);
+        Page<Idea> domains = ideaService.fetchRelationIdea(context) ;
         List<IdeaDTO> list = ideaDtoMapping.toDto(domains.getContent());
             return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))

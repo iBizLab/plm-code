@@ -15,6 +15,7 @@ import cn.ibizlab.plm.core.base.domain.Work;
 import cn.ibizlab.plm.core.base.filter.WorkSearchContext;
 import cn.ibizlab.plm.core.base.domain.Portfolio;
 import cn.ibizlab.plm.core.projmgmt.domain.Project;
+import cn.ibizlab.plm.util.annotation.DEAction;
 
 /**
  * 工作服务接口[WorkService]

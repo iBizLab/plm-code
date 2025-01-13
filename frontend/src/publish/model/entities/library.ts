@@ -2171,7 +2171,6 @@ export default {
       fullCodeName: 'library_create_library',
       nextId: 'open_new_library@library',
       deopprivId: 'srfur__library_m',
-      timeout: 60000,
       uiactionMode: 'FRONT',
       uiactionTag: 'create_library',
       uiactionType: 'DEUIACTION',
@@ -2242,7 +2241,6 @@ export default {
       },
       scriptCode:
         'const srfkey = context.library ? context.library : data[0].id;\r\nwindow.location.hash=`/-/index/library=${srfkey}/library_index_view/srfnav=usrdrgroup1227882118/library_setting_view/srfnav=recycle/test_case_recycle_grid_view/-`',
-      timeout: 60000,
       uiactionMode: 'FRONT',
       uiactionTag: 'open_deleted_view',
       uiactionType: 'DEUIACTION',
@@ -2268,7 +2266,6 @@ export default {
       },
       scriptCode:
         'const srfkey = context.library ? context.library : data[0].id;\r\nwindow.location.hash=`/-/index/library=${srfkey}/library_index_view/srfnav=usrdrgroup1227882118/library_setting_view/srfnav=member/library_member_config_grid_view/-`',
-      timeout: 60000,
       uiactionMode: 'FRONT',
       uiactionTag: 'open_details_setting_view',
       uiactionType: 'DEUIACTION',
@@ -2288,7 +2285,6 @@ export default {
       fullCodeName: 'library_open_global_setting',
       scriptCode:
         'window.location.hash=`/-/index/-/management_tab_exp_view/srfnav=config/library_config_tree_exp_view/srfnavctx=%257B%2522srfdefaulttoroutedepth%2522%253A3%257D;srfnav=root%3Anode_1%3Anode/library_config_tab_exp_view/srfnav=config_tab_exp_view_in_progress/library_in_progress_grid_view/-`',
-      timeout: 60000,
       uiactionMode: 'FRONT',
       uiactionTag: 'open_global_setting',
       uiactionType: 'DEUIACTION',
@@ -2307,7 +2303,6 @@ export default {
       frontProcessType: 'WIZARD',
       fullCodeName: 'library_open_index_view',
       sysImage: {},
-      timeout: 60000,
       uiactionMode: 'FRONT',
       uiactionTag: 'open_index_view',
       uiactionType: 'DEUIACTION',
@@ -2339,7 +2334,6 @@ export default {
           id: 'srfreadonly',
         },
       ],
-      timeout: 60000,
       uiactionMode: 'FRONT',
       uiactionTag: 'open_library_exp_view',
       uiactionType: 'DEUIACTION',
@@ -2358,7 +2352,6 @@ export default {
       fullCodeName: 'library_open_new',
       htmlPageUrl:
         './#/-/index/library=${data.id}/library_index_view/srfnav=usrdrgroup1227882118/test_plan_tree_exp_view/srfnav=root%3Anode/test_plan_all_grid_view/n_library_id_eq=${data.id}',
-      timeout: 60000,
       tooltip: '新窗口打开',
       uiactionMode: 'FRONT',
       uiactionTag: 'open_new',
@@ -2385,7 +2378,6 @@ export default {
           id: 'library',
         },
       ],
-      timeout: 60000,
       uiactionMode: 'FRONT',
       uiactionTag: 'open_new_library',
       uiactionType: 'DEUIACTION',
@@ -2407,7 +2399,6 @@ export default {
         cssClass: 'fa fa-info-circle',
         glyph: 'xf05a@FontAwesome',
       },
-      timeout: 60000,
       uiactionMode: 'FRONT',
       uiactionTag: 'open_show_edit_view',
       uiactionType: 'DEUIACTION',
@@ -2460,7 +2451,6 @@ export default {
       },
       scriptCode:
         'const srfkey = context.library ? context.library : data[0].id;\r\nwindow.location.hash=`/-/index/library=${srfkey}/library_index_view/srfnav=usrdrgroup1227882118/library_setting_view/srfnav=base/library_base_info_edit_view/-`',
-      timeout: 60000,
       uiactionMode: 'FRONT',
       uiactionTag: 'setting_base_info',
       uiactionType: 'DEUIACTION',
@@ -2484,7 +2474,6 @@ export default {
       },
       scriptCode:
         'const srfkey = context.library ? context.library : data[0].id;\r\nwindow.location.hash=`/-/index/library=${srfkey}/library_index_view/srfnav=usrdrgroup1227882118/library_setting_view/srfnav=member/library_member_config_grid_view/-`',
-      timeout: 60000,
       uiactionMode: 'FRONT',
       uiactionTag: 'setting_library_member',
       uiactionType: 'DEUIACTION',
@@ -2774,9 +2763,59 @@ export default {
       id: 'delete',
     },
     {
+      logicName: '属性扩展_管理',
+      name: 'MANAGE_PSDEFIELD',
+      id: 'manage_psdefield',
+    },
+    {
+      logicName: '表单扩展_管理',
+      name: 'MANAGE_PSDEFORM',
+      id: 'manage_psdeform',
+    },
+    {
+      logicName: '逻辑扩展_管理',
+      name: 'MANAGE_PSDELOGIC',
+      id: 'manage_psdelogic',
+    },
+    {
+      logicName: '主状态逻辑扩展_管理',
+      name: 'MANAGE_PSDEMSLOGIC',
+      id: 'manage_psdemslogic',
+    },
+    {
+      logicName: '通知扩展_管理',
+      name: 'MANAGE_PSDENOTIFY',
+      id: 'manage_psdenotify',
+    },
+    {
       logicName: '读取',
       name: 'READ',
       id: 'read',
+    },
+    {
+      logicName: '属性扩展_只读',
+      name: 'READ_PSDEFIELD',
+      id: 'read_psdefield',
+    },
+    {
+      logicName: '表单扩展_只读',
+      name: 'READ_PSDEFORM',
+      id: 'read_psdeform',
+    },
+    {
+      logicName: '逻辑扩展_只读',
+      name: 'READ_PSDELOGIC',
+      id: 'read_psdelogic',
+    },
+    {
+      logicName: '主状态逻辑扩展_只读',
+      name: 'READ_PSDEMSLOGIC',
+      id: 'read_psdemslogic',
+    },
+    {
+      logicName: '通知扩展_只读',
+      name: 'READ_PSDENOTIFY',
+      id: 'read_psdenotify',
     },
     {
       logicName: '子数据权限',

@@ -25,15 +25,28 @@ export default {
           caption: '成员管理',
           appViewId: 'plmweb.user_tree_exp_view',
           sysImage: {
-            cssClass: 'fa fa-users',
-            glyph: 'xf0c0@FontAwesome',
+            cssClass: 'fa fa-user',
+            glyph: 'xf007@FontAwesome',
           },
           id: 'user',
         },
         {
           caption: '团队管理',
           appViewId: 'plmweb.group_tree_exp_view',
+          sysImage: {
+            cssClass: 'fa fa-users',
+            glyph: 'xf0c0@FontAwesome',
+          },
           id: 'group',
+        },
+        {
+          caption: '职位管理',
+          appViewId: 'plmweb.position_tree_exp_view',
+          sysImage: {
+            cssClass: 'fa fa-trophy',
+            glyph: 'xf091@FontAwesome',
+          },
+          id: 'position',
         },
       ],
       dataRelationTag: 'tab_exp_view_DR',

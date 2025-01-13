@@ -745,6 +745,22 @@ export default {
           id: 'begin',
         },
         {
+          code: "ibiz.hub.getApp(context.srfappid).deService.exec(\r\n    'plmweb.portfolio_member',\r\n    'Create',\r\n    context,\r\n    uiLogic.user,\r\n);",
+          codeName: 'RAWJSCODE1',
+          leftPos: 160,
+          logicNodeType: 'RAWJSCODE',
+          deuilogicLinks: [
+            {
+              dstDEUILogicNodeId: 'end1',
+              srcDEUILogicNodeId: 'rawjscode1',
+              id: '连接名称',
+            },
+          ],
+          topPos: 500,
+          name: '创建临时数据',
+          id: 'rawjscode1',
+        },
+        {
           codeName: 'PREPAREJSPARAM1',
           leftPos: 160,
           logicNodeType: 'PREPAREJSPARAM',
@@ -780,34 +796,10 @@ export default {
               srcValueType: 'DATACONTEXT',
               id: '数据上下文[srfuserid] ==> user[user_id]',
             },
-            {
-              dstFieldName: 'portfolio_id',
-              dstDEUILogicParamId: 'user',
-              paramAction: 'SETPARAMVALUE',
-              srcFieldName: 'portfolio',
-              srcValueType: 'DATACONTEXT',
-              id: '数据上下文[portfolio] ==> user[portfolio_id]',
-            },
           ],
           topPos: 360,
           name: '获取当前用户数据',
           id: 'preparejsparam1',
-        },
-        {
-          code: "ibiz.hub.getApp(context.srfappid).deService.exec(\r\n    'plmweb.portfolio_member',\r\n    'Create',\r\n    context,\r\n    uiLogic.user,\r\n);",
-          codeName: 'RAWJSCODE1',
-          leftPos: 160,
-          logicNodeType: 'RAWJSCODE',
-          deuilogicLinks: [
-            {
-              dstDEUILogicNodeId: 'end1',
-              srcDEUILogicNodeId: 'rawjscode1',
-              id: '连接名称',
-            },
-          ],
-          topPos: 500,
-          name: '创建临时数据',
-          id: 'rawjscode1',
         },
         {
           codeName: 'END1',
@@ -820,17 +812,17 @@ export default {
       ],
       deuilogicParams: [
         {
-          codeName: 'user',
-          entityParam: true,
-          name: '当前人员',
-          id: 'user',
-        },
-        {
           codeName: 'Default',
           default: true,
           entityParam: true,
           name: '传入变量',
           id: 'default',
+        },
+        {
+          codeName: 'user',
+          entityParam: true,
+          name: '当前人员',
+          id: 'user',
         },
       ],
       startDEUILogicNodeId: 'begin',

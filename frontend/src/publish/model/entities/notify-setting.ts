@@ -633,7 +633,6 @@ export default {
       fullCodeName: 'notify_setting_config',
       scriptCode:
         'window.location.hash=`/-/index/-/user_setting_view/srfnav=notice/notify_setting_config_view/-`',
-      timeout: 60000,
       uiactionMode: 'FRONT',
       uiactionTag: 'config',
       uiactionType: 'DEUIACTION',

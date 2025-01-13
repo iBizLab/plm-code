@@ -296,6 +296,45 @@ public abstract class AbstractArticlePageResource {
     }
 
     /**
+    * count_comment 页面
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return Mono<ResponseEntity<ArticlePageDTO>>
+    */
+    @ApiOperation(value = "count_comment", tags = {"页面" },  notes = "ArticlePage-count_comment ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ArticlePage-count_comment-all') or hasPermission(this.articlePageDtoMapping.toDomain(#dto),'ibizplm-ArticlePage-count_comment')")
+    @PostMapping("article_pages/{id}/count_comment")
+    public Mono<ResponseEntity<ResponseWrapper<ArticlePageDTO>>>countCommentById
+            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<ArticlePageDTO> dto) {
+        ResponseWrapper<ArticlePageDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(countCommentById(ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(countCommentById(id, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * count_comment 页面
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<ArticlePageDTO>
+    */   
+    public ArticlePageDTO countCommentById
+            (String id, ArticlePageDTO dto) {
+        ArticlePage domain = articlePageDtoMapping.toDomain(dto);
+        domain.setId(id);
+        ArticlePage rt = articlePageService.countComment(domain);
+        return articlePageDtoMapping.toDto(rt);
+    }
+
+    /**
     * delete 页面
     * 
     *
@@ -1259,6 +1298,47 @@ public abstract class AbstractArticlePageResource {
         ArticlePage domain = articlePageDtoMapping.toDomain(dto);
         domain.setId(id);
         ArticlePage rt = articlePageService.copyPage(domain);
+        return articlePageDtoMapping.toDto(rt);
+    }
+
+    /**
+    * count_comment 页面
+    * 
+    *
+    * @param spaceId spaceId
+    * @param id id
+    * @param dto dto
+    * @return Mono<ResponseEntity<ArticlePageDTO>>
+    */
+    @ApiOperation(value = "count_comment", tags = {"页面" },  notes = "ArticlePage-count_comment ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ArticlePage-count_comment-all') or hasPermission('shared_space',#spaceId,this.articlePageDtoMapping.toDomain(#dto),'ibizplm-ArticlePage-count_comment')")
+    @PostMapping("shared_spaces/{spaceId}/article_pages/{id}/count_comment")
+    public Mono<ResponseEntity<ResponseWrapper<ArticlePageDTO>>>countCommentBySpaceIdAndId
+            (@PathVariable("spaceId") String spaceId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<ArticlePageDTO> dto) {
+        ResponseWrapper<ArticlePageDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(countCommentBySpaceIdAndId(spaceId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(countCommentBySpaceIdAndId(spaceId, id, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * count_comment 页面
+    * 
+    *
+    * @param spaceId spaceId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<ArticlePageDTO>
+    */   
+    public ArticlePageDTO countCommentBySpaceIdAndId
+            (String spaceId, String id, ArticlePageDTO dto) {
+        ArticlePage domain = articlePageDtoMapping.toDomain(dto);
+        domain.setId(id);
+        ArticlePage rt = articlePageService.countComment(domain);
         return articlePageDtoMapping.toDto(rt);
     }
 

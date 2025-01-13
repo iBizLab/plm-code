@@ -35,7 +35,7 @@ public class DepartmentFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_id_eq")
     @JSONField(name = "n_id_eq")
-    @ApiModelProperty(value = "标识EQ", position = 0)
+    @ApiModelProperty(value = "标识EQ", position = 10)
 	private String idEQ;
 
     /**
@@ -43,7 +43,7 @@ public class DepartmentFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_name_like")
     @JSONField(name = "n_name_like")
-    @ApiModelProperty(value = "名称LIKE", position = 10)
+    @ApiModelProperty(value = "名称LIKE", position = 20)
 	private String nameLIKE;
 
     /**
@@ -51,7 +51,7 @@ public class DepartmentFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_head_id_eq")
     @JSONField(name = "n_head_id_eq")
-    @ApiModelProperty(value = "部门负责人标识EQ", position = 60)
+    @ApiModelProperty(value = "部门负责人标识EQ", position = 70)
 	private String headIdEQ;
 
     /**
@@ -59,7 +59,7 @@ public class DepartmentFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_parent_id_eq")
     @JSONField(name = "n_parent_id_eq")
-    @ApiModelProperty(value = "父部门标识EQ", position = 70)
+    @ApiModelProperty(value = "父部门标识EQ", position = 80)
 	private String parentIdEQ;
 
 

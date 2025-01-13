@@ -1,5 +1,5 @@
 /**
- * Generate code from /{{projectName}}-core/src/main/java/{{packageName}}/core/{{modules}}/domain/{{entities@SQL}}.java.hbs
+ * Generate code from /{{projectName}}-core/src/main/java/{{packageName}}/core/{{modules}}/domain/{{domains@SQL}}.java.hbs
  */
 package cn.ibizlab.plm.core.base.domain;
 
@@ -95,6 +95,16 @@ public class Attention extends EntityMP implements Serializable
     @JsonProperty("type")
     @ApiModelProperty(value = "type", notes = "关注类型")
     private String type;
+
+    /**
+    * 职位
+    */
+    @TableField(value = "title")
+    @DEField(name = "title")
+    @JSONField(name = "title")
+    @JsonProperty("title")
+    @ApiModelProperty(value = "title", notes = "职位")
+    private String title;
 
     /**
     * 标识
@@ -274,6 +284,15 @@ public class Attention extends EntityMP implements Serializable
     public Attention setType(String type) {
         this.type = type;
         this.modify("type", type);
+        return this;
+    }
+
+    /**
+    * 设置 [职位]
+    */
+    public Attention setTitle(String title) {
+        this.title = title;
+        this.modify("title", title);
         return this;
     }
 

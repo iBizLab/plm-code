@@ -100,7 +100,6 @@ export default {
                 editable: true,
                 id: 'type',
               },
-              allowEmpty: true,
               capLanguageRes: {
                 lanResTag: 'DEF.LNAME.TYPE',
               },

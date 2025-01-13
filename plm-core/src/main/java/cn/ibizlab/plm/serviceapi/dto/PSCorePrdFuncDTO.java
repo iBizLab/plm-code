@@ -44,11 +44,51 @@ public class PSCorePrdFuncDTO extends DTOBase implements Serializable {
     private String funcType;
 
     /**
+     * 设置
+     */
+    @JsonProperty("settings")
+    @JSONField(name = "settings")
+    @ApiModelProperty(value = "设置", position = 1)
+    private String settings;
+
+    /**
+     * 可用版本
+     */
+    @JsonProperty("vers")
+    @JSONField(name = "vers")
+    @ApiModelProperty(value = "可用版本", position = 2)
+    private String vers;
+
+    /**
+     * 详细信息
+     */
+    @JsonProperty("info")
+    @JSONField(name = "info")
+    @ApiModelProperty(value = "详细信息", position = 3)
+    private String info;
+
+    /**
+     * 产品分类
+     */
+    @JsonProperty("category")
+    @JSONField(name = "category")
+    @ApiModelProperty(value = "产品分类", position = 4)
+    private String category;
+
+    /**
+     * 变更日志
+     */
+    @JsonProperty("changelog")
+    @JSONField(name = "changelog")
+    @ApiModelProperty(value = "变更日志", position = 5)
+    private String changelog;
+
+    /**
      * 图标路径
      */
     @JsonProperty("avatarurl")
     @JSONField(name = "avatarurl")
-    @ApiModelProperty(value = "图标路径", position = 1)
+    @ApiModelProperty(value = "图标路径", position = 6)
     private String avatarUrl;
 
     /**
@@ -57,7 +97,7 @@ public class PSCorePrdFuncDTO extends DTOBase implements Serializable {
     @JsonProperty("createdate")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "createdate" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "建立时间", position = 2)
+    @ApiModelProperty(value = "建立时间", position = 7)
     private Date createDate;
 
     /**
@@ -65,7 +105,7 @@ public class PSCorePrdFuncDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("createman")
     @JSONField(name = "createman")
-    @ApiModelProperty(value = "建立人", position = 3)
+    @ApiModelProperty(value = "建立人", position = 8)
     private String createMan;
 
     /**
@@ -73,7 +113,7 @@ public class PSCorePrdFuncDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("currentversion")
     @JSONField(name = "currentversion")
-    @ApiModelProperty(value = "当前版本", position = 4)
+    @ApiModelProperty(value = "当前版本", position = 9)
     private String currentVersion;
 
     /**
@@ -81,7 +121,7 @@ public class PSCorePrdFuncDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("fullname")
     @JSONField(name = "fullname")
-    @ApiModelProperty(value = "完全名称", position = 5)
+    @ApiModelProperty(value = "完全名称", position = 10)
     private String fullName;
 
     /**
@@ -89,7 +129,7 @@ public class PSCorePrdFuncDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("fullpath")
     @JSONField(name = "fullpath")
-    @ApiModelProperty(value = "完全路径", position = 6)
+    @ApiModelProperty(value = "完全路径", position = 11)
     private String fullPath;
 
     /**
@@ -97,7 +137,7 @@ public class PSCorePrdFuncDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("funcsn")
     @JSONField(name = "funcsn")
-    @ApiModelProperty(value = "功能编号", position = 7)
+    @ApiModelProperty(value = "功能编号", position = 12)
     private String funcSn;
 
     /**
@@ -105,7 +145,7 @@ public class PSCorePrdFuncDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("funcstate")
     @JSONField(name = "funcstate")
-    @ApiModelProperty(value = "功能状态", position = 8)
+    @ApiModelProperty(value = "功能状态", position = 13)
     private String funcState;
 
     /**
@@ -113,7 +153,7 @@ public class PSCorePrdFuncDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("functag")
     @JSONField(name = "functag")
-    @ApiModelProperty(value = "功能标记", position = 9)
+    @ApiModelProperty(value = "功能标记", position = 14)
     private String funcTag;
 
     /**
@@ -121,7 +161,7 @@ public class PSCorePrdFuncDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("functag2")
     @JSONField(name = "functag2")
-    @ApiModelProperty(value = "功能标记2", position = 10)
+    @ApiModelProperty(value = "功能标记2", position = 15)
     private String funcTag2;
 
     /**
@@ -129,7 +169,7 @@ public class PSCorePrdFuncDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("funcurl")
     @JSONField(name = "funcurl")
-    @ApiModelProperty(value = "功能描述链接", position = 11)
+    @ApiModelProperty(value = "功能描述链接", position = 16)
     private String funcUrl;
 
     /**
@@ -137,7 +177,7 @@ public class PSCorePrdFuncDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("httpurltorepo")
     @JSONField(name = "httpurltorepo")
-    @ApiModelProperty(value = "Http仓库地址", position = 12)
+    @ApiModelProperty(value = "Http仓库地址", position = 17)
     private String httpUrlToRepo;
 
     /**
@@ -145,7 +185,7 @@ public class PSCorePrdFuncDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("memo")
     @JSONField(name = "memo")
-    @ApiModelProperty(value = "备注", position = 13)
+    @ApiModelProperty(value = "备注", position = 18)
     private String memo;
 
     /**
@@ -153,7 +193,7 @@ public class PSCorePrdFuncDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("ordervalue")
     @JSONField(name = "ordervalue")
-    @ApiModelProperty(value = "排序值", position = 14)
+    @ApiModelProperty(value = "排序值", position = 19)
     private Integer orderValue;
 
     /**
@@ -161,15 +201,15 @@ public class PSCorePrdFuncDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("pscoreprdfuncid")
     @JSONField(name = "pscoreprdfuncid")
-    @ApiModelProperty(value = "核心产品功能标识", position = 15)
+    @ApiModelProperty(value = "核心产品功能标识", position = 20)
     private String psCorePrdFuncId;
 
     /**
-     * 核心产品功能名称
+     * 应用名称
      */
     @JsonProperty("pscoreprdfuncname")
     @JSONField(name = "pscoreprdfuncname")
-    @ApiModelProperty(value = "核心产品功能名称", position = 16)
+    @ApiModelProperty(value = "应用名称", position = 21)
     private String psCorePrdFuncName;
 
     /**
@@ -177,7 +217,7 @@ public class PSCorePrdFuncDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("pscoreprdid")
     @JSONField(name = "pscoreprdid")
-    @ApiModelProperty(value = "核心产品", position = 17)
+    @ApiModelProperty(value = "核心产品", position = 22)
     private String psCorePrdId;
 
     /**
@@ -185,7 +225,7 @@ public class PSCorePrdFuncDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("pscoreprdname")
     @JSONField(name = "pscoreprdname")
-    @ApiModelProperty(value = "核心产品", position = 18)
+    @ApiModelProperty(value = "核心产品", position = 23)
     private String psCorePrdName;
 
     /**
@@ -193,8 +233,16 @@ public class PSCorePrdFuncDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("path")
     @JSONField(name = "path")
-    @ApiModelProperty(value = "路径", position = 19)
+    @ApiModelProperty(value = "路径", position = 24)
     private String path;
+
+    /**
+     * 设置地址
+     */
+    @JsonProperty("settingurl")
+    @JSONField(name = "settingurl")
+    @ApiModelProperty(value = "设置地址", position = 25)
+    private String settingUrl;
 
     /**
      * 更新时间
@@ -202,7 +250,7 @@ public class PSCorePrdFuncDTO extends DTOBase implements Serializable {
     @JsonProperty("updatedate")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "updatedate" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "更新时间", position = 20)
+    @ApiModelProperty(value = "更新时间", position = 26)
     private Date updateDate;
 
     /**
@@ -210,7 +258,7 @@ public class PSCorePrdFuncDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("updateman")
     @JSONField(name = "updateman")
-    @ApiModelProperty(value = "更新人", position = 21)
+    @ApiModelProperty(value = "更新人", position = 27)
     private String updateMan;
 
 
@@ -220,6 +268,51 @@ public class PSCorePrdFuncDTO extends DTOBase implements Serializable {
     public PSCorePrdFuncDTO setFuncType(String funcType) {
         this.funcType = funcType;
         this.modify("functype", funcType);
+        return this;
+    }
+
+    /**
+     * 设置 [设置]
+     */
+    public PSCorePrdFuncDTO setSettings(String settings) {
+        this.settings = settings;
+        this.modify("settings", settings);
+        return this;
+    }
+
+    /**
+     * 设置 [可用版本]
+     */
+    public PSCorePrdFuncDTO setVers(String vers) {
+        this.vers = vers;
+        this.modify("vers", vers);
+        return this;
+    }
+
+    /**
+     * 设置 [详细信息]
+     */
+    public PSCorePrdFuncDTO setInfo(String info) {
+        this.info = info;
+        this.modify("info", info);
+        return this;
+    }
+
+    /**
+     * 设置 [产品分类]
+     */
+    public PSCorePrdFuncDTO setCategory(String category) {
+        this.category = category;
+        this.modify("category", category);
+        return this;
+    }
+
+    /**
+     * 设置 [变更日志]
+     */
+    public PSCorePrdFuncDTO setChangelog(String changelog) {
+        this.changelog = changelog;
+        this.modify("changelog", changelog);
         return this;
     }
 
@@ -323,7 +416,7 @@ public class PSCorePrdFuncDTO extends DTOBase implements Serializable {
     }
 
     /**
-     * 设置 [核心产品功能名称]
+     * 设置 [应用名称]
      */
     public PSCorePrdFuncDTO setPsCorePrdFuncName(String psCorePrdFuncName) {
         this.psCorePrdFuncName = psCorePrdFuncName;
@@ -355,6 +448,15 @@ public class PSCorePrdFuncDTO extends DTOBase implements Serializable {
     public PSCorePrdFuncDTO setPath(String path) {
         this.path = path;
         this.modify("path", path);
+        return this;
+    }
+
+    /**
+     * 设置 [设置地址]
+     */
+    public PSCorePrdFuncDTO setSettingUrl(String settingUrl) {
+        this.settingUrl = settingUrl;
+        this.modify("settingurl", settingUrl);
         return this;
     }
 

@@ -123,6 +123,7 @@ export default {
               id: 'node',
             },
             {
+              dataSourceType: 'DEDATASET',
               idAppDEFieldId: 'id',
               appDEDataSetId: 'fetch_project_relation_library',
               textAppDEFieldId: 'name',

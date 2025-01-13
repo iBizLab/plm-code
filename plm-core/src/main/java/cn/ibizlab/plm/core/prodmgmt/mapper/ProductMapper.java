@@ -195,6 +195,25 @@ public interface ProductMapper extends BaseMapper<Product> {
     List<Product> listMobMain(@Param("ctx") ProductSearchContext context, @Param("ew") Wrapper<Product> wrapper);
 
     /**
+     * 数据集合no_relation分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Product> searchNoRelation(IPage<Product> page, @Param("ctx") ProductSearchContext context, @Param("ew") Wrapper<Product> wrapper);
+    
+    /**
+     * 数据集合no_relation查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Product> listNoRelation(@Param("ctx") ProductSearchContext context, @Param("ew") Wrapper<Product> wrapper);
+
+    /**
      * 数据集合normal分页查询
      * 
      * @param page

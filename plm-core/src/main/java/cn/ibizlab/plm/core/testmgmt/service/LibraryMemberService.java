@@ -15,6 +15,7 @@ import cn.ibizlab.plm.core.testmgmt.domain.LibraryMember;
 import cn.ibizlab.plm.core.testmgmt.filter.LibraryMemberSearchContext;
 import cn.ibizlab.plm.core.testmgmt.domain.Library;
 import cn.ibizlab.plm.core.base.domain.User;
+import cn.ibizlab.plm.util.annotation.DEAction;
 
 /**
  * 测试库成员服务接口[LibraryMemberService]
@@ -165,6 +166,16 @@ public interface LibraryMemberService extends IService<LibraryMember> {
      * @return
      */
     boolean save(List<LibraryMember> list);
+
+    /**
+    * changePosition
+    * 
+    * @param et
+    * @return
+    */
+    default LibraryMember changePosition(LibraryMember et) {
+        return et;
+    }
 
     /**
     * changeRole

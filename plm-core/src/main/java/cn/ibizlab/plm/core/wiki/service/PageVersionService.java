@@ -15,6 +15,7 @@ import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.core.wiki.domain.PageVersion;
 import cn.ibizlab.plm.core.wiki.filter.PageVersionSearchContext;
 import cn.ibizlab.plm.core.wiki.domain.ArticlePage;
+import cn.ibizlab.plm.util.annotation.DEAction;
 
 /**
  * 页面版本服务接口[PageVersionService]

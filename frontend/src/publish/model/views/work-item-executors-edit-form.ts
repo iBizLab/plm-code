@@ -470,7 +470,6 @@ export default {
                               },
                             ],
                             logicType: 'GROUP',
-                            id: '表单成员[is_assignee][表单项值变更（脚本处理）]逻辑',
                           },
                         ],
                         layoutPos: {

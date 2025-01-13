@@ -51,7 +51,7 @@ public class InsightMemberFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_id_eq")
     @JSONField(name = "n_id_eq")
-    @ApiModelProperty(value = "标识EQ", position = 30)
+    @ApiModelProperty(value = "标识EQ", position = 40)
 	private String idEQ;
 
     /**
@@ -59,7 +59,7 @@ public class InsightMemberFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_name_eq")
     @JSONField(name = "n_name_eq")
-    @ApiModelProperty(value = "名称EQ", position = 40)
+    @ApiModelProperty(value = "名称EQ", position = 50)
 	private String nameEQ;
 
     /**
@@ -67,7 +67,7 @@ public class InsightMemberFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_name_like")
     @JSONField(name = "n_name_like")
-    @ApiModelProperty(value = "名称LIKE", position = 41)
+    @ApiModelProperty(value = "名称LIKE", position = 51)
 	private String nameLIKE;
 
     /**
@@ -75,7 +75,7 @@ public class InsightMemberFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_user_id_eq")
     @JSONField(name = "n_user_id_eq")
-    @ApiModelProperty(value = "用户标识EQ", position = 90)
+    @ApiModelProperty(value = "用户标识EQ", position = 100)
 	private String userIdEQ;
 
     /**
@@ -83,7 +83,7 @@ public class InsightMemberFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_owner_id_eq")
     @JSONField(name = "n_owner_id_eq")
-    @ApiModelProperty(value = "效能标识EQ", position = 100)
+    @ApiModelProperty(value = "效能标识EQ", position = 110)
 	private String ownerIdEQ;
 
 

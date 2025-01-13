@@ -15,6 +15,7 @@ import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.core.base.domain.WorkloadType;
 import cn.ibizlab.plm.core.base.filter.WorkloadTypeSearchContext;
 import cn.ibizlab.plm.core.base.domain.Workload;
+import cn.ibizlab.plm.util.annotation.DEAction;
 
 /**
  * 工时类别服务接口[WorkloadTypeService]

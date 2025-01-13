@@ -86,7 +86,7 @@ export default {
                               grow: 0,
                               shrink: 1,
                               layout: 'FLEX',
-                              spacingTop: 'INNERSMALL',
+                              spacingTop: 'OUTERSMALL',
                             },
                             sysImage: {
                               rawContent:
@@ -243,17 +243,15 @@ export default {
                                             layoutPos: {
                                               shrink: 1,
                                               layout: 'FLEX',
-                                              spacingBottom: 'OUTERMEDIUM',
                                             },
                                             showCaption: true,
                                             id: 'button_calluilogic1',
                                           },
                                         ],
                                         layout: {
-                                          align: 'center',
-                                          dir: 'row',
+                                          dir: 'row-reverse',
                                           layout: 'FLEX',
-                                          valign: 'center',
+                                          valign: 'flex-end',
                                         },
                                         dataRegionType: 'INHERIT',
                                         caption: '容器',

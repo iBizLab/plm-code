@@ -14,6 +14,7 @@ import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.core.base.domain.Deliverable;
 import cn.ibizlab.plm.core.base.filter.DeliverableSearchContext;
 import cn.ibizlab.plm.core.projmgmt.domain.WorkItem;
+import cn.ibizlab.plm.util.annotation.DEAction;
 
 /**
  * 交付物服务接口[DeliverableService]

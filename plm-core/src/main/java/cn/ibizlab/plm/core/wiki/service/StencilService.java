@@ -15,6 +15,7 @@ import cn.ibizlab.plm.core.wiki.domain.Stencil;
 import cn.ibizlab.plm.core.wiki.filter.StencilSearchContext;
 import cn.ibizlab.plm.core.wiki.domain.Space;
 import cn.ibizlab.plm.core.base.domain.Attachment;
+import cn.ibizlab.plm.util.annotation.DEAction;
 
 /**
  * 页面模板服务接口[StencilService]

@@ -434,7 +434,6 @@ export default {
       },
       scriptCode:
         'window.location.hash=`/-/index/-/management_tab_exp_view/srfnav=config/management_setting_view/srfnav=workload/workload_type_setup_grid_view/-`',
-      timeout: 60000,
       uiactionMode: 'FRONT',
       uiactionTag: 'back',
       uiactionType: 'DEUIACTION',

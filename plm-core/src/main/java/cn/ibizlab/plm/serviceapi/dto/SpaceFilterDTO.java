@@ -102,5 +102,37 @@ public class SpaceFilterDTO extends FilterBase implements Serializable {
     @ApiModelProperty(value = "分类LIKE", position = 181)
 	private String categoryNameLIKE;
 
+    /**
+     * 用户标记EQ
+     */
+    @JsonProperty("n_user_tag_eq")
+    @JSONField(name = "n_user_tag_eq")
+    @ApiModelProperty(value = "用户标记EQ", position = 190)
+	private String userTagEQ;
+
+    /**
+     * 用户标记LIKE
+     */
+    @JsonProperty("n_user_tag_like")
+    @JSONField(name = "n_user_tag_like")
+    @ApiModelProperty(value = "用户标记LIKE", position = 191)
+	private String userTagLIKE;
+
+    /**
+     * 用户标记2EQ
+     */
+    @JsonProperty("n_user_tag2_eq")
+    @JSONField(name = "n_user_tag2_eq")
+    @ApiModelProperty(value = "用户标记2EQ", position = 200)
+	private String userTag2EQ;
+
+    /**
+     * 用户标记2LIKE
+     */
+    @JsonProperty("n_user_tag2_like")
+    @JSONField(name = "n_user_tag2_like")
+    @ApiModelProperty(value = "用户标记2LIKE", position = 201)
+	private String userTag2LIKE;
+
 
 }

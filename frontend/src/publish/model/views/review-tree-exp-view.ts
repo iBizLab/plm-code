@@ -348,6 +348,7 @@ export default {
               id: 'node_1',
             },
             {
+              dataSourceType: 'DEDATASET',
               idAppDEFieldId: 'id',
               leafFlagAppDEFieldId: 'is_leaf',
               moveAppDEActionId: 'move_order',
@@ -580,6 +581,7 @@ export default {
               id: 'node_7',
             },
             {
+              dataSourceType: 'DEDATASET',
               idAppDEFieldId: 'id',
               leafFlagAppDEFieldId: 'is_leaf',
               moveAppDEActionId: 'move_order',
@@ -673,6 +675,7 @@ export default {
               id: 'node_8',
             },
             {
+              dataSourceType: 'DEDATASET',
               idAppDEFieldId: 'id',
               leafFlagAppDEFieldId: 'is_leaf',
               moveAppDEActionId: 'move_order',

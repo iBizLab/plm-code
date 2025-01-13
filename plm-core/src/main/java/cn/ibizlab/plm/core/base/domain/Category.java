@@ -1,5 +1,5 @@
 /**
- * Generate code from /{{projectName}}-core/src/main/java/{{packageName}}/core/{{modules}}/domain/{{entities@SQL}}.java.hbs
+ * Generate code from /{{projectName}}-core/src/main/java/{{packageName}}/core/{{modules}}/domain/{{domains@SQL}}.java.hbs
  */
 package cn.ibizlab.plm.core.base.domain;
 
@@ -24,6 +24,7 @@ import com.baomidou.mybatisplus.core.toolkit.IdWorker;
 import cn.ibizlab.plm.core.base.domain.Section;
 import cn.ibizlab.plm.core.prodmgmt.domain.Idea;
 import cn.ibizlab.plm.core.prodmgmt.domain.IdeaTemplate;
+import cn.ibizlab.plm.core.base.domain.Position;
 import cn.ibizlab.plm.core.wiki.domain.Space;
 
 /**
@@ -120,6 +121,16 @@ public class Category extends EntityMP implements Serializable
     @JsonProperty("leaf_flag")
     @ApiModelProperty(value = "leaf_flag", notes = "叶子节点标识")
     private Integer leafFlag;
+
+    /**
+    * 是否叶子节点3
+    */
+    @TableField(value = "is_leaf3")
+    @DEField(name = "is_leaf3" , defaultValue = "1" , dict = "YesNo")
+    @JSONField(name = "is_leaf3")
+    @JsonProperty("is_leaf3")
+    @ApiModelProperty(value = "is_leaf3", notes = "是否叶子节点3")
+    private Integer isLeaf3;
 
     /**
     * 标识
@@ -258,6 +269,15 @@ public class Category extends EntityMP implements Serializable
     public Category setLeafFlag(Integer leafFlag) {
         this.leafFlag = leafFlag;
         this.modify("leaf_flag", leafFlag);
+        return this;
+    }
+
+    /**
+    * 设置 [是否叶子节点3]
+    */
+    public Category setIsLeaf3(Integer isLeaf3) {
+        this.isLeaf3 = isLeaf3;
+        this.modify("is_leaf3", isLeaf3);
         return this;
     }
 

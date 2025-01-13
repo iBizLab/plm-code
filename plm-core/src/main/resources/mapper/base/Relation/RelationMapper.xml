@@ -20,6 +20,8 @@
 		<result property="updateTime" column="update_time"/>
         <association property="principalBaseline" javaType="cn.ibizlab.plm.core.base.domain.Baseline" column="principal_id" select="cn.ibizlab.plm.core.base.mapper.BaselineMapper.selectById" fetchType="lazy"></association>
         <association property="principalIdea" javaType="cn.ibizlab.plm.core.prodmgmt.domain.Idea" column="principal_id" select="cn.ibizlab.plm.core.prodmgmt.mapper.IdeaMapper.selectById" fetchType="lazy"></association>
+        <association property="principalProduct" javaType="cn.ibizlab.plm.core.prodmgmt.domain.Product" column="principal_id" select="cn.ibizlab.plm.core.prodmgmt.mapper.ProductMapper.selectById" fetchType="lazy"></association>
+        <association property="principalProject" javaType="cn.ibizlab.plm.core.projmgmt.domain.Project" column="principal_id" select="cn.ibizlab.plm.core.projmgmt.mapper.ProjectMapper.selectById" fetchType="lazy"></association>
         <association property="relationRelease" javaType="cn.ibizlab.plm.core.projmgmt.domain.Release" column="principal_id" select="cn.ibizlab.plm.core.projmgmt.mapper.ReleaseMapper.selectById" fetchType="lazy"></association>
         <association property="principalReview" javaType="cn.ibizlab.plm.core.testmgmt.domain.Review" column="principal_id" select="cn.ibizlab.plm.core.testmgmt.mapper.ReviewMapper.selectById" fetchType="lazy"></association>
         <association property="reviewContentExtend" javaType="cn.ibizlab.plm.core.testmgmt.domain.ReviewContentExtend" column="id" select="cn.ibizlab.plm.core.testmgmt.mapper.ReviewContentExtendMapper.selectById" fetchType="lazy"></association>
@@ -27,7 +29,9 @@
         <association property="targetCustomer" javaType="cn.ibizlab.plm.core.prodmgmt.domain.Customer" column="target_id" select="cn.ibizlab.plm.core.prodmgmt.mapper.CustomerMapper.selectById" fetchType="lazy"></association>
         <association property="targetIdea" javaType="cn.ibizlab.plm.core.prodmgmt.domain.Idea" column="target_id" select="cn.ibizlab.plm.core.prodmgmt.mapper.IdeaMapper.selectById" fetchType="lazy"></association>
         <association property="targetPage" javaType="cn.ibizlab.plm.core.wiki.domain.ArticlePage" column="target_id" select="cn.ibizlab.plm.core.wiki.mapper.ArticlePageMapper.selectById" fetchType="lazy"></association>
+        <association property="targetProduct" javaType="cn.ibizlab.plm.core.prodmgmt.domain.Product" column="target_id" select="cn.ibizlab.plm.core.prodmgmt.mapper.ProductMapper.selectById" fetchType="lazy"></association>
         <association property="targetProductPlanCategory" javaType="cn.ibizlab.plm.core.prodmgmt.domain.ProductPlan" column="target_id" select="cn.ibizlab.plm.core.prodmgmt.mapper.ProductPlanMapper.selectById" fetchType="lazy"></association>
+        <association property="targetProject" javaType="cn.ibizlab.plm.core.projmgmt.domain.Project" column="target_id" select="cn.ibizlab.plm.core.projmgmt.mapper.ProjectMapper.selectById" fetchType="lazy"></association>
         <association property="targetRun" javaType="cn.ibizlab.plm.core.testmgmt.domain.Run" column="target_id" select="cn.ibizlab.plm.core.testmgmt.mapper.RunMapper.selectById" fetchType="lazy"></association>
         <association property="targetTestCase" javaType="cn.ibizlab.plm.core.testmgmt.domain.TestCase" column="target_id" select="cn.ibizlab.plm.core.testmgmt.mapper.TestCaseMapper.selectById" fetchType="lazy"></association>
         <association property="targetTicket" javaType="cn.ibizlab.plm.core.prodmgmt.domain.Ticket" column="target_id" select="cn.ibizlab.plm.core.prodmgmt.mapper.TicketMapper.selectById" fetchType="lazy"></association>
@@ -111,6 +115,18 @@
 
     <sql id="ideaVersionRelation" databaseId="mysql">
          <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`CUR_VERSION_ID`, t1.`ID`, t1.`LEVEL`, t1.`NAME`, t1.`OWNER_TYPE`, t1.`PARENT_VERSION_ID`, t1.`PRINCIPAL_ID`, t1.`PRINCIPAL_TYPE`, t1.`RELATION_TYPE`, t1.`TARGET_ID`, t1.`TARGET_TYPE`, t1.`TARGET_VERSION_ID`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `RELATION` t1   ]]>  where  <![CDATA[ ( t1.`PRINCIPAL_TYPE` = 'idea'  AND  ( t1.`TARGET_TYPE` = 'customer'  OR  t1.`TARGET_TYPE` = 'idea'  OR  t1.`TARGET_TYPE` = 'ticket'  OR  t1.`TARGET_TYPE` = 'work_item'  OR  t1.`TARGET_TYPE` = 'test_case' ) ) ]]> 
+    </sql>
+
+    <sql id="productPlanIdea" databaseId="mysql">
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`CUR_VERSION_ID`, t1.`ID`, t1.`LEVEL`, t1.`NAME`, t1.`OWNER_TYPE`, t1.`PARENT_VERSION_ID`, t1.`PRINCIPAL_ID`, t1.`PRINCIPAL_TYPE`, t1.`RELATION_TYPE`, t1.`TARGET_ID`, t1.`TARGET_TYPE`, t1.`TARGET_VERSION_ID`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `RELATION` t1   ]]>  where  <![CDATA[ ( t1.`PRINCIPAL_ID` = #{ctx.webcontext.product_plan}  AND  t1.`RELATION_TYPE` = 'product_plan'  AND  t1.`TARGET_TYPE` = 'idea' ) ]]> 
+    </sql>
+
+    <sql id="productReProject" databaseId="mysql">
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`CUR_VERSION_ID`, t1.`ID`, t1.`LEVEL`, t1.`NAME`, t1.`OWNER_TYPE`, t1.`PARENT_VERSION_ID`, t1.`PRINCIPAL_ID`, t1.`PRINCIPAL_TYPE`, t1.`RELATION_TYPE`, t1.`TARGET_ID`, t1.`TARGET_TYPE`, t1.`TARGET_VERSION_ID`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `RELATION` t1  LEFT JOIN `PROJECT` t11 ON t1.`TARGET_ID` = t11.`ID`    ]]>  where  <![CDATA[ ( t11.`IS_DELETED` = 0 ) ]]> and  <![CDATA[ ( t1.`PRINCIPAL_ID` = #{ctx.webcontext.principal_id}  AND  t1.`TARGET_TYPE` = 'project'  AND  t1.`PRINCIPAL_TYPE` = 'product' ) ]]> 
+    </sql>
+
+    <sql id="projectReProduct" databaseId="mysql">
+         <![CDATA[ SELECT t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`CUR_VERSION_ID`, t1.`ID`, t1.`LEVEL`, t1.`NAME`, t1.`OWNER_TYPE`, t1.`PARENT_VERSION_ID`, t1.`PRINCIPAL_ID`, t1.`PRINCIPAL_TYPE`, t1.`RELATION_TYPE`, t1.`TARGET_ID`, t1.`TARGET_TYPE`, t1.`TARGET_VERSION_ID`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `RELATION` t1  LEFT JOIN `PRODUCT` t11 ON t1.`TARGET_ID` = t11.`ID`    ]]>  where  <![CDATA[ ( t11.`IS_DELETED` = 0 ) ]]> and  <![CDATA[ ( t1.`PRINCIPAL_ID` = #{ctx.webcontext.principal_id}  AND  t1.`TARGET_TYPE` = 'product'  AND  t1.`PRINCIPAL_TYPE` = 'project' ) ]]> 
     </sql>
 
     <sql id="reviewReTestCase" databaseId="mysql">
@@ -381,6 +397,69 @@
         select t1.*
         from (
             <include refid="ideaVersionRelation"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+    <select id="searchProductPlanIdea"  parameterType="cn.ibizlab.plm.core.base.filter.RelationSearchContext"  resultMap="RelationResultMap">
+        select t1.* 
+        from (
+            <include refid="productPlanIdea"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+
+    <select id="listProductPlanIdea"  parameterType="cn.ibizlab.plm.core.base.filter.RelationSearchContext"  resultMap="RelationResultMap">
+        select t1.*
+        from (
+            <include refid="productPlanIdea"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+    <select id="searchProductReProject"  parameterType="cn.ibizlab.plm.core.base.filter.RelationSearchContext"  resultMap="RelationResultMap">
+        select t1.* 
+        from (
+            <include refid="productReProject"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+
+    <select id="listProductReProject"  parameterType="cn.ibizlab.plm.core.base.filter.RelationSearchContext"  resultMap="RelationResultMap">
+        select t1.*
+        from (
+            <include refid="productReProject"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+    <select id="searchProjectReProduct"  parameterType="cn.ibizlab.plm.core.base.filter.RelationSearchContext"  resultMap="RelationResultMap">
+        select t1.* 
+        from (
+            <include refid="projectReProduct"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+
+    <select id="listProjectReProduct"  parameterType="cn.ibizlab.plm.core.base.filter.RelationSearchContext"  resultMap="RelationResultMap">
+        select t1.*
+        from (
+            <include refid="projectReProduct"/>
         ) t1
         <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
         <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
@@ -760,6 +839,20 @@
         where principal_id in <foreach item="id" index="index" collection="principalIds" open="(" separator="," close=")">#{id}</foreach> 
     </select>
 
+    <select id="findByPrincipalId" resultMap="RelationResultMap">
+        select t1.* from (
+            <include refid="default"/>
+        ) t1
+        where principal_id in <foreach item="id" index="index" collection="principalIds" open="(" separator="," close=")">#{id}</foreach> 
+    </select>
+
+    <select id="findByPrincipalId" resultMap="RelationResultMap">
+        select t1.* from (
+            <include refid="default"/>
+        ) t1
+        where principal_id in <foreach item="id" index="index" collection="principalIds" open="(" separator="," close=")">#{id}</foreach> 
+    </select>
+
     <select id="findById" resultMap="RelationResultMap">
         select t1.* from (
             <include refid="default"/>
@@ -772,6 +865,20 @@
             <include refid="default"/>
         ) t1
         where principal_id in <foreach item="id" index="index" collection="principalIds" open="(" separator="," close=")">#{id}</foreach> 
+    </select>
+
+    <select id="findByTargetId" resultMap="RelationResultMap">
+        select t1.* from (
+            <include refid="default"/>
+        ) t1
+        where target_id in <foreach item="id" index="index" collection="targetIds" open="(" separator="," close=")">#{id}</foreach> 
+    </select>
+
+    <select id="findByTargetId" resultMap="RelationResultMap">
+        select t1.* from (
+            <include refid="default"/>
+        ) t1
+        where target_id in <foreach item="id" index="index" collection="targetIds" open="(" separator="," close=")">#{id}</foreach> 
     </select>
 
     <select id="findByTargetId" resultMap="RelationResultMap">

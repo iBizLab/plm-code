@@ -12,6 +12,7 @@ export default {
   },
   caption: '新建用例',
   codeName: 'test_case_quick_create_view',
+  dynaSysMode: 1,
   height: 90,
   appDataEntityId: 'plmweb.test_case',
   appViewEngines: [
@@ -137,20 +138,20 @@ export default {
                         editorParams: {
                           USERINSCRIPT:
                             'value.replaceAll(/\\@\\{\\"(user)?id\\":\\"(.+?)\\",\\"name\\":\\"(.+?)\\"\\}/g,(x, user, id, name) => {return controller.getNodeInfo({ id, name })}).replaceAll(/\\@\\{userid=(.+?),name=(.+?)\\}/g,(x, id, name) => {return controller.getNodeInfo({ id, name })})',
+                          LINKVIEWID: 'plmweb.recent_custom_redirect_view',
                           MAXHEIGHT: '450',
                           QUOTECODELISTMAP:
                             '{"type":"plmweb.base__recent_visite"}',
                           QUOTEFIELDMAP:
-                            '{"identifier":"show_identifier","name":"name","id":"id","type":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
-                          QUOTEPARAMS:
-                            '{"page":0,"size":20,"sort":"update_time,desc"}',
+                            '{"identifier":"show_identifier","name":"name","id":"id","owner_subtype":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
+                          QUOTEPARAMS: '{"sort":"update_time,desc"}',
                           MODE: 'default',
                           QUOTEINSCRIPT:
-                            'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\"),\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); return controller.getNodeInfo({ icon, ...item })})',
+                            'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\")(,\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\")*\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); if (icon) { icon = icon.slice(8).slice(1, -1); } return controller.getNodeInfo({ icon, ...item })})',
                           USERSCRIPT:
                             '`@{"id":"${data.id}","name":"${data.name}"}`',
                           QUOTESCRIPT:
-                            '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.type}","recent_parent":"${data.recent_parent}","icon":"${data.icon}"}`',
+                            '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.owner_subtype}","recent_parent":"${data.recent_parent}"}`',
                           USERURL:
                             "`${context.library ? `libraries/${context.library}/library_members/fetch_default` : context.product ? `products/${context.product}/product_members/fetch_default` : context.project ? `projects/${context.project}/project_members/fetch_default` : ''}`",
                           USERFIELDMAP: '{"id":"user_id","name":"name"}',
@@ -235,7 +236,6 @@ export default {
                                 },
                               ],
                               logicType: 'GROUP',
-                              id: '表单成员[name][面板显示]逻辑',
                             },
                           ],
                           layoutPos: {
@@ -278,7 +278,6 @@ export default {
                                 },
                               ],
                               logicType: 'GROUP',
-                              id: '表单成员[description][面板显示]逻辑',
                             },
                           ],
                           layoutPos: {
@@ -321,7 +320,6 @@ export default {
                                 },
                               ],
                               logicType: 'GROUP',
-                              id: '表单成员[expected_value][面板显示]逻辑',
                             },
                           ],
                           layoutPos: {
@@ -450,20 +448,20 @@ export default {
                         editorParams: {
                           USERINSCRIPT:
                             'value.replaceAll(/\\@\\{\\"(user)?id\\":\\"(.+?)\\",\\"name\\":\\"(.+?)\\"\\}/g,(x, user, id, name) => {return controller.getNodeInfo({ id, name })}).replaceAll(/\\@\\{userid=(.+?),name=(.+?)\\}/g,(x, id, name) => {return controller.getNodeInfo({ id, name })})',
+                          LINKVIEWID: 'plmweb.recent_custom_redirect_view',
                           MAXHEIGHT: '450',
                           QUOTECODELISTMAP:
                             '{"type":"plmweb.base__recent_visite"}',
                           QUOTEFIELDMAP:
-                            '{"identifier":"show_identifier","name":"name","id":"id","type":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
-                          QUOTEPARAMS:
-                            '{"page":0,"size":20,"sort":"update_time,desc"}',
+                            '{"identifier":"show_identifier","name":"name","id":"id","owner_subtype":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
+                          QUOTEPARAMS: '{"sort":"update_time,desc"}',
                           MODE: 'default',
                           QUOTEINSCRIPT:
-                            'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\"),\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); return controller.getNodeInfo({ icon, ...item })})',
+                            'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\")(,\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\")*\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); if (icon) { icon = icon.slice(8).slice(1, -1); } return controller.getNodeInfo({ icon, ...item })})',
                           USERSCRIPT:
                             '`@{"id":"${data.id}","name":"${data.name}"}`',
                           QUOTESCRIPT:
-                            '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.type}","recent_parent":"${data.recent_parent}","icon":"${data.icon}"}`',
+                            '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.owner_subtype}","recent_parent":"${data.recent_parent}"}`',
                           USERURL:
                             "`${context.library ? `libraries/${context.library}/library_members/fetch_default` : context.product ? `products/${context.product}/product_members/fetch_default` : context.project ? `projects/${context.project}/project_members/fetch_default` : ''}`",
                           USERFIELDMAP: '{"id":"user_id","name":"name"}',
@@ -869,7 +867,6 @@ export default {
                         },
                       ],
                       logicType: 'GROUP',
-                      id: '表单成员[test_library_name][表单项启用]逻辑',
                     },
                   ],
                   layoutPos: {
@@ -974,7 +971,6 @@ export default {
                         },
                       ],
                       logicType: 'GROUP',
-                      id: '表单成员[suite_name][表单项启用]逻辑',
                     },
                   ],
                   layoutPos: {
@@ -1272,86 +1268,68 @@ export default {
                   id: 'id1',
                 },
                 {
-                  layout: {
-                    columnCount: 24,
-                    layout: 'TABLE_24COL',
-                  },
-                  deformDetails: [
-                    {
-                      dataType: 21,
-                      enableCond: 3,
-                      labelPos: 'TOP',
-                      labelWidth: 130,
-                      noPrivDisplayMode: 1,
-                      appDEFieldId: 'attentions',
-                      editor: {
-                        singleSelect: true,
-                        handlerType: 'PickupText',
-                        enableAC: true,
-                        forceSelection: true,
-                        showTrigger: true,
-                        editorParams: {
-                          MULTIPLE: 'true',
-                          DEFAULTATNVALUE: '40',
-                          'SRFNAVPARAM.n_department_id_eq': '%srforgsectorid%',
-                          AC: 'TRUE',
-                          DEFAULTSELCURUSER: 'true',
-                          'SRFNAVPARAM.n_status_eq': '1',
-                          TRIGGER: 'TRUE',
-                          SELFFILLMAP:
-                            '{"user_id":"user_id","user_name":"name"}',
-                          URL: 'libraries/${context.library}/library_members/fetch_default',
-                          PICKUPVIEW: 'FALSE',
-                          USERMETHOD: 'post',
-                          USERMAP: '{"id":"user_id","name":"name"}',
-                          DEPTMAP: '{"id":"id","name":"display_name"}',
-                          DEPTMETHOD: 'get',
-                          DEPTURL: '/users/fetch_default',
-                        },
-                        editorStyle: 'PERSONEL_SELECT_LIBRARY',
-                        editorType: 'PICKEREX_TRIGGER',
-                        objectIdField: 'id',
-                        objectNameField: 'name',
-                        sysPFPluginId: 'person_select',
-                        valueType: 'OBJECTS',
-                        editable: true,
-                        navigateParams: [
-                          {
-                            key: 'n_department_id_eq',
-                            value: 'srforgsectorid',
-                            id: 'n_department_id_eq',
-                          },
-                          {
-                            key: 'n_status_eq',
-                            value: '1',
-                            rawValue: true,
-                            id: 'n_status_eq',
-                          },
-                        ],
-                        id: 'attentions',
-                      },
-                      allowEmpty: true,
-                      caption: '关注人',
-                      codeName: 'attentions',
-                      detailStyle: 'DEFAULT',
-                      detailType: 'FORMITEM',
-                      layoutPos: {
-                        colMD: 24,
-                        layout: 'TABLE_24COL',
-                      },
-                      showCaption: true,
-                      id: 'attentions',
+                  dataType: 21,
+                  enableCond: 3,
+                  labelPos: 'TOP',
+                  labelWidth: 130,
+                  noPrivDisplayMode: 1,
+                  appDEFieldId: 'attentions',
+                  editor: {
+                    singleSelect: true,
+                    handlerType: 'PickupText',
+                    enableAC: true,
+                    forceSelection: true,
+                    showTrigger: true,
+                    editorParams: {
+                      MULTIPLE: 'true',
+                      DEFAULTATNVALUE: '40',
+                      'SRFNAVPARAM.n_department_id_eq': '%srforgsectorid%',
+                      AC: 'TRUE',
+                      DEFAULTSELCURUSER: 'true',
+                      'SRFNAVPARAM.n_status_eq': '1',
+                      TRIGGER: 'TRUE',
+                      SELFFILLMAP: '{"user_id":"user_id","user_name":"name"}',
+                      URL: 'libraries/${context.library}/library_members/fetch_default',
+                      PICKUPVIEW: 'FALSE',
+                      USERMETHOD: 'post',
+                      USERMAP: '{"id":"user_id","name":"name"}',
+                      DEPTMAP: '{"id":"id","name":"display_name"}',
+                      DEPTMETHOD: 'get',
+                      DEPTURL: '/users/fetch_default',
                     },
-                  ],
-                  caption: '关注字段',
-                  codeName: 'grouppanel2',
+                    editorStyle: 'PERSONEL_SELECT_LIBRARY',
+                    editorType: 'PICKEREX_TRIGGER',
+                    objectIdField: 'id',
+                    objectNameField: 'name',
+                    sysPFPluginId: 'person_select',
+                    valueType: 'OBJECTS',
+                    editable: true,
+                    navigateParams: [
+                      {
+                        key: 'n_department_id_eq',
+                        value: 'srforgsectorid',
+                        id: 'n_department_id_eq',
+                      },
+                      {
+                        key: 'n_status_eq',
+                        value: '1',
+                        rawValue: true,
+                        id: 'n_status_eq',
+                      },
+                    ],
+                    id: 'attentions',
+                  },
+                  allowEmpty: true,
+                  caption: '关注人',
+                  codeName: 'attentions',
                   detailStyle: 'DEFAULT',
-                  detailType: 'GROUPPANEL',
+                  detailType: 'FORMITEM',
                   layoutPos: {
                     colMD: 24,
                     layout: 'TABLE_24COL',
                   },
-                  id: 'grouppanel2',
+                  showCaption: true,
+                  id: 'attentions',
                 },
               ],
               codeName: 'grouppanel1',
@@ -1410,6 +1388,7 @@ export default {
       showBusyIndicator: true,
       codeName: 'quick_create_view_form',
       controlType: 'FORM',
+      dynaSysMode: 1,
       logicName: '用例快速建立视图_表单',
       appDataEntityId: 'plmweb.test_case',
       controlParam: {

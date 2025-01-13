@@ -354,6 +354,9 @@ export default {
       logicName: '工作项日历视图_日历部件',
       appDataEntityId: 'plmweb.work_item',
       controlParam: {
+        ctrlParams: {
+          SHOWMODE: 'daterange',
+        },
         id: 'calendar',
       },
       modelId: '8948343a22e6f3e2feaef4c63535db9a',

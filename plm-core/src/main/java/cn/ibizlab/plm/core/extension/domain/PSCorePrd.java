@@ -42,6 +42,15 @@ public class PSCorePrd extends EntityBase implements Serializable
     private String deploySystemCode;
 
     /**
+     * 设置
+     */
+    @DEField(name = "settings")
+    @JSONField(name = "settings")
+    @JsonProperty("settings")
+    @ApiModelProperty(value = "settings", notes = "设置")
+    private String settings;
+
+    /**
      * 部署节点
      */
     @DEField(name = "deploy_service_hub_id")
@@ -49,6 +58,15 @@ public class PSCorePrd extends EntityBase implements Serializable
     @JsonProperty("deploy_service_hub_id")
     @ApiModelProperty(value = "deploy_service_hub_id", notes = "部署节点")
     private String deployServiceHubId;
+
+    /**
+     * 可用版本
+     */
+    @DEField(name = "vers")
+    @JSONField(name = "vers")
+    @JsonProperty("vers")
+    @ApiModelProperty(value = "vers", notes = "可用版本")
+    private String vers;
 
     /**
      * 部署数据源
@@ -67,6 +85,33 @@ public class PSCorePrd extends EntityBase implements Serializable
     @JsonProperty("deploy_prdver_id")
     @ApiModelProperty(value = "deploy_prdver_id", notes = "部署版本")
     private String deployPrdverId;
+
+    /**
+     * 详细信息
+     */
+    @DEField(name = "info")
+    @JSONField(name = "info")
+    @JsonProperty("info")
+    @ApiModelProperty(value = "info", notes = "详细信息")
+    private String info;
+
+    /**
+     * 产品标签
+     */
+    @DEField(name = "category")
+    @JSONField(name = "category")
+    @JsonProperty("category")
+    @ApiModelProperty(value = "category", notes = "产品标签")
+    private String category;
+
+    /**
+     * 变更日志
+     */
+    @DEField(name = "changelog")
+    @JSONField(name = "changelog")
+    @JsonProperty("changelog")
+    @ApiModelProperty(value = "changelog", notes = "变更日志")
+    private String changelog;
 
     /**
      * 核心产品标识
@@ -252,6 +297,15 @@ public class PSCorePrd extends EntityBase implements Serializable
     private String fullName;
 
     /**
+     * 设置地址
+     */
+    @DEField(name = "settingurl")
+    @JSONField(name = "settingurl")
+    @JsonProperty("settingurl")
+    @ApiModelProperty(value = "settingurl", notes = "设置地址")
+    private String settingUrl;
+
+    /**
     * 设置 [部署应用名]
     */
     public PSCorePrd setDeploySystemCode(String deploySystemCode) {
@@ -261,11 +315,29 @@ public class PSCorePrd extends EntityBase implements Serializable
     }
 
     /**
+    * 设置 [设置]
+    */
+    public PSCorePrd setSettings(String settings) {
+        this.settings = settings;
+        this.modify("settings", settings);
+        return this;
+    }
+
+    /**
     * 设置 [部署节点]
     */
     public PSCorePrd setDeployServiceHubId(String deployServiceHubId) {
         this.deployServiceHubId = deployServiceHubId;
         this.modify("deploy_service_hub_id", deployServiceHubId);
+        return this;
+    }
+
+    /**
+    * 设置 [可用版本]
+    */
+    public PSCorePrd setVers(String vers) {
+        this.vers = vers;
+        this.modify("vers", vers);
         return this;
     }
 
@@ -284,6 +356,33 @@ public class PSCorePrd extends EntityBase implements Serializable
     public PSCorePrd setDeployPrdverId(String deployPrdverId) {
         this.deployPrdverId = deployPrdverId;
         this.modify("deploy_prdver_id", deployPrdverId);
+        return this;
+    }
+
+    /**
+    * 设置 [详细信息]
+    */
+    public PSCorePrd setInfo(String info) {
+        this.info = info;
+        this.modify("info", info);
+        return this;
+    }
+
+    /**
+    * 设置 [产品标签]
+    */
+    public PSCorePrd setCategory(String category) {
+        this.category = category;
+        this.modify("category", category);
+        return this;
+    }
+
+    /**
+    * 设置 [变更日志]
+    */
+    public PSCorePrd setChangelog(String changelog) {
+        this.changelog = changelog;
+        this.modify("changelog", changelog);
         return this;
     }
 
@@ -419,6 +518,15 @@ public class PSCorePrd extends EntityBase implements Serializable
     public PSCorePrd setFullName(String fullName) {
         this.fullName = fullName;
         this.modify("fullname", fullName);
+        return this;
+    }
+
+    /**
+    * 设置 [设置地址]
+    */
+    public PSCorePrd setSettingUrl(String settingUrl) {
+        this.settingUrl = settingUrl;
+        this.modify("settingurl", settingUrl);
         return this;
     }
 

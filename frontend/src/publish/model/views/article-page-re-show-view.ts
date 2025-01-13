@@ -27,6 +27,13 @@ export default {
       id: 'principal_type',
     },
   ],
+  appViewNavParams: [
+    {
+      key: 'article_page',
+      value: 'article_page',
+      id: 'article_page',
+    },
+  ],
   sysCss: {
     cssName: 'space-page-view',
   },
@@ -44,129 +51,109 @@ export default {
             actionGroupExtractMode: 'ITEM',
             panelItems: [
               {
-                actionGroupExtractMode: 'ITEM',
-                panelItems: [
-                  {
-                    editor: {
-                      halign: 'LEFT',
-                      renderMode: 'HEADING1',
-                      valign: 'MIDDLE',
-                      wrapMode: 'NOWRAP',
-                      editorType: 'SPAN',
-                      predefinedType: 'CAPTIONBAR',
-                      valueType: 'SIMPLE',
-                      editable: true,
-                      id: 'view_pagecaption',
-                    },
-                    allowEmpty: true,
-                    caption: '页面标题',
-                    itemStyle: 'DEFAULT',
-                    itemType: 'FIELD',
-                    layoutPos: {
-                      shrink: 1,
-                      layout: 'FLEX',
-                    },
-                    sysPFPluginId: 'identifier_title',
-                    userTag: 'identifier',
-                    id: 'view_pagecaption',
-                  },
-                  {
-                    rawItem: {
-                      sysImage: {
-                        cssClass: 'fa fa-lock',
-                        glyph: 'xf023@FontAwesome',
-                      },
-                      contentType: 'IMAGE',
-                      predefinedType: 'STATIC_IMAGE',
-                      id: 'static_image',
-                    },
-                    caption: '图片',
-                    itemStyle: 'DEFAULT',
-                    itemType: 'RAWITEM',
-                    layoutPos: {
-                      shrink: 1,
-                      layout: 'FLEX',
-                    },
-                    panelItemGroupLogics: [
-                      {
-                        logicCat: 'PANELVISIBLE',
-                        relatedItemNames: ['is_lock'],
-                        groupOP: 'AND',
-                        panelItemLogics: [
-                          {
-                            condOp: 'EQ',
-                            dstModelField: 'is_lock',
-                            value: '1',
-                            logicType: 'SINGLE',
-                            id: '逻辑项',
-                          },
-                        ],
-                        logicType: 'GROUP',
-                        id: '面板成员[static_image][面板显示]逻辑',
-                      },
-                    ],
-                    sysImage: {
-                      cssClass: 'fa fa-lock',
-                      glyph: 'xf023@FontAwesome',
-                    },
-                    showCaption: true,
-                    id: 'static_image',
-                  },
-                  {
-                    editor: {
-                      editorType: 'HIDDEN',
-                      predefinedType: 'FIELD_TEXT_DYNAMIC',
-                      valueType: 'SIMPLE',
-                      editable: true,
-                      id: 'is_lock',
-                    },
-                    viewFieldName: 'is_lock',
-                    allowEmpty: true,
-                    hidden: true,
-                    caption: '文本(动态)',
-                    itemType: 'FIELD',
-                    layoutPos: {
-                      shrink: 1,
-                      layout: 'FLEX',
-                    },
-                    id: 'is_lock',
-                  },
-                ],
-                layout: {
-                  align: 'flex-start',
-                  dir: 'row',
-                  layout: 'FLEX',
-                  valign: 'center',
+                editor: {
+                  halign: 'LEFT',
+                  renderMode: 'HEADING1',
+                  valign: 'MIDDLE',
+                  wrapMode: 'NOWRAP',
+                  editorType: 'SPAN',
+                  predefinedType: 'CAPTIONBAR',
+                  valueType: 'SIMPLE',
+                  editable: true,
+                  id: 'view_pagecaption',
                 },
-                dataRegionType: 'INHERIT',
-                caption: '容器',
+                allowEmpty: true,
+                caption: '页面标题',
                 itemStyle: 'DEFAULT',
-                itemType: 'CONTAINER',
+                itemType: 'FIELD',
                 layoutPos: {
                   shrink: 1,
                   layout: 'FLEX',
                 },
-                sysCss: {
-                  cssName: 'wiki_page_title_style',
+                sysPFPluginId: 'identifier_title',
+                userTag: 'identifier',
+                id: 'view_pagecaption',
+              },
+              {
+                rawItem: {
+                  sysImage: {
+                    cssClass: 'fa fa-lock',
+                    glyph: 'xf023@FontAwesome',
+                  },
+                  contentType: 'IMAGE',
+                  predefinedType: 'STATIC_IMAGE',
+                  id: 'static_image',
                 },
-                id: 'container1',
+                caption: '图片',
+                itemStyle: 'DEFAULT',
+                itemType: 'RAWITEM',
+                layoutPos: {
+                  shrink: 1,
+                  layout: 'FLEX',
+                },
+                panelItemGroupLogics: [
+                  {
+                    logicCat: 'PANELVISIBLE',
+                    relatedItemNames: ['is_lock'],
+                    groupOP: 'AND',
+                    panelItemLogics: [
+                      {
+                        condOp: 'EQ',
+                        dstModelField: 'is_lock',
+                        value: '1',
+                        logicType: 'SINGLE',
+                        id: '逻辑项',
+                      },
+                    ],
+                    logicType: 'GROUP',
+                    id: '面板成员[static_image][面板显示]逻辑',
+                  },
+                ],
+                sysImage: {
+                  cssClass: 'fa fa-lock',
+                  glyph: 'xf023@FontAwesome',
+                },
+                showCaption: true,
+                id: 'static_image',
+              },
+              {
+                editor: {
+                  editorType: 'HIDDEN',
+                  predefinedType: 'FIELD_TEXT_DYNAMIC',
+                  valueType: 'SIMPLE',
+                  editable: true,
+                  id: 'is_lock',
+                },
+                viewFieldName: 'is_lock',
+                allowEmpty: true,
+                hidden: true,
+                caption: '文本(动态)',
+                itemType: 'FIELD',
+                layoutPos: {
+                  shrink: 1,
+                  layout: 'FLEX',
+                },
+                id: 'is_lock',
               },
             ],
-            predefinedType: 'CONTAINER_SINGLEDATA',
             layout: {
+              align: 'flex-start',
+              dir: 'row',
               layout: 'FLEX',
+              valign: 'center',
             },
-            dataName: 'srfactiveviewdata',
-            dataRegionType: 'SINGLEDATA',
-            dataSourceType: 'VIEWSESSIONPARAM',
-            caption: '单项数据容器',
+            dataRegionType: 'INHERIT',
+            caption: '容器',
             itemStyle: 'DEFAULT',
             itemType: 'CONTAINER',
             layoutPos: {
               shrink: 1,
               layout: 'FLEX',
             },
-            id: 'container_caption',
+            sysCss: {
+              cssName: 'wiki_page_title_style',
+            },
+            id: 'container1',
           },
           {
             actionGroupExtractMode: 'ITEM',
@@ -392,20 +379,22 @@ export default {
                                           editorParams: {
                                             USERINSCRIPT:
                                               'value.replaceAll(/\\@\\{\\"(user)?id\\":\\"(.+?)\\",\\"name\\":\\"(.+?)\\"\\}/g,(x, user, id, name) => {return controller.getNodeInfo({ id, name })}).replaceAll(/\\@\\{userid=(.+?),name=(.+?)\\}/g,(x, id, name) => {return controller.getNodeInfo({ id, name })})',
+                                            LINKVIEWID:
+                                              'plmweb.recent_custom_redirect_view',
                                             QUOTECODELISTMAP:
                                               '{"type":"plmweb.base__recent_visite"}',
                                             QUOTEFIELDMAP:
-                                              '{"identifier":"show_identifier","name":"name","id":"id","type":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
+                                              '{"identifier":"show_identifier","name":"name","id":"id","owner_subtype":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
                                             QUOTEPARAMS:
-                                              '{"page":0,"size":20,"sort":"update_time,desc"}',
+                                              '{"sort":"update_time,desc"}',
                                             QUOTEINSCRIPT:
-                                              'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\"),\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); return controller.getNodeInfo({ icon, ...item })})',
+                                              'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\")(,\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\")*\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); if (icon) { icon = icon.slice(8).slice(1, -1); } return controller.getNodeInfo({ icon, ...item })})',
                                             USERSCRIPT:
                                               '`@{"id":"${data.id}","name":"${data.name}"}`',
                                             QUOTESCRIPT:
-                                              '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.type}","recent_parent":"${data.recent_parent}","icon":"${data.icon}"}`',
+                                              '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.owner_subtype}","recent_parent":"${data.recent_parent}"}`',
                                             REPLYSCRIPT:
-                                              'value?.replace(/@{[^,]*,"name":"(.*?)"}/g,"<span class=\'comment-tag\'>@$1</span>").replace(/@{[^,]*,name=(.*?)}/g,"<span class=\'comment-tag\'>@$1</span>").replaceAll(/\\#\\{(\\".+?\\":\\".+?\\"),\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g, (x, value, icon) => {const item = JSON.parse("{" + value + "}"); const tempIcon = icon.trim(); return `<span class=\'comment-tag\' data-value=\'${JSON.stringify(item)}\'>${tempIcon} ${item.identifier} ${item.name}</span>`;})',
+                                              'value?.replace(/@{[^,]*,"name":"(.*?)"}/g,"<span class=\'comment-tag\'>@$1</span>").replace(/@{[^,]*,name=(.*?)}/g,"<span class=\'comment-tag\'>@$1</span>").replaceAll(/\\#\\{(\\".+?\\":\\".+?\\")(,\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\")*\\}/g, (x, value, icon) => {const item = JSON.parse("{" + value + "}"); if (icon) { icon = icon.slice(8).slice(1, -1).trim(); } return controller.markerController.parseCommentTag({icon, ...item});})',
                                             USERFIELDMAP:
                                               '{"id":"user_id","name":"name"}',
                                             USERURL:
@@ -717,13 +706,16 @@ export default {
                     itemName: 'RIGHT_CONTAINER',
                     logicTag: 'layoutpanel',
                     logicType: 'SCRIPT',
-                    scriptCode: '!!view.common_list_isshow',
+                    scriptCode:
+                      'Boolean(localStorage.getItem(context.loginname))',
                     triggerType: 'ITEMVISIBLE',
                     id: 'logic',
                   },
                 ],
                 layoutPos: {
+                  grow: 0,
                   shrink: 0,
+                  heightMode: 'FULL',
                   layout: 'FLEX',
                   width: 500,
                   widthMode: 'PX',
@@ -742,6 +734,7 @@ export default {
             itemType: 'CONTAINER',
             layoutPos: {
               shrink: 1,
+              heightMode: 'FULL',
               layout: 'FLEX',
               widthMode: 'FULL',
             },
@@ -760,6 +753,7 @@ export default {
         layoutPos: {
           grow: 1,
           shrink: 1,
+          heightMode: 'FULL',
           layout: 'FLEX',
           widthMode: 'FULL',
         },
@@ -767,6 +761,23 @@ export default {
       },
     ],
     layoutPanel: true,
+    appCounterRefs: [
+      {
+        appCounter: {
+          codeName: 'comment_counter',
+          counterType: 'DEDR',
+          getAppDEActionId: 'count_comment',
+          appDataEntityId: 'plmweb.article_page',
+          timer: 60000,
+          uniqueTag: 'comment_counter',
+          name: '页面评论计数器',
+          id: 'plmweb.comment_counter',
+        },
+        tag: 'ce58d4a404e3975df7dc9c9e1ea433c3',
+        uniqueTag: 'comment_counter',
+        id: 'ce58d4a404e3975df7dc9c9e1ea433c3',
+      },
+    ],
     appViewEngines: [
       {
         engineCat: 'VIEW',
@@ -837,6 +848,8 @@ export default {
             uiactionTarget: 'SINGLEDATA',
             valid: true,
             caption: '评论',
+            counterId: 'total',
+            counterMode: 1,
             itemType: 'DEUIACTION',
             controlLogics: [
               {
@@ -846,6 +859,14 @@ export default {
                 scriptCode: '!!!view.common_list_isshow',
                 triggerType: 'ITEMVISIBLE',
                 id: 'logic2',
+              },
+              {
+                itemName: 'deuiaction2',
+                logicTag: 'toolbar',
+                logicType: 'SCRIPT',
+                scriptCode: '!Boolean(localStorage.getItem(context.loginname))',
+                triggerType: 'ITEMVISIBLE',
+                id: 'comment',
               },
             ],
             sysImage: {
@@ -862,7 +883,6 @@ export default {
             uiactionId:
               'toolbar_re_show_view_toolbar_deuiaction3_click@article_page',
             uiactionTarget: 'SINGLEDATA',
-            hiddenItem: true,
             valid: true,
             caption: '关闭',
             itemType: 'DEUIACTION',
@@ -874,6 +894,14 @@ export default {
                 scriptCode: '!!view.common_list_isshow',
                 triggerType: 'ITEMVISIBLE',
                 id: 'logic',
+              },
+              {
+                itemName: 'deuiaction3',
+                logicTag: 'toolbar',
+                logicType: 'SCRIPT',
+                scriptCode: 'Boolean(localStorage.getItem(context.loginname))',
+                triggerType: 'ITEMVISIBLE',
+                id: 'close',
               },
             ],
             sysImage: {
@@ -1002,7 +1030,6 @@ export default {
                               },
                             ],
                             logicType: 'GROUP',
-                            id: '表单成员[icon][面板显示]逻辑',
                           },
                         ],
                         layoutPos: {
@@ -1052,32 +1079,6 @@ export default {
                     id: 'grouppanel1',
                   },
                   {
-                    dataType: 25,
-                    enableCond: 3,
-                    labelPos: 'NONE',
-                    noPrivDisplayMode: 1,
-                    appDEFieldId: 'show_identifier',
-                    editor: {
-                      halign: 'LEFT',
-                      valign: 'MIDDLE',
-                      wrapMode: 'NOWRAP',
-                      editorType: 'SPAN',
-                      valueType: 'SIMPLE',
-                      editable: true,
-                      id: 'show_identifier',
-                    },
-                    allowEmpty: true,
-                    emptyCaption: true,
-                    codeName: 'show_identifier',
-                    detailStyle: 'DEFAULT',
-                    detailType: 'FORMITEM',
-                    layoutPos: {
-                      colMD: 24,
-                      layout: 'TABLE_24COL',
-                    },
-                    id: 'show_identifier',
-                  },
-                  {
                     layout: {
                       columnCount: 24,
                       layout: 'TABLE_24COL',
@@ -1095,9 +1096,10 @@ export default {
                           cssStyle: 'min-height: 500px;',
                           editorParams: {
                             contenttype: 'HTML',
+                            LINKVIEWID: 'plmweb.recent_custom_redirect_view',
                             TITLE: 'name',
                             PARSESCRIPT:
-                              'value?.replace(/@{[^,]*,"name":"(.*?)"}/g,"<span class=\\\'comment-tag\\\'>@$1</span>").replace(/@{[^,]*,name=(.*?)}/g,"<span class=\\\'comment-tag\\\'>@$1</span>").replaceAll(/\\#\\{(\\".+?\\":\\".+?\\"),\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); const tempIcon = icon.trim(); const params = JSON.stringify(item); return `<span markerClick=\'marker\' params=\'${params}\' class=\'comment-tag is-click\'>${tempIcon} ${item.identifier} ${item.name}</span>`;}).replaceAll(/\\{\\"\\emoji\\":\\"(.+?)\\"\\}/g,(x, emoji) => {const tempVal = decodeURIComponent(atob(emoji)); return `<span class="emoji-tag">${tempVal}</span>`})',
+                              'value?.replace(/@{[^,]*,"name":"(.*?)"}/g,"<span class=\\\'comment-tag\\\'>@$1</span>").replace(/@{[^,]*,name=(.*?)}/g,"<span class=\\\'comment-tag\\\'>@$1</span>").replaceAll(/\\#\\{(\\".+?\\":\\".+?\\")(,\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\")*\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); if (icon) { icon = icon.slice(8).slice(1, -1).trim(); } return controller.parseCommentTag({icon, ...item});}).replaceAll(/\\{\\"\\emoji\\":\\"(.+?)\\"\\}/g,(x, emoji) => {const tempVal = decodeURIComponent(atob(emoji)); return `<span class="emoji-tag">${tempVal}</span>`})',
                           },
                           editorStyle: 'ANCHO_HTML',
                           editorType: 'RAW',
@@ -1126,7 +1128,6 @@ export default {
                               },
                             ],
                             logicType: 'GROUP',
-                            id: '表单成员[content][面板显示]逻辑',
                           },
                           {
                             logicCat: 'ITEMENABLE',
@@ -1141,7 +1142,6 @@ export default {
                               },
                             ],
                             logicType: 'GROUP',
-                            id: '表单成员[content][表单项启用]逻辑',
                           },
                         ],
                         layoutPos: {
@@ -1186,7 +1186,6 @@ export default {
                               },
                             ],
                             logicType: 'GROUP',
-                            id: '表单成员[formitem1][面板显示]逻辑',
                           },
                           {
                             logicCat: 'ITEMENABLE',
@@ -1201,7 +1200,6 @@ export default {
                               },
                             ],
                             logicType: 'GROUP',
-                            id: '表单成员[formitem1][表单项启用]逻辑',
                           },
                         ],
                         layoutPos: {
@@ -1245,7 +1243,6 @@ export default {
                               },
                             ],
                             logicType: 'GROUP',
-                            id: '表单成员[formitem][面板显示]逻辑',
                           },
                           {
                             logicCat: 'ITEMENABLE',
@@ -1260,7 +1257,6 @@ export default {
                               },
                             ],
                             logicType: 'GROUP',
-                            id: '表单成员[formitem][表单项启用]逻辑',
                           },
                         ],
                         layoutPos: {
@@ -1578,7 +1574,6 @@ export default {
                           },
                         ],
                         logicType: 'GROUP',
-                        id: '表单成员[grouppanel_attachments_grid][面板显示]逻辑',
                       },
                     ],
                     layoutPos: {
@@ -2085,8 +2080,9 @@ export default {
                         contentType: 'HTML',
                         editorParams: {
                           contenttype: 'HTML',
+                          LINKVIEWID: 'plmweb.recent_custom_redirect_view',
                           SCRIPTCODE:
-                            'data.content?.replace(/@{[^,]*,"name":"(.*?)"}/g,"<span class=\'comment-tag\'>@$1</span>").replace(/@{[^,]*,name=(.*?)}/g,"<span class=\'comment-tag\'>@$1</span>").replaceAll(/\\#\\{(\\".+?\\":\\".+?\\"),\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g, (x, value, icon) => {const item = JSON.parse("{" + value + "}"); const tempIcon = icon.trim(); return `<span class=\'comment-tag\' data-value=\'${JSON.stringify(item)}\'>${tempIcon} ${item.identifier} ${item.name}</span>`;}).replaceAll(/\\{\\"\\emoji\\":\\"(.+?)\\"\\}/g,(x, emoji) => {const tempVal = decodeURIComponent(atob(emoji)); return `<span class="emoji-tag">${tempVal}</span>`})',
+                            'data.content?.replace(/@{[^,]*,"name":"(.*?)"}/g,"<span class=\'comment-tag\'>@$1</span>").replace(/@{[^,]*,name=(.*?)}/g,"<span class=\'comment-tag\'>@$1</span>").replaceAll(/\\#\\{(\\".+?\\":\\".+?\\")(,\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\")*\\}/g, (x, value, icon) => {const item = JSON.parse("{" + value + "}"); if (icon) { icon = icon.slice(8).slice(1, -1).trim(); } return controller.parseCommentTag({icon, ...item});}).replaceAll(/\\{\\"\\emoji\\":\\"(.+?)\\"\\}/g,(x, emoji) => {const tempVal = decodeURIComponent(atob(emoji)); return `<span class="emoji-tag">${tempVal}</span>`})',
                         },
                         editorStyle: 'COMMENT_ITEM',
                         editorType: 'RAW',
@@ -2273,9 +2269,9 @@ export default {
             id: 'content',
           },
           {
-            appDEFieldId: 'id',
-            dataType: 25,
-            id: 'id',
+            appDEFieldId: 'pcontent',
+            dataType: 21,
+            id: 'pcontent',
           },
           {
             appDEFieldId: 'create_time',
@@ -2284,15 +2280,9 @@ export default {
             id: 'create_time',
           },
           {
-            appDEFieldId: 'pcreate_man',
-            frontCodeListId: 'plmweb.sysoperator',
+            appDEFieldId: 'pid',
             dataType: 25,
-            id: 'pcreate_man',
-          },
-          {
-            appDEFieldId: 'pcontent',
-            dataType: 21,
-            id: 'pcontent',
+            id: 'pid',
           },
           {
             appDEFieldId: 'create_man',
@@ -2301,9 +2291,15 @@ export default {
             id: 'create_man',
           },
           {
-            appDEFieldId: 'pid',
+            appDEFieldId: 'id',
             dataType: 25,
-            id: 'pid',
+            id: 'id',
+          },
+          {
+            appDEFieldId: 'pcreate_man',
+            frontCodeListId: 'plmweb.sysoperator',
+            dataType: 25,
+            id: 'pcreate_man',
           },
           {
             appDEFieldId: 'id',
@@ -2318,6 +2314,7 @@ export default {
         ],
         pagingSize: 1000,
         showHeader: true,
+        singleSelect: true,
         navViewPos: 'NONE',
         createControlAction: {
           appDEMethodId: 'create',

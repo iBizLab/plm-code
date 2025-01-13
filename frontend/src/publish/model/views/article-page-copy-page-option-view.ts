@@ -497,7 +497,6 @@ export default {
                       },
                     ],
                     logicType: 'GROUP',
-                    id: '表单成员[is_child][表单项获取焦点（脚本处理）]逻辑',
                   },
                 ],
                 layoutPos: {

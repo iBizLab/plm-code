@@ -128,6 +128,45 @@ public abstract class AbstractProductMemberResource {
     }
 
     /**
+    * change_position 产品成员
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return Mono<ResponseEntity<ProductMemberDTO>>
+    */
+    @ApiOperation(value = "change_position", tags = {"产品成员" },  notes = "ProductMember-change_position ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ProductMember-change_position-all') or hasPermission(this.productMemberDtoMapping.toDomain(#dto),'ibizplm-ProductMember-change_position')")
+    @PostMapping("product_members/{id}/change_position")
+    public Mono<ResponseEntity<ResponseWrapper<ProductMemberDTO>>>changePositionById
+            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<ProductMemberDTO> dto) {
+        ResponseWrapper<ProductMemberDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(changePositionById(ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(changePositionById(id, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * change_position 产品成员
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<ProductMemberDTO>
+    */   
+    public ProductMemberDTO changePositionById
+            (String id, ProductMemberDTO dto) {
+        ProductMember domain = productMemberDtoMapping.toDomain(dto);
+        domain.setId(id);
+        ProductMember rt = productMemberService.changePosition(domain);
+        return productMemberDtoMapping.toDto(rt);
+    }
+
+    /**
     * change_role 产品成员
     * 
     *
@@ -346,6 +385,47 @@ public abstract class AbstractProductMemberResource {
         domain.setId(id);
         productMemberService.update(domain);
         ProductMember rt = domain;
+        return productMemberDtoMapping.toDto(rt);
+    }
+
+    /**
+    * change_position 产品成员
+    * 
+    *
+    * @param productId productId
+    * @param id id
+    * @param dto dto
+    * @return Mono<ResponseEntity<ProductMemberDTO>>
+    */
+    @ApiOperation(value = "change_position", tags = {"产品成员" },  notes = "ProductMember-change_position ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ProductMember-change_position-all') or hasPermission('product',#productId,this.productMemberDtoMapping.toDomain(#dto),'ibizplm-ProductMember-change_position')")
+    @PostMapping("products/{productId}/product_members/{id}/change_position")
+    public Mono<ResponseEntity<ResponseWrapper<ProductMemberDTO>>>changePositionByProductIdAndId
+            (@PathVariable("productId") String productId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<ProductMemberDTO> dto) {
+        ResponseWrapper<ProductMemberDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(changePositionByProductIdAndId(productId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(changePositionByProductIdAndId(productId, id, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * change_position 产品成员
+    * 
+    *
+    * @param productId productId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<ProductMemberDTO>
+    */   
+    public ProductMemberDTO changePositionByProductIdAndId
+            (String productId, String id, ProductMemberDTO dto) {
+        ProductMember domain = productMemberDtoMapping.toDomain(dto);
+        domain.setId(id);
+        ProductMember rt = productMemberService.changePosition(domain);
         return productMemberDtoMapping.toDto(rt);
     }
 
@@ -579,6 +659,47 @@ public abstract class AbstractProductMemberResource {
         domain.setId(id);
         productMemberService.update(domain);
         ProductMember rt = domain;
+        return productMemberDtoMapping.toDto(rt);
+    }
+
+    /**
+    * change_position 产品成员
+    * 
+    *
+    * @param userId userId
+    * @param id id
+    * @param dto dto
+    * @return Mono<ResponseEntity<ProductMemberDTO>>
+    */
+    @ApiOperation(value = "change_position", tags = {"产品成员" },  notes = "ProductMember-change_position ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ProductMember-change_position-all') or hasPermission('user',#userId,this.productMemberDtoMapping.toDomain(#dto),'ibizplm-ProductMember-change_position')")
+    @PostMapping("users/{userId}/product_members/{id}/change_position")
+    public Mono<ResponseEntity<ResponseWrapper<ProductMemberDTO>>>changePositionByUserIdAndId
+            (@PathVariable("userId") String userId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<ProductMemberDTO> dto) {
+        ResponseWrapper<ProductMemberDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(changePositionByUserIdAndId(userId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(changePositionByUserIdAndId(userId, id, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * change_position 产品成员
+    * 
+    *
+    * @param userId userId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<ProductMemberDTO>
+    */   
+    public ProductMemberDTO changePositionByUserIdAndId
+            (String userId, String id, ProductMemberDTO dto) {
+        ProductMember domain = productMemberDtoMapping.toDomain(dto);
+        domain.setId(id);
+        ProductMember rt = productMemberService.changePosition(domain);
         return productMemberDtoMapping.toDto(rt);
     }
 

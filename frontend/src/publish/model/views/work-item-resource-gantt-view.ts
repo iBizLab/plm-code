@@ -109,6 +109,7 @@ export default {
       ],
       detreeNodes: [
         {
+          dataSourceType: 'DEDATASET',
           idAppDEFieldId: 'id',
           appDEDataSetId: 'fetch_empty',
           textAppDEFieldId: 'name',
@@ -168,6 +169,7 @@ export default {
           id: 'root',
         },
         {
+          dataSourceType: 'DEDATASET',
           idAppDEFieldId: 'user_id',
           appDEDataSetId: 'fetch_resource_member',
           textAppDEFieldId: 'name',
@@ -205,6 +207,7 @@ export default {
           id: 'member_node',
         },
         {
+          dataSourceType: 'DEDATASET',
           idAppDEFieldId: 'id',
           appDEDataSetId: 'fetch_resource',
           textAppDEFieldId: 'title',

@@ -321,21 +321,6 @@ public abstract class AbstractRecentResource {
     }
 
     /**
-    * custom_get 最近访问
-    * 
-    *
-    * @param id id
-    * @return Mono<ResponseEntity<RecentDTO>>
-    */
-    @ApiOperation(value = "custom_get", tags = {"最近访问" },  notes = "Recent-custom_get ")
-    @GetMapping("recents/{id}/custom_get")
-    public Mono<ResponseEntity<RecentDTO>> customGetById
-            (@PathVariable("id") String id) {
-        Recent rt = recentService.customGet(id);
-        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(recentDtoMapping.toDto(rt)));
-    }
-
-    /**
     * 草稿GetDraft 最近访问
     * 
     *

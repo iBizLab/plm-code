@@ -582,7 +582,6 @@ export default {
       frontAppViewId: 'plmweb.project_tag_option_view',
       frontProcessType: 'WIZARD',
       fullCodeName: 'project_tag_edit_tag',
-      timeout: 60000,
       tooltip: '编辑',
       uiactionMode: 'FRONT',
       uiactionTag: 'edit_tag',

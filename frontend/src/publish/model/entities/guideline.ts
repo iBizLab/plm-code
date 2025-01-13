@@ -811,7 +811,6 @@ export default {
         cssClass: 'fa fa-sun-o',
         glyph: 'xf185@FontAwesome',
       },
-      timeout: 60000,
       tooltip: '配置',
       uiactionMode: 'FRONT',
       uiactionTag: 'edit_guideline',

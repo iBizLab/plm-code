@@ -233,6 +233,25 @@ public interface ProjectMapper extends BaseMapper<Project> {
     List<Project> listMobMain(@Param("ctx") ProjectSearchContext context, @Param("ew") Wrapper<Project> wrapper);
 
     /**
+     * 数据集合no_relation分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Project> searchNoRelation(IPage<Project> page, @Param("ctx") ProjectSearchContext context, @Param("ew") Wrapper<Project> wrapper);
+    
+    /**
+     * 数据集合no_relation查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Project> listNoRelation(@Param("ctx") ProjectSearchContext context, @Param("ew") Wrapper<Project> wrapper);
+
+    /**
      * 数据集合normal分页查询
      * 
      * @param page
@@ -250,6 +269,25 @@ public interface ProjectMapper extends BaseMapper<Project> {
      * @return
      */
     List<Project> listNormal(@Param("ctx") ProjectSearchContext context, @Param("ew") Wrapper<Project> wrapper);
+
+    /**
+     * 数据集合product_re_project分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Project> searchProductReProject(IPage<Project> page, @Param("ctx") ProjectSearchContext context, @Param("ew") Wrapper<Project> wrapper);
+    
+    /**
+     * 数据集合product_re_project查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Project> listProductReProject(@Param("ctx") ProjectSearchContext context, @Param("ew") Wrapper<Project> wrapper);
 
     /**
      * 数据集合quick_user分页查询

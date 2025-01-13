@@ -525,6 +525,23 @@ export default {
       },
     ],
     layoutPanel: true,
+    appCounterRefs: [
+      {
+        appCounter: {
+          codeName: 'discuss_post_count',
+          counterType: 'DEDR',
+          getAppDEActionId: 'discuss_post_count',
+          appDataEntityId: 'plmweb.discuss_post',
+          timer: 60000,
+          uniqueTag: 'discuss_post_count',
+          name: '讨论计数器',
+          id: 'plmweb.discuss_post_count',
+        },
+        tag: 'f590651c105aae177140039694d31c9c',
+        uniqueTag: 'discuss_post_count',
+        id: 'f590651c105aae177140039694d31c9c',
+      },
+    ],
     appViewEngines: [
       {
         engineCat: 'VIEW',
@@ -764,17 +781,16 @@ export default {
                               '{"type":"plmweb.base__recent_visite"}',
                             enableEdit: 'true',
                             QUOTEFIELDMAP:
-                              '{"identifier":"show_identifier","name":"name","id":"id","type":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
-                            QUOTEPARAMS:
-                              '{"page":0,"size":20,"sort":"update_time,desc"}',
+                              '{"identifier":"show_identifier","name":"name","id":"id","owner_subtype":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
+                            QUOTEPARAMS: '{"sort":"update_time,desc"}',
                             enableFullScreen: 'true',
                             MODE: 'default',
                             QUOTEINSCRIPT:
-                              'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\"),\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); return controller.getNodeInfo({ icon, ...item })})',
+                              'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\")(,\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\")*\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); if (icon) { icon = icon.slice(8).slice(1, -1); } return controller.getNodeInfo({ icon, ...item })})',
                             USERSCRIPT:
                               '`@{"id":"${data.id}","name":"${data.name}"}`',
                             QUOTESCRIPT:
-                              '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.type}","recent_parent":"${data.recent_parent}","icon":"${data.icon}"}`',
+                              '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.owner_subtype}","recent_parent":"${data.recent_parent}"}`',
                             USERURL:
                               "`${context.library ? `libraries/${context.library}/library_members/fetch_default` : context.product ? `products/${context.product}/product_members/fetch_default` : context.project ? `projects/${context.project}/project_members/fetch_default` : ''}`",
                             USERFIELDMAP: '{"id":"user_id","name":"name"}',

@@ -18,6 +18,7 @@ import cn.ibizlab.plm.core.team.domain.DiscussReply;
 import cn.ibizlab.plm.core.base.domain.Attention;
 import cn.ibizlab.plm.core.base.domain.Comment;
 import cn.ibizlab.plm.core.base.domain.Attachment;
+import cn.ibizlab.plm.util.annotation.DEAction;
 
 /**
  * 讨论服务接口[DiscussPostService]
@@ -186,6 +187,16 @@ public interface DiscussPostService extends IService<DiscussPost> {
     * @return
     */
     default DiscussPost delete(DiscussPost et) {
+        return et;
+    }
+
+    /**
+    * discussPostCount
+    * 
+    * @param et
+    * @return
+    */
+    default DiscussPost discussPostCount(DiscussPost et) {
         return et;
     }
 

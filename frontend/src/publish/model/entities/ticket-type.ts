@@ -603,7 +603,6 @@ export default {
         glyph: 'xf067@FontAwesome',
       },
       refreshMode: 1,
-      timeout: 60000,
       uiactionMode: 'FRONT',
       uiactionTag: 'create_ticket_type',
       uiactionType: 'DEUIACTION',

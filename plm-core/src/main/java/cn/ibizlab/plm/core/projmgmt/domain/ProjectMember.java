@@ -110,6 +110,16 @@ public class ProjectMember extends EntityMP implements Serializable
     private String projectType;
 
     /**
+    * 职位
+    */
+    @TableField(value = "title")
+    @DEField(name = "title")
+    @JSONField(name = "title")
+    @JsonProperty("title")
+    @ApiModelProperty(value = "title", notes = "职位")
+    private String title;
+
+    /**
     * 标识
     */
     @Id
@@ -262,6 +272,15 @@ public class ProjectMember extends EntityMP implements Serializable
     public ProjectMember setProjectType(String projectType) {
         this.projectType = projectType;
         this.modify("project_type", projectType);
+        return this;
+    }
+
+    /**
+    * 设置 [职位]
+    */
+    public ProjectMember setTitle(String title) {
+        this.title = title;
+        this.modify("title", title);
         return this;
     }
 

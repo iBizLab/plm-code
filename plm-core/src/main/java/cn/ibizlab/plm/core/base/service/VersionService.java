@@ -23,6 +23,7 @@ import cn.ibizlab.plm.core.wiki.domain.BaselinePage;
 import cn.ibizlab.plm.core.testmgmt.domain.BaselineTestCase;
 import cn.ibizlab.plm.core.projmgmt.domain.BaselineWorkItem;
 import cn.ibizlab.plm.core.testmgmt.domain.ReviewContent;
+import cn.ibizlab.plm.util.annotation.DEAction;
 
 /**
  * 版本服务接口[VersionService]

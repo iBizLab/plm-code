@@ -1,0 +1,101 @@
+@include b('view-nav-params') {
+  @include e('item') {
+    display: flex;
+    gap: getCssVar(spacing, base-tight);
+    align-items: center;
+    margin-bottom: getCssVar(spacing, base-tight);
+    @include m('param-type') {
+      flex-shrink: 0;
+      width: 100px;
+    }
+    @include m('param-key') {
+      flex-grow: 1;
+    }
+    @include m('param-value') {
+      flex-grow: 1;
+    }
+    @include m('param-value-type') {
+      flex-shrink: 0;
+      width: 100px;
+    }
+    @include m('remove') {
+      flex-shrink: 0;
+      font-size: getCssVar(font-size, header, 5);
+      cursor: pointer;
+
+      &:hover {
+        color: getCssVar(color, primary);
+      }
+      @include when('disabled') {
+        color: getCssVar(color,disabled,text);
+        cursor: no-drop;
+
+        &:hover {
+            color: getCssVar(color,disabled,text);
+        }
+      }
+    }
+    @include m('copy') {
+      flex-shrink: 0;
+      font-size: getCssVar(font-size, header, 5);
+      cursor: pointer;
+
+      &:hover {
+        color: getCssVar(color, primary);
+      }
+      @include when('disabled') {
+        color: getCssVar(color,disabled,text);
+        cursor: no-drop;
+
+        &:hover {
+          color: getCssVar(color,disabled,text);
+        }
+      }
+    }
+  }
+  @include e('select') {
+    @include m('use-custom') {
+      display: flex;
+      gap: getCssVar(spacing, tight);
+    }
+    @include m('btn') {
+      padding: 0 getCssVar(spacing, tight);
+      font-size: getCssVar(font-size, regular);
+      cursor: pointer;
+      border: 1px solid getCssVar(color, border);
+      border-radius: getCssVar(border-radius, small);
+
+      &:hover {
+        color: getCssVar(color, primary);
+        border-color: getCssVar(color, primary);
+      }
+    }
+    @include m('add-icon') {
+      font-size: getCssVar(font-size, header-4);
+      cursor: pointer;
+      border: 1px solid getCssVar(color, border);
+      border-radius: getCssVar(border-radius, small);
+
+      &:hover {
+        color: getCssVar(color, primary);
+        border-color: getCssVar(color, primary);
+      }
+
+      @include when('disabled'){
+        color: getCssVar(color,disabled,text);
+        cursor: no-drop;
+
+        &:hover {
+            color: getCssVar(color, disabled,text);
+            border-color: getCssVar(color, disabled,border);
+          }
+      }
+    }
+  }
+  @include e('custom') {
+    @include m('close-custom') {
+      display: inline-block;
+      margin-top: getCssVar(spacing, base-tight);
+    }
+  }
+}

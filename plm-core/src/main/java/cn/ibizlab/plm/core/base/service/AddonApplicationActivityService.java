@@ -13,6 +13,7 @@ import cn.ibizlab.util.domain.ImportResult;
 import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.core.base.domain.AddonApplicationActivity;
 import cn.ibizlab.plm.core.base.filter.AddonApplicationActivitySearchContext;
+import cn.ibizlab.plm.util.annotation.DEAction;
 
 /**
  * 应用插件活动服务接口[AddonApplicationActivityService]

@@ -365,6 +365,7 @@ export default {
               id: 'node_10',
             },
             {
+              dataSourceType: 'DEDATASET',
               idAppDEFieldId: 'id',
               appDEDataSetId: 'fetch_favorite',
               textAppDEFieldId: 'name',
@@ -433,6 +434,7 @@ export default {
               id: 'node_12',
             },
             {
+              dataSourceType: 'DEDATASET',
               idAppDEFieldId: 'id',
               leafFlagAppDEFieldId: 'is_leaf',
               appDEDataSetId: 'fetch_space_category_top',
@@ -453,6 +455,7 @@ export default {
               id: 'node_13',
             },
             {
+              dataSourceType: 'DEDATASET',
               idAppDEFieldId: 'id',
               leafFlagAppDEFieldId: 'is_leaf',
               appDEDataSetId: 'fetch_space_category',

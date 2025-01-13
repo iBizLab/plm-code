@@ -436,7 +436,6 @@ export default {
                         },
                       ],
                       logicType: 'GROUP',
-                      id: '表单成员[actual_end_at][表单项启用]逻辑',
                     },
                   ],
                   layoutPos: {

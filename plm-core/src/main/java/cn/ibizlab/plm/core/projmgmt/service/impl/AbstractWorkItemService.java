@@ -563,6 +563,17 @@ public abstract class AbstractWorkItemService extends ServiceImpl<WorkItemMapper
         return list;
    }
 	
+   public Page<WorkItem> fetchIdeaRelationWorkItem(WorkItemSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<WorkItem> pages=baseMapper.searchIdeaRelationWorkItem(context.getPages(),context,context.getSelectCond());
+        List<WorkItem> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<WorkItem> listIdeaRelationWorkItem(WorkItemSearchContext context) {
+        List<WorkItem> list = baseMapper.listIdeaRelationWorkItem(context,context.getSelectCond());
+        return list;
+   }
+	
    public Page<WorkItem> fetchKanbanUserStat(WorkItemSearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<Map> pages=baseMapper.searchKanbanUserStat(context.getPages(),context,context.getSelectCond());
         return new PageImpl<WorkItem>(cn.ibizlab.util.helper.JacksonUtils.toArray(pages.getRecords(),WorkItem.class), context.getPageable(), pages.getTotal());
@@ -904,6 +915,17 @@ public abstract class AbstractWorkItemService extends ServiceImpl<WorkItemMapper
         if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
             context.setSort("IDENTIFIER,ASC");
         List<WorkItem> list = baseMapper.listRecentWorkItem(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<WorkItem> fetchRelationWorkItem(WorkItemSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<WorkItem> pages=baseMapper.searchRelationWorkItem(context.getPages(),context,context.getSelectCond());
+        List<WorkItem> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<WorkItem> listRelationWorkItem(WorkItemSearchContext context) {
+        List<WorkItem> list = baseMapper.listRelationWorkItem(context,context.getSelectCond());
         return list;
    }
 	

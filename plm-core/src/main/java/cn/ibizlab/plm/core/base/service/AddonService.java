@@ -19,6 +19,7 @@ import cn.ibizlab.plm.core.prodmgmt.domain.Product;
 import cn.ibizlab.plm.core.projmgmt.domain.Project;
 import cn.ibizlab.plm.core.wiki.domain.Space;
 import cn.ibizlab.plm.core.base.domain.AddonRoleMember;
+import cn.ibizlab.plm.util.annotation.DEAction;
 
 /**
  * 组件服务接口[AddonService]

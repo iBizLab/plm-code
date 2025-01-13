@@ -11,6 +11,7 @@
 		<result property="isLeaf" column="is_leaf"/>
 		<result property="isLeaf2" column="is_leaf2"/>
 		<result property="leafFlag" column="leaf_flag"/>
+		<result property="isLeaf3" column="is_leaf3"/>
 		<result property="createMan" column="create_man"/>
 		<result property="createTime" column="create_time"/>
 		<result property="updateMan" column="update_man"/>
@@ -48,47 +49,51 @@
     </delete>
 
     <sql id="default" databaseId="mysql">
-         <![CDATA[ SELECT t1.`CATEGORIES`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`ID`, t1.`IS_LEAF`, t1.`IS_LEAF2`, case when t1.`IS_LEAF`+t1.`IS_LEAF2`=2 then 1 else 0 end AS `LEAF_FLAG`, t1.`NAME`, t1.`OWNER_ID`, t1.`OWNER_SUBTYPE`, t1.`OWNER_TYPE`, t1.`PID`, t1.`SECTION_ID`, t11.`NAME` AS `SECTION_NAME`, t1.`SEQUENCE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `CATEGORY` t1  LEFT JOIN `SECTION` t11 ON t1.`SECTION_ID` = t11.`ID`   ]]>  
+         <![CDATA[ SELECT t1.`CATEGORIES`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`ID`, t1.`IS_LEAF`, t1.`IS_LEAF2`, t1.`IS_LEAF3`, case when t1.`IS_LEAF`+t1.`IS_LEAF2`=2 then 1 else 0 end AS `LEAF_FLAG`, t1.`NAME`, t1.`OWNER_ID`, t1.`OWNER_SUBTYPE`, t1.`OWNER_TYPE`, t1.`PID`, t1.`SECTION_ID`, t11.`NAME` AS `SECTION_NAME`, t1.`SEQUENCE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `CATEGORY` t1  LEFT JOIN `SECTION` t11 ON t1.`SECTION_ID` = t11.`ID`   ]]>  
     </sql>
 
     <sql id="view" databaseId="mysql">
-         <![CDATA[ SELECT t1.`CATEGORIES`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`ID`, t1.`IS_LEAF`, t1.`IS_LEAF2`, case when t1.`IS_LEAF`+t1.`IS_LEAF2`=2 then 1 else 0 end AS `LEAF_FLAG`, t1.`NAME`, t1.`OWNER_ID`, t1.`OWNER_SUBTYPE`, t1.`OWNER_TYPE`, t1.`PID`, t1.`SECTION_ID`, t11.`NAME` AS `SECTION_NAME`, t1.`SEQUENCE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `CATEGORY` t1  LEFT JOIN `SECTION` t11 ON t1.`SECTION_ID` = t11.`ID`   ]]>  
+         <![CDATA[ SELECT t1.`CATEGORIES`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`ID`, t1.`IS_LEAF`, t1.`IS_LEAF2`, t1.`IS_LEAF3`, case when t1.`IS_LEAF`+t1.`IS_LEAF2`=2 then 1 else 0 end AS `LEAF_FLAG`, t1.`NAME`, t1.`OWNER_ID`, t1.`OWNER_SUBTYPE`, t1.`OWNER_TYPE`, t1.`PID`, t1.`SECTION_ID`, t11.`NAME` AS `SECTION_NAME`, t1.`SEQUENCE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `CATEGORY` t1  LEFT JOIN `SECTION` t11 ON t1.`SECTION_ID` = t11.`ID`   ]]>  
     </sql>
 
     <sql id="checkName" databaseId="mysql">
-         <![CDATA[ SELECT t1.`CATEGORIES`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`ID`, t1.`IS_LEAF`, t1.`IS_LEAF2`, case when t1.`IS_LEAF`+t1.`IS_LEAF2`=2 then 1 else 0 end AS `LEAF_FLAG`, t1.`NAME`, t1.`OWNER_ID`, t1.`OWNER_SUBTYPE`, t1.`OWNER_TYPE`, t1.`PID`, t1.`SECTION_ID`, t11.`NAME` AS `SECTION_NAME`, t1.`SEQUENCE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `CATEGORY` t1  LEFT JOIN `SECTION` t11 ON t1.`SECTION_ID` = t11.`ID`   ]]>  where ( <choose><when test='ctx.datacontext.id !=null and ctx.datacontext.id != &quot;&quot; '>  t1.`ID` &lt;&gt; #{ctx.datacontext.id}  </when><otherwise>1=1</otherwise></choose>  AND  <choose><when test='ctx.datacontext.name !=null and ctx.datacontext.name != &quot;&quot; '>  t1.`NAME` = #{ctx.datacontext.name}  </when><otherwise>1=1</otherwise></choose>  AND  <choose><when test='ctx.datacontext.owner_id !=null and ctx.datacontext.owner_id != &quot;&quot; '>  t1.`OWNER_ID` = #{ctx.datacontext.owner_id}  </when><otherwise>1=1</otherwise></choose>  AND  t1.`OWNER_TYPE` = #{ctx.datacontext.owner_type}  AND  <choose><when test='ctx.datacontext.owner_subtype !=null and ctx.datacontext.owner_subtype != &quot;&quot; '>  t1.`OWNER_SUBTYPE` = #{ctx.datacontext.owner_subtype}  </when><otherwise>1=1</otherwise></choose> ) 
+         <![CDATA[ SELECT t1.`CATEGORIES`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`ID`, t1.`IS_LEAF`, t1.`IS_LEAF2`, t1.`IS_LEAF3`, case when t1.`IS_LEAF`+t1.`IS_LEAF2`=2 then 1 else 0 end AS `LEAF_FLAG`, t1.`NAME`, t1.`OWNER_ID`, t1.`OWNER_SUBTYPE`, t1.`OWNER_TYPE`, t1.`PID`, t1.`SECTION_ID`, t11.`NAME` AS `SECTION_NAME`, t1.`SEQUENCE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `CATEGORY` t1  LEFT JOIN `SECTION` t11 ON t1.`SECTION_ID` = t11.`ID`   ]]>  where ( <choose><when test='ctx.datacontext.id !=null and ctx.datacontext.id != &quot;&quot; '>  t1.`ID` &lt;&gt; #{ctx.datacontext.id}  </when><otherwise>1=1</otherwise></choose>  AND  <choose><when test='ctx.datacontext.name !=null and ctx.datacontext.name != &quot;&quot; '>  t1.`NAME` = #{ctx.datacontext.name}  </when><otherwise>1=1</otherwise></choose>  AND  <choose><when test='ctx.datacontext.owner_id !=null and ctx.datacontext.owner_id != &quot;&quot; '>  t1.`OWNER_ID` = #{ctx.datacontext.owner_id}  </when><otherwise>1=1</otherwise></choose>  AND  t1.`OWNER_TYPE` = #{ctx.datacontext.owner_type}  AND  <choose><when test='ctx.datacontext.owner_subtype !=null and ctx.datacontext.owner_subtype != &quot;&quot; '>  t1.`OWNER_SUBTYPE` = #{ctx.datacontext.owner_subtype}  </when><otherwise>1=1</otherwise></choose> ) 
     </sql>
 
     <sql id="commonCategories" databaseId="mysql">
-         <![CDATA[ SELECT t1.`CATEGORIES`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`ID`, t1.`IS_LEAF`, t1.`IS_LEAF2`, case when t1.`IS_LEAF`+t1.`IS_LEAF2`=2 then 1 else 0 end AS `LEAF_FLAG`, t1.`NAME`, t1.`OWNER_ID`, t1.`OWNER_SUBTYPE`, t1.`OWNER_TYPE`, t1.`PID`, t1.`SECTION_ID`, t11.`NAME` AS `SECTION_NAME`, t1.`SEQUENCE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `CATEGORY` t1  LEFT JOIN `SECTION` t11 ON t1.`SECTION_ID` = t11.`ID`   ]]>  where ( <choose><when test='ctx.webcontext.product !=null and ctx.webcontext.product != &quot;&quot; '>  t1.`OWNER_ID` = #{ctx.webcontext.product}  </when><otherwise>1=1</otherwise></choose>  AND  <choose><when test='ctx.webcontext.project !=null and ctx.webcontext.project != &quot;&quot; '>  t1.`OWNER_ID` = #{ctx.webcontext.project}  </when><otherwise>1=1</otherwise></choose> ) 
+         <![CDATA[ SELECT t1.`CATEGORIES`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`ID`, t1.`IS_LEAF`, t1.`IS_LEAF2`, t1.`IS_LEAF3`, case when t1.`IS_LEAF`+t1.`IS_LEAF2`=2 then 1 else 0 end AS `LEAF_FLAG`, t1.`NAME`, t1.`OWNER_ID`, t1.`OWNER_SUBTYPE`, t1.`OWNER_TYPE`, t1.`PID`, t1.`SECTION_ID`, t11.`NAME` AS `SECTION_NAME`, t1.`SEQUENCE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `CATEGORY` t1  LEFT JOIN `SECTION` t11 ON t1.`SECTION_ID` = t11.`ID`   ]]>  where ( <choose><when test='ctx.webcontext.product !=null and ctx.webcontext.product != &quot;&quot; '>  t1.`OWNER_ID` = #{ctx.webcontext.product}  </when><otherwise>1=1</otherwise></choose>  AND  <choose><when test='ctx.webcontext.project !=null and ctx.webcontext.project != &quot;&quot; '>  t1.`OWNER_ID` = #{ctx.webcontext.project}  </when><otherwise>1=1</otherwise></choose> ) 
     </sql>
 
     <sql id="curProductIdeaCategory" databaseId="mysql">
-         <![CDATA[ SELECT t1.`CATEGORIES`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`ID`, t1.`IS_LEAF`, t1.`IS_LEAF2`, case when t1.`IS_LEAF`+t1.`IS_LEAF2`=2 then 1 else 0 end AS `LEAF_FLAG`, t1.`NAME`, t1.`OWNER_ID`, t1.`OWNER_SUBTYPE`, t1.`OWNER_TYPE`, t1.`PID`, t1.`SECTION_ID`, t11.`NAME` AS `SECTION_NAME`, t1.`SEQUENCE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `CATEGORY` t1  LEFT JOIN `SECTION` t11 ON t1.`SECTION_ID` = t11.`ID`   ]]>  where  <![CDATA[ ( t1.`OWNER_TYPE` = 'product'  AND  t1.`OWNER_SUBTYPE` = 'idea'  AND  t1.`OWNER_ID` = #{ctx.datacontext.product} ) ]]> 
+         <![CDATA[ SELECT t1.`CATEGORIES`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`ID`, t1.`IS_LEAF`, t1.`IS_LEAF2`, t1.`IS_LEAF3`, case when t1.`IS_LEAF`+t1.`IS_LEAF2`=2 then 1 else 0 end AS `LEAF_FLAG`, t1.`NAME`, t1.`OWNER_ID`, t1.`OWNER_SUBTYPE`, t1.`OWNER_TYPE`, t1.`PID`, t1.`SECTION_ID`, t11.`NAME` AS `SECTION_NAME`, t1.`SEQUENCE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `CATEGORY` t1  LEFT JOIN `SECTION` t11 ON t1.`SECTION_ID` = t11.`ID`   ]]>  where  <![CDATA[ ( t1.`OWNER_TYPE` = 'product'  AND  t1.`OWNER_SUBTYPE` = 'idea'  AND  t1.`OWNER_ID` = #{ctx.datacontext.product} ) ]]> 
     </sql>
 
     <sql id="noParent" databaseId="mysql">
-         <![CDATA[ SELECT t1.`CATEGORIES`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`ID`, t1.`IS_LEAF`, t1.`IS_LEAF2`, case when t1.`IS_LEAF`+t1.`IS_LEAF2`=2 then 1 else 0 end AS `LEAF_FLAG`, t1.`NAME`, t1.`OWNER_ID`, t1.`OWNER_SUBTYPE`, t1.`OWNER_TYPE`, t1.`PID`, t1.`SECTION_ID`, t11.`NAME` AS `SECTION_NAME`, t1.`SEQUENCE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `CATEGORY` t1  LEFT JOIN `SECTION` t11 ON t1.`SECTION_ID` = t11.`ID`   ]]>  where  <![CDATA[ ( t1.`PID` IS NULL ) ]]> 
+         <![CDATA[ SELECT t1.`CATEGORIES`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`ID`, t1.`IS_LEAF`, t1.`IS_LEAF2`, t1.`IS_LEAF3`, case when t1.`IS_LEAF`+t1.`IS_LEAF2`=2 then 1 else 0 end AS `LEAF_FLAG`, t1.`NAME`, t1.`OWNER_ID`, t1.`OWNER_SUBTYPE`, t1.`OWNER_TYPE`, t1.`PID`, t1.`SECTION_ID`, t11.`NAME` AS `SECTION_NAME`, t1.`SEQUENCE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `CATEGORY` t1  LEFT JOIN `SECTION` t11 ON t1.`SECTION_ID` = t11.`ID`   ]]>  where  <![CDATA[ ( t1.`PID` IS NULL ) ]]> 
     </sql>
 
     <sql id="noSection" databaseId="mysql">
-         <![CDATA[ SELECT t1.`CATEGORIES`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`ID`, t1.`IS_LEAF`, t1.`IS_LEAF2`, case when t1.`IS_LEAF`+t1.`IS_LEAF2`=2 then 1 else 0 end AS `LEAF_FLAG`, t1.`NAME`, t1.`OWNER_ID`, t1.`OWNER_SUBTYPE`, t1.`OWNER_TYPE`, t1.`PID`, t1.`SECTION_ID`, t11.`NAME` AS `SECTION_NAME`, t1.`SEQUENCE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `CATEGORY` t1  LEFT JOIN `SECTION` t11 ON t1.`SECTION_ID` = t11.`ID`   ]]>  where  <![CDATA[ ( t1.`SECTION_ID` IS NULL  AND  t1.`PID` IS NULL ) ]]> 
+         <![CDATA[ SELECT t1.`CATEGORIES`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`ID`, t1.`IS_LEAF`, t1.`IS_LEAF2`, t1.`IS_LEAF3`, case when t1.`IS_LEAF`+t1.`IS_LEAF2`=2 then 1 else 0 end AS `LEAF_FLAG`, t1.`NAME`, t1.`OWNER_ID`, t1.`OWNER_SUBTYPE`, t1.`OWNER_TYPE`, t1.`PID`, t1.`SECTION_ID`, t11.`NAME` AS `SECTION_NAME`, t1.`SEQUENCE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `CATEGORY` t1  LEFT JOIN `SECTION` t11 ON t1.`SECTION_ID` = t11.`ID`   ]]>  where  <![CDATA[ ( t1.`SECTION_ID` IS NULL  AND  t1.`PID` IS NULL ) ]]> 
+    </sql>
+
+    <sql id="positionCategory" databaseId="mysql">
+         <![CDATA[ SELECT t1.`CATEGORIES`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`ID`, t1.`IS_LEAF`, t1.`IS_LEAF2`, t1.`IS_LEAF3`, case when t1.`IS_LEAF`+t1.`IS_LEAF2`=2 then 1 else 0 end AS `LEAF_FLAG`, t1.`NAME`, t1.`OWNER_ID`, t1.`OWNER_SUBTYPE`, t1.`OWNER_TYPE`, t1.`PID`, t1.`SECTION_ID`, t11.`NAME` AS `SECTION_NAME`, t1.`SEQUENCE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `CATEGORY` t1  LEFT JOIN `SECTION` t11 ON t1.`SECTION_ID` = t11.`ID`   ]]>  where  <![CDATA[ ( t1.`OWNER_TYPE` = 'position' ) ]]> 
     </sql>
 
     <sql id="productIdeaCategory" databaseId="mysql">
-         <![CDATA[ SELECT t1.`CATEGORIES`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`ID`, t1.`IS_LEAF`, t1.`IS_LEAF2`, case when t1.`IS_LEAF`+t1.`IS_LEAF2`=2 then 1 else 0 end AS `LEAF_FLAG`, t1.`NAME`, t1.`OWNER_ID`, t1.`OWNER_SUBTYPE`, t1.`OWNER_TYPE`, t1.`PID`, t1.`SECTION_ID`, t11.`NAME` AS `SECTION_NAME`, t1.`SEQUENCE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `CATEGORY` t1  LEFT JOIN `SECTION` t11 ON t1.`SECTION_ID` = t11.`ID`   ]]>  where  <![CDATA[ ( t1.`PID` IS NULL ) ]]> 
+         <![CDATA[ SELECT t1.`CATEGORIES`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`ID`, t1.`IS_LEAF`, t1.`IS_LEAF2`, t1.`IS_LEAF3`, case when t1.`IS_LEAF`+t1.`IS_LEAF2`=2 then 1 else 0 end AS `LEAF_FLAG`, t1.`NAME`, t1.`OWNER_ID`, t1.`OWNER_SUBTYPE`, t1.`OWNER_TYPE`, t1.`PID`, t1.`SECTION_ID`, t11.`NAME` AS `SECTION_NAME`, t1.`SEQUENCE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `CATEGORY` t1  LEFT JOIN `SECTION` t11 ON t1.`SECTION_ID` = t11.`ID`   ]]>  where  <![CDATA[ ( t1.`PID` IS NULL ) ]]> 
     </sql>
 
     <sql id="productPlan" databaseId="mysql">
-         <![CDATA[ SELECT t1.`CATEGORIES`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`ID`, t1.`IS_LEAF`, t1.`IS_LEAF2`, case when t1.`IS_LEAF`+t1.`IS_LEAF2`=2 then 1 else 0 end AS `LEAF_FLAG`, t1.`NAME`, t1.`OWNER_ID`, t1.`OWNER_SUBTYPE`, t1.`OWNER_TYPE`, t1.`PID`, t1.`SECTION_ID`, t11.`NAME` AS `SECTION_NAME`, t1.`SEQUENCE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `CATEGORY` t1  LEFT JOIN `SECTION` t11 ON t1.`SECTION_ID` = t11.`ID`   ]]>  where ( t1.`OWNER_TYPE` = 'product'  AND  t1.`OWNER_SUBTYPE` = 'product_plan'  AND  <choose><when test='ctx.webcontext.product !=null and ctx.webcontext.product != &quot;&quot; '>  t1.`OWNER_ID` = #{ctx.webcontext.product}  </when><otherwise>1=1</otherwise></choose> ) 
+         <![CDATA[ SELECT t1.`CATEGORIES`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`ID`, t1.`IS_LEAF`, t1.`IS_LEAF2`, t1.`IS_LEAF3`, case when t1.`IS_LEAF`+t1.`IS_LEAF2`=2 then 1 else 0 end AS `LEAF_FLAG`, t1.`NAME`, t1.`OWNER_ID`, t1.`OWNER_SUBTYPE`, t1.`OWNER_TYPE`, t1.`PID`, t1.`SECTION_ID`, t11.`NAME` AS `SECTION_NAME`, t1.`SEQUENCE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `CATEGORY` t1  LEFT JOIN `SECTION` t11 ON t1.`SECTION_ID` = t11.`ID`   ]]>  where ( t1.`OWNER_TYPE` = 'product'  AND  t1.`OWNER_SUBTYPE` = 'product_plan'  AND  <choose><when test='ctx.webcontext.product !=null and ctx.webcontext.product != &quot;&quot; '>  t1.`OWNER_ID` = #{ctx.webcontext.product}  </when><otherwise>1=1</otherwise></choose> ) 
     </sql>
 
     <sql id="spaceCategory" databaseId="mysql">
-         <![CDATA[ SELECT t1.`CATEGORIES`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`ID`, t1.`IS_LEAF`, t1.`IS_LEAF2`, case when t1.`IS_LEAF`+t1.`IS_LEAF2`=2 then 1 else 0 end AS `LEAF_FLAG`, t1.`NAME`, t1.`OWNER_ID`, t1.`OWNER_SUBTYPE`, t1.`OWNER_TYPE`, t1.`PID`, t1.`SECTION_ID`, t11.`NAME` AS `SECTION_NAME`, t1.`SEQUENCE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `CATEGORY` t1  LEFT JOIN `SECTION` t11 ON t1.`SECTION_ID` = t11.`ID`   ]]>  where  <![CDATA[ ( t1.`OWNER_TYPE` = 'space'  AND  t1.`OWNER_SUBTYPE` = 'space' ) ]]> 
+         <![CDATA[ SELECT t1.`CATEGORIES`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`ID`, t1.`IS_LEAF`, t1.`IS_LEAF2`, t1.`IS_LEAF3`, case when t1.`IS_LEAF`+t1.`IS_LEAF2`=2 then 1 else 0 end AS `LEAF_FLAG`, t1.`NAME`, t1.`OWNER_ID`, t1.`OWNER_SUBTYPE`, t1.`OWNER_TYPE`, t1.`PID`, t1.`SECTION_ID`, t11.`NAME` AS `SECTION_NAME`, t1.`SEQUENCE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `CATEGORY` t1  LEFT JOIN `SECTION` t11 ON t1.`SECTION_ID` = t11.`ID`   ]]>  where  <![CDATA[ ( t1.`OWNER_TYPE` = 'space'  AND  t1.`OWNER_SUBTYPE` = 'space' ) ]]> 
     </sql>
 
     <sql id="spaceCategoryTop" databaseId="mysql">
-         <![CDATA[ SELECT t1.`CATEGORIES`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`ID`, t1.`IS_LEAF`, t1.`IS_LEAF2`, case when t1.`IS_LEAF`+t1.`IS_LEAF2`=2 then 1 else 0 end AS `LEAF_FLAG`, t1.`NAME`, t1.`OWNER_ID`, t1.`OWNER_SUBTYPE`, t1.`OWNER_TYPE`, t1.`PID`, t1.`SECTION_ID`, t11.`NAME` AS `SECTION_NAME`, t1.`SEQUENCE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `CATEGORY` t1  LEFT JOIN `SECTION` t11 ON t1.`SECTION_ID` = t11.`ID`   ]]>  where  <![CDATA[ ( t1.`OWNER_TYPE` = 'space'  AND  t1.`OWNER_SUBTYPE` = 'space'  AND  t1.`PID` IS NULL ) ]]> 
+         <![CDATA[ SELECT t1.`CATEGORIES`, t1.`CREATE_MAN`, t1.`CREATE_TIME`, t1.`ID`, t1.`IS_LEAF`, t1.`IS_LEAF2`, t1.`IS_LEAF3`, case when t1.`IS_LEAF`+t1.`IS_LEAF2`=2 then 1 else 0 end AS `LEAF_FLAG`, t1.`NAME`, t1.`OWNER_ID`, t1.`OWNER_SUBTYPE`, t1.`OWNER_TYPE`, t1.`PID`, t1.`SECTION_ID`, t11.`NAME` AS `SECTION_NAME`, t1.`SEQUENCE`, t1.`UPDATE_MAN`, t1.`UPDATE_TIME` FROM `CATEGORY` t1  LEFT JOIN `SECTION` t11 ON t1.`SECTION_ID` = t11.`ID`   ]]>  where  <![CDATA[ ( t1.`OWNER_TYPE` = 'space'  AND  t1.`OWNER_SUBTYPE` = 'space'  AND  t1.`PID` IS NULL ) ]]> 
     </sql>
 
     <select id="searchDefault"  parameterType="cn.ibizlab.plm.core.base.filter.CategorySearchContext"  resultMap="CategoryResultMap">
@@ -211,6 +216,27 @@
         select t1.*
         from (
             <include refid="noSection"/>
+        ) t1
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+    <select id="searchPositionCategory"  parameterType="cn.ibizlab.plm.core.base.filter.CategorySearchContext"  resultMap="CategoryResultMap">
+        select t1.* 
+        from (
+            <include refid="positionCategory"/>
+        ) t1 
+        <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
+        <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>
+        
+    </select>
+
+
+    <select id="listPositionCategory"  parameterType="cn.ibizlab.plm.core.base.filter.CategorySearchContext"  resultMap="CategoryResultMap">
+        select t1.*
+        from (
+            <include refid="positionCategory"/>
         ) t1
         <where><if test="ew!=null and ew.sqlSegment!=null and !ew.emptyOfWhere">${ew.sqlSegment}</if></where>
         <if test="ew!=null and ew.sqlSegment!=null and ew.emptyOfWhere">${ew.sqlSegment}</if>

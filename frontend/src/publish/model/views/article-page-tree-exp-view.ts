@@ -480,6 +480,7 @@ export default {
               id: 'root',
             },
             {
+              dataSourceType: 'DEDATASET',
               iconAppDEFieldId: 'icon',
               idAppDEFieldId: 'id',
               leafFlagAppDEFieldId: 'is_leaf',
@@ -490,174 +491,6 @@ export default {
               navAppViewId: 'plmweb.article_page_draft_show_edit_view',
               nodeType: 'draft',
               appDataEntityId: 'plmweb.article_page',
-              decontextMenu: {
-                detoolbarItems: [
-                  {
-                    actionLevel: 100,
-                    noPrivDisplayMode: 2,
-                    uiactionId: 'create_child_document@article_page',
-                    uiactionTarget: 'NONE',
-                    valid: true,
-                    caption: '新建子文档',
-                    itemType: 'DEUIACTION',
-                    controlLogics: [
-                      {
-                        itemName: 'deuiaction3',
-                        logicTag: 'draft_cm',
-                        logicType: 'SCRIPT',
-                        scriptCode: '!context.srfreadonly',
-                        triggerType: 'ITEMVISIBLE',
-                        id: 'deuiaction3',
-                      },
-                    ],
-                    sysImage: {
-                      cssClass: 'fa fa-file-text-o',
-                      glyph: 'xf0f6@FontAwesome',
-                    },
-                    tooltip: '新建子文档',
-                    showCaption: true,
-                    showIcon: true,
-                    id: 'deuiaction3',
-                  },
-                  {
-                    actionLevel: 100,
-                    noPrivDisplayMode: 2,
-                    uiactionId:
-                      'toolbar_tree_exp_view_draft_cm_deuiaction4_click@article_page',
-                    uiactionTarget: 'SINGLEDATA',
-                    valid: true,
-                    caption: '新建子分组',
-                    itemType: 'DEUIACTION',
-                    controlLogics: [
-                      {
-                        itemName: 'deuiaction4',
-                        logicTag: 'draft_cm',
-                        logicType: 'SCRIPT',
-                        scriptCode: '!context.srfreadonly',
-                        triggerType: 'ITEMVISIBLE',
-                        id: 'deuiaction4',
-                      },
-                    ],
-                    sysImage: {
-                      cssClass: 'fa fa-folder-o',
-                      glyph: 'xf114@FontAwesome',
-                    },
-                    tooltip: '新建子分组',
-                    showCaption: true,
-                    showIcon: true,
-                    id: 'deuiaction4',
-                  },
-                  {
-                    actionLevel: 100,
-                    noPrivDisplayMode: 2,
-                    uiactionId: 'upload_icon@article_page',
-                    uiactionTarget: 'SINGLEDATA',
-                    hiddenItem: true,
-                    valid: true,
-                    caption: '变更图标',
-                    itemType: 'DEUIACTION',
-                    controlLogics: [
-                      {
-                        itemName: 'deuiaction5',
-                        logicTag: 'draft_cm',
-                        logicType: 'SCRIPT',
-                        scriptCode: '!context.srfreadonly',
-                        triggerType: 'ITEMVISIBLE',
-                        id: 'deuiaction5',
-                      },
-                    ],
-                    sysImage: {
-                      cssClass: 'fa fa-upload',
-                      glyph: 'xf093@FontAwesome',
-                    },
-                    tooltip: '变更图标',
-                    showCaption: true,
-                    showIcon: true,
-                    id: 'deuiaction5',
-                  },
-                  {
-                    itemType: 'SEPERATOR',
-                    controlLogics: [
-                      {
-                        itemName: 'seperator1',
-                        logicTag: 'draft_cm',
-                        logicType: 'SCRIPT',
-                        scriptCode: '!context.srfreadonly',
-                        triggerType: 'ITEMVISIBLE',
-                        id: 'seperator1',
-                      },
-                    ],
-                    id: 'seperator1',
-                  },
-                  {
-                    actionLevel: 100,
-                    noPrivDisplayMode: 2,
-                    uiactionId:
-                      'toolbar_tree_exp_view_draft_cm_deuiaction2_click@article_page',
-                    uiactionTarget: 'SINGLEDATA',
-                    valid: true,
-                    caption: '重命名',
-                    itemType: 'DEUIACTION',
-                    controlLogics: [
-                      {
-                        itemName: 'deuiaction2',
-                        logicTag: 'draft_cm',
-                        logicType: 'SCRIPT',
-                        scriptCode: '!context.srfreadonly',
-                        triggerType: 'ITEMVISIBLE',
-                        id: 'deuiaction2',
-                      },
-                    ],
-                    sysImage: {
-                      cssClass: 'fa fa-edit',
-                      glyph: 'xf044@FontAwesome',
-                    },
-                    tooltip: '重命名',
-                    showCaption: true,
-                    showIcon: true,
-                    id: 'deuiaction2',
-                  },
-                  {
-                    actionLevel: 100,
-                    noPrivDisplayMode: 2,
-                    uiactionId:
-                      'toolbar_tree_exp_view_draft_cm_deuiaction1_click@article_page',
-                    uiactionTarget: 'SINGLEDATA',
-                    valid: true,
-                    caption: '删除',
-                    itemType: 'DEUIACTION',
-                    controlLogics: [
-                      {
-                        itemName: 'deuiaction1',
-                        logicTag: 'draft_cm',
-                        logicType: 'SCRIPT',
-                        scriptCode: '!context.srfreadonly',
-                        triggerType: 'ITEMVISIBLE',
-                        id: 'deuiaction1',
-                      },
-                    ],
-                    sysImage: {
-                      cssClass: 'fa fa-trash-o',
-                      glyph: 'xf014@FontAwesome',
-                    },
-                    tooltip: '删除',
-                    showCaption: true,
-                    showIcon: true,
-                    id: 'deuiaction1',
-                  },
-                ],
-                codeName: 'tree_exp_view_draft_cm',
-                controlType: 'CONTEXTMENU',
-                logicName: '树节点工具栏',
-                appDataEntityId: 'plmweb.article_page',
-                controlParam: {
-                  id: 'draft_cm',
-                },
-                modelId: '17f2339e97932380cf7a7053df2d0ff5',
-                modelType: 'PSDETOOLBAR',
-                name: 'draft_cm',
-                id: 'tree_exp_view_draft_cm',
-              },
               treeNodeType: 'DE',
               enableQuickSearch: true,
               name: '草稿',
@@ -674,6 +507,7 @@ export default {
               id: 'draft_parent',
             },
             {
+              dataSourceType: 'DEDATASET',
               idAppDEFieldId: 'id',
               leafFlagAppDEFieldId: 'is_leaf',
               appDEDataSetId: 'fetch_home_page',
@@ -692,6 +526,7 @@ export default {
               id: 'node',
             },
             {
+              dataSourceType: 'DEDATASET',
               iconAppDEFieldId: 'icon',
               idAppDEFieldId: 'id',
               leafFlagAppDEFieldId: 'is_leaf',
@@ -901,6 +736,7 @@ export default {
               id: 'node_1',
             },
             {
+              dataSourceType: 'DEDATASET',
               iconAppDEFieldId: 'icon',
               idAppDEFieldId: 'id',
               leafFlagAppDEFieldId: 'is_leaf',
@@ -1096,6 +932,7 @@ export default {
               id: 'node_2',
             },
             {
+              dataSourceType: 'DEDATASET',
               iconAppDEFieldId: 'icon',
               idAppDEFieldId: 'id',
               leafFlagAppDEFieldId: 'is_leaf',
@@ -1290,6 +1127,7 @@ export default {
               id: 'node_3',
             },
             {
+              dataSourceType: 'DEDATASET',
               iconAppDEFieldId: 'icon',
               idAppDEFieldId: 'id',
               leafFlagAppDEFieldId: 'is_leaf',
@@ -1484,6 +1322,7 @@ export default {
               id: 'node_4',
             },
             {
+              dataSourceType: 'DEDATASET',
               iconAppDEFieldId: 'icon',
               idAppDEFieldId: 'id',
               leafFlagAppDEFieldId: 'is_leaf',
@@ -1885,174 +1724,6 @@ export default {
                   controlLogics: [
                     {
                       itemName: 'deuiaction3',
-                      logicTag: 'node_1_cm',
-                      logicType: 'SCRIPT',
-                      scriptCode: '!context.srfreadonly',
-                      triggerType: 'ITEMVISIBLE',
-                      id: 'deuiaction3',
-                    },
-                  ],
-                  sysImage: {
-                    cssClass: 'fa fa-file-text-o',
-                    glyph: 'xf0f6@FontAwesome',
-                  },
-                  tooltip: '新建子文档',
-                  showCaption: true,
-                  showIcon: true,
-                  id: 'deuiaction3',
-                },
-                {
-                  actionLevel: 100,
-                  noPrivDisplayMode: 2,
-                  uiactionId:
-                    'toolbar_tree_exp_view_node1_cm_deuiaction4_click@article_page',
-                  uiactionTarget: 'SINGLEDATA',
-                  valid: true,
-                  caption: '新建子分组',
-                  itemType: 'DEUIACTION',
-                  controlLogics: [
-                    {
-                      itemName: 'deuiaction4',
-                      logicTag: 'node_1_cm',
-                      logicType: 'SCRIPT',
-                      scriptCode: '!context.srfreadonly',
-                      triggerType: 'ITEMVISIBLE',
-                      id: 'deuiaction4',
-                    },
-                  ],
-                  sysImage: {
-                    cssClass: 'fa fa-folder-o',
-                    glyph: 'xf114@FontAwesome',
-                  },
-                  tooltip: '新建子分组',
-                  showCaption: true,
-                  showIcon: true,
-                  id: 'deuiaction4',
-                },
-                {
-                  actionLevel: 100,
-                  noPrivDisplayMode: 2,
-                  uiactionId: 'upload_icon@article_page',
-                  uiactionTarget: 'SINGLEDATA',
-                  hiddenItem: true,
-                  valid: true,
-                  caption: '变更图标',
-                  itemType: 'DEUIACTION',
-                  controlLogics: [
-                    {
-                      itemName: 'deuiaction5',
-                      logicTag: 'node_1_cm',
-                      logicType: 'SCRIPT',
-                      scriptCode: '!context.srfreadonly',
-                      triggerType: 'ITEMVISIBLE',
-                      id: 'deuiaction5',
-                    },
-                  ],
-                  sysImage: {
-                    cssClass: 'fa fa-upload',
-                    glyph: 'xf093@FontAwesome',
-                  },
-                  tooltip: '变更图标',
-                  showCaption: true,
-                  showIcon: true,
-                  id: 'deuiaction5',
-                },
-                {
-                  itemType: 'SEPERATOR',
-                  controlLogics: [
-                    {
-                      itemName: 'seperator1',
-                      logicTag: 'node_1_cm',
-                      logicType: 'SCRIPT',
-                      scriptCode: '!context.srfreadonly',
-                      triggerType: 'ITEMVISIBLE',
-                      id: 'seperator1',
-                    },
-                  ],
-                  id: 'seperator1',
-                },
-                {
-                  actionLevel: 100,
-                  noPrivDisplayMode: 2,
-                  uiactionId:
-                    'toolbar_tree_exp_view_node1_cm_deuiaction2_click@article_page',
-                  uiactionTarget: 'SINGLEDATA',
-                  valid: true,
-                  caption: '重命名',
-                  itemType: 'DEUIACTION',
-                  controlLogics: [
-                    {
-                      itemName: 'deuiaction2',
-                      logicTag: 'node_1_cm',
-                      logicType: 'SCRIPT',
-                      scriptCode: '!context.srfreadonly',
-                      triggerType: 'ITEMVISIBLE',
-                      id: 'deuiaction2',
-                    },
-                  ],
-                  sysImage: {
-                    cssClass: 'fa fa-edit',
-                    glyph: 'xf044@FontAwesome',
-                  },
-                  tooltip: '重命名',
-                  showCaption: true,
-                  showIcon: true,
-                  id: 'deuiaction2',
-                },
-                {
-                  actionLevel: 100,
-                  noPrivDisplayMode: 2,
-                  uiactionId:
-                    'toolbar_tree_exp_view_node1_cm_deuiaction1_click@article_page',
-                  uiactionTarget: 'SINGLEDATA',
-                  valid: true,
-                  caption: '删除',
-                  itemType: 'DEUIACTION',
-                  controlLogics: [
-                    {
-                      itemName: 'deuiaction1',
-                      logicTag: 'node_1_cm',
-                      logicType: 'SCRIPT',
-                      scriptCode: '!context.srfreadonly',
-                      triggerType: 'ITEMVISIBLE',
-                      id: 'deuiaction1',
-                    },
-                  ],
-                  sysImage: {
-                    cssClass: 'fa fa-trash-o',
-                    glyph: 'xf014@FontAwesome',
-                  },
-                  tooltip: '删除',
-                  showCaption: true,
-                  showIcon: true,
-                  id: 'deuiaction1',
-                },
-              ],
-              codeName: 'tree_exp_view_node1_cm',
-              controlType: 'CONTEXTMENU',
-              logicName: '树节点工具栏',
-              appDataEntityId: 'plmweb.article_page',
-              controlParam: {
-                id: 'node_1_cm',
-              },
-              modelId: '17f2339e97932380cf7a7053df2d0ff5',
-              modelType: 'PSDETOOLBAR',
-              name: 'node_1_cm',
-              id: 'tree_exp_view_node1_cm',
-            },
-            {
-              detoolbarItems: [
-                {
-                  actionLevel: 100,
-                  noPrivDisplayMode: 2,
-                  uiactionId: 'create_child_document@article_page',
-                  uiactionTarget: 'NONE',
-                  valid: true,
-                  caption: '新建子文档',
-                  itemType: 'DEUIACTION',
-                  controlLogics: [
-                    {
-                      itemName: 'deuiaction3',
                       logicTag: 'node_4_cm',
                       logicType: 'SCRIPT',
                       scriptCode: '!context.srfreadonly',
@@ -2221,7 +1892,7 @@ export default {
                   controlLogics: [
                     {
                       itemName: 'deuiaction3',
-                      logicTag: 'draft_cm',
+                      logicTag: 'node_1_cm',
                       logicType: 'SCRIPT',
                       scriptCode: '!context.srfreadonly',
                       triggerType: 'ITEMVISIBLE',
@@ -2241,7 +1912,7 @@ export default {
                   actionLevel: 100,
                   noPrivDisplayMode: 2,
                   uiactionId:
-                    'toolbar_tree_exp_view_draft_cm_deuiaction4_click@article_page',
+                    'toolbar_tree_exp_view_node1_cm_deuiaction4_click@article_page',
                   uiactionTarget: 'SINGLEDATA',
                   valid: true,
                   caption: '新建子分组',
@@ -2249,7 +1920,7 @@ export default {
                   controlLogics: [
                     {
                       itemName: 'deuiaction4',
-                      logicTag: 'draft_cm',
+                      logicTag: 'node_1_cm',
                       logicType: 'SCRIPT',
                       scriptCode: '!context.srfreadonly',
                       triggerType: 'ITEMVISIBLE',
@@ -2277,7 +1948,7 @@ export default {
                   controlLogics: [
                     {
                       itemName: 'deuiaction5',
-                      logicTag: 'draft_cm',
+                      logicTag: 'node_1_cm',
                       logicType: 'SCRIPT',
                       scriptCode: '!context.srfreadonly',
                       triggerType: 'ITEMVISIBLE',
@@ -2298,7 +1969,7 @@ export default {
                   controlLogics: [
                     {
                       itemName: 'seperator1',
-                      logicTag: 'draft_cm',
+                      logicTag: 'node_1_cm',
                       logicType: 'SCRIPT',
                       scriptCode: '!context.srfreadonly',
                       triggerType: 'ITEMVISIBLE',
@@ -2311,7 +1982,7 @@ export default {
                   actionLevel: 100,
                   noPrivDisplayMode: 2,
                   uiactionId:
-                    'toolbar_tree_exp_view_draft_cm_deuiaction2_click@article_page',
+                    'toolbar_tree_exp_view_node1_cm_deuiaction2_click@article_page',
                   uiactionTarget: 'SINGLEDATA',
                   valid: true,
                   caption: '重命名',
@@ -2319,7 +1990,7 @@ export default {
                   controlLogics: [
                     {
                       itemName: 'deuiaction2',
-                      logicTag: 'draft_cm',
+                      logicTag: 'node_1_cm',
                       logicType: 'SCRIPT',
                       scriptCode: '!context.srfreadonly',
                       triggerType: 'ITEMVISIBLE',
@@ -2339,7 +2010,7 @@ export default {
                   actionLevel: 100,
                   noPrivDisplayMode: 2,
                   uiactionId:
-                    'toolbar_tree_exp_view_draft_cm_deuiaction1_click@article_page',
+                    'toolbar_tree_exp_view_node1_cm_deuiaction1_click@article_page',
                   uiactionTarget: 'SINGLEDATA',
                   valid: true,
                   caption: '删除',
@@ -2347,7 +2018,7 @@ export default {
                   controlLogics: [
                     {
                       itemName: 'deuiaction1',
-                      logicTag: 'draft_cm',
+                      logicTag: 'node_1_cm',
                       logicType: 'SCRIPT',
                       scriptCode: '!context.srfreadonly',
                       triggerType: 'ITEMVISIBLE',
@@ -2364,17 +2035,17 @@ export default {
                   id: 'deuiaction1',
                 },
               ],
-              codeName: 'tree_exp_view_draft_cm',
+              codeName: 'tree_exp_view_node1_cm',
               controlType: 'CONTEXTMENU',
               logicName: '树节点工具栏',
               appDataEntityId: 'plmweb.article_page',
               controlParam: {
-                id: 'draft_cm',
+                id: 'node_1_cm',
               },
               modelId: '17f2339e97932380cf7a7053df2d0ff5',
               modelType: 'PSDETOOLBAR',
-              name: 'draft_cm',
-              id: 'tree_exp_view_draft_cm',
+              name: 'node_1_cm',
+              id: 'tree_exp_view_node1_cm',
             },
             {
               detoolbarItems: [

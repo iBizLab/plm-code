@@ -15,6 +15,7 @@ import cn.ibizlab.plm.core.insight.domain.InsightMember;
 import cn.ibizlab.plm.core.insight.filter.InsightMemberSearchContext;
 import cn.ibizlab.plm.core.insight.domain.InsightView;
 import cn.ibizlab.plm.core.base.domain.User;
+import cn.ibizlab.plm.util.annotation.DEAction;
 
 /**
  * 效能成员服务接口[InsightMemberService]
@@ -163,6 +164,16 @@ public interface InsightMemberService extends IService<InsightMember> {
     * @return
     */
     default InsightMember changeRole(InsightMember et) {
+        return et;
+    }
+
+    /**
+    * choosePosition
+    * 
+    * @param et
+    * @return
+    */
+    default InsightMember choosePosition(InsightMember et) {
         return et;
     }
 

@@ -32,8 +32,10 @@ import cn.ibizlab.plm.core.base.domain.Addon;
 import cn.ibizlab.plm.core.base.domain.AddonResource;
 import cn.ibizlab.plm.core.base.domain.Baseline;
 import cn.ibizlab.plm.core.base.domain.Member;
+import cn.ibizlab.plm.core.base.domain.Relation;
 import cn.ibizlab.plm.core.base.domain.Work;
 import cn.ibizlab.plm.core.base.domain.ReferencesIndex;
+import cn.ibizlab.plm.util.annotation.DEAction;
 
 /**
  * 项目服务接口[ProjectService]
@@ -376,6 +378,16 @@ public interface ProjectService extends IService<Project> {
     }
 
     /**
+    * otherReProject
+    * 
+    * @param et
+    * @return
+    */
+    default Project otherReProject(Project et) {
+        return et;
+    }
+
+    /**
     * otherReSpace
     * 
     * @param et
@@ -642,6 +654,22 @@ public interface ProjectService extends IService<Project> {
     List<Project> listMobMain(ProjectSearchContext context);
 
     /**
+    * fetchNoRelation
+    * 
+    * @param context
+    * @return
+    */
+    Page<Project> fetchNoRelation(ProjectSearchContext context);
+
+    /**
+    * listNoRelation
+    * 
+    * @param context
+    * @return
+    */
+    List<Project> listNoRelation(ProjectSearchContext context);
+
+    /**
     * fetchNormal
     * 
     * @param context
@@ -656,6 +684,22 @@ public interface ProjectService extends IService<Project> {
     * @return
     */
     List<Project> listNormal(ProjectSearchContext context);
+
+    /**
+    * fetchProductReProject
+    * 
+    * @param context
+    * @return
+    */
+    Page<Project> fetchProductReProject(ProjectSearchContext context);
+
+    /**
+    * listProductReProject
+    * 
+    * @param context
+    * @return
+    */
+    List<Project> listProductReProject(ProjectSearchContext context);
 
     /**
     * fetchQuickUser

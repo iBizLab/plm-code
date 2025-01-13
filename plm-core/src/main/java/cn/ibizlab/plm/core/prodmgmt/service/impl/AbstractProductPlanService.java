@@ -3,6 +3,7 @@
  */
 package cn.ibizlab.plm.core.prodmgmt.service.impl;
 
+import java.math.BigDecimal;
 import java.util.*;
 import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;

@@ -15,6 +15,7 @@ import cn.ibizlab.plm.core.prodmgmt.domain.IdeaTemplate;
 import cn.ibizlab.plm.core.prodmgmt.filter.IdeaTemplateSearchContext;
 import cn.ibizlab.plm.core.base.domain.Category;
 import cn.ibizlab.plm.core.prodmgmt.domain.Product;
+import cn.ibizlab.plm.util.annotation.DEAction;
 
 /**
  * 需求模板服务接口[IdeaTemplateService]

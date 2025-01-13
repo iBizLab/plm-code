@@ -14,6 +14,7 @@ import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.core.base.domain.Recent;
 import cn.ibizlab.plm.core.base.filter.RecentSearchContext;
 import cn.ibizlab.plm.core.projmgmt.domain.WorkItem;
+import cn.ibizlab.plm.util.annotation.DEAction;
 
 /**
  * 最近访问服务接口[RecentService]
@@ -156,13 +157,13 @@ public interface RecentService extends IService<Recent> {
     boolean save(List<Recent> list);
 
     /**
-    * customGet
+    * jumpCorrespondingView
     * 
-    * @param key
+    * @param et
     * @return
     */
-    default Recent customGet(String key) {
-        return getSelf().customGet(new Recent().setId(key));
+    default Recent jumpCorrespondingView(Recent et) {
+        return et;
     }
 
     /**
@@ -515,16 +516,6 @@ public interface RecentService extends IService<Recent> {
     * @return
     */
     boolean saveByDercustomRecentWorkItem(WorkItem workItem, List<Recent> list);
-
-    /**
-    * customGet
-    * 
-    * @param et
-    * @return
-    */
-    default Recent customGet(Recent et) {
-        return et;
-    }
 
     /**
     * fetchView

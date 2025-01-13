@@ -2,15 +2,16 @@ export default {
   showDataInfoBar: true,
   xdataControlName: 'form',
   loadDefault: true,
-  openMode: 'POPOVER',
+  openMode: 'POPUPMODAL',
   deviewCodeName: 'case_move_plan_option_view',
   deviewId: '56dd665c9ce6a3a4f3073729bcb794ea',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.TEST_CASE',
   },
-  caption: '用例',
+  caption: '移入计划',
   codeName: 'test_case_case_move_plan_option_view',
+  height: 220,
   appDataEntityId: 'plmweb.test_case',
   appViewEngines: [
     {
@@ -215,7 +216,7 @@ export default {
       capLanguageRes: {
         lanResTag: 'DE.LNAME.TEST_CASE',
       },
-      caption: '用例',
+      caption: '移入计划',
       codeName: 'case_move_plan_option_view_captionbar',
       controlType: 'CAPTIONBAR',
       appDataEntityId: 'plmweb.test_case',
@@ -238,8 +239,9 @@ export default {
   title: '用例移入计划',
   viewStyle: 'DEFAULT',
   viewType: 'DEOPTVIEW',
+  width: 310,
   enableDP: true,
-  showCaptionBar: false,
+  showCaptionBar: true,
   modelId: '658ba6a15777f1c96bf0cd2e406cd035',
   modelType: 'PSAPPDEVIEW',
   name: 'test_casecase_move_plan_option_view',

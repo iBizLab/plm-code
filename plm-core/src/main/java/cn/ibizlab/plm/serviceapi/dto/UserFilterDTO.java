@@ -47,11 +47,19 @@ public class UserFilterDTO extends FilterBase implements Serializable {
 	private String statusEQ;
 
     /**
+     * 职位EQ
+     */
+    @JsonProperty("n_title_eq")
+    @JSONField(name = "n_title_eq")
+    @ApiModelProperty(value = "职位EQ", position = 90)
+	private String titleEQ;
+
+    /**
      * 标识NOTIN
      */
     @JsonProperty("n_id_notin")
     @JSONField(name = "n_id_notin")
-    @ApiModelProperty(value = "标识NOTIN", position = 90)
+    @ApiModelProperty(value = "标识NOTIN", position = 100)
 	private String idNOTIN;
 
     /**
@@ -59,7 +67,7 @@ public class UserFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_id_eq")
     @JSONField(name = "n_id_eq")
-    @ApiModelProperty(value = "标识EQ", position = 91)
+    @ApiModelProperty(value = "标识EQ", position = 101)
 	private String idEQ;
 
     /**
@@ -67,7 +75,7 @@ public class UserFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_name_like")
     @JSONField(name = "n_name_like")
-    @ApiModelProperty(value = "登录名LIKE", position = 100)
+    @ApiModelProperty(value = "登录名LIKE", position = 110)
 	private String nameLIKE;
 
     /**
@@ -75,7 +83,7 @@ public class UserFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_department_id_eq")
     @JSONField(name = "n_department_id_eq")
-    @ApiModelProperty(value = "部门标识EQ", position = 150)
+    @ApiModelProperty(value = "部门标识EQ", position = 160)
 	private String departmentIdEQ;
 
     /**
@@ -83,7 +91,7 @@ public class UserFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_department_id_isnull")
     @JSONField(name = "n_department_id_isnull")
-    @ApiModelProperty(value = "部门标识ISNULL", position = 151)
+    @ApiModelProperty(value = "部门标识ISNULL", position = 161)
 	private String departmentIdISNULL;
 
     /**
@@ -91,7 +99,7 @@ public class UserFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_job_id_eq")
     @JSONField(name = "n_job_id_eq")
-    @ApiModelProperty(value = "岗位标识EQ", position = 160)
+    @ApiModelProperty(value = "岗位标识EQ", position = 170)
 	private String jobIdEQ;
 
     /**
@@ -99,7 +107,7 @@ public class UserFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_job_name_eq")
     @JSONField(name = "n_job_name_eq")
-    @ApiModelProperty(value = "职位名称EQ", position = 170)
+    @ApiModelProperty(value = "职位名称EQ", position = 180)
 	private String jobNameEQ;
 
     /**
@@ -107,7 +115,7 @@ public class UserFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_job_name_like")
     @JSONField(name = "n_job_name_like")
-    @ApiModelProperty(value = "职位名称LIKE", position = 171)
+    @ApiModelProperty(value = "职位名称LIKE", position = 181)
 	private String jobNameLIKE;
 
     /**
@@ -115,7 +123,7 @@ public class UserFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_department_name_eq")
     @JSONField(name = "n_department_name_eq")
-    @ApiModelProperty(value = "部门名称EQ", position = 180)
+    @ApiModelProperty(value = "部门名称EQ", position = 190)
 	private String departmentNameEQ;
 
     /**
@@ -123,8 +131,32 @@ public class UserFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_department_name_like")
     @JSONField(name = "n_department_name_like")
-    @ApiModelProperty(value = "部门名称LIKE", position = 181)
+    @ApiModelProperty(value = "部门名称LIKE", position = 191)
 	private String departmentNameLIKE;
+
+    /**
+     * 组织标识EQ
+     */
+    @JsonProperty("n_organization_id_eq")
+    @JSONField(name = "n_organization_id_eq")
+    @ApiModelProperty(value = "组织标识EQ", position = 200)
+	private String organizationIdEQ;
+
+    /**
+     * 组织名称EQ
+     */
+    @JsonProperty("n_organization_name_eq")
+    @JSONField(name = "n_organization_name_eq")
+    @ApiModelProperty(value = "组织名称EQ", position = 210)
+	private String organizationNameEQ;
+
+    /**
+     * 组织名称LIKE
+     */
+    @JsonProperty("n_organization_name_like")
+    @JSONField(name = "n_organization_name_like")
+    @ApiModelProperty(value = "组织名称LIKE", position = 211)
+	private String organizationNameLIKE;
 
 
 }

@@ -1004,7 +1004,6 @@ export default {
         glyph: 'xf044@FontAwesome',
       },
       refreshMode: 1,
-      timeout: 60000,
       tooltip: '编辑',
       uiactionMode: 'FRONT',
       uiactionTag: 'edit_stage',

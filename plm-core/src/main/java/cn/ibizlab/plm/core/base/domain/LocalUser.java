@@ -159,6 +159,16 @@ public class LocalUser extends EntityMP implements Serializable
     private Integer reportFlag;
 
     /**
+    * 组织标识
+    */
+    @TableField(value = "organization_id")
+    @DEField(name = "organization_id")
+    @JSONField(name = "organization_id")
+    @JsonProperty("organization_id")
+    @ApiModelProperty(value = "organization_id", notes = "组织标识")
+    private String organizationId;
+
+    /**
     * 建立时间
     */
     @TableField(value = "create_time" , fill = FieldFill.INSERT)
@@ -306,6 +316,15 @@ public class LocalUser extends EntityMP implements Serializable
     public LocalUser setReportFlag(Integer reportFlag) {
         this.reportFlag = reportFlag;
         this.modify("report_flag", reportFlag);
+        return this;
+    }
+
+    /**
+    * 设置 [组织标识]
+    */
+    public LocalUser setOrganizationId(String organizationId) {
+        this.organizationId = organizationId;
+        this.modify("organization_id", organizationId);
         return this;
     }
 

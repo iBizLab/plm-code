@@ -134,9 +134,11 @@ export default {
         {
           actionLevel: 100,
           noPrivDisplayMode: 2,
-          uiactionId: 'add_discuss_topic_member',
-          uiactionTarget: 'NONE',
+          uiactionId: 'gridview_newaction',
           valid: true,
+          capLanguageRes: {
+            lanResTag: 'TBB.TEXT.*.NEW',
+          },
           caption: '添加成员',
           itemType: 'DEUIACTION',
           sysImage: {
@@ -144,6 +146,9 @@ export default {
             glyph: 'xf067@FontAwesome',
           },
           tooltip: '添加成员',
+          tooltipLanguageRes: {
+            lanResTag: 'TBB.TOOLTIP.*.NEW',
+          },
           showCaption: true,
           showIcon: true,
           id: 'deuiaction1',

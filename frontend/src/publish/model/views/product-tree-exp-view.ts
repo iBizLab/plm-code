@@ -310,6 +310,7 @@ export default {
               id: 'node_5',
             },
             {
+              dataSourceType: 'DEDATASET',
               idAppDEFieldId: 'id',
               appDEDataSetId: 'fetch_favorite',
               textAppDEFieldId: 'name',

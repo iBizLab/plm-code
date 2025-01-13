@@ -1,5 +1,5 @@
 /**
- * Generate code from /{{projectName}}-core/src/main/java/{{packageName}}/core/{{modules}}/domain/{{entities@SQL}}.java.hbs
+ * Generate code from /{{projectName}}-core/src/main/java/{{packageName}}/core/{{modules}}/domain/{{domains@SQL}}.java.hbs
  */
 package cn.ibizlab.plm.core.wiki.domain;
 
@@ -236,6 +236,26 @@ public class Space extends EntityMP implements Serializable
     private String categoryName;
 
     /**
+    * 用户标记
+    */
+    @TableField(value = "user_tag")
+    @DEField(name = "user_tag")
+    @JSONField(name = "user_tag")
+    @JsonProperty("user_tag")
+    @ApiModelProperty(value = "user_tag", notes = "用户标记")
+    private String userTag;
+
+    /**
+    * 用户标记2
+    */
+    @TableField(value = "user_tag2")
+    @DEField(name = "user_tag2")
+    @JSONField(name = "user_tag2")
+    @JsonProperty("user_tag2")
+    @ApiModelProperty(value = "user_tag2", notes = "用户标记2")
+    private String userTag2;
+
+    /**
     * 分类
     */
     @Transient
@@ -368,6 +388,24 @@ public class Space extends EntityMP implements Serializable
     public Space setCategoryName(String categoryName) {
         this.categoryName = categoryName;
         this.modify("category_name", categoryName);
+        return this;
+    }
+
+    /**
+    * 设置 [用户标记]
+    */
+    public Space setUserTag(String userTag) {
+        this.userTag = userTag;
+        this.modify("user_tag", userTag);
+        return this;
+    }
+
+    /**
+    * 设置 [用户标记2]
+    */
+    public Space setUserTag2(String userTag2) {
+        this.userTag2 = userTag2;
+        this.modify("user_tag2", userTag2);
         return this;
     }
 

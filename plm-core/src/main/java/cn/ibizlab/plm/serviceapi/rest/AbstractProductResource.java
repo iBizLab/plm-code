@@ -322,6 +322,45 @@ public abstract class AbstractProductResource {
     }
 
     /**
+    * other_re_product 产品
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return Mono<ResponseEntity<ProductDTO>>
+    */
+    @ApiOperation(value = "other_re_product", tags = {"产品" },  notes = "Product-other_re_product ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Product-other_re_product-all') or hasPermission(this.productDtoMapping.toDomain(#dto),'ibizplm-Product-other_re_product')")
+    @PostMapping("products/{id}/other_re_product")
+    public Mono<ResponseEntity<ResponseWrapper<ProductDTO>>>otherReProductById
+            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<ProductDTO> dto) {
+        ResponseWrapper<ProductDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(otherReProductById(ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(otherReProductById(id, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * other_re_product 产品
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<ProductDTO>
+    */   
+    public ProductDTO otherReProductById
+            (String id, ProductDTO dto) {
+        Product domain = productDtoMapping.toDomain(dto);
+        domain.setId(id);
+        Product rt = productService.otherReProduct(domain);
+        return productDtoMapping.toDto(rt);
+    }
+
+    /**
     * other_re_space 产品
     * 
     *
@@ -922,6 +961,28 @@ public abstract class AbstractProductResource {
             (@Validated @RequestBody ProductFilterDTO dto) {
         ProductSearchContext context = productFilterDtoMapping.toDomain(dto);
         Page<Product> domains = productService.fetchMobMain(context) ;
+        List<ProductDTO> list = productDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
+    * 查询fetch_no_relation 产品
+    * 
+    *
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<ProductDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_no_relation", tags = {"产品" },  notes = "Product-fetch_no_relation ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Product-fetch_no_relation-all') or hasPermission(#dto,'ibizplm-Product-fetch_no_relation')")
+    @PostMapping("products/fetch_no_relation")
+    public Mono<ResponseEntity<List<ProductDTO>>> fetchNoRelation
+            (@Validated @RequestBody ProductFilterDTO dto) {
+        ProductSearchContext context = productFilterDtoMapping.toDomain(dto);
+        Page<Product> domains = productService.fetchNoRelation(context) ;
         List<ProductDTO> list = productDtoMapping.toDto(domains.getContent());
             return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))

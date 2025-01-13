@@ -1,5 +1,5 @@
 /**
- * Generate code from /{{projectName}}-core/src/main/java/{{packageName}}/core/{{modules}}/domain/{{entities@SQL}}.java.hbs
+ * Generate code from /{{projectName}}-core/src/main/java/{{packageName}}/core/{{modules}}/domain/{{domains@SQL}}.java.hbs
  */
 package cn.ibizlab.plm.core.projmgmt.domain;
 
@@ -183,6 +183,26 @@ public class Release extends EntityMP implements Serializable
     @JsonProperty("project_type")
     @ApiModelProperty(value = "project_type", notes = "项目类型")
     private String projectType;
+
+    /**
+    * 发布年份
+    */
+    @TableField(value = "end_year" , exist = false)
+    @DEField(name = "end_year")
+    @JSONField(name = "end_year")
+    @JsonProperty("end_year")
+    @ApiModelProperty(value = "end_year", notes = "发布年份")
+    private String endYear;
+
+    /**
+    * 发布日志
+    */
+    @TableField(value = "changelog")
+    @DEField(name = "changelog")
+    @JSONField(name = "changelog")
+    @JsonProperty("changelog")
+    @ApiModelProperty(value = "changelog", notes = "发布日志")
+    private String changelog;
 
     /**
     * 标识
@@ -400,6 +420,24 @@ public class Release extends EntityMP implements Serializable
     public Release setProjectType(String projectType) {
         this.projectType = projectType;
         this.modify("project_type", projectType);
+        return this;
+    }
+
+    /**
+    * 设置 [发布年份]
+    */
+    public Release setEndYear(String endYear) {
+        this.endYear = endYear;
+        this.modify("end_year", endYear);
+        return this;
+    }
+
+    /**
+    * 设置 [发布日志]
+    */
+    public Release setChangelog(String changelog) {
+        this.changelog = changelog;
+        this.modify("changelog", changelog);
         return this;
     }
 

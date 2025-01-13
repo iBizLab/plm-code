@@ -15,6 +15,7 @@ import cn.ibizlab.plm.core.team.domain.KeyResult;
 import cn.ibizlab.plm.core.team.filter.KeyResultSearchContext;
 import cn.ibizlab.plm.core.team.domain.Objective;
 import cn.ibizlab.plm.core.team.domain.UpdateRecord;
+import cn.ibizlab.plm.util.annotation.DEAction;
 
 /**
  * 关键结果服务接口[KeyResultService]

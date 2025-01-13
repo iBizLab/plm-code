@@ -1,5 +1,5 @@
 /**
- * Generate code from /{{projectName}}-core/src/main/java/{{packageName}}/core/{{modules}}/domain/{{entities@SQL}}.java.hbs
+ * Generate code from /{{projectName}}-core/src/main/java/{{packageName}}/core/{{modules}}/domain/{{domains@SQL}}.java.hbs
  */
 package cn.ibizlab.plm.core.wiki.domain;
 
@@ -67,6 +67,16 @@ public class SpaceMember extends EntityMP implements Serializable
     @JsonProperty("space_identifier")
     @ApiModelProperty(value = "space_identifier", notes = "空间编号")
     private String spaceIdentifier;
+
+    /**
+    * 职位
+    */
+    @TableField(value = "title")
+    @DEField(name = "title")
+    @JSONField(name = "title")
+    @JsonProperty("title")
+    @ApiModelProperty(value = "title", notes = "职位")
+    private String title;
 
     /**
     * 标识
@@ -195,6 +205,15 @@ public class SpaceMember extends EntityMP implements Serializable
     public SpaceMember setSpaceIdentifier(String spaceIdentifier) {
         this.spaceIdentifier = spaceIdentifier;
         this.modify("space_identifier", spaceIdentifier);
+        return this;
+    }
+
+    /**
+    * 设置 [职位]
+    */
+    public SpaceMember setTitle(String title) {
+        this.title = title;
+        this.modify("title", title);
         return this;
     }
 

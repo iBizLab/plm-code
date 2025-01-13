@@ -36,11 +36,19 @@ public class DepartmentDTO extends DTOBase implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
+     * 部门标识/编号
+     */
+    @JsonProperty("identifier")
+    @JSONField(name = "identifier")
+    @ApiModelProperty(value = "部门标识/编号", position = 0)
+    private String identifier;
+
+    /**
      * 建立人
      */
     @JsonProperty("create_man")
     @JSONField(name = "create_man")
-    @ApiModelProperty(value = "建立人", position = 0)
+    @ApiModelProperty(value = "建立人", position = 1)
     private String createMan;
 
     /**
@@ -49,7 +57,7 @@ public class DepartmentDTO extends DTOBase implements Serializable {
     @JsonProperty("create_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "create_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "建立时间", position = 1)
+    @ApiModelProperty(value = "建立时间", position = 2)
     private Date createTime;
 
     /**
@@ -57,7 +65,7 @@ public class DepartmentDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("head_id")
     @JSONField(name = "head_id")
-    @ApiModelProperty(value = "部门负责人标识", position = 2)
+    @ApiModelProperty(value = "部门负责人标识", position = 3)
     private String headId;
 
     /**
@@ -65,7 +73,7 @@ public class DepartmentDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("id")
     @JSONField(name = "id")
-    @ApiModelProperty(value = "标识", position = 3)
+    @ApiModelProperty(value = "标识", position = 4)
     private String id;
 
     /**
@@ -73,7 +81,7 @@ public class DepartmentDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("name")
     @JSONField(name = "name")
-    @ApiModelProperty(value = "名称", position = 4)
+    @ApiModelProperty(value = "名称", position = 5)
     private String name;
 
     /**
@@ -81,7 +89,7 @@ public class DepartmentDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("parent_id")
     @JSONField(name = "parent_id")
-    @ApiModelProperty(value = "父部门标识", position = 5)
+    @ApiModelProperty(value = "父部门标识", position = 6)
     private String parentId;
 
     /**
@@ -89,7 +97,7 @@ public class DepartmentDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("update_man")
     @JSONField(name = "update_man")
-    @ApiModelProperty(value = "更新人", position = 6)
+    @ApiModelProperty(value = "更新人", position = 7)
     private String updateMan;
 
     /**
@@ -98,9 +106,18 @@ public class DepartmentDTO extends DTOBase implements Serializable {
     @JsonProperty("update_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "update_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "更新时间", position = 7)
+    @ApiModelProperty(value = "更新时间", position = 8)
     private Date updateTime;
 
+
+    /**
+     * 设置 [部门标识/编号]
+     */
+    public DepartmentDTO setIdentifier(String identifier) {
+        this.identifier = identifier;
+        this.modify("identifier", identifier);
+        return this;
+    }
 
     /**
      * 设置 [部门负责人标识]

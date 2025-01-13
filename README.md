@@ -219,6 +219,54 @@ $ mvn package -Pserviceapi
 
 ![image.png](doc/images/resourceAllocation.png)
 
+#### 自动化
+
+- 自动化-首页
+
+![image.png](doc/images/自动化-首页.png)
+
+- 自动化-概览
+
+![image.png](doc/images/自动化-概览.png)
+
+- 自动化-配置
+
+![image.png](doc/images/自动化-配置.png)
+
+#### 移动端
+
+- 工作台
+
+![image.png](doc/images/移动端-工作台.png)
+
+- 项目-首页
+
+![image.png](doc/images/移动端-项目-首页.png)
+
+- 项目-概览
+
+![image.png](doc/images/移动端-项目-概览.png)
+
+- 项目-工作项
+
+![image.png](doc/images/移动端-项目-工作项.png)
+
+- 产品-首页
+
+![image.png](doc/images/移动端-产品-首页.png)
+
+- 知识-首页
+
+![image.png](doc/images/移动端-知识-首页.png)
+
+- 知识-页面清单
+
+![image.png](doc/images/移动端-知识-页面清单.png)
+
+- 知识-页面详情
+
+![image.png](doc/images/移动端-知识-页面详情.png)
+
 # 附录
 [系统功能文档](http://plm.ibizlab.cn/ibizplm-plmweb/#/-/index/-/article_page_help_tree_exp_view/-)<br>
 [系统详细设计文档](http://plmdoc.ibizlab.cn)<br>

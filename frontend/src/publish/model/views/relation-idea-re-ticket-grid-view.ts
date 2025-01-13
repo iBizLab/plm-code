@@ -555,10 +555,11 @@ export default {
             id: 'target_state',
           },
           {
-            clconvertMode: 'NONE',
+            clconvertMode: 'FRONT',
             dataItemName: 'ticket',
             excelCaption: '负责人',
             objectNameField: 'assignee_name',
+            appCodeListId: 'plmweb.sysoperator',
             appDEFieldId: 'ticket',
             valueType: 'OBJECT',
             aggMode: 'NONE',
@@ -567,8 +568,20 @@ export default {
             codeName: 'target_assignee',
             columnType: 'DEFGRIDCOLUMN',
             noPrivDisplayMode: 1,
+            controlRenders: [
+              {
+                layoutPanelModel:
+                  'const target_assignee = data[controller.fieldName] || {};\r\nconst userid = target_assignee.assignee_id || \'\';\r\nconst usertext = target_assignee.assignee_name || \'\';\r\nconst app = await ibiz.hub.getApp(context.srfappid);\r\nconst dataItems = await app.codeList.get(\r\n    \'SysOperator\',\r\n    context,\r\n    params,\r\n)\r\nif (!dataItems || dataItems.length === 0) {\r\n    return \'\';\r\n}\r\nlet avatarContent = ibiz.util.text.abbreviation(usertext) || \'\';\r\nlet avatarBg = ibiz.util.text.stringToHexColor(usertext);\r\nconst operator = dataItems.find((item) => (item.value && userid && item.value === userid) || (item.text && usertext && item.text === usertext)) || {};\r\nif (operator.data && operator.data.iconurl) {\r\n    const urlConfig = JSON.parse(operator.data.iconurl);\r\n    if (urlConfig.length > 0) {\r\n        const { downloadUrl } = ibiz.util.file.calcFileUpDownUrl(\r\n            context,\r\n            params,\r\n            data,\r\n            controller.editor ? controller.editor.editorParams : {},\r\n        );\r\n        const url = downloadUrl.replace(\'%fileId%\', urlConfig[0].id);\r\n        avatarContent = `<img style="width:100%; height:100%; object-fit:cover; border-radius:50%;"\r\n                src="${url}" alt="">`;\r\n    }\r\n}\r\nreturn `\r\n<div\r\n    style="overflow:hidden; width:max-content; display:flex; gap: 8px; align-items:center; height:var(--ibiz-height-control-default);"\r\n    title=""\r\n>\r\n    <div \r\n        style="width:var(--ibiz-height-control-default); min-width:var(--ibiz-height-control-default); height:var(--ibiz-height-control-default); overflow:hidden; font-size:12px; line-height:var(--ibiz-height-control-default); color:var(--ibiz-color-primary-active-text); text-align:center; border-radius:50%;background-color: ${avatarBg};"\r\n    >\r\n    ${avatarContent}\r\n    </div>\r\n    <div\r\n        style="max-width: 90px;display:flex; align-items:center; justify-content:left; height:var(--ibiz-height-control-default); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;"\r\n    >\r\n        <div>${usertext}</div>\r\n    </div>\r\n</div>\r\n`;',
+                renderType: 'LAYOUTPANEL_MODEL',
+                id: 'logic_render',
+              },
+            ],
+            sysPFPluginId: 'personal_info_column',
             width: 150,
             widthUnit: 'PX',
+            userParam: {
+              USERFILTERMAP: '{"id":"assignee_id","name":"assignee_name"}',
+            },
             id: 'target_assignee',
           },
           {

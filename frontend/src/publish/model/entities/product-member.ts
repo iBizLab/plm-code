@@ -2,6 +2,29 @@ export default {
   appDEACModes: [
     {
       actype: 'AUTOCOMPLETE',
+      codeName: 'Default',
+      logicName: 'DEFAULT',
+      deacmodeDataItems: [
+        {
+          appDEFieldId: 'id',
+          dataType: 25,
+          id: 'value',
+        },
+        {
+          appDEFieldId: 'name',
+          dataType: 25,
+          id: 'text',
+        },
+      ],
+      pagingSize: 50,
+      defaultMode: true,
+      textAppDEFieldId: 'name',
+      valueAppDEFieldId: 'id',
+      name: 'DEFAULT',
+      id: 'default',
+    },
+    {
+      actype: 'AUTOCOMPLETE',
       codeName: 'member_select',
       logicName: 'member_select',
       deacmodeDataItems: [
@@ -79,6 +102,14 @@ export default {
       stringLength: 15,
       name: 'PRODUCT_IDENTIFIER',
       id: 'product_identifier',
+    },
+    {
+      codeName: 'title',
+      logicName: '职位',
+      stdDataType: 25,
+      stringLength: 100,
+      name: 'TITLE',
+      id: 'title',
     },
     {
       codeName: 'id',
@@ -234,6 +265,16 @@ export default {
           id: 'product_identifier',
         },
         {
+          codeName: 'title',
+          logicName: '职位',
+          appDEFieldId: 'title',
+          sourceType: 'DEFIELD',
+          stdDataType: 25,
+          type: 'SIMPLE',
+          allowEmpty: true,
+          id: 'title',
+        },
+        {
           codeName: 'create_man',
           logicName: '建立人',
           appDEFieldId: 'create_man',
@@ -385,6 +426,27 @@ export default {
     },
   ],
   appDEMethods: [
+    {
+      codeName: 'change_position',
+      methodType: 'DEACTION',
+      appDEMethodInput: {
+        appDEMethodDTOId: 'product_member_dto',
+        type: 'DTO',
+        id: '输入对象',
+      },
+      appDEMethodReturn: {
+        type: 'VOID',
+        id: '返回对象',
+      },
+      requestMethod: 'POST',
+      requestParamType: 'ENTITY',
+      requestPath: '/change_position',
+      needResourceKey: true,
+      actionMode: 'CUSTOM',
+      actionType: 'REMOTE',
+      dataSetType: 'REMOTE',
+      id: 'change_position',
+    },
     {
       codeName: 'change_role',
       methodType: 'DEACTION',
@@ -793,6 +855,35 @@ export default {
   appDEUIActions: [
     {
       actionLevel: 100,
+      actionTarget: 'MULTIKEY',
+      caption: '职位变更',
+      codeName: 'choose_position',
+      dataAccessAction: 'UPDATE',
+      frontAppViewId: 'plmweb.product_member_choose_position_option_view',
+      fullCodeName: 'product_member_choose_position',
+      appDEMethodId: 'change_position',
+      deopprivId: 'update',
+      sysImage: {
+        cssClass: 'fa fa-users',
+        glyph: 'xf0c0@FontAwesome',
+      },
+      refreshMode: 1,
+      successMsg: '职位变更成功',
+      timeout: 60000,
+      tooltip: '变更选中成员职位',
+      uiactionMode: 'BACKEND',
+      uiactionTag: 'choose_position',
+      uiactionType: 'DEUIACTION',
+      enableConfirm: true,
+      reloadData: true,
+      showBusyIndicator: true,
+      noPrivDisplayMode: 1,
+      appDataEntityId: 'plmweb.product_member',
+      name: '职位变更',
+      id: 'choose_position@product_member',
+    },
+    {
+      actionLevel: 100,
       actionTarget: 'NONE',
       caption: '跳转至成员设置',
       codeName: 'jump_to_member_set',
@@ -804,7 +895,6 @@ export default {
       },
       scriptCode:
         'ibiz.openView.push(`/-/index/project=${context.project}/projectRedirectView/-/project_setting_view/srfnavctx=%7B"project"%3A"${context.project}"%2C"srfdefaulttoroutedepth"%3A"3"%7D;srfnav=root%3Anormal%3Amember/project_member_config_grid_view/-`);',
-      timeout: 60000,
       tooltip: '跳转至成员设置',
       uiactionMode: 'FRONT',
       uiactionTag: 'jump_to_member_set',
@@ -907,22 +997,6 @@ export default {
           id: 'end1',
         },
         {
-          code: "ibiz.hub.getApp(context.srfappid).deService.exec(\r\n    'plmweb.product_member',\r\n    'Create',\r\n    context,\r\n    uiLogic.user,\r\n);",
-          codeName: 'RAWJSCODE1',
-          leftPos: 649,
-          logicNodeType: 'RAWJSCODE',
-          deuilogicLinks: [
-            {
-              dstDEUILogicNodeId: 'end1',
-              srcDEUILogicNodeId: 'rawjscode1',
-              id: '连接名称',
-            },
-          ],
-          topPos: 208,
-          name: '创建临时数据',
-          id: 'rawjscode1',
-        },
-        {
           codeName: 'PREPAREJSPARAM1',
           leftPos: 392,
           logicNodeType: 'PREPAREJSPARAM',
@@ -958,18 +1032,26 @@ export default {
               srcValueType: 'DATACONTEXT',
               id: '数据上下文[srfuserid] ==> user[user_id]',
             },
-            {
-              dstFieldName: 'library_id',
-              dstDEUILogicParamId: 'user',
-              paramAction: 'SETPARAMVALUE',
-              srcFieldName: 'library',
-              srcValueType: 'DATACONTEXT',
-              id: '数据上下文[library] ==> user[library_id]',
-            },
           ],
           topPos: 208,
           name: '获取当前用户数据',
           id: 'preparejsparam1',
+        },
+        {
+          code: "ibiz.hub.getApp(context.srfappid).deService.exec(\r\n    'plmweb.product_member',\r\n    'Create',\r\n    context,\r\n    uiLogic.user,\r\n);",
+          codeName: 'RAWJSCODE1',
+          leftPos: 649,
+          logicNodeType: 'RAWJSCODE',
+          deuilogicLinks: [
+            {
+              dstDEUILogicNodeId: 'end1',
+              srcDEUILogicNodeId: 'rawjscode1',
+              id: '连接名称',
+            },
+          ],
+          topPos: 208,
+          name: '创建临时数据',
+          id: 'rawjscode1',
         },
       ],
       deuilogicParams: [

@@ -177,6 +177,7 @@ export default {
                 id: 'root',
               },
               {
+                dataSourceType: 'DEDATASET',
                 idAppDEFieldId: 'pssysbicubeid',
                 appDEDataSetId: 'fetchdefault',
                 textAppDEFieldId: 'pssysbicubename',

@@ -18,7 +18,6 @@ import java.util.Optional;
  */
 public enum Entities {
 
-    AUTH_LOG ("AuthLog","认证日志",cn.ibizlab.plm.core.ebsx.domain.AuthLog.class,cn.ibizlab.plm.core.ebsx.filter.AuthLogSearchContext.class,cn.ibizlab.plm.core.ebsx.service.AuthLogService.class),
     MS_VALUE_PROXY ("MSValueProxy","主状态值代理",cn.ibizlab.plm.core.extension.domain.MSValueProxy.class,null,null),
     PS_APP_PORTLET ("PSAppPortlet","应用门户部件",cn.ibizlab.plm.core.extension.domain.PSAppPortlet.class,null,null),
     PS_CORE_PRD ("PSCorePrd","核心产品",cn.ibizlab.plm.core.extension.domain.PSCorePrd.class,null,null),
@@ -41,9 +40,6 @@ public enum Entities {
     PS_SYS_BI_REPORT_ITEM ("PSSysBIReportItem","智能报表项",cn.ibizlab.plm.core.extension.domain.PSSysBIReportItem.class,null,null),
     PSWF_VERSION ("PSWFVersion","工作流版本",cn.ibizlab.plm.core.extension.domain.PSWFVersion.class,null,null),
     PS_WORKFLOW ("PSWorkflow","工作流",cn.ibizlab.plm.core.extension.domain.PSWorkflow.class,null,null),
-    SYS_DEPARTMENT ("SysDepartment","部门",cn.ibizlab.plm.core.ebsx.domain.SysDepartment.class,cn.ibizlab.plm.core.ebsx.filter.SysDepartmentSearchContext.class,cn.ibizlab.plm.core.ebsx.service.SysDepartmentService.class),
-    SYS_EMPLOYEE ("SysEmployee","人员",cn.ibizlab.plm.core.ebsx.domain.SysEmployee.class,cn.ibizlab.plm.core.ebsx.filter.SysEmployeeSearchContext.class,cn.ibizlab.plm.core.ebsx.service.SysEmployeeService.class),
-    SYS_TODO ("SysTodo","待办",cn.ibizlab.plm.core.ebsx.domain.SysTodo.class,cn.ibizlab.plm.core.ebsx.filter.SysTodoSearchContext.class,cn.ibizlab.plm.core.ebsx.service.SysTodoService.class),
     ACTIVITY ("Activity","活动",cn.ibizlab.plm.core.base.domain.Activity.class,cn.ibizlab.plm.core.base.filter.ActivitySearchContext.class,cn.ibizlab.plm.core.base.service.ActivityService.class),
     ADDON ("Addon","组件",cn.ibizlab.plm.core.base.domain.Addon.class,cn.ibizlab.plm.core.base.filter.AddonSearchContext.class,cn.ibizlab.plm.core.base.service.AddonService.class),
     ADDON_APPLICATION_ACTIVITY ("AddonApplicationActivity","应用插件活动",cn.ibizlab.plm.core.base.domain.AddonApplicationActivity.class,cn.ibizlab.plm.core.base.filter.AddonApplicationActivitySearchContext.class,cn.ibizlab.plm.core.base.service.AddonApplicationActivityService.class),
@@ -107,11 +103,13 @@ public enum Entities {
     NOTIFY_EVENT ("NotifyEvent","通知事件",cn.ibizlab.plm.core.extension.domain.NotifyEvent.class,null,null),
     NOTIFY_SETTING ("NotifySetting","通知设置",cn.ibizlab.plm.core.base.domain.NotifySetting.class,null,null),
     OBJECTIVE ("Objective","目标",cn.ibizlab.plm.core.team.domain.Objective.class,cn.ibizlab.plm.core.team.filter.ObjectiveSearchContext.class,cn.ibizlab.plm.core.team.service.ObjectiveService.class),
+    ORGANIZATION ("Organization","组织",cn.ibizlab.plm.core.base.domain.Organization.class,null,null),
     PAGE_VERSION ("PageVersion","页面版本",cn.ibizlab.plm.core.wiki.domain.PageVersion.class,cn.ibizlab.plm.core.wiki.filter.PageVersionSearchContext.class,cn.ibizlab.plm.core.wiki.service.PageVersionService.class),
     PARAMETER ("Parameter","系统参数",cn.ibizlab.plm.core.base.domain.Parameter.class,cn.ibizlab.plm.core.base.filter.ParameterSearchContext.class,cn.ibizlab.plm.core.base.service.ParameterService.class),
     PERIOD ("Period","周期",cn.ibizlab.plm.core.team.domain.Period.class,cn.ibizlab.plm.core.team.filter.PeriodSearchContext.class,cn.ibizlab.plm.core.team.service.PeriodService.class),
     PORTFOLIO ("Portfolio","文件夹",cn.ibizlab.plm.core.base.domain.Portfolio.class,cn.ibizlab.plm.core.base.filter.PortfolioSearchContext.class,cn.ibizlab.plm.core.base.service.PortfolioService.class),
     PORTFOLIO_MEMBER ("PortfolioMember","文件夹成员",cn.ibizlab.plm.core.base.domain.PortfolioMember.class,cn.ibizlab.plm.core.base.filter.PortfolioMemberSearchContext.class,cn.ibizlab.plm.core.base.service.PortfolioMemberService.class),
+    POSITION ("Position","职位",cn.ibizlab.plm.core.base.domain.Position.class,cn.ibizlab.plm.core.base.filter.PositionSearchContext.class,cn.ibizlab.plm.core.base.service.PositionService.class),
     PRODUCT ("Product","产品",cn.ibizlab.plm.core.prodmgmt.domain.Product.class,cn.ibizlab.plm.core.prodmgmt.filter.ProductSearchContext.class,cn.ibizlab.plm.core.prodmgmt.service.ProductService.class),
     PRODUCT_MEMBER ("ProductMember","产品成员",cn.ibizlab.plm.core.prodmgmt.domain.ProductMember.class,cn.ibizlab.plm.core.prodmgmt.filter.ProductMemberSearchContext.class,cn.ibizlab.plm.core.prodmgmt.service.ProductMemberService.class),
     PRODUCT_PLAN ("ProductPlan","排期",cn.ibizlab.plm.core.prodmgmt.domain.ProductPlan.class,cn.ibizlab.plm.core.prodmgmt.filter.ProductPlanSearchContext.class,cn.ibizlab.plm.core.prodmgmt.service.ProductPlanService.class),

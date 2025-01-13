@@ -594,6 +594,25 @@ public interface TestCaseMapper extends BaseMapper<TestCase> {
     List<TestCase> listRecentTestCase(@Param("ctx") TestCaseSearchContext context, @Param("ew") Wrapper<TestCase> wrapper);
 
     /**
+     * 数据集合relation_test_case分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<TestCase> searchRelationTestCase(IPage<TestCase> page, @Param("ctx") TestCaseSearchContext context, @Param("ew") Wrapper<TestCase> wrapper);
+    
+    /**
+     * 数据集合relation_test_case查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<TestCase> listRelationTestCase(@Param("ctx") TestCaseSearchContext context, @Param("ew") Wrapper<TestCase> wrapper);
+
+    /**
      * 数据集合suites_test_case分页查询
      * 
      * @param page

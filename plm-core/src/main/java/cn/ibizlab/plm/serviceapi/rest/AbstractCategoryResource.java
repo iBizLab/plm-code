@@ -437,6 +437,28 @@ public abstract class AbstractCategoryResource {
     }
 
     /**
+    * 查询fetch_position_category 类别
+    * 
+    *
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<CategoryDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_position_category", tags = {"类别" },  notes = "Category-fetch_position_category ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Category-fetch_position_category-all') or hasPermission(#dto,'ibizplm-Category-fetch_position_category')")
+    @PostMapping("categories/fetch_position_category")
+    public Mono<ResponseEntity<List<CategoryDTO>>> fetchPositionCategory
+            (@Validated @RequestBody CategoryFilterDTO dto) {
+        CategorySearchContext context = categoryFilterDtoMapping.toDomain(dto);
+        Page<Category> domains = categoryService.fetchPositionCategory(context) ;
+        List<CategoryDTO> list = categoryDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
     * 查询fetch_product_idea_category 类别
     * 需求下子产品中父标识为空的模块
     *

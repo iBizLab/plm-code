@@ -525,6 +525,17 @@ public abstract class AbstractTicketService extends ServiceImpl<TicketMapper,Tic
         return list;
    }
 	
+   public Page<Ticket> fetchRelationTicket(TicketSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Ticket> pages=baseMapper.searchRelationTicket(context.getPages(),context,context.getSelectCond());
+        List<Ticket> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<Ticket> listRelationTicket(TicketSearchContext context) {
+        List<Ticket> list = baseMapper.listRelationTicket(context,context.getSelectCond());
+        return list;
+   }
+	
    public Page<Ticket> fetchTicketReProductTag(TicketSearchContext context) {
         if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
             context.setSort("SHOW_IDENTIFIER,DESC");

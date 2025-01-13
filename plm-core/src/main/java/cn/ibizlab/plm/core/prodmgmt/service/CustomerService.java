@@ -21,6 +21,7 @@ import cn.ibizlab.plm.core.base.domain.Comment;
 import cn.ibizlab.plm.core.base.domain.SearchAttachment;
 import cn.ibizlab.plm.core.base.domain.SearchComment;
 import cn.ibizlab.plm.core.base.domain.Relation;
+import cn.ibizlab.plm.util.annotation.DEAction;
 
 /**
  * 客户服务接口[CustomerService]

@@ -377,6 +377,7 @@ export default {
             id: 'root',
           },
           {
+            dataSourceType: 'DEDATASET',
             idAppDEFieldId: 'id',
             leafFlagAppDEFieldId: 'is_leaf',
             appDEDataSetId: 'fetch_home_page',
@@ -393,6 +394,7 @@ export default {
             id: 'node',
           },
           {
+            dataSourceType: 'DEDATASET',
             idAppDEFieldId: 'id',
             leafFlagAppDEFieldId: 'is_leaf',
             appDEDataSetId: 'fetch_no_parent_page',
@@ -412,6 +414,7 @@ export default {
             id: 'node_1',
           },
           {
+            dataSourceType: 'DEDATASET',
             idAppDEFieldId: 'id',
             leafFlagAppDEFieldId: 'is_leaf',
             appDEDataSetId: 'fetch_normal',
@@ -431,6 +434,7 @@ export default {
             id: 'node_2',
           },
           {
+            dataSourceType: 'DEDATASET',
             idAppDEFieldId: 'id',
             leafFlagAppDEFieldId: 'is_leaf',
             appDEDataSetId: 'fetch_no_parent_page',
@@ -450,6 +454,7 @@ export default {
             id: 'node_3',
           },
           {
+            dataSourceType: 'DEDATASET',
             idAppDEFieldId: 'id',
             leafFlagAppDEFieldId: 'is_leaf',
             appDEDataSetId: 'fetch_normal',

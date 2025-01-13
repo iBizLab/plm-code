@@ -280,13 +280,38 @@ export default {
                   dataType: 21,
                   enableCond: 3,
                   ignoreInput: 12,
-                  itemHeight: 600,
+                  itemHeight: 450,
                   labelPos: 'NONE',
                   noPrivDisplayMode: 1,
                   appDEFieldId: 'content',
                   editor: {
-                    editorHeight: 600,
+                    editorHeight: 450,
+                    editorParams: {
+                      USERINSCRIPT:
+                        'value.replaceAll(/\\@\\{\\"(user)?id\\":\\"(.+?)\\",\\"name\\":\\"(.+?)\\"\\}/g,(x, user, id, name) => {return controller.getNodeInfo({ id, name })}).replaceAll(/\\@\\{userid=(.+?),name=(.+?)\\}/g,(x, id, name) => {return controller.getNodeInfo({ id, name })})',
+                      LINKVIEWID: 'plmweb.recent_custom_redirect_view',
+                      MAXHEIGHT: '450',
+                      QUOTECODELISTMAP: '{"type":"plmweb.base__recent_visite"}',
+                      QUOTEFIELDMAP:
+                        '{"identifier":"show_identifier","name":"name","id":"id","owner_subtype":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
+                      QUOTEPARAMS: '{"sort":"update_time,desc"}',
+                      MODE: 'default',
+                      QUOTEINSCRIPT:
+                        'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\")(,\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\")*\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); if (icon) { icon = icon.slice(8).slice(1, -1); } return controller.getNodeInfo({ icon, ...item })})',
+                      USERSCRIPT:
+                        '`@{"id":"${data.id}","name":"${data.name}"}`',
+                      QUOTESCRIPT:
+                        '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.owner_subtype}","recent_parent":"${data.recent_parent}"}`',
+                      USERURL:
+                        '`spaces/${context.space}/space_members/fetch_default`',
+                      USERFIELDMAP: '{"id":"user_id","name":"name"}',
+                      INSERTKEYS:
+                        '[{"index":66,"keys":["marker"]},{"index":5,"keys":["paintformat"]}]',
+                      QUOTEURL: '`recents/fetch_recent_access`',
+                    },
+                    editorStyle: 'COLLAPSE_WIKI',
                     editorType: 'HTMLEDITOR',
+                    sysPFPluginId: 'comment',
                     placeHolder: '请输入内容',
                     valueType: 'SIMPLE',
                     editable: true,
@@ -312,7 +337,6 @@ export default {
                         },
                       ],
                       logicType: 'GROUP',
-                      id: '表单成员[content][面板显示]逻辑',
                     },
                     {
                       logicCat: 'ITEMENABLE',
@@ -327,7 +351,6 @@ export default {
                         },
                       ],
                       logicType: 'GROUP',
-                      id: '表单成员[content][表单项启用]逻辑',
                     },
                   ],
                   layoutPos: {
@@ -341,7 +364,7 @@ export default {
                   dataType: 21,
                   enableCond: 3,
                   ignoreInput: 12,
-                  itemHeight: 600,
+                  itemHeight: 450,
                   labelPos: 'NONE',
                   noPrivDisplayMode: 1,
                   appDEFieldId: 'content',
@@ -349,7 +372,7 @@ export default {
                     mode: 'EDIT',
                     maxLength: 16777215,
                     showMaxLength: true,
-                    editorHeight: 600,
+                    editorHeight: 450,
                     editorType: 'MARKDOWN',
                     placeHolder: '请输入内容',
                     valueType: 'SIMPLE',
@@ -376,7 +399,6 @@ export default {
                         },
                       ],
                       logicType: 'GROUP',
-                      id: '表单成员[formitem][面板显示]逻辑',
                     },
                     {
                       logicCat: 'ITEMENABLE',
@@ -391,7 +413,6 @@ export default {
                         },
                       ],
                       logicType: 'GROUP',
-                      id: '表单成员[formitem][表单项启用]逻辑',
                     },
                   ],
                   layoutPos: {
@@ -405,14 +426,14 @@ export default {
                   dataType: 21,
                   enableCond: 3,
                   ignoreInput: 12,
-                  itemHeight: 600,
+                  itemHeight: 480,
                   labelPos: 'NONE',
                   noPrivDisplayMode: 1,
                   appDEFieldId: 'content',
                   editor: {
                     maxLength: 16777215,
                     showMaxLength: true,
-                    editorHeight: 600,
+                    editorHeight: 480,
                     editorStyle: 'LUCKYSHEET',
                     editorType: 'TEXTAREA',
                     sysPFPluginId: 'luckysheet',
@@ -441,7 +462,6 @@ export default {
                         },
                       ],
                       logicType: 'GROUP',
-                      id: '表单成员[formitem1][面板显示]逻辑',
                     },
                     {
                       logicCat: 'ITEMENABLE',
@@ -456,7 +476,6 @@ export default {
                         },
                       ],
                       logicType: 'GROUP',
-                      id: '表单成员[formitem1][表单项启用]逻辑',
                     },
                   ],
                   layoutPos: {

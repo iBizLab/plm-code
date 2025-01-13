@@ -649,6 +649,7 @@ export default {
         aggMode: 'NONE',
         columnEnableFilter: 2,
         columnEnableLink: 2,
+        frozenFirstColumn: 2,
         groupMode: 'NONE',
         groupStyle: 'DEFAULT',
         orderValueAppDEFieldId: 'sequence',

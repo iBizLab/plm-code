@@ -585,10 +585,11 @@ export default {
             id: 'target_state',
           },
           {
-            clconvertMode: 'NONE',
+            clconvertMode: 'FRONT',
             dataItemName: 'work_item',
             excelCaption: '负责人',
             objectNameField: 'assignee_name',
+            appCodeListId: 'plmweb.sysoperator',
             appDEFieldId: 'work_item',
             valueType: 'OBJECT',
             aggMode: 'NONE',
@@ -597,8 +598,12 @@ export default {
             codeName: 'target_assignee',
             columnType: 'DEFGRIDCOLUMN',
             noPrivDisplayMode: 1,
+            sysPFPluginId: 'personal_info_column',
             width: 150,
             widthUnit: 'PX',
+            userParam: {
+              USERFILTERMAP: '{"id":"assignee_id","name":"assignee_name"}',
+            },
             id: 'target_assignee',
           },
           {

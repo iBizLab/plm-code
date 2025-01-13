@@ -51,7 +51,7 @@ public class SpaceMemberFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_id_eq")
     @JSONField(name = "n_id_eq")
-    @ApiModelProperty(value = "标识EQ", position = 30)
+    @ApiModelProperty(value = "标识EQ", position = 40)
 	private String idEQ;
 
     /**
@@ -59,7 +59,7 @@ public class SpaceMemberFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_name_like")
     @JSONField(name = "n_name_like")
-    @ApiModelProperty(value = "姓名LIKE", position = 40)
+    @ApiModelProperty(value = "姓名LIKE", position = 50)
 	private String nameLIKE;
 
     /**
@@ -67,7 +67,7 @@ public class SpaceMemberFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_space_id_eq")
     @JSONField(name = "n_space_id_eq")
-    @ApiModelProperty(value = "空间标识EQ", position = 90)
+    @ApiModelProperty(value = "空间标识EQ", position = 100)
 	private String spaceIdEQ;
 
     /**
@@ -75,7 +75,7 @@ public class SpaceMemberFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_space_name_eq")
     @JSONField(name = "n_space_name_eq")
-    @ApiModelProperty(value = "名称EQ", position = 100)
+    @ApiModelProperty(value = "名称EQ", position = 110)
 	private String spaceNameEQ;
 
     /**
@@ -83,7 +83,7 @@ public class SpaceMemberFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_space_name_like")
     @JSONField(name = "n_space_name_like")
-    @ApiModelProperty(value = "名称LIKE", position = 101)
+    @ApiModelProperty(value = "名称LIKE", position = 111)
 	private String spaceNameLIKE;
 
 

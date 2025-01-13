@@ -671,6 +671,72 @@ public abstract class AbstractRelationResource {
     }
 
     /**
+    * 查询fetch_product_plan_idea 关联
+    * 
+    *
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<RelationDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_product_plan_idea", tags = {"关联" },  notes = "Relation-fetch_product_plan_idea ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Relation-fetch_product_plan_idea-all') or hasPermission(#dto,'ibizplm-Relation-fetch_product_plan_idea')")
+    @PostMapping("relations/fetch_product_plan_idea")
+    public Mono<ResponseEntity<List<RelationDTO>>> fetchProductPlanIdea
+            (@Validated @RequestBody RelationFilterDTO dto) {
+        RelationSearchContext context = relationFilterDtoMapping.toDomain(dto);
+        Page<Relation> domains = relationService.fetchProductPlanIdea(context) ;
+        List<RelationDTO> list = relationDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
+    * 查询fetch_product_re_project 关联
+    * 
+    *
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<RelationDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_product_re_project", tags = {"关联" },  notes = "Relation-fetch_product_re_project ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Relation-fetch_product_re_project-all') or hasPermission(#dto,'ibizplm-Relation-fetch_product_re_project')")
+    @PostMapping("relations/fetch_product_re_project")
+    public Mono<ResponseEntity<List<RelationDTO>>> fetchProductReProject
+            (@Validated @RequestBody RelationFilterDTO dto) {
+        RelationSearchContext context = relationFilterDtoMapping.toDomain(dto);
+        Page<Relation> domains = relationService.fetchProductReProject(context) ;
+        List<RelationDTO> list = relationDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
+    * 查询fetch_project_re_product 关联
+    * 
+    *
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<RelationDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_project_re_product", tags = {"关联" },  notes = "Relation-fetch_project_re_product ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Relation-fetch_project_re_product-all') or hasPermission(#dto,'ibizplm-Relation-fetch_project_re_product')")
+    @PostMapping("relations/fetch_project_re_product")
+    public Mono<ResponseEntity<List<RelationDTO>>> fetchProjectReProduct
+            (@Validated @RequestBody RelationFilterDTO dto) {
+        RelationSearchContext context = relationFilterDtoMapping.toDomain(dto);
+        Page<Relation> domains = relationService.fetchProjectReProduct(context) ;
+        List<RelationDTO> list = relationDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
     * 查询fetch_review_re_test_case 关联
     * 
     *

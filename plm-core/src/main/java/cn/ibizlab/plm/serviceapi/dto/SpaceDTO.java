@@ -189,6 +189,22 @@ public class SpaceDTO extends DTOBase implements Serializable {
     @ApiModelProperty(value = "更新时间", position = 18)
     private Date updateTime;
 
+    /**
+     * 用户标记
+     */
+    @JsonProperty("user_tag")
+    @JSONField(name = "user_tag")
+    @ApiModelProperty(value = "用户标记", position = 19)
+    private String userTag;
+
+    /**
+     * 用户标记2
+     */
+    @JsonProperty("user_tag2")
+    @JSONField(name = "user_tag2")
+    @ApiModelProperty(value = "用户标记2", position = 20)
+    private String userTag2;
+
 
     /**
      * 设置 [空间标识]
@@ -313,6 +329,24 @@ public class SpaceDTO extends DTOBase implements Serializable {
     public SpaceDTO setName(String name) {
         this.name = name;
         this.modify("name", name);
+        return this;
+    }
+
+    /**
+     * 设置 [用户标记]
+     */
+    public SpaceDTO setUserTag(String userTag) {
+        this.userTag = userTag;
+        this.modify("user_tag", userTag);
+        return this;
+    }
+
+    /**
+     * 设置 [用户标记2]
+     */
+    public SpaceDTO setUserTag2(String userTag2) {
+        this.userTag2 = userTag2;
+        this.modify("user_tag2", userTag2);
         return this;
     }
 

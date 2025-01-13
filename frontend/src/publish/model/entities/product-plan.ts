@@ -806,7 +806,6 @@ export default {
         cssClass: 'fa fa-edit',
         glyph: 'xf044@FontAwesome',
       },
-      timeout: 60000,
       uiactionMode: 'FRONT',
       uiactionTag: 'edit_plan',
       uiactionType: 'DEUIACTION',
@@ -869,7 +868,6 @@ export default {
       codeName: 'swtich_show_mode',
       frontProcessType: 'OTHER',
       fullCodeName: 'product_plan_swtich_show_mode',
-      timeout: 60000,
       uiactionMode: 'FRONT',
       uiactionTag: 'swtich_show_mode',
       uiactionType: 'DEUIACTION',
@@ -889,7 +887,6 @@ export default {
       frontProcessType: 'OTHER',
       fullCodeName:
         'product_plan_toolbar_tree_exp_view_node1_cm_deuiaction1_click',
-      timeout: 60000,
       uiactionMode: 'FRONT',
       uiactionTag: 'toolbar_tree_exp_view_node1_cm_deuiaction1_click',
       uiactionType: 'DEUIACTION',
@@ -910,7 +907,6 @@ export default {
       frontProcessType: 'OTHER',
       fullCodeName:
         'product_plan_toolbar_tree_exp_view_node1_cm_deuiaction2_click',
-      timeout: 60000,
       uiactionMode: 'FRONT',
       uiactionTag: 'toolbar_tree_exp_view_node1_cm_deuiaction2_click',
       uiactionType: 'DEUIACTION',
@@ -931,7 +927,6 @@ export default {
       frontProcessType: 'OTHER',
       fullCodeName:
         'product_plan_toolbar_tree_exp_view_node2_cm_deuiaction1_click',
-      timeout: 60000,
       uiactionMode: 'FRONT',
       uiactionTag: 'toolbar_tree_exp_view_node2_cm_deuiaction1_click',
       uiactionType: 'DEUIACTION',
@@ -952,7 +947,6 @@ export default {
       frontProcessType: 'OTHER',
       fullCodeName:
         'product_plan_toolbar_tree_exp_view_node2_cm_deuiaction2_click',
-      timeout: 60000,
       uiactionMode: 'FRONT',
       uiactionTag: 'toolbar_tree_exp_view_node2_cm_deuiaction2_click',
       uiactionType: 'DEUIACTION',
@@ -973,7 +967,6 @@ export default {
       frontProcessType: 'OTHER',
       fullCodeName:
         'product_plan_toolbar_tree_exp_view_node3_cm_deuiaction1_click',
-      timeout: 60000,
       uiactionMode: 'FRONT',
       uiactionTag: 'toolbar_tree_exp_view_node3_cm_deuiaction1_click',
       uiactionType: 'DEUIACTION',
@@ -994,7 +987,6 @@ export default {
       frontProcessType: 'OTHER',
       fullCodeName:
         'product_plan_toolbar_tree_exp_view_node3_cm_deuiaction2_click',
-      timeout: 60000,
       uiactionMode: 'FRONT',
       uiactionTag: 'toolbar_tree_exp_view_node3_cm_deuiaction2_click',
       uiactionType: 'DEUIACTION',
@@ -1015,7 +1007,6 @@ export default {
       frontProcessType: 'OTHER',
       fullCodeName:
         'product_plan_toolbar_tree_exp_view_treeexpbar_toolbar_deuiaction1_click',
-      timeout: 60000,
       uiactionMode: 'FRONT',
       uiactionTag: 'toolbar_tree_exp_view_treeexpbar_toolbar_deuiaction1_click',
       uiactionType: 'DEUIACTION',
@@ -1036,7 +1027,6 @@ export default {
       frontProcessType: 'OTHER',
       fullCodeName:
         'product_plan_toolbar_tree_exp_view_treeexpbar_toolbar_deuiaction2_click',
-      timeout: 60000,
       uiactionMode: 'FRONT',
       uiactionTag: 'toolbar_tree_exp_view_treeexpbar_toolbar_deuiaction2_click',
       uiactionType: 'DEUIACTION',

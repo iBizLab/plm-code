@@ -13,6 +13,7 @@ import cn.ibizlab.util.domain.ImportResult;
 import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.core.base.domain.DynaAppmenu;
 import cn.ibizlab.plm.core.base.filter.DynaAppmenuSearchContext;
+import cn.ibizlab.plm.util.annotation.DEAction;
 
 /**
  * 动态应用菜单服务接口[DynaAppmenuService]

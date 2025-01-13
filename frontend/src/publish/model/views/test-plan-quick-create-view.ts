@@ -271,7 +271,6 @@ export default {
                         },
                       ],
                       logicType: 'GROUP',
-                      id: '表单成员[library_name][表单项启用]逻辑',
                     },
                   ],
                   layoutPos: {
@@ -476,7 +475,6 @@ export default {
                             },
                           ],
                           logicType: 'GROUP',
-                          id: '表单成员[project_name][表单项值变更（脚本处理）]逻辑',
                         },
                       ],
                       layoutPos: {
@@ -550,7 +548,6 @@ export default {
                             },
                           ],
                           logicType: 'GROUP',
-                          id: '表单成员[sprint_name][面板显示]逻辑',
                         },
                         {
                           logicCat: 'ITEMENABLE',
@@ -564,7 +561,6 @@ export default {
                             },
                           ],
                           logicType: 'GROUP',
-                          id: '表单成员[sprint_name][表单项启用]逻辑',
                         },
                       ],
                       layoutPos: {
@@ -638,7 +634,6 @@ export default {
                             },
                           ],
                           logicType: 'GROUP',
-                          id: '表单成员[release_name][面板显示]逻辑',
                         },
                         {
                           logicCat: 'ITEMENABLE',
@@ -652,7 +647,6 @@ export default {
                             },
                           ],
                           logicType: 'GROUP',
-                          id: '表单成员[release_name][表单项启用]逻辑',
                         },
                       ],
                       layoutPos: {

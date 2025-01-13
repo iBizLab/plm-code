@@ -166,6 +166,45 @@ public abstract class AbstractSpaceMemberResource {
     }
 
     /**
+    * choose_position 空间成员
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return Mono<ResponseEntity<SpaceMemberDTO>>
+    */
+    @ApiOperation(value = "choose_position", tags = {"空间成员" },  notes = "SpaceMember-choose_position ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-SpaceMember-choose_position-all') or hasPermission(this.spaceMemberDtoMapping.toDomain(#dto),'ibizplm-SpaceMember-choose_position')")
+    @PostMapping("space_members/{id}/choose_position")
+    public Mono<ResponseEntity<ResponseWrapper<SpaceMemberDTO>>>choosePositionById
+            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<SpaceMemberDTO> dto) {
+        ResponseWrapper<SpaceMemberDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(choosePositionById(ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(choosePositionById(id, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * choose_position 空间成员
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<SpaceMemberDTO>
+    */   
+    public SpaceMemberDTO choosePositionById
+            (String id, SpaceMemberDTO dto) {
+        SpaceMember domain = spaceMemberDtoMapping.toDomain(dto);
+        domain.setId(id);
+        SpaceMember rt = spaceMemberService.choosePosition(domain);
+        return spaceMemberDtoMapping.toDto(rt);
+    }
+
+    /**
     * mob_create_space_member 空间成员
     * 
     *
@@ -352,6 +391,47 @@ public abstract class AbstractSpaceMemberResource {
         SpaceMember domain = spaceMemberDtoMapping.toDomain(dto);
         domain.setId(id);
         SpaceMember rt = spaceMemberService.changeRole(domain);
+        return spaceMemberDtoMapping.toDto(rt);
+    }
+
+    /**
+    * choose_position 空间成员
+    * 
+    *
+    * @param spaceId spaceId
+    * @param id id
+    * @param dto dto
+    * @return Mono<ResponseEntity<SpaceMemberDTO>>
+    */
+    @ApiOperation(value = "choose_position", tags = {"空间成员" },  notes = "SpaceMember-choose_position ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-SpaceMember-choose_position-all') or hasPermission('space',#spaceId,this.spaceMemberDtoMapping.toDomain(#dto),'ibizplm-SpaceMember-choose_position')")
+    @PostMapping("spaces/{spaceId}/space_members/{id}/choose_position")
+    public Mono<ResponseEntity<ResponseWrapper<SpaceMemberDTO>>>choosePositionBySpaceIdAndId
+            (@PathVariable("spaceId") String spaceId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<SpaceMemberDTO> dto) {
+        ResponseWrapper<SpaceMemberDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(choosePositionBySpaceIdAndId(spaceId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(choosePositionBySpaceIdAndId(spaceId, id, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * choose_position 空间成员
+    * 
+    *
+    * @param spaceId spaceId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<SpaceMemberDTO>
+    */   
+    public SpaceMemberDTO choosePositionBySpaceIdAndId
+            (String spaceId, String id, SpaceMemberDTO dto) {
+        SpaceMember domain = spaceMemberDtoMapping.toDomain(dto);
+        domain.setId(id);
+        SpaceMember rt = spaceMemberService.choosePosition(domain);
         return spaceMemberDtoMapping.toDto(rt);
     }
 
@@ -548,6 +628,47 @@ public abstract class AbstractSpaceMemberResource {
         SpaceMember domain = spaceMemberDtoMapping.toDomain(dto);
         domain.setId(id);
         SpaceMember rt = spaceMemberService.changeRole(domain);
+        return spaceMemberDtoMapping.toDto(rt);
+    }
+
+    /**
+    * choose_position 空间成员
+    * 
+    *
+    * @param userId userId
+    * @param id id
+    * @param dto dto
+    * @return Mono<ResponseEntity<SpaceMemberDTO>>
+    */
+    @ApiOperation(value = "choose_position", tags = {"空间成员" },  notes = "SpaceMember-choose_position ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-SpaceMember-choose_position-all') or hasPermission('user',#userId,this.spaceMemberDtoMapping.toDomain(#dto),'ibizplm-SpaceMember-choose_position')")
+    @PostMapping("users/{userId}/space_members/{id}/choose_position")
+    public Mono<ResponseEntity<ResponseWrapper<SpaceMemberDTO>>>choosePositionByUserIdAndId
+            (@PathVariable("userId") String userId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<SpaceMemberDTO> dto) {
+        ResponseWrapper<SpaceMemberDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(choosePositionByUserIdAndId(userId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(choosePositionByUserIdAndId(userId, id, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * choose_position 空间成员
+    * 
+    *
+    * @param userId userId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<SpaceMemberDTO>
+    */   
+    public SpaceMemberDTO choosePositionByUserIdAndId
+            (String userId, String id, SpaceMemberDTO dto) {
+        SpaceMember domain = spaceMemberDtoMapping.toDomain(dto);
+        domain.setId(id);
+        SpaceMember rt = spaceMemberService.choosePosition(domain);
         return spaceMemberDtoMapping.toDto(rt);
     }
 

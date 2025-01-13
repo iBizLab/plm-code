@@ -101,11 +101,19 @@ public class CategoryDTO extends DTOBase implements Serializable {
     private Integer leafFlag;
 
     /**
+     * 是否叶子节点3
+     */
+    @JsonProperty("is_leaf3")
+    @JSONField(name = "is_leaf3")
+    @ApiModelProperty(value = "是否叶子节点3", position = 8)
+    private Integer isLeaf3;
+
+    /**
      * 建立人
      */
     @JsonProperty("create_man")
     @JSONField(name = "create_man")
-    @ApiModelProperty(value = "建立人", position = 8)
+    @ApiModelProperty(value = "建立人", position = 9)
     private String createMan;
 
     /**
@@ -114,7 +122,7 @@ public class CategoryDTO extends DTOBase implements Serializable {
     @JsonProperty("create_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "create_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "建立时间", position = 9)
+    @ApiModelProperty(value = "建立时间", position = 10)
     private Date createTime;
 
     /**
@@ -122,7 +130,7 @@ public class CategoryDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("id")
     @JSONField(name = "id")
-    @ApiModelProperty(value = "标识", position = 10)
+    @ApiModelProperty(value = "标识", position = 11)
     private String id;
 
     /**
@@ -130,7 +138,7 @@ public class CategoryDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("name")
     @JSONField(name = "name")
-    @ApiModelProperty(value = "名称", position = 11)
+    @ApiModelProperty(value = "名称", position = 12)
     private String name;
 
     /**
@@ -138,7 +146,7 @@ public class CategoryDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("pid")
     @JSONField(name = "pid")
-    @ApiModelProperty(value = "父标识", position = 12)
+    @ApiModelProperty(value = "父标识", position = 13)
     private String pid;
 
     /**
@@ -146,7 +154,7 @@ public class CategoryDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("section_id")
     @JSONField(name = "section_id")
-    @ApiModelProperty(value = "分组标识", position = 13)
+    @ApiModelProperty(value = "分组标识", position = 14)
     private String sectionId;
 
     /**
@@ -154,7 +162,7 @@ public class CategoryDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("section_name")
     @JSONField(name = "section_name")
-    @ApiModelProperty(value = "名称", position = 14)
+    @ApiModelProperty(value = "名称", position = 15)
     private String sectionName;
 
     /**
@@ -162,7 +170,7 @@ public class CategoryDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("update_man")
     @JSONField(name = "update_man")
-    @ApiModelProperty(value = "更新人", position = 15)
+    @ApiModelProperty(value = "更新人", position = 16)
     private String updateMan;
 
     /**
@@ -171,7 +179,7 @@ public class CategoryDTO extends DTOBase implements Serializable {
     @JsonProperty("update_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "update_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "更新时间", position = 16)
+    @ApiModelProperty(value = "更新时间", position = 17)
     private Date updateTime;
 
 
@@ -199,6 +207,15 @@ public class CategoryDTO extends DTOBase implements Serializable {
     public CategoryDTO setLeafFlag(Integer leafFlag) {
         this.leafFlag = leafFlag;
         this.modify("leaf_flag", leafFlag);
+        return this;
+    }
+
+    /**
+     * 设置 [是否叶子节点3]
+     */
+    public CategoryDTO setIsLeaf3(Integer isLeaf3) {
+        this.isLeaf3 = isLeaf3;
+        this.modify("is_leaf3", isLeaf3);
         return this;
     }
 

@@ -16,6 +16,7 @@ import cn.ibizlab.plm.core.insight.filter.InsightViewSearchContext;
 import cn.ibizlab.plm.core.insight.domain.InsightMember;
 import cn.ibizlab.plm.core.insight.domain.InsightReport;
 import cn.ibizlab.plm.core.base.domain.DynaDashboard;
+import cn.ibizlab.plm.util.annotation.DEAction;
 
 /**
  * 效能视图服务接口[InsightViewService]

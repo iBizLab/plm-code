@@ -549,7 +549,6 @@ export default {
       frontProcessType: 'OTHER',
       fullCodeName:
         'insight_toolbar_report_tree_exp_view_node1_cm_deuiaction1_click',
-      timeout: 60000,
       uiactionMode: 'FRONT',
       uiactionTag: 'toolbar_report_tree_exp_view_node1_cm_deuiaction1_click',
       uiactionType: 'DEUIACTION',
@@ -570,7 +569,6 @@ export default {
       frontProcessType: 'OTHER',
       fullCodeName:
         'insight_toolbar_report_tree_exp_view_node1_cm_deuiaction2_click',
-      timeout: 60000,
       uiactionMode: 'FRONT',
       uiactionTag: 'toolbar_report_tree_exp_view_node1_cm_deuiaction2_click',
       uiactionType: 'DEUIACTION',
@@ -591,7 +589,6 @@ export default {
       frontProcessType: 'OTHER',
       fullCodeName:
         'insight_toolbar_report_tree_exp_view_node2_cm_deuiaction1_click',
-      timeout: 60000,
       uiactionMode: 'FRONT',
       uiactionTag: 'toolbar_report_tree_exp_view_node2_cm_deuiaction1_click',
       uiactionType: 'DEUIACTION',
@@ -612,7 +609,6 @@ export default {
       frontProcessType: 'OTHER',
       fullCodeName:
         'insight_toolbar_report_tree_exp_view_node2_cm_deuiaction2_click',
-      timeout: 60000,
       uiactionMode: 'FRONT',
       uiactionTag: 'toolbar_report_tree_exp_view_node2_cm_deuiaction2_click',
       uiactionType: 'DEUIACTION',
@@ -633,7 +629,6 @@ export default {
       frontProcessType: 'OTHER',
       fullCodeName:
         'insight_toolbar_report_tree_exp_view_node3_cm_deuiaction1_click',
-      timeout: 60000,
       uiactionMode: 'FRONT',
       uiactionTag: 'toolbar_report_tree_exp_view_node3_cm_deuiaction1_click',
       uiactionType: 'DEUIACTION',
@@ -654,7 +649,6 @@ export default {
       frontProcessType: 'OTHER',
       fullCodeName:
         'insight_toolbar_report_tree_exp_view_node3_cm_deuiaction2_click',
-      timeout: 60000,
       uiactionMode: 'FRONT',
       uiactionTag: 'toolbar_report_tree_exp_view_node3_cm_deuiaction2_click',
       uiactionType: 'DEUIACTION',

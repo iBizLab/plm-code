@@ -358,6 +358,11 @@ export default {
             id: 'usrdrgroup0423482168',
           },
           {
+            caption: '项目',
+            name: '项目',
+            id: 'usrdrgroup1203616060',
+          },
+          {
             caption: '文档',
             name: '文档',
             id: 'usrdrgroup0229373827',
@@ -436,6 +441,12 @@ export default {
               },
             ],
             id: 'baseline',
+          },
+          {
+            dedrbarGroupId: 'usrdrgroup1203616060',
+            caption: '项目',
+            appViewId: 'plmweb.relation_product_re_project_grid_view',
+            id: 'project',
           },
           {
             dedrbarGroupId: 'usrdrgroup0229373827',

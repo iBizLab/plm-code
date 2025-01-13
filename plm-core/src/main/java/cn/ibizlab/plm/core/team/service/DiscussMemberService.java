@@ -15,6 +15,7 @@ import cn.ibizlab.plm.core.team.domain.DiscussMember;
 import cn.ibizlab.plm.core.team.filter.DiscussMemberSearchContext;
 import cn.ibizlab.plm.core.team.domain.DiscussTopic;
 import cn.ibizlab.plm.core.base.domain.User;
+import cn.ibizlab.plm.util.annotation.DEAction;
 
 /**
  * 协作成员服务接口[DiscussMemberService]
@@ -183,6 +184,16 @@ public interface DiscussMemberService extends IService<DiscussMember> {
     * @return
     */
     default DiscussMember changeRole(DiscussMember et) {
+        return et;
+    }
+
+    /**
+    * choosePosition
+    * 
+    * @param et
+    * @return
+    */
+    default DiscussMember choosePosition(DiscussMember et) {
         return et;
     }
 

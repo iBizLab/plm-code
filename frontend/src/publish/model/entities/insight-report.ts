@@ -871,7 +871,6 @@ export default {
         glyph: 'xf067@FontAwesome',
       },
       refreshMode: 1,
-      timeout: 60000,
       uiactionMode: 'FRONT',
       uiactionTag: 'create_from_templat',
       uiactionType: 'DEUIACTION',
@@ -896,7 +895,6 @@ export default {
         glyph: 'xf067@FontAwesome',
       },
       refreshMode: 1,
-      timeout: 60000,
       uiactionMode: 'FRONT',
       uiactionTag: 'create_report',
       uiactionType: 'DEUIACTION',
@@ -949,7 +947,6 @@ export default {
         glyph: 'xf044@FontAwesome',
       },
       refreshMode: 1,
-      timeout: 60000,
       uiactionMode: 'FRONT',
       uiactionTag: 'edit_report',
       uiactionType: 'DEUIACTION',
@@ -967,7 +964,6 @@ export default {
       codeName: 'export_pdf',
       frontProcessType: 'OTHER',
       fullCodeName: 'insight_report_export_pdf',
-      timeout: 60000,
       uiactionMode: 'FRONT',
       uiactionTag: 'export_pdf',
       uiactionType: 'DEUIACTION',
@@ -985,7 +981,6 @@ export default {
       caption: '导出表格',
       codeName: 'export_table',
       fullCodeName: 'insight_report_export_table',
-      timeout: 60000,
       uiactionMode: 'FRONT',
       uiactionTag: 'export_table',
       uiactionType: 'DEUIACTION',
@@ -1020,7 +1015,6 @@ export default {
           id: 'insight_report',
         },
       ],
-      timeout: 60000,
       uiactionMode: 'FRONT',
       uiactionTag: 'open_bi_report_panel_view',
       uiactionType: 'DEUIACTION',
@@ -1046,7 +1040,6 @@ export default {
       refreshMode: 1,
       scriptCode:
         "const result = await ibiz.util.biReport.openDesignPage(context,params,{mode:'DATA',reportId: data[0].id});\r\nreturn result;",
-      timeout: 60000,
       uiactionMode: 'FRONT',
       uiactionTag: 'open_report_design_view',
       uiactionType: 'DEUIACTION',
@@ -1065,7 +1058,6 @@ export default {
       frontProcessType: 'OTHER',
       fullCodeName:
         'insight_report_panel_usr0708314116_button_calluilogic_click',
-      timeout: 60000,
       uiactionMode: 'FRONT',
       uiactionTag: 'panel_usr0708314116_button_calluilogic_click',
       uiactionType: 'DEUIACTION',
@@ -1092,7 +1084,6 @@ export default {
         cssClass: 'fa fa-gears',
         glyph: 'xf085@FontAwesome',
       },
-      timeout: 60000,
       uiactionMode: 'FRONT',
       uiactionTag: 'set_category',
       uiactionType: 'DEUIACTION',
@@ -1134,7 +1125,6 @@ export default {
       frontProcessType: 'OTHER',
       fullCodeName:
         'insight_report_toolbar_report_tree_exp_view_node1_cm_deuiaction1_click',
-      timeout: 60000,
       uiactionMode: 'FRONT',
       uiactionTag: 'toolbar_report_tree_exp_view_node1_cm_deuiaction1_click',
       uiactionType: 'DEUIACTION',
@@ -1155,7 +1145,6 @@ export default {
       frontProcessType: 'OTHER',
       fullCodeName:
         'insight_report_toolbar_report_tree_exp_view_node1_cm_deuiaction2_click',
-      timeout: 60000,
       uiactionMode: 'FRONT',
       uiactionTag: 'toolbar_report_tree_exp_view_node1_cm_deuiaction2_click',
       uiactionType: 'DEUIACTION',
@@ -1176,7 +1165,6 @@ export default {
       frontProcessType: 'OTHER',
       fullCodeName:
         'insight_report_toolbar_report_tree_exp_view_node2_cm_deuiaction1_click',
-      timeout: 60000,
       uiactionMode: 'FRONT',
       uiactionTag: 'toolbar_report_tree_exp_view_node2_cm_deuiaction1_click',
       uiactionType: 'DEUIACTION',
@@ -1197,7 +1185,6 @@ export default {
       frontProcessType: 'OTHER',
       fullCodeName:
         'insight_report_toolbar_report_tree_exp_view_node2_cm_deuiaction2_click',
-      timeout: 60000,
       uiactionMode: 'FRONT',
       uiactionTag: 'toolbar_report_tree_exp_view_node2_cm_deuiaction2_click',
       uiactionType: 'DEUIACTION',
@@ -1218,7 +1205,6 @@ export default {
       frontProcessType: 'OTHER',
       fullCodeName:
         'insight_report_toolbar_report_tree_exp_view_node3_cm_deuiaction1_click',
-      timeout: 60000,
       uiactionMode: 'FRONT',
       uiactionTag: 'toolbar_report_tree_exp_view_node3_cm_deuiaction1_click',
       uiactionType: 'DEUIACTION',
@@ -1239,7 +1225,6 @@ export default {
       frontProcessType: 'OTHER',
       fullCodeName:
         'insight_report_toolbar_report_tree_exp_view_node3_cm_deuiaction2_click',
-      timeout: 60000,
       uiactionMode: 'FRONT',
       uiactionTag: 'toolbar_report_tree_exp_view_node3_cm_deuiaction2_click',
       uiactionType: 'DEUIACTION',
@@ -1261,7 +1246,6 @@ export default {
       frontProcessType: 'OTHER',
       fullCodeName:
         'insight_report_toolbar_report_tree_exp_view_treeexpbar_toolbar_deuiaction1_click',
-      timeout: 60000,
       uiactionMode: 'FRONT',
       uiactionTag:
         'toolbar_report_tree_exp_view_treeexpbar_toolbar_deuiaction1_click',
@@ -1284,7 +1268,6 @@ export default {
       frontProcessType: 'OTHER',
       fullCodeName:
         'insight_report_toolbar_report_tree_exp_view_treeexpbar_toolbar_deuiaction2_click',
-      timeout: 60000,
       uiactionMode: 'FRONT',
       uiactionTag:
         'toolbar_report_tree_exp_view_treeexpbar_toolbar_deuiaction2_click',

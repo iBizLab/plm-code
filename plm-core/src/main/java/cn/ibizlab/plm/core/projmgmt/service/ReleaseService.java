@@ -19,6 +19,7 @@ import cn.ibizlab.plm.core.projmgmt.domain.Stage;
 import cn.ibizlab.plm.core.testmgmt.domain.TestPlan;
 import cn.ibizlab.plm.core.projmgmt.domain.WorkItem;
 import cn.ibizlab.plm.core.base.domain.Relation;
+import cn.ibizlab.plm.util.annotation.DEAction;
 
 /**
  * 项目发布服务接口[ReleaseService]
@@ -309,6 +310,38 @@ public interface ReleaseService extends IService<Release> {
     * @return
     */
     List<Release> listNotPublished(ReleaseSearchContext context);
+
+    /**
+    * fetchProductReProjectPublished
+    * 产品所关联项目中的已发布
+    * @param context
+    * @return
+    */
+    Page<Release> fetchProductReProjectPublished(ReleaseSearchContext context);
+
+    /**
+    * listProductReProjectPublished
+    * 产品所关联项目中的已发布
+    * @param context
+    * @return
+    */
+    List<Release> listProductReProjectPublished(ReleaseSearchContext context);
+
+    /**
+    * fetchPublished
+    * 
+    * @param context
+    * @return
+    */
+    Page<Release> fetchPublished(ReleaseSearchContext context);
+
+    /**
+    * listPublished
+    * 
+    * @param context
+    * @return
+    */
+    List<Release> listPublished(ReleaseSearchContext context);
 
     /**
     * fetchReader

@@ -108,11 +108,27 @@ public class MemberDTO extends DTOBase implements Serializable {
     private Integer reportFlag;
 
     /**
+     * 职位名称
+     */
+    @JsonProperty("position_name")
+    @JSONField(name = "position_name")
+    @ApiModelProperty(value = "职位名称", position = 9)
+    private String positionName;
+
+    /**
+     * 职位
+     */
+    @JsonProperty("title")
+    @JSONField(name = "title")
+    @ApiModelProperty(value = "职位", position = 10)
+    private String title;
+
+    /**
      * 建立人
      */
     @JsonProperty("create_man")
     @JSONField(name = "create_man")
-    @ApiModelProperty(value = "建立人", position = 9)
+    @ApiModelProperty(value = "建立人", position = 11)
     private String createMan;
 
     /**
@@ -121,7 +137,7 @@ public class MemberDTO extends DTOBase implements Serializable {
     @JsonProperty("create_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "create_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "建立时间", position = 10)
+    @ApiModelProperty(value = "建立时间", position = 12)
     private Date createTime;
 
     /**
@@ -129,7 +145,7 @@ public class MemberDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("id")
     @JSONField(name = "id")
-    @ApiModelProperty(value = "标识", position = 11)
+    @ApiModelProperty(value = "标识", position = 13)
     private String id;
 
     /**
@@ -137,15 +153,23 @@ public class MemberDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("name")
     @JSONField(name = "name")
-    @ApiModelProperty(value = "名称", position = 12)
+    @ApiModelProperty(value = "名称", position = 14)
     private String name;
+
+    /**
+     * 职位标识
+     */
+    @JsonProperty("position_id")
+    @JSONField(name = "position_id")
+    @ApiModelProperty(value = "职位标识", position = 15)
+    private String positionId;
 
     /**
      * 更新人
      */
     @JsonProperty("update_man")
     @JSONField(name = "update_man")
-    @ApiModelProperty(value = "更新人", position = 13)
+    @ApiModelProperty(value = "更新人", position = 16)
     private String updateMan;
 
     /**
@@ -154,7 +178,7 @@ public class MemberDTO extends DTOBase implements Serializable {
     @JsonProperty("update_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "update_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "更新时间", position = 14)
+    @ApiModelProperty(value = "更新时间", position = 17)
     private Date updateTime;
 
 
@@ -213,11 +237,38 @@ public class MemberDTO extends DTOBase implements Serializable {
     }
 
     /**
+     * 设置 [职位名称]
+     */
+    public MemberDTO setPositionName(String positionName) {
+        this.positionName = positionName;
+        this.modify("position_name", positionName);
+        return this;
+    }
+
+    /**
+     * 设置 [职位]
+     */
+    public MemberDTO setTitle(String title) {
+        this.title = title;
+        this.modify("title", title);
+        return this;
+    }
+
+    /**
      * 设置 [名称]
      */
     public MemberDTO setName(String name) {
         this.name = name;
         this.modify("name", name);
+        return this;
+    }
+
+    /**
+     * 设置 [职位标识]
+     */
+    public MemberDTO setPositionId(String positionId) {
+        this.positionId = positionId;
+        this.modify("position_id", positionId);
         return this;
     }
 

@@ -128,6 +128,45 @@ public abstract class AbstractProjectMemberResource {
     }
 
     /**
+    * change_position 项目成员
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return Mono<ResponseEntity<ProjectMemberDTO>>
+    */
+    @ApiOperation(value = "change_position", tags = {"项目成员" },  notes = "ProjectMember-change_position ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ProjectMember-change_position-all') or hasPermission(this.projectMemberDtoMapping.toDomain(#dto),'ibizplm-ProjectMember-change_position')")
+    @PostMapping("project_members/{id}/change_position")
+    public Mono<ResponseEntity<ResponseWrapper<ProjectMemberDTO>>>changePositionById
+            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<ProjectMemberDTO> dto) {
+        ResponseWrapper<ProjectMemberDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(changePositionById(ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(changePositionById(id, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * change_position 项目成员
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<ProjectMemberDTO>
+    */   
+    public ProjectMemberDTO changePositionById
+            (String id, ProjectMemberDTO dto) {
+        ProjectMember domain = projectMemberDtoMapping.toDomain(dto);
+        domain.setId(id);
+        ProjectMember rt = projectMemberService.changePosition(domain);
+        return projectMemberDtoMapping.toDto(rt);
+    }
+
+    /**
     * change_role 项目成员
     * 
     *
@@ -312,6 +351,47 @@ public abstract class AbstractProjectMemberResource {
         domain.setId(id);
         projectMemberService.update(domain);
         ProjectMember rt = domain;
+        return projectMemberDtoMapping.toDto(rt);
+    }
+
+    /**
+    * change_position 项目成员
+    * 
+    *
+    * @param projectId projectId
+    * @param id id
+    * @param dto dto
+    * @return Mono<ResponseEntity<ProjectMemberDTO>>
+    */
+    @ApiOperation(value = "change_position", tags = {"项目成员" },  notes = "ProjectMember-change_position ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ProjectMember-change_position-all') or hasPermission('project',#projectId,this.projectMemberDtoMapping.toDomain(#dto),'ibizplm-ProjectMember-change_position')")
+    @PostMapping("projects/{projectId}/project_members/{id}/change_position")
+    public Mono<ResponseEntity<ResponseWrapper<ProjectMemberDTO>>>changePositionByProjectIdAndId
+            (@PathVariable("projectId") String projectId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<ProjectMemberDTO> dto) {
+        ResponseWrapper<ProjectMemberDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(changePositionByProjectIdAndId(projectId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(changePositionByProjectIdAndId(projectId, id, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * change_position 项目成员
+    * 
+    *
+    * @param projectId projectId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<ProjectMemberDTO>
+    */   
+    public ProjectMemberDTO changePositionByProjectIdAndId
+            (String projectId, String id, ProjectMemberDTO dto) {
+        ProjectMember domain = projectMemberDtoMapping.toDomain(dto);
+        domain.setId(id);
+        ProjectMember rt = projectMemberService.changePosition(domain);
         return projectMemberDtoMapping.toDto(rt);
     }
 
@@ -508,6 +588,47 @@ public abstract class AbstractProjectMemberResource {
         domain.setId(id);
         projectMemberService.update(domain);
         ProjectMember rt = domain;
+        return projectMemberDtoMapping.toDto(rt);
+    }
+
+    /**
+    * change_position 项目成员
+    * 
+    *
+    * @param userId userId
+    * @param id id
+    * @param dto dto
+    * @return Mono<ResponseEntity<ProjectMemberDTO>>
+    */
+    @ApiOperation(value = "change_position", tags = {"项目成员" },  notes = "ProjectMember-change_position ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ProjectMember-change_position-all') or hasPermission('user',#userId,this.projectMemberDtoMapping.toDomain(#dto),'ibizplm-ProjectMember-change_position')")
+    @PostMapping("users/{userId}/project_members/{id}/change_position")
+    public Mono<ResponseEntity<ResponseWrapper<ProjectMemberDTO>>>changePositionByUserIdAndId
+            (@PathVariable("userId") String userId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<ProjectMemberDTO> dto) {
+        ResponseWrapper<ProjectMemberDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(changePositionByUserIdAndId(userId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(changePositionByUserIdAndId(userId, id, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * change_position 项目成员
+    * 
+    *
+    * @param userId userId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<ProjectMemberDTO>
+    */   
+    public ProjectMemberDTO changePositionByUserIdAndId
+            (String userId, String id, ProjectMemberDTO dto) {
+        ProjectMember domain = projectMemberDtoMapping.toDomain(dto);
+        domain.setId(id);
+        ProjectMember rt = projectMemberService.changePosition(domain);
         return projectMemberDtoMapping.toDto(rt);
     }
 

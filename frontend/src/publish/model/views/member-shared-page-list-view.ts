@@ -700,6 +700,11 @@ export default {
             dataType: 25,
             id: 'srfmajortext',
           },
+          {
+            appDEFieldId: 'position_id',
+            dataType: 25,
+            id: 'position_id',
+          },
         ],
         pagingSize: 1000,
         showHeader: true,

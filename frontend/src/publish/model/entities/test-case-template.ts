@@ -1081,7 +1081,6 @@ export default {
         cssClass: 'fa fa-edit',
         glyph: 'xf044@FontAwesome',
       },
-      timeout: 60000,
       tooltip: '编辑模板',
       uiactionMode: 'FRONT',
       uiactionTag: 'template_edit',

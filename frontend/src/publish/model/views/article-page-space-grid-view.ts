@@ -135,6 +135,9 @@ export default {
                   spacingBottom: 'OUTERSMALL',
                   spacingLeft: 'OUTERLARGE',
                 },
+                sysCss: {
+                  cssName: 'dashboard_repair_style',
+                },
                 id: 'container',
               },
             ],
@@ -344,15 +347,6 @@ export default {
     ],
     appViewRefs: [
       {
-        realTitle: '页面编辑视图',
-        realTitleLanguageRes: {
-          lanResTag: 'PAGE.TITLE.PAGE.EDITVIEW',
-        },
-        refAppViewId: 'plmweb.article_page_edit_view',
-        name: 'NEWDATA',
-        id: 'newdata',
-      },
-      {
         openMode: 'INDEXVIEWTAB_POPUPMODAL',
         realOpenMode: 'INDEXVIEWTAB_POPUPMODAL',
         realTitle:
@@ -360,6 +354,15 @@ export default {
         refAppViewId: 'plmweb.article_page_show_view',
         name: 'EDITDATA',
         id: 'editdata',
+      },
+      {
+        realTitle: '页面编辑视图',
+        realTitleLanguageRes: {
+          lanResTag: 'PAGE.TITLE.PAGE.EDITVIEW',
+        },
+        refAppViewId: 'plmweb.article_page_edit_view',
+        name: 'NEWDATA',
+        id: 'newdata',
       },
     ],
     controls: [

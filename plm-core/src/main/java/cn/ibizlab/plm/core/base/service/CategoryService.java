@@ -17,7 +17,9 @@ import cn.ibizlab.plm.core.base.filter.CategorySearchContext;
 import cn.ibizlab.plm.core.base.domain.Section;
 import cn.ibizlab.plm.core.prodmgmt.domain.Idea;
 import cn.ibizlab.plm.core.prodmgmt.domain.IdeaTemplate;
+import cn.ibizlab.plm.core.base.domain.Position;
 import cn.ibizlab.plm.core.wiki.domain.Space;
+import cn.ibizlab.plm.util.annotation.DEAction;
 
 /**
  * 类别服务接口[CategoryService]
@@ -274,6 +276,22 @@ public interface CategoryService extends IService<Category> {
     * @return
     */
     List<Category> listNoSection(CategorySearchContext context);
+
+    /**
+    * fetchPositionCategory
+    * 
+    * @param context
+    * @return
+    */
+    Page<Category> fetchPositionCategory(CategorySearchContext context);
+
+    /**
+    * listPositionCategory
+    * 
+    * @param context
+    * @return
+    */
+    List<Category> listPositionCategory(CategorySearchContext context);
 
     /**
     * fetchProductIdeaCategory

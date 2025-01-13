@@ -138,6 +138,7 @@ export default {
               id: 'root',
             },
             {
+              dataSourceType: 'DEDATASET',
               idAppDEFieldId: 'id',
               appDEDataSetId: 'fetch_current',
               textAppDEFieldId: 'name',

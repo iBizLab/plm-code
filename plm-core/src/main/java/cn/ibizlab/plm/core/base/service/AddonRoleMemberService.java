@@ -14,6 +14,7 @@ import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.core.base.domain.AddonRoleMember;
 import cn.ibizlab.plm.core.base.filter.AddonRoleMemberSearchContext;
 import cn.ibizlab.plm.core.base.domain.Addon;
+import cn.ibizlab.plm.util.annotation.DEAction;
 
 /**
  * 组件权限成员服务接口[AddonRoleMemberService]

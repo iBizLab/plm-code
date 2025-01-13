@@ -180,6 +180,7 @@ export default {
               id: 'root',
             },
             {
+              dataSourceType: 'DEDATASET',
               iconAppDEFieldId: 'icon',
               idAppDEFieldId: 'id',
               leafFlagAppDEFieldId: 'is_leaf',
@@ -201,6 +202,7 @@ export default {
               id: 'node_2',
             },
             {
+              dataSourceType: 'DEDATASET',
               iconAppDEFieldId: 'icon',
               idAppDEFieldId: 'id',
               leafFlagAppDEFieldId: 'is_leaf',
@@ -220,6 +222,7 @@ export default {
               id: 'node_4',
             },
             {
+              dataSourceType: 'DEDATASET',
               iconAppDEFieldId: 'icon',
               idAppDEFieldId: 'id',
               leafFlagAppDEFieldId: 'is_leaf',

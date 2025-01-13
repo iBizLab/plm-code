@@ -25,6 +25,7 @@ import cn.ibizlab.plm.core.base.domain.SearchComment;
 import cn.ibizlab.plm.core.wiki.domain.PageVersion;
 import cn.ibizlab.plm.core.base.domain.Relation;
 import cn.ibizlab.plm.core.base.domain.Version;
+import cn.ibizlab.plm.util.annotation.DEAction;
 
 /**
  * 页面服务接口[ArticlePageService]
@@ -213,6 +214,16 @@ public interface ArticlePageService extends IService<ArticlePage> {
     * @return
     */
     default ArticlePage copyPage(ArticlePage et) {
+        return et;
+    }
+
+    /**
+    * countComment
+    * 
+    * @param et
+    * @return
+    */
+    default ArticlePage countComment(ArticlePage et) {
         return et;
     }
 

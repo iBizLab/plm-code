@@ -116,6 +116,10 @@ public class RelationSearchContext extends QueryWrapperContext<Relation> {
             this.getFilter().eq("principal_id",contextParentKey);
         if(Entities.IDEA.equals(this.getContextParentEntity())&&contextParentKey!=null)
             this.getFilter().eq("principal_id",contextParentKey);
+        if(Entities.PRODUCT.equals(this.getContextParentEntity())&&contextParentKey!=null)
+            this.getFilter().eq("principal_id",contextParentKey);
+        if(Entities.PROJECT.equals(this.getContextParentEntity())&&contextParentKey!=null)
+            this.getFilter().eq("principal_id",contextParentKey);
         if(Entities.RELEASE.equals(this.getContextParentEntity())&&contextParentKey!=null)
             this.getFilter().eq("principal_id",contextParentKey);
         if(Entities.REVIEW.equals(this.getContextParentEntity())&&contextParentKey!=null)
@@ -130,7 +134,11 @@ public class RelationSearchContext extends QueryWrapperContext<Relation> {
             this.getFilter().eq("target_id",contextParentKey);
         if(Entities.ARTICLE_PAGE.equals(this.getContextParentEntity())&&contextParentKey!=null)
             this.getFilter().eq("target_id",contextParentKey);
+        if(Entities.PRODUCT.equals(this.getContextParentEntity())&&contextParentKey!=null)
+            this.getFilter().eq("target_id",contextParentKey);
         if(Entities.PRODUCT_PLAN.equals(this.getContextParentEntity())&&contextParentKey!=null)
+            this.getFilter().eq("target_id",contextParentKey);
+        if(Entities.PROJECT.equals(this.getContextParentEntity())&&contextParentKey!=null)
             this.getFilter().eq("target_id",contextParentKey);
         if(Entities.RUN.equals(this.getContextParentEntity())&&contextParentKey!=null)
             this.getFilter().eq("target_id",contextParentKey);

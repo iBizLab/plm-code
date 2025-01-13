@@ -222,6 +222,7 @@ export default {
           id: 'root',
         },
         {
+          dataSourceType: 'DEDATASET',
           idAppDEFieldId: 'id',
           leafFlagAppDEFieldId: 'is_leaf',
           moveAppDEActionId: 'move_order',
@@ -503,7 +504,10 @@ export default {
               clconvertMode: 'NONE',
               appDEFieldId: 'overdue_time',
               detreeColumnId: 'overdue_time',
+              scriptCode:
+                'let str = data.overdue_time;\r\nlet num = Number(str);\r\nif (num > 0){\r\n    return `<span style="margin-right: 10px; color: red;">` + str + "天" + `</span>`;\r\n}else {\r\n    return  "";\r\n}\r\n',
               valueType: 'SIMPLE',
+              customCode: true,
               dataType: 25,
               id: 'overdue_time',
             },
@@ -1007,6 +1011,7 @@ export default {
           id: 'node',
         },
         {
+          dataSourceType: 'DEDATASET',
           idAppDEFieldId: 'id',
           leafFlagAppDEFieldId: 'is_leaf',
           moveAppDEActionId: 'move_order',
@@ -1291,7 +1296,10 @@ export default {
               clconvertMode: 'NONE',
               appDEFieldId: 'overdue_time',
               detreeColumnId: 'overdue_time',
+              scriptCode:
+                'let str = data.overdue_time;\r\nlet num = Number(str);\r\nif (num > 0){\r\n    return `<span style="margin-right: 10px; color: red;">` + str + "天" + `</span>`;\r\n}else {\r\n    return  "";\r\n}\r\n',
               valueType: 'SIMPLE',
+              customCode: true,
               dataType: 25,
               id: 'overdue_time',
             },
@@ -1813,84 +1821,6 @@ export default {
             id: '新建数据',
           },
           builtinLogic: true,
-          id: 'node_newdata',
-        },
-        {
-          logicTrigger: 'CUSTOM',
-          logicType: 'APPUILOGIC',
-          builtinAppUILogic: {
-            openDataAppView: {
-              openMode: 'INDEXVIEWTAB_POPUPMODAL',
-              navigateContexts: [
-                {
-                  key: 'WORK_ITEM_TYPE_ID',
-                  value: 'work_item_type_id',
-                  name: 'WORK_ITEM_TYPE_ID',
-                  id: 'work_item_type_id',
-                },
-                {
-                  key: 'SRFDATATYPE',
-                  value: 'work_item_type_id',
-                  name: 'SRFDATATYPE',
-                  id: 'srfdatatype',
-                },
-              ],
-              navigateParams: [
-                {
-                  key: 'srfdatatype',
-                  value: 'work_item_type_id',
-                  id: 'srfdatatype',
-                },
-              ],
-              refAppViewId: 'plmweb.work_item_dyna_main_view',
-            },
-            editMode: true,
-            appUILogicRefViews: [
-              {
-                openMode: 'INDEXVIEWTAB_POPUPMODAL',
-                navigateContexts: [
-                  {
-                    key: 'WORK_ITEM_TYPE_ID',
-                    value: 'work_item_type_id',
-                    name: 'WORK_ITEM_TYPE_ID',
-                    id: 'work_item_type_id',
-                  },
-                  {
-                    key: 'SRFDATATYPE',
-                    value: 'work_item_type_id',
-                    name: 'SRFDATATYPE',
-                    id: 'srfdatatype',
-                  },
-                ],
-                navigateParams: [
-                  {
-                    key: 'srfdatatype',
-                    value: 'work_item_type_id',
-                    id: 'srfdatatype',
-                  },
-                ],
-                refAppViewId: 'plmweb.work_item_dyna_main_view',
-              },
-            ],
-            builtinLogic: true,
-            logicType: 'PREDEFINED',
-            viewLogicType: 'APP_OPENDATA',
-            id: '打开数据',
-          },
-          builtinLogic: true,
-          id: 'node_opendata',
-        },
-        {
-          logicTrigger: 'CUSTOM',
-          logicType: 'APPUILOGIC',
-          builtinAppUILogic: {
-            actionAfterWizard: 'DEFAULT',
-            builtinLogic: true,
-            logicType: 'PREDEFINED',
-            viewLogicType: 'APP_NEWDATA',
-            id: '新建数据',
-          },
-          builtinLogic: true,
           id: 'top_node_newdata',
         },
         {
@@ -1958,56 +1888,86 @@ export default {
           builtinLogic: true,
           id: 'top_node_opendata',
         },
+        {
+          logicTrigger: 'CUSTOM',
+          logicType: 'APPUILOGIC',
+          builtinAppUILogic: {
+            actionAfterWizard: 'DEFAULT',
+            builtinLogic: true,
+            logicType: 'PREDEFINED',
+            viewLogicType: 'APP_NEWDATA',
+            id: '新建数据',
+          },
+          builtinLogic: true,
+          id: 'node_newdata',
+        },
+        {
+          logicTrigger: 'CUSTOM',
+          logicType: 'APPUILOGIC',
+          builtinAppUILogic: {
+            openDataAppView: {
+              openMode: 'INDEXVIEWTAB_POPUPMODAL',
+              navigateContexts: [
+                {
+                  key: 'WORK_ITEM_TYPE_ID',
+                  value: 'work_item_type_id',
+                  name: 'WORK_ITEM_TYPE_ID',
+                  id: 'work_item_type_id',
+                },
+                {
+                  key: 'SRFDATATYPE',
+                  value: 'work_item_type_id',
+                  name: 'SRFDATATYPE',
+                  id: 'srfdatatype',
+                },
+              ],
+              navigateParams: [
+                {
+                  key: 'srfdatatype',
+                  value: 'work_item_type_id',
+                  id: 'srfdatatype',
+                },
+              ],
+              refAppViewId: 'plmweb.work_item_dyna_main_view',
+            },
+            editMode: true,
+            appUILogicRefViews: [
+              {
+                openMode: 'INDEXVIEWTAB_POPUPMODAL',
+                navigateContexts: [
+                  {
+                    key: 'WORK_ITEM_TYPE_ID',
+                    value: 'work_item_type_id',
+                    name: 'WORK_ITEM_TYPE_ID',
+                    id: 'work_item_type_id',
+                  },
+                  {
+                    key: 'SRFDATATYPE',
+                    value: 'work_item_type_id',
+                    name: 'SRFDATATYPE',
+                    id: 'srfdatatype',
+                  },
+                ],
+                navigateParams: [
+                  {
+                    key: 'srfdatatype',
+                    value: 'work_item_type_id',
+                    id: 'srfdatatype',
+                  },
+                ],
+                refAppViewId: 'plmweb.work_item_dyna_main_view',
+              },
+            ],
+            builtinLogic: true,
+            logicType: 'PREDEFINED',
+            viewLogicType: 'APP_OPENDATA',
+            id: '打开数据',
+          },
+          builtinLogic: true,
+          id: 'node_opendata',
+        },
       ],
       controls: [
-        {
-          detoolbarItems: [
-            {
-              actionLevel: 100,
-              noPrivDisplayMode: 2,
-              uiactionId: 'new_waterfall_plan@work_item',
-              uiactionTarget: 'SINGLEDATA',
-              valid: true,
-              caption: '新建计划',
-              itemType: 'DEUIACTION',
-              sysImage: {
-                cssClass: 'add',
-              },
-              tooltip: '新建计划',
-              showCaption: true,
-              showIcon: true,
-              id: 'deuiaction1',
-            },
-            {
-              actionLevel: 100,
-              noPrivDisplayMode: 2,
-              uiactionId: 'remove_waterfall_plan@work_item',
-              uiactionTarget: 'SINGLEKEY',
-              valid: true,
-              caption: '删除计划',
-              itemType: 'DEUIACTION',
-              sysImage: {
-                cssClass: 'fa fa-trash-o',
-                glyph: 'xf014@FontAwesome',
-              },
-              tooltip: '删除计划',
-              showCaption: true,
-              showIcon: true,
-              id: 'deuiaction2',
-            },
-          ],
-          codeName: 'gantt_view_node_cm',
-          controlType: 'CONTEXTMENU',
-          logicName: '甘特图节点上下文菜单',
-          appDataEntityId: 'plmweb.work_item',
-          controlParam: {
-            id: 'node_cm',
-          },
-          modelId: '0a34a6f6b626c24922b75f3d9f736eb8',
-          modelType: 'PSDETOOLBAR',
-          name: 'node_cm',
-          id: 'gantt_view_node_cm',
-        },
         {
           detoolbarItems: [
             {
@@ -2055,6 +2015,54 @@ export default {
           modelType: 'PSDETOOLBAR',
           name: 'top_node_cm',
           id: 'gantt_view_top_node_cm',
+        },
+        {
+          detoolbarItems: [
+            {
+              actionLevel: 100,
+              noPrivDisplayMode: 2,
+              uiactionId: 'new_waterfall_plan@work_item',
+              uiactionTarget: 'SINGLEDATA',
+              valid: true,
+              caption: '新建计划',
+              itemType: 'DEUIACTION',
+              sysImage: {
+                cssClass: 'add',
+              },
+              tooltip: '新建计划',
+              showCaption: true,
+              showIcon: true,
+              id: 'deuiaction1',
+            },
+            {
+              actionLevel: 100,
+              noPrivDisplayMode: 2,
+              uiactionId: 'remove_waterfall_plan@work_item',
+              uiactionTarget: 'SINGLEKEY',
+              valid: true,
+              caption: '删除计划',
+              itemType: 'DEUIACTION',
+              sysImage: {
+                cssClass: 'fa fa-trash-o',
+                glyph: 'xf014@FontAwesome',
+              },
+              tooltip: '删除计划',
+              showCaption: true,
+              showIcon: true,
+              id: 'deuiaction2',
+            },
+          ],
+          codeName: 'gantt_view_node_cm',
+          controlType: 'CONTEXTMENU',
+          logicName: '甘特图节点上下文菜单',
+          appDataEntityId: 'plmweb.work_item',
+          controlParam: {
+            id: 'node_cm',
+          },
+          modelId: '0a34a6f6b626c24922b75f3d9f736eb8',
+          modelType: 'PSDETOOLBAR',
+          name: 'node_cm',
+          id: 'gantt_view_node_cm',
         },
       ],
       codeName: 'gantt_view_gantt',

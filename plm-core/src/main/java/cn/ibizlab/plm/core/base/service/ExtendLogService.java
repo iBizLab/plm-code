@@ -13,6 +13,7 @@ import cn.ibizlab.util.domain.ImportResult;
 import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.core.base.domain.ExtendLog;
 import cn.ibizlab.plm.core.base.filter.ExtendLogSearchContext;
+import cn.ibizlab.plm.util.annotation.DEAction;
 
 /**
  * 扩展日志服务接口[ExtendLogService]

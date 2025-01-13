@@ -1,5 +1,5 @@
 /**
- * Generate code from /{{projectName}}-core/src/main/java/{{packageName}}/core/{{modules}}/domain/{{entities@SQL}}.java.hbs
+ * Generate code from /{{projectName}}-core/src/main/java/{{packageName}}/core/{{modules}}/domain/{{domains@SQL}}.java.hbs
  */
 package cn.ibizlab.plm.core.testmgmt.domain;
 
@@ -77,6 +77,16 @@ public class LibraryMember extends EntityMP implements Serializable
     @JsonProperty("library_identifier")
     @ApiModelProperty(value = "library_identifier", notes = "测试库编号")
     private String libraryIdentifier;
+
+    /**
+    * 职位
+    */
+    @TableField(value = "title")
+    @DEField(name = "title")
+    @JSONField(name = "title")
+    @JsonProperty("title")
+    @ApiModelProperty(value = "title", notes = "职位")
+    private String title;
 
     /**
     * 标识
@@ -204,6 +214,15 @@ public class LibraryMember extends EntityMP implements Serializable
     public LibraryMember setLibraryIdentifier(String libraryIdentifier) {
         this.libraryIdentifier = libraryIdentifier;
         this.modify("library_identifier", libraryIdentifier);
+        return this;
+    }
+
+    /**
+    * 设置 [职位]
+    */
+    public LibraryMember setTitle(String title) {
+        this.title = title;
+        this.modify("title", title);
         return this;
     }
 

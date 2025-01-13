@@ -1652,7 +1652,6 @@ export default {
         cssClass: 'fa fa-arrows-alt',
         glyph: 'xf0b2@FontAwesome',
       },
-      timeout: 60000,
       uiactionMode: 'FRONT',
       uiactionTag: 'bi_full_screen',
       uiactionType: 'DEUIACTION',
@@ -1675,7 +1674,6 @@ export default {
         cssClass: 'fa fa-refresh',
         glyph: 'xf021@FontAwesome',
       },
-      timeout: 60000,
       uiactionMode: 'FRONT',
       uiactionTag: 'bi_refresh',
       uiactionType: 'DEUIACTION',
@@ -1698,7 +1696,6 @@ export default {
         cssClass: 'fa fa-edit',
         glyph: 'xf044@FontAwesome',
       },
-      timeout: 60000,
       uiactionMode: 'FRONT',
       uiactionTag: 'bi_report_view',
       uiactionType: 'DEUIACTION',
@@ -1776,7 +1773,6 @@ export default {
       fullCodeName: 'test_plan_open_test_plan',
       scriptCode:
         'const item = data[0];\r\nwindow.location.hash=`/-/index/library=${item.library_id}/library_index_view/srfnavctx=%257B%2522srfnavctrlid%2522%253A%2522plmweb.library_all_grid_view%2540plmweb.library.main%2522%252C%2522srfnavlogicid%2522%253A%2522%253A%2522%257D;srfnav=usrdrgroup1227882118/test_plan_main_view/srfnavctx=%257B%2522srfnavctrlid%2522%253A%2522plmweb.test_plan_all_grid_view%2540plmweb.test_plan.main%2522%252C%2522srfnavlogicid%2522%253A%2522%253A%2522%252C%2522test_plan%2522%253A%2522${item.id}%2522%257D;srfnav=run/run_tree_exp_view/srfnav=root%3Anode/run_all_grid_view/-`',
-      timeout: 60000,
       uiactionMode: 'FRONT',
       uiactionTag: 'open_test_plan',
       uiactionType: 'DEUIACTION',
@@ -1795,7 +1791,6 @@ export default {
       fullCodeName: 'test_plan_open_test_plan_main_view',
       scriptCode:
         'const item = data[0];\r\nwindow.location.hash=`/-/index/library=${item.library_id}/library_index_view/srfnavctx=%257B%2522srfnavctrlid%2522%253A%2522plmweb.library_all_grid_view%2540plmweb.library.main%2522%257D;srfnav=usrdrgroup1227882118/test_plan_main_view/srfnavctx=%257B%2522srfnavctrlid%2522%253A%2522plmweb.test_plan_all_grid_view%2540plmweb.test_plan.main%2522%252C%2522test_plan%2522%253A%2522${item.id}%2522%257D;srfnav=run/run_tree_exp_view/srfnav=root%3Anode/run_all_grid_view/-`',
-      timeout: 60000,
       uiactionMode: 'FRONT',
       uiactionTag: 'open_test_plan_main_view',
       uiactionType: 'DEUIACTION',
@@ -1820,7 +1815,6 @@ export default {
         glyph: 'xf044@FontAwesome',
       },
       refreshMode: 1,
-      timeout: 60000,
       uiactionMode: 'FRONT',
       uiactionTag: 'open_update_view',
       uiactionType: 'DEUIACTION',
@@ -1839,7 +1833,6 @@ export default {
       frontProcessType: 'OTHER',
       fullCodeName:
         'test_plan_panel_ex_test_plan_pickup_view2_layout_button_okaction_click',
-      timeout: 60000,
       uiactionMode: 'FRONT',
       uiactionTag:
         'panel_ex_test_plan_pickup_view2_layout_button_okaction_click',
@@ -1890,7 +1883,6 @@ export default {
       frontProcessType: 'OTHER',
       fullCodeName:
         'test_plan_toolbar_test_plan_grid_view_toolbar_deuiaction1_click',
-      timeout: 60000,
       uiactionMode: 'FRONT',
       uiactionTag: 'toolbar_test_plan_grid_view_toolbar_deuiaction1_click',
       uiactionType: 'DEUIACTION',
@@ -1911,7 +1903,6 @@ export default {
       frontProcessType: 'OTHER',
       fullCodeName:
         'test_plan_toolbar_test_plan_grid_view_toolbar_deuiaction2_click',
-      timeout: 60000,
       uiactionMode: 'FRONT',
       uiactionTag: 'toolbar_test_plan_grid_view_toolbar_deuiaction2_click',
       uiactionType: 'DEUIACTION',
@@ -1932,7 +1923,6 @@ export default {
       frontProcessType: 'OTHER',
       fullCodeName:
         'test_plan_toolbar_tree_exp_view_node1_cm_deuiaction1_click',
-      timeout: 60000,
       uiactionMode: 'FRONT',
       uiactionTag: 'toolbar_tree_exp_view_node1_cm_deuiaction1_click',
       uiactionType: 'DEUIACTION',
@@ -1953,7 +1943,6 @@ export default {
       frontProcessType: 'OTHER',
       fullCodeName:
         'test_plan_toolbar_tree_exp_view_node1_cm_deuiaction2_click',
-      timeout: 60000,
       uiactionMode: 'FRONT',
       uiactionTag: 'toolbar_tree_exp_view_node1_cm_deuiaction2_click',
       uiactionType: 'DEUIACTION',
@@ -1974,7 +1963,6 @@ export default {
       frontProcessType: 'OTHER',
       fullCodeName:
         'test_plan_toolbar_tree_exp_view_node2_cm_deuiaction1_click',
-      timeout: 60000,
       uiactionMode: 'FRONT',
       uiactionTag: 'toolbar_tree_exp_view_node2_cm_deuiaction1_click',
       uiactionType: 'DEUIACTION',
@@ -1995,7 +1983,6 @@ export default {
       frontProcessType: 'OTHER',
       fullCodeName:
         'test_plan_toolbar_tree_exp_view_node2_cm_deuiaction2_click',
-      timeout: 60000,
       uiactionMode: 'FRONT',
       uiactionTag: 'toolbar_tree_exp_view_node2_cm_deuiaction2_click',
       uiactionType: 'DEUIACTION',
@@ -2016,7 +2003,6 @@ export default {
       frontProcessType: 'OTHER',
       fullCodeName:
         'test_plan_toolbar_tree_exp_view_node3_cm_deuiaction1_click',
-      timeout: 60000,
       uiactionMode: 'FRONT',
       uiactionTag: 'toolbar_tree_exp_view_node3_cm_deuiaction1_click',
       uiactionType: 'DEUIACTION',
@@ -2037,7 +2023,6 @@ export default {
       frontProcessType: 'OTHER',
       fullCodeName:
         'test_plan_toolbar_tree_exp_view_node3_cm_deuiaction2_click',
-      timeout: 60000,
       uiactionMode: 'FRONT',
       uiactionTag: 'toolbar_tree_exp_view_node3_cm_deuiaction2_click',
       uiactionType: 'DEUIACTION',
@@ -2058,7 +2043,6 @@ export default {
       frontProcessType: 'OTHER',
       fullCodeName:
         'test_plan_toolbar_tree_exp_view_treeexpbar_toolbar_deuiaction1_click',
-      timeout: 60000,
       uiactionMode: 'FRONT',
       uiactionTag: 'toolbar_tree_exp_view_treeexpbar_toolbar_deuiaction1_click',
       uiactionType: 'DEUIACTION',
@@ -2079,7 +2063,6 @@ export default {
       frontProcessType: 'OTHER',
       fullCodeName:
         'test_plan_toolbar_tree_exp_view_treeexpbar_toolbar_deuiaction2_click',
-      timeout: 60000,
       uiactionMode: 'FRONT',
       uiactionTag: 'toolbar_tree_exp_view_treeexpbar_toolbar_deuiaction2_click',
       uiactionType: 'DEUIACTION',

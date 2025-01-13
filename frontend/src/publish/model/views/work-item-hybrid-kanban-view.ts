@@ -966,16 +966,45 @@ export default {
                       panelItems: [
                         {
                           editor: {
-                            halign: 'LEFT',
-                            renderMode: 'TEXT_DYNAMIC',
-                            valign: 'MIDDLE',
-                            wrapMode: 'NOWRAP',
-                            editorStyle: 'PERSONNEL_INFO',
-                            editorType: 'SPAN',
-                            sysPFPluginId: 'personnel_info',
+                            singleSelect: true,
+                            enableAC: true,
+                            forceSelection: true,
+                            showTrigger: true,
+                            editorParams: {
+                              'SRFNAVPARAM.n_department_id_eq':
+                                '%srforgsectorid%',
+                              AC: 'TRUE',
+                              'SRFNAVPARAM.n_status_eq': '1',
+                              TRIGGER: 'TRUE',
+                              URL: 'projects/${context.project}/project_members/fetch_default',
+                              PICKUPVIEW: 'FALSE',
+                              readOnly: 'true',
+                              USERMETHOD: 'post',
+                              USERMAP: '{"id":"user_id","name":"name"}',
+                              DEPTMAP: '{"id":"id","name":"display_name"}',
+                              DEPTMETHOD: 'get',
+                              DEPTURL: '/users/fetch_default',
+                            },
+                            editorStyle: 'PERSONEL_SELECT_PROJECT',
+                            editorType: 'PICKEREX_TRIGGER',
+                            sysPFPluginId: 'person_select',
                             predefinedType: 'FIELD_TEXT_DYNAMIC',
                             valueType: 'SIMPLE',
                             editable: true,
+                            readOnly: true,
+                            navigateParams: [
+                              {
+                                key: 'n_department_id_eq',
+                                value: 'srforgsectorid',
+                                id: 'n_department_id_eq',
+                              },
+                              {
+                                key: 'n_status_eq',
+                                value: '1',
+                                rawValue: true,
+                                id: 'n_status_eq',
+                              },
+                            ],
                             id: 'assignee_name',
                           },
                           viewFieldName: 'ASSIGNEE_NAME',
@@ -1395,14 +1424,14 @@ export default {
         orderValueAppDEFieldId: 'sequence',
         dedataViewDataItems: [
           {
-            appDEFieldId: 'title',
-            dataType: 25,
-            id: 'title',
-          },
-          {
             appDEFieldId: 'identifier',
             dataType: 25,
             id: 'identifier',
+          },
+          {
+            appDEFieldId: 'title',
+            dataType: 25,
+            id: 'title',
           },
           {
             appDEFieldId: 'id',
@@ -1482,6 +1511,15 @@ export default {
           },
         ],
         dedataViewItems: [
+          {
+            caption: '编号',
+            dataItemName: 'identifier',
+            itemType: 'DATAITEM',
+            appDEFieldId: 'identifier',
+            enableSort: true,
+            name: 'IDENTIFIER',
+            id: 'identifier',
+          },
           {
             caption: '标题',
             dataItemName: 'title',
@@ -1699,15 +1737,6 @@ export default {
             },
             name: 'OPERATE',
             id: 'operate',
-          },
-          {
-            caption: '编号',
-            dataItemName: 'identifier',
-            itemType: 'DATAITEM',
-            appDEFieldId: 'identifier',
-            enableSort: true,
-            name: 'IDENTIFIER',
-            id: 'identifier',
           },
         ],
         pagingSize: 1000,

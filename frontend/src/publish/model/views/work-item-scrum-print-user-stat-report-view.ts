@@ -366,7 +366,6 @@ export default {
                       },
                     ],
                     logicType: 'GROUP',
-                    id: '表单成员[n_board_name_eq][面板显示]逻辑',
                   },
                 ],
                 layoutPos: {
@@ -409,7 +408,6 @@ export default {
                       },
                     ],
                     logicType: 'GROUP',
-                    id: '表单成员[n_board_id_eq][面板显示]逻辑',
                   },
                 ],
                 layoutPos: {

@@ -14,6 +14,7 @@ import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.core.testmgmt.domain.CaseHistory;
 import cn.ibizlab.plm.core.testmgmt.filter.CaseHistorySearchContext;
 import cn.ibizlab.plm.core.testmgmt.domain.TestCase;
+import cn.ibizlab.plm.util.annotation.DEAction;
 
 /**
  * 用例执行历史服务接口[CaseHistoryService]

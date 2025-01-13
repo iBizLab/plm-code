@@ -573,6 +573,7 @@ export default {
                 id: 'project',
               },
               {
+                dataSourceType: 'DEDATASET',
                 iconAppDEFieldId: 'type',
                 idAppDEFieldId: 'id',
                 appDEDataSetId: 'fetch_normal',

@@ -16,6 +16,7 @@ import cn.ibizlab.plm.core.projmgmt.filter.SwimlaneSearchContext;
 import cn.ibizlab.plm.core.projmgmt.domain.Board;
 import cn.ibizlab.plm.core.projmgmt.domain.Project;
 import cn.ibizlab.plm.core.projmgmt.domain.WorkItem;
+import cn.ibizlab.plm.util.annotation.DEAction;
 
 /**
  * 泳道服务接口[SwimlaneService]

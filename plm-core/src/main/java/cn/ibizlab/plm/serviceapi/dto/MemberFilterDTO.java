@@ -71,11 +71,27 @@ public class MemberFilterDTO extends FilterBase implements Serializable {
 	private String roleIdEQ;
 
     /**
+     * 职位名称EQ
+     */
+    @JsonProperty("n_position_name_eq")
+    @JSONField(name = "n_position_name_eq")
+    @ApiModelProperty(value = "职位名称EQ", position = 90)
+	private String positionNameEQ;
+
+    /**
+     * 职位名称LIKE
+     */
+    @JsonProperty("n_position_name_like")
+    @JSONField(name = "n_position_name_like")
+    @ApiModelProperty(value = "职位名称LIKE", position = 91)
+	private String positionNameLIKE;
+
+    /**
      * 标识EQ
      */
     @JsonProperty("n_id_eq")
     @JSONField(name = "n_id_eq")
-    @ApiModelProperty(value = "标识EQ", position = 90)
+    @ApiModelProperty(value = "标识EQ", position = 110)
 	private String idEQ;
 
     /**
@@ -83,8 +99,16 @@ public class MemberFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_name_like")
     @JSONField(name = "n_name_like")
-    @ApiModelProperty(value = "名称LIKE", position = 100)
+    @ApiModelProperty(value = "名称LIKE", position = 120)
 	private String nameLIKE;
+
+    /**
+     * 职位标识EQ
+     */
+    @JsonProperty("n_position_id_eq")
+    @JSONField(name = "n_position_id_eq")
+    @ApiModelProperty(value = "职位标识EQ", position = 170)
+	private String positionIdEQ;
 
 
 }

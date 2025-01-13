@@ -266,21 +266,22 @@ export default {
                                   editorParams: {
                                     USERINSCRIPT:
                                       'value.replaceAll(/\\@\\{\\"(user)?id\\":\\"(.+?)\\",\\"name\\":\\"(.+?)\\"\\}/g,(x, user, id, name) => {return controller.getNodeInfo({ id, name })}).replaceAll(/\\@\\{userid=(.+?),name=(.+?)\\}/g,(x, id, name) => {return controller.getNodeInfo({ id, name })})',
+                                    LINKVIEWID:
+                                      'plmweb.recent_custom_redirect_view',
                                     QUOTECODELISTMAP:
                                       '{"type":"plmweb.base__recent_visite"}',
                                     QUOTEFIELDMAP:
-                                      '{"identifier":"show_identifier","name":"name","id":"id","type":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
-                                    QUOTEPARAMS:
-                                      '{"page":0,"size":20,"sort":"update_time,desc"}',
+                                      '{"identifier":"show_identifier","name":"name","id":"id","owner_subtype":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
+                                    QUOTEPARAMS: '{"sort":"update_time,desc"}',
                                     AC: 'TRUE',
                                     QUOTEINSCRIPT:
-                                      'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\"),\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); return controller.getNodeInfo({ icon, ...item })})',
+                                      'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\")(,\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\")*\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); if (icon) { icon = icon.slice(8).slice(1, -1); } return controller.getNodeInfo({ icon, ...item })})',
                                     USERSCRIPT:
                                       '`@{"id":"${data.id}","name":"${data.name}"}`',
                                     QUOTESCRIPT:
-                                      '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.type}","recent_parent":"${data.recent_parent}","icon":"${data.icon}"}`',
+                                      '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.owner_subtype}","recent_parent":"${data.recent_parent}"}`',
                                     REPLYSCRIPT:
-                                      'value?.replace(/@{[^,]*,"name":"(.*?)"}/g,"<span class=\'comment-tag\'>@$1</span>").replace(/@{[^,]*,name=(.*?)}/g,"<span class=\'comment-tag\'>@$1</span>").replaceAll(/\\#\\{(\\".+?\\":\\".+?\\"),\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g, (x, value, icon) => {const item = JSON.parse("{" + value + "}"); const tempIcon = icon.trim(); return `<span class=\'comment-tag\' data-value=\'${JSON.stringify(item)}\'>${tempIcon} ${item.identifier} ${item.name}</span>`;})',
+                                      'value?.replace(/@{[^,]*,"name":"(.*?)"}/g,"<span class=\'comment-tag\'>@$1</span>").replace(/@{[^,]*,name=(.*?)}/g,"<span class=\'comment-tag\'>@$1</span>").replaceAll(/\\#\\{(\\".+?\\":\\".+?\\")(,\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\")*\\}/g, (x, value, icon) => {const item = JSON.parse("{" + value + "}"); if (icon) { icon = icon.slice(8).slice(1, -1).trim(); } return controller.markerController.parseCommentTag({icon, ...item});})',
                                     USERFIELDMAP:
                                       '{"id":"user_id","name":"name"}',
                                     USERURL:
@@ -1092,10 +1093,10 @@ export default {
             codeName: 'estimated_update',
             defiupdateDetails: [
               {
-                id: 'workload_schedule',
+                id: 'remaining_workload',
               },
               {
-                id: 'remaining_workload',
+                id: 'workload_schedule',
               },
             ],
             scriptCode:
@@ -1572,23 +1573,25 @@ export default {
                                           editorParams: {
                                             USERINSCRIPT:
                                               'value.replaceAll(/\\@\\{\\"(user)?id\\":\\"(.+?)\\",\\"name\\":\\"(.+?)\\"\\}/g,(x, user, id, name) => {return controller.getNodeInfo({ id, name })}).replaceAll(/\\@\\{userid=(.+?),name=(.+?)\\}/g,(x, id, name) => {return controller.getNodeInfo({ id, name })})',
+                                            LINKVIEWID:
+                                              'plmweb.recent_custom_redirect_view',
                                             MAXHEIGHT: '450',
                                             QUOTECODELISTMAP:
                                               '{"type":"plmweb.base__recent_visite"}',
                                             enableEdit: 'true',
                                             QUOTEFIELDMAP:
-                                              '{"identifier":"show_identifier","name":"name","id":"id","type":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
+                                              '{"identifier":"show_identifier","name":"name","id":"id","owner_subtype":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
                                             QUOTEPARAMS:
-                                              '{"page":0,"size":20,"sort":"update_time,desc"}',
+                                              '{"sort":"update_time,desc"}',
                                             enableFullScreen: 'true',
                                             MODE: 'default',
                                             AC: 'TRUE',
                                             QUOTEINSCRIPT:
-                                              'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\"),\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); return controller.getNodeInfo({ icon, ...item })})',
+                                              'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\")(,\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\")*\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); if (icon) { icon = icon.slice(8).slice(1, -1); } return controller.getNodeInfo({ icon, ...item })})',
                                             USERSCRIPT:
                                               '`@{"id":"${data.id}","name":"${data.name}"}`',
                                             QUOTESCRIPT:
-                                              '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.type}","recent_parent":"${data.recent_parent}","icon":"${data.icon}"}`',
+                                              '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.owner_subtype}","recent_parent":"${data.recent_parent}"}`',
                                             USERURL:
                                               "`${context.library ? `libraries/${context.library}/library_members/fetch_default` : context.product ? `products/${context.product}/product_members/fetch_default` : context.project ? `projects/${context.project}/project_members/fetch_default` : ''}`",
                                             USERFIELDMAP:
@@ -1666,18 +1669,18 @@ export default {
                                               '{"type":"plmweb.base__recent_visite"}',
                                             enableEdit: 'true',
                                             QUOTEFIELDMAP:
-                                              '{"identifier":"show_identifier","name":"name","id":"id","type":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
+                                              '{"identifier":"show_identifier","name":"name","id":"id","owner_subtype":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
                                             QUOTEPARAMS:
-                                              '{"page":0,"size":20,"sort":"update_time,desc"}',
+                                              '{"sort":"update_time,desc"}',
                                             enableFullScreen: 'true',
                                             MODE: 'default',
                                             AC: 'TRUE',
                                             QUOTEINSCRIPT:
-                                              'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\"),\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); return controller.getNodeInfo({ icon, ...item })})',
+                                              'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\")(,\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\")*\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); if (icon) { icon = icon.slice(8).slice(1, -1); } return controller.getNodeInfo({ icon, ...item })})',
                                             USERSCRIPT:
                                               '`@{"id":"${data.id}","name":"${data.name}"}`',
                                             QUOTESCRIPT:
-                                              '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.type}","recent_parent":"${data.recent_parent}","icon":"${data.icon}"}`',
+                                              '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.owner_subtype}","recent_parent":"${data.recent_parent}"}`',
                                             USERURL:
                                               "`${context.library ? `libraries/${context.library}/library_members/fetch_default` : context.product ? `products/${context.product}/product_members/fetch_default` : context.project ? `projects/${context.project}/project_members/fetch_default` : ''}`",
                                             USERFIELDMAP:
@@ -1754,7 +1757,6 @@ export default {
                                       },
                                     ],
                                     logicType: 'GROUP',
-                                    id: '表单成员[tabpage6][面板显示]逻辑',
                                   },
                                 ],
                                 showCaption: true,
@@ -3248,7 +3250,6 @@ export default {
                               },
                             ],
                             logicType: 'GROUP',
-                            id: '表单成员[grouppanel14][面板显示]逻辑',
                           },
                         ],
                         layoutPos: {
@@ -3471,7 +3472,6 @@ export default {
                                       },
                                     ],
                                     logicType: 'GROUP',
-                                    id: '表单成员[button1][面板显示]逻辑',
                                   },
                                 ],
                                 layoutPos: {
@@ -3807,7 +3807,6 @@ export default {
                           },
                         ],
                         logicType: 'GROUP',
-                        id: '表单成员[grouppanel9][面板显示]逻辑',
                       },
                     ],
                     layoutPos: {
@@ -3864,7 +3863,6 @@ export default {
                           },
                         ],
                         logicType: 'GROUP',
-                        id: '表单成员[baseline][面板显示]逻辑',
                       },
                     ],
                     layoutPos: {
@@ -4405,23 +4403,24 @@ export default {
                                   editorParams: {
                                     USERINSCRIPT:
                                       'value.replaceAll(/\\@\\{\\"(user)?id\\":\\"(.+?)\\",\\"name\\":\\"(.+?)\\"\\}/g,(x, user, id, name) => {return controller.getNodeInfo({ id, name })}).replaceAll(/\\@\\{userid=(.+?),name=(.+?)\\}/g,(x, id, name) => {return controller.getNodeInfo({ id, name })})',
+                                    LINKVIEWID:
+                                      'plmweb.recent_custom_redirect_view',
                                     MAXHEIGHT: '450',
                                     QUOTECODELISTMAP:
                                       '{"type":"plmweb.base__recent_visite"}',
                                     enableEdit: 'true',
                                     QUOTEFIELDMAP:
-                                      '{"identifier":"show_identifier","name":"name","id":"id","type":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
-                                    QUOTEPARAMS:
-                                      '{"page":0,"size":20,"sort":"update_time,desc"}',
+                                      '{"identifier":"show_identifier","name":"name","id":"id","owner_subtype":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
+                                    QUOTEPARAMS: '{"sort":"update_time,desc"}',
                                     enableFullScreen: 'true',
                                     MODE: 'default',
                                     AC: 'true',
                                     QUOTEINSCRIPT:
-                                      'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\"),\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); return controller.getNodeInfo({ icon, ...item })})',
+                                      'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\")(,\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\")*\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); if (icon) { icon = icon.slice(8).slice(1, -1); } return controller.getNodeInfo({ icon, ...item })})',
                                     USERSCRIPT:
                                       '`@{"id":"${data.id}","name":"${data.name}"}`',
                                     QUOTESCRIPT:
-                                      '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.type}","recent_parent":"${data.recent_parent}","icon":"${data.icon}"}`',
+                                      '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.owner_subtype}","recent_parent":"${data.recent_parent}"}`',
                                     USERURL:
                                       "`${context.library ? `libraries/${context.library}/library_members/fetch_default` : context.product ? `products/${context.product}/product_members/fetch_default` : context.project ? `projects/${context.project}/project_members/fetch_default` : ''}`",
                                     USERFIELDMAP:
@@ -5785,7 +5784,6 @@ export default {
                                   },
                                 ],
                                 logicType: 'GROUP',
-                                id: '表单成员[grouppanel13][面板显示]逻辑',
                               },
                             ],
                             layoutPos: {
@@ -5934,7 +5932,6 @@ export default {
                                   },
                                 ],
                                 logicType: 'GROUP',
-                                id: '表单成员[grouppanel4][面板显示]逻辑',
                               },
                             ],
                             layoutPos: {
@@ -5997,7 +5994,6 @@ export default {
                                   },
                                 ],
                                 logicType: 'GROUP',
-                                id: '表单成员[grouppanel6][面板显示]逻辑',
                               },
                             ],
                             layoutPos: {
@@ -6088,7 +6084,6 @@ export default {
                                   },
                                 ],
                                 logicType: 'GROUP',
-                                id: '表单成员[grouppanel5][面板显示]逻辑',
                               },
                             ],
                             layoutPos: {
@@ -6341,7 +6336,6 @@ export default {
                               },
                             ],
                             logicType: 'GROUP',
-                            id: '表单成员[grouppanel14][面板显示]逻辑',
                           },
                         ],
                         layoutPos: {
@@ -6564,7 +6558,6 @@ export default {
                                       },
                                     ],
                                     logicType: 'GROUP',
-                                    id: '表单成员[button1][面板显示]逻辑',
                                   },
                                 ],
                                 layoutPos: {
@@ -6900,7 +6893,6 @@ export default {
                           },
                         ],
                         logicType: 'GROUP',
-                        id: '表单成员[grouppanel9][面板显示]逻辑',
                       },
                     ],
                     layoutPos: {
@@ -6957,7 +6949,6 @@ export default {
                           },
                         ],
                         logicType: 'GROUP',
-                        id: '表单成员[baseline][面板显示]逻辑',
                       },
                     ],
                     layoutPos: {
@@ -7081,6 +7072,23 @@ export default {
         enableAutoSave: true,
         deformItemUpdates: [
           {
+            codeName: 'estimated_update',
+            defiupdateDetails: [
+              {
+                id: 'remaining_workload',
+              },
+              {
+                id: 'workload_schedule',
+              },
+            ],
+            scriptCode:
+              'var form_data = view.layoutPanel.panelItems.form.control.data;\r\nvar actual_workload = form_data.actual_workload;\r\nvar estimated_workload = form_data.estimated_workload;  \r\nvar estimated = 0; // 预估工时\r\nif(estimated_workload){\r\n\testimated = Number(estimated_workload);\r\n}\r\nvar actual = 0; // 已登记的实际工时\r\nvar remaining = 0; // 剩余工时\r\nif(actual_workload){\r\n\tactual = Number(actual_workload);\r\n\tif(estimated_workload){\r\n\t\t// 计算剩余工时\r\n\t\tremaining = (estimated - actual) >= 0 ? (estimated - actual) : 0;\r\n\t\tform_data.remaining_workload = remaining;\r\n\t}\r\n} else {\r\n\tremaining = estimated;\r\n\tform_data.remaining_workload = estimated_workload;\r\n}\r\n// 计算工时进度\r\nif((actual + remaining) != 0){\r\n\tvar schedule = ((actual / (actual + remaining)) * 100).toFixed(1);\r\n\tform_data.workload_schedule = schedule;\r\n}',
+            customCode: true,
+            showBusyIndicator: false,
+            name: '预估工时表单项更新',
+            id: 'estimated_update',
+          },
+          {
             codeName: 'remaining_update',
             defiupdateDetails: [
               {
@@ -7093,23 +7101,6 @@ export default {
             showBusyIndicator: false,
             name: '剩余工时表单项更新',
             id: 'remaining_update',
-          },
-          {
-            codeName: 'estimated_update',
-            defiupdateDetails: [
-              {
-                id: 'workload_schedule',
-              },
-              {
-                id: 'remaining_workload',
-              },
-            ],
-            scriptCode:
-              'var form_data = view.layoutPanel.panelItems.form.control.data;\r\nvar actual_workload = form_data.actual_workload;\r\nvar estimated_workload = form_data.estimated_workload;  \r\nvar estimated = 0; // 预估工时\r\nif(estimated_workload){\r\n\testimated = Number(estimated_workload);\r\n}\r\nvar actual = 0; // 已登记的实际工时\r\nvar remaining = 0; // 剩余工时\r\nif(actual_workload){\r\n\tactual = Number(actual_workload);\r\n\tif(estimated_workload){\r\n\t\t// 计算剩余工时\r\n\t\tremaining = (estimated - actual) >= 0 ? (estimated - actual) : 0;\r\n\t\tform_data.remaining_workload = remaining;\r\n\t}\r\n} else {\r\n\tremaining = estimated;\r\n\tform_data.remaining_workload = estimated_workload;\r\n}\r\n// 计算工时进度\r\nif((actual + remaining) != 0){\r\n\tvar schedule = ((actual / (actual + remaining)) * 100).toFixed(1);\r\n\tform_data.workload_schedule = schedule;\r\n}',
-            customCode: true,
-            showBusyIndicator: false,
-            name: '预估工时表单项更新',
-            id: 'estimated_update',
           },
         ],
         deformItemVRs: [
@@ -7540,23 +7531,24 @@ export default {
                                   editorParams: {
                                     USERINSCRIPT:
                                       'value.replaceAll(/\\@\\{\\"(user)?id\\":\\"(.+?)\\",\\"name\\":\\"(.+?)\\"\\}/g,(x, user, id, name) => {return controller.getNodeInfo({ id, name })}).replaceAll(/\\@\\{userid=(.+?),name=(.+?)\\}/g,(x, id, name) => {return controller.getNodeInfo({ id, name })})',
+                                    LINKVIEWID:
+                                      'plmweb.recent_custom_redirect_view',
                                     MAXHEIGHT: '450',
                                     QUOTECODELISTMAP:
                                       '{"type":"plmweb.base__recent_visite"}',
                                     enableEdit: 'true',
                                     QUOTEFIELDMAP:
-                                      '{"identifier":"show_identifier","name":"name","id":"id","type":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
-                                    QUOTEPARAMS:
-                                      '{"page":0,"size":20,"sort":"update_time,desc"}',
+                                      '{"identifier":"show_identifier","name":"name","id":"id","owner_subtype":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
+                                    QUOTEPARAMS: '{"sort":"update_time,desc"}',
                                     enableFullScreen: 'true',
                                     MODE: 'default',
                                     AC: 'TRUE',
                                     QUOTEINSCRIPT:
-                                      'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\"),\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); return controller.getNodeInfo({ icon, ...item })})',
+                                      'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\")(,\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\")*\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); if (icon) { icon = icon.slice(8).slice(1, -1); } return controller.getNodeInfo({ icon, ...item })})',
                                     USERSCRIPT:
                                       '`@{"id":"${data.id}","name":"${data.name}"}`',
                                     QUOTESCRIPT:
-                                      '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.type}","recent_parent":"${data.recent_parent}","icon":"${data.icon}"}`',
+                                      '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.owner_subtype}","recent_parent":"${data.recent_parent}"}`',
                                     USERURL:
                                       "`${context.library ? `libraries/${context.library}/library_members/fetch_default` : context.product ? `products/${context.product}/product_members/fetch_default` : context.project ? `projects/${context.project}/project_members/fetch_default` : ''}`",
                                     USERFIELDMAP:
@@ -9078,7 +9070,6 @@ export default {
                               },
                             ],
                             logicType: 'GROUP',
-                            id: '表单成员[grouppanel14][面板显示]逻辑',
                           },
                         ],
                         layoutPos: {
@@ -9301,7 +9292,6 @@ export default {
                                       },
                                     ],
                                     logicType: 'GROUP',
-                                    id: '表单成员[button1][面板显示]逻辑',
                                   },
                                 ],
                                 layoutPos: {
@@ -9637,7 +9627,6 @@ export default {
                           },
                         ],
                         logicType: 'GROUP',
-                        id: '表单成员[grouppanel9][面板显示]逻辑',
                       },
                     ],
                     layoutPos: {
@@ -9694,7 +9683,6 @@ export default {
                           },
                         ],
                         logicType: 'GROUP',
-                        id: '表单成员[baseline][面板显示]逻辑',
                       },
                     ],
                     layoutPos: {
@@ -9825,10 +9813,10 @@ export default {
             codeName: 'estimated_update',
             defiupdateDetails: [
               {
-                id: 'remaining_workload',
+                id: 'workload_schedule',
               },
               {
-                id: 'workload_schedule',
+                id: 'remaining_workload',
               },
             ],
             scriptCode:
@@ -10267,23 +10255,24 @@ export default {
                                   editorParams: {
                                     USERINSCRIPT:
                                       'value.replaceAll(/\\@\\{\\"(user)?id\\":\\"(.+?)\\",\\"name\\":\\"(.+?)\\"\\}/g,(x, user, id, name) => {return controller.getNodeInfo({ id, name })}).replaceAll(/\\@\\{userid=(.+?),name=(.+?)\\}/g,(x, id, name) => {return controller.getNodeInfo({ id, name })})',
+                                    LINKVIEWID:
+                                      'plmweb.recent_custom_redirect_view',
                                     MAXHEIGHT: '450',
                                     QUOTECODELISTMAP:
                                       '{"type":"plmweb.base__recent_visite"}',
                                     enableEdit: 'true',
                                     QUOTEFIELDMAP:
-                                      '{"identifier":"show_identifier","name":"name","id":"id","type":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
-                                    QUOTEPARAMS:
-                                      '{"page":0,"size":20,"sort":"update_time,desc"}',
+                                      '{"identifier":"show_identifier","name":"name","id":"id","owner_subtype":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
+                                    QUOTEPARAMS: '{"sort":"update_time,desc"}',
                                     enableFullScreen: 'true',
                                     MODE: 'default',
                                     AC: 'TRUE',
                                     QUOTEINSCRIPT:
-                                      'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\"),\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); return controller.getNodeInfo({ icon, ...item })})',
+                                      'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\")(,\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\")*\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); if (icon) { icon = icon.slice(8).slice(1, -1); } return controller.getNodeInfo({ icon, ...item })})',
                                     USERSCRIPT:
                                       '`@{"id":"${data.id}","name":"${data.name}"}`',
                                     QUOTESCRIPT:
-                                      '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.type}","recent_parent":"${data.recent_parent}","icon":"${data.icon}"}`',
+                                      '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.owner_subtype}","recent_parent":"${data.recent_parent}"}`',
                                     USERURL:
                                       "`${context.library ? `libraries/${context.library}/library_members/fetch_default` : context.product ? `products/${context.product}/product_members/fetch_default` : context.project ? `projects/${context.project}/project_members/fetch_default` : ''}`",
                                     USERFIELDMAP:
@@ -11805,7 +11794,6 @@ export default {
                               },
                             ],
                             logicType: 'GROUP',
-                            id: '表单成员[grouppanel14][面板显示]逻辑',
                           },
                         ],
                         layoutPos: {
@@ -12028,7 +12016,6 @@ export default {
                                       },
                                     ],
                                     logicType: 'GROUP',
-                                    id: '表单成员[button1][面板显示]逻辑',
                                   },
                                 ],
                                 layoutPos: {
@@ -12364,7 +12351,6 @@ export default {
                           },
                         ],
                         logicType: 'GROUP',
-                        id: '表单成员[grouppanel9][面板显示]逻辑',
                       },
                     ],
                     layoutPos: {
@@ -12421,7 +12407,6 @@ export default {
                           },
                         ],
                         logicType: 'GROUP',
-                        id: '表单成员[baseline][面板显示]逻辑',
                       },
                     ],
                     layoutPos: {
@@ -12535,6 +12520,20 @@ export default {
         enableAutoSave: true,
         deformItemUpdates: [
           {
+            codeName: 'remaining_update',
+            defiupdateDetails: [
+              {
+                id: 'workload_schedule',
+              },
+            ],
+            scriptCode:
+              'var form_data = view.layoutPanel.panelItems.form.control.data;\r\nvar actual_workload = form_data.actual_workload;\r\nvar estimated_workload = form_data.estimated_workload; \r\nvar remaining_workload = form_data.remaining_workload;  \r\nvar estimated = 0; // 预估工时\r\nif(estimated_workload){\r\n\testimated = Number(estimated_workload);\r\n}\r\nvar actual = 0; // 已登记的实际工时\r\nif(actual_workload){\r\n\tactual = Number(actual_workload);\r\n}\r\nvar remaining = 0;\r\nif(remaining_workload){\r\n\tremaining = Number(remaining_workload);\r\n}\r\n// 计算工时进度\r\nif((actual + remaining) != 0){\r\n\tvar schedule = ((actual / (actual + remaining)) * 100).toFixed(1);\r\n\tform_data.workload_schedule = schedule;\r\n}\r\n',
+            customCode: true,
+            showBusyIndicator: false,
+            name: '剩余工时表单项更新',
+            id: 'remaining_update',
+          },
+          {
             codeName: 'estimated_update',
             defiupdateDetails: [
               {
@@ -12550,20 +12549,6 @@ export default {
             showBusyIndicator: false,
             name: '预估工时表单项更新',
             id: 'estimated_update',
-          },
-          {
-            codeName: 'remaining_update',
-            defiupdateDetails: [
-              {
-                id: 'workload_schedule',
-              },
-            ],
-            scriptCode:
-              'var form_data = view.layoutPanel.panelItems.form.control.data;\r\nvar actual_workload = form_data.actual_workload;\r\nvar estimated_workload = form_data.estimated_workload; \r\nvar remaining_workload = form_data.remaining_workload;  \r\nvar estimated = 0; // 预估工时\r\nif(estimated_workload){\r\n\testimated = Number(estimated_workload);\r\n}\r\nvar actual = 0; // 已登记的实际工时\r\nif(actual_workload){\r\n\tactual = Number(actual_workload);\r\n}\r\nvar remaining = 0;\r\nif(remaining_workload){\r\n\tremaining = Number(remaining_workload);\r\n}\r\n// 计算工时进度\r\nif((actual + remaining) != 0){\r\n\tvar schedule = ((actual / (actual + remaining)) * 100).toFixed(1);\r\n\tform_data.workload_schedule = schedule;\r\n}\r\n',
-            customCode: true,
-            showBusyIndicator: false,
-            name: '剩余工时表单项更新',
-            id: 'remaining_update',
           },
         ],
         deformItemVRs: [
@@ -12994,23 +12979,24 @@ export default {
                                   editorParams: {
                                     USERINSCRIPT:
                                       'value.replaceAll(/\\@\\{\\"(user)?id\\":\\"(.+?)\\",\\"name\\":\\"(.+?)\\"\\}/g,(x, user, id, name) => {return controller.getNodeInfo({ id, name })}).replaceAll(/\\@\\{userid=(.+?),name=(.+?)\\}/g,(x, id, name) => {return controller.getNodeInfo({ id, name })})',
+                                    LINKVIEWID:
+                                      'plmweb.recent_custom_redirect_view',
                                     MAXHEIGHT: '450',
                                     QUOTECODELISTMAP:
                                       '{"type":"plmweb.base__recent_visite"}',
                                     enableEdit: 'true',
                                     QUOTEFIELDMAP:
-                                      '{"identifier":"show_identifier","name":"name","id":"id","type":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
-                                    QUOTEPARAMS:
-                                      '{"page":0,"size":20,"sort":"update_time,desc"}',
+                                      '{"identifier":"show_identifier","name":"name","id":"id","owner_subtype":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
+                                    QUOTEPARAMS: '{"sort":"update_time,desc"}',
                                     enableFullScreen: 'true',
                                     MODE: 'default',
                                     AC: 'TRUE',
                                     QUOTEINSCRIPT:
-                                      'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\"),\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); return controller.getNodeInfo({ icon, ...item })})',
+                                      'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\")(,\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\")*\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); if (icon) { icon = icon.slice(8).slice(1, -1); } return controller.getNodeInfo({ icon, ...item })})',
                                     USERSCRIPT:
                                       '`@{"id":"${data.id}","name":"${data.name}"}`',
                                     QUOTESCRIPT:
-                                      '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.type}","recent_parent":"${data.recent_parent}","icon":"${data.icon}"}`',
+                                      '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.owner_subtype}","recent_parent":"${data.recent_parent}"}`',
                                     USERURL:
                                       "`${context.library ? `libraries/${context.library}/library_members/fetch_default` : context.product ? `products/${context.product}/product_members/fetch_default` : context.project ? `projects/${context.project}/project_members/fetch_default` : ''}`",
                                     USERFIELDMAP:
@@ -14532,7 +14518,6 @@ export default {
                               },
                             ],
                             logicType: 'GROUP',
-                            id: '表单成员[grouppanel14][面板显示]逻辑',
                           },
                         ],
                         layoutPos: {
@@ -14755,7 +14740,6 @@ export default {
                                       },
                                     ],
                                     logicType: 'GROUP',
-                                    id: '表单成员[button1][面板显示]逻辑',
                                   },
                                 ],
                                 layoutPos: {
@@ -15091,7 +15075,6 @@ export default {
                           },
                         ],
                         logicType: 'GROUP',
-                        id: '表单成员[grouppanel9][面板显示]逻辑',
                       },
                     ],
                     layoutPos: {
@@ -15148,7 +15131,6 @@ export default {
                           },
                         ],
                         logicType: 'GROUP',
-                        id: '表单成员[baseline][面板显示]逻辑',
                       },
                     ],
                     layoutPos: {
@@ -15528,7 +15510,6 @@ export default {
                                   },
                                 ],
                                 logicType: 'GROUP',
-                                id: '表单成员[setting_executors][面板显示]逻辑',
                               },
                             ],
                             layoutPos: {
@@ -15669,7 +15650,6 @@ export default {
                               },
                             ],
                             logicType: 'GROUP',
-                            id: '表单成员[grouppanel4][面板显示]逻辑',
                           },
                         ],
                         layoutPos: {
@@ -15772,7 +15752,6 @@ export default {
                               },
                             ],
                             logicType: 'GROUP',
-                            id: '表单成员[grouppanel5][面板显示]逻辑',
                           },
                         ],
                         layoutPos: {
@@ -15975,23 +15954,25 @@ export default {
                                           editorParams: {
                                             USERINSCRIPT:
                                               'value.replaceAll(/\\@\\{\\"(user)?id\\":\\"(.+?)\\",\\"name\\":\\"(.+?)\\"\\}/g,(x, user, id, name) => {return controller.getNodeInfo({ id, name })}).replaceAll(/\\@\\{userid=(.+?),name=(.+?)\\}/g,(x, id, name) => {return controller.getNodeInfo({ id, name })})',
+                                            LINKVIEWID:
+                                              'plmweb.recent_custom_redirect_view',
                                             MAXHEIGHT: '450',
                                             QUOTECODELISTMAP:
                                               '{"type":"plmweb.base__recent_visite"}',
                                             enableEdit: 'true',
                                             QUOTEFIELDMAP:
-                                              '{"identifier":"show_identifier","name":"name","id":"id","type":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
+                                              '{"identifier":"show_identifier","name":"name","id":"id","owner_subtype":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
                                             QUOTEPARAMS:
-                                              '{"page":0,"size":20,"sort":"update_time,desc"}',
+                                              '{"sort":"update_time,desc"}',
                                             enableFullScreen: 'true',
                                             MODE: 'default',
                                             AC: 'TRUE',
                                             QUOTEINSCRIPT:
-                                              'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\"),\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); return controller.getNodeInfo({ icon, ...item })})',
+                                              'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\")(,\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\")*\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); if (icon) { icon = icon.slice(8).slice(1, -1); } return controller.getNodeInfo({ icon, ...item })})',
                                             USERSCRIPT:
                                               '`@{"id":"${data.id}","name":"${data.name}"}`',
                                             QUOTESCRIPT:
-                                              '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.type}","recent_parent":"${data.recent_parent}","icon":"${data.icon}"}`',
+                                              '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.owner_subtype}","recent_parent":"${data.recent_parent}"}`',
                                             USERURL:
                                               "`${context.library ? `libraries/${context.library}/library_members/fetch_default` : context.product ? `products/${context.product}/product_members/fetch_default` : context.project ? `projects/${context.project}/project_members/fetch_default` : ''}`",
                                             USERFIELDMAP:
@@ -16069,18 +16050,18 @@ export default {
                                               '{"type":"plmweb.base__recent_visite"}',
                                             enableEdit: 'true',
                                             QUOTEFIELDMAP:
-                                              '{"identifier":"show_identifier","name":"name","id":"id","type":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
+                                              '{"identifier":"show_identifier","name":"name","id":"id","owner_subtype":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
                                             QUOTEPARAMS:
-                                              '{"page":0,"size":20,"sort":"update_time,desc"}',
+                                              '{"sort":"update_time,desc"}',
                                             enableFullScreen: 'true',
                                             MODE: 'default',
                                             AC: 'TRUE',
                                             QUOTEINSCRIPT:
-                                              'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\"),\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); return controller.getNodeInfo({ icon, ...item })})',
+                                              'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\")(,\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\")*\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); if (icon) { icon = icon.slice(8).slice(1, -1); } return controller.getNodeInfo({ icon, ...item })})',
                                             USERSCRIPT:
                                               '`@{"id":"${data.id}","name":"${data.name}"}`',
                                             QUOTESCRIPT:
-                                              '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.type}","recent_parent":"${data.recent_parent}","icon":"${data.icon}"}`',
+                                              '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.owner_subtype}","recent_parent":"${data.recent_parent}"}`',
                                             USERURL:
                                               "`${context.library ? `libraries/${context.library}/library_members/fetch_default` : context.product ? `products/${context.product}/product_members/fetch_default` : context.project ? `projects/${context.project}/project_members/fetch_default` : ''}`",
                                             USERFIELDMAP:
@@ -16157,7 +16138,6 @@ export default {
                                       },
                                     ],
                                     logicType: 'GROUP',
-                                    id: '表单成员[tabpage6][面板显示]逻辑',
                                   },
                                 ],
                                 showCaption: true,
@@ -17622,7 +17602,6 @@ export default {
                               },
                             ],
                             logicType: 'GROUP',
-                            id: '表单成员[grouppanel14][面板显示]逻辑',
                           },
                         ],
                         layoutPos: {
@@ -17774,7 +17753,6 @@ export default {
                                   },
                                 ],
                                 logicType: 'GROUP',
-                                id: '表单成员[estimated_workload][表单项启用]逻辑',
                               },
                             ],
                             layoutPos: {
@@ -17830,7 +17808,6 @@ export default {
                                       },
                                     ],
                                     logicType: 'GROUP',
-                                    id: '表单成员[setting_executors2][面板显示]逻辑',
                                   },
                                 ],
                                 layoutPos: {
@@ -17944,7 +17921,6 @@ export default {
                                       },
                                     ],
                                     logicType: 'GROUP',
-                                    id: '表单成员[button1][面板显示]逻辑',
                                   },
                                 ],
                                 layoutPos: {
@@ -18280,7 +18256,6 @@ export default {
                           },
                         ],
                         logicType: 'GROUP',
-                        id: '表单成员[grouppanel9][面板显示]逻辑',
                       },
                     ],
                     layoutPos: {
@@ -18337,7 +18312,6 @@ export default {
                           },
                         ],
                         logicType: 'GROUP',
-                        id: '表单成员[baseline][面板显示]逻辑',
                       },
                     ],
                     layoutPos: {
@@ -18927,23 +18901,25 @@ export default {
                                           editorParams: {
                                             USERINSCRIPT:
                                               'value.replaceAll(/\\@\\{\\"(user)?id\\":\\"(.+?)\\",\\"name\\":\\"(.+?)\\"\\}/g,(x, user, id, name) => {return controller.getNodeInfo({ id, name })}).replaceAll(/\\@\\{userid=(.+?),name=(.+?)\\}/g,(x, id, name) => {return controller.getNodeInfo({ id, name })})',
+                                            LINKVIEWID:
+                                              'plmweb.recent_custom_redirect_view',
                                             MAXHEIGHT: '450',
                                             QUOTECODELISTMAP:
                                               '{"type":"plmweb.base__recent_visite"}',
                                             enableEdit: 'true',
                                             QUOTEFIELDMAP:
-                                              '{"identifier":"show_identifier","name":"name","id":"id","type":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
+                                              '{"identifier":"show_identifier","name":"name","id":"id","owner_subtype":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
                                             QUOTEPARAMS:
-                                              '{"page":0,"size":20,"sort":"update_time,desc"}',
+                                              '{"sort":"update_time,desc"}',
                                             enableFullScreen: 'true',
                                             MODE: 'default',
                                             AC: 'TRUE',
                                             QUOTEINSCRIPT:
-                                              'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\"),\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); return controller.getNodeInfo({ icon, ...item })})',
+                                              'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\")(,\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\")*\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); if (icon) { icon = icon.slice(8).slice(1, -1); } return controller.getNodeInfo({ icon, ...item })})',
                                             USERSCRIPT:
                                               '`@{"id":"${data.id}","name":"${data.name}"}`',
                                             QUOTESCRIPT:
-                                              '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.type}","recent_parent":"${data.recent_parent}","icon":"${data.icon}"}`',
+                                              '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.owner_subtype}","recent_parent":"${data.recent_parent}"}`',
                                             USERURL:
                                               "`${context.library ? `libraries/${context.library}/library_members/fetch_default` : context.product ? `products/${context.product}/product_members/fetch_default` : context.project ? `projects/${context.project}/project_members/fetch_default` : ''}`",
                                             USERFIELDMAP:
@@ -19021,18 +18997,18 @@ export default {
                                               '{"type":"plmweb.base__recent_visite"}',
                                             enableEdit: 'true',
                                             QUOTEFIELDMAP:
-                                              '{"identifier":"show_identifier","name":"name","id":"id","type":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
+                                              '{"identifier":"show_identifier","name":"name","id":"id","owner_subtype":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
                                             QUOTEPARAMS:
-                                              '{"page":0,"size":20,"sort":"update_time,desc"}',
+                                              '{"sort":"update_time,desc"}',
                                             enableFullScreen: 'true',
                                             MODE: 'default',
                                             AC: 'TRUE',
                                             QUOTEINSCRIPT:
-                                              'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\"),\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); return controller.getNodeInfo({ icon, ...item })})',
+                                              'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\")(,\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\")*\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); if (icon) { icon = icon.slice(8).slice(1, -1); } return controller.getNodeInfo({ icon, ...item })})',
                                             USERSCRIPT:
                                               '`@{"id":"${data.id}","name":"${data.name}"}`',
                                             QUOTESCRIPT:
-                                              '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.type}","recent_parent":"${data.recent_parent}","icon":"${data.icon}"}`',
+                                              '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.owner_subtype}","recent_parent":"${data.recent_parent}"}`',
                                             USERURL:
                                               "`${context.library ? `libraries/${context.library}/library_members/fetch_default` : context.product ? `products/${context.product}/product_members/fetch_default` : context.project ? `projects/${context.project}/project_members/fetch_default` : ''}`",
                                             USERFIELDMAP:
@@ -19109,7 +19085,6 @@ export default {
                                       },
                                     ],
                                     logicType: 'GROUP',
-                                    id: '表单成员[tabpage6][面板显示]逻辑',
                                   },
                                 ],
                                 showCaption: true,
@@ -20884,7 +20859,6 @@ export default {
                                       },
                                     ],
                                     logicType: 'GROUP',
-                                    id: '表单成员[button1][面板显示]逻辑',
                                   },
                                 ],
                                 layoutPos: {
@@ -21220,7 +21194,6 @@ export default {
                           },
                         ],
                         logicType: 'GROUP',
-                        id: '表单成员[grouppanel9][面板显示]逻辑',
                       },
                     ],
                     layoutPos: {
@@ -21277,7 +21250,6 @@ export default {
                           },
                         ],
                         logicType: 'GROUP',
-                        id: '表单成员[baseline][面板显示]逻辑',
                       },
                     ],
                     layoutPos: {
@@ -21408,10 +21380,10 @@ export default {
             codeName: 'estimated_update',
             defiupdateDetails: [
               {
-                id: 'remaining_workload',
+                id: 'workload_schedule',
               },
               {
-                id: 'workload_schedule',
+                id: 'remaining_workload',
               },
             ],
             scriptCode:
@@ -21850,23 +21822,24 @@ export default {
                                   editorParams: {
                                     USERINSCRIPT:
                                       'value.replaceAll(/\\@\\{\\"(user)?id\\":\\"(.+?)\\",\\"name\\":\\"(.+?)\\"\\}/g,(x, user, id, name) => {return controller.getNodeInfo({ id, name })}).replaceAll(/\\@\\{userid=(.+?),name=(.+?)\\}/g,(x, id, name) => {return controller.getNodeInfo({ id, name })})',
+                                    LINKVIEWID:
+                                      'plmweb.recent_custom_redirect_view',
                                     MAXHEIGHT: '450',
                                     QUOTECODELISTMAP:
                                       '{"type":"plmweb.base__recent_visite"}',
                                     enableEdit: 'true',
                                     QUOTEFIELDMAP:
-                                      '{"identifier":"show_identifier","name":"name","id":"id","type":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
-                                    QUOTEPARAMS:
-                                      '{"page":0,"size":20,"sort":"update_time,desc"}',
+                                      '{"identifier":"show_identifier","name":"name","id":"id","owner_subtype":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
+                                    QUOTEPARAMS: '{"sort":"update_time,desc"}',
                                     enableFullScreen: 'true',
                                     MODE: 'default',
                                     AC: 'TRUE',
                                     QUOTEINSCRIPT:
-                                      'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\"),\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); return controller.getNodeInfo({ icon, ...item })})',
+                                      'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\")(,\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\")*\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); if (icon) { icon = icon.slice(8).slice(1, -1); } return controller.getNodeInfo({ icon, ...item })})',
                                     USERSCRIPT:
                                       '`@{"id":"${data.id}","name":"${data.name}"}`',
                                     QUOTESCRIPT:
-                                      '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.type}","recent_parent":"${data.recent_parent}","icon":"${data.icon}"}`',
+                                      '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.owner_subtype}","recent_parent":"${data.recent_parent}"}`',
                                     USERURL:
                                       "`${context.library ? `libraries/${context.library}/library_members/fetch_default` : context.product ? `products/${context.product}/product_members/fetch_default` : context.project ? `projects/${context.project}/project_members/fetch_default` : ''}`",
                                     USERFIELDMAP:
@@ -23669,7 +23642,6 @@ export default {
                                       },
                                     ],
                                     logicType: 'GROUP',
-                                    id: '表单成员[button1][面板显示]逻辑',
                                   },
                                 ],
                                 layoutPos: {
@@ -24005,7 +23977,6 @@ export default {
                           },
                         ],
                         logicType: 'GROUP',
-                        id: '表单成员[grouppanel9][面板显示]逻辑',
                       },
                     ],
                     layoutPos: {
@@ -24062,7 +24033,6 @@ export default {
                           },
                         ],
                         logicType: 'GROUP',
-                        id: '表单成员[baseline][面板显示]逻辑',
                       },
                     ],
                     layoutPos: {
@@ -24176,6 +24146,23 @@ export default {
         enableAutoSave: true,
         deformItemUpdates: [
           {
+            codeName: 'estimated_update',
+            defiupdateDetails: [
+              {
+                id: 'workload_schedule',
+              },
+              {
+                id: 'remaining_workload',
+              },
+            ],
+            scriptCode:
+              'var form_data = view.layoutPanel.panelItems.form.control.data;\r\nvar actual_workload = form_data.actual_workload;\r\nvar estimated_workload = form_data.estimated_workload;  \r\nvar estimated = 0; // 预估工时\r\nif(estimated_workload){\r\n\testimated = Number(estimated_workload);\r\n}\r\nvar actual = 0; // 已登记的实际工时\r\nvar remaining = 0; // 剩余工时\r\nif(actual_workload){\r\n\tactual = Number(actual_workload);\r\n\tif(estimated_workload){\r\n\t\t// 计算剩余工时\r\n\t\tremaining = (estimated - actual) >= 0 ? (estimated - actual) : 0;\r\n\t\tform_data.remaining_workload = remaining;\r\n\t}\r\n} else {\r\n\tremaining = estimated;\r\n\tform_data.remaining_workload = estimated_workload;\r\n}\r\n// 计算工时进度\r\nif((actual + remaining) != 0){\r\n\tvar schedule = ((actual / (actual + remaining)) * 100).toFixed(1);\r\n\tform_data.workload_schedule = schedule;\r\n}',
+            customCode: true,
+            showBusyIndicator: false,
+            name: '预估工时表单项更新',
+            id: 'estimated_update',
+          },
+          {
             codeName: 'remaining_update',
             defiupdateDetails: [
               {
@@ -24188,23 +24175,6 @@ export default {
             showBusyIndicator: false,
             name: '剩余工时表单项更新',
             id: 'remaining_update',
-          },
-          {
-            codeName: 'estimated_update',
-            defiupdateDetails: [
-              {
-                id: 'remaining_workload',
-              },
-              {
-                id: 'workload_schedule',
-              },
-            ],
-            scriptCode:
-              'var form_data = view.layoutPanel.panelItems.form.control.data;\r\nvar actual_workload = form_data.actual_workload;\r\nvar estimated_workload = form_data.estimated_workload;  \r\nvar estimated = 0; // 预估工时\r\nif(estimated_workload){\r\n\testimated = Number(estimated_workload);\r\n}\r\nvar actual = 0; // 已登记的实际工时\r\nvar remaining = 0; // 剩余工时\r\nif(actual_workload){\r\n\tactual = Number(actual_workload);\r\n\tif(estimated_workload){\r\n\t\t// 计算剩余工时\r\n\t\tremaining = (estimated - actual) >= 0 ? (estimated - actual) : 0;\r\n\t\tform_data.remaining_workload = remaining;\r\n\t}\r\n} else {\r\n\tremaining = estimated;\r\n\tform_data.remaining_workload = estimated_workload;\r\n}\r\n// 计算工时进度\r\nif((actual + remaining) != 0){\r\n\tvar schedule = ((actual / (actual + remaining)) * 100).toFixed(1);\r\n\tform_data.workload_schedule = schedule;\r\n}',
-            customCode: true,
-            showBusyIndicator: false,
-            name: '预估工时表单项更新',
-            id: 'estimated_update',
           },
         ],
         deformItemVRs: [
@@ -24635,23 +24605,24 @@ export default {
                                   editorParams: {
                                     USERINSCRIPT:
                                       'value.replaceAll(/\\@\\{\\"(user)?id\\":\\"(.+?)\\",\\"name\\":\\"(.+?)\\"\\}/g,(x, user, id, name) => {return controller.getNodeInfo({ id, name })}).replaceAll(/\\@\\{userid=(.+?),name=(.+?)\\}/g,(x, id, name) => {return controller.getNodeInfo({ id, name })})',
+                                    LINKVIEWID:
+                                      'plmweb.recent_custom_redirect_view',
                                     MAXHEIGHT: '450',
                                     QUOTECODELISTMAP:
                                       '{"type":"plmweb.base__recent_visite"}',
                                     enableEdit: 'true',
                                     QUOTEFIELDMAP:
-                                      '{"identifier":"show_identifier","name":"name","id":"id","type":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
-                                    QUOTEPARAMS:
-                                      '{"page":0,"size":20,"sort":"update_time,desc"}',
+                                      '{"identifier":"show_identifier","name":"name","id":"id","owner_subtype":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
+                                    QUOTEPARAMS: '{"sort":"update_time,desc"}',
                                     enableFullScreen: 'true',
                                     MODE: 'default',
                                     AC: 'TRUE',
                                     QUOTEINSCRIPT:
-                                      'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\"),\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); return controller.getNodeInfo({ icon, ...item })})',
+                                      'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\")(,\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\")*\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); if (icon) { icon = icon.slice(8).slice(1, -1); } return controller.getNodeInfo({ icon, ...item })})',
                                     USERSCRIPT:
                                       '`@{"id":"${data.id}","name":"${data.name}"}`',
                                     QUOTESCRIPT:
-                                      '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.type}","recent_parent":"${data.recent_parent}","icon":"${data.icon}"}`',
+                                      '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.owner_subtype}","recent_parent":"${data.recent_parent}"}`',
                                     USERURL:
                                       "`${context.library ? `libraries/${context.library}/library_members/fetch_default` : context.product ? `products/${context.product}/product_members/fetch_default` : context.project ? `projects/${context.project}/project_members/fetch_default` : ''}`",
                                     USERFIELDMAP:
@@ -26454,7 +26425,6 @@ export default {
                                       },
                                     ],
                                     logicType: 'GROUP',
-                                    id: '表单成员[button1][面板显示]逻辑',
                                   },
                                 ],
                                 layoutPos: {
@@ -26790,7 +26760,6 @@ export default {
                           },
                         ],
                         logicType: 'GROUP',
-                        id: '表单成员[grouppanel9][面板显示]逻辑',
                       },
                     ],
                     layoutPos: {
@@ -26847,7 +26816,6 @@ export default {
                           },
                         ],
                         logicType: 'GROUP',
-                        id: '表单成员[baseline][面板显示]逻辑',
                       },
                     ],
                     layoutPos: {
@@ -26978,10 +26946,10 @@ export default {
             codeName: 'estimated_update',
             defiupdateDetails: [
               {
-                id: 'workload_schedule',
+                id: 'remaining_workload',
               },
               {
-                id: 'remaining_workload',
+                id: 'workload_schedule',
               },
             ],
             scriptCode:
@@ -27427,23 +27395,25 @@ export default {
                                           editorParams: {
                                             USERINSCRIPT:
                                               'value.replaceAll(/\\@\\{\\"(user)?id\\":\\"(.+?)\\",\\"name\\":\\"(.+?)\\"\\}/g,(x, user, id, name) => {return controller.getNodeInfo({ id, name })}).replaceAll(/\\@\\{userid=(.+?),name=(.+?)\\}/g,(x, id, name) => {return controller.getNodeInfo({ id, name })})',
+                                            LINKVIEWID:
+                                              'plmweb.recent_custom_redirect_view',
                                             MAXHEIGHT: '450',
                                             QUOTECODELISTMAP:
                                               '{"type":"plmweb.base__recent_visite"}',
                                             enableEdit: 'true',
                                             QUOTEFIELDMAP:
-                                              '{"identifier":"show_identifier","name":"name","id":"id","type":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
+                                              '{"identifier":"show_identifier","name":"name","id":"id","owner_subtype":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
                                             QUOTEPARAMS:
-                                              '{"page":0,"size":20,"sort":"update_time,desc"}',
+                                              '{"sort":"update_time,desc"}',
                                             enableFullScreen: 'true',
                                             MODE: 'default',
                                             AC: 'TRUE',
                                             QUOTEINSCRIPT:
-                                              'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\"),\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); return controller.getNodeInfo({ icon, ...item })})',
+                                              'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\")(,\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\")*\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); if (icon) { icon = icon.slice(8).slice(1, -1); } return controller.getNodeInfo({ icon, ...item })})',
                                             USERSCRIPT:
                                               '`@{"id":"${data.id}","name":"${data.name}"}`',
                                             QUOTESCRIPT:
-                                              '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.type}","recent_parent":"${data.recent_parent}","icon":"${data.icon}"}`',
+                                              '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.owner_subtype}","recent_parent":"${data.recent_parent}"}`',
                                             USERURL:
                                               "`${context.library ? `libraries/${context.library}/library_members/fetch_default` : context.product ? `products/${context.product}/product_members/fetch_default` : context.project ? `projects/${context.project}/project_members/fetch_default` : ''}`",
                                             USERFIELDMAP:
@@ -27521,18 +27491,18 @@ export default {
                                               '{"type":"plmweb.base__recent_visite"}',
                                             enableEdit: 'true',
                                             QUOTEFIELDMAP:
-                                              '{"identifier":"show_identifier","name":"name","id":"id","type":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
+                                              '{"identifier":"show_identifier","name":"name","id":"id","owner_subtype":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
                                             QUOTEPARAMS:
-                                              '{"page":0,"size":20,"sort":"update_time,desc"}',
+                                              '{"sort":"update_time,desc"}',
                                             enableFullScreen: 'true',
                                             MODE: 'default',
                                             AC: 'TRUE',
                                             QUOTEINSCRIPT:
-                                              'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\"),\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); return controller.getNodeInfo({ icon, ...item })})',
+                                              'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\")(,\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\")*\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); if (icon) { icon = icon.slice(8).slice(1, -1); } return controller.getNodeInfo({ icon, ...item })})',
                                             USERSCRIPT:
                                               '`@{"id":"${data.id}","name":"${data.name}"}`',
                                             QUOTESCRIPT:
-                                              '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.type}","recent_parent":"${data.recent_parent}","icon":"${data.icon}"}`',
+                                              '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.owner_subtype}","recent_parent":"${data.recent_parent}"}`',
                                             USERURL:
                                               "`${context.library ? `libraries/${context.library}/library_members/fetch_default` : context.product ? `products/${context.product}/product_members/fetch_default` : context.project ? `projects/${context.project}/project_members/fetch_default` : ''}`",
                                             USERFIELDMAP:
@@ -27609,7 +27579,6 @@ export default {
                                       },
                                     ],
                                     logicType: 'GROUP',
-                                    id: '表单成员[tabpage6][面板显示]逻辑',
                                   },
                                 ],
                                 showCaption: true,
@@ -29327,7 +29296,6 @@ export default {
                                       },
                                     ],
                                     logicType: 'GROUP',
-                                    id: '表单成员[button1][面板显示]逻辑',
                                   },
                                 ],
                                 layoutPos: {
@@ -29663,7 +29631,6 @@ export default {
                           },
                         ],
                         logicType: 'GROUP',
-                        id: '表单成员[grouppanel9][面板显示]逻辑',
                       },
                     ],
                     layoutPos: {
@@ -29720,7 +29687,6 @@ export default {
                           },
                         ],
                         logicType: 'GROUP',
-                        id: '表单成员[baseline][面板显示]逻辑',
                       },
                     ],
                     layoutPos: {
@@ -29834,6 +29800,20 @@ export default {
         enableAutoSave: true,
         deformItemUpdates: [
           {
+            codeName: 'remaining_update',
+            defiupdateDetails: [
+              {
+                id: 'workload_schedule',
+              },
+            ],
+            scriptCode:
+              'var form_data = view.layoutPanel.panelItems.form.control.data;\r\nvar actual_workload = form_data.actual_workload;\r\nvar estimated_workload = form_data.estimated_workload; \r\nvar remaining_workload = form_data.remaining_workload;  \r\nvar estimated = 0; // 预估工时\r\nif(estimated_workload){\r\n\testimated = Number(estimated_workload);\r\n}\r\nvar actual = 0; // 已登记的实际工时\r\nif(actual_workload){\r\n\tactual = Number(actual_workload);\r\n}\r\nvar remaining = 0;\r\nif(remaining_workload){\r\n\tremaining = Number(remaining_workload);\r\n}\r\n// 计算工时进度\r\nif((actual + remaining) != 0){\r\n\tvar schedule = ((actual / (actual + remaining)) * 100).toFixed(1);\r\n\tform_data.workload_schedule = schedule;\r\n}\r\n',
+            customCode: true,
+            showBusyIndicator: false,
+            name: '剩余工时表单项更新',
+            id: 'remaining_update',
+          },
+          {
             codeName: 'estimated_update',
             defiupdateDetails: [
               {
@@ -29849,20 +29829,6 @@ export default {
             showBusyIndicator: false,
             name: '预估工时表单项更新',
             id: 'estimated_update',
-          },
-          {
-            codeName: 'remaining_update',
-            defiupdateDetails: [
-              {
-                id: 'workload_schedule',
-              },
-            ],
-            scriptCode:
-              'var form_data = view.layoutPanel.panelItems.form.control.data;\r\nvar actual_workload = form_data.actual_workload;\r\nvar estimated_workload = form_data.estimated_workload; \r\nvar remaining_workload = form_data.remaining_workload;  \r\nvar estimated = 0; // 预估工时\r\nif(estimated_workload){\r\n\testimated = Number(estimated_workload);\r\n}\r\nvar actual = 0; // 已登记的实际工时\r\nif(actual_workload){\r\n\tactual = Number(actual_workload);\r\n}\r\nvar remaining = 0;\r\nif(remaining_workload){\r\n\tremaining = Number(remaining_workload);\r\n}\r\n// 计算工时进度\r\nif((actual + remaining) != 0){\r\n\tvar schedule = ((actual / (actual + remaining)) * 100).toFixed(1);\r\n\tform_data.workload_schedule = schedule;\r\n}\r\n',
-            customCode: true,
-            showBusyIndicator: false,
-            name: '剩余工时表单项更新',
-            id: 'remaining_update',
           },
         ],
         deformItemVRs: [
@@ -30293,23 +30259,24 @@ export default {
                                   editorParams: {
                                     USERINSCRIPT:
                                       'value.replaceAll(/\\@\\{\\"(user)?id\\":\\"(.+?)\\",\\"name\\":\\"(.+?)\\"\\}/g,(x, user, id, name) => {return controller.getNodeInfo({ id, name })}).replaceAll(/\\@\\{userid=(.+?),name=(.+?)\\}/g,(x, id, name) => {return controller.getNodeInfo({ id, name })})',
+                                    LINKVIEWID:
+                                      'plmweb.recent_custom_redirect_view',
                                     MAXHEIGHT: '450',
                                     QUOTECODELISTMAP:
                                       '{"type":"plmweb.base__recent_visite"}',
                                     enableEdit: 'true',
                                     QUOTEFIELDMAP:
-                                      '{"identifier":"show_identifier","name":"name","id":"id","type":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
-                                    QUOTEPARAMS:
-                                      '{"page":0,"size":20,"sort":"update_time,desc"}',
+                                      '{"identifier":"show_identifier","name":"name","id":"id","owner_subtype":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
+                                    QUOTEPARAMS: '{"sort":"update_time,desc"}',
                                     enableFullScreen: 'true',
                                     MODE: 'default',
                                     AC: 'TRUE',
                                     QUOTEINSCRIPT:
-                                      'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\"),\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); return controller.getNodeInfo({ icon, ...item })})',
+                                      'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\")(,\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\")*\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); if (icon) { icon = icon.slice(8).slice(1, -1); } return controller.getNodeInfo({ icon, ...item })})',
                                     USERSCRIPT:
                                       '`@{"id":"${data.id}","name":"${data.name}"}`',
                                     QUOTESCRIPT:
-                                      '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.type}","recent_parent":"${data.recent_parent}","icon":"${data.icon}"}`',
+                                      '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.owner_subtype}","recent_parent":"${data.recent_parent}"}`',
                                     USERURL:
                                       "`${context.library ? `libraries/${context.library}/library_members/fetch_default` : context.product ? `products/${context.product}/product_members/fetch_default` : context.project ? `projects/${context.project}/project_members/fetch_default` : ''}`",
                                     USERFIELDMAP:
@@ -32139,7 +32106,6 @@ export default {
                                       },
                                     ],
                                     logicType: 'GROUP',
-                                    id: '表单成员[button1][面板显示]逻辑',
                                   },
                                 ],
                                 layoutPos: {
@@ -32475,7 +32441,6 @@ export default {
                           },
                         ],
                         logicType: 'GROUP',
-                        id: '表单成员[grouppanel9][面板显示]逻辑',
                       },
                     ],
                     layoutPos: {
@@ -32532,7 +32497,6 @@ export default {
                           },
                         ],
                         logicType: 'GROUP',
-                        id: '表单成员[baseline][面板显示]逻辑',
                       },
                     ],
                     layoutPos: {
@@ -32646,6 +32610,23 @@ export default {
         enableAutoSave: true,
         deformItemUpdates: [
           {
+            codeName: 'estimated_update',
+            defiupdateDetails: [
+              {
+                id: 'workload_schedule',
+              },
+              {
+                id: 'remaining_workload',
+              },
+            ],
+            scriptCode:
+              'var form_data = view.layoutPanel.panelItems.form.control.data;\r\nvar actual_workload = form_data.actual_workload;\r\nvar estimated_workload = form_data.estimated_workload;  \r\nvar estimated = 0; // 预估工时\r\nif(estimated_workload){\r\n\testimated = Number(estimated_workload);\r\n}\r\nvar actual = 0; // 已登记的实际工时\r\nvar remaining = 0; // 剩余工时\r\nif(actual_workload){\r\n\tactual = Number(actual_workload);\r\n\tif(estimated_workload){\r\n\t\t// 计算剩余工时\r\n\t\tremaining = (estimated - actual) >= 0 ? (estimated - actual) : 0;\r\n\t\tform_data.remaining_workload = remaining;\r\n\t}\r\n} else {\r\n\tremaining = estimated;\r\n\tform_data.remaining_workload = estimated_workload;\r\n}\r\n// 计算工时进度\r\nif((actual + remaining) != 0){\r\n\tvar schedule = ((actual / (actual + remaining)) * 100).toFixed(1);\r\n\tform_data.workload_schedule = schedule;\r\n}',
+            customCode: true,
+            showBusyIndicator: false,
+            name: '预估工时表单项更新',
+            id: 'estimated_update',
+          },
+          {
             codeName: 'remaining_update',
             defiupdateDetails: [
               {
@@ -32658,23 +32639,6 @@ export default {
             showBusyIndicator: false,
             name: '剩余工时表单项更新',
             id: 'remaining_update',
-          },
-          {
-            codeName: 'estimated_update',
-            defiupdateDetails: [
-              {
-                id: 'remaining_workload',
-              },
-              {
-                id: 'workload_schedule',
-              },
-            ],
-            scriptCode:
-              'var form_data = view.layoutPanel.panelItems.form.control.data;\r\nvar actual_workload = form_data.actual_workload;\r\nvar estimated_workload = form_data.estimated_workload;  \r\nvar estimated = 0; // 预估工时\r\nif(estimated_workload){\r\n\testimated = Number(estimated_workload);\r\n}\r\nvar actual = 0; // 已登记的实际工时\r\nvar remaining = 0; // 剩余工时\r\nif(actual_workload){\r\n\tactual = Number(actual_workload);\r\n\tif(estimated_workload){\r\n\t\t// 计算剩余工时\r\n\t\tremaining = (estimated - actual) >= 0 ? (estimated - actual) : 0;\r\n\t\tform_data.remaining_workload = remaining;\r\n\t}\r\n} else {\r\n\tremaining = estimated;\r\n\tform_data.remaining_workload = estimated_workload;\r\n}\r\n// 计算工时进度\r\nif((actual + remaining) != 0){\r\n\tvar schedule = ((actual / (actual + remaining)) * 100).toFixed(1);\r\n\tform_data.workload_schedule = schedule;\r\n}',
-            customCode: true,
-            showBusyIndicator: false,
-            name: '预估工时表单项更新',
-            id: 'estimated_update',
           },
         ],
         deformItemVRs: [
@@ -32912,7 +32876,6 @@ export default {
                                   },
                                 ],
                                 logicType: 'GROUP',
-                                id: '表单成员[setting_executors][面板显示]逻辑',
                               },
                             ],
                             layoutPos: {
@@ -33053,7 +33016,6 @@ export default {
                               },
                             ],
                             logicType: 'GROUP',
-                            id: '表单成员[grouppanel4][面板显示]逻辑',
                           },
                         ],
                         layoutPos: {
@@ -33156,7 +33118,6 @@ export default {
                               },
                             ],
                             logicType: 'GROUP',
-                            id: '表单成员[grouppanel5][面板显示]逻辑',
                           },
                         ],
                         layoutPos: {
@@ -33359,23 +33320,25 @@ export default {
                                           editorParams: {
                                             USERINSCRIPT:
                                               'value.replaceAll(/\\@\\{\\"(user)?id\\":\\"(.+?)\\",\\"name\\":\\"(.+?)\\"\\}/g,(x, user, id, name) => {return controller.getNodeInfo({ id, name })}).replaceAll(/\\@\\{userid=(.+?),name=(.+?)\\}/g,(x, id, name) => {return controller.getNodeInfo({ id, name })})',
+                                            LINKVIEWID:
+                                              'plmweb.recent_custom_redirect_view',
                                             MAXHEIGHT: '450',
                                             QUOTECODELISTMAP:
                                               '{"type":"plmweb.base__recent_visite"}',
                                             enableEdit: 'true',
                                             QUOTEFIELDMAP:
-                                              '{"identifier":"show_identifier","name":"name","id":"id","type":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
+                                              '{"identifier":"show_identifier","name":"name","id":"id","owner_subtype":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
                                             QUOTEPARAMS:
-                                              '{"page":0,"size":20,"sort":"update_time,desc"}',
+                                              '{"sort":"update_time,desc"}',
                                             enableFullScreen: 'true',
                                             MODE: 'default',
                                             AC: 'TRUE',
                                             QUOTEINSCRIPT:
-                                              'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\"),\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); return controller.getNodeInfo({ icon, ...item })})',
+                                              'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\")(,\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\")*\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); if (icon) { icon = icon.slice(8).slice(1, -1); } return controller.getNodeInfo({ icon, ...item })})',
                                             USERSCRIPT:
                                               '`@{"id":"${data.id}","name":"${data.name}"}`',
                                             QUOTESCRIPT:
-                                              '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.type}","recent_parent":"${data.recent_parent}","icon":"${data.icon}"}`',
+                                              '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.owner_subtype}","recent_parent":"${data.recent_parent}"}`',
                                             USERURL:
                                               "`${context.library ? `libraries/${context.library}/library_members/fetch_default` : context.product ? `products/${context.product}/product_members/fetch_default` : context.project ? `projects/${context.project}/project_members/fetch_default` : ''}`",
                                             USERFIELDMAP:
@@ -33453,18 +33416,18 @@ export default {
                                               '{"type":"plmweb.base__recent_visite"}',
                                             enableEdit: 'true',
                                             QUOTEFIELDMAP:
-                                              '{"identifier":"show_identifier","name":"name","id":"id","type":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
+                                              '{"identifier":"show_identifier","name":"name","id":"id","owner_subtype":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
                                             QUOTEPARAMS:
-                                              '{"page":0,"size":20,"sort":"update_time,desc"}',
+                                              '{"sort":"update_time,desc"}',
                                             enableFullScreen: 'true',
                                             MODE: 'default',
                                             AC: 'TRUE',
                                             QUOTEINSCRIPT:
-                                              'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\"),\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); return controller.getNodeInfo({ icon, ...item })})',
+                                              'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\")(,\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\")*\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); if (icon) { icon = icon.slice(8).slice(1, -1); } return controller.getNodeInfo({ icon, ...item })})',
                                             USERSCRIPT:
                                               '`@{"id":"${data.id}","name":"${data.name}"}`',
                                             QUOTESCRIPT:
-                                              '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.type}","recent_parent":"${data.recent_parent}","icon":"${data.icon}"}`',
+                                              '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.owner_subtype}","recent_parent":"${data.recent_parent}"}`',
                                             USERURL:
                                               "`${context.library ? `libraries/${context.library}/library_members/fetch_default` : context.product ? `products/${context.product}/product_members/fetch_default` : context.project ? `projects/${context.project}/project_members/fetch_default` : ''}`",
                                             USERFIELDMAP:
@@ -33541,7 +33504,6 @@ export default {
                                       },
                                     ],
                                     logicType: 'GROUP',
-                                    id: '表单成员[tabpage6][面板显示]逻辑',
                                   },
                                 ],
                                 showCaption: true,
@@ -35287,7 +35249,6 @@ export default {
                                       },
                                     ],
                                     logicType: 'GROUP',
-                                    id: '表单成员[button1][面板显示]逻辑',
                                   },
                                 ],
                                 layoutPos: {
@@ -35623,7 +35584,6 @@ export default {
                           },
                         ],
                         logicType: 'GROUP',
-                        id: '表单成员[grouppanel9][面板显示]逻辑',
                       },
                     ],
                     layoutPos: {
@@ -35680,7 +35640,6 @@ export default {
                           },
                         ],
                         logicType: 'GROUP',
-                        id: '表单成员[baseline][面板显示]逻辑',
                       },
                     ],
                     layoutPos: {
@@ -35807,10 +35766,10 @@ export default {
             codeName: 'estimated_update',
             defiupdateDetails: [
               {
-                id: 'remaining_workload',
+                id: 'workload_schedule',
               },
               {
-                id: 'workload_schedule',
+                id: 'remaining_workload',
               },
             ],
             scriptCode:
@@ -36070,7 +36029,6 @@ export default {
                                   },
                                 ],
                                 logicType: 'GROUP',
-                                id: '表单成员[setting_executors][面板显示]逻辑',
                               },
                             ],
                             layoutPos: {
@@ -36211,7 +36169,6 @@ export default {
                               },
                             ],
                             logicType: 'GROUP',
-                            id: '表单成员[grouppanel4][面板显示]逻辑',
                           },
                         ],
                         layoutPos: {
@@ -36314,7 +36271,6 @@ export default {
                               },
                             ],
                             logicType: 'GROUP',
-                            id: '表单成员[grouppanel5][面板显示]逻辑',
                           },
                         ],
                         layoutPos: {
@@ -36517,23 +36473,25 @@ export default {
                                           editorParams: {
                                             USERINSCRIPT:
                                               'value.replaceAll(/\\@\\{\\"(user)?id\\":\\"(.+?)\\",\\"name\\":\\"(.+?)\\"\\}/g,(x, user, id, name) => {return controller.getNodeInfo({ id, name })}).replaceAll(/\\@\\{userid=(.+?),name=(.+?)\\}/g,(x, id, name) => {return controller.getNodeInfo({ id, name })})',
+                                            LINKVIEWID:
+                                              'plmweb.recent_custom_redirect_view',
                                             MAXHEIGHT: '450',
                                             QUOTECODELISTMAP:
                                               '{"type":"plmweb.base__recent_visite"}',
                                             enableEdit: 'true',
                                             QUOTEFIELDMAP:
-                                              '{"identifier":"show_identifier","name":"name","id":"id","type":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
+                                              '{"identifier":"show_identifier","name":"name","id":"id","owner_subtype":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
                                             QUOTEPARAMS:
-                                              '{"page":0,"size":20,"sort":"update_time,desc"}',
+                                              '{"sort":"update_time,desc"}',
                                             enableFullScreen: 'true',
                                             MODE: 'default',
                                             AC: 'TRUE',
                                             QUOTEINSCRIPT:
-                                              'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\"),\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); return controller.getNodeInfo({ icon, ...item })})',
+                                              'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\")(,\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\")*\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); if (icon) { icon = icon.slice(8).slice(1, -1); } return controller.getNodeInfo({ icon, ...item })})',
                                             USERSCRIPT:
                                               '`@{"id":"${data.id}","name":"${data.name}"}`',
                                             QUOTESCRIPT:
-                                              '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.type}","recent_parent":"${data.recent_parent}","icon":"${data.icon}"}`',
+                                              '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.owner_subtype}","recent_parent":"${data.recent_parent}"}`',
                                             USERURL:
                                               "`${context.library ? `libraries/${context.library}/library_members/fetch_default` : context.product ? `products/${context.product}/product_members/fetch_default` : context.project ? `projects/${context.project}/project_members/fetch_default` : ''}`",
                                             USERFIELDMAP:
@@ -36611,18 +36569,18 @@ export default {
                                               '{"type":"plmweb.base__recent_visite"}',
                                             enableEdit: 'true',
                                             QUOTEFIELDMAP:
-                                              '{"identifier":"show_identifier","name":"name","id":"id","type":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
+                                              '{"identifier":"show_identifier","name":"name","id":"id","owner_subtype":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
                                             QUOTEPARAMS:
-                                              '{"page":0,"size":20,"sort":"update_time,desc"}',
+                                              '{"sort":"update_time,desc"}',
                                             enableFullScreen: 'true',
                                             MODE: 'default',
                                             AC: 'TRUE',
                                             QUOTEINSCRIPT:
-                                              'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\"),\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); return controller.getNodeInfo({ icon, ...item })})',
+                                              'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\")(,\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\")*\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); if (icon) { icon = icon.slice(8).slice(1, -1); } return controller.getNodeInfo({ icon, ...item })})',
                                             USERSCRIPT:
                                               '`@{"id":"${data.id}","name":"${data.name}"}`',
                                             QUOTESCRIPT:
-                                              '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.type}","recent_parent":"${data.recent_parent}","icon":"${data.icon}"}`',
+                                              '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.owner_subtype}","recent_parent":"${data.recent_parent}"}`',
                                             USERURL:
                                               "`${context.library ? `libraries/${context.library}/library_members/fetch_default` : context.product ? `products/${context.product}/product_members/fetch_default` : context.project ? `projects/${context.project}/project_members/fetch_default` : ''}`",
                                             USERFIELDMAP:
@@ -36699,7 +36657,6 @@ export default {
                                       },
                                     ],
                                     logicType: 'GROUP',
-                                    id: '表单成员[tabpage6][面板显示]逻辑',
                                   },
                                 ],
                                 showCaption: true,
@@ -38295,7 +38252,6 @@ export default {
                                       },
                                     ],
                                     logicType: 'GROUP',
-                                    id: '表单成员[button1][面板显示]逻辑',
                                   },
                                 ],
                                 layoutPos: {
@@ -38631,7 +38587,6 @@ export default {
                           },
                         ],
                         logicType: 'GROUP',
-                        id: '表单成员[grouppanel9][面板显示]逻辑',
                       },
                     ],
                     layoutPos: {
@@ -38688,7 +38643,6 @@ export default {
                           },
                         ],
                         logicType: 'GROUP',
-                        id: '表单成员[baseline][面板显示]逻辑',
                       },
                     ],
                     layoutPos: {
@@ -38812,20 +38766,6 @@ export default {
         enableAutoSave: true,
         deformItemUpdates: [
           {
-            codeName: 'remaining_update',
-            defiupdateDetails: [
-              {
-                id: 'workload_schedule',
-              },
-            ],
-            scriptCode:
-              'var form_data = view.layoutPanel.panelItems.form.control.data;\r\nvar actual_workload = form_data.actual_workload;\r\nvar estimated_workload = form_data.estimated_workload; \r\nvar remaining_workload = form_data.remaining_workload;  \r\nvar estimated = 0; // 预估工时\r\nif(estimated_workload){\r\n\testimated = Number(estimated_workload);\r\n}\r\nvar actual = 0; // 已登记的实际工时\r\nif(actual_workload){\r\n\tactual = Number(actual_workload);\r\n}\r\nvar remaining = 0;\r\nif(remaining_workload){\r\n\tremaining = Number(remaining_workload);\r\n}\r\n// 计算工时进度\r\nif((actual + remaining) != 0){\r\n\tvar schedule = ((actual / (actual + remaining)) * 100).toFixed(1);\r\n\tform_data.workload_schedule = schedule;\r\n}\r\n',
-            customCode: true,
-            showBusyIndicator: false,
-            name: '剩余工时表单项更新',
-            id: 'remaining_update',
-          },
-          {
             codeName: 'estimated_update',
             defiupdateDetails: [
               {
@@ -38841,6 +38781,20 @@ export default {
             showBusyIndicator: false,
             name: '预估工时表单项更新',
             id: 'estimated_update',
+          },
+          {
+            codeName: 'remaining_update',
+            defiupdateDetails: [
+              {
+                id: 'workload_schedule',
+              },
+            ],
+            scriptCode:
+              'var form_data = view.layoutPanel.panelItems.form.control.data;\r\nvar actual_workload = form_data.actual_workload;\r\nvar estimated_workload = form_data.estimated_workload; \r\nvar remaining_workload = form_data.remaining_workload;  \r\nvar estimated = 0; // 预估工时\r\nif(estimated_workload){\r\n\testimated = Number(estimated_workload);\r\n}\r\nvar actual = 0; // 已登记的实际工时\r\nif(actual_workload){\r\n\tactual = Number(actual_workload);\r\n}\r\nvar remaining = 0;\r\nif(remaining_workload){\r\n\tremaining = Number(remaining_workload);\r\n}\r\n// 计算工时进度\r\nif((actual + remaining) != 0){\r\n\tvar schedule = ((actual / (actual + remaining)) * 100).toFixed(1);\r\n\tform_data.workload_schedule = schedule;\r\n}\r\n',
+            customCode: true,
+            showBusyIndicator: false,
+            name: '剩余工时表单项更新',
+            id: 'remaining_update',
           },
         ],
         deformItemVRs: [
@@ -39271,23 +39225,24 @@ export default {
                                   editorParams: {
                                     USERINSCRIPT:
                                       'value.replaceAll(/\\@\\{\\"(user)?id\\":\\"(.+?)\\",\\"name\\":\\"(.+?)\\"\\}/g,(x, user, id, name) => {return controller.getNodeInfo({ id, name })}).replaceAll(/\\@\\{userid=(.+?),name=(.+?)\\}/g,(x, id, name) => {return controller.getNodeInfo({ id, name })})',
+                                    LINKVIEWID:
+                                      'plmweb.recent_custom_redirect_view',
                                     MAXHEIGHT: '450',
                                     QUOTECODELISTMAP:
                                       '{"type":"plmweb.base__recent_visite"}',
                                     enableEdit: 'true',
                                     QUOTEFIELDMAP:
-                                      '{"identifier":"show_identifier","name":"name","id":"id","type":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
-                                    QUOTEPARAMS:
-                                      '{"page":0,"size":20,"sort":"update_time,desc"}',
+                                      '{"identifier":"show_identifier","name":"name","id":"id","owner_subtype":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
+                                    QUOTEPARAMS: '{"sort":"update_time,desc"}',
                                     enableFullScreen: 'true',
                                     MODE: 'default',
                                     AC: 'TRUE',
                                     QUOTEINSCRIPT:
-                                      'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\"),\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); return controller.getNodeInfo({ icon, ...item })})',
+                                      'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\")(,\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\")*\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); if (icon) { icon = icon.slice(8).slice(1, -1); } return controller.getNodeInfo({ icon, ...item })})',
                                     USERSCRIPT:
                                       '`@{"id":"${data.id}","name":"${data.name}"}`',
                                     QUOTESCRIPT:
-                                      '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.type}","recent_parent":"${data.recent_parent}","icon":"${data.icon}"}`',
+                                      '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.owner_subtype}","recent_parent":"${data.recent_parent}"}`',
                                     USERURL:
                                       "`${context.library ? `libraries/${context.library}/library_members/fetch_default` : context.product ? `products/${context.product}/product_members/fetch_default` : context.project ? `projects/${context.project}/project_members/fetch_default` : ''}`",
                                     USERFIELDMAP:
@@ -40855,7 +40810,6 @@ export default {
                                       },
                                     ],
                                     logicType: 'GROUP',
-                                    id: '表单成员[button1][面板显示]逻辑',
                                   },
                                 ],
                                 layoutPos: {
@@ -41191,7 +41145,6 @@ export default {
                           },
                         ],
                         logicType: 'GROUP',
-                        id: '表单成员[grouppanel9][面板显示]逻辑',
                       },
                     ],
                     layoutPos: {
@@ -41248,7 +41201,6 @@ export default {
                           },
                         ],
                         logicType: 'GROUP',
-                        id: '表单成员[baseline][面板显示]逻辑',
                       },
                     ],
                     layoutPos: {
@@ -41365,10 +41317,10 @@ export default {
             codeName: 'estimated_update',
             defiupdateDetails: [
               {
-                id: 'workload_schedule',
+                id: 'remaining_workload',
               },
               {
-                id: 'remaining_workload',
+                id: 'workload_schedule',
               },
             ],
             scriptCode:
@@ -41821,23 +41773,24 @@ export default {
                                   editorParams: {
                                     USERINSCRIPT:
                                       'value.replaceAll(/\\@\\{\\"(user)?id\\":\\"(.+?)\\",\\"name\\":\\"(.+?)\\"\\}/g,(x, user, id, name) => {return controller.getNodeInfo({ id, name })}).replaceAll(/\\@\\{userid=(.+?),name=(.+?)\\}/g,(x, id, name) => {return controller.getNodeInfo({ id, name })})',
+                                    LINKVIEWID:
+                                      'plmweb.recent_custom_redirect_view',
                                     MAXHEIGHT: '450',
                                     QUOTECODELISTMAP:
                                       '{"type":"plmweb.base__recent_visite"}',
                                     enableEdit: 'true',
                                     QUOTEFIELDMAP:
-                                      '{"identifier":"show_identifier","name":"name","id":"id","type":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
-                                    QUOTEPARAMS:
-                                      '{"page":0,"size":20,"sort":"update_time,desc"}',
+                                      '{"identifier":"show_identifier","name":"name","id":"id","owner_subtype":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
+                                    QUOTEPARAMS: '{"sort":"update_time,desc"}',
                                     enableFullScreen: 'true',
                                     MODE: 'default',
                                     AC: 'TRUE',
                                     QUOTEINSCRIPT:
-                                      'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\"),\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); return controller.getNodeInfo({ icon, ...item })})',
+                                      'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\")(,\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\")*\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); if (icon) { icon = icon.slice(8).slice(1, -1); } return controller.getNodeInfo({ icon, ...item })})',
                                     USERSCRIPT:
                                       '`@{"id":"${data.id}","name":"${data.name}"}`',
                                     QUOTESCRIPT:
-                                      '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.type}","recent_parent":"${data.recent_parent}","icon":"${data.icon}"}`',
+                                      '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.owner_subtype}","recent_parent":"${data.recent_parent}"}`',
                                     USERURL:
                                       "`${context.library ? `libraries/${context.library}/library_members/fetch_default` : context.product ? `products/${context.product}/product_members/fetch_default` : context.project ? `projects/${context.project}/project_members/fetch_default` : ''}`",
                                     USERFIELDMAP:
@@ -43462,7 +43415,6 @@ export default {
                                       },
                                     ],
                                     logicType: 'GROUP',
-                                    id: '表单成员[button1][面板显示]逻辑',
                                   },
                                 ],
                                 layoutPos: {
@@ -43798,7 +43750,6 @@ export default {
                           },
                         ],
                         logicType: 'GROUP',
-                        id: '表单成员[grouppanel9][面板显示]逻辑',
                       },
                     ],
                     layoutPos: {
@@ -43855,7 +43806,6 @@ export default {
                           },
                         ],
                         logicType: 'GROUP',
-                        id: '表单成员[baseline][面板显示]逻辑',
                       },
                     ],
                     layoutPos: {
@@ -44428,23 +44378,24 @@ export default {
                                   editorParams: {
                                     USERINSCRIPT:
                                       'value.replaceAll(/\\@\\{\\"(user)?id\\":\\"(.+?)\\",\\"name\\":\\"(.+?)\\"\\}/g,(x, user, id, name) => {return controller.getNodeInfo({ id, name })}).replaceAll(/\\@\\{userid=(.+?),name=(.+?)\\}/g,(x, id, name) => {return controller.getNodeInfo({ id, name })})',
+                                    LINKVIEWID:
+                                      'plmweb.recent_custom_redirect_view',
                                     MAXHEIGHT: '450',
                                     QUOTECODELISTMAP:
                                       '{"type":"plmweb.base__recent_visite"}',
                                     enableEdit: 'true',
                                     QUOTEFIELDMAP:
-                                      '{"identifier":"show_identifier","name":"name","id":"id","type":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
-                                    QUOTEPARAMS:
-                                      '{"page":0,"size":20,"sort":"update_time,desc"}',
+                                      '{"identifier":"show_identifier","name":"name","id":"id","owner_subtype":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
+                                    QUOTEPARAMS: '{"sort":"update_time,desc"}',
                                     enableFullScreen: 'true',
                                     MODE: 'default',
                                     AC: 'TRUE',
                                     QUOTEINSCRIPT:
-                                      'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\"),\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); return controller.getNodeInfo({ icon, ...item })})',
+                                      'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\")(,\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\")*\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); if (icon) { icon = icon.slice(8).slice(1, -1); } return controller.getNodeInfo({ icon, ...item })})',
                                     USERSCRIPT:
                                       '`@{"id":"${data.id}","name":"${data.name}"}`',
                                     QUOTESCRIPT:
-                                      '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.type}","recent_parent":"${data.recent_parent}","icon":"${data.icon}"}`',
+                                      '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.owner_subtype}","recent_parent":"${data.recent_parent}"}`',
                                     USERURL:
                                       "`${context.library ? `libraries/${context.library}/library_members/fetch_default` : context.product ? `products/${context.product}/product_members/fetch_default` : context.project ? `projects/${context.project}/project_members/fetch_default` : ''}`",
                                     USERFIELDMAP:
@@ -46012,7 +45963,6 @@ export default {
                                       },
                                     ],
                                     logicType: 'GROUP',
-                                    id: '表单成员[button1][面板显示]逻辑',
                                   },
                                 ],
                                 layoutPos: {
@@ -46348,7 +46298,6 @@ export default {
                           },
                         ],
                         logicType: 'GROUP',
-                        id: '表单成员[grouppanel9][面板显示]逻辑',
                       },
                     ],
                     layoutPos: {
@@ -46405,7 +46354,6 @@ export default {
                           },
                         ],
                         logicType: 'GROUP',
-                        id: '表单成员[baseline][面板显示]逻辑',
                       },
                     ],
                     layoutPos: {
@@ -46519,23 +46467,6 @@ export default {
         enableAutoSave: true,
         deformItemUpdates: [
           {
-            codeName: 'estimated_update',
-            defiupdateDetails: [
-              {
-                id: 'remaining_workload',
-              },
-              {
-                id: 'workload_schedule',
-              },
-            ],
-            scriptCode:
-              'var form_data = view.layoutPanel.panelItems.form.control.data;\r\nvar actual_workload = form_data.actual_workload;\r\nvar estimated_workload = form_data.estimated_workload;  \r\nvar estimated = 0; // 预估工时\r\nif(estimated_workload){\r\n\testimated = Number(estimated_workload);\r\n}\r\nvar actual = 0; // 已登记的实际工时\r\nvar remaining = 0; // 剩余工时\r\nif(actual_workload){\r\n\tactual = Number(actual_workload);\r\n\tif(estimated_workload){\r\n\t\t// 计算剩余工时\r\n\t\tremaining = (estimated - actual) >= 0 ? (estimated - actual) : 0;\r\n\t\tform_data.remaining_workload = remaining;\r\n\t}\r\n} else {\r\n\tremaining = estimated;\r\n\tform_data.remaining_workload = estimated_workload;\r\n}\r\n// 计算工时进度\r\nif((actual + remaining) != 0){\r\n\tvar schedule = ((actual / (actual + remaining)) * 100).toFixed(1);\r\n\tform_data.workload_schedule = schedule;\r\n}',
-            customCode: true,
-            showBusyIndicator: false,
-            name: '预估工时表单项更新',
-            id: 'estimated_update',
-          },
-          {
             codeName: 'remaining_update',
             defiupdateDetails: [
               {
@@ -46548,6 +46479,23 @@ export default {
             showBusyIndicator: false,
             name: '剩余工时表单项更新',
             id: 'remaining_update',
+          },
+          {
+            codeName: 'estimated_update',
+            defiupdateDetails: [
+              {
+                id: 'workload_schedule',
+              },
+              {
+                id: 'remaining_workload',
+              },
+            ],
+            scriptCode:
+              'var form_data = view.layoutPanel.panelItems.form.control.data;\r\nvar actual_workload = form_data.actual_workload;\r\nvar estimated_workload = form_data.estimated_workload;  \r\nvar estimated = 0; // 预估工时\r\nif(estimated_workload){\r\n\testimated = Number(estimated_workload);\r\n}\r\nvar actual = 0; // 已登记的实际工时\r\nvar remaining = 0; // 剩余工时\r\nif(actual_workload){\r\n\tactual = Number(actual_workload);\r\n\tif(estimated_workload){\r\n\t\t// 计算剩余工时\r\n\t\tremaining = (estimated - actual) >= 0 ? (estimated - actual) : 0;\r\n\t\tform_data.remaining_workload = remaining;\r\n\t}\r\n} else {\r\n\tremaining = estimated;\r\n\tform_data.remaining_workload = estimated_workload;\r\n}\r\n// 计算工时进度\r\nif((actual + remaining) != 0){\r\n\tvar schedule = ((actual / (actual + remaining)) * 100).toFixed(1);\r\n\tform_data.workload_schedule = schedule;\r\n}',
+            customCode: true,
+            showBusyIndicator: false,
+            name: '预估工时表单项更新',
+            id: 'estimated_update',
           },
         ],
         deformItemVRs: [
@@ -46985,23 +46933,25 @@ export default {
                                           editorParams: {
                                             USERINSCRIPT:
                                               'value.replaceAll(/\\@\\{\\"(user)?id\\":\\"(.+?)\\",\\"name\\":\\"(.+?)\\"\\}/g,(x, user, id, name) => {return controller.getNodeInfo({ id, name })}).replaceAll(/\\@\\{userid=(.+?),name=(.+?)\\}/g,(x, id, name) => {return controller.getNodeInfo({ id, name })})',
+                                            LINKVIEWID:
+                                              'plmweb.recent_custom_redirect_view',
                                             MAXHEIGHT: '450',
                                             QUOTECODELISTMAP:
                                               '{"type":"plmweb.base__recent_visite"}',
                                             enableEdit: 'true',
                                             QUOTEFIELDMAP:
-                                              '{"identifier":"show_identifier","name":"name","id":"id","type":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
+                                              '{"identifier":"show_identifier","name":"name","id":"id","owner_subtype":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
                                             QUOTEPARAMS:
-                                              '{"page":0,"size":20,"sort":"update_time,desc"}',
+                                              '{"sort":"update_time,desc"}',
                                             enableFullScreen: 'true',
                                             MODE: 'default',
                                             AC: 'TRUE',
                                             QUOTEINSCRIPT:
-                                              'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\"),\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); return controller.getNodeInfo({ icon, ...item })})',
+                                              'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\")(,\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\")*\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); if (icon) { icon = icon.slice(8).slice(1, -1); } return controller.getNodeInfo({ icon, ...item })})',
                                             USERSCRIPT:
                                               '`@{"id":"${data.id}","name":"${data.name}"}`',
                                             QUOTESCRIPT:
-                                              '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.type}","recent_parent":"${data.recent_parent}","icon":"${data.icon}"}`',
+                                              '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.owner_subtype}","recent_parent":"${data.recent_parent}"}`',
                                             USERURL:
                                               "`${context.library ? `libraries/${context.library}/library_members/fetch_default` : context.product ? `products/${context.product}/product_members/fetch_default` : context.project ? `projects/${context.project}/project_members/fetch_default` : ''}`",
                                             USERFIELDMAP:
@@ -47079,18 +47029,18 @@ export default {
                                               '{"type":"plmweb.base__recent_visite"}',
                                             enableEdit: 'true',
                                             QUOTEFIELDMAP:
-                                              '{"identifier":"show_identifier","name":"name","id":"id","type":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
+                                              '{"identifier":"show_identifier","name":"name","id":"id","owner_subtype":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
                                             QUOTEPARAMS:
-                                              '{"page":0,"size":20,"sort":"update_time,desc"}',
+                                              '{"sort":"update_time,desc"}',
                                             enableFullScreen: 'true',
                                             MODE: 'default',
                                             AC: 'TRUE',
                                             QUOTEINSCRIPT:
-                                              'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\"),\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); return controller.getNodeInfo({ icon, ...item })})',
+                                              'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\")(,\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\")*\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); if (icon) { icon = icon.slice(8).slice(1, -1); } return controller.getNodeInfo({ icon, ...item })})',
                                             USERSCRIPT:
                                               '`@{"id":"${data.id}","name":"${data.name}"}`',
                                             QUOTESCRIPT:
-                                              '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.type}","recent_parent":"${data.recent_parent}","icon":"${data.icon}"}`',
+                                              '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.owner_subtype}","recent_parent":"${data.recent_parent}"}`',
                                             USERURL:
                                               "`${context.library ? `libraries/${context.library}/library_members/fetch_default` : context.product ? `products/${context.product}/product_members/fetch_default` : context.project ? `projects/${context.project}/project_members/fetch_default` : ''}`",
                                             USERFIELDMAP:
@@ -47167,7 +47117,6 @@ export default {
                                       },
                                     ],
                                     logicType: 'GROUP',
-                                    id: '表单成员[tabpage6][面板显示]逻辑',
                                   },
                                 ],
                                 showCaption: true,
@@ -48792,7 +48741,6 @@ export default {
                                       },
                                     ],
                                     logicType: 'GROUP',
-                                    id: '表单成员[button1][面板显示]逻辑',
                                   },
                                 ],
                                 layoutPos: {
@@ -49128,7 +49076,6 @@ export default {
                           },
                         ],
                         logicType: 'GROUP',
-                        id: '表单成员[grouppanel9][面板显示]逻辑',
                       },
                     ],
                     layoutPos: {
@@ -49185,7 +49132,6 @@ export default {
                           },
                         ],
                         logicType: 'GROUP',
-                        id: '表单成员[baseline][面板显示]逻辑',
                       },
                     ],
                     layoutPos: {
@@ -49302,10 +49248,10 @@ export default {
             codeName: 'estimated_update',
             defiupdateDetails: [
               {
-                id: 'workload_schedule',
+                id: 'remaining_workload',
               },
               {
-                id: 'remaining_workload',
+                id: 'workload_schedule',
               },
             ],
             scriptCode:
@@ -49765,23 +49711,25 @@ export default {
                                           editorParams: {
                                             USERINSCRIPT:
                                               'value.replaceAll(/\\@\\{\\"(user)?id\\":\\"(.+?)\\",\\"name\\":\\"(.+?)\\"\\}/g,(x, user, id, name) => {return controller.getNodeInfo({ id, name })}).replaceAll(/\\@\\{userid=(.+?),name=(.+?)\\}/g,(x, id, name) => {return controller.getNodeInfo({ id, name })})',
+                                            LINKVIEWID:
+                                              'plmweb.recent_custom_redirect_view',
                                             MAXHEIGHT: '450',
                                             QUOTECODELISTMAP:
                                               '{"type":"plmweb.base__recent_visite"}',
                                             enableEdit: 'true',
                                             QUOTEFIELDMAP:
-                                              '{"identifier":"show_identifier","name":"name","id":"id","type":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
+                                              '{"identifier":"show_identifier","name":"name","id":"id","owner_subtype":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
                                             QUOTEPARAMS:
-                                              '{"page":0,"size":20,"sort":"update_time,desc"}',
+                                              '{"sort":"update_time,desc"}',
                                             enableFullScreen: 'true',
                                             MODE: 'default',
                                             AC: 'TRUE',
                                             QUOTEINSCRIPT:
-                                              'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\"),\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); return controller.getNodeInfo({ icon, ...item })})',
+                                              'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\")(,\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\")*\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); if (icon) { icon = icon.slice(8).slice(1, -1); } return controller.getNodeInfo({ icon, ...item })})',
                                             USERSCRIPT:
                                               '`@{"id":"${data.id}","name":"${data.name}"}`',
                                             QUOTESCRIPT:
-                                              '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.type}","recent_parent":"${data.recent_parent}","icon":"${data.icon}"}`',
+                                              '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.owner_subtype}","recent_parent":"${data.recent_parent}"}`',
                                             USERURL:
                                               "`${context.library ? `libraries/${context.library}/library_members/fetch_default` : context.product ? `products/${context.product}/product_members/fetch_default` : context.project ? `projects/${context.project}/project_members/fetch_default` : ''}`",
                                             USERFIELDMAP:
@@ -49859,18 +49807,18 @@ export default {
                                               '{"type":"plmweb.base__recent_visite"}',
                                             enableEdit: 'true',
                                             QUOTEFIELDMAP:
-                                              '{"identifier":"show_identifier","name":"name","id":"id","type":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
+                                              '{"identifier":"show_identifier","name":"name","id":"id","owner_subtype":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
                                             QUOTEPARAMS:
-                                              '{"page":0,"size":20,"sort":"update_time,desc"}',
+                                              '{"sort":"update_time,desc"}',
                                             enableFullScreen: 'true',
                                             MODE: 'default',
                                             AC: 'TRUE',
                                             QUOTEINSCRIPT:
-                                              'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\"),\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); return controller.getNodeInfo({ icon, ...item })})',
+                                              'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\")(,\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\")*\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); if (icon) { icon = icon.slice(8).slice(1, -1); } return controller.getNodeInfo({ icon, ...item })})',
                                             USERSCRIPT:
                                               '`@{"id":"${data.id}","name":"${data.name}"}`',
                                             QUOTESCRIPT:
-                                              '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.type}","recent_parent":"${data.recent_parent}","icon":"${data.icon}"}`',
+                                              '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.owner_subtype}","recent_parent":"${data.recent_parent}"}`',
                                             USERURL:
                                               "`${context.library ? `libraries/${context.library}/library_members/fetch_default` : context.product ? `products/${context.product}/product_members/fetch_default` : context.project ? `projects/${context.project}/project_members/fetch_default` : ''}`",
                                             USERFIELDMAP:
@@ -49947,7 +49895,6 @@ export default {
                                       },
                                     ],
                                     logicType: 'GROUP',
-                                    id: '表单成员[tabpage6][面板显示]逻辑',
                                   },
                                 ],
                                 showCaption: true,
@@ -51722,7 +51669,6 @@ export default {
                                       },
                                     ],
                                     logicType: 'GROUP',
-                                    id: '表单成员[button1][面板显示]逻辑',
                                   },
                                 ],
                                 layoutPos: {
@@ -52058,7 +52004,6 @@ export default {
                           },
                         ],
                         logicType: 'GROUP',
-                        id: '表单成员[grouppanel9][面板显示]逻辑',
                       },
                     ],
                     layoutPos: {
@@ -52115,7 +52060,6 @@ export default {
                           },
                         ],
                         logicType: 'GROUP',
-                        id: '表单成员[baseline][面板显示]逻辑',
                       },
                     ],
                     layoutPos: {
@@ -52229,20 +52173,6 @@ export default {
         enableAutoSave: true,
         deformItemUpdates: [
           {
-            codeName: 'remaining_update',
-            defiupdateDetails: [
-              {
-                id: 'workload_schedule',
-              },
-            ],
-            scriptCode:
-              'var form_data = view.layoutPanel.panelItems.form.control.data;\r\nvar actual_workload = form_data.actual_workload;\r\nvar estimated_workload = form_data.estimated_workload; \r\nvar remaining_workload = form_data.remaining_workload;  \r\nvar estimated = 0; // 预估工时\r\nif(estimated_workload){\r\n\testimated = Number(estimated_workload);\r\n}\r\nvar actual = 0; // 已登记的实际工时\r\nif(actual_workload){\r\n\tactual = Number(actual_workload);\r\n}\r\nvar remaining = 0;\r\nif(remaining_workload){\r\n\tremaining = Number(remaining_workload);\r\n}\r\n// 计算工时进度\r\nif((actual + remaining) != 0){\r\n\tvar schedule = ((actual / (actual + remaining)) * 100).toFixed(1);\r\n\tform_data.workload_schedule = schedule;\r\n}\r\n',
-            customCode: true,
-            showBusyIndicator: false,
-            name: '剩余工时表单项更新',
-            id: 'remaining_update',
-          },
-          {
             codeName: 'estimated_update',
             defiupdateDetails: [
               {
@@ -52258,6 +52188,20 @@ export default {
             showBusyIndicator: false,
             name: '预估工时表单项更新',
             id: 'estimated_update',
+          },
+          {
+            codeName: 'remaining_update',
+            defiupdateDetails: [
+              {
+                id: 'workload_schedule',
+              },
+            ],
+            scriptCode:
+              'var form_data = view.layoutPanel.panelItems.form.control.data;\r\nvar actual_workload = form_data.actual_workload;\r\nvar estimated_workload = form_data.estimated_workload; \r\nvar remaining_workload = form_data.remaining_workload;  \r\nvar estimated = 0; // 预估工时\r\nif(estimated_workload){\r\n\testimated = Number(estimated_workload);\r\n}\r\nvar actual = 0; // 已登记的实际工时\r\nif(actual_workload){\r\n\tactual = Number(actual_workload);\r\n}\r\nvar remaining = 0;\r\nif(remaining_workload){\r\n\tremaining = Number(remaining_workload);\r\n}\r\n// 计算工时进度\r\nif((actual + remaining) != 0){\r\n\tvar schedule = ((actual / (actual + remaining)) * 100).toFixed(1);\r\n\tform_data.workload_schedule = schedule;\r\n}\r\n',
+            customCode: true,
+            showBusyIndicator: false,
+            name: '剩余工时表单项更新',
+            id: 'remaining_update',
           },
         ],
         deformItemVRs: [
@@ -52695,23 +52639,25 @@ export default {
                                           editorParams: {
                                             USERINSCRIPT:
                                               'value.replaceAll(/\\@\\{\\"(user)?id\\":\\"(.+?)\\",\\"name\\":\\"(.+?)\\"\\}/g,(x, user, id, name) => {return controller.getNodeInfo({ id, name })}).replaceAll(/\\@\\{userid=(.+?),name=(.+?)\\}/g,(x, id, name) => {return controller.getNodeInfo({ id, name })})',
+                                            LINKVIEWID:
+                                              'plmweb.recent_custom_redirect_view',
                                             MAXHEIGHT: '450',
                                             QUOTECODELISTMAP:
                                               '{"type":"plmweb.base__recent_visite"}',
                                             enableEdit: 'true',
                                             QUOTEFIELDMAP:
-                                              '{"identifier":"show_identifier","name":"name","id":"id","type":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
+                                              '{"identifier":"show_identifier","name":"name","id":"id","owner_subtype":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
                                             QUOTEPARAMS:
-                                              '{"page":0,"size":20,"sort":"update_time,desc"}',
+                                              '{"sort":"update_time,desc"}',
                                             enableFullScreen: 'true',
                                             MODE: 'default',
                                             AC: 'TRUE',
                                             QUOTEINSCRIPT:
-                                              'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\"),\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); return controller.getNodeInfo({ icon, ...item })})',
+                                              'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\")(,\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\")*\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); if (icon) { icon = icon.slice(8).slice(1, -1); } return controller.getNodeInfo({ icon, ...item })})',
                                             USERSCRIPT:
                                               '`@{"id":"${data.id}","name":"${data.name}"}`',
                                             QUOTESCRIPT:
-                                              '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.type}","recent_parent":"${data.recent_parent}","icon":"${data.icon}"}`',
+                                              '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.owner_subtype}","recent_parent":"${data.recent_parent}"}`',
                                             USERURL:
                                               "`${context.library ? `libraries/${context.library}/library_members/fetch_default` : context.product ? `products/${context.product}/product_members/fetch_default` : context.project ? `projects/${context.project}/project_members/fetch_default` : ''}`",
                                             USERFIELDMAP:
@@ -52789,18 +52735,18 @@ export default {
                                               '{"type":"plmweb.base__recent_visite"}',
                                             enableEdit: 'true',
                                             QUOTEFIELDMAP:
-                                              '{"identifier":"show_identifier","name":"name","id":"id","type":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
+                                              '{"identifier":"show_identifier","name":"name","id":"id","owner_subtype":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
                                             QUOTEPARAMS:
-                                              '{"page":0,"size":20,"sort":"update_time,desc"}',
+                                              '{"sort":"update_time,desc"}',
                                             enableFullScreen: 'true',
                                             MODE: 'default',
                                             AC: 'TRUE',
                                             QUOTEINSCRIPT:
-                                              'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\"),\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); return controller.getNodeInfo({ icon, ...item })})',
+                                              'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\")(,\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\")*\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); if (icon) { icon = icon.slice(8).slice(1, -1); } return controller.getNodeInfo({ icon, ...item })})',
                                             USERSCRIPT:
                                               '`@{"id":"${data.id}","name":"${data.name}"}`',
                                             QUOTESCRIPT:
-                                              '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.type}","recent_parent":"${data.recent_parent}","icon":"${data.icon}"}`',
+                                              '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.owner_subtype}","recent_parent":"${data.recent_parent}"}`',
                                             USERURL:
                                               "`${context.library ? `libraries/${context.library}/library_members/fetch_default` : context.product ? `products/${context.product}/product_members/fetch_default` : context.project ? `projects/${context.project}/project_members/fetch_default` : ''}`",
                                             USERFIELDMAP:
@@ -52877,7 +52823,6 @@ export default {
                                       },
                                     ],
                                     logicType: 'GROUP',
-                                    id: '表单成员[tabpage6][面板显示]逻辑',
                                   },
                                 ],
                                 showCaption: true,
@@ -54652,7 +54597,6 @@ export default {
                                       },
                                     ],
                                     logicType: 'GROUP',
-                                    id: '表单成员[button1][面板显示]逻辑',
                                   },
                                 ],
                                 layoutPos: {
@@ -54988,7 +54932,6 @@ export default {
                           },
                         ],
                         logicType: 'GROUP',
-                        id: '表单成员[grouppanel9][面板显示]逻辑',
                       },
                     ],
                     layoutPos: {
@@ -55045,7 +54988,6 @@ export default {
                           },
                         ],
                         logicType: 'GROUP',
-                        id: '表单成员[baseline][面板显示]逻辑',
                       },
                     ],
                     layoutPos: {
@@ -55159,20 +55101,6 @@ export default {
         enableAutoSave: true,
         deformItemUpdates: [
           {
-            codeName: 'remaining_update',
-            defiupdateDetails: [
-              {
-                id: 'workload_schedule',
-              },
-            ],
-            scriptCode:
-              'var form_data = view.layoutPanel.panelItems.form.control.data;\r\nvar actual_workload = form_data.actual_workload;\r\nvar estimated_workload = form_data.estimated_workload; \r\nvar remaining_workload = form_data.remaining_workload;  \r\nvar estimated = 0; // 预估工时\r\nif(estimated_workload){\r\n\testimated = Number(estimated_workload);\r\n}\r\nvar actual = 0; // 已登记的实际工时\r\nif(actual_workload){\r\n\tactual = Number(actual_workload);\r\n}\r\nvar remaining = 0;\r\nif(remaining_workload){\r\n\tremaining = Number(remaining_workload);\r\n}\r\n// 计算工时进度\r\nif((actual + remaining) != 0){\r\n\tvar schedule = ((actual / (actual + remaining)) * 100).toFixed(1);\r\n\tform_data.workload_schedule = schedule;\r\n}\r\n',
-            customCode: true,
-            showBusyIndicator: false,
-            name: '剩余工时表单项更新',
-            id: 'remaining_update',
-          },
-          {
             codeName: 'estimated_update',
             defiupdateDetails: [
               {
@@ -55188,6 +55116,20 @@ export default {
             showBusyIndicator: false,
             name: '预估工时表单项更新',
             id: 'estimated_update',
+          },
+          {
+            codeName: 'remaining_update',
+            defiupdateDetails: [
+              {
+                id: 'workload_schedule',
+              },
+            ],
+            scriptCode:
+              'var form_data = view.layoutPanel.panelItems.form.control.data;\r\nvar actual_workload = form_data.actual_workload;\r\nvar estimated_workload = form_data.estimated_workload; \r\nvar remaining_workload = form_data.remaining_workload;  \r\nvar estimated = 0; // 预估工时\r\nif(estimated_workload){\r\n\testimated = Number(estimated_workload);\r\n}\r\nvar actual = 0; // 已登记的实际工时\r\nif(actual_workload){\r\n\tactual = Number(actual_workload);\r\n}\r\nvar remaining = 0;\r\nif(remaining_workload){\r\n\tremaining = Number(remaining_workload);\r\n}\r\n// 计算工时进度\r\nif((actual + remaining) != 0){\r\n\tvar schedule = ((actual / (actual + remaining)) * 100).toFixed(1);\r\n\tform_data.workload_schedule = schedule;\r\n}\r\n',
+            customCode: true,
+            showBusyIndicator: false,
+            name: '剩余工时表单项更新',
+            id: 'remaining_update',
           },
         ],
         deformItemVRs: [
@@ -55625,23 +55567,25 @@ export default {
                                           editorParams: {
                                             USERINSCRIPT:
                                               'value.replaceAll(/\\@\\{\\"(user)?id\\":\\"(.+?)\\",\\"name\\":\\"(.+?)\\"\\}/g,(x, user, id, name) => {return controller.getNodeInfo({ id, name })}).replaceAll(/\\@\\{userid=(.+?),name=(.+?)\\}/g,(x, id, name) => {return controller.getNodeInfo({ id, name })})',
+                                            LINKVIEWID:
+                                              'plmweb.recent_custom_redirect_view',
                                             MAXHEIGHT: '450',
                                             QUOTECODELISTMAP:
                                               '{"type":"plmweb.base__recent_visite"}',
                                             enableEdit: 'true',
                                             QUOTEFIELDMAP:
-                                              '{"identifier":"show_identifier","name":"name","id":"id","type":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
+                                              '{"identifier":"show_identifier","name":"name","id":"id","owner_subtype":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
                                             QUOTEPARAMS:
-                                              '{"page":0,"size":20,"sort":"update_time,desc"}',
+                                              '{"sort":"update_time,desc"}',
                                             enableFullScreen: 'true',
                                             MODE: 'default',
                                             AC: 'TRUE',
                                             QUOTEINSCRIPT:
-                                              'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\"),\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); return controller.getNodeInfo({ icon, ...item })})',
+                                              'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\")(,\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\")*\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); if (icon) { icon = icon.slice(8).slice(1, -1); } return controller.getNodeInfo({ icon, ...item })})',
                                             USERSCRIPT:
                                               '`@{"id":"${data.id}","name":"${data.name}"}`',
                                             QUOTESCRIPT:
-                                              '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.type}","recent_parent":"${data.recent_parent}","icon":"${data.icon}"}`',
+                                              '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.owner_subtype}","recent_parent":"${data.recent_parent}"}`',
                                             USERURL:
                                               "`${context.library ? `libraries/${context.library}/library_members/fetch_default` : context.product ? `products/${context.product}/product_members/fetch_default` : context.project ? `projects/${context.project}/project_members/fetch_default` : ''}`",
                                             USERFIELDMAP:
@@ -55719,18 +55663,18 @@ export default {
                                               '{"type":"plmweb.base__recent_visite"}',
                                             enableEdit: 'true',
                                             QUOTEFIELDMAP:
-                                              '{"identifier":"show_identifier","name":"name","id":"id","type":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
+                                              '{"identifier":"show_identifier","name":"name","id":"id","owner_subtype":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
                                             QUOTEPARAMS:
-                                              '{"page":0,"size":20,"sort":"update_time,desc"}',
+                                              '{"sort":"update_time,desc"}',
                                             enableFullScreen: 'true',
                                             MODE: 'default',
                                             AC: 'TRUE',
                                             QUOTEINSCRIPT:
-                                              'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\"),\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); return controller.getNodeInfo({ icon, ...item })})',
+                                              'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\")(,\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\")*\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); if (icon) { icon = icon.slice(8).slice(1, -1); } return controller.getNodeInfo({ icon, ...item })})',
                                             USERSCRIPT:
                                               '`@{"id":"${data.id}","name":"${data.name}"}`',
                                             QUOTESCRIPT:
-                                              '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.type}","recent_parent":"${data.recent_parent}","icon":"${data.icon}"}`',
+                                              '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.owner_subtype}","recent_parent":"${data.recent_parent}"}`',
                                             USERURL:
                                               "`${context.library ? `libraries/${context.library}/library_members/fetch_default` : context.product ? `products/${context.product}/product_members/fetch_default` : context.project ? `projects/${context.project}/project_members/fetch_default` : ''}`",
                                             USERFIELDMAP:
@@ -55807,7 +55751,6 @@ export default {
                                       },
                                     ],
                                     logicType: 'GROUP',
-                                    id: '表单成员[tabpage6][面板显示]逻辑',
                                   },
                                 ],
                                 showCaption: true,
@@ -57582,7 +57525,6 @@ export default {
                                       },
                                     ],
                                     logicType: 'GROUP',
-                                    id: '表单成员[button1][面板显示]逻辑',
                                   },
                                 ],
                                 layoutPos: {
@@ -57918,7 +57860,6 @@ export default {
                           },
                         ],
                         logicType: 'GROUP',
-                        id: '表单成员[grouppanel9][面板显示]逻辑',
                       },
                     ],
                     layoutPos: {
@@ -57975,7 +57916,6 @@ export default {
                           },
                         ],
                         logicType: 'GROUP',
-                        id: '表单成员[baseline][面板显示]逻辑',
                       },
                     ],
                     layoutPos: {
@@ -58089,6 +58029,20 @@ export default {
         enableAutoSave: true,
         deformItemUpdates: [
           {
+            codeName: 'remaining_update',
+            defiupdateDetails: [
+              {
+                id: 'workload_schedule',
+              },
+            ],
+            scriptCode:
+              'var form_data = view.layoutPanel.panelItems.form.control.data;\r\nvar actual_workload = form_data.actual_workload;\r\nvar estimated_workload = form_data.estimated_workload; \r\nvar remaining_workload = form_data.remaining_workload;  \r\nvar estimated = 0; // 预估工时\r\nif(estimated_workload){\r\n\testimated = Number(estimated_workload);\r\n}\r\nvar actual = 0; // 已登记的实际工时\r\nif(actual_workload){\r\n\tactual = Number(actual_workload);\r\n}\r\nvar remaining = 0;\r\nif(remaining_workload){\r\n\tremaining = Number(remaining_workload);\r\n}\r\n// 计算工时进度\r\nif((actual + remaining) != 0){\r\n\tvar schedule = ((actual / (actual + remaining)) * 100).toFixed(1);\r\n\tform_data.workload_schedule = schedule;\r\n}\r\n',
+            customCode: true,
+            showBusyIndicator: false,
+            name: '剩余工时表单项更新',
+            id: 'remaining_update',
+          },
+          {
             codeName: 'estimated_update',
             defiupdateDetails: [
               {
@@ -58104,20 +58058,6 @@ export default {
             showBusyIndicator: false,
             name: '预估工时表单项更新',
             id: 'estimated_update',
-          },
-          {
-            codeName: 'remaining_update',
-            defiupdateDetails: [
-              {
-                id: 'workload_schedule',
-              },
-            ],
-            scriptCode:
-              'var form_data = view.layoutPanel.panelItems.form.control.data;\r\nvar actual_workload = form_data.actual_workload;\r\nvar estimated_workload = form_data.estimated_workload; \r\nvar remaining_workload = form_data.remaining_workload;  \r\nvar estimated = 0; // 预估工时\r\nif(estimated_workload){\r\n\testimated = Number(estimated_workload);\r\n}\r\nvar actual = 0; // 已登记的实际工时\r\nif(actual_workload){\r\n\tactual = Number(actual_workload);\r\n}\r\nvar remaining = 0;\r\nif(remaining_workload){\r\n\tremaining = Number(remaining_workload);\r\n}\r\n// 计算工时进度\r\nif((actual + remaining) != 0){\r\n\tvar schedule = ((actual / (actual + remaining)) * 100).toFixed(1);\r\n\tform_data.workload_schedule = schedule;\r\n}\r\n',
-            customCode: true,
-            showBusyIndicator: false,
-            name: '剩余工时表单项更新',
-            id: 'remaining_update',
           },
         ],
         deformItemVRs: [
@@ -58555,23 +58495,25 @@ export default {
                                           editorParams: {
                                             USERINSCRIPT:
                                               'value.replaceAll(/\\@\\{\\"(user)?id\\":\\"(.+?)\\",\\"name\\":\\"(.+?)\\"\\}/g,(x, user, id, name) => {return controller.getNodeInfo({ id, name })}).replaceAll(/\\@\\{userid=(.+?),name=(.+?)\\}/g,(x, id, name) => {return controller.getNodeInfo({ id, name })})',
+                                            LINKVIEWID:
+                                              'plmweb.recent_custom_redirect_view',
                                             MAXHEIGHT: '450',
                                             QUOTECODELISTMAP:
                                               '{"type":"plmweb.base__recent_visite"}',
                                             enableEdit: 'true',
                                             QUOTEFIELDMAP:
-                                              '{"identifier":"show_identifier","name":"name","id":"id","type":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
+                                              '{"identifier":"show_identifier","name":"name","id":"id","owner_subtype":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
                                             QUOTEPARAMS:
-                                              '{"page":0,"size":20,"sort":"update_time,desc"}',
+                                              '{"sort":"update_time,desc"}',
                                             enableFullScreen: 'true',
                                             MODE: 'default',
                                             AC: 'TRUE',
                                             QUOTEINSCRIPT:
-                                              'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\"),\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); return controller.getNodeInfo({ icon, ...item })})',
+                                              'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\")(,\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\")*\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); if (icon) { icon = icon.slice(8).slice(1, -1); } return controller.getNodeInfo({ icon, ...item })})',
                                             USERSCRIPT:
                                               '`@{"id":"${data.id}","name":"${data.name}"}`',
                                             QUOTESCRIPT:
-                                              '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.type}","recent_parent":"${data.recent_parent}","icon":"${data.icon}"}`',
+                                              '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.owner_subtype}","recent_parent":"${data.recent_parent}"}`',
                                             USERURL:
                                               "`${context.library ? `libraries/${context.library}/library_members/fetch_default` : context.product ? `products/${context.product}/product_members/fetch_default` : context.project ? `projects/${context.project}/project_members/fetch_default` : ''}`",
                                             USERFIELDMAP:
@@ -58649,18 +58591,18 @@ export default {
                                               '{"type":"plmweb.base__recent_visite"}',
                                             enableEdit: 'true',
                                             QUOTEFIELDMAP:
-                                              '{"identifier":"show_identifier","name":"name","id":"id","type":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
+                                              '{"identifier":"show_identifier","name":"name","id":"id","owner_subtype":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
                                             QUOTEPARAMS:
-                                              '{"page":0,"size":20,"sort":"update_time,desc"}',
+                                              '{"sort":"update_time,desc"}',
                                             enableFullScreen: 'true',
                                             MODE: 'default',
                                             AC: 'TRUE',
                                             QUOTEINSCRIPT:
-                                              'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\"),\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); return controller.getNodeInfo({ icon, ...item })})',
+                                              'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\")(,\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\")*\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); if (icon) { icon = icon.slice(8).slice(1, -1); } return controller.getNodeInfo({ icon, ...item })})',
                                             USERSCRIPT:
                                               '`@{"id":"${data.id}","name":"${data.name}"}`',
                                             QUOTESCRIPT:
-                                              '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.type}","recent_parent":"${data.recent_parent}","icon":"${data.icon}"}`',
+                                              '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.owner_subtype}","recent_parent":"${data.recent_parent}"}`',
                                             USERURL:
                                               "`${context.library ? `libraries/${context.library}/library_members/fetch_default` : context.product ? `products/${context.product}/product_members/fetch_default` : context.project ? `projects/${context.project}/project_members/fetch_default` : ''}`",
                                             USERFIELDMAP:
@@ -58737,7 +58679,6 @@ export default {
                                       },
                                     ],
                                     logicType: 'GROUP',
-                                    id: '表单成员[tabpage6][面板显示]逻辑',
                                   },
                                 ],
                                 showCaption: true,
@@ -60512,7 +60453,6 @@ export default {
                                       },
                                     ],
                                     logicType: 'GROUP',
-                                    id: '表单成员[button1][面板显示]逻辑',
                                   },
                                 ],
                                 layoutPos: {
@@ -60848,7 +60788,6 @@ export default {
                           },
                         ],
                         logicType: 'GROUP',
-                        id: '表单成员[grouppanel9][面板显示]逻辑',
                       },
                     ],
                     layoutPos: {
@@ -60905,7 +60844,6 @@ export default {
                           },
                         ],
                         logicType: 'GROUP',
-                        id: '表单成员[baseline][面板显示]逻辑',
                       },
                     ],
                     layoutPos: {
@@ -61019,23 +60957,6 @@ export default {
         enableAutoSave: true,
         deformItemUpdates: [
           {
-            codeName: 'estimated_update',
-            defiupdateDetails: [
-              {
-                id: 'workload_schedule',
-              },
-              {
-                id: 'remaining_workload',
-              },
-            ],
-            scriptCode:
-              'var form_data = view.layoutPanel.panelItems.form.control.data;\r\nvar actual_workload = form_data.actual_workload;\r\nvar estimated_workload = form_data.estimated_workload;  \r\nvar estimated = 0; // 预估工时\r\nif(estimated_workload){\r\n\testimated = Number(estimated_workload);\r\n}\r\nvar actual = 0; // 已登记的实际工时\r\nvar remaining = 0; // 剩余工时\r\nif(actual_workload){\r\n\tactual = Number(actual_workload);\r\n\tif(estimated_workload){\r\n\t\t// 计算剩余工时\r\n\t\tremaining = (estimated - actual) >= 0 ? (estimated - actual) : 0;\r\n\t\tform_data.remaining_workload = remaining;\r\n\t}\r\n} else {\r\n\tremaining = estimated;\r\n\tform_data.remaining_workload = estimated_workload;\r\n}\r\n// 计算工时进度\r\nif((actual + remaining) != 0){\r\n\tvar schedule = ((actual / (actual + remaining)) * 100).toFixed(1);\r\n\tform_data.workload_schedule = schedule;\r\n}',
-            customCode: true,
-            showBusyIndicator: false,
-            name: '预估工时表单项更新',
-            id: 'estimated_update',
-          },
-          {
             codeName: 'remaining_update',
             defiupdateDetails: [
               {
@@ -61048,6 +60969,23 @@ export default {
             showBusyIndicator: false,
             name: '剩余工时表单项更新',
             id: 'remaining_update',
+          },
+          {
+            codeName: 'estimated_update',
+            defiupdateDetails: [
+              {
+                id: 'remaining_workload',
+              },
+              {
+                id: 'workload_schedule',
+              },
+            ],
+            scriptCode:
+              'var form_data = view.layoutPanel.panelItems.form.control.data;\r\nvar actual_workload = form_data.actual_workload;\r\nvar estimated_workload = form_data.estimated_workload;  \r\nvar estimated = 0; // 预估工时\r\nif(estimated_workload){\r\n\testimated = Number(estimated_workload);\r\n}\r\nvar actual = 0; // 已登记的实际工时\r\nvar remaining = 0; // 剩余工时\r\nif(actual_workload){\r\n\tactual = Number(actual_workload);\r\n\tif(estimated_workload){\r\n\t\t// 计算剩余工时\r\n\t\tremaining = (estimated - actual) >= 0 ? (estimated - actual) : 0;\r\n\t\tform_data.remaining_workload = remaining;\r\n\t}\r\n} else {\r\n\tremaining = estimated;\r\n\tform_data.remaining_workload = estimated_workload;\r\n}\r\n// 计算工时进度\r\nif((actual + remaining) != 0){\r\n\tvar schedule = ((actual / (actual + remaining)) * 100).toFixed(1);\r\n\tform_data.workload_schedule = schedule;\r\n}',
+            customCode: true,
+            showBusyIndicator: false,
+            name: '预估工时表单项更新',
+            id: 'estimated_update',
           },
         ],
         deformItemVRs: [
@@ -61485,23 +61423,25 @@ export default {
                                           editorParams: {
                                             USERINSCRIPT:
                                               'value.replaceAll(/\\@\\{\\"(user)?id\\":\\"(.+?)\\",\\"name\\":\\"(.+?)\\"\\}/g,(x, user, id, name) => {return controller.getNodeInfo({ id, name })}).replaceAll(/\\@\\{userid=(.+?),name=(.+?)\\}/g,(x, id, name) => {return controller.getNodeInfo({ id, name })})',
+                                            LINKVIEWID:
+                                              'plmweb.recent_custom_redirect_view',
                                             MAXHEIGHT: '450',
                                             QUOTECODELISTMAP:
                                               '{"type":"plmweb.base__recent_visite"}',
                                             enableEdit: 'true',
                                             QUOTEFIELDMAP:
-                                              '{"identifier":"show_identifier","name":"name","id":"id","type":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
+                                              '{"identifier":"show_identifier","name":"name","id":"id","owner_subtype":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
                                             QUOTEPARAMS:
-                                              '{"page":0,"size":20,"sort":"update_time,desc"}',
+                                              '{"sort":"update_time,desc"}',
                                             enableFullScreen: 'true',
                                             MODE: 'default',
                                             AC: 'TRUE',
                                             QUOTEINSCRIPT:
-                                              'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\"),\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); return controller.getNodeInfo({ icon, ...item })})',
+                                              'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\")(,\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\")*\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); if (icon) { icon = icon.slice(8).slice(1, -1); } return controller.getNodeInfo({ icon, ...item })})',
                                             USERSCRIPT:
                                               '`@{"id":"${data.id}","name":"${data.name}"}`',
                                             QUOTESCRIPT:
-                                              '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.type}","recent_parent":"${data.recent_parent}","icon":"${data.icon}"}`',
+                                              '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.owner_subtype}","recent_parent":"${data.recent_parent}"}`',
                                             USERURL:
                                               "`${context.library ? `libraries/${context.library}/library_members/fetch_default` : context.product ? `products/${context.product}/product_members/fetch_default` : context.project ? `projects/${context.project}/project_members/fetch_default` : ''}`",
                                             USERFIELDMAP:
@@ -61579,18 +61519,18 @@ export default {
                                               '{"type":"plmweb.base__recent_visite"}',
                                             enableEdit: 'true',
                                             QUOTEFIELDMAP:
-                                              '{"identifier":"show_identifier","name":"name","id":"id","type":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
+                                              '{"identifier":"show_identifier","name":"name","id":"id","owner_subtype":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
                                             QUOTEPARAMS:
-                                              '{"page":0,"size":20,"sort":"update_time,desc"}',
+                                              '{"sort":"update_time,desc"}',
                                             enableFullScreen: 'true',
                                             MODE: 'default',
                                             AC: 'TRUE',
                                             QUOTEINSCRIPT:
-                                              'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\"),\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); return controller.getNodeInfo({ icon, ...item })})',
+                                              'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\")(,\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\")*\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); if (icon) { icon = icon.slice(8).slice(1, -1); } return controller.getNodeInfo({ icon, ...item })})',
                                             USERSCRIPT:
                                               '`@{"id":"${data.id}","name":"${data.name}"}`',
                                             QUOTESCRIPT:
-                                              '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.type}","recent_parent":"${data.recent_parent}","icon":"${data.icon}"}`',
+                                              '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.owner_subtype}","recent_parent":"${data.recent_parent}"}`',
                                             USERURL:
                                               "`${context.library ? `libraries/${context.library}/library_members/fetch_default` : context.product ? `products/${context.product}/product_members/fetch_default` : context.project ? `projects/${context.project}/project_members/fetch_default` : ''}`",
                                             USERFIELDMAP:
@@ -61667,7 +61607,6 @@ export default {
                                       },
                                     ],
                                     logicType: 'GROUP',
-                                    id: '表单成员[tabpage6][面板显示]逻辑',
                                   },
                                 ],
                                 showCaption: true,
@@ -63442,7 +63381,6 @@ export default {
                                       },
                                     ],
                                     logicType: 'GROUP',
-                                    id: '表单成员[button1][面板显示]逻辑',
                                   },
                                 ],
                                 layoutPos: {
@@ -63778,7 +63716,6 @@ export default {
                           },
                         ],
                         logicType: 'GROUP',
-                        id: '表单成员[grouppanel9][面板显示]逻辑',
                       },
                     ],
                     layoutPos: {
@@ -63835,7 +63772,6 @@ export default {
                           },
                         ],
                         logicType: 'GROUP',
-                        id: '表单成员[baseline][面板显示]逻辑',
                       },
                     ],
                     layoutPos: {
@@ -63966,10 +63902,10 @@ export default {
             codeName: 'estimated_update',
             defiupdateDetails: [
               {
-                id: 'remaining_workload',
+                id: 'workload_schedule',
               },
               {
-                id: 'workload_schedule',
+                id: 'remaining_workload',
               },
             ],
             scriptCode:
@@ -64415,23 +64351,25 @@ export default {
                                           editorParams: {
                                             USERINSCRIPT:
                                               'value.replaceAll(/\\@\\{\\"(user)?id\\":\\"(.+?)\\",\\"name\\":\\"(.+?)\\"\\}/g,(x, user, id, name) => {return controller.getNodeInfo({ id, name })}).replaceAll(/\\@\\{userid=(.+?),name=(.+?)\\}/g,(x, id, name) => {return controller.getNodeInfo({ id, name })})',
+                                            LINKVIEWID:
+                                              'plmweb.recent_custom_redirect_view',
                                             MAXHEIGHT: '450',
                                             QUOTECODELISTMAP:
                                               '{"type":"plmweb.base__recent_visite"}',
                                             enableEdit: 'true',
                                             QUOTEFIELDMAP:
-                                              '{"identifier":"show_identifier","name":"name","id":"id","type":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
+                                              '{"identifier":"show_identifier","name":"name","id":"id","owner_subtype":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
                                             QUOTEPARAMS:
-                                              '{"page":0,"size":20,"sort":"update_time,desc"}',
+                                              '{"sort":"update_time,desc"}',
                                             enableFullScreen: 'true',
                                             MODE: 'default',
                                             AC: 'TRUE',
                                             QUOTEINSCRIPT:
-                                              'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\"),\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); return controller.getNodeInfo({ icon, ...item })})',
+                                              'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\")(,\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\")*\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); if (icon) { icon = icon.slice(8).slice(1, -1); } return controller.getNodeInfo({ icon, ...item })})',
                                             USERSCRIPT:
                                               '`@{"id":"${data.id}","name":"${data.name}"}`',
                                             QUOTESCRIPT:
-                                              '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.type}","recent_parent":"${data.recent_parent}","icon":"${data.icon}"}`',
+                                              '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.owner_subtype}","recent_parent":"${data.recent_parent}"}`',
                                             USERURL:
                                               "`${context.library ? `libraries/${context.library}/library_members/fetch_default` : context.product ? `products/${context.product}/product_members/fetch_default` : context.project ? `projects/${context.project}/project_members/fetch_default` : ''}`",
                                             USERFIELDMAP:
@@ -64509,18 +64447,18 @@ export default {
                                               '{"type":"plmweb.base__recent_visite"}',
                                             enableEdit: 'true',
                                             QUOTEFIELDMAP:
-                                              '{"identifier":"show_identifier","name":"name","id":"id","type":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
+                                              '{"identifier":"show_identifier","name":"name","id":"id","owner_subtype":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
                                             QUOTEPARAMS:
-                                              '{"page":0,"size":20,"sort":"update_time,desc"}',
+                                              '{"sort":"update_time,desc"}',
                                             enableFullScreen: 'true',
                                             MODE: 'default',
                                             AC: 'TRUE',
                                             QUOTEINSCRIPT:
-                                              'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\"),\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); return controller.getNodeInfo({ icon, ...item })})',
+                                              'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\")(,\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\")*\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); if (icon) { icon = icon.slice(8).slice(1, -1); } return controller.getNodeInfo({ icon, ...item })})',
                                             USERSCRIPT:
                                               '`@{"id":"${data.id}","name":"${data.name}"}`',
                                             QUOTESCRIPT:
-                                              '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.type}","recent_parent":"${data.recent_parent}","icon":"${data.icon}"}`',
+                                              '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.owner_subtype}","recent_parent":"${data.recent_parent}"}`',
                                             USERURL:
                                               "`${context.library ? `libraries/${context.library}/library_members/fetch_default` : context.product ? `products/${context.product}/product_members/fetch_default` : context.project ? `projects/${context.project}/project_members/fetch_default` : ''}`",
                                             USERFIELDMAP:
@@ -64597,7 +64535,6 @@ export default {
                                       },
                                     ],
                                     logicType: 'GROUP',
-                                    id: '表单成员[tabpage6][面板显示]逻辑',
                                   },
                                 ],
                                 showCaption: true,
@@ -66372,7 +66309,6 @@ export default {
                                       },
                                     ],
                                     logicType: 'GROUP',
-                                    id: '表单成员[button1][面板显示]逻辑',
                                   },
                                 ],
                                 layoutPos: {
@@ -66708,7 +66644,6 @@ export default {
                           },
                         ],
                         logicType: 'GROUP',
-                        id: '表单成员[grouppanel9][面板显示]逻辑',
                       },
                     ],
                     layoutPos: {
@@ -66765,7 +66700,6 @@ export default {
                           },
                         ],
                         logicType: 'GROUP',
-                        id: '表单成员[baseline][面板显示]逻辑',
                       },
                     ],
                     layoutPos: {
@@ -66879,23 +66813,6 @@ export default {
         enableAutoSave: true,
         deformItemUpdates: [
           {
-            codeName: 'estimated_update',
-            defiupdateDetails: [
-              {
-                id: 'workload_schedule',
-              },
-              {
-                id: 'remaining_workload',
-              },
-            ],
-            scriptCode:
-              'var form_data = view.layoutPanel.panelItems.form.control.data;\r\nvar actual_workload = form_data.actual_workload;\r\nvar estimated_workload = form_data.estimated_workload;  \r\nvar estimated = 0; // 预估工时\r\nif(estimated_workload){\r\n\testimated = Number(estimated_workload);\r\n}\r\nvar actual = 0; // 已登记的实际工时\r\nvar remaining = 0; // 剩余工时\r\nif(actual_workload){\r\n\tactual = Number(actual_workload);\r\n\tif(estimated_workload){\r\n\t\t// 计算剩余工时\r\n\t\tremaining = (estimated - actual) >= 0 ? (estimated - actual) : 0;\r\n\t\tform_data.remaining_workload = remaining;\r\n\t}\r\n} else {\r\n\tremaining = estimated;\r\n\tform_data.remaining_workload = estimated_workload;\r\n}\r\n// 计算工时进度\r\nif((actual + remaining) != 0){\r\n\tvar schedule = ((actual / (actual + remaining)) * 100).toFixed(1);\r\n\tform_data.workload_schedule = schedule;\r\n}',
-            customCode: true,
-            showBusyIndicator: false,
-            name: '预估工时表单项更新',
-            id: 'estimated_update',
-          },
-          {
             codeName: 'remaining_update',
             defiupdateDetails: [
               {
@@ -66908,6 +66825,23 @@ export default {
             showBusyIndicator: false,
             name: '剩余工时表单项更新',
             id: 'remaining_update',
+          },
+          {
+            codeName: 'estimated_update',
+            defiupdateDetails: [
+              {
+                id: 'remaining_workload',
+              },
+              {
+                id: 'workload_schedule',
+              },
+            ],
+            scriptCode:
+              'var form_data = view.layoutPanel.panelItems.form.control.data;\r\nvar actual_workload = form_data.actual_workload;\r\nvar estimated_workload = form_data.estimated_workload;  \r\nvar estimated = 0; // 预估工时\r\nif(estimated_workload){\r\n\testimated = Number(estimated_workload);\r\n}\r\nvar actual = 0; // 已登记的实际工时\r\nvar remaining = 0; // 剩余工时\r\nif(actual_workload){\r\n\tactual = Number(actual_workload);\r\n\tif(estimated_workload){\r\n\t\t// 计算剩余工时\r\n\t\tremaining = (estimated - actual) >= 0 ? (estimated - actual) : 0;\r\n\t\tform_data.remaining_workload = remaining;\r\n\t}\r\n} else {\r\n\tremaining = estimated;\r\n\tform_data.remaining_workload = estimated_workload;\r\n}\r\n// 计算工时进度\r\nif((actual + remaining) != 0){\r\n\tvar schedule = ((actual / (actual + remaining)) * 100).toFixed(1);\r\n\tform_data.workload_schedule = schedule;\r\n}',
+            customCode: true,
+            showBusyIndicator: false,
+            name: '预估工时表单项更新',
+            id: 'estimated_update',
           },
         ],
         deformItemVRs: [
@@ -67345,23 +67279,25 @@ export default {
                                           editorParams: {
                                             USERINSCRIPT:
                                               'value.replaceAll(/\\@\\{\\"(user)?id\\":\\"(.+?)\\",\\"name\\":\\"(.+?)\\"\\}/g,(x, user, id, name) => {return controller.getNodeInfo({ id, name })}).replaceAll(/\\@\\{userid=(.+?),name=(.+?)\\}/g,(x, id, name) => {return controller.getNodeInfo({ id, name })})',
+                                            LINKVIEWID:
+                                              'plmweb.recent_custom_redirect_view',
                                             MAXHEIGHT: '450',
                                             QUOTECODELISTMAP:
                                               '{"type":"plmweb.base__recent_visite"}',
                                             enableEdit: 'true',
                                             QUOTEFIELDMAP:
-                                              '{"identifier":"show_identifier","name":"name","id":"id","type":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
+                                              '{"identifier":"show_identifier","name":"name","id":"id","owner_subtype":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
                                             QUOTEPARAMS:
-                                              '{"page":0,"size":20,"sort":"update_time,desc"}',
+                                              '{"sort":"update_time,desc"}',
                                             enableFullScreen: 'true',
                                             MODE: 'default',
                                             AC: 'TRUE',
                                             QUOTEINSCRIPT:
-                                              'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\"),\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); return controller.getNodeInfo({ icon, ...item })})',
+                                              'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\")(,\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\")*\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); if (icon) { icon = icon.slice(8).slice(1, -1); } return controller.getNodeInfo({ icon, ...item })})',
                                             USERSCRIPT:
                                               '`@{"id":"${data.id}","name":"${data.name}"}`',
                                             QUOTESCRIPT:
-                                              '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.type}","recent_parent":"${data.recent_parent}","icon":"${data.icon}"}`',
+                                              '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.owner_subtype}","recent_parent":"${data.recent_parent}"}`',
                                             USERURL:
                                               "`${context.library ? `libraries/${context.library}/library_members/fetch_default` : context.product ? `products/${context.product}/product_members/fetch_default` : context.project ? `projects/${context.project}/project_members/fetch_default` : ''}`",
                                             USERFIELDMAP:
@@ -67439,18 +67375,18 @@ export default {
                                               '{"type":"plmweb.base__recent_visite"}',
                                             enableEdit: 'true',
                                             QUOTEFIELDMAP:
-                                              '{"identifier":"show_identifier","name":"name","id":"id","type":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
+                                              '{"identifier":"show_identifier","name":"name","id":"id","owner_subtype":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
                                             QUOTEPARAMS:
-                                              '{"page":0,"size":20,"sort":"update_time,desc"}',
+                                              '{"sort":"update_time,desc"}',
                                             enableFullScreen: 'true',
                                             MODE: 'default',
                                             AC: 'TRUE',
                                             QUOTEINSCRIPT:
-                                              'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\"),\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); return controller.getNodeInfo({ icon, ...item })})',
+                                              'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\")(,\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\")*\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); if (icon) { icon = icon.slice(8).slice(1, -1); } return controller.getNodeInfo({ icon, ...item })})',
                                             USERSCRIPT:
                                               '`@{"id":"${data.id}","name":"${data.name}"}`',
                                             QUOTESCRIPT:
-                                              '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.type}","recent_parent":"${data.recent_parent}","icon":"${data.icon}"}`',
+                                              '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.owner_subtype}","recent_parent":"${data.recent_parent}"}`',
                                             USERURL:
                                               "`${context.library ? `libraries/${context.library}/library_members/fetch_default` : context.product ? `products/${context.product}/product_members/fetch_default` : context.project ? `projects/${context.project}/project_members/fetch_default` : ''}`",
                                             USERFIELDMAP:
@@ -67527,7 +67463,6 @@ export default {
                                       },
                                     ],
                                     logicType: 'GROUP',
-                                    id: '表单成员[tabpage6][面板显示]逻辑',
                                   },
                                 ],
                                 showCaption: true,
@@ -69302,7 +69237,6 @@ export default {
                                       },
                                     ],
                                     logicType: 'GROUP',
-                                    id: '表单成员[button1][面板显示]逻辑',
                                   },
                                 ],
                                 layoutPos: {
@@ -69638,7 +69572,6 @@ export default {
                           },
                         ],
                         logicType: 'GROUP',
-                        id: '表单成员[grouppanel9][面板显示]逻辑',
                       },
                     ],
                     layoutPos: {
@@ -69695,7 +69628,6 @@ export default {
                           },
                         ],
                         logicType: 'GROUP',
-                        id: '表单成员[baseline][面板显示]逻辑',
                       },
                     ],
                     layoutPos: {
@@ -69809,23 +69741,6 @@ export default {
         enableAutoSave: true,
         deformItemUpdates: [
           {
-            codeName: 'estimated_update',
-            defiupdateDetails: [
-              {
-                id: 'workload_schedule',
-              },
-              {
-                id: 'remaining_workload',
-              },
-            ],
-            scriptCode:
-              'var form_data = view.layoutPanel.panelItems.form.control.data;\r\nvar actual_workload = form_data.actual_workload;\r\nvar estimated_workload = form_data.estimated_workload;  \r\nvar estimated = 0; // 预估工时\r\nif(estimated_workload){\r\n\testimated = Number(estimated_workload);\r\n}\r\nvar actual = 0; // 已登记的实际工时\r\nvar remaining = 0; // 剩余工时\r\nif(actual_workload){\r\n\tactual = Number(actual_workload);\r\n\tif(estimated_workload){\r\n\t\t// 计算剩余工时\r\n\t\tremaining = (estimated - actual) >= 0 ? (estimated - actual) : 0;\r\n\t\tform_data.remaining_workload = remaining;\r\n\t}\r\n} else {\r\n\tremaining = estimated;\r\n\tform_data.remaining_workload = estimated_workload;\r\n}\r\n// 计算工时进度\r\nif((actual + remaining) != 0){\r\n\tvar schedule = ((actual / (actual + remaining)) * 100).toFixed(1);\r\n\tform_data.workload_schedule = schedule;\r\n}',
-            customCode: true,
-            showBusyIndicator: false,
-            name: '预估工时表单项更新',
-            id: 'estimated_update',
-          },
-          {
             codeName: 'remaining_update',
             defiupdateDetails: [
               {
@@ -69838,6 +69753,23 @@ export default {
             showBusyIndicator: false,
             name: '剩余工时表单项更新',
             id: 'remaining_update',
+          },
+          {
+            codeName: 'estimated_update',
+            defiupdateDetails: [
+              {
+                id: 'remaining_workload',
+              },
+              {
+                id: 'workload_schedule',
+              },
+            ],
+            scriptCode:
+              'var form_data = view.layoutPanel.panelItems.form.control.data;\r\nvar actual_workload = form_data.actual_workload;\r\nvar estimated_workload = form_data.estimated_workload;  \r\nvar estimated = 0; // 预估工时\r\nif(estimated_workload){\r\n\testimated = Number(estimated_workload);\r\n}\r\nvar actual = 0; // 已登记的实际工时\r\nvar remaining = 0; // 剩余工时\r\nif(actual_workload){\r\n\tactual = Number(actual_workload);\r\n\tif(estimated_workload){\r\n\t\t// 计算剩余工时\r\n\t\tremaining = (estimated - actual) >= 0 ? (estimated - actual) : 0;\r\n\t\tform_data.remaining_workload = remaining;\r\n\t}\r\n} else {\r\n\tremaining = estimated;\r\n\tform_data.remaining_workload = estimated_workload;\r\n}\r\n// 计算工时进度\r\nif((actual + remaining) != 0){\r\n\tvar schedule = ((actual / (actual + remaining)) * 100).toFixed(1);\r\n\tform_data.workload_schedule = schedule;\r\n}',
+            customCode: true,
+            showBusyIndicator: false,
+            name: '预估工时表单项更新',
+            id: 'estimated_update',
           },
         ],
         deformItemVRs: [
@@ -70275,23 +70207,25 @@ export default {
                                           editorParams: {
                                             USERINSCRIPT:
                                               'value.replaceAll(/\\@\\{\\"(user)?id\\":\\"(.+?)\\",\\"name\\":\\"(.+?)\\"\\}/g,(x, user, id, name) => {return controller.getNodeInfo({ id, name })}).replaceAll(/\\@\\{userid=(.+?),name=(.+?)\\}/g,(x, id, name) => {return controller.getNodeInfo({ id, name })})',
+                                            LINKVIEWID:
+                                              'plmweb.recent_custom_redirect_view',
                                             MAXHEIGHT: '450',
                                             QUOTECODELISTMAP:
                                               '{"type":"plmweb.base__recent_visite"}',
                                             enableEdit: 'true',
                                             QUOTEFIELDMAP:
-                                              '{"identifier":"show_identifier","name":"name","id":"id","type":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
+                                              '{"identifier":"show_identifier","name":"name","id":"id","owner_subtype":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
                                             QUOTEPARAMS:
-                                              '{"page":0,"size":20,"sort":"update_time,desc"}',
+                                              '{"sort":"update_time,desc"}',
                                             enableFullScreen: 'true',
                                             MODE: 'default',
                                             AC: 'TRUE',
                                             QUOTEINSCRIPT:
-                                              'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\"),\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); return controller.getNodeInfo({ icon, ...item })})',
+                                              'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\")(,\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\")*\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); if (icon) { icon = icon.slice(8).slice(1, -1); } return controller.getNodeInfo({ icon, ...item })})',
                                             USERSCRIPT:
                                               '`@{"id":"${data.id}","name":"${data.name}"}`',
                                             QUOTESCRIPT:
-                                              '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.type}","recent_parent":"${data.recent_parent}","icon":"${data.icon}"}`',
+                                              '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.owner_subtype}","recent_parent":"${data.recent_parent}"}`',
                                             USERURL:
                                               "`${context.library ? `libraries/${context.library}/library_members/fetch_default` : context.product ? `products/${context.product}/product_members/fetch_default` : context.project ? `projects/${context.project}/project_members/fetch_default` : ''}`",
                                             USERFIELDMAP:
@@ -70369,18 +70303,18 @@ export default {
                                               '{"type":"plmweb.base__recent_visite"}',
                                             enableEdit: 'true',
                                             QUOTEFIELDMAP:
-                                              '{"identifier":"show_identifier","name":"name","id":"id","type":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
+                                              '{"identifier":"show_identifier","name":"name","id":"id","owner_subtype":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
                                             QUOTEPARAMS:
-                                              '{"page":0,"size":20,"sort":"update_time,desc"}',
+                                              '{"sort":"update_time,desc"}',
                                             enableFullScreen: 'true',
                                             MODE: 'default',
                                             AC: 'TRUE',
                                             QUOTEINSCRIPT:
-                                              'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\"),\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); return controller.getNodeInfo({ icon, ...item })})',
+                                              'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\")(,\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\")*\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); if (icon) { icon = icon.slice(8).slice(1, -1); } return controller.getNodeInfo({ icon, ...item })})',
                                             USERSCRIPT:
                                               '`@{"id":"${data.id}","name":"${data.name}"}`',
                                             QUOTESCRIPT:
-                                              '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.type}","recent_parent":"${data.recent_parent}","icon":"${data.icon}"}`',
+                                              '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.owner_subtype}","recent_parent":"${data.recent_parent}"}`',
                                             USERURL:
                                               "`${context.library ? `libraries/${context.library}/library_members/fetch_default` : context.product ? `products/${context.product}/product_members/fetch_default` : context.project ? `projects/${context.project}/project_members/fetch_default` : ''}`",
                                             USERFIELDMAP:
@@ -70457,7 +70391,6 @@ export default {
                                       },
                                     ],
                                     logicType: 'GROUP',
-                                    id: '表单成员[tabpage6][面板显示]逻辑',
                                   },
                                 ],
                                 showCaption: true,
@@ -72232,7 +72165,6 @@ export default {
                                       },
                                     ],
                                     logicType: 'GROUP',
-                                    id: '表单成员[button1][面板显示]逻辑',
                                   },
                                 ],
                                 layoutPos: {
@@ -72568,7 +72500,6 @@ export default {
                           },
                         ],
                         logicType: 'GROUP',
-                        id: '表单成员[grouppanel9][面板显示]逻辑',
                       },
                     ],
                     layoutPos: {
@@ -72625,7 +72556,6 @@ export default {
                           },
                         ],
                         logicType: 'GROUP',
-                        id: '表单成员[baseline][面板显示]逻辑',
                       },
                     ],
                     layoutPos: {
@@ -72739,6 +72669,23 @@ export default {
         enableAutoSave: true,
         deformItemUpdates: [
           {
+            codeName: 'estimated_update',
+            defiupdateDetails: [
+              {
+                id: 'workload_schedule',
+              },
+              {
+                id: 'remaining_workload',
+              },
+            ],
+            scriptCode:
+              'var form_data = view.layoutPanel.panelItems.form.control.data;\r\nvar actual_workload = form_data.actual_workload;\r\nvar estimated_workload = form_data.estimated_workload;  \r\nvar estimated = 0; // 预估工时\r\nif(estimated_workload){\r\n\testimated = Number(estimated_workload);\r\n}\r\nvar actual = 0; // 已登记的实际工时\r\nvar remaining = 0; // 剩余工时\r\nif(actual_workload){\r\n\tactual = Number(actual_workload);\r\n\tif(estimated_workload){\r\n\t\t// 计算剩余工时\r\n\t\tremaining = (estimated - actual) >= 0 ? (estimated - actual) : 0;\r\n\t\tform_data.remaining_workload = remaining;\r\n\t}\r\n} else {\r\n\tremaining = estimated;\r\n\tform_data.remaining_workload = estimated_workload;\r\n}\r\n// 计算工时进度\r\nif((actual + remaining) != 0){\r\n\tvar schedule = ((actual / (actual + remaining)) * 100).toFixed(1);\r\n\tform_data.workload_schedule = schedule;\r\n}',
+            customCode: true,
+            showBusyIndicator: false,
+            name: '预估工时表单项更新',
+            id: 'estimated_update',
+          },
+          {
             codeName: 'remaining_update',
             defiupdateDetails: [
               {
@@ -72751,23 +72698,6 @@ export default {
             showBusyIndicator: false,
             name: '剩余工时表单项更新',
             id: 'remaining_update',
-          },
-          {
-            codeName: 'estimated_update',
-            defiupdateDetails: [
-              {
-                id: 'remaining_workload',
-              },
-              {
-                id: 'workload_schedule',
-              },
-            ],
-            scriptCode:
-              'var form_data = view.layoutPanel.panelItems.form.control.data;\r\nvar actual_workload = form_data.actual_workload;\r\nvar estimated_workload = form_data.estimated_workload;  \r\nvar estimated = 0; // 预估工时\r\nif(estimated_workload){\r\n\testimated = Number(estimated_workload);\r\n}\r\nvar actual = 0; // 已登记的实际工时\r\nvar remaining = 0; // 剩余工时\r\nif(actual_workload){\r\n\tactual = Number(actual_workload);\r\n\tif(estimated_workload){\r\n\t\t// 计算剩余工时\r\n\t\tremaining = (estimated - actual) >= 0 ? (estimated - actual) : 0;\r\n\t\tform_data.remaining_workload = remaining;\r\n\t}\r\n} else {\r\n\tremaining = estimated;\r\n\tform_data.remaining_workload = estimated_workload;\r\n}\r\n// 计算工时进度\r\nif((actual + remaining) != 0){\r\n\tvar schedule = ((actual / (actual + remaining)) * 100).toFixed(1);\r\n\tform_data.workload_schedule = schedule;\r\n}',
-            customCode: true,
-            showBusyIndicator: false,
-            name: '预估工时表单项更新',
-            id: 'estimated_update',
           },
         ],
         deformItemVRs: [
@@ -73005,7 +72935,6 @@ export default {
                                   },
                                 ],
                                 logicType: 'GROUP',
-                                id: '表单成员[setting_executors][面板显示]逻辑',
                               },
                             ],
                             layoutPos: {
@@ -73146,7 +73075,6 @@ export default {
                               },
                             ],
                             logicType: 'GROUP',
-                            id: '表单成员[grouppanel4][面板显示]逻辑',
                           },
                         ],
                         layoutPos: {
@@ -73249,7 +73177,6 @@ export default {
                               },
                             ],
                             logicType: 'GROUP',
-                            id: '表单成员[grouppanel5][面板显示]逻辑',
                           },
                         ],
                         layoutPos: {
@@ -73452,23 +73379,25 @@ export default {
                                           editorParams: {
                                             USERINSCRIPT:
                                               'value.replaceAll(/\\@\\{\\"(user)?id\\":\\"(.+?)\\",\\"name\\":\\"(.+?)\\"\\}/g,(x, user, id, name) => {return controller.getNodeInfo({ id, name })}).replaceAll(/\\@\\{userid=(.+?),name=(.+?)\\}/g,(x, id, name) => {return controller.getNodeInfo({ id, name })})',
+                                            LINKVIEWID:
+                                              'plmweb.recent_custom_redirect_view',
                                             MAXHEIGHT: '450',
                                             QUOTECODELISTMAP:
                                               '{"type":"plmweb.base__recent_visite"}',
                                             enableEdit: 'true',
                                             QUOTEFIELDMAP:
-                                              '{"identifier":"show_identifier","name":"name","id":"id","type":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
+                                              '{"identifier":"show_identifier","name":"name","id":"id","owner_subtype":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
                                             QUOTEPARAMS:
-                                              '{"page":0,"size":20,"sort":"update_time,desc"}',
+                                              '{"sort":"update_time,desc"}',
                                             enableFullScreen: 'true',
                                             MODE: 'default',
                                             AC: 'TRUE',
                                             QUOTEINSCRIPT:
-                                              'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\"),\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); return controller.getNodeInfo({ icon, ...item })})',
+                                              'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\")(,\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\")*\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); if (icon) { icon = icon.slice(8).slice(1, -1); } return controller.getNodeInfo({ icon, ...item })})',
                                             USERSCRIPT:
                                               '`@{"id":"${data.id}","name":"${data.name}"}`',
                                             QUOTESCRIPT:
-                                              '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.type}","recent_parent":"${data.recent_parent}","icon":"${data.icon}"}`',
+                                              '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.owner_subtype}","recent_parent":"${data.recent_parent}"}`',
                                             USERURL:
                                               "`${context.library ? `libraries/${context.library}/library_members/fetch_default` : context.product ? `products/${context.product}/product_members/fetch_default` : context.project ? `projects/${context.project}/project_members/fetch_default` : ''}`",
                                             USERFIELDMAP:
@@ -73546,18 +73475,18 @@ export default {
                                               '{"type":"plmweb.base__recent_visite"}',
                                             enableEdit: 'true',
                                             QUOTEFIELDMAP:
-                                              '{"identifier":"show_identifier","name":"name","id":"id","type":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
+                                              '{"identifier":"show_identifier","name":"name","id":"id","owner_subtype":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
                                             QUOTEPARAMS:
-                                              '{"page":0,"size":20,"sort":"update_time,desc"}',
+                                              '{"sort":"update_time,desc"}',
                                             enableFullScreen: 'true',
                                             MODE: 'default',
                                             AC: 'TRUE',
                                             QUOTEINSCRIPT:
-                                              'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\"),\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); return controller.getNodeInfo({ icon, ...item })})',
+                                              'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\")(,\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\")*\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); if (icon) { icon = icon.slice(8).slice(1, -1); } return controller.getNodeInfo({ icon, ...item })})',
                                             USERSCRIPT:
                                               '`@{"id":"${data.id}","name":"${data.name}"}`',
                                             QUOTESCRIPT:
-                                              '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.type}","recent_parent":"${data.recent_parent}","icon":"${data.icon}"}`',
+                                              '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.owner_subtype}","recent_parent":"${data.recent_parent}"}`',
                                             USERURL:
                                               "`${context.library ? `libraries/${context.library}/library_members/fetch_default` : context.product ? `products/${context.product}/product_members/fetch_default` : context.project ? `projects/${context.project}/project_members/fetch_default` : ''}`",
                                             USERFIELDMAP:
@@ -73634,7 +73563,6 @@ export default {
                                       },
                                     ],
                                     logicType: 'GROUP',
-                                    id: '表单成员[tabpage6][面板显示]逻辑',
                                   },
                                 ],
                                 showCaption: true,
@@ -75240,7 +75168,6 @@ export default {
                               },
                             ],
                             logicType: 'GROUP',
-                            id: '表单成员[grouppanel14][面板显示]逻辑',
                           },
                         ],
                         layoutPos: {
@@ -75392,7 +75319,6 @@ export default {
                                   },
                                 ],
                                 logicType: 'GROUP',
-                                id: '表单成员[estimated_workload][表单项启用]逻辑',
                               },
                             ],
                             layoutPos: {
@@ -75448,7 +75374,6 @@ export default {
                                       },
                                     ],
                                     logicType: 'GROUP',
-                                    id: '表单成员[setting_executors2][面板显示]逻辑',
                                   },
                                 ],
                                 layoutPos: {
@@ -75562,7 +75487,6 @@ export default {
                                       },
                                     ],
                                     logicType: 'GROUP',
-                                    id: '表单成员[button1][面板显示]逻辑',
                                   },
                                 ],
                                 layoutPos: {
@@ -75898,7 +75822,6 @@ export default {
                           },
                         ],
                         logicType: 'GROUP',
-                        id: '表单成员[grouppanel9][面板显示]逻辑',
                       },
                     ],
                     layoutPos: {
@@ -75955,7 +75878,6 @@ export default {
                           },
                         ],
                         logicType: 'GROUP',
-                        id: '表单成员[baseline][面板显示]逻辑',
                       },
                     ],
                     layoutPos: {

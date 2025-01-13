@@ -15,6 +15,7 @@ import cn.ibizlab.plm.core.prodmgmt.domain.ProductMember;
 import cn.ibizlab.plm.core.prodmgmt.filter.ProductMemberSearchContext;
 import cn.ibizlab.plm.core.prodmgmt.domain.Product;
 import cn.ibizlab.plm.core.base.domain.User;
+import cn.ibizlab.plm.util.annotation.DEAction;
 
 /**
  * 产品成员服务接口[ProductMemberService]
@@ -155,6 +156,16 @@ public interface ProductMemberService extends IService<ProductMember> {
      * @return
      */
     boolean save(List<ProductMember> list);
+
+    /**
+    * changePosition
+    * 
+    * @param et
+    * @return
+    */
+    default ProductMember changePosition(ProductMember et) {
+        return et;
+    }
 
     /**
     * changeRole

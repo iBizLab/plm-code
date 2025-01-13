@@ -31,12 +31,6 @@ export default {
       id: 'kanban',
     },
     {
-      realTitle: '主数据视图scrum',
-      refAppViewId: 'plmweb.project_scrum_index_view',
-      name: 'SCRUM',
-      id: 'scrum',
-    },
-    {
       realTitle: '主数据视图waterfall',
       refAppViewId: 'plmweb.project_waterfall_index_view',
       name: 'WATERFALL',
@@ -47,6 +41,12 @@ export default {
       refAppViewId: 'plmweb.project_hybrid_index_view',
       name: 'HYBRID',
       id: 'hybrid',
+    },
+    {
+      realTitle: '主数据视图scrum',
+      refAppViewId: 'plmweb.project_scrum_index_view',
+      name: 'SCRUM',
+      id: 'scrum',
     },
   ],
   controls: [

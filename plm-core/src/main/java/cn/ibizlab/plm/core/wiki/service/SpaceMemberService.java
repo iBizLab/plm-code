@@ -15,6 +15,7 @@ import cn.ibizlab.plm.core.wiki.domain.SpaceMember;
 import cn.ibizlab.plm.core.wiki.filter.SpaceMemberSearchContext;
 import cn.ibizlab.plm.core.wiki.domain.Space;
 import cn.ibizlab.plm.core.base.domain.User;
+import cn.ibizlab.plm.util.annotation.DEAction;
 
 /**
  * 空间成员服务接口[SpaceMemberService]
@@ -163,6 +164,16 @@ public interface SpaceMemberService extends IService<SpaceMember> {
     * @return
     */
     default SpaceMember changeRole(SpaceMember et) {
+        return et;
+    }
+
+    /**
+    * choosePosition
+    * 
+    * @param et
+    * @return
+    */
+    default SpaceMember choosePosition(SpaceMember et) {
         return et;
     }
 

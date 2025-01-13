@@ -552,7 +552,6 @@ export default {
         glyph: 'xf067@FontAwesome',
       },
       refreshMode: 1,
-      timeout: 60000,
       uiactionMode: 'FRONT',
       uiactionTag: 'create_type',
       uiactionType: 'DEUIACTION',

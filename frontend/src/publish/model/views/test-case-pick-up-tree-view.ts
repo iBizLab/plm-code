@@ -117,6 +117,7 @@ export default {
           },
           {
             childCntAppDEFieldId: 'is_leaf',
+            dataSourceType: 'DEDATASET',
             idAppDEFieldId: 'id',
             appDEDataSetId: 'fetch_root',
             textAppDEFieldId: 'name',
@@ -129,6 +130,7 @@ export default {
             id: 'node',
           },
           {
+            dataSourceType: 'DEDATASET',
             idAppDEFieldId: 'id',
             leafFlagAppDEFieldId: 'is_leaf',
             appDEDataSetId: 'fetch_normal',

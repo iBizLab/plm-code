@@ -408,6 +408,45 @@ public abstract class AbstractProjectResource {
     }
 
     /**
+    * other_re_project 项目
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return Mono<ResponseEntity<ProjectDTO>>
+    */
+    @ApiOperation(value = "other_re_project", tags = {"项目" },  notes = "Project-other_re_project ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Project-other_re_project-all') or hasPermission(this.projectDtoMapping.toDomain(#dto),'ibizplm-Project-other_re_project')")
+    @PostMapping("projects/{id}/other_re_project")
+    public Mono<ResponseEntity<ResponseWrapper<ProjectDTO>>>otherReProjectById
+            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<ProjectDTO> dto) {
+        ResponseWrapper<ProjectDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(otherReProjectById(ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(otherReProjectById(id, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * other_re_project 项目
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<ProjectDTO>
+    */   
+    public ProjectDTO otherReProjectById
+            (String id, ProjectDTO dto) {
+        Project domain = projectDtoMapping.toDomain(dto);
+        domain.setId(id);
+        Project rt = projectService.otherReProject(domain);
+        return projectDtoMapping.toDto(rt);
+    }
+
+    /**
     * other_re_space 项目
     * 
     *
@@ -1111,6 +1150,28 @@ public abstract class AbstractProjectResource {
     }
 
     /**
+    * 查询fetch_no_relation 项目
+    * 
+    *
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<ProjectDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_no_relation", tags = {"项目" },  notes = "Project-fetch_no_relation ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Project-fetch_no_relation-all') or hasPermission(#dto,'ibizplm-Project-fetch_no_relation')")
+    @PostMapping("projects/fetch_no_relation")
+    public Mono<ResponseEntity<List<ProjectDTO>>> fetchNoRelation
+            (@Validated @RequestBody ProjectFilterDTO dto) {
+        ProjectSearchContext context = projectFilterDtoMapping.toDomain(dto);
+        Page<Project> domains = projectService.fetchNoRelation(context) ;
+        List<ProjectDTO> list = projectDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
     * 查询fetch_normal 项目
     * 
     *
@@ -1124,6 +1185,28 @@ public abstract class AbstractProjectResource {
             (@Validated @RequestBody ProjectFilterDTO dto) {
         ProjectSearchContext context = projectFilterDtoMapping.toDomain(dto);
         Page<Project> domains = projectService.fetchNormal(context) ;
+        List<ProjectDTO> list = projectDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
+    * 查询fetch_product_re_project 项目
+    * 
+    *
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<ProjectDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_product_re_project", tags = {"项目" },  notes = "Project-fetch_product_re_project ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Project-fetch_product_re_project-all') or hasPermission(#dto,'ibizplm-Project-fetch_product_re_project')")
+    @PostMapping("projects/fetch_product_re_project")
+    public Mono<ResponseEntity<List<ProjectDTO>>> fetchProductReProject
+            (@Validated @RequestBody ProjectFilterDTO dto) {
+        ProjectSearchContext context = projectFilterDtoMapping.toDomain(dto);
+        Page<Project> domains = projectService.fetchProductReProject(context) ;
         List<ProjectDTO> list = projectDtoMapping.toDto(domains.getContent());
             return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))

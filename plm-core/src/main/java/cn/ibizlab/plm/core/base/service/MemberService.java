@@ -13,11 +13,13 @@ import cn.ibizlab.util.domain.ImportResult;
 import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.core.base.domain.Member;
 import cn.ibizlab.plm.core.base.filter.MemberSearchContext;
+import cn.ibizlab.plm.core.base.domain.Position;
 import cn.ibizlab.plm.core.base.domain.User;
 import cn.ibizlab.plm.core.base.domain.CommonFlow;
 import cn.ibizlab.plm.core.base.domain.Group;
 import cn.ibizlab.plm.core.wiki.domain.ArticlePage;
 import cn.ibizlab.plm.core.projmgmt.domain.Project;
+import cn.ibizlab.plm.util.annotation.DEAction;
 
 /**
  * 成员服务接口[MemberService]
@@ -160,6 +162,16 @@ public interface MemberService extends IService<Member> {
     boolean save(List<Member> list);
 
     /**
+    * addMemberPosition
+    * 
+    * @param et
+    * @return
+    */
+    default Member addMemberPosition(Member et) {
+        return et;
+    }
+
+    /**
     * addSharedPageMember
     * 
     * @param et
@@ -272,6 +284,55 @@ public interface MemberService extends IService<Member> {
     * @return
     */
     List<Member> listUserGroupAdmin(MemberSearchContext context);
+
+    /**
+    * findByPositionId
+    * @param positionIds
+    * @return
+    */
+    List<Member> findByPositionId(List<String> positionIds);
+    default List<Member> findByPositionId(String positionId){
+        return findByPosition(new Position().setId(positionId));
+    }
+
+    /**
+    * findByPosition
+    * @param position
+    * @return
+    */
+    List<Member> findByPosition(Position position);
+
+    /**
+    * removeByPositionId
+    * @param positionId
+    * @return
+    */
+    boolean removeByPositionId(String positionId);
+
+    /**
+    * resetByPositionId
+    * @param positionId
+    * @return
+    */
+    boolean resetByPositionId(String positionId);
+
+    /**
+    * saveByPositionId
+    * @param positionId
+    * @param list
+    * @return
+    */
+    default boolean saveByPositionId(String positionId, List<Member> list){
+        return getSelf().saveByPosition(new Position().setId(positionId),list);
+    }
+
+    /**
+    * saveByPosition
+    * @param position
+    * @param list
+    * @return
+    */
+    boolean saveByPosition(Position position, List<Member> list);
 
     /**
     * findByUserId

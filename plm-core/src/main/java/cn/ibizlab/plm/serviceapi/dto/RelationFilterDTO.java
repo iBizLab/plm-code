@@ -91,7 +91,7 @@ public class RelationFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_id_eq")
     @JSONField(name = "n_id_eq")
-    @ApiModelProperty(value = "标识EQ", position = 230)
+    @ApiModelProperty(value = "标识EQ", position = 260)
 	private String idEQ;
 
     /**
@@ -99,7 +99,7 @@ public class RelationFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_name_like")
     @JSONField(name = "n_name_like")
-    @ApiModelProperty(value = "名称LIKE", position = 240)
+    @ApiModelProperty(value = "名称LIKE", position = 270)
 	private String nameLIKE;
 
 

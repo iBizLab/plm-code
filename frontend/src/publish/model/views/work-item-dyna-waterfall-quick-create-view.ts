@@ -280,18 +280,6 @@ export default {
         },
         deformItemUpdates: [
           {
-            codeName: 'set_default_entry',
-            appDEMethodId: 'set_default_entry',
-            defiupdateDetails: [
-              {
-                id: 'entry_id',
-              },
-            ],
-            showBusyIndicator: true,
-            name: '选择看板后填充默认看板栏',
-            id: 'set_default_entry',
-          },
-          {
             codeName: 'calc_parent_work_item_type',
             defiupdateDetails: [
               {
@@ -306,17 +294,29 @@ export default {
             id: 'calc_parent_work_item_type',
           },
           {
+            codeName: 'set_default_entry',
+            appDEMethodId: 'set_default_entry',
+            defiupdateDetails: [
+              {
+                id: 'entry_id',
+              },
+            ],
+            showBusyIndicator: true,
+            name: '选择看板后填充默认看板栏',
+            id: 'set_default_entry',
+          },
+          {
             codeName: 'set_type_bug',
             appDEMethodId: 'set_type_bug',
             defiupdateDetails: [
+              {
+                id: 'project_type',
+              },
               {
                 id: 'work_item_type_id',
               },
               {
                 id: 'work_item_type_name',
-              },
-              {
-                id: 'project_type',
               },
             ],
             showBusyIndicator: true,
@@ -518,20 +518,21 @@ export default {
                               editorParams: {
                                 USERINSCRIPT:
                                   'value.replaceAll(/\\@\\{\\"(user)?id\\":\\"(.+?)\\",\\"name\\":\\"(.+?)\\"\\}/g,(x, user, id, name) => {return controller.getNodeInfo({ id, name })}).replaceAll(/\\@\\{userid=(.+?),name=(.+?)\\}/g,(x, id, name) => {return controller.getNodeInfo({ id, name })})',
+                                LINKVIEWID:
+                                  'plmweb.recent_custom_redirect_view',
                                 MAXHEIGHT: '450',
                                 QUOTECODELISTMAP:
                                   '{"type":"plmweb.base__recent_visite"}',
                                 QUOTEFIELDMAP:
-                                  '{"identifier":"show_identifier","name":"name","id":"id","type":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
-                                QUOTEPARAMS:
-                                  '{"page":0,"size":20,"sort":"update_time,desc"}',
+                                  '{"identifier":"show_identifier","name":"name","id":"id","owner_subtype":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
+                                QUOTEPARAMS: '{"sort":"update_time,desc"}',
                                 MODE: 'default',
                                 QUOTEINSCRIPT:
-                                  'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\"),\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); return controller.getNodeInfo({ icon, ...item })})',
+                                  'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\")(,\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\")*\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); if (icon) { icon = icon.slice(8).slice(1, -1); } return controller.getNodeInfo({ icon, ...item })})',
                                 USERSCRIPT:
                                   '`@{"id":"${data.id}","name":"${data.name}"}`',
                                 QUOTESCRIPT:
-                                  '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.type}","recent_parent":"${data.recent_parent}","icon":"${data.icon}"}`',
+                                  '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.owner_subtype}","recent_parent":"${data.recent_parent}"}`',
                                 USERURL:
                                   "`${context.library ? `libraries/${context.library}/library_members/fetch_default` : context.product ? `products/${context.product}/product_members/fetch_default` : context.project ? `projects/${context.project}/project_members/fetch_default` : ''}`",
                                 USERFIELDMAP: '{"id":"user_id","name":"name"}',
@@ -1237,7 +1238,6 @@ export default {
                               },
                             ],
                             logicType: 'GROUP',
-                            id: '表单成员[project_name][表单项启用]逻辑',
                           },
                         ],
                         layoutPos: {
@@ -1345,7 +1345,6 @@ export default {
                               },
                             ],
                             logicType: 'GROUP',
-                            id: '表单成员[work_item_type_name][表单项启用]逻辑',
                           },
                         ],
                         layoutPos: {
@@ -1419,7 +1418,6 @@ export default {
                               },
                             ],
                             logicType: 'GROUP',
-                            id: '表单成员[board_name][面板显示]逻辑',
                           },
                         ],
                         layoutPos: {
@@ -1503,7 +1501,6 @@ export default {
                               },
                             ],
                             logicType: 'GROUP',
-                            id: '表单成员[ptitle][面板显示]逻辑',
                           },
                           {
                             logicCat: 'ITEMENABLE',
@@ -1517,7 +1514,6 @@ export default {
                               },
                             ],
                             logicType: 'GROUP',
-                            id: '表单成员[ptitle][表单项启用]逻辑',
                           },
                         ],
                         layoutPos: {
@@ -1595,7 +1591,6 @@ export default {
                                       },
                                     ],
                                     logicType: 'GROUP',
-                                    id: '表单成员[setting_executors][面板显示]逻辑',
                                   },
                                 ],
                                 layoutPos: {
@@ -1644,7 +1639,6 @@ export default {
                                   },
                                 ],
                                 logicType: 'GROUP',
-                                id: '表单成员[grouppanel9][面板显示]逻辑',
                               },
                             ],
                             layoutPos: {
@@ -1783,7 +1777,6 @@ export default {
                                   },
                                 ],
                                 logicType: 'GROUP',
-                                id: '表单成员[assignee_name][面板显示]逻辑',
                               },
                               {
                                 logicCat: 'ITEMENABLE',
@@ -1797,7 +1790,6 @@ export default {
                                   },
                                 ],
                                 logicType: 'GROUP',
-                                id: '表单成员[assignee_name][表单项启用]逻辑',
                               },
                             ],
                             layoutPos: {
@@ -1906,7 +1898,6 @@ export default {
                                   },
                                 ],
                                 logicType: 'GROUP',
-                                id: '表单成员[executors][面板显示]逻辑',
                               },
                             ],
                             layoutPos: {
@@ -2236,7 +2227,6 @@ export default {
                               },
                             ],
                             logicType: 'GROUP',
-                            id: '表单成员[grouppanel3][面板显示]逻辑',
                           },
                         ],
                         layoutPos: {
@@ -2299,7 +2289,6 @@ export default {
                               },
                             ],
                             logicType: 'GROUP',
-                            id: '表单成员[grouppanel4][面板显示]逻辑',
                           },
                         ],
                         layoutPos: {
@@ -2392,7 +2381,6 @@ export default {
                               },
                             ],
                             logicType: 'GROUP',
-                            id: '表单成员[grouppanel5][面板显示]逻辑',
                           },
                         ],
                         layoutPos: {
@@ -2426,7 +2414,9 @@ export default {
                                 'SRFNAVPARAM.n_department_id_eq':
                                   '%srforgsectorid%',
                                 AC: 'TRUE',
+                                DEFAULTSELCURUSER: 'true',
                                 'SRFNAVPARAM.n_status_eq': '1',
+                                'SRFNAVCTX.project': '%project_id%',
                                 TRIGGER: 'TRUE',
                                 SELFFILLMAP:
                                   '{"user_id":"user_id","user_name":"name"}',
@@ -2445,6 +2435,14 @@ export default {
                               sysPFPluginId: 'person_select',
                               valueType: 'OBJECTS',
                               editable: true,
+                              navigateContexts: [
+                                {
+                                  key: 'PROJECT',
+                                  value: 'project_id',
+                                  name: 'PROJECT',
+                                  id: 'project',
+                                },
+                              ],
                               navigateParams: [
                                 {
                                   key: 'n_department_id_eq',
@@ -2842,20 +2840,21 @@ export default {
                               editorParams: {
                                 USERINSCRIPT:
                                   'value.replaceAll(/\\@\\{\\"(user)?id\\":\\"(.+?)\\",\\"name\\":\\"(.+?)\\"\\}/g,(x, user, id, name) => {return controller.getNodeInfo({ id, name })}).replaceAll(/\\@\\{userid=(.+?),name=(.+?)\\}/g,(x, id, name) => {return controller.getNodeInfo({ id, name })})',
+                                LINKVIEWID:
+                                  'plmweb.recent_custom_redirect_view',
                                 MAXHEIGHT: '450',
                                 QUOTECODELISTMAP:
                                   '{"type":"plmweb.base__recent_visite"}',
                                 QUOTEFIELDMAP:
-                                  '{"identifier":"show_identifier","name":"name","id":"id","type":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
-                                QUOTEPARAMS:
-                                  '{"page":0,"size":20,"sort":"update_time,desc"}',
+                                  '{"identifier":"show_identifier","name":"name","id":"id","owner_subtype":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
+                                QUOTEPARAMS: '{"sort":"update_time,desc"}',
                                 MODE: 'default',
                                 QUOTEINSCRIPT:
-                                  'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\"),\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); return controller.getNodeInfo({ icon, ...item })})',
+                                  'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\")(,\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\")*\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); if (icon) { icon = icon.slice(8).slice(1, -1); } return controller.getNodeInfo({ icon, ...item })})',
                                 USERSCRIPT:
                                   '`@{"id":"${data.id}","name":"${data.name}"}`',
                                 QUOTESCRIPT:
-                                  '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.type}","recent_parent":"${data.recent_parent}","icon":"${data.icon}"}`',
+                                  '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.owner_subtype}","recent_parent":"${data.recent_parent}"}`',
                                 USERURL:
                                   "`${context.library ? `libraries/${context.library}/library_members/fetch_default` : context.product ? `products/${context.product}/product_members/fetch_default` : context.project ? `projects/${context.project}/project_members/fetch_default` : ''}`",
                                 USERFIELDMAP: '{"id":"user_id","name":"name"}',
@@ -3654,7 +3653,6 @@ export default {
                               },
                             ],
                             logicType: 'GROUP',
-                            id: '表单成员[project_name][表单项启用]逻辑',
                           },
                           {
                             logicCat: 'SCRIPTCODE_CHANGE',
@@ -3667,7 +3665,6 @@ export default {
                               },
                             ],
                             logicType: 'GROUP',
-                            id: '表单成员[project_name][表单项值变更（脚本处理）]逻辑',
                           },
                         ],
                         layoutPos: {
@@ -3750,7 +3747,6 @@ export default {
                               },
                             ],
                             logicType: 'GROUP',
-                            id: '表单成员[work_item_type_name][表单项启用]逻辑',
                           },
                         ],
                         layoutPos: {
@@ -3834,7 +3830,6 @@ export default {
                               },
                             ],
                             logicType: 'GROUP',
-                            id: '表单成员[ptitle][面板显示]逻辑',
                           },
                           {
                             logicCat: 'ITEMENABLE',
@@ -3848,7 +3843,6 @@ export default {
                               },
                             ],
                             logicType: 'GROUP',
-                            id: '表单成员[ptitle][表单项启用]逻辑',
                           },
                         ],
                         layoutPos: {
@@ -3926,7 +3920,6 @@ export default {
                                       },
                                     ],
                                     logicType: 'GROUP',
-                                    id: '表单成员[setting_executors][面板显示]逻辑',
                                   },
                                 ],
                                 layoutPos: {
@@ -3975,7 +3968,6 @@ export default {
                                   },
                                 ],
                                 logicType: 'GROUP',
-                                id: '表单成员[grouppanel9][面板显示]逻辑',
                               },
                             ],
                             layoutPos: {
@@ -4114,7 +4106,6 @@ export default {
                                   },
                                 ],
                                 logicType: 'GROUP',
-                                id: '表单成员[assignee_name][面板显示]逻辑',
                               },
                               {
                                 logicCat: 'ITEMENABLE',
@@ -4128,7 +4119,6 @@ export default {
                                   },
                                 ],
                                 logicType: 'GROUP',
-                                id: '表单成员[assignee_name][表单项启用]逻辑',
                               },
                             ],
                             layoutPos: {
@@ -4237,7 +4227,6 @@ export default {
                                   },
                                 ],
                                 logicType: 'GROUP',
-                                id: '表单成员[executors][面板显示]逻辑',
                               },
                             ],
                             layoutPos: {
@@ -4603,24 +4592,6 @@ export default {
         },
         deformItemUpdates: [
           {
-            codeName: 'set_type_bug',
-            appDEMethodId: 'set_type_bug',
-            defiupdateDetails: [
-              {
-                id: 'project_type',
-              },
-              {
-                id: 'work_item_type_id',
-              },
-              {
-                id: 'work_item_type_name',
-              },
-            ],
-            showBusyIndicator: true,
-            name: '设置缺陷类型',
-            id: 'set_type_bug',
-          },
-          {
             codeName: 'calc_parent_work_item_type',
             defiupdateDetails: [
               {
@@ -4633,6 +4604,24 @@ export default {
             showBusyIndicator: true,
             name: '计算父工作项类型',
             id: 'calc_parent_work_item_type',
+          },
+          {
+            codeName: 'set_type_bug',
+            appDEMethodId: 'set_type_bug',
+            defiupdateDetails: [
+              {
+                id: 'work_item_type_name',
+              },
+              {
+                id: 'work_item_type_id',
+              },
+              {
+                id: 'project_type',
+              },
+            ],
+            showBusyIndicator: true,
+            name: '设置缺陷类型',
+            id: 'set_type_bug',
           },
         ],
         deformItemVRs: [
@@ -4829,20 +4818,21 @@ export default {
                               editorParams: {
                                 USERINSCRIPT:
                                   'value.replaceAll(/\\@\\{\\"(user)?id\\":\\"(.+?)\\",\\"name\\":\\"(.+?)\\"\\}/g,(x, user, id, name) => {return controller.getNodeInfo({ id, name })}).replaceAll(/\\@\\{userid=(.+?),name=(.+?)\\}/g,(x, id, name) => {return controller.getNodeInfo({ id, name })})',
+                                LINKVIEWID:
+                                  'plmweb.recent_custom_redirect_view',
                                 MAXHEIGHT: '450',
                                 QUOTECODELISTMAP:
                                   '{"type":"plmweb.base__recent_visite"}',
                                 QUOTEFIELDMAP:
-                                  '{"identifier":"show_identifier","name":"name","id":"id","type":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
-                                QUOTEPARAMS:
-                                  '{"page":0,"size":20,"sort":"update_time,desc"}',
+                                  '{"identifier":"show_identifier","name":"name","id":"id","owner_subtype":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
+                                QUOTEPARAMS: '{"sort":"update_time,desc"}',
                                 MODE: 'default',
                                 QUOTEINSCRIPT:
-                                  'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\"),\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); return controller.getNodeInfo({ icon, ...item })})',
+                                  'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\")(,\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\")*\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); if (icon) { icon = icon.slice(8).slice(1, -1); } return controller.getNodeInfo({ icon, ...item })})',
                                 USERSCRIPT:
                                   '`@{"id":"${data.id}","name":"${data.name}"}`',
                                 QUOTESCRIPT:
-                                  '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.type}","recent_parent":"${data.recent_parent}","icon":"${data.icon}"}`',
+                                  '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.owner_subtype}","recent_parent":"${data.recent_parent}"}`',
                                 USERURL:
                                   "`${context.library ? `libraries/${context.library}/library_members/fetch_default` : context.product ? `products/${context.product}/product_members/fetch_default` : context.project ? `projects/${context.project}/project_members/fetch_default` : ''}`",
                                 USERFIELDMAP: '{"id":"user_id","name":"name"}',
@@ -5641,7 +5631,6 @@ export default {
                               },
                             ],
                             logicType: 'GROUP',
-                            id: '表单成员[project_name][表单项启用]逻辑',
                           },
                           {
                             logicCat: 'SCRIPTCODE_CHANGE',
@@ -5654,7 +5643,6 @@ export default {
                               },
                             ],
                             logicType: 'GROUP',
-                            id: '表单成员[project_name][表单项值变更（脚本处理）]逻辑',
                           },
                         ],
                         layoutPos: {
@@ -5737,7 +5725,6 @@ export default {
                               },
                             ],
                             logicType: 'GROUP',
-                            id: '表单成员[work_item_type_name][表单项启用]逻辑',
                           },
                         ],
                         layoutPos: {
@@ -5821,7 +5808,6 @@ export default {
                               },
                             ],
                             logicType: 'GROUP',
-                            id: '表单成员[ptitle][面板显示]逻辑',
                           },
                           {
                             logicCat: 'ITEMENABLE',
@@ -5835,7 +5821,6 @@ export default {
                               },
                             ],
                             logicType: 'GROUP',
-                            id: '表单成员[ptitle][表单项启用]逻辑',
                           },
                         ],
                         layoutPos: {
@@ -5960,7 +5945,6 @@ export default {
                               },
                             ],
                             logicType: 'GROUP',
-                            id: '表单成员[assignee_name][表单项启用]逻辑',
                           },
                         ],
                         layoutPos: {
@@ -6272,24 +6256,6 @@ export default {
         },
         deformItemUpdates: [
           {
-            codeName: 'set_type_bug',
-            appDEMethodId: 'set_type_bug',
-            defiupdateDetails: [
-              {
-                id: 'work_item_type_name',
-              },
-              {
-                id: 'work_item_type_id',
-              },
-              {
-                id: 'project_type',
-              },
-            ],
-            showBusyIndicator: true,
-            name: '设置缺陷类型',
-            id: 'set_type_bug',
-          },
-          {
             codeName: 'calc_parent_work_item_type',
             defiupdateDetails: [
               {
@@ -6302,6 +6268,24 @@ export default {
             showBusyIndicator: true,
             name: '计算父工作项类型',
             id: 'calc_parent_work_item_type',
+          },
+          {
+            codeName: 'set_type_bug',
+            appDEMethodId: 'set_type_bug',
+            defiupdateDetails: [
+              {
+                id: 'work_item_type_id',
+              },
+              {
+                id: 'project_type',
+              },
+              {
+                id: 'work_item_type_name',
+              },
+            ],
+            showBusyIndicator: true,
+            name: '设置缺陷类型',
+            id: 'set_type_bug',
           },
         ],
         deformItemVRs: [
@@ -6498,20 +6482,21 @@ export default {
                               editorParams: {
                                 USERINSCRIPT:
                                   'value.replaceAll(/\\@\\{\\"(user)?id\\":\\"(.+?)\\",\\"name\\":\\"(.+?)\\"\\}/g,(x, user, id, name) => {return controller.getNodeInfo({ id, name })}).replaceAll(/\\@\\{userid=(.+?),name=(.+?)\\}/g,(x, id, name) => {return controller.getNodeInfo({ id, name })})',
+                                LINKVIEWID:
+                                  'plmweb.recent_custom_redirect_view',
                                 MAXHEIGHT: '450',
                                 QUOTECODELISTMAP:
                                   '{"type":"plmweb.base__recent_visite"}',
                                 QUOTEFIELDMAP:
-                                  '{"identifier":"show_identifier","name":"name","id":"id","type":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
-                                QUOTEPARAMS:
-                                  '{"page":0,"size":20,"sort":"update_time,desc"}',
+                                  '{"identifier":"show_identifier","name":"name","id":"id","owner_subtype":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
+                                QUOTEPARAMS: '{"sort":"update_time,desc"}',
                                 MODE: 'default',
                                 QUOTEINSCRIPT:
-                                  'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\"),\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); return controller.getNodeInfo({ icon, ...item })})',
+                                  'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\")(,\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\")*\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); if (icon) { icon = icon.slice(8).slice(1, -1); } return controller.getNodeInfo({ icon, ...item })})',
                                 USERSCRIPT:
                                   '`@{"id":"${data.id}","name":"${data.name}"}`',
                                 QUOTESCRIPT:
-                                  '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.type}","recent_parent":"${data.recent_parent}","icon":"${data.icon}"}`',
+                                  '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.owner_subtype}","recent_parent":"${data.recent_parent}"}`',
                                 USERURL:
                                   "`${context.library ? `libraries/${context.library}/library_members/fetch_default` : context.product ? `products/${context.product}/product_members/fetch_default` : context.project ? `projects/${context.project}/project_members/fetch_default` : ''}`",
                                 USERFIELDMAP: '{"id":"user_id","name":"name"}',
@@ -7310,7 +7295,6 @@ export default {
                               },
                             ],
                             logicType: 'GROUP',
-                            id: '表单成员[project_name][表单项启用]逻辑',
                           },
                           {
                             logicCat: 'SCRIPTCODE_CHANGE',
@@ -7323,7 +7307,6 @@ export default {
                               },
                             ],
                             logicType: 'GROUP',
-                            id: '表单成员[project_name][表单项值变更（脚本处理）]逻辑',
                           },
                         ],
                         layoutPos: {
@@ -7406,7 +7389,6 @@ export default {
                               },
                             ],
                             logicType: 'GROUP',
-                            id: '表单成员[work_item_type_name][表单项启用]逻辑',
                           },
                         ],
                         layoutPos: {
@@ -7490,7 +7472,6 @@ export default {
                               },
                             ],
                             logicType: 'GROUP',
-                            id: '表单成员[ptitle][面板显示]逻辑',
                           },
                           {
                             logicCat: 'ITEMENABLE',
@@ -7504,7 +7485,6 @@ export default {
                               },
                             ],
                             logicType: 'GROUP',
-                            id: '表单成员[ptitle][表单项启用]逻辑',
                           },
                         ],
                         layoutPos: {
@@ -7629,7 +7609,6 @@ export default {
                               },
                             ],
                             logicType: 'GROUP',
-                            id: '表单成员[assignee_name][表单项启用]逻辑',
                           },
                         ],
                         layoutPos: {
@@ -8028,6 +8007,24 @@ export default {
         },
         deformItemUpdates: [
           {
+            codeName: 'set_type_bug',
+            appDEMethodId: 'set_type_bug',
+            defiupdateDetails: [
+              {
+                id: 'work_item_type_id',
+              },
+              {
+                id: 'work_item_type_name',
+              },
+              {
+                id: 'project_type',
+              },
+            ],
+            showBusyIndicator: true,
+            name: '设置缺陷类型',
+            id: 'set_type_bug',
+          },
+          {
             codeName: 'calc_parent_work_item_type',
             defiupdateDetails: [
               {
@@ -8040,24 +8037,6 @@ export default {
             showBusyIndicator: true,
             name: '计算父工作项类型',
             id: 'calc_parent_work_item_type',
-          },
-          {
-            codeName: 'set_type_bug',
-            appDEMethodId: 'set_type_bug',
-            defiupdateDetails: [
-              {
-                id: 'project_type',
-              },
-              {
-                id: 'work_item_type_name',
-              },
-              {
-                id: 'work_item_type_id',
-              },
-            ],
-            showBusyIndicator: true,
-            name: '设置缺陷类型',
-            id: 'set_type_bug',
           },
         ],
         deformItemVRs: [
@@ -8254,20 +8233,21 @@ export default {
                               editorParams: {
                                 USERINSCRIPT:
                                   'value.replaceAll(/\\@\\{\\"(user)?id\\":\\"(.+?)\\",\\"name\\":\\"(.+?)\\"\\}/g,(x, user, id, name) => {return controller.getNodeInfo({ id, name })}).replaceAll(/\\@\\{userid=(.+?),name=(.+?)\\}/g,(x, id, name) => {return controller.getNodeInfo({ id, name })})',
+                                LINKVIEWID:
+                                  'plmweb.recent_custom_redirect_view',
                                 MAXHEIGHT: '450',
                                 QUOTECODELISTMAP:
                                   '{"type":"plmweb.base__recent_visite"}',
                                 QUOTEFIELDMAP:
-                                  '{"identifier":"show_identifier","name":"name","id":"id","type":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
-                                QUOTEPARAMS:
-                                  '{"page":0,"size":20,"sort":"update_time,desc"}',
+                                  '{"identifier":"show_identifier","name":"name","id":"id","owner_subtype":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
+                                QUOTEPARAMS: '{"sort":"update_time,desc"}',
                                 MODE: 'default',
                                 QUOTEINSCRIPT:
-                                  'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\"),\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); return controller.getNodeInfo({ icon, ...item })})',
+                                  'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\")(,\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\")*\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); if (icon) { icon = icon.slice(8).slice(1, -1); } return controller.getNodeInfo({ icon, ...item })})',
                                 USERSCRIPT:
                                   '`@{"id":"${data.id}","name":"${data.name}"}`',
                                 QUOTESCRIPT:
-                                  '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.type}","recent_parent":"${data.recent_parent}","icon":"${data.icon}"}`',
+                                  '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.owner_subtype}","recent_parent":"${data.recent_parent}"}`',
                                 USERURL:
                                   "`${context.library ? `libraries/${context.library}/library_members/fetch_default` : context.product ? `products/${context.product}/product_members/fetch_default` : context.project ? `projects/${context.project}/project_members/fetch_default` : ''}`",
                                 USERFIELDMAP: '{"id":"user_id","name":"name"}',
@@ -9066,7 +9046,6 @@ export default {
                               },
                             ],
                             logicType: 'GROUP',
-                            id: '表单成员[project_name][表单项启用]逻辑',
                           },
                           {
                             logicCat: 'SCRIPTCODE_CHANGE',
@@ -9079,7 +9058,6 @@ export default {
                               },
                             ],
                             logicType: 'GROUP',
-                            id: '表单成员[project_name][表单项值变更（脚本处理）]逻辑',
                           },
                         ],
                         layoutPos: {
@@ -9162,7 +9140,6 @@ export default {
                               },
                             ],
                             logicType: 'GROUP',
-                            id: '表单成员[work_item_type_name][表单项启用]逻辑',
                           },
                         ],
                         layoutPos: {
@@ -9246,7 +9223,6 @@ export default {
                               },
                             ],
                             logicType: 'GROUP',
-                            id: '表单成员[ptitle][面板显示]逻辑',
                           },
                           {
                             logicCat: 'ITEMENABLE',
@@ -9260,7 +9236,6 @@ export default {
                               },
                             ],
                             logicType: 'GROUP',
-                            id: '表单成员[ptitle][表单项启用]逻辑',
                           },
                         ],
                         layoutPos: {
@@ -9385,7 +9360,6 @@ export default {
                               },
                             ],
                             logicType: 'GROUP',
-                            id: '表单成员[assignee_name][表单项启用]逻辑',
                           },
                         ],
                         layoutPos: {
@@ -9701,13 +9675,13 @@ export default {
             appDEMethodId: 'set_type_bug',
             defiupdateDetails: [
               {
+                id: 'work_item_type_name',
+              },
+              {
                 id: 'project_type',
               },
               {
                 id: 'work_item_type_id',
-              },
-              {
-                id: 'work_item_type_name',
               },
             ],
             showBusyIndicator: true,
@@ -9923,20 +9897,21 @@ export default {
                               editorParams: {
                                 USERINSCRIPT:
                                   'value.replaceAll(/\\@\\{\\"(user)?id\\":\\"(.+?)\\",\\"name\\":\\"(.+?)\\"\\}/g,(x, user, id, name) => {return controller.getNodeInfo({ id, name })}).replaceAll(/\\@\\{userid=(.+?),name=(.+?)\\}/g,(x, id, name) => {return controller.getNodeInfo({ id, name })})',
+                                LINKVIEWID:
+                                  'plmweb.recent_custom_redirect_view',
                                 MAXHEIGHT: '450',
                                 QUOTECODELISTMAP:
                                   '{"type":"plmweb.base__recent_visite"}',
                                 QUOTEFIELDMAP:
-                                  '{"identifier":"show_identifier","name":"name","id":"id","type":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
-                                QUOTEPARAMS:
-                                  '{"page":0,"size":20,"sort":"update_time,desc"}',
+                                  '{"identifier":"show_identifier","name":"name","id":"id","owner_subtype":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
+                                QUOTEPARAMS: '{"sort":"update_time,desc"}',
                                 MODE: 'default',
                                 QUOTEINSCRIPT:
-                                  'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\"),\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); return controller.getNodeInfo({ icon, ...item })})',
+                                  'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\")(,\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\")*\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); if (icon) { icon = icon.slice(8).slice(1, -1); } return controller.getNodeInfo({ icon, ...item })})',
                                 USERSCRIPT:
                                   '`@{"id":"${data.id}","name":"${data.name}"}`',
                                 QUOTESCRIPT:
-                                  '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.type}","recent_parent":"${data.recent_parent}","icon":"${data.icon}"}`',
+                                  '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.owner_subtype}","recent_parent":"${data.recent_parent}"}`',
                                 USERURL:
                                   "`${context.library ? `libraries/${context.library}/library_members/fetch_default` : context.product ? `products/${context.product}/product_members/fetch_default` : context.project ? `projects/${context.project}/project_members/fetch_default` : ''}`",
                                 USERFIELDMAP: '{"id":"user_id","name":"name"}',
@@ -10735,7 +10710,6 @@ export default {
                               },
                             ],
                             logicType: 'GROUP',
-                            id: '表单成员[project_name][表单项启用]逻辑',
                           },
                           {
                             logicCat: 'SCRIPTCODE_CHANGE',
@@ -10748,7 +10722,6 @@ export default {
                               },
                             ],
                             logicType: 'GROUP',
-                            id: '表单成员[project_name][表单项值变更（脚本处理）]逻辑',
                           },
                         ],
                         layoutPos: {
@@ -10831,7 +10804,6 @@ export default {
                               },
                             ],
                             logicType: 'GROUP',
-                            id: '表单成员[work_item_type_name][表单项启用]逻辑',
                           },
                         ],
                         layoutPos: {
@@ -10915,7 +10887,6 @@ export default {
                               },
                             ],
                             logicType: 'GROUP',
-                            id: '表单成员[ptitle][面板显示]逻辑',
                           },
                           {
                             logicCat: 'ITEMENABLE',
@@ -10929,7 +10900,6 @@ export default {
                               },
                             ],
                             logicType: 'GROUP',
-                            id: '表单成员[ptitle][表单项启用]逻辑',
                           },
                         ],
                         layoutPos: {
@@ -11054,7 +11024,6 @@ export default {
                               },
                             ],
                             logicType: 'GROUP',
-                            id: '表单成员[assignee_name][表单项启用]逻辑',
                           },
                         ],
                         layoutPos: {

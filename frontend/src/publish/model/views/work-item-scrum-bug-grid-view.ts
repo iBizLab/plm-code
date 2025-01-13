@@ -263,6 +263,7 @@ export default {
       aggMode: 'NONE',
       columnEnableFilter: 2,
       columnEnableLink: 2,
+      frozenFirstColumn: 2,
       groupMode: 'NONE',
       groupStyle: 'DEFAULT',
       orderValueAppDEFieldId: 'sequence',
@@ -1551,6 +1552,11 @@ export default {
         },
       ],
       controlParam: {
+        ctrlParams: {
+          EXPANDCOLUMNINDEX: '1',
+          ENABLEJSONSCHEMA: 'true',
+          JSONSCHEMAPARAMS: '{"project_id":"%project%"}',
+        },
         id: 'grid',
       },
       sysPFPluginId: 'number_grid',

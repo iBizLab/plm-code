@@ -25,6 +25,7 @@ import cn.ibizlab.plm.core.base.domain.SearchComment;
 import cn.ibizlab.plm.core.base.domain.Workload;
 import cn.ibizlab.plm.core.base.domain.Relation;
 import cn.ibizlab.plm.core.base.domain.Version;
+import cn.ibizlab.plm.util.annotation.DEAction;
 
 /**
  * 需求服务接口[IdeaService]
@@ -795,6 +796,22 @@ public interface IdeaService extends IService<Idea> {
     * @return
     */
     List<Idea> listRecentIdea(IdeaSearchContext context);
+
+    /**
+    * fetchRelationIdea
+    * 
+    * @param context
+    * @return
+    */
+    Page<Idea> fetchRelationIdea(IdeaSearchContext context);
+
+    /**
+    * listRelationIdea
+    * 
+    * @param context
+    * @return
+    */
+    List<Idea> listRelationIdea(IdeaSearchContext context);
 
     /**
     * fetchUser

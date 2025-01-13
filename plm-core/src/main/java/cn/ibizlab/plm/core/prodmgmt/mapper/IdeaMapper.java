@@ -499,6 +499,25 @@ public interface IdeaMapper extends BaseMapper<Idea> {
     List<Idea> listRecentIdea(@Param("ctx") IdeaSearchContext context, @Param("ew") Wrapper<Idea> wrapper);
 
     /**
+     * 数据集合relation_idea分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Idea> searchRelationIdea(IPage<Idea> page, @Param("ctx") IdeaSearchContext context, @Param("ew") Wrapper<Idea> wrapper);
+    
+    /**
+     * 数据集合relation_idea查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Idea> listRelationIdea(@Param("ctx") IdeaSearchContext context, @Param("ew") Wrapper<Idea> wrapper);
+
+    /**
      * 数据集合user分页查询
      * 
      * @param page

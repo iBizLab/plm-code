@@ -555,6 +555,7 @@ export default {
                 id: 'node',
               },
               {
+                dataSourceType: 'DEDATASET',
                 idAppDEFieldId: 'id',
                 leafFlagAppDEFieldId: 'is_leaf',
                 appDEDataSetId: 'fetch_default',
@@ -594,6 +595,7 @@ export default {
                 id: 'node_1',
               },
               {
+                dataSourceType: 'DEDATASET',
                 idAppDEFieldId: 'id',
                 leafFlagAppDEFieldId: 'is_leaf',
                 appDEDataSetId: 'fetch_default',
@@ -624,6 +626,7 @@ export default {
                 id: 'node_2',
               },
               {
+                dataSourceType: 'DEDATASET',
                 idAppDEFieldId: 'id',
                 leafFlagAppDEFieldId: 'is_leaf',
                 appDEDataSetId: 'fetch_no_section',
@@ -667,6 +670,7 @@ export default {
                 id: 'project',
               },
               {
+                dataSourceType: 'DEDATASET',
                 iconAppDEFieldId: 'type',
                 idAppDEFieldId: 'id',
                 appDEDataSetId: 'fetch_normal',

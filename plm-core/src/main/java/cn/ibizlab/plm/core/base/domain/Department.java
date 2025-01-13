@@ -1,5 +1,5 @@
 /**
- * Generate code from /{{projectName}}-core/src/main/java/{{packageName}}/core/{{modules}}/domain/{{entities@NONE}}.java.hbs
+ * Generate code from /{{projectName}}-core/src/main/java/{{packageName}}/core/{{modules}}/domain/{{domains@NONE}}.java.hbs
  */
 package cn.ibizlab.plm.core.base.domain;
 
@@ -33,6 +33,15 @@ import cn.ibizlab.plm.core.base.domain.User;
 @ApiModel(value = "DEPARTMENT", description = "部门")
 public class Department extends EntityBase implements Serializable
 {
+    /**
+     * 部门标识/编号
+     */
+    @DEField(name = "identifier")
+    @JSONField(name = "identifier")
+    @JsonProperty("identifier")
+    @ApiModelProperty(value = "identifier", notes = "部门标识/编号")
+    private String identifier;
+
     /**
      * 标识
      */
@@ -125,6 +134,15 @@ public class Department extends EntityBase implements Serializable
     @JSONField(serialize = false)
     @ApiModelProperty(value = "user", notes = "部门负责人")
     private User user;
+
+    /**
+    * 设置 [部门标识/编号]
+    */
+    public Department setIdentifier(String identifier) {
+        this.identifier = identifier;
+        this.modify("identifier", identifier);
+        return this;
+    }
 
     /**
     * 设置 [名称]

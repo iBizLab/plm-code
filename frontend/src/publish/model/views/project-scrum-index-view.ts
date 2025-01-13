@@ -468,6 +468,11 @@ export default {
             id: 'usrdrgroup0411905994',
           },
           {
+            caption: '产品',
+            name: '产品',
+            id: 'usrdrgroup1204726501',
+          },
+          {
             caption: '测试',
             name: '测试',
             id: 'usrdrgroup1225632271',
@@ -598,6 +603,12 @@ export default {
             id: 'baseline',
           },
           {
+            dedrbarGroupId: 'usrdrgroup1204726501',
+            caption: '产品',
+            appViewId: 'plmweb.relation_project_re_product_grid_view',
+            id: 'product',
+          },
+          {
             dedrbarGroupId: 'usrdrgroup1225632271',
             caption: '测试',
             counterId: 'test_plan',
@@ -614,12 +625,6 @@ export default {
             enableMode: 'COUNT_GTE_ZERO',
             appViewId: 'plmweb.space_project_re_tree_exp_view',
             navigateContexts: [
-              {
-                key: 'PRINCIPAL_ID',
-                value: 'project',
-                name: 'PRINCIPAL_ID',
-                id: 'principal_id',
-              },
               {
                 key: 'PRINCIPAL_TYPE',
                 value: 'project',
@@ -647,11 +652,6 @@ export default {
                 value: 'space',
                 rawValue: true,
                 id: 'target_type',
-              },
-              {
-                key: 'principal_id',
-                value: 'project',
-                id: 'principal_id',
               },
             ],
             id: 'space',

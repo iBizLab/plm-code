@@ -250,7 +250,6 @@ export default {
                         },
                       ],
                       logicType: 'GROUP',
-                      id: '表单成员[access_password][表单项空输入]逻辑',
                     },
                     {
                       logicCat: 'ITEMENABLE',
@@ -265,7 +264,6 @@ export default {
                         },
                       ],
                       logicType: 'GROUP',
-                      id: '表单成员[access_password][表单项启用]逻辑',
                     },
                   ],
                   layoutPos: {
@@ -360,7 +358,6 @@ export default {
                         },
                       ],
                       logicType: 'GROUP',
-                      id: '表单成员[expiration_date][表单项空输入]逻辑',
                     },
                     {
                       logicCat: 'ITEMENABLE',
@@ -375,7 +372,6 @@ export default {
                         },
                       ],
                       logicType: 'GROUP',
-                      id: '表单成员[expiration_date][表单项启用]逻辑',
                     },
                   ],
                   layoutPos: {
@@ -647,7 +643,6 @@ export default {
                     },
                   ],
                   logicType: 'GROUP',
-                  id: '表单成员[shared_pages][表单项启用]逻辑',
                 },
               ],
               layoutPos: {

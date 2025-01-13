@@ -135,6 +135,9 @@ export default {
                   spacingBottom: 'OUTERSMALL',
                   spacingLeft: 'OUTERLARGE',
                 },
+                sysCss: {
+                  cssName: 'dashboard_repair_style',
+                },
                 id: 'container',
               },
             ],

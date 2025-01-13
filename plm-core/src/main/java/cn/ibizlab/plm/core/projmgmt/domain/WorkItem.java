@@ -1,5 +1,5 @@
 /**
- * Generate code from /{{projectName}}-core/src/main/java/{{packageName}}/core/{{modules}}/domain/{{entities@SQL}}.java.hbs
+ * Generate code from /{{projectName}}-core/src/main/java/{{packageName}}/core/{{modules}}/domain/{{domains@SQL}}.java.hbs
  */
 package cn.ibizlab.plm.core.projmgmt.domain;
 
@@ -425,8 +425,8 @@ public class WorkItem extends EntityMP implements Serializable
     private List<Deliverable> deliverable;
 
     /**
-     * 父工作项类型
-     */
+    * 父工作项类型
+    */
     @TableField(value = "p_work_item_type_id" , exist = false)
     @DEField(name = "p_work_item_type_id")
     @JSONField(name = "p_work_item_type_id")

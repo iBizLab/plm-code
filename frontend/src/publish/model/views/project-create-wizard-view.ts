@@ -119,7 +119,6 @@ export default {
                                 },
                               ],
                               logicType: 'GROUP',
-                              id: '表单成员[rawitem6][面板显示]逻辑',
                             },
                           ],
                           layoutPos: {
@@ -166,7 +165,6 @@ export default {
                                 },
                               ],
                               logicType: 'GROUP',
-                              id: '表单成员[rawitem7][面板显示]逻辑',
                             },
                           ],
                           layoutPos: {
@@ -213,7 +211,6 @@ export default {
                                 },
                               ],
                               logicType: 'GROUP',
-                              id: '表单成员[rawitem8][面板显示]逻辑',
                             },
                           ],
                           layoutPos: {
@@ -260,7 +257,6 @@ export default {
                                 },
                               ],
                               logicType: 'GROUP',
-                              id: '表单成员[rawitem9][面板显示]逻辑',
                             },
                           ],
                           layoutPos: {
@@ -305,7 +301,6 @@ export default {
                                 },
                               ],
                               logicType: 'GROUP',
-                              id: '表单成员[rawitem1][面板显示]逻辑',
                             },
                           ],
                           layoutPos: {
@@ -339,7 +334,6 @@ export default {
                                 },
                               ],
                               logicType: 'GROUP',
-                              id: '表单成员[rawitem2][面板显示]逻辑',
                             },
                           ],
                           layoutPos: {
@@ -373,7 +367,6 @@ export default {
                                 },
                               ],
                               logicType: 'GROUP',
-                              id: '表单成员[rawitem3][面板显示]逻辑',
                             },
                           ],
                           layoutPos: {
@@ -407,7 +400,6 @@ export default {
                                 },
                               ],
                               logicType: 'GROUP',
-                              id: '表单成员[rawitem5][面板显示]逻辑',
                             },
                           ],
                           layoutPos: {
@@ -552,7 +544,6 @@ export default {
                             id: 'type',
                           },
                           updateDV: 'scrum',
-                          allowEmpty: true,
                           needCodeListConfig: true,
                           capLanguageRes: {
                             lanResTag: 'DEF.LNAME.TYPE',
@@ -847,7 +838,6 @@ export default {
                                 },
                               ],
                               logicType: 'GROUP',
-                              id: '表单成员[rawitem6][面板显示]逻辑',
                             },
                           ],
                           layoutPos: {
@@ -894,7 +884,6 @@ export default {
                                 },
                               ],
                               logicType: 'GROUP',
-                              id: '表单成员[rawitem7][面板显示]逻辑',
                             },
                           ],
                           layoutPos: {
@@ -941,7 +930,6 @@ export default {
                                 },
                               ],
                               logicType: 'GROUP',
-                              id: '表单成员[rawitem8][面板显示]逻辑',
                             },
                           ],
                           layoutPos: {
@@ -988,7 +976,6 @@ export default {
                                 },
                               ],
                               logicType: 'GROUP',
-                              id: '表单成员[rawitem9][面板显示]逻辑',
                             },
                           ],
                           layoutPos: {
@@ -1033,7 +1020,6 @@ export default {
                                 },
                               ],
                               logicType: 'GROUP',
-                              id: '表单成员[rawitem1][面板显示]逻辑',
                             },
                           ],
                           layoutPos: {
@@ -1067,7 +1053,6 @@ export default {
                                 },
                               ],
                               logicType: 'GROUP',
-                              id: '表单成员[rawitem2][面板显示]逻辑',
                             },
                           ],
                           layoutPos: {
@@ -1101,7 +1086,6 @@ export default {
                                 },
                               ],
                               logicType: 'GROUP',
-                              id: '表单成员[rawitem3][面板显示]逻辑',
                             },
                           ],
                           layoutPos: {
@@ -1135,7 +1119,6 @@ export default {
                                 },
                               ],
                               logicType: 'GROUP',
-                              id: '表单成员[rawitem5][面板显示]逻辑',
                             },
                           ],
                           layoutPos: {

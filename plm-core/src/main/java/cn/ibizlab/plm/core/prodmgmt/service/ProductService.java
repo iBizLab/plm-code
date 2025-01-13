@@ -25,7 +25,9 @@ import cn.ibizlab.plm.core.prodmgmt.domain.Ticket;
 import cn.ibizlab.plm.core.base.domain.Addon;
 import cn.ibizlab.plm.core.base.domain.Baseline;
 import cn.ibizlab.plm.core.base.domain.Favorite;
+import cn.ibizlab.plm.core.base.domain.Relation;
 import cn.ibizlab.plm.core.base.domain.ReferencesIndex;
+import cn.ibizlab.plm.util.annotation.DEAction;
 
 /**
  * 产品服务接口[ProductService]
@@ -328,6 +330,16 @@ public interface ProductService extends IService<Product> {
     }
 
     /**
+    * otherReProduct
+    * 
+    * @param et
+    * @return
+    */
+    default Product otherReProduct(Product et) {
+        return et;
+    }
+
+    /**
     * otherReSpace
     * 
     * @param et
@@ -550,6 +562,22 @@ public interface ProductService extends IService<Product> {
     * @return
     */
     List<Product> listMobMain(ProductSearchContext context);
+
+    /**
+    * fetchNoRelation
+    * 
+    * @param context
+    * @return
+    */
+    Page<Product> fetchNoRelation(ProductSearchContext context);
+
+    /**
+    * listNoRelation
+    * 
+    * @param context
+    * @return
+    */
+    List<Product> listNoRelation(ProductSearchContext context);
 
     /**
     * fetchNormal

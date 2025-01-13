@@ -19,6 +19,7 @@ import cn.ibizlab.plm.core.wiki.domain.SpaceMember;
 import cn.ibizlab.plm.core.wiki.domain.Stencil;
 import cn.ibizlab.plm.core.base.domain.Addon;
 import cn.ibizlab.plm.core.base.domain.Baseline;
+import cn.ibizlab.plm.util.annotation.DEAction;
 
 /**
  * 空间服务接口[SpaceService]

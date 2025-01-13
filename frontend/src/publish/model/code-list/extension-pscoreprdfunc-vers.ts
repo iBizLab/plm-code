@@ -1,0 +1,16 @@
+export default {
+  codeListTag: 'extension__pscoreprdfunc_vers',
+  codeListType: 'DYNAMIC',
+  codeName: 'extension__pscoreprdfunc_vers',
+  emptyText: '未定义',
+  orMode: 'STR',
+  appDEDataSetId: 'fetchdefault',
+  appDataEntityId: 'plmweb.pscoreprdfunc',
+  textAppDEFieldId: 'vers',
+  textSeparator: ',',
+  valueAppDEFieldId: 'vers',
+  valueSeparator: ',',
+  enableCache: true,
+  name: '应用模型历史版本',
+  id: 'plmweb.extension__pscoreprdfunc_vers',
+};

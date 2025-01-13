@@ -126,7 +126,6 @@ export default {
                         },
                       ],
                       logicType: 'GROUP',
-                      id: '表单成员[owner_id][表单项启用]逻辑',
                     },
                   ],
                   layoutPos: {

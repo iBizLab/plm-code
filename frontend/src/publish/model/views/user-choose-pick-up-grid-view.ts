@@ -97,6 +97,12 @@ export default {
           id: 'job_id',
         },
         {
+          appDEFieldId: 'organization_id',
+          valueType: 'SIMPLE',
+          dataType: 25,
+          id: 'organization_id',
+        },
+        {
           appDEFieldId: 'name',
           valueType: 'SIMPLE',
           dataType: 25,

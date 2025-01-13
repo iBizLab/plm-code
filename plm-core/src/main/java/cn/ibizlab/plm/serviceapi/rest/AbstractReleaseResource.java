@@ -927,6 +927,50 @@ public abstract class AbstractReleaseResource {
     }
 
     /**
+    * 查询fetch_product_re_project_published 项目发布
+    * 产品所关联项目中的已发布
+    *
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<ReleaseDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_product_re_project_published", tags = {"项目发布" },  notes = "Release-fetch_product_re_project_published 产品所关联项目中的已发布")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Release-fetch_product_re_project_published-all') or hasPermission(#dto,'ibizplm-Release-fetch_product_re_project_published')")
+    @PostMapping("releases/fetch_product_re_project_published")
+    public Mono<ResponseEntity<List<ReleaseDTO>>> fetchProductReProjectPublished
+            (@Validated @RequestBody ReleaseFilterDTO dto) {
+        ReleaseSearchContext context = releaseFilterDtoMapping.toDomain(dto);
+        Page<Release> domains = releaseService.fetchProductReProjectPublished(context) ;
+        List<ReleaseDTO> list = releaseDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
+    * 查询fetch_published 项目发布
+    * 
+    *
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<ReleaseDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_published", tags = {"项目发布" },  notes = "Release-fetch_published ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Release-fetch_published-all') or hasPermission(#dto,'ibizplm-Release-fetch_published')")
+    @PostMapping("releases/fetch_published")
+    public Mono<ResponseEntity<List<ReleaseDTO>>> fetchPublished
+            (@Validated @RequestBody ReleaseFilterDTO dto) {
+        ReleaseSearchContext context = releaseFilterDtoMapping.toDomain(dto);
+        Page<Release> domains = releaseService.fetchPublished(context) ;
+        List<ReleaseDTO> list = releaseDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
     * 查询fetch_reader 项目发布
     * 
     *
@@ -1168,6 +1212,54 @@ public abstract class AbstractReleaseResource {
         dto.setProjectIdEQ(projectId);
         ReleaseSearchContext context = releaseFilterDtoMapping.toDomain(dto);
         Page<Release> domains = releaseService.fetchNotPublished(context) ;
+        List<ReleaseDTO> list = releaseDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
+    * 查询fetch_product_re_project_published 项目发布
+    * 产品所关联项目中的已发布
+    *
+    * @param projectId projectId
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<ReleaseDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_product_re_project_published", tags = {"项目发布" },  notes = "Release-fetch_product_re_project_published 产品所关联项目中的已发布")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Release-fetch_product_re_project_published-all') or hasPermission('project',#projectId,#dto,'ibizplm-Release-fetch_product_re_project_published')")
+    @PostMapping("projects/{projectId}/releases/fetch_product_re_project_published")
+    public Mono<ResponseEntity<List<ReleaseDTO>>> fetchProductReProjectPublishedByProjectId
+            (@PathVariable("projectId") String projectId, @Validated @RequestBody ReleaseFilterDTO dto) {
+        dto.setProjectIdEQ(projectId);
+        ReleaseSearchContext context = releaseFilterDtoMapping.toDomain(dto);
+        Page<Release> domains = releaseService.fetchProductReProjectPublished(context) ;
+        List<ReleaseDTO> list = releaseDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
+    * 查询fetch_published 项目发布
+    * 
+    *
+    * @param projectId projectId
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<ReleaseDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_published", tags = {"项目发布" },  notes = "Release-fetch_published ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Release-fetch_published-all') or hasPermission('project',#projectId,#dto,'ibizplm-Release-fetch_published')")
+    @PostMapping("projects/{projectId}/releases/fetch_published")
+    public Mono<ResponseEntity<List<ReleaseDTO>>> fetchPublishedByProjectId
+            (@PathVariable("projectId") String projectId, @Validated @RequestBody ReleaseFilterDTO dto) {
+        dto.setProjectIdEQ(projectId);
+        ReleaseSearchContext context = releaseFilterDtoMapping.toDomain(dto);
+        Page<Release> domains = releaseService.fetchPublished(context) ;
         List<ReleaseDTO> list = releaseDtoMapping.toDto(domains.getContent());
             return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))

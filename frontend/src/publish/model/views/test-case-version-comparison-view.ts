@@ -441,7 +441,6 @@ export default {
                             },
                           ],
                           logicType: 'GROUP',
-                          id: '表单成员[step_name][面板显示]逻辑',
                         },
                       ],
                       layoutPos: {
@@ -486,7 +485,6 @@ export default {
                             },
                           ],
                           logicType: 'GROUP',
-                          id: '表单成员[description][面板显示]逻辑',
                         },
                       ],
                       layoutPos: {
@@ -531,7 +529,6 @@ export default {
                             },
                           ],
                           logicType: 'GROUP',
-                          id: '表单成员[expected_value][面板显示]逻辑',
                         },
                       ],
                       layoutPos: {

@@ -132,6 +132,9 @@ export default {
                   spacingBottom: 'OUTERSMALL',
                   spacingLeft: 'OUTERLARGE',
                 },
+                sysCss: {
+                  cssName: 'dashboard_repair_style',
+                },
                 id: 'container',
               },
             ],
@@ -339,12 +342,6 @@ export default {
     ],
     appViewRefs: [
       {
-        realTitle: '产品编辑视图',
-        refAppViewId: 'plmweb.product_edit_view',
-        name: 'NEWDATA',
-        id: 'newdata',
-      },
-      {
         realTitle: '产品',
         refAppViewId: 'plmweb.product_index_view',
         name: 'EDITDATA',
@@ -355,6 +352,12 @@ export default {
         refAppViewId: 'plmweb.product_main_view',
         name: 'OPENDATA',
         id: 'opendata',
+      },
+      {
+        realTitle: '产品编辑视图',
+        refAppViewId: 'plmweb.product_edit_view',
+        name: 'NEWDATA',
+        id: 'newdata',
       },
     ],
     controls: [

@@ -192,7 +192,6 @@ export default {
                             },
                           ],
                           logicType: 'GROUP',
-                          id: '表单成员[events][面板显示]逻辑',
                         },
                         {
                           logicCat: 'ITEMBLANK',
@@ -207,7 +206,6 @@ export default {
                             },
                           ],
                           logicType: 'GROUP',
-                          id: '表单成员[events][表单项空输入]逻辑',
                         },
                         {
                           logicCat: 'ITEMENABLE',
@@ -222,7 +220,6 @@ export default {
                             },
                           ],
                           logicType: 'GROUP',
-                          id: '表单成员[events][表单项启用]逻辑',
                         },
                       ],
                       layoutPos: {
@@ -267,7 +264,6 @@ export default {
                             },
                           ],
                           logicType: 'GROUP',
-                          id: '表单成员[timerpolicy][面板显示]逻辑',
                         },
                         {
                           logicCat: 'ITEMBLANK',
@@ -282,7 +278,6 @@ export default {
                             },
                           ],
                           logicType: 'GROUP',
-                          id: '表单成员[timerpolicy][表单项空输入]逻辑',
                         },
                         {
                           logicCat: 'ITEMENABLE',
@@ -297,7 +292,6 @@ export default {
                             },
                           ],
                           logicType: 'GROUP',
-                          id: '表单成员[timerpolicy][表单项启用]逻辑',
                         },
                       ],
                       layoutPos: {
@@ -350,7 +344,6 @@ export default {
                             },
                           ],
                           logicType: 'GROUP',
-                          id: '表单成员[fieldeventname][面板显示]逻辑',
                         },
                         {
                           logicCat: 'ITEMBLANK',
@@ -365,7 +358,6 @@ export default {
                             },
                           ],
                           logicType: 'GROUP',
-                          id: '表单成员[fieldeventname][表单项空输入]逻辑',
                         },
                         {
                           logicCat: 'ITEMENABLE',
@@ -380,7 +372,6 @@ export default {
                             },
                           ],
                           logicType: 'GROUP',
-                          id: '表单成员[fieldeventname][表单项启用]逻辑',
                         },
                       ],
                       layoutPos: {
@@ -423,7 +414,6 @@ export default {
                             },
                           ],
                           logicType: 'GROUP',
-                          id: '表单成员[eventmodel][面板显示]逻辑',
                         },
                       ],
                       layoutPos: {
@@ -462,7 +452,6 @@ export default {
                             },
                           ],
                           logicType: 'GROUP',
-                          id: '表单成员[webhookurl][面板显示]逻辑',
                         },
                       ],
                       layoutPos: {

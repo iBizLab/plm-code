@@ -1,7 +1,7 @@
 export default {
   id: 'plmweb.test_case_move_case_option_view',
   codeName: 'test_case_move_case_option_view',
-  openMode: 'POPOVER',
+  openMode: 'POPUPMODAL',
   viewType: 'DEOPTVIEW',
   width: 500,
   height: 340,

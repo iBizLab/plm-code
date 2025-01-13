@@ -1,5 +1,5 @@
 /**
- * Generate code from /{{projectName}}-core/src/main/java/{{packageName}}/core/{{modules}}/domain/{{entities@SQL}}.java.hbs
+ * Generate code from /{{projectName}}-core/src/main/java/{{packageName}}/core/{{modules}}/domain/{{domains@SQL}}.java.hbs
  */
 package cn.ibizlab.plm.core.prodmgmt.domain;
 
@@ -77,6 +77,16 @@ public class ProductMember extends EntityMP implements Serializable
     @JsonProperty("product_identifier")
     @ApiModelProperty(value = "product_identifier", notes = "产品编号")
     private String productIdentifier;
+
+    /**
+    * 职位
+    */
+    @TableField(value = "title")
+    @DEField(name = "title")
+    @JSONField(name = "title")
+    @JsonProperty("title")
+    @ApiModelProperty(value = "title", notes = "职位")
+    private String title;
 
     /**
     * 标识
@@ -204,6 +214,15 @@ public class ProductMember extends EntityMP implements Serializable
     public ProductMember setProductIdentifier(String productIdentifier) {
         this.productIdentifier = productIdentifier;
         this.modify("product_identifier", productIdentifier);
+        return this;
+    }
+
+    /**
+    * 设置 [职位]
+    */
+    public ProductMember setTitle(String title) {
+        this.title = title;
+        this.modify("title", title);
         return this;
     }
 

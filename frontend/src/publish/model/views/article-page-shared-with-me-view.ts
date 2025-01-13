@@ -173,7 +173,6 @@ export default {
                             },
                           ],
                           logicType: 'GROUP',
-                          id: '表单成员[icon][面板显示]逻辑',
                         },
                       ],
                       layoutPos: {
@@ -223,32 +222,6 @@ export default {
                   id: 'grouppanel1',
                 },
                 {
-                  dataType: 25,
-                  enableCond: 3,
-                  labelPos: 'NONE',
-                  noPrivDisplayMode: 1,
-                  appDEFieldId: 'show_identifier',
-                  editor: {
-                    halign: 'LEFT',
-                    valign: 'MIDDLE',
-                    wrapMode: 'NOWRAP',
-                    editorType: 'SPAN',
-                    valueType: 'SIMPLE',
-                    editable: true,
-                    id: 'show_identifier',
-                  },
-                  allowEmpty: true,
-                  emptyCaption: true,
-                  codeName: 'show_identifier',
-                  detailStyle: 'DEFAULT',
-                  detailType: 'FORMITEM',
-                  layoutPos: {
-                    colMD: 24,
-                    layout: 'TABLE_24COL',
-                  },
-                  id: 'show_identifier',
-                },
-                {
                   layout: {
                     columnCount: 24,
                     layout: 'TABLE_24COL',
@@ -266,9 +239,10 @@ export default {
                         cssStyle: 'min-height: 500px;',
                         editorParams: {
                           contenttype: 'HTML',
+                          LINKVIEWID: 'plmweb.recent_custom_redirect_view',
                           TITLE: 'name',
                           PARSESCRIPT:
-                            'value?.replace(/@{[^,]*,"name":"(.*?)"}/g,"<span class=\\\'comment-tag\\\'>@$1</span>").replace(/@{[^,]*,name=(.*?)}/g,"<span class=\\\'comment-tag\\\'>@$1</span>").replaceAll(/\\#\\{(\\".+?\\":\\".+?\\"),\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); const tempIcon = icon.trim(); const params = JSON.stringify(item); return `<span markerClick=\'marker\' params=\'${params}\' class=\'comment-tag is-click\'>${tempIcon} ${item.identifier} ${item.name}</span>`;}).replaceAll(/\\{\\"\\emoji\\":\\"(.+?)\\"\\}/g,(x, emoji) => {const tempVal = decodeURIComponent(atob(emoji)); return `<span class="emoji-tag">${tempVal}</span>`})',
+                            'value?.replace(/@{[^,]*,"name":"(.*?)"}/g,"<span class=\\\'comment-tag\\\'>@$1</span>").replace(/@{[^,]*,name=(.*?)}/g,"<span class=\\\'comment-tag\\\'>@$1</span>").replaceAll(/\\#\\{(\\".+?\\":\\".+?\\")(,\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\")*\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); if (icon) { icon = icon.slice(8).slice(1, -1).trim(); } return controller.parseCommentTag({icon, ...item});}).replaceAll(/\\{\\"\\emoji\\":\\"(.+?)\\"\\}/g,(x, emoji) => {const tempVal = decodeURIComponent(atob(emoji)); return `<span class="emoji-tag">${tempVal}</span>`})',
                         },
                         editorStyle: 'ANCHO_HTML',
                         editorType: 'RAW',
@@ -297,7 +271,6 @@ export default {
                             },
                           ],
                           logicType: 'GROUP',
-                          id: '表单成员[content][面板显示]逻辑',
                         },
                         {
                           logicCat: 'ITEMENABLE',
@@ -312,7 +285,6 @@ export default {
                             },
                           ],
                           logicType: 'GROUP',
-                          id: '表单成员[content][表单项启用]逻辑',
                         },
                       ],
                       layoutPos: {
@@ -357,7 +329,6 @@ export default {
                             },
                           ],
                           logicType: 'GROUP',
-                          id: '表单成员[formitem1][面板显示]逻辑',
                         },
                         {
                           logicCat: 'ITEMENABLE',
@@ -372,7 +343,6 @@ export default {
                             },
                           ],
                           logicType: 'GROUP',
-                          id: '表单成员[formitem1][表单项启用]逻辑',
                         },
                       ],
                       layoutPos: {
@@ -416,7 +386,6 @@ export default {
                             },
                           ],
                           logicType: 'GROUP',
-                          id: '表单成员[formitem][面板显示]逻辑',
                         },
                         {
                           logicCat: 'ITEMENABLE',
@@ -431,7 +400,6 @@ export default {
                             },
                           ],
                           logicType: 'GROUP',
-                          id: '表单成员[formitem][表单项启用]逻辑',
                         },
                       ],
                       layoutPos: {
@@ -749,7 +717,6 @@ export default {
                         },
                       ],
                       logicType: 'GROUP',
-                      id: '表单成员[grouppanel_attachments_grid][面板显示]逻辑',
                     },
                   ],
                   layoutPos: {
@@ -1255,8 +1222,9 @@ export default {
                       contentType: 'HTML',
                       editorParams: {
                         contenttype: 'HTML',
+                        LINKVIEWID: 'plmweb.recent_custom_redirect_view',
                         SCRIPTCODE:
-                          'data.content?.replace(/@{[^,]*,"name":"(.*?)"}/g,"<span class=\'comment-tag\'>@$1</span>").replace(/@{[^,]*,name=(.*?)}/g,"<span class=\'comment-tag\'>@$1</span>").replaceAll(/\\#\\{(\\".+?\\":\\".+?\\"),\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\"\\}/g, (x, value, icon) => {const item = JSON.parse("{" + value + "}"); const tempIcon = icon.trim(); return `<span class=\'comment-tag\' data-value=\'${JSON.stringify(item)}\'>${tempIcon} ${item.identifier} ${item.name}</span>`;}).replaceAll(/\\{\\"\\emoji\\":\\"(.+?)\\"\\}/g,(x, emoji) => {const tempVal = decodeURIComponent(atob(emoji)); return `<span class="emoji-tag">${tempVal}</span>`})',
+                          'data.content?.replace(/@{[^,]*,"name":"(.*?)"}/g,"<span class=\'comment-tag\'>@$1</span>").replace(/@{[^,]*,name=(.*?)}/g,"<span class=\'comment-tag\'>@$1</span>").replaceAll(/\\#\\{(\\".+?\\":\\".+?\\")(,\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\")*\\}/g, (x, value, icon) => {const item = JSON.parse("{" + value + "}"); if (icon) { icon = icon.slice(8).slice(1, -1).trim(); } return controller.parseCommentTag({icon, ...item});}).replaceAll(/\\{\\"\\emoji\\":\\"(.+?)\\"\\}/g,(x, emoji) => {const tempVal = decodeURIComponent(atob(emoji)); return `<span class="emoji-tag">${tempVal}</span>`})',
                       },
                       editorStyle: 'COMMENT_ITEM',
                       editorType: 'RAW',
@@ -1443,9 +1411,9 @@ export default {
           id: 'content',
         },
         {
-          appDEFieldId: 'id',
-          dataType: 25,
-          id: 'id',
+          appDEFieldId: 'pcontent',
+          dataType: 21,
+          id: 'pcontent',
         },
         {
           appDEFieldId: 'create_time',
@@ -1454,15 +1422,9 @@ export default {
           id: 'create_time',
         },
         {
-          appDEFieldId: 'pcreate_man',
-          frontCodeListId: 'plmweb.sysoperator',
+          appDEFieldId: 'pid',
           dataType: 25,
-          id: 'pcreate_man',
-        },
-        {
-          appDEFieldId: 'pcontent',
-          dataType: 21,
-          id: 'pcontent',
+          id: 'pid',
         },
         {
           appDEFieldId: 'create_man',
@@ -1471,9 +1433,15 @@ export default {
           id: 'create_man',
         },
         {
-          appDEFieldId: 'pid',
+          appDEFieldId: 'id',
           dataType: 25,
-          id: 'pid',
+          id: 'id',
+        },
+        {
+          appDEFieldId: 'pcreate_man',
+          frontCodeListId: 'plmweb.sysoperator',
+          dataType: 25,
+          id: 'pcreate_man',
         },
         {
           appDEFieldId: 'id',
@@ -1488,6 +1456,7 @@ export default {
       ],
       pagingSize: 1000,
       showHeader: true,
+      singleSelect: true,
       navViewPos: 'NONE',
       createControlAction: {
         appDEMethodId: 'create',

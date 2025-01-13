@@ -109,6 +109,38 @@ public class SpaceSearchContext extends QueryWrapperContext<Space> {
     @ApiModelProperty("分类LIKE")
     private String categoryNameLIKE;
 
+    /**
+     * 用户标记EQ
+     */
+    @JsonProperty("n_user_tag_eq")
+    @JSONField(name = "n_user_tag_eq")
+    @ApiModelProperty("用户标记EQ")
+    private String userTagEQ;
+
+    /**
+     * 用户标记LIKE
+     */
+    @JsonProperty("n_user_tag_like")
+    @JSONField(name = "n_user_tag_like")
+    @ApiModelProperty("用户标记LIKE")
+    private String userTagLIKE;
+
+    /**
+     * 用户标记2EQ
+     */
+    @JsonProperty("n_user_tag2_eq")
+    @JSONField(name = "n_user_tag2_eq")
+    @ApiModelProperty("用户标记2EQ")
+    private String userTag2EQ;
+
+    /**
+     * 用户标记2LIKE
+     */
+    @JsonProperty("n_user_tag2_like")
+    @JSONField(name = "n_user_tag2_like")
+    @ApiModelProperty("用户标记2LIKE")
+    private String userTag2LIKE;
+
     @Override
     public void setContextParentKey(Serializable contextParentKey) {
         super.setContextParentKey(contextParentKey);

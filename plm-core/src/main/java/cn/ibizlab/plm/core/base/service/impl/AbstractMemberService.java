@@ -25,6 +25,8 @@ import com.baomidou.mybatisplus.core.enums.SqlMethod;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import cn.ibizlab.plm.core.base.domain.Position;
+import cn.ibizlab.plm.core.base.service.PositionService;
 import cn.ibizlab.plm.core.base.domain.User;
 import cn.ibizlab.plm.core.base.domain.CommonFlow;
 import cn.ibizlab.plm.core.base.domain.Group;
@@ -41,6 +43,10 @@ import cn.ibizlab.plm.core.projmgmt.service.ProjectService;
  */
 @Slf4j
 public abstract class AbstractMemberService extends ServiceImpl<MemberMapper,Member> implements MemberService {
+
+    @Autowired
+    @Lazy
+    protected PositionService positionService;
 
     @Autowired
     @Lazy
@@ -219,6 +225,54 @@ public abstract class AbstractMemberService extends ServiceImpl<MemberMapper,Mem
         return list;
    }
 	
+	public List<Member> findByPositionId(List<String> positionIds){
+        List<Member> list = baseMapper.findByPositionId(positionIds);
+        return list;	
+	}
+
+	public List<Member> findByPosition(Position position){
+        List<Member> list = findByPositionId(Arrays.asList(position.getId()));
+		return list;
+	}
+	public boolean removeByPositionId(String positionId){
+        return this.remove(Wrappers.<Member>lambdaQuery().eq(Member::getPositionId,positionId));
+	}
+
+	public boolean resetByPositionId(String positionId){
+		return this.update(Wrappers.<Member>lambdaUpdate().set(Member::getPositionId, null).eq(Member::getPositionId,positionId));
+	}
+	public boolean saveByPosition(Position position, List<Member> list){
+        if(list==null)
+            return true;
+
+        Map<String,Member> before = findByPosition(position).stream().collect(Collectors.toMap(Member::getId,e->e));
+        List<Member> update = new ArrayList<>();
+        List<Member> create = new ArrayList<>();
+
+        for(Member sub:list) {
+            sub.setPositionId(position.getId());
+            sub.setPosition(position);
+            if(ObjectUtils.isEmpty(sub.getId()))
+                before.values().stream()
+                        .filter(e->ObjectUtils.nullSafeEquals(sub.getDefaultKey(true),e.getDefaultKey(true)))
+                        .findFirst().ifPresent(e->sub.setId(e.getId()));
+            if(!ObjectUtils.isEmpty(sub.getId())&&before.containsKey(sub.getId())) {
+                before.remove(sub.getId());
+                update.add(sub);
+            }
+            else
+                create.add(sub);
+        }
+        if(!update.isEmpty())
+            update.forEach(item->this.getSelf().update(item));
+        if(!create.isEmpty() && !getSelf().create(create))
+            return false;
+        else if(!before.isEmpty() && !getSelf().remove(before.keySet()))
+            return false;
+        else
+            return true;
+			
+	}
 	public List<Member> findByUserId(List<String> userIds){
         List<Member> list = baseMapper.findByUserId(userIds);
         return list;	
@@ -459,6 +513,18 @@ public abstract class AbstractMemberService extends ServiceImpl<MemberMapper,Mem
 	
 
     public void fillParentData(Member et) {
+        if(Entities.POSITION.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
+            et.setPositionId((String)et.getContextParentKey());
+            Position position = et.getPosition();
+            if(position == null) {
+                position = positionService.getById(et.getPositionId());
+                et.setPosition(position);
+            }
+            if(!ObjectUtils.isEmpty(position)) {
+                et.setPositionName(position.getName());
+                et.setPositionId(position.getId());
+            }
+        }
         if(Entities.GROUP.equals(et.getContextParentEntity()) && et.getContextParentKey()!=null) {
             et.setOwnerId((String)et.getContextParentKey());
         }

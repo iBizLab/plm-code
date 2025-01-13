@@ -650,6 +650,7 @@ export default {
                 id: 'node_1',
               },
               {
+                dataSourceType: 'DEDATASET',
                 idAppDEFieldId: 'id',
                 appDEDataSetId: 'fetch_root',
                 textAppDEFieldId: 'name',
@@ -663,6 +664,7 @@ export default {
                 id: 'node_2',
               },
               {
+                dataSourceType: 'DEDATASET',
                 idAppDEFieldId: 'id',
                 appDEDataSetId: 'fetch_default',
                 textAppDEFieldId: 'name',

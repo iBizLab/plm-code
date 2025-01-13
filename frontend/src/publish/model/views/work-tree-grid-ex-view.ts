@@ -177,6 +177,7 @@ export default {
           id: 'root',
         },
         {
+          dataSourceType: 'DEDATASET',
           idAppDEFieldId: 'id',
           appDEDataSetId: 'fetch_work_project_portfolio',
           textAppDEFieldId: 'name',
@@ -312,6 +313,7 @@ export default {
           id: 'node',
         },
         {
+          dataSourceType: 'DEDATASET',
           idAppDEFieldId: 'id',
           appDEDataSetId: 'fetch_under_project_portfolio',
           textAppDEFieldId: 'name',
@@ -449,6 +451,7 @@ export default {
           id: 'node_1',
         },
         {
+          dataSourceType: 'DEDATASET',
           idAppDEFieldId: 'id',
           appDEDataSetId: 'fetch_work_project',
           textAppDEFieldId: 'name',

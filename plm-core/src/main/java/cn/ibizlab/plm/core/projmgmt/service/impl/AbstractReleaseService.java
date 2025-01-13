@@ -236,6 +236,28 @@ public abstract class AbstractReleaseService extends ServiceImpl<ReleaseMapper,R
         return list;
    }
 	
+   public Page<Release> fetchProductReProjectPublished(ReleaseSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Release> pages=baseMapper.searchProductReProjectPublished(context.getPages(),context,context.getSelectCond());
+        List<Release> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<Release> listProductReProjectPublished(ReleaseSearchContext context) {
+        List<Release> list = baseMapper.listProductReProjectPublished(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<Release> fetchPublished(ReleaseSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Release> pages=baseMapper.searchPublished(context.getPages(),context,context.getSelectCond());
+        List<Release> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<Release> listPublished(ReleaseSearchContext context) {
+        List<Release> list = baseMapper.listPublished(context,context.getSelectCond());
+        return list;
+   }
+	
    public Page<Release> fetchReader(ReleaseSearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<Release> pages=baseMapper.searchReader(context.getPages(),context,context.getSelectCond());
         List<Release> list = pages.getRecords();

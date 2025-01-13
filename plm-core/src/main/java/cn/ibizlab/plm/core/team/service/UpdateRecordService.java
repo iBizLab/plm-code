@@ -15,6 +15,7 @@ import cn.ibizlab.plm.core.team.domain.UpdateRecord;
 import cn.ibizlab.plm.core.team.filter.UpdateRecordSearchContext;
 import cn.ibizlab.plm.core.team.domain.KeyResult;
 import cn.ibizlab.plm.core.team.domain.Objective;
+import cn.ibizlab.plm.util.annotation.DEAction;
 
 /**
  * 进展服务接口[UpdateRecordService]

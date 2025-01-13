@@ -135,6 +135,9 @@ export default {
                   spacingBottom: 'OUTERSMALL',
                   spacingLeft: 'OUTERLARGE',
                 },
+                sysCss: {
+                  cssName: 'dashboard_repair_style',
+                },
                 id: 'container',
               },
             ],
@@ -344,6 +347,14 @@ export default {
     ],
     appViewRefs: [
       {
+        openMode: 'INDEXVIEWTAB_POPUPMODAL',
+        realOpenMode: 'INDEXVIEWTAB_POPUPMODAL',
+        realTitle: '讨论主视图',
+        refAppViewId: 'plmweb.discuss_post_main_view',
+        name: 'EDITDATA',
+        id: 'editdata',
+      },
+      {
         realTitle: '讨论编辑视图',
         realTitleLanguageRes: {
           lanResTag: 'PAGE.TITLE.DISCUSS_POST.EDITVIEW',
@@ -351,14 +362,6 @@ export default {
         refAppViewId: 'plmweb.discuss_post_edit_view',
         name: 'NEWDATA',
         id: 'newdata',
-      },
-      {
-        openMode: 'INDEXVIEWTAB_POPUPMODAL',
-        realOpenMode: 'INDEXVIEWTAB_POPUPMODAL',
-        realTitle: '讨论主视图',
-        refAppViewId: 'plmweb.discuss_post_main_view',
-        name: 'EDITDATA',
-        id: 'editdata',
       },
     ],
     controls: [

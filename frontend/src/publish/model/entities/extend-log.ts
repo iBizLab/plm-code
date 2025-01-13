@@ -670,7 +670,6 @@ export default {
       frontAppViewId: 'plmweb.extend_log_info_view',
       frontProcessType: 'WIZARD',
       fullCodeName: 'extend_log_open_info_view',
-      timeout: 60000,
       uiactionMode: 'FRONT',
       uiactionTag: 'open_info_view',
       uiactionType: 'DEUIACTION',

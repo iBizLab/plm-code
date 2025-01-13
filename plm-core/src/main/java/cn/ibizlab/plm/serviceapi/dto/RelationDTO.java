@@ -220,11 +220,35 @@ public class RelationDTO extends DTOBase implements Serializable {
     private String jobType;
 
     /**
+     * 排序
+     */
+    @JsonProperty("sequence")
+    @JSONField(name = "sequence")
+    @ApiModelProperty(value = "排序", position = 23)
+    private Integer sequence;
+
+    /**
+     * 产品
+     */
+    @JsonProperty("product")
+    @JSONField(name = "product")
+    @ApiModelProperty(value = "产品", position = 24)
+    private ProductDTO product;
+
+    /**
+     * 项目对象
+     */
+    @JsonProperty("project_obj")
+    @JSONField(name = "project_obj")
+    @ApiModelProperty(value = "项目对象", position = 25)
+    private ProjectDTO projectObj;
+
+    /**
      * 建立人
      */
     @JsonProperty("create_man")
     @JSONField(name = "create_man")
-    @ApiModelProperty(value = "建立人", position = 23)
+    @ApiModelProperty(value = "建立人", position = 26)
     private String createMan;
 
     /**
@@ -233,7 +257,7 @@ public class RelationDTO extends DTOBase implements Serializable {
     @JsonProperty("create_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "create_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "建立时间", position = 24)
+    @ApiModelProperty(value = "建立时间", position = 27)
     private Date createTime;
 
     /**
@@ -241,7 +265,7 @@ public class RelationDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("id")
     @JSONField(name = "id")
-    @ApiModelProperty(value = "标识", position = 25)
+    @ApiModelProperty(value = "标识", position = 28)
     private String id;
 
     /**
@@ -249,7 +273,7 @@ public class RelationDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("name")
     @JSONField(name = "name")
-    @ApiModelProperty(value = "名称", position = 26)
+    @ApiModelProperty(value = "名称", position = 29)
     private String name;
 
     /**
@@ -257,7 +281,7 @@ public class RelationDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("update_man")
     @JSONField(name = "update_man")
-    @ApiModelProperty(value = "更新人", position = 27)
+    @ApiModelProperty(value = "更新人", position = 30)
     private String updateMan;
 
     /**
@@ -266,7 +290,7 @@ public class RelationDTO extends DTOBase implements Serializable {
     @JsonProperty("update_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "update_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "更新时间", position = 28)
+    @ApiModelProperty(value = "更新时间", position = 31)
     private Date updateTime;
 
 
@@ -456,6 +480,33 @@ public class RelationDTO extends DTOBase implements Serializable {
     public RelationDTO setJobType(String jobType) {
         this.jobType = jobType;
         this.modify("job_type", jobType);
+        return this;
+    }
+
+    /**
+     * 设置 [排序]
+     */
+    public RelationDTO setSequence(Integer sequence) {
+        this.sequence = sequence;
+        this.modify("sequence", sequence);
+        return this;
+    }
+
+    /**
+     * 设置 [产品]
+     */
+    public RelationDTO setProduct(ProductDTO product) {
+        this.product = product;
+        this.modify("product", product);
+        return this;
+    }
+
+    /**
+     * 设置 [项目对象]
+     */
+    public RelationDTO setProjectObj(ProjectDTO projectObj) {
+        this.projectObj = projectObj;
+        this.modify("project_obj", projectObj);
         return this;
     }
 

@@ -1,5 +1,5 @@
 /**
- * Generate code from /{{projectName}}-core/src/main/java/{{packageName}}/core/{{modules}}/domain/{{entities@NONE}}.java.hbs
+ * Generate code from /{{projectName}}-core/src/main/java/{{packageName}}/core/{{modules}}/domain/{{domains@NONE}}.java.hbs
  */
 package cn.ibizlab.plm.core.base.domain;
 
@@ -20,6 +20,7 @@ import lombok.experimental.Accessors;
 import io.swagger.annotations.*;
 import cn.ibizlab.plm.core.base.domain.Department;
 import cn.ibizlab.plm.core.base.domain.Job;
+import cn.ibizlab.plm.core.base.domain.Organization;
 import cn.ibizlab.plm.core.prodmgmt.domain.Customer;
 import cn.ibizlab.plm.core.team.domain.DiscussMember;
 import cn.ibizlab.plm.core.base.domain.Executor;
@@ -131,6 +132,15 @@ public class User extends EntityBase implements Serializable
     private String userId;
 
     /**
+     * 职位
+     */
+    @DEField(name = "title")
+    @JSONField(name = "title")
+    @JsonProperty("title")
+    @ApiModelProperty(value = "title", notes = "职位")
+    private String title;
+
+    /**
      * 标识
      */
     @Id
@@ -224,6 +234,24 @@ public class User extends EntityBase implements Serializable
     private String departmentName;
 
     /**
+     * 组织标识
+     */
+    @DEField(name = "organization_id")
+    @JSONField(name = "organization_id")
+    @JsonProperty("organization_id")
+    @ApiModelProperty(value = "organization_id", notes = "组织标识")
+    private String organizationId;
+
+    /**
+     * 组织名称
+     */
+    @DEField(name = "organization_name")
+    @JSONField(name = "organization_name")
+    @JsonProperty("organization_name")
+    @ApiModelProperty(value = "organization_name", notes = "组织名称")
+    private String organizationName;
+
+    /**
      * 用户-部门
      */
     @DEField()
@@ -240,6 +268,15 @@ public class User extends EntityBase implements Serializable
     @JSONField(serialize = false)
     @ApiModelProperty(value = "job", notes = "用户-岗位")
     private Job job;
+
+    /**
+     * 名称
+     */
+    @DEField()
+    @JsonIgnore
+    @JSONField(serialize = false)
+    @ApiModelProperty(value = "organization", notes = "名称")
+    private Organization organization;
 
     /**
     * 设置 [姓名]
@@ -323,6 +360,15 @@ public class User extends EntityBase implements Serializable
     }
 
     /**
+    * 设置 [职位]
+    */
+    public User setTitle(String title) {
+        this.title = title;
+        this.modify("title", title);
+        return this;
+    }
+
+    /**
     * 设置 [登录名]
     */
     public User setName(String name) {
@@ -364,6 +410,24 @@ public class User extends EntityBase implements Serializable
     public User setDepartmentName(String departmentName) {
         this.departmentName = departmentName;
         this.modify("department_name", departmentName);
+        return this;
+    }
+
+    /**
+    * 设置 [组织标识]
+    */
+    public User setOrganizationId(String organizationId) {
+        this.organizationId = organizationId;
+        this.modify("organization_id", organizationId);
+        return this;
+    }
+
+    /**
+    * 设置 [组织名称]
+    */
+    public User setOrganizationName(String organizationName) {
+        this.organizationName = organizationName;
+        this.modify("organization_name", organizationName);
         return this;
     }
 

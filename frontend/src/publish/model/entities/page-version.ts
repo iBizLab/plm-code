@@ -553,7 +553,6 @@ export default {
       frontProcessType: 'OTHER',
       fullCodeName: 'page_version_is_published_version',
       refreshMode: 1,
-      timeout: 60000,
       uiactionMode: 'FRONT',
       uiactionTag: 'is_published_version',
       uiactionType: 'DEUIACTION',

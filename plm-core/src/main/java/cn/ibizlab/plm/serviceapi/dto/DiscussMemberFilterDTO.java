@@ -59,7 +59,7 @@ public class DiscussMemberFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_id_eq")
     @JSONField(name = "n_id_eq")
-    @ApiModelProperty(value = "标识EQ", position = 40)
+    @ApiModelProperty(value = "标识EQ", position = 50)
 	private String idEQ;
 
     /**
@@ -67,7 +67,7 @@ public class DiscussMemberFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_name_eq")
     @JSONField(name = "n_name_eq")
-    @ApiModelProperty(value = "名称EQ", position = 50)
+    @ApiModelProperty(value = "名称EQ", position = 60)
 	private String nameEQ;
 
     /**
@@ -75,7 +75,7 @@ public class DiscussMemberFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_name_like")
     @JSONField(name = "n_name_like")
-    @ApiModelProperty(value = "名称LIKE", position = 51)
+    @ApiModelProperty(value = "名称LIKE", position = 61)
 	private String nameLIKE;
 
     /**
@@ -83,7 +83,7 @@ public class DiscussMemberFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_user_id_eq")
     @JSONField(name = "n_user_id_eq")
-    @ApiModelProperty(value = "登录名EQ", position = 100)
+    @ApiModelProperty(value = "登录名EQ", position = 110)
 	private String userIdEQ;
 
 

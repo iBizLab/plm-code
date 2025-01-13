@@ -538,6 +538,17 @@ public abstract class AbstractIdeaService extends ServiceImpl<IdeaMapper,Idea> i
         return list;
    }
 	
+   public Page<Idea> fetchRelationIdea(IdeaSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Idea> pages=baseMapper.searchRelationIdea(context.getPages(),context,context.getSelectCond());
+        List<Idea> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<Idea> listRelationIdea(IdeaSearchContext context) {
+        List<Idea> list = baseMapper.listRelationIdea(context,context.getSelectCond());
+        return list;
+   }
+	
    public Page<Idea> fetchUser(IdeaSearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<Idea> pages=baseMapper.searchUser(context.getPages(),context,context.getSelectCond());
         List<Idea> list = pages.getRecords();

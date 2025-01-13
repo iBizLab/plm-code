@@ -128,6 +128,45 @@ public abstract class AbstractLibraryMemberResource {
     }
 
     /**
+    * change_position 测试库成员
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return Mono<ResponseEntity<LibraryMemberDTO>>
+    */
+    @ApiOperation(value = "change_position", tags = {"测试库成员" },  notes = "LibraryMember-change_position ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-LibraryMember-change_position-all') or hasPermission(this.libraryMemberDtoMapping.toDomain(#dto),'ibizplm-LibraryMember-change_position')")
+    @PostMapping("library_members/{id}/change_position")
+    public Mono<ResponseEntity<ResponseWrapper<LibraryMemberDTO>>>changePositionById
+            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<LibraryMemberDTO> dto) {
+        ResponseWrapper<LibraryMemberDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(changePositionById(ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(changePositionById(id, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * change_position 测试库成员
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<LibraryMemberDTO>
+    */   
+    public LibraryMemberDTO changePositionById
+            (String id, LibraryMemberDTO dto) {
+        LibraryMember domain = libraryMemberDtoMapping.toDomain(dto);
+        domain.setId(id);
+        LibraryMember rt = libraryMemberService.changePosition(domain);
+        return libraryMemberDtoMapping.toDto(rt);
+    }
+
+    /**
     * change_role 测试库成员
     * 
     *
@@ -312,6 +351,47 @@ public abstract class AbstractLibraryMemberResource {
         domain.setId(id);
         libraryMemberService.update(domain);
         LibraryMember rt = domain;
+        return libraryMemberDtoMapping.toDto(rt);
+    }
+
+    /**
+    * change_position 测试库成员
+    * 
+    *
+    * @param libraryId libraryId
+    * @param id id
+    * @param dto dto
+    * @return Mono<ResponseEntity<LibraryMemberDTO>>
+    */
+    @ApiOperation(value = "change_position", tags = {"测试库成员" },  notes = "LibraryMember-change_position ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-LibraryMember-change_position-all') or hasPermission('library',#libraryId,this.libraryMemberDtoMapping.toDomain(#dto),'ibizplm-LibraryMember-change_position')")
+    @PostMapping("libraries/{libraryId}/library_members/{id}/change_position")
+    public Mono<ResponseEntity<ResponseWrapper<LibraryMemberDTO>>>changePositionByLibraryIdAndId
+            (@PathVariable("libraryId") String libraryId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<LibraryMemberDTO> dto) {
+        ResponseWrapper<LibraryMemberDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(changePositionByLibraryIdAndId(libraryId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(changePositionByLibraryIdAndId(libraryId, id, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * change_position 测试库成员
+    * 
+    *
+    * @param libraryId libraryId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<LibraryMemberDTO>
+    */   
+    public LibraryMemberDTO changePositionByLibraryIdAndId
+            (String libraryId, String id, LibraryMemberDTO dto) {
+        LibraryMember domain = libraryMemberDtoMapping.toDomain(dto);
+        domain.setId(id);
+        LibraryMember rt = libraryMemberService.changePosition(domain);
         return libraryMemberDtoMapping.toDto(rt);
     }
 
@@ -508,6 +588,47 @@ public abstract class AbstractLibraryMemberResource {
         domain.setId(id);
         libraryMemberService.update(domain);
         LibraryMember rt = domain;
+        return libraryMemberDtoMapping.toDto(rt);
+    }
+
+    /**
+    * change_position 测试库成员
+    * 
+    *
+    * @param userId userId
+    * @param id id
+    * @param dto dto
+    * @return Mono<ResponseEntity<LibraryMemberDTO>>
+    */
+    @ApiOperation(value = "change_position", tags = {"测试库成员" },  notes = "LibraryMember-change_position ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-LibraryMember-change_position-all') or hasPermission('user',#userId,this.libraryMemberDtoMapping.toDomain(#dto),'ibizplm-LibraryMember-change_position')")
+    @PostMapping("users/{userId}/library_members/{id}/change_position")
+    public Mono<ResponseEntity<ResponseWrapper<LibraryMemberDTO>>>changePositionByUserIdAndId
+            (@PathVariable("userId") String userId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<LibraryMemberDTO> dto) {
+        ResponseWrapper<LibraryMemberDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(changePositionByUserIdAndId(userId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(changePositionByUserIdAndId(userId, id, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * change_position 测试库成员
+    * 
+    *
+    * @param userId userId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<LibraryMemberDTO>
+    */   
+    public LibraryMemberDTO changePositionByUserIdAndId
+            (String userId, String id, LibraryMemberDTO dto) {
+        LibraryMember domain = libraryMemberDtoMapping.toDomain(dto);
+        domain.setId(id);
+        LibraryMember rt = libraryMemberService.changePosition(domain);
         return libraryMemberDtoMapping.toDto(rt);
     }
 

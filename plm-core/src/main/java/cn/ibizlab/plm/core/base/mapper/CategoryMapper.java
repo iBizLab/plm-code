@@ -138,6 +138,25 @@ public interface CategoryMapper extends BaseMapper<Category> {
     List<Category> listNoSection(@Param("ctx") CategorySearchContext context, @Param("ew") Wrapper<Category> wrapper);
 
     /**
+     * 数据集合position_category分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Category> searchPositionCategory(IPage<Category> page, @Param("ctx") CategorySearchContext context, @Param("ew") Wrapper<Category> wrapper);
+    
+    /**
+     * 数据集合position_category查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Category> listPositionCategory(@Param("ctx") CategorySearchContext context, @Param("ew") Wrapper<Category> wrapper);
+
+    /**
      * 数据集合product_idea_category分页查询
      * 
      * @param page

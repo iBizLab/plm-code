@@ -214,6 +214,63 @@ public interface RelationMapper extends BaseMapper<Relation> {
     List<Relation> listIdeaVersionRelation(@Param("ctx") RelationSearchContext context, @Param("ew") Wrapper<Relation> wrapper);
 
     /**
+     * 数据集合product_plan_idea分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Relation> searchProductPlanIdea(IPage<Relation> page, @Param("ctx") RelationSearchContext context, @Param("ew") Wrapper<Relation> wrapper);
+    
+    /**
+     * 数据集合product_plan_idea查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Relation> listProductPlanIdea(@Param("ctx") RelationSearchContext context, @Param("ew") Wrapper<Relation> wrapper);
+
+    /**
+     * 数据集合product_re_project分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Relation> searchProductReProject(IPage<Relation> page, @Param("ctx") RelationSearchContext context, @Param("ew") Wrapper<Relation> wrapper);
+    
+    /**
+     * 数据集合product_re_project查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Relation> listProductReProject(@Param("ctx") RelationSearchContext context, @Param("ew") Wrapper<Relation> wrapper);
+
+    /**
+     * 数据集合project_re_product分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Relation> searchProjectReProduct(IPage<Relation> page, @Param("ctx") RelationSearchContext context, @Param("ew") Wrapper<Relation> wrapper);
+    
+    /**
+     * 数据集合project_re_product查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Relation> listProjectReProduct(@Param("ctx") RelationSearchContext context, @Param("ew") Wrapper<Relation> wrapper);
+
+    /**
      * 数据集合review_re_test_case分页查询
      * 
      * @param page

@@ -1,0 +1,133 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.6.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+    <changeSet author="mac (generated)" id="1736753691097-3">
+        <preConditions onFail="MARK_RAN"  >
+            <not >
+                <tableExists tableName="POSITION" />
+            </not>
+        </preConditions>
+        <createTable tableName="POSITION">
+            <column name="SEQUENCE" type="DECIMAL(10)"/>
+            <column name="ID" type="VARCHAR(100)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_POSITION_ID"/>
+            </column>
+            <column name="NAME" type="VARCHAR(200)"/>
+            <column name="ENABLE" type="INT"/>
+            <column name="CREATE_MAN" type="VARCHAR(100)"/>
+            <column name="CREATE_TIME" type="TIMESTAMP"/>
+            <column name="UPDATE_MAN" type="VARCHAR(100)"/>
+            <column name="UPDATE_TIME" type="TIMESTAMP"/>
+            <column name="CATEGORY_ID" type="VARCHAR(100)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="mac (generated)" id="1736753691097-4">
+        <preConditions onFail="MARK_RAN"  >
+            <not >
+                <columnExists tableName="LIBRARY_MEMBER" columnName="TITLE" />
+            </not>
+        </preConditions>
+        <addColumn tableName="LIBRARY_MEMBER">
+            <column name="TITLE" type="VARCHAR(100 BYTE)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mac (generated)" id="1736753691097-5">
+        <preConditions onFail="MARK_RAN"  >
+            <not >
+                <columnExists tableName="PRODUCT_MEMBER" columnName="TITLE" />
+            </not>
+        </preConditions>
+        <addColumn tableName="PRODUCT_MEMBER">
+            <column name="TITLE" type="VARCHAR(100 BYTE)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mac (generated)" id="1736753691097-6">
+        <preConditions onFail="MARK_RAN"  >
+            <not >
+                <columnExists tableName="SPACE_MEMBER" columnName="TITLE" />
+            </not>
+        </preConditions>
+        <addColumn tableName="SPACE_MEMBER">
+            <column name="TITLE" type="VARCHAR(100 BYTE)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mac (generated)" id="1736753691097-7">
+        <preConditions onFail="MARK_RAN"  >
+            <not >
+                <columnExists tableName="MEMBER" columnName="TITLE" />
+            </not>
+        </preConditions>
+        <addColumn tableName="MEMBER">
+            <column name="TITLE" type="VARCHAR(100 BYTE)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mac (generated)" id="1736753691097-8">
+        <preConditions onFail="MARK_RAN"  >
+            <not >
+                <columnExists tableName="PROJECT_MEMBER" columnName="TITLE" />
+            </not>
+        </preConditions>
+        <addColumn tableName="PROJECT_MEMBER">
+            <column name="TITLE" type="VARCHAR(100 BYTE)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mac (generated)" id="1736753691097-9">
+        <preConditions onFail="MARK_RAN"  >
+            <not >
+                <columnExists tableName="ATTENTION" columnName="TITLE" />
+            </not>
+        </preConditions>
+        <addColumn tableName="ATTENTION">
+            <column name="TITLE" type="VARCHAR(100 BYTE)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mac (generated)" id="1736753691097-10">
+        <preConditions onFail="MARK_RAN"  >
+            <not >
+                <columnExists tableName="PROJECT_RELEASE" columnName="CHANGELOG" />
+            </not>
+        </preConditions>
+        <addColumn tableName="PROJECT_RELEASE">
+            <column name="CHANGELOG" type="CLOB"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mac (generated)" id="1736753691097-11">
+        <preConditions onFail="MARK_RAN"  >
+            <not >
+                <columnExists tableName="CATEGORY" columnName="IS_LEAF3" />
+            </not>
+        </preConditions>
+        <addColumn tableName="CATEGORY">
+            <column name="IS_LEAF3" type="INTEGER"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mac (generated)" id="1736753691097-12">
+        <preConditions onFail="MARK_RAN"  >
+            <not >
+                <columnExists tableName="LOCAL_USER" columnName="ORGANIZATION_ID" />
+            </not>
+        </preConditions>
+        <addColumn tableName="LOCAL_USER">
+            <column name="ORGANIZATION_ID" type="VARCHAR(100 BYTE)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mac (generated)" id="1736753691097-13">
+        <preConditions onFail="MARK_RAN"  >
+            <not >
+                <columnExists tableName="PAGE" columnName="USER_TAG" />
+            </not>
+        </preConditions>
+        <addColumn tableName="PAGE">
+            <column name="USER_TAG" type="VARCHAR(200 BYTE)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="mac (generated)" id="1736753691097-14">
+        <preConditions onFail="MARK_RAN"  >
+            <not >
+                <columnExists tableName="PAGE" columnName="USER_TAG2" />
+            </not>
+        </preConditions>
+        <addColumn tableName="PAGE">
+            <column name="USER_TAG2" type="VARCHAR(200 BYTE)"/>
+        </addColumn>
+    </changeSet>
+</databaseChangeLog>

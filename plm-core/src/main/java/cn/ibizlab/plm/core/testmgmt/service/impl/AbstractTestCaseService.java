@@ -574,6 +574,17 @@ public abstract class AbstractTestCaseService extends ServiceImpl<TestCaseMapper
         return list;
    }
 	
+   public Page<TestCase> fetchRelationTestCase(TestCaseSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<TestCase> pages=baseMapper.searchRelationTestCase(context.getPages(),context,context.getSelectCond());
+        List<TestCase> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<TestCase> listRelationTestCase(TestCaseSearchContext context) {
+        List<TestCase> list = baseMapper.listRelationTestCase(context,context.getSelectCond());
+        return list;
+   }
+	
    public Page<TestCase> fetchSuitesTestCase(TestCaseSearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<TestCase> pages=baseMapper.searchSuitesTestCase(context.getPages(),context,context.getSelectCond());
         List<TestCase> list = pages.getRecords();

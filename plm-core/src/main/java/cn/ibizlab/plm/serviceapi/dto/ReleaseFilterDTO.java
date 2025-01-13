@@ -51,7 +51,7 @@ public class ReleaseFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_id_eq")
     @JSONField(name = "n_id_eq")
-    @ApiModelProperty(value = "标识EQ", position = 140)
+    @ApiModelProperty(value = "标识EQ", position = 160)
 	private String idEQ;
 
     /**
@@ -59,7 +59,7 @@ public class ReleaseFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_name_like")
     @JSONField(name = "n_name_like")
-    @ApiModelProperty(value = "名称LIKE", position = 150)
+    @ApiModelProperty(value = "名称LIKE", position = 170)
 	private String nameLIKE;
 
     /**
@@ -67,7 +67,7 @@ public class ReleaseFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_project_id_eq")
     @JSONField(name = "n_project_id_eq")
-    @ApiModelProperty(value = "项目标识EQ", position = 200)
+    @ApiModelProperty(value = "项目标识EQ", position = 220)
 	private String projectIdEQ;
 
     /**
@@ -75,7 +75,7 @@ public class ReleaseFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_project_name_eq")
     @JSONField(name = "n_project_name_eq")
-    @ApiModelProperty(value = "项目名称EQ", position = 210)
+    @ApiModelProperty(value = "项目名称EQ", position = 230)
 	private String projectNameEQ;
 
     /**
@@ -83,7 +83,7 @@ public class ReleaseFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_project_name_like")
     @JSONField(name = "n_project_name_like")
-    @ApiModelProperty(value = "项目名称LIKE", position = 211)
+    @ApiModelProperty(value = "项目名称LIKE", position = 231)
 	private String projectNameLIKE;
 
 

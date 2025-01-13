@@ -17,6 +17,7 @@ import cn.ibizlab.plm.core.projmgmt.filter.WorkItemTypeSearchContext;
 import cn.ibizlab.plm.core.projmgmt.domain.Project;
 import cn.ibizlab.plm.core.projmgmt.domain.WorkItemState;
 import cn.ibizlab.plm.core.projmgmt.domain.WorkItem;
+import cn.ibizlab.plm.util.annotation.DEAction;
 
 /**
  * 工作项类型服务接口[WorkItemTypeService]

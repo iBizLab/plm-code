@@ -37,6 +37,7 @@ import cn.ibizlab.plm.core.base.domain.Deliverable;
 import cn.ibizlab.plm.core.base.domain.SearchAttachment;
 import cn.ibizlab.plm.core.base.domain.SearchComment;
 import cn.ibizlab.plm.core.base.domain.Workload;
+import cn.ibizlab.plm.util.annotation.DEAction;
 
 /**
  * 工作项服务接口[WorkItemService]
@@ -925,6 +926,22 @@ public interface WorkItemService extends IService<WorkItem> {
     List<WorkItem> listDeleted(WorkItemSearchContext context);
 
     /**
+    * fetchIdeaRelationWorkItem
+    * 
+    * @param context
+    * @return
+    */
+    Page<WorkItem> fetchIdeaRelationWorkItem(WorkItemSearchContext context);
+
+    /**
+    * listIdeaRelationWorkItem
+    * 
+    * @param context
+    * @return
+    */
+    List<WorkItem> listIdeaRelationWorkItem(WorkItemSearchContext context);
+
+    /**
     * fetchKanbanUserStat
     * 
     * @param context
@@ -1339,6 +1356,22 @@ public interface WorkItemService extends IService<WorkItem> {
     * @return
     */
     List<WorkItem> listRecentWorkItem(WorkItemSearchContext context);
+
+    /**
+    * fetchRelationWorkItem
+    * 
+    * @param context
+    * @return
+    */
+    Page<WorkItem> fetchRelationWorkItem(WorkItemSearchContext context);
+
+    /**
+    * listRelationWorkItem
+    * 
+    * @param context
+    * @return
+    */
+    List<WorkItem> listRelationWorkItem(WorkItemSearchContext context);
 
     /**
     * fetchRelease

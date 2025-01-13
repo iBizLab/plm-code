@@ -166,6 +166,45 @@ public abstract class AbstractDiscussMemberResource {
     }
 
     /**
+    * choose_position 协作成员
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return Mono<ResponseEntity<DiscussMemberDTO>>
+    */
+    @ApiOperation(value = "choose_position", tags = {"协作成员" },  notes = "DiscussMember-choose_position ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-DiscussMember-choose_position-all') or hasPermission(this.discussMemberDtoMapping.toDomain(#dto),'ibizplm-DiscussMember-choose_position')")
+    @PostMapping("discuss_members/{id}/choose_position")
+    public Mono<ResponseEntity<ResponseWrapper<DiscussMemberDTO>>>choosePositionById
+            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<DiscussMemberDTO> dto) {
+        ResponseWrapper<DiscussMemberDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(choosePositionById(ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(choosePositionById(id, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * choose_position 协作成员
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<DiscussMemberDTO>
+    */   
+    public DiscussMemberDTO choosePositionById
+            (String id, DiscussMemberDTO dto) {
+        DiscussMember domain = discussMemberDtoMapping.toDomain(dto);
+        domain.setId(id);
+        DiscussMember rt = discussMemberService.choosePosition(domain);
+        return discussMemberDtoMapping.toDto(rt);
+    }
+
+    /**
     * mob_create_topic_member 协作成员
     * 
     *
@@ -430,6 +469,47 @@ public abstract class AbstractDiscussMemberResource {
         DiscussMember domain = discussMemberDtoMapping.toDomain(dto);
         domain.setId(id);
         DiscussMember rt = discussMemberService.changeRole(domain);
+        return discussMemberDtoMapping.toDto(rt);
+    }
+
+    /**
+    * choose_position 协作成员
+    * 
+    *
+    * @param ownerId ownerId
+    * @param id id
+    * @param dto dto
+    * @return Mono<ResponseEntity<DiscussMemberDTO>>
+    */
+    @ApiOperation(value = "choose_position", tags = {"协作成员" },  notes = "DiscussMember-choose_position ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-DiscussMember-choose_position-all') or hasPermission('discuss_topic',#ownerId,this.discussMemberDtoMapping.toDomain(#dto),'ibizplm-DiscussMember-choose_position')")
+    @PostMapping("discuss_topics/{ownerId}/discuss_members/{id}/choose_position")
+    public Mono<ResponseEntity<ResponseWrapper<DiscussMemberDTO>>>choosePositionByOwnerIdAndId
+            (@PathVariable("ownerId") String ownerId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<DiscussMemberDTO> dto) {
+        ResponseWrapper<DiscussMemberDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(choosePositionByOwnerIdAndId(ownerId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(choosePositionByOwnerIdAndId(ownerId, id, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * choose_position 协作成员
+    * 
+    *
+    * @param ownerId ownerId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<DiscussMemberDTO>
+    */   
+    public DiscussMemberDTO choosePositionByOwnerIdAndId
+            (String ownerId, String id, DiscussMemberDTO dto) {
+        DiscussMember domain = discussMemberDtoMapping.toDomain(dto);
+        domain.setId(id);
+        DiscussMember rt = discussMemberService.choosePosition(domain);
         return discussMemberDtoMapping.toDto(rt);
     }
 
@@ -708,6 +788,47 @@ public abstract class AbstractDiscussMemberResource {
         DiscussMember domain = discussMemberDtoMapping.toDomain(dto);
         domain.setId(id);
         DiscussMember rt = discussMemberService.changeRole(domain);
+        return discussMemberDtoMapping.toDto(rt);
+    }
+
+    /**
+    * choose_position 协作成员
+    * 
+    *
+    * @param userId userId
+    * @param id id
+    * @param dto dto
+    * @return Mono<ResponseEntity<DiscussMemberDTO>>
+    */
+    @ApiOperation(value = "choose_position", tags = {"协作成员" },  notes = "DiscussMember-choose_position ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-DiscussMember-choose_position-all') or hasPermission('user',#userId,this.discussMemberDtoMapping.toDomain(#dto),'ibizplm-DiscussMember-choose_position')")
+    @PostMapping("users/{userId}/discuss_members/{id}/choose_position")
+    public Mono<ResponseEntity<ResponseWrapper<DiscussMemberDTO>>>choosePositionByUserIdAndId
+            (@PathVariable("userId") String userId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<DiscussMemberDTO> dto) {
+        ResponseWrapper<DiscussMemberDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(choosePositionByUserIdAndId(userId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(choosePositionByUserIdAndId(userId, id, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * choose_position 协作成员
+    * 
+    *
+    * @param userId userId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<DiscussMemberDTO>
+    */   
+    public DiscussMemberDTO choosePositionByUserIdAndId
+            (String userId, String id, DiscussMemberDTO dto) {
+        DiscussMember domain = discussMemberDtoMapping.toDomain(dto);
+        domain.setId(id);
+        DiscussMember rt = discussMemberService.choosePosition(domain);
         return discussMemberDtoMapping.toDto(rt);
     }
 

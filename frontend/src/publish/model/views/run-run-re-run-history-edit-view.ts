@@ -260,7 +260,6 @@ export default {
                             },
                           ],
                           logicType: 'GROUP',
-                          id: '表单成员[grouppanel3][面板显示]逻辑',
                         },
                       ],
                       layoutPos: {
@@ -316,7 +315,6 @@ export default {
                                 },
                               ],
                               logicType: 'GROUP',
-                              id: '表单成员[name][面板显示]逻辑',
                             },
                           ],
                           layoutPos: {
@@ -361,7 +359,6 @@ export default {
                                 },
                               ],
                               logicType: 'GROUP',
-                              id: '表单成员[description][面板显示]逻辑',
                             },
                           ],
                           layoutPos: {
@@ -406,7 +403,6 @@ export default {
                                 },
                               ],
                               logicType: 'GROUP',
-                              id: '表单成员[expected_value][面板显示]逻辑',
                             },
                           ],
                           layoutPos: {
@@ -451,7 +447,6 @@ export default {
                                 },
                               ],
                               logicType: 'GROUP',
-                              id: '表单成员[actual_value][面板显示]逻辑',
                             },
                           ],
                           layoutPos: {
@@ -499,7 +494,6 @@ export default {
                                 },
                               ],
                               logicType: 'GROUP',
-                              id: '表单成员[status1][面板显示]逻辑',
                             },
                           ],
                           layoutPos: {

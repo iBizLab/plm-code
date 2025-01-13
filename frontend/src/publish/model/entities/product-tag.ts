@@ -660,7 +660,6 @@ export default {
       frontProcessType: 'WIZARD',
       fullCodeName: 'product_tag_edit_tag',
       deopprivId: 'update',
-      timeout: 60000,
       tooltip: '编辑标签',
       uiactionMode: 'FRONT',
       uiactionTag: 'edit_tag',

@@ -16,6 +16,7 @@ import cn.ibizlab.plm.core.projmgmt.filter.ProjectMemberSearchContext;
 import cn.ibizlab.plm.core.projmgmt.domain.Project;
 import cn.ibizlab.plm.core.base.domain.User;
 import cn.ibizlab.plm.core.projmgmt.domain.DayCapacity;
+import cn.ibizlab.plm.util.annotation.DEAction;
 
 /**
  * 项目成员服务接口[ProjectMemberService]
@@ -156,6 +157,16 @@ public interface ProjectMemberService extends IService<ProjectMember> {
      * @return
      */
     boolean save(List<ProjectMember> list);
+
+    /**
+    * changePosition
+    * 
+    * @param et
+    * @return
+    */
+    default ProjectMember changePosition(ProjectMember et) {
+        return et;
+    }
 
     /**
     * changeRole

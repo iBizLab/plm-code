@@ -401,6 +401,22 @@ public class ArticlePageDTO extends DTOBase implements Serializable {
     @ApiModelProperty(value = "更新时间", position = 44)
     private Date updateTime;
 
+    /**
+     * 用户标记
+     */
+    @JsonProperty("user_tag")
+    @JSONField(name = "user_tag")
+    @ApiModelProperty(value = "用户标记", position = 45)
+    private String userTag;
+
+    /**
+     * 用户标记2
+     */
+    @JsonProperty("user_tag2")
+    @JSONField(name = "user_tag2")
+    @ApiModelProperty(value = "用户标记2", position = 46)
+    private String userTag2;
+
 
     /**
      * 设置 [编号]
@@ -723,6 +739,24 @@ public class ArticlePageDTO extends DTOBase implements Serializable {
     public ArticlePageDTO setSpaceName(String spaceName) {
         this.spaceName = spaceName;
         this.modify("space_name", spaceName);
+        return this;
+    }
+
+    /**
+     * 设置 [用户标记]
+     */
+    public ArticlePageDTO setUserTag(String userTag) {
+        this.userTag = userTag;
+        this.modify("user_tag", userTag);
+        return this;
+    }
+
+    /**
+     * 设置 [用户标记2]
+     */
+    public ArticlePageDTO setUserTag2(String userTag2) {
+        this.userTag2 = userTag2;
+        this.modify("user_tag2", userTag2);
         return this;
     }
 

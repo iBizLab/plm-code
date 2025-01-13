@@ -529,6 +529,7 @@ export default {
                 id: 'root',
               },
               {
+                dataSourceType: 'DEDATASET',
                 idAppDEFieldId: 'id',
                 appDEDataSetId: 'fetch_root',
                 textAppDEFieldId: 'name',
@@ -553,6 +554,7 @@ export default {
                 id: 'dept',
               },
               {
+                dataSourceType: 'DEDATASET',
                 idAppDEFieldId: 'id',
                 appDEDataSetId: 'fetch_default',
                 textAppDEFieldId: 'name',
@@ -577,6 +579,7 @@ export default {
                 id: 'node',
               },
               {
+                dataSourceType: 'DEDATASET',
                 idAppDEFieldId: 'id',
                 appDEDataSetId: 'fetch_default',
                 textAppDEFieldId: 'name',
@@ -777,6 +780,11 @@ export default {
             appDEFieldId: 'user_id',
             dataType: 25,
             id: 'user_id',
+          },
+          {
+            appDEFieldId: 'position_id',
+            dataType: 25,
+            id: 'position_id',
           },
         ],
         pagingSize: 1000,

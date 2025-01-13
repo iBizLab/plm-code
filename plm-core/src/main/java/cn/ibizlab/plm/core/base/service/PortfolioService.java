@@ -16,6 +16,7 @@ import cn.ibizlab.plm.core.base.filter.PortfolioSearchContext;
 import cn.ibizlab.plm.core.base.domain.PortfolioMember;
 import cn.ibizlab.plm.core.base.domain.Work;
 import cn.ibizlab.plm.core.base.domain.Addon;
+import cn.ibizlab.plm.util.annotation.DEAction;
 
 /**
  * 文件夹服务接口[PortfolioService]

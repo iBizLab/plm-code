@@ -49,6 +49,8 @@ import cn.ibizlab.plm.core.base.domain.Baseline;
 import cn.ibizlab.plm.core.base.service.BaselineService;
 import cn.ibizlab.plm.core.base.domain.Favorite;
 import cn.ibizlab.plm.core.base.service.FavoriteService;
+import cn.ibizlab.plm.core.base.domain.Relation;
+import cn.ibizlab.plm.core.base.service.RelationService;
 import cn.ibizlab.plm.core.base.domain.ReferencesIndex;
 import cn.ibizlab.plm.core.base.service.ReferencesIndexService;
 
@@ -107,6 +109,10 @@ public abstract class AbstractProductService extends ServiceImpl<ProductMapper,P
     @Autowired
     @Lazy
     protected FavoriteService favoriteService;
+
+    @Autowired
+    @Lazy
+    protected RelationService relationService;
 
     @Autowired
     @Lazy
@@ -317,6 +323,17 @@ public abstract class AbstractProductService extends ServiceImpl<ProductMapper,P
         if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
             context.setSort("IS_FAVORITE,DESC;UPDATE_TIME,DESC");
         List<Product> list = baseMapper.listMobMain(context,context.getSelectCond());
+        return list;
+   }
+	
+   public Page<Product> fetchNoRelation(ProductSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Product> pages=baseMapper.searchNoRelation(context.getPages(),context,context.getSelectCond());
+        List<Product> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<Product> listNoRelation(ProductSearchContext context) {
+        List<Product> list = baseMapper.listNoRelation(context,context.getSelectCond());
         return list;
    }
 	

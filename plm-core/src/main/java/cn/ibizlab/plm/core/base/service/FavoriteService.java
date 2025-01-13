@@ -15,6 +15,7 @@ import cn.ibizlab.plm.core.base.domain.Favorite;
 import cn.ibizlab.plm.core.base.filter.FavoriteSearchContext;
 import cn.ibizlab.plm.core.projmgmt.domain.Project;
 import cn.ibizlab.plm.core.prodmgmt.domain.Product;
+import cn.ibizlab.plm.util.annotation.DEAction;
 
 /**
  * 收藏服务接口[FavoriteService]

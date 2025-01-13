@@ -83,7 +83,7 @@ public class ProjectMemberFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_id_eq")
     @JSONField(name = "n_id_eq")
-    @ApiModelProperty(value = "标识EQ", position = 70)
+    @ApiModelProperty(value = "标识EQ", position = 80)
 	private String idEQ;
 
     /**
@@ -91,7 +91,7 @@ public class ProjectMemberFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_name_like")
     @JSONField(name = "n_name_like")
-    @ApiModelProperty(value = "姓名LIKE", position = 80)
+    @ApiModelProperty(value = "姓名LIKE", position = 90)
 	private String nameLIKE;
 
     /**
@@ -99,7 +99,7 @@ public class ProjectMemberFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_project_id_eq")
     @JSONField(name = "n_project_id_eq")
-    @ApiModelProperty(value = "项目标识EQ", position = 130)
+    @ApiModelProperty(value = "项目标识EQ", position = 140)
 	private String projectIdEQ;
 
 

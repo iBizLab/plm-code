@@ -14,6 +14,7 @@ import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.core.prodmgmt.domain.ProductTag;
 import cn.ibizlab.plm.core.prodmgmt.filter.ProductTagSearchContext;
 import cn.ibizlab.plm.core.prodmgmt.domain.Product;
+import cn.ibizlab.plm.util.annotation.DEAction;
 
 /**
  * 产品标签服务接口[ProductTagService]

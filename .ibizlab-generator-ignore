@@ -4,8 +4,8 @@
 **/target/**
 **@macro/**
 **/application.yml
-**/SysDepartmentServiceImpl.java
 **/MybatisConfiguration.java
+**/ebsx/**
 pom.xml
 plm-core/pom.xml
 plm-serviceapi/pom.xml
@@ -17,6 +17,7 @@ Dockerfile-serviceapi
 **/permission/**
 **/msgtempl/**
 **/logic/**
+**Todo**
 
 **/AppSyncJob
 **/AuditAspect

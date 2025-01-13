@@ -157,7 +157,6 @@ export default {
                     id: 'type',
                   },
                   updateDV: 'scrum',
-                  allowEmpty: true,
                   needCodeListConfig: true,
                   capLanguageRes: {
                     lanResTag: 'DEF.LNAME.TYPE',

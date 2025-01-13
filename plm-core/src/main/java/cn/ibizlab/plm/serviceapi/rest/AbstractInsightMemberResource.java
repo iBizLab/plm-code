@@ -166,6 +166,45 @@ public abstract class AbstractInsightMemberResource {
     }
 
     /**
+    * choose_position 效能成员
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return Mono<ResponseEntity<InsightMemberDTO>>
+    */
+    @ApiOperation(value = "choose_position", tags = {"效能成员" },  notes = "InsightMember-choose_position ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-InsightMember-choose_position-all') or hasPermission(this.insightMemberDtoMapping.toDomain(#dto),'ibizplm-InsightMember-choose_position')")
+    @PostMapping("insight_members/{id}/choose_position")
+    public Mono<ResponseEntity<ResponseWrapper<InsightMemberDTO>>>choosePositionById
+            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<InsightMemberDTO> dto) {
+        ResponseWrapper<InsightMemberDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(choosePositionById(ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(choosePositionById(id, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * choose_position 效能成员
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<InsightMemberDTO>
+    */   
+    public InsightMemberDTO choosePositionById
+            (String id, InsightMemberDTO dto) {
+        InsightMember domain = insightMemberDtoMapping.toDomain(dto);
+        domain.setId(id);
+        InsightMember rt = insightMemberService.choosePosition(domain);
+        return insightMemberDtoMapping.toDto(rt);
+    }
+
+    /**
     * 保存Save 效能成员
     * 
     *
@@ -318,6 +357,47 @@ public abstract class AbstractInsightMemberResource {
         InsightMember domain = insightMemberDtoMapping.toDomain(dto);
         domain.setId(id);
         InsightMember rt = insightMemberService.changeRole(domain);
+        return insightMemberDtoMapping.toDto(rt);
+    }
+
+    /**
+    * choose_position 效能成员
+    * 
+    *
+    * @param ownerId ownerId
+    * @param id id
+    * @param dto dto
+    * @return Mono<ResponseEntity<InsightMemberDTO>>
+    */
+    @ApiOperation(value = "choose_position", tags = {"效能成员" },  notes = "InsightMember-choose_position ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-InsightMember-choose_position-all') or hasPermission('insight_view',#ownerId,this.insightMemberDtoMapping.toDomain(#dto),'ibizplm-InsightMember-choose_position')")
+    @PostMapping("insight_views/{ownerId}/insight_members/{id}/choose_position")
+    public Mono<ResponseEntity<ResponseWrapper<InsightMemberDTO>>>choosePositionByOwnerIdAndId
+            (@PathVariable("ownerId") String ownerId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<InsightMemberDTO> dto) {
+        ResponseWrapper<InsightMemberDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(choosePositionByOwnerIdAndId(ownerId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(choosePositionByOwnerIdAndId(ownerId, id, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * choose_position 效能成员
+    * 
+    *
+    * @param ownerId ownerId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<InsightMemberDTO>
+    */   
+    public InsightMemberDTO choosePositionByOwnerIdAndId
+            (String ownerId, String id, InsightMemberDTO dto) {
+        InsightMember domain = insightMemberDtoMapping.toDomain(dto);
+        domain.setId(id);
+        InsightMember rt = insightMemberService.choosePosition(domain);
         return insightMemberDtoMapping.toDto(rt);
     }
 
@@ -477,6 +557,47 @@ public abstract class AbstractInsightMemberResource {
         InsightMember domain = insightMemberDtoMapping.toDomain(dto);
         domain.setId(id);
         InsightMember rt = insightMemberService.changeRole(domain);
+        return insightMemberDtoMapping.toDto(rt);
+    }
+
+    /**
+    * choose_position 效能成员
+    * 
+    *
+    * @param userId userId
+    * @param id id
+    * @param dto dto
+    * @return Mono<ResponseEntity<InsightMemberDTO>>
+    */
+    @ApiOperation(value = "choose_position", tags = {"效能成员" },  notes = "InsightMember-choose_position ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-InsightMember-choose_position-all') or hasPermission('user',#userId,this.insightMemberDtoMapping.toDomain(#dto),'ibizplm-InsightMember-choose_position')")
+    @PostMapping("users/{userId}/insight_members/{id}/choose_position")
+    public Mono<ResponseEntity<ResponseWrapper<InsightMemberDTO>>>choosePositionByUserIdAndId
+            (@PathVariable("userId") String userId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<InsightMemberDTO> dto) {
+        ResponseWrapper<InsightMemberDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(choosePositionByUserIdAndId(userId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(choosePositionByUserIdAndId(userId, id, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * choose_position 效能成员
+    * 
+    *
+    * @param userId userId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<InsightMemberDTO>
+    */   
+    public InsightMemberDTO choosePositionByUserIdAndId
+            (String userId, String id, InsightMemberDTO dto) {
+        InsightMember domain = insightMemberDtoMapping.toDomain(dto);
+        domain.setId(id);
+        InsightMember rt = insightMemberService.choosePosition(domain);
         return insightMemberDtoMapping.toDto(rt);
     }
 

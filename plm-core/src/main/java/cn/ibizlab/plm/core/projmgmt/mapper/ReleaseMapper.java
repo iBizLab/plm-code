@@ -119,6 +119,44 @@ public interface ReleaseMapper extends BaseMapper<Release> {
     List<Release> listNotPublished(@Param("ctx") ReleaseSearchContext context, @Param("ew") Wrapper<Release> wrapper);
 
     /**
+     * 数据集合product_re_project_published分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Release> searchProductReProjectPublished(IPage<Release> page, @Param("ctx") ReleaseSearchContext context, @Param("ew") Wrapper<Release> wrapper);
+    
+    /**
+     * 数据集合product_re_project_published查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Release> listProductReProjectPublished(@Param("ctx") ReleaseSearchContext context, @Param("ew") Wrapper<Release> wrapper);
+
+    /**
+     * 数据集合published分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Release> searchPublished(IPage<Release> page, @Param("ctx") ReleaseSearchContext context, @Param("ew") Wrapper<Release> wrapper);
+    
+    /**
+     * 数据集合published查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Release> listPublished(@Param("ctx") ReleaseSearchContext context, @Param("ew") Wrapper<Release> wrapper);
+
+    /**
      * 数据集合reader分页查询
      * 
      * @param page

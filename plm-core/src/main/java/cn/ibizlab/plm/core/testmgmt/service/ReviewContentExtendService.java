@@ -15,6 +15,7 @@ import cn.ibizlab.plm.core.testmgmt.domain.ReviewContentExtend;
 import cn.ibizlab.plm.core.testmgmt.filter.ReviewContentExtendSearchContext;
 import cn.ibizlab.plm.core.testmgmt.domain.ReviewResult;
 import cn.ibizlab.plm.core.base.domain.Relation;
+import cn.ibizlab.plm.util.annotation.DEAction;
 
 /**
  * 评审内容扩展服务接口[ReviewContentExtendService]

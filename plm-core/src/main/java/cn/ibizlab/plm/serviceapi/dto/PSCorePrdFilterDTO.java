@@ -35,7 +35,7 @@ public class PSCorePrdFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_pscoreprdid_eq")
     @JSONField(name = "n_pscoreprdid_eq")
-    @ApiModelProperty(value = "核心产品标识EQ", position = 40)
+    @ApiModelProperty(value = "核心产品标识EQ", position = 90)
 	private String psCorePrdIdEQ;
 
     /**
@@ -43,7 +43,7 @@ public class PSCorePrdFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_pscoreprdname_like")
     @JSONField(name = "n_pscoreprdname_like")
-    @ApiModelProperty(value = "产品名称LIKE", position = 50)
+    @ApiModelProperty(value = "产品名称LIKE", position = 100)
 	private String psCorePrdNameLIKE;
 
     /**
@@ -51,7 +51,7 @@ public class PSCorePrdFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_pscoreprdcatid_eq")
     @JSONField(name = "n_pscoreprdcatid_eq")
-    @ApiModelProperty(value = "产品分类EQ", position = 140)
+    @ApiModelProperty(value = "产品分类EQ", position = 190)
 	private String psCorePrdCatIdEQ;
 
     /**
@@ -59,7 +59,7 @@ public class PSCorePrdFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_pscoreprdcatid_in")
     @JSONField(name = "n_pscoreprdcatid_in")
-    @ApiModelProperty(value = "产品分类IN", position = 141)
+    @ApiModelProperty(value = "产品分类IN", position = 191)
 	private String psCorePrdCatIdIN;
 
 

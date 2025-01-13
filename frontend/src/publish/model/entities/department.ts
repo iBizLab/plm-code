@@ -26,6 +26,14 @@ export default {
   ],
   appDEFields: [
     {
+      codeName: 'identifier',
+      logicName: '部门标识/编号',
+      stdDataType: 25,
+      stringLength: 100,
+      name: 'IDENTIFIER',
+      id: 'identifier',
+    },
+    {
       codeName: 'id',
       lnlanguageRes: {
         lanResTag: 'DEF.LNAME.ID',
@@ -113,6 +121,16 @@ export default {
     {
       codeName: 'department_dto',
       appDEMethodDTOFields: [
+        {
+          codeName: 'identifier',
+          logicName: '部门标识/编号',
+          appDEFieldId: 'identifier',
+          sourceType: 'DEFIELD',
+          stdDataType: 25,
+          type: 'SIMPLE',
+          allowEmpty: true,
+          id: 'identifier',
+        },
         {
           codeName: 'create_man',
           logicName: '建立人',

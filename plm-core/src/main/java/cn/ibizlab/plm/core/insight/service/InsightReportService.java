@@ -14,6 +14,7 @@ import cn.ibizlab.util.enums.CheckKeyStatus;
 import cn.ibizlab.plm.core.insight.domain.InsightReport;
 import cn.ibizlab.plm.core.insight.filter.InsightReportSearchContext;
 import cn.ibizlab.plm.core.insight.domain.InsightView;
+import cn.ibizlab.plm.util.annotation.DEAction;
 
 /**
  * 效能报表服务接口[InsightReportService]

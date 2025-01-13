@@ -15,6 +15,7 @@ import cn.ibizlab.plm.core.devops.domain.ScmReview;
 import cn.ibizlab.plm.core.devops.filter.ScmReviewSearchContext;
 import cn.ibizlab.plm.core.devops.domain.PullRequest;
 import cn.ibizlab.plm.core.devops.domain.Repository;
+import cn.ibizlab.plm.util.annotation.DEAction;
 
 /**
  * 代码评审服务接口[ScmReviewService]
