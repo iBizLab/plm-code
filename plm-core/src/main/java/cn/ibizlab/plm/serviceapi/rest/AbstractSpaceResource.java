@@ -214,6 +214,7 @@ public abstract class AbstractSpaceResource {
     * @return Mono<ResponseEntity<SpaceDTO>>
     */
     @ApiOperation(value = "change_admin_role", tags = {"空间" },  notes = "Space-change_admin_role ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Space-change_admin_role-all') or hasPermission(this.spaceDtoMapping.toDomain(#dto),'ibizplm-Space-change_admin_role')")
     @PostMapping("spaces/{id}/change_admin_role")
     public Mono<ResponseEntity<ResponseWrapper<SpaceDTO>>>changeAdminRoleById
             (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<SpaceDTO> dto) {
@@ -252,6 +253,7 @@ public abstract class AbstractSpaceResource {
     * @return Mono<ResponseEntity<SpaceDTO>>
     */
     @ApiOperation(value = "del_relation", tags = {"空间" },  notes = "Space-del_relation ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Space-del_relation-all') or hasPermission(this.spaceDtoMapping.toDomain(#dto),'ibizplm-Space-del_relation')")
     @PostMapping("spaces/{id}/del_relation")
     public Mono<ResponseEntity<ResponseWrapper<SpaceDTO>>>delRelationById
             (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<SpaceDTO> dto) {
@@ -368,6 +370,7 @@ public abstract class AbstractSpaceResource {
     * @return Mono<ResponseEntity<SpaceDTO>>
     */
     @ApiOperation(value = "move_out_category", tags = {"空间" },  notes = "Space-move_out_category ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Space-move_out_category-all') or hasPermission(this.spaceDtoMapping.toDomain(#dto),'ibizplm-Space-move_out_category')")
     @PostMapping("spaces/{id}/move_out_category")
     public Mono<ResponseEntity<ResponseWrapper<SpaceDTO>>>moveOutCategoryById
             (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<SpaceDTO> dto) {
@@ -518,21 +521,19 @@ public abstract class AbstractSpaceResource {
     * recognize_cur_user_role 空间
     * 
     *
-    * @param id id
     * @param dto dto
     * @return Mono<ResponseEntity<SpaceDTO>>
     */
     @ApiOperation(value = "recognize_cur_user_role", tags = {"空间" },  notes = "Space-recognize_cur_user_role ")
-    @PostMapping("spaces/{id}/recognize_cur_user_role")
-    public Mono<ResponseEntity<ResponseWrapper<SpaceDTO>>>recognizeCurUserRoleById
-            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<SpaceDTO> dto) {
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Space-recognize_cur_user_role-all') or hasPermission(this.spaceDtoMapping.toDomain(#dto),'ibizplm-Space-recognize_cur_user_role')")
+    @PostMapping("spaces/recognize_cur_user_role")
+    public Mono<ResponseEntity<ResponseWrapper<SpaceDTO>>>recognizeCurUserRole
+            (@Validated @RequestBody RequestWrapper<SpaceDTO> dto) {
         ResponseWrapper<SpaceDTO> rt = new ResponseWrapper<>();
-        if (dto.isArray()) {
-            String [] ids = id.split(";");
-            IntStream.range(0, ids.length).forEach(i -> rt.add(recognizeCurUserRoleById(ids[i], dto.getList().get(i))));
-        }
+        if (dto.isArray())
+            dto.getList().forEach(item -> rt.add(recognizeCurUserRole(item)));
         else
-            rt.set(recognizeCurUserRoleById(id, dto.getDto()));
+            rt.set(recognizeCurUserRole(dto.getDto()));
         return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
@@ -540,14 +541,12 @@ public abstract class AbstractSpaceResource {
     * recognize_cur_user_role 空间
     * 
     *
-    * @param id id
     * @param dto dto
     * @return ResponseEntity<SpaceDTO>
     */   
-    public SpaceDTO recognizeCurUserRoleById
-            (String id, SpaceDTO dto) {
+    public SpaceDTO recognizeCurUserRole
+            (SpaceDTO dto) {
         Space domain = spaceDtoMapping.toDomain(dto);
-        domain.setId(id);
         Space rt = spaceService.recognizeCurUserRole(domain);
         return spaceDtoMapping.toDto(rt);
     }
@@ -887,6 +886,7 @@ public abstract class AbstractSpaceResource {
     * @return Mono<ResponseEntity<List<SpaceDTO>>>
     */
     @ApiOperation(value = "查询fetch_deleted", tags = {"空间" },  notes = "Space-fetch_deleted ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Space-fetch_deleted-all') or hasPermission(#dto,'ibizplm-Space-fetch_deleted')")
     @PostMapping("spaces/fetch_deleted")
     public Mono<ResponseEntity<List<SpaceDTO>>> fetchDeleted
             (@Validated @RequestBody SpaceFilterDTO dto) {

@@ -5,7 +5,7 @@ export default {
   loadDefault: true,
   funcViewMode: 'EDITVIEW',
   deviewCodeName: 'EditView',
-  deviewId: '72825d54849a3a5478c37b47da6ce9e0',
+  deviewId: '1879917ac485e90f10f959a253e75753',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.BASELINE_WORK_ITEM',
@@ -207,7 +207,7 @@ export default {
       controlParam: {
         id: 'form',
       },
-      modelId: '041c9b15a32cd9ce7535012fdb0a821c',
+      modelId: '146c106a9c03c66802f93ba8906a13ae',
       modelType: 'PSDEFORM_EDITFORM',
       name: 'form',
       id: 'plmweb.baseline_work_item.main',
@@ -254,7 +254,7 @@ export default {
   viewType: 'DEEDITVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '4cbd7eca69a9223c8e23d9b234156229',
+  modelId: '11fd3df318e4306c34d5f4c138fbdc9e',
   modelType: 'PSAPPDEVIEW',
   name: 'baseline_work_itemEditView',
   id: 'plmweb.baseline_work_item_edit_view',

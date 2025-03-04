@@ -3,7 +3,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'archived_grid_view',
-  deviewId: '00c6f697c372d4a28e7b634a13ae620e',
+  deviewId: 'e57eb725053ab204a4fbbd30fec284bc',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.LIBRARY',
@@ -66,17 +66,17 @@ export default {
   ],
   appViewRefs: [
     {
-      realTitle: '测试库',
-      refAppViewId: 'plmweb.library_index_view',
-      name: 'NEWDATA',
-      id: 'newdata',
-    },
-    {
       realOpenMode: 'POPUPMODAL',
       realTitle: '测试库展示信息视图',
       refAppViewId: 'plmweb.library_show_edit_view',
       name: 'EDITDATA',
       id: 'editdata',
+    },
+    {
+      realTitle: '测试库',
+      refAppViewId: 'plmweb.library_index_view',
+      name: 'NEWDATA',
+      id: 'newdata',
     },
   ],
   controls: [
@@ -278,7 +278,7 @@ export default {
       controlParam: {
         id: 'grid',
       },
-      modelId: '06c5b0049bb9cf5eaf04cb3f70d7b809',
+      modelId: '141cd273b93d0de3065bd21153aa66de',
       modelType: 'PSDEGRID',
       name: 'grid',
       id: 'plmweb.library.archived',
@@ -335,7 +335,7 @@ export default {
         },
         id: 'tabsearchbar',
       },
-      modelId: 'B1CD8686-5BAD-4D75-818C-EAE5E3D93803',
+      modelId: '5145384b931d29f23a8225d7f1fd3707',
       modelType: 'PSSYSSEARCHBAR',
       name: 'tabsearchbar',
       id: 'plmweb.library.query_search_bar',
@@ -378,7 +378,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: false,
-  modelId: 'b95fcfef5c4c1717bcc48dbfcff91f4a',
+  modelId: '817be49bca6492334d0fc76d207519e9',
   modelType: 'PSAPPDEVIEW',
   name: 'libraryarchived_grid_view',
   id: 'plmweb.library_archived_grid_view',

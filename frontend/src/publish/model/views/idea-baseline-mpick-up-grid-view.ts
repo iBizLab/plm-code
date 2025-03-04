@@ -6,7 +6,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'baseline_mpick_up_grid_view',
-  deviewId: '8FA4F7C2-D665-48BA-8376-11AA6FCDBFAB',
+  deviewId: '6aa8bdf3a68bbc85968a192b6a29d7fe',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.IDEA',
@@ -399,7 +399,7 @@ export default {
       controlParam: {
         id: 'grid',
       },
-      modelId: '0AF381AF-2DBD-4E05-9CCB-20F6CD99678F',
+      modelId: '80ae62769860fe41affcdd06a625524d',
       modelType: 'PSDEGRID',
       name: 'grid',
       id: 'plmweb.idea.baseline_mpick_up_grid',
@@ -541,7 +541,7 @@ export default {
   viewType: 'DEPICKUPGRIDVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '7d9636e4a914dc920fb1d60af0224858',
+  modelId: '5b7b8943136fc6f539c2e68232906b9a',
   modelType: 'PSAPPDEVIEW',
   name: 'ideabaseline_mpick_up_grid_view',
   id: 'plmweb.idea_baseline_mpick_up_grid_view',

@@ -4,7 +4,7 @@ export default {
   xdataControlName: 'form',
   loadDefault: true,
   deviewCodeName: 'base_info_edit_view',
-  deviewId: '92de9919ed42f740b4b1ff98feecce6f',
+  deviewId: 'ee739762b24958917807686d9851b6c3',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.SPACE',
@@ -518,7 +518,7 @@ export default {
   viewType: 'DEEDITVIEW',
   enableDP: true,
   showCaptionBar: false,
-  modelId: 'b54a6e84f09751835d88e56c7ce1500c',
+  modelId: '2b4ce14e84e1e4ba4119f78e17120eb8',
   modelType: 'PSAPPDEVIEW',
   name: 'spacebase_info_edit_view',
   id: 'plmweb.space_base_info_edit_view',

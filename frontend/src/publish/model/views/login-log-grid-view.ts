@@ -3,7 +3,7 @@ export default {
   loadDefault: true,
   funcViewMode: 'MDATAVIEW',
   deviewCodeName: 'GridView',
-  deviewId: '2d6e8cc14e59124418bff01524b229be',
+  deviewId: 'ad3c3bda7ba88a31d167124121d021e4',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.LOGIN_LOG',
@@ -69,8 +69,8 @@ export default {
         lanResTag: 'PAGE.TITLE.LOGIN_LOG.EDITVIEW',
       },
       refAppViewId: 'plmweb.login_log_edit_view',
-      name: 'NEWDATA',
-      id: 'newdata',
+      name: 'EDITDATA',
+      id: 'editdata',
     },
     {
       realTitle: '登陆日志编辑视图',
@@ -78,8 +78,8 @@ export default {
         lanResTag: 'PAGE.TITLE.LOGIN_LOG.EDITVIEW',
       },
       refAppViewId: 'plmweb.login_log_edit_view',
-      name: 'EDITDATA',
-      id: 'editdata',
+      name: 'NEWDATA',
+      id: 'newdata',
     },
   ],
   controls: [
@@ -116,7 +116,7 @@ export default {
       controlParam: {
         id: 'searchform',
       },
-      modelId: '54e776e1b2fe3317fcddbea046718de9',
+      modelId: '42731522195f9d11761ca5a8c73ea0de',
       modelType: 'PSDEFORM_SEARCHFORM',
       name: 'searchform',
       id: 'plmweb.login_log.default',
@@ -288,7 +288,7 @@ export default {
       controlParam: {
         id: 'grid',
       },
-      modelId: 'e41113ae3ec2f19f8ec53e012c2d376c',
+      modelId: '0635ebb4bcf9454704b0a60ef666eff1',
       modelType: 'PSDEGRID',
       name: 'grid',
       id: 'plmweb.login_log.main',
@@ -334,7 +334,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '2fb52bc9f6cbc4a904b5de23ef588f88',
+  modelId: 'a74c2d8f19c9b6d9f79a037d30ac9720',
   modelType: 'PSAPPDEVIEW',
   name: 'login_logGridView',
   id: 'plmweb.login_log_grid_view',

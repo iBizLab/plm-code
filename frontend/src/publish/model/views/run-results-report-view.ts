@@ -2,7 +2,7 @@ export default {
   enableSearch: true,
   loadDefault: true,
   deviewCodeName: 'results_report_view',
-  deviewId: '83f1ae3229df08e79d79dbce95d75b9f',
+  deviewId: '7855a825db234f32354bf019c86ff9be',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.RUN',
@@ -712,7 +712,7 @@ export default {
   viewType: 'DECHARTVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '2bba8ab64db077002041ae09bb887e39',
+  modelId: '8f55d0a11dfe8b7fb553bee363ecafd9',
   modelType: 'PSAPPDEVIEW',
   name: 'runresults_report_view',
   id: 'plmweb.run_results_report_view',

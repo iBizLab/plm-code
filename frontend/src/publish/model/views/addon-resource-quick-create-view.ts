@@ -5,7 +5,7 @@ export default {
   loadDefault: true,
   openMode: 'POPUPMODAL',
   deviewCodeName: 'quick_create_view',
-  deviewId: 'FC48AFD3-8FAB-4BCB-A313-00BF6A8BB123',
+  deviewId: 'f6f2a092575358803a8e193f1dbe119f',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.ADDON_RESOURCE',
@@ -206,7 +206,7 @@ export default {
       controlParam: {
         id: 'form',
       },
-      modelId: '07B3374C-C66F-4679-8818-B84B6EB99282',
+      modelId: '94dbfa4988b21f66bc72402b2348a862',
       modelType: 'PSDEFORM_EDITFORM',
       name: 'form',
       id: 'plmweb.addon_resource.new_resource_form',
@@ -251,7 +251,7 @@ export default {
   width: 650,
   enableDP: true,
   showCaptionBar: true,
-  modelId: 'dcf92b5f4f5928a8c27992f48da5d47d',
+  modelId: '4a564ae9cb893cef8b577bc9c57daef5',
   modelType: 'PSAPPDEVIEW',
   name: 'addon_resourcequick_create_view',
   id: 'plmweb.addon_resource_quick_create_view',

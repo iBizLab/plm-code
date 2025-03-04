@@ -5,7 +5,7 @@ export default {
   loadDefault: true,
   openMode: 'POPOVER',
   deviewCodeName: 'set_level_option_view',
-  deviewId: '44a2ceef960c4a1b08cb77666decc499',
+  deviewId: 'c3a651615a90810fc5d07d5ff9472f9a',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.TEST_CASE',
@@ -216,7 +216,7 @@ export default {
   viewType: 'DEOPTVIEW',
   enableDP: true,
   showCaptionBar: false,
-  modelId: '2fa63e18113862e12d1725b6fa8a63d4',
+  modelId: 'e8b7a39cb17f402687b640c7b913089d',
   modelType: 'PSAPPDEVIEW',
   name: 'test_caseset_level_option_view',
   id: 'plmweb.test_case_set_level_option_view',

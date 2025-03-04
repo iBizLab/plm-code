@@ -230,6 +230,7 @@ public abstract class AbstractIdeaResource {
     * @return Mono<ResponseEntity<IdeaDTO>>
     */
     @ApiOperation(value = "change_state", tags = {"需求" },  notes = "Idea-change_state ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Idea-change_state-all') or hasPermission(this.ideaDtoMapping.toDomain(#dto),'ibizplm-Idea-change_state')")
     @PostMapping("ideas/{id}/change_state")
     public Mono<ResponseEntity<ResponseWrapper<IdeaDTO>>>changeStateById
             (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<IdeaDTO> dto) {
@@ -267,6 +268,7 @@ public abstract class AbstractIdeaResource {
     * @return Mono<ResponseEntity<IdeaDTO>>
     */
     @ApiOperation(value = "choose_case_template", tags = {"需求" },  notes = "Idea-choose_case_template ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Idea-choose_case_template-all') or hasPermission(this.ideaDtoMapping.toDomain(#dto),'ibizplm-Idea-choose_case_template')")
     @PostMapping("ideas/choose_case_template")
     public Mono<ResponseEntity<ResponseWrapper<IdeaDTO>>>chooseCaseTemplate
             (@Validated @RequestBody RequestWrapper<IdeaDTO> dto) {
@@ -418,6 +420,7 @@ public abstract class AbstractIdeaResource {
     * @return Mono<ResponseEntity<IdeaDTO>>
     */
     @ApiOperation(value = "idea_copy", tags = {"需求" },  notes = "Idea-idea_copy ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Idea-idea_copy-all') or hasPermission(this.ideaDtoMapping.toDomain(#dto),'ibizplm-Idea-idea_copy')")
     @PostMapping("ideas/{id}/idea_copy")
     public Mono<ResponseEntity<ResponseWrapper<IdeaDTO>>>ideaCopyById
             (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<IdeaDTO> dto) {
@@ -456,6 +459,7 @@ public abstract class AbstractIdeaResource {
     * @return Mono<ResponseEntity<IdeaDTO>>
     */
     @ApiOperation(value = "idea_move", tags = {"需求" },  notes = "Idea-idea_move ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Idea-idea_move-all') or hasPermission(this.ideaDtoMapping.toDomain(#dto),'ibizplm-Idea-idea_move')")
     @PostMapping("ideas/{id}/idea_move")
     public Mono<ResponseEntity<ResponseWrapper<IdeaDTO>>>ideaMoveById
             (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<IdeaDTO> dto) {
@@ -494,6 +498,7 @@ public abstract class AbstractIdeaResource {
     * @return Mono<ResponseEntity<IdeaDTO>>
     */
     @ApiOperation(value = "idea_re_plan", tags = {"需求" },  notes = "Idea-idea_re_plan ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Idea-idea_re_plan-all') or hasPermission(this.ideaDtoMapping.toDomain(#dto),'ibizplm-Idea-idea_re_plan')")
     @PostMapping("ideas/{id}/idea_re_plan")
     public Mono<ResponseEntity<ResponseWrapper<IdeaDTO>>>ideaRePlanById
             (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<IdeaDTO> dto) {
@@ -688,6 +693,7 @@ public abstract class AbstractIdeaResource {
     * @return Mono<ResponseEntity<IdeaDTO>>
     */
     @ApiOperation(value = "plan_delete_idea", tags = {"需求" },  notes = "Idea-plan_delete_idea ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Idea-plan_delete_idea-all') or hasPermission(this.ideaDtoMapping.toDomain(#dto),'ibizplm-Idea-plan_delete_idea')")
     @PostMapping("ideas/{id}/plan_delete_idea")
     public Mono<ResponseEntity<ResponseWrapper<IdeaDTO>>>planDeleteIdeaById
             (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<IdeaDTO> dto) {
@@ -726,6 +732,7 @@ public abstract class AbstractIdeaResource {
     * @return Mono<ResponseEntity<IdeaDTO>>
     */
     @ApiOperation(value = "product_idea_re_counters", tags = {"需求" },  notes = "Idea-product_idea_re_counters ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Idea-product_idea_re_counters-all') or hasPermission(this.ideaDtoMapping.toDomain(#dto),'ibizplm-Idea-product_idea_re_counters')")
     @PostMapping("ideas/{id}/product_idea_re_counters")
     public Mono<ResponseEntity<ResponseWrapper<IdeaDTO>>>productIdeaReCountersById
             (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<IdeaDTO> dto) {
@@ -1041,6 +1048,7 @@ public abstract class AbstractIdeaResource {
     * @return Mono<ResponseEntity<IdeaDTO>>
     */
     @ApiOperation(value = "change_state", tags = {"需求" },  notes = "Idea-change_state ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Idea-change_state-all') or hasPermission('product',#productId,this.ideaDtoMapping.toDomain(#dto),'ibizplm-Idea-change_state')")
     @PostMapping("products/{productId}/ideas/{id}/change_state")
     public Mono<ResponseEntity<ResponseWrapper<IdeaDTO>>>changeStateByProductIdAndId
             (@PathVariable("productId") String productId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<IdeaDTO> dto) {
@@ -1080,6 +1088,7 @@ public abstract class AbstractIdeaResource {
     * @return Mono<ResponseEntity<IdeaDTO>>
     */
     @ApiOperation(value = "choose_case_template", tags = {"需求" },  notes = "Idea-choose_case_template ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Idea-choose_case_template-all') or hasPermission('product',#productId,this.ideaDtoMapping.toDomain(#dto),'ibizplm-Idea-choose_case_template')")
     @PostMapping("products/{productId}/ideas/choose_case_template")
     public Mono<ResponseEntity<ResponseWrapper<IdeaDTO>>>chooseCaseTemplateByProductId
             (@PathVariable("productId") String productId, @Validated @RequestBody RequestWrapper<IdeaDTO> dto) {
@@ -1240,6 +1249,7 @@ public abstract class AbstractIdeaResource {
     * @return Mono<ResponseEntity<IdeaDTO>>
     */
     @ApiOperation(value = "idea_copy", tags = {"需求" },  notes = "Idea-idea_copy ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Idea-idea_copy-all') or hasPermission('product',#productId,this.ideaDtoMapping.toDomain(#dto),'ibizplm-Idea-idea_copy')")
     @PostMapping("products/{productId}/ideas/{id}/idea_copy")
     public Mono<ResponseEntity<ResponseWrapper<IdeaDTO>>>ideaCopyByProductIdAndId
             (@PathVariable("productId") String productId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<IdeaDTO> dto) {
@@ -1280,6 +1290,7 @@ public abstract class AbstractIdeaResource {
     * @return Mono<ResponseEntity<IdeaDTO>>
     */
     @ApiOperation(value = "idea_move", tags = {"需求" },  notes = "Idea-idea_move ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Idea-idea_move-all') or hasPermission('product',#productId,this.ideaDtoMapping.toDomain(#dto),'ibizplm-Idea-idea_move')")
     @PostMapping("products/{productId}/ideas/{id}/idea_move")
     public Mono<ResponseEntity<ResponseWrapper<IdeaDTO>>>ideaMoveByProductIdAndId
             (@PathVariable("productId") String productId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<IdeaDTO> dto) {
@@ -1320,6 +1331,7 @@ public abstract class AbstractIdeaResource {
     * @return Mono<ResponseEntity<IdeaDTO>>
     */
     @ApiOperation(value = "idea_re_plan", tags = {"需求" },  notes = "Idea-idea_re_plan ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Idea-idea_re_plan-all') or hasPermission('product',#productId,this.ideaDtoMapping.toDomain(#dto),'ibizplm-Idea-idea_re_plan')")
     @PostMapping("products/{productId}/ideas/{id}/idea_re_plan")
     public Mono<ResponseEntity<ResponseWrapper<IdeaDTO>>>ideaRePlanByProductIdAndId
             (@PathVariable("productId") String productId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<IdeaDTO> dto) {
@@ -1524,6 +1536,7 @@ public abstract class AbstractIdeaResource {
     * @return Mono<ResponseEntity<IdeaDTO>>
     */
     @ApiOperation(value = "plan_delete_idea", tags = {"需求" },  notes = "Idea-plan_delete_idea ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Idea-plan_delete_idea-all') or hasPermission('product',#productId,this.ideaDtoMapping.toDomain(#dto),'ibizplm-Idea-plan_delete_idea')")
     @PostMapping("products/{productId}/ideas/{id}/plan_delete_idea")
     public Mono<ResponseEntity<ResponseWrapper<IdeaDTO>>>planDeleteIdeaByProductIdAndId
             (@PathVariable("productId") String productId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<IdeaDTO> dto) {
@@ -1564,6 +1577,7 @@ public abstract class AbstractIdeaResource {
     * @return Mono<ResponseEntity<IdeaDTO>>
     */
     @ApiOperation(value = "product_idea_re_counters", tags = {"需求" },  notes = "Idea-product_idea_re_counters ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Idea-product_idea_re_counters-all') or hasPermission('product',#productId,this.ideaDtoMapping.toDomain(#dto),'ibizplm-Idea-product_idea_re_counters')")
     @PostMapping("products/{productId}/ideas/{id}/product_idea_re_counters")
     public Mono<ResponseEntity<ResponseWrapper<IdeaDTO>>>productIdeaReCountersByProductIdAndId
             (@PathVariable("productId") String productId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<IdeaDTO> dto) {

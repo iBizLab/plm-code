@@ -1,7 +1,7 @@
 export default {
   openMode: 'POPOVER',
   deviewCodeName: 'quick_create_view',
-  deviewId: '832DC9B6-3C3D-435C-8F55-E564944CA4C4',
+  deviewId: '9f41b89f40830becb02c7942571d94fe',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.WORKSPACE',
@@ -262,7 +262,7 @@ export default {
     logicName: '快速建立布局面板',
     appDataEntityId: 'plmweb.workspace',
     controlParam: {},
-    modelId: 'CF65416D-C371-4A6E-9650-CE9A85C313A9',
+    modelId: '27fcf10378198b7ad6be75119872ffc9',
     modelType: 'PSSYSVIEWLAYOUTPANEL',
     name: 'layoutpanel',
     id: 'usr0521734294',
@@ -273,7 +273,7 @@ export default {
   width: 180,
   enableDP: true,
   showCaptionBar: false,
-  modelId: '4cec0c88c38637dc35ae8c99571fc708',
+  modelId: 'b903a4ccf43702e864de9c6934eeb2b1',
   modelType: 'PSAPPDEVIEW',
   name: 'workspacequick_create_view',
   id: 'plmweb.workspace_quick_create_view',

@@ -3,7 +3,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'idea_re_ticket_grid_view',
-  deviewId: '40F8DDB9-B098-482F-8F55-E7A975423144',
+  deviewId: '9d62d62a543f9f1bc89df828ebd4e124',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.RELATION',
@@ -419,15 +419,6 @@ export default {
     ],
     appViewRefs: [
       {
-        realTitle: '工作项关联编辑视图',
-        realTitleLanguageRes: {
-          lanResTag: 'PAGE.TITLE.RELATION.EDITVIEW',
-        },
-        refAppViewId: 'plmweb.relation_edit_view',
-        name: 'NEWDATA',
-        id: 'newdata',
-      },
-      {
         openMode: 'POPUPMODAL',
         navigateContexts: [
           {
@@ -448,6 +439,15 @@ export default {
         refAppViewId: 'plmweb.ticket_main_view',
         name: 'EDITDATA',
         id: 'editdata',
+      },
+      {
+        realTitle: '工作项关联编辑视图',
+        realTitleLanguageRes: {
+          lanResTag: 'PAGE.TITLE.RELATION.EDITVIEW',
+        },
+        refAppViewId: 'plmweb.relation_edit_view',
+        name: 'NEWDATA',
+        id: 'newdata',
       },
     ],
     controls: [
@@ -607,7 +607,7 @@ export default {
                     cssClass: 'fa fa-unlink',
                     glyph: 'xf127@FontAwesome',
                   },
-                  id: 'ue009d6d',
+                  id: 'ua71fcf1',
                 },
               ],
               appDataEntityId: 'plmweb.relation',
@@ -850,7 +850,7 @@ export default {
       },
     ],
     controlParam: {},
-    modelId: '15d5fd03777026f65fac4f1bd5148c7c',
+    modelId: '7597c575d366ee225faca4ad1219f7c7',
     modelType: 'PSSYSVIEWLAYOUTPANEL',
     name: 'layoutpanel',
     id: 'idea_relation_ticket_grid_view',
@@ -860,7 +860,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: false,
-  modelId: '50bc3e032b2ef3438ffd8940ab45cda1',
+  modelId: '80a4eaf71859520a75603d6b6350eab6',
   modelType: 'PSAPPDEVIEW',
   name: 'relationidea_re_ticket_grid_view',
   id: 'plmweb.relation_idea_re_ticket_grid_view',

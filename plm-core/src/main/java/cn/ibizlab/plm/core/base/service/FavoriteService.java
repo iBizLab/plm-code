@@ -174,6 +174,22 @@ public interface FavoriteService extends IService<Favorite> {
     List<Favorite> listDefault(FavoriteSearchContext context);
 
     /**
+    * fetchMyFavorite
+    * 
+    * @param context
+    * @return
+    */
+    Page<Favorite> fetchMyFavorite(FavoriteSearchContext context);
+
+    /**
+    * listMyFavorite
+    * 
+    * @param context
+    * @return
+    */
+    List<Favorite> listMyFavorite(FavoriteSearchContext context);
+
+    /**
     * findByOwnerId
     * @param ownerIds
     * @return

@@ -3,7 +3,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'release_relation_grid_view',
-  deviewId: '3BAC7BE3-922E-418E-BBD8-409AED1F8601',
+  deviewId: '97cb98344cb87f97395397fc9d218016',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.TEST_PLAN',
@@ -63,13 +63,6 @@ export default {
   ],
   appViewRefs: [
     {
-      realOpenMode: 'POPUPMODAL',
-      realTitle: '测试计划编辑视图',
-      refAppViewId: 'plmweb.test_plan_update_option_view',
-      name: 'NEWDATA',
-      id: 'newdata',
-    },
-    {
       realTitle: '测试计划数据重定向视图',
       realTitleLanguageRes: {
         lanResTag: 'PAGE.TITLE.TEST_PLAN.REDIRECTVIEW',
@@ -77,6 +70,13 @@ export default {
       refAppViewId: 'plmweb.test_plan_redirect_view',
       name: 'EDITDATA',
       id: 'editdata',
+    },
+    {
+      realOpenMode: 'POPUPMODAL',
+      realTitle: '测试计划编辑视图',
+      refAppViewId: 'plmweb.test_plan_update_option_view',
+      name: 'NEWDATA',
+      id: 'newdata',
     },
   ],
   controls: [
@@ -279,7 +279,7 @@ export default {
       controlParam: {
         id: 'grid',
       },
-      modelId: '95DADB11-6F8D-4C5B-94C5-E6124707398B',
+      modelId: '892d84ef8a083a014de3adf81de97bab',
       modelType: 'PSDEGRID',
       name: 'grid',
       id: 'plmweb.test_plan.sprint_relation_grid',
@@ -360,7 +360,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: false,
-  modelId: '8d328a37d8b84930f90bbf967f888b79',
+  modelId: '5cc10c3eb6a4d87d1d3e2183d575afd8',
   modelType: 'PSAPPDEVIEW',
   name: 'test_planrelease_relation_grid_view',
   id: 'plmweb.test_plan_release_relation_grid_view',

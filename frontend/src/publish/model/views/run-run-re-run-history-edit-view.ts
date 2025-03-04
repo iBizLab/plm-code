@@ -4,7 +4,7 @@ export default {
   xdataControlName: 'form',
   loadDefault: true,
   deviewCodeName: 'run_re_run_history_edit_view',
-  deviewId: 'b27c627dd1f1f3d2fbb99574210a9c79',
+  deviewId: '3c29b7cdec10b4faad0e77b2a8898af3',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.RUN',
@@ -715,7 +715,7 @@ export default {
   viewType: 'DEEDITVIEW',
   enableDP: true,
   showCaptionBar: false,
-  modelId: '9b84dcd702ead24f61f704853cffa443',
+  modelId: '39d1c0831d2eed2fecd484cac5e30d1d',
   modelType: 'PSAPPDEVIEW',
   name: 'runrun_re_run_history_edit_view',
   id: 'plmweb.run_run_re_run_history_edit_view',

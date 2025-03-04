@@ -163,6 +163,17 @@ public abstract class AbstractDiscussReplyService extends ServiceImpl<DiscussRep
         return list;
    }
 	
+   public Page<DiscussReply> fetchMyAllReply(DiscussReplySearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<DiscussReply> pages=baseMapper.searchMyAllReply(context.getPages(),context,context.getSelectCond());
+        List<DiscussReply> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<DiscussReply> listMyAllReply(DiscussReplySearchContext context) {
+        List<DiscussReply> list = baseMapper.listMyAllReply(context,context.getSelectCond());
+        return list;
+   }
+	
    public Page<DiscussReply> fetchMyReply(DiscussReplySearchContext context) {
         if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
             context.setSort("CREATE_TIME,DESC");
@@ -269,6 +280,7 @@ public abstract class AbstractDiscussReplyService extends ServiceImpl<DiscussRep
             }
             if(!ObjectUtils.isEmpty(discussPost)) {
                 et.setDiscussName(discussPost.getName());
+                et.setTopicId(discussPost.getTopicId());
                 et.setPostId(discussPost.getId());
             }
         }

@@ -1,0 +1,80 @@
+export default {
+  deviewCodeName: 'modeling_custome_view',
+  deviewId: '1b798b9bb94ee8a72046784f81b32642',
+  accUserMode: 2,
+  capLanguageRes: {
+    lanResTag: 'DE.LNAME.RECENT',
+  },
+  caption: '最近访问',
+  codeName: 'recent_modeling_custome_view',
+  appDataEntityId: 'plmweb.recent',
+  viewLayoutPanel: {
+    viewProxyMode: true,
+    layoutMode: 'FLEX',
+    layout: {
+      layout: 'FLEX',
+    },
+    rootPanelItems: [
+      {
+        actionGroupExtractMode: 'ITEM',
+        layout: {
+          dir: 'column',
+          layout: 'FLEX',
+        },
+        dataRegionType: 'INHERIT',
+        itemStyle: 'DEFAULT',
+        itemType: 'CONTAINER',
+        layoutPos: {
+          shrink: 1,
+          layout: 'FLEX',
+        },
+        id: 'page_container',
+      },
+    ],
+    layoutPanel: true,
+    appViewLogics: [
+      {
+        eventNames: 'onMounted',
+        logicTrigger: 'VIEWEVENT',
+        logicType: 'SCRIPT',
+        scriptCode:
+          "console.log('进行跳转')\r\nwindow.open('http://plm.ibizlab.cn/modeling/start/', '_self');",
+        builtinLogic: true,
+        name: 'LOGIC',
+        id: 'logic',
+      },
+    ],
+    controls: [
+      {
+        capLanguageRes: {
+          lanResTag: 'DE.LNAME.RECENT',
+        },
+        caption: '最近访问',
+        codeName: 'modeling_custome_view_captionbar',
+        controlType: 'CAPTIONBAR',
+        appDataEntityId: 'plmweb.recent',
+        controlParam: {},
+        name: 'captionbar',
+        id: 'modeling_custome_view_captionbar',
+      },
+    ],
+    codeName: 'usr0109814488',
+    controlType: 'VIEWLAYOUTPANEL',
+    logicName: 'modeling跳转自定义视图布局面板',
+    appDataEntityId: 'plmweb.recent',
+    controlParam: {},
+    modelId: 'ca322b686c52c77158fb5f8d7ec28df6',
+    modelType: 'PSSYSVIEWLAYOUTPANEL',
+    name: 'layoutpanel',
+    id: 'usr0109814488',
+  },
+  title: 'modeling跳转',
+  viewStyle: 'DEFAULT',
+  viewType: 'DECUSTOMVIEW',
+  enableDP: true,
+  showCaptionBar: true,
+  modelId: '633d7d4340cd1707f277215ad4ccb518',
+  modelType: 'PSAPPDEVIEW',
+  name: 'recentmodeling_custome_view',
+  id: 'plmweb.recent_modeling_custome_view',
+};

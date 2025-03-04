@@ -5,7 +5,7 @@ export default {
   loadDefault: true,
   funcViewMode: 'EDITVIEW',
   deviewCodeName: 'EditView',
-  deviewId: '13a04c3422e002a96f0bdb74835e0ba0',
+  deviewId: 'd0da4535997ca5de8f9a8c9297dd3838',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.LOGIN_LOG',
@@ -234,7 +234,7 @@ export default {
       controlParam: {
         id: 'form',
       },
-      modelId: 'dee7327cb6450a8b74ed6c3c773a39e3',
+      modelId: '0635ebb4bcf9454704b0a60ef666eff1',
       modelType: 'PSDEFORM_EDITFORM',
       name: 'form',
       id: 'plmweb.login_log.main',
@@ -281,7 +281,7 @@ export default {
   viewType: 'DEEDITVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: 'ccb8e4589659e47296eb89e6473a8df3',
+  modelId: '52ad01aaf10b8d6f1882ecfd4cf72045',
   modelType: 'PSAPPDEVIEW',
   name: 'login_logEditView',
   id: 'plmweb.login_log_edit_view',

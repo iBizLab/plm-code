@@ -216,6 +216,17 @@ export default {
     ],
     appViewLogics: [
       {
+        eventNames: 'onLoadSuccess',
+        logicTrigger: 'VIEWEVENT',
+        logicType: 'APPDEUILOGIC',
+        appDEUILogicId: 'idea_comment_visible',
+        appDataEntityId: 'plmweb.idea',
+        ctrlName: 'list',
+        builtinLogic: true,
+        name: 'LOGIC',
+        id: 'logic',
+      },
+      {
         logicTrigger: 'CUSTOM',
         logicType: 'APPUILOGIC',
         builtinAppUILogic: {
@@ -557,7 +568,6 @@ export default {
                             },
                           ],
                           logicType: 'GROUP',
-                          id: '面板成员[container3][面板显示]逻辑',
                         },
                       ],
                       sysCss: {
@@ -599,7 +609,7 @@ export default {
           logicName: 'list_read列表项面板',
           appDataEntityId: 'plmweb.comment',
           controlParam: {},
-          modelId: 'F37089BE-4991-40D5-B9A8-7C887BDA38A6',
+          modelId: '1b67335d60e75806808140f11e9df88b',
           modelType: 'PSSYSVIEWPANEL',
           name: 'list_itempanel',
           id: 'plmweb.comment.list_read',
@@ -608,21 +618,19 @@ export default {
         minorSortAppDEFieldId: 'create_time',
         delistDataItems: [
           {
-            appDEFieldId: 'pcreate_man',
-            frontCodeListId: 'plmweb.sysoperator',
-            dataType: 25,
-            id: 'pcreate_man',
+            appDEFieldId: 'content',
+            dataType: 21,
+            id: 'content',
           },
           {
-            appDEFieldId: 'pid',
-            dataType: 25,
-            id: 'pid',
+            appDEFieldId: 'pcontent',
+            dataType: 21,
+            id: 'pcontent',
           },
           {
-            appDEFieldId: 'create_time',
-            dataType: 5,
-            format: 'YYYY-MM-DD HH:mm:ss',
-            id: 'create_time',
+            appDEFieldId: 'id',
+            dataType: 25,
+            id: 'id',
           },
           {
             appDEFieldId: 'create_man',
@@ -631,19 +639,21 @@ export default {
             id: 'create_man',
           },
           {
-            appDEFieldId: 'content',
-            dataType: 21,
-            id: 'content',
+            appDEFieldId: 'create_time',
+            dataType: 5,
+            format: 'YYYY-MM-DD HH:mm:ss',
+            id: 'create_time',
           },
           {
-            appDEFieldId: 'id',
+            appDEFieldId: 'pid',
             dataType: 25,
-            id: 'id',
+            id: 'pid',
           },
           {
-            appDEFieldId: 'pcontent',
-            dataType: 21,
-            id: 'pcontent',
+            appDEFieldId: 'pcreate_man',
+            frontCodeListId: 'plmweb.sysoperator',
+            dataType: 25,
+            id: 'pcreate_man',
           },
           {
             appDEFieldId: 'id',

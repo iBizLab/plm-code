@@ -371,7 +371,7 @@ export default {
     logicName: 'main_view分页导航视图布局面板',
     appDataEntityId: 'plmweb.release',
     controlParam: {},
-    modelId: '0C3706D6-E3B7-4B48-AB26-1A975F8607D2',
+    modelId: '7fe2c72e130c231fa2219819e0ef3430',
     modelType: 'PSSYSVIEWLAYOUTPANEL',
     name: 'layoutpanel',
     id: 'usr0530787475',

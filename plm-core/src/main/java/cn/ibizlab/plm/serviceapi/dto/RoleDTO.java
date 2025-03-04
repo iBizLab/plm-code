@@ -36,19 +36,27 @@ public class RoleDTO extends DTOBase implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
-     * 角色代码标记
+     * 角色标识
      */
     @JsonProperty("authority")
     @JSONField(name = "authority")
-    @ApiModelProperty(value = "角色代码标记", position = 0)
+    @ApiModelProperty(value = "角色标识", position = 0)
     private String authority;
+
+    /**
+     * 描述
+     */
+    @JsonProperty("description")
+    @JSONField(name = "description")
+    @ApiModelProperty(value = "描述", position = 1)
+    private String description;
 
     /**
      * 建立人
      */
     @JsonProperty("create_man")
     @JSONField(name = "create_man")
-    @ApiModelProperty(value = "建立人", position = 1)
+    @ApiModelProperty(value = "建立人", position = 2)
     private String createMan;
 
     /**
@@ -57,7 +65,7 @@ public class RoleDTO extends DTOBase implements Serializable {
     @JsonProperty("create_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "create_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "建立时间", position = 2)
+    @ApiModelProperty(value = "建立时间", position = 3)
     private Date createTime;
 
     /**
@@ -65,7 +73,7 @@ public class RoleDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("dc_system_id")
     @JSONField(name = "dc_system_id")
-    @ApiModelProperty(value = "租户系统标识", position = 3)
+    @ApiModelProperty(value = "租户系统标识", position = 4)
     private String dcSystemId;
 
     /**
@@ -73,7 +81,7 @@ public class RoleDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("global_flag")
     @JSONField(name = "global_flag")
-    @ApiModelProperty(value = "全局标记", position = 4)
+    @ApiModelProperty(value = "全局标记", position = 5)
     private Integer globalFlag;
 
     /**
@@ -81,15 +89,15 @@ public class RoleDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("id")
     @JSONField(name = "id")
-    @ApiModelProperty(value = "标识", position = 5)
+    @ApiModelProperty(value = "标识", position = 6)
     private String id;
 
     /**
-     * 名称
+     * 角色名称
      */
     @JsonProperty("name")
     @JSONField(name = "name")
-    @ApiModelProperty(value = "名称", position = 6)
+    @ApiModelProperty(value = "角色名称", position = 7)
     private String name;
 
     /**
@@ -97,7 +105,7 @@ public class RoleDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("update_man")
     @JSONField(name = "update_man")
-    @ApiModelProperty(value = "更新人", position = 7)
+    @ApiModelProperty(value = "更新人", position = 8)
     private String updateMan;
 
     /**
@@ -106,16 +114,25 @@ public class RoleDTO extends DTOBase implements Serializable {
     @JsonProperty("update_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "update_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "更新时间", position = 8)
+    @ApiModelProperty(value = "更新时间", position = 9)
     private Date updateTime;
 
 
     /**
-     * 设置 [角色代码标记]
+     * 设置 [角色标识]
      */
     public RoleDTO setAuthority(String authority) {
         this.authority = authority;
         this.modify("authority", authority);
+        return this;
+    }
+
+    /**
+     * 设置 [描述]
+     */
+    public RoleDTO setDescription(String description) {
+        this.description = description;
+        this.modify("description", description);
         return this;
     }
 
@@ -138,7 +155,7 @@ public class RoleDTO extends DTOBase implements Serializable {
     }
 
     /**
-     * 设置 [名称]
+     * 设置 [角色名称]
      */
     public RoleDTO setName(String name) {
         this.name = name;

@@ -66,6 +66,13 @@ export default {
   ],
   appViewRefs: [
     {
+      realOpenMode: 'POPUPMODAL',
+      realTitle: '话题信息展示视图',
+      refAppViewId: 'plmweb.discuss_topic_show_edit_view',
+      name: 'EDITDATA',
+      id: 'editdata',
+    },
+    {
       realTitle: '话题编辑视图',
       realTitleLanguageRes: {
         lanResTag: 'PAGE.TITLE.DISCUSS_TOPIC.EDITVIEW',
@@ -73,13 +80,6 @@ export default {
       refAppViewId: 'plmweb.discuss_topic_edit_view',
       name: 'NEWDATA',
       id: 'newdata',
-    },
-    {
-      realOpenMode: 'POPUPMODAL',
-      realTitle: '话题信息展示视图',
-      refAppViewId: 'plmweb.discuss_topic_show_edit_view',
-      name: 'EDITDATA',
-      id: 'editdata',
     },
   ],
   controls: [
@@ -167,7 +167,7 @@ export default {
                   cssClass: 'fa fa-lightbulb-o',
                   glyph: 'xf0eb@FontAwesome',
                 },
-                id: 'u61f4bb2',
+                id: 'u5574ccd',
               },
               {
                 actionLevel: 100,
@@ -181,7 +181,7 @@ export default {
                   cssClass: 'fa fa-trash-o',
                   glyph: 'xf014@FontAwesome',
                 },
-                id: 'u0c3fff9',
+                id: 'u4a506d8',
               },
             ],
             appDataEntityId: 'plmweb.discuss_topic',
@@ -300,7 +300,7 @@ export default {
         },
         id: 'tabsearchbar',
       },
-      modelId: '434BF532-5BEB-4CF8-9187-0F909A41F7FC',
+      modelId: '01bc411277100d02f486c97e6916e2db',
       modelType: 'PSSYSSEARCHBAR',
       name: 'tabsearchbar',
       id: 'plmweb.discuss_topic.query_search_bar',

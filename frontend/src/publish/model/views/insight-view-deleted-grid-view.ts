@@ -167,7 +167,7 @@ export default {
                   cssClass: 'fa fa-refresh',
                   glyph: 'xf021@FontAwesome',
                 },
-                id: 'uf87d727',
+                id: 'udf580bb',
               },
             ],
             appDataEntityId: 'plmweb.insight_view',
@@ -305,7 +305,7 @@ export default {
       controlParam: {
         id: 'searchform',
       },
-      modelId: 'bab3a1edb20820991765e185a33d0565',
+      modelId: '3e935d87b177a8f6c290a70d16cc0e4e',
       modelType: 'PSDEFORM_SEARCHFORM',
       name: 'searchform',
       id: 'plmweb.insight_view.default',

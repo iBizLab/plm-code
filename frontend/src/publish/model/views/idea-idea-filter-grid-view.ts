@@ -3,7 +3,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'idea_filter_grid_view',
-  deviewId: '0A343F70-6E99-46FA-ABB4-9B12B247AA96',
+  deviewId: 'cc80b6d4c6a8bf83699025b550bb2dcf',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.IDEA',
@@ -269,16 +269,6 @@ export default {
     ],
     appViewRefs: [
       {
-        realOpenMode: 'POPUPMODAL',
-        realTitle: '需求编辑视图',
-        realTitleLanguageRes: {
-          lanResTag: 'PAGE.TITLE.IDEA.EDITVIEW',
-        },
-        refAppViewId: 'plmweb.idea_edit_view',
-        name: 'NEWDATA',
-        id: 'newdata',
-      },
-      {
         navigateContexts: [
           {
             key: 'PRODUCT',
@@ -296,6 +286,16 @@ export default {
         name: 'EDITDATA',
         id: 'editdata',
       },
+      {
+        realOpenMode: 'POPUPMODAL',
+        realTitle: '需求编辑视图',
+        realTitleLanguageRes: {
+          lanResTag: 'PAGE.TITLE.IDEA.EDITVIEW',
+        },
+        refAppViewId: 'plmweb.idea_edit_view',
+        name: 'NEWDATA',
+        id: 'newdata',
+      },
     ],
     controls: [
       {
@@ -307,7 +307,7 @@ export default {
         controlParam: {
           id: 'toolbar',
         },
-        modelId: '0E89CBD3-518C-4DF7-82DD-DAF98965E6E1',
+        modelId: '1b02e5b6dfbd70b36aed9cfa902fb24c',
         modelType: 'PSDETOOLBAR',
         name: 'toolbar',
         id: 'idea_filter_grid_view_toolbar',
@@ -753,7 +753,7 @@ export default {
         controlParam: {
           id: 'grid',
         },
-        modelId: '5DE6263D-64E0-4598-A76E-0E5AFD4DA560',
+        modelId: 'fade62dc22b23260560e32769ab94089',
         modelType: 'PSDEGRID',
         name: 'grid',
         id: 'plmweb.idea.idea_filter_grid_view_grid',
@@ -1634,7 +1634,7 @@ export default {
     logicName: 'idea_filter_grid_view表格视图布局',
     appDataEntityId: 'plmweb.idea',
     controlParam: {},
-    modelId: '996A9FF8-C894-4D53-960B-E6C74B640111',
+    modelId: 'c834892c5738dd41ddf0f9d0d0021c35',
     modelType: 'PSSYSVIEWLAYOUTPANEL',
     name: 'layoutpanel',
     id: 'usr0813584713',
@@ -1644,7 +1644,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: false,
-  modelId: '8529599a0d64015307bcb29abb597143',
+  modelId: '4bc861ed7f598fca40cc8bd4f4936af9',
   modelType: 'PSAPPDEVIEW',
   name: 'ideaidea_filter_grid_view',
   id: 'plmweb.idea_idea_filter_grid_view',

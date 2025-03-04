@@ -122,6 +122,21 @@ export default {
                 actionGroupExtractMode: 'ITEM',
                 panelItems: [
                   {
+                    rawItem: {
+                      predefinedType: 'COOP_POS',
+                      id: 'coop_pos',
+                    },
+                    caption: '协同编辑消息占位',
+                    itemStyle: 'DEFAULT',
+                    itemType: 'RAWITEM',
+                    layoutPos: {
+                      shrink: 1,
+                      layout: 'FLEX',
+                    },
+                    showCaption: true,
+                    id: 'coop_pos',
+                  },
+                  {
                     caption: '工具栏',
                     itemStyle: 'DEFAULT',
                     itemType: 'CTRLPOS',
@@ -325,7 +340,6 @@ export default {
                                       },
                                     ],
                                     logicType: 'GROUP',
-                                    id: '面板成员[comment_cancel][面板显示]逻辑',
                                   },
                                 ],
                                 showCaption: true,
@@ -362,7 +376,6 @@ export default {
                                       },
                                     ],
                                     logicType: 'GROUP',
-                                    id: '面板成员[comment_send][面板显示]逻辑',
                                   },
                                 ],
                                 showCaption: true,
@@ -1039,7 +1052,7 @@ export default {
         controlParam: {
           id: 'toolbar',
         },
-        modelId: '48F1FF6E-3D55-47FD-AFC7-FC003964DAA0',
+        modelId: '864ec3ce4448e60275aa7de69bf05331',
         modelType: 'PSDETOOLBAR',
         name: 'toolbar',
         id: 'main_view_toolbar',
@@ -4233,7 +4246,7 @@ export default {
       },
     ],
     controlParam: {},
-    modelId: 'ad9a020bf2d3dfa6df3a5364ab522c72',
+    modelId: 'bd20622ecedd07a0537ca9ad897b2a18',
     modelType: 'PSSYSVIEWLAYOUTPANEL',
     name: 'layoutpanel',
     id: 'work_item_main_view',

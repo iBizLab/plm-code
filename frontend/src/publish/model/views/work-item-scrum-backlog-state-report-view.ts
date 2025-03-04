@@ -2,7 +2,7 @@ export default {
   enableSearch: true,
   loadDefault: true,
   deviewCodeName: 'scrum_backlog_state_report_view',
-  deviewId: 'e04188e08764e856353f27ade39e1c35',
+  deviewId: 'f46a260dd2da2907b0ad07516e04c028',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.WORK_ITEM',
@@ -594,7 +594,7 @@ export default {
   viewType: 'DECHARTVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '64c4e5e4b7e57d4cb306eb114591fc0c',
+  modelId: 'bb70b7f5cfa47aa36d326f9edb50eeee',
   modelType: 'PSAPPDEVIEW',
   name: 'work_itemscrum_backlog_state_report_view',
   id: 'plmweb.work_item_scrum_backlog_state_report_view',

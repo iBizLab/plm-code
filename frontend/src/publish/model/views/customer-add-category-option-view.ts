@@ -4,7 +4,7 @@ export default {
   loadDefault: true,
   openMode: 'POPUPMODAL',
   deviewCodeName: 'add_category_option_view',
-  deviewId: '1b9298919d58db9474289ee035514549',
+  deviewId: '5bf256dc84b8149945b431c5516d8ce1',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.CUSTOMER',
@@ -233,7 +233,7 @@ export default {
   width: 300,
   enableDP: true,
   showCaptionBar: true,
-  modelId: 'f36102ec7cd3110845b50becc26326ea',
+  modelId: '39ed1a3cddbe281582a4c54d006642ce',
   modelType: 'PSAPPDEVIEW',
   name: 'customeradd_category_option_view',
   id: 'plmweb.customer_add_category_option_view',

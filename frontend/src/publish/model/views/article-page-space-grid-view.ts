@@ -3,7 +3,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'space_grid_view',
-  deviewId: '220EC397-4014-4E8E-963C-A36A50D3365E',
+  deviewId: '9ae8db2a028e38f1e2400512e36b175a',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.PAGE',
@@ -349,8 +349,7 @@ export default {
       {
         openMode: 'INDEXVIEWTAB_POPUPMODAL',
         realOpenMode: 'INDEXVIEWTAB_POPUPMODAL',
-        realTitle:
-          '页面http://172.16.220.130:30080/mosdynamictool/mos-dynamic-mgr/assets/svg/design-save.svg',
+        realTitle: '页面',
         refAppViewId: 'plmweb.article_page_show_view',
         name: 'EDITDATA',
         id: 'editdata',
@@ -398,7 +397,7 @@ export default {
         controlParam: {
           id: 'toolbar',
         },
-        modelId: '3FA4940B-5A3D-4E6A-B867-5B7CC8D32FEF',
+        modelId: '29bce22279e9edd86175122832fd4795',
         modelType: 'PSDETOOLBAR',
         name: 'toolbar',
         id: 'space_grid_view_toolbar',
@@ -544,7 +543,7 @@ export default {
         controlParam: {
           id: 'grid',
         },
-        modelId: '85C5C82E-925F-4569-A70E-36C9A6B6657F',
+        modelId: 'd7e7bc59a024913dd96a5ecb2ebe6c4d',
         modelType: 'PSDEGRID',
         name: 'grid',
         id: 'plmweb.article_page.space_grid_view_grid',
@@ -579,7 +578,7 @@ export default {
         controlParam: {
           id: 'searchform',
         },
-        modelId: '521D0EC5-EA1D-481C-9192-F86B078C2EB6',
+        modelId: '8c888248068cee088004f779b298d06f',
         modelType: 'PSDEFORM_SEARCHFORM',
         name: 'searchform',
         id: 'plmweb.article_page.space_grid_view_search_form',
@@ -611,7 +610,7 @@ export default {
     logicName: 'space_grid_view表格视图布局',
     appDataEntityId: 'plmweb.article_page',
     controlParam: {},
-    modelId: '931C8D92-FA85-468C-B725-63F017A64632',
+    modelId: 'bd4575e8efa4797bb82e1fe40f52c1c0',
     modelType: 'PSSYSVIEWLAYOUTPANEL',
     name: 'layoutpanel',
     id: 'usr1112959321',
@@ -621,7 +620,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '7133ae91b919a553bef37fc9c678649e',
+  modelId: 'c5360205e9c982b16bf55eb48cf2e024',
   modelType: 'PSAPPDEVIEW',
   name: 'article_pagespace_grid_view',
   id: 'plmweb.article_page_space_grid_view',

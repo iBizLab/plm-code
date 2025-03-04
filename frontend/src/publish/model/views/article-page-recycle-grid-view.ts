@@ -66,14 +66,6 @@ export default {
   ],
   appViewRefs: [
     {
-      openMode: 'INDEXVIEWTAB_POPUPMODAL',
-      realOpenMode: 'INDEXVIEWTAB_POPUPMODAL',
-      realTitle: '页面',
-      refAppViewId: 'plmweb.article_page_model_show_view',
-      name: 'EDITDATA',
-      id: 'editdata',
-    },
-    {
       realTitle: '页面编辑视图',
       realTitleLanguageRes: {
         lanResTag: 'PAGE.TITLE.PAGE.EDITVIEW',
@@ -81,6 +73,14 @@ export default {
       refAppViewId: 'plmweb.article_page_edit_view',
       name: 'NEWDATA',
       id: 'newdata',
+    },
+    {
+      openMode: 'INDEXVIEWTAB_POPUPMODAL',
+      realOpenMode: 'INDEXVIEWTAB_POPUPMODAL',
+      realTitle: '页面',
+      refAppViewId: 'plmweb.article_page_model_show_view',
+      name: 'EDITDATA',
+      id: 'editdata',
     },
   ],
   controls: [
@@ -305,7 +305,7 @@ export default {
           controlParam: {
             id: 'grid_batchtoolbar',
           },
-          modelId: '594F8D0A-00A5-4FF3-9F3F-884821D0F279',
+          modelId: '9d9c0f4b48f522855e9d9225f8ed1644',
           modelType: 'PSDETOOLBAR',
           name: 'grid_batchtoolbar',
           id: 'recycle_grid_view_grid_batchtoolbar',

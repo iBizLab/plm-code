@@ -3,7 +3,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'index_my_created_grid_view',
-  deviewId: 'b14d3a4fd741daa7329b28cde5f3adab',
+  deviewId: 'c66002d06f75986965666821a0878816',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.WORK_ITEM',
@@ -408,6 +408,15 @@ export default {
     ],
     appViewRefs: [
       {
+        realTitle: '工作项编辑视图',
+        realTitleLanguageRes: {
+          lanResTag: 'PAGE.TITLE.WORK_ITEM.EDITVIEW',
+        },
+        refAppViewId: 'plmweb.work_item_edit_view',
+        name: 'NEWDATA',
+        id: 'newdata',
+      },
+      {
         openMode: 'INDEXVIEWTAB_POPUPMODAL',
         navigateContexts: [
           {
@@ -441,15 +450,6 @@ export default {
         refAppViewId: 'plmweb.work_item_dyna_main_view',
         name: 'EDITDATA',
         id: 'editdata',
-      },
-      {
-        realTitle: '工作项编辑视图',
-        realTitleLanguageRes: {
-          lanResTag: 'PAGE.TITLE.WORK_ITEM.EDITVIEW',
-        },
-        refAppViewId: 'plmweb.work_item_edit_view',
-        name: 'NEWDATA',
-        id: 'newdata',
       },
     ],
     controls: [
@@ -751,7 +751,7 @@ export default {
         controlParam: {
           id: 'toolbar',
         },
-        modelId: 'E057D46C-BE29-45F5-B8D0-333D73829CC1',
+        modelId: '34bc1e081b196c96d2c776c1c27dfe72',
         modelType: 'PSDETOOLBAR',
         name: 'toolbar',
         id: 'index_my_created_grid_view_toolbar',
@@ -783,7 +783,7 @@ export default {
     logicName: 'index_my_created_grid_view表格视图布局',
     appDataEntityId: 'plmweb.work_item',
     controlParam: {},
-    modelId: '9D921D19-FD6D-45BF-854D-93DBB8B267B2',
+    modelId: 'da47ce49cfa82a22b9e78c6ab30ccfcc',
     modelType: 'PSSYSVIEWLAYOUTPANEL',
     name: 'layoutpanel',
     id: 'usr1127548022',
@@ -793,7 +793,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '61884f67c8b19e590b780153a8b361a9',
+  modelId: '87d9cd4709da8c5cdb02f36c4d223593',
   modelType: 'PSAPPDEVIEW',
   name: 'work_itemindex_my_created_grid_view',
   id: 'plmweb.work_item_index_my_created_grid_view',

@@ -4,7 +4,7 @@ export default {
   loadDefault: true,
   openMode: 'POPUPMODAL',
   deviewCodeName: 'product_tag_confirm_remove_view',
-  deviewId: '7db6d41c5ce292b633b01ed662302477',
+  deviewId: 'c7b575ee6f261f84478d44c5b6bf1968',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.PRODUCT_TAG',
@@ -264,7 +264,7 @@ export default {
       sysCss: {
         cssName: 'confirm-remove-view',
       },
-      modelId: '6992e949302c7039d254aa7f5a6f8aa4',
+      modelId: 'e8107245573baf6840a3a9c6021963d5',
       modelType: 'PSDEFORM_EDITFORM',
       name: 'form',
       id: 'plmweb.product_tag.product_tag_remove_view_form',
@@ -309,7 +309,7 @@ export default {
   width: 650,
   enableDP: true,
   showCaptionBar: true,
-  modelId: '46dd66485a14b98e60b0816d0f4ea1ab',
+  modelId: '260fba8fb9ec432ee3e61bd0ab8641c8',
   modelType: 'PSAPPDEVIEW',
   name: 'product_tagproduct_tag_confirm_remove_view',
   id: 'plmweb.product_tag_product_tag_confirm_remove_view',

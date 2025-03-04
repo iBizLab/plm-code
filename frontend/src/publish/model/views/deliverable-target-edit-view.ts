@@ -5,7 +5,7 @@ export default {
   loadDefault: true,
   openMode: 'POPUPMODAL',
   deviewCodeName: 'target_edit_view',
-  deviewId: '53E83C4A-6784-4347-B119-F674294B8954',
+  deviewId: 'bc66b51ab63e39478c9afdd400fc8287',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.DELIVERABLE',
@@ -203,7 +203,7 @@ export default {
   width: 600,
   enableDP: true,
   showCaptionBar: true,
-  modelId: 'f9d4a90eb2179ca21d866fbb011c593b',
+  modelId: 'fc1cfaebf965ee45b450bf96c56063f1',
   modelType: 'PSAPPDEVIEW',
   name: 'deliverabletarget_edit_view',
   id: 'plmweb.deliverable_target_edit_view',

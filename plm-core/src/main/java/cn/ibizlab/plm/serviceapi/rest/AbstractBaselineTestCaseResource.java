@@ -170,6 +170,7 @@ public abstract class AbstractBaselineTestCaseResource {
     * @return Mono<ResponseEntity<BaselineTestCaseDTO>>
     */
     @ApiOperation(value = "shift_in_baseline", tags = {"基线用例" },  notes = "BaselineTestCase-shift_in_baseline ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-BaselineTestCase-shift_in_baseline-all') or hasPermission(this.baselineTestCaseDtoMapping.toDomain(#dto),'ibizplm-BaselineTestCase-shift_in_baseline')")
     @PostMapping("baseline_test_cases/shift_in_baseline")
     public Mono<ResponseEntity<ResponseWrapper<BaselineTestCaseDTO>>>shiftInBaseline
             (@Validated @RequestBody RequestWrapper<BaselineTestCaseDTO> dto) {
@@ -199,18 +200,22 @@ public abstract class AbstractBaselineTestCaseResource {
     * shift_out_baseline 基线用例
     * 
     *
+    * @param id id
     * @param dto dto
     * @return Mono<ResponseEntity<BaselineTestCaseDTO>>
     */
     @ApiOperation(value = "shift_out_baseline", tags = {"基线用例" },  notes = "BaselineTestCase-shift_out_baseline ")
-    @PostMapping("baseline_test_cases/shift_out_baseline")
-    public Mono<ResponseEntity<ResponseWrapper<BaselineTestCaseDTO>>>shiftOutBaseline
-            (@Validated @RequestBody RequestWrapper<BaselineTestCaseDTO> dto) {
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-BaselineTestCase-shift_out_baseline-all') or hasPermission(this.baselineTestCaseDtoMapping.toDomain(#dto),'ibizplm-BaselineTestCase-shift_out_baseline')")
+    @PostMapping("baseline_test_cases/{id}/shift_out_baseline")
+    public Mono<ResponseEntity<ResponseWrapper<BaselineTestCaseDTO>>>shiftOutBaselineById
+            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<BaselineTestCaseDTO> dto) {
         ResponseWrapper<BaselineTestCaseDTO> rt = new ResponseWrapper<>();
-        if (dto.isArray())
-            dto.getList().forEach(item -> rt.add(shiftOutBaseline(item)));
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(shiftOutBaselineById(ids[i], dto.getList().get(i))));
+        }
         else
-            rt.set(shiftOutBaseline(dto.getDto()));
+            rt.set(shiftOutBaselineById(id, dto.getDto()));
         return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
@@ -218,12 +223,14 @@ public abstract class AbstractBaselineTestCaseResource {
     * shift_out_baseline 基线用例
     * 
     *
+    * @param id id
     * @param dto dto
     * @return ResponseEntity<BaselineTestCaseDTO>
     */   
-    public BaselineTestCaseDTO shiftOutBaseline
-            (BaselineTestCaseDTO dto) {
+    public BaselineTestCaseDTO shiftOutBaselineById
+            (String id, BaselineTestCaseDTO dto) {
         BaselineTestCase domain = baselineTestCaseDtoMapping.toDomain(dto);
+        domain.setId(id);
         BaselineTestCase rt = baselineTestCaseService.shiftOutBaseline(domain);
         return baselineTestCaseDtoMapping.toDto(rt);
     }
@@ -363,6 +370,7 @@ public abstract class AbstractBaselineTestCaseResource {
     * @return Mono<ResponseEntity<BaselineTestCaseDTO>>
     */
     @ApiOperation(value = "shift_in_baseline", tags = {"基线用例" },  notes = "BaselineTestCase-shift_in_baseline ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-BaselineTestCase-shift_in_baseline-all') or hasPermission('library',#ownerId,this.baselineTestCaseDtoMapping.toDomain(#dto),'ibizplm-BaselineTestCase-shift_in_baseline')")
     @PostMapping("libraries/{ownerId}/baselines/{principalId}/baseline_test_cases/shift_in_baseline")
     public Mono<ResponseEntity<ResponseWrapper<BaselineTestCaseDTO>>>shiftInBaselineByOwnerIdAndPrincipalId
             (@PathVariable("ownerId") String ownerId, @PathVariable("principalId") String principalId, @Validated @RequestBody RequestWrapper<BaselineTestCaseDTO> dto) {
@@ -397,18 +405,22 @@ public abstract class AbstractBaselineTestCaseResource {
     *
     * @param ownerId ownerId
     * @param principalId principalId
+    * @param id id
     * @param dto dto
     * @return Mono<ResponseEntity<BaselineTestCaseDTO>>
     */
     @ApiOperation(value = "shift_out_baseline", tags = {"基线用例" },  notes = "BaselineTestCase-shift_out_baseline ")
-    @PostMapping("libraries/{ownerId}/baselines/{principalId}/baseline_test_cases/shift_out_baseline")
-    public Mono<ResponseEntity<ResponseWrapper<BaselineTestCaseDTO>>>shiftOutBaselineByOwnerIdAndPrincipalId
-            (@PathVariable("ownerId") String ownerId, @PathVariable("principalId") String principalId, @Validated @RequestBody RequestWrapper<BaselineTestCaseDTO> dto) {
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-BaselineTestCase-shift_out_baseline-all') or hasPermission('library',#ownerId,this.baselineTestCaseDtoMapping.toDomain(#dto),'ibizplm-BaselineTestCase-shift_out_baseline')")
+    @PostMapping("libraries/{ownerId}/baselines/{principalId}/baseline_test_cases/{id}/shift_out_baseline")
+    public Mono<ResponseEntity<ResponseWrapper<BaselineTestCaseDTO>>>shiftOutBaselineByOwnerIdAndPrincipalIdAndId
+            (@PathVariable("ownerId") String ownerId, @PathVariable("principalId") String principalId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<BaselineTestCaseDTO> dto) {
         ResponseWrapper<BaselineTestCaseDTO> rt = new ResponseWrapper<>();
-        if (dto.isArray())
-            dto.getList().forEach(item -> rt.add(shiftOutBaselineByOwnerIdAndPrincipalId(ownerId, principalId, item)));
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(shiftOutBaselineByOwnerIdAndPrincipalIdAndId(ownerId, principalId, ids[i], dto.getList().get(i))));
+        }
         else
-            rt.set(shiftOutBaselineByOwnerIdAndPrincipalId(ownerId, principalId, dto.getDto()));
+            rt.set(shiftOutBaselineByOwnerIdAndPrincipalIdAndId(ownerId, principalId, id, dto.getDto()));
         return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
@@ -418,13 +430,14 @@ public abstract class AbstractBaselineTestCaseResource {
     *
     * @param ownerId ownerId
     * @param principalId principalId
+    * @param id id
     * @param dto dto
     * @return ResponseEntity<BaselineTestCaseDTO>
     */   
-    public BaselineTestCaseDTO shiftOutBaselineByOwnerIdAndPrincipalId
-            (String ownerId, String principalId, BaselineTestCaseDTO dto) {
+    public BaselineTestCaseDTO shiftOutBaselineByOwnerIdAndPrincipalIdAndId
+            (String ownerId, String principalId, String id, BaselineTestCaseDTO dto) {
         BaselineTestCase domain = baselineTestCaseDtoMapping.toDomain(dto);
-        domain.setPrincipalId(principalId);
+        domain.setId(id);
         BaselineTestCase rt = baselineTestCaseService.shiftOutBaseline(domain);
         return baselineTestCaseDtoMapping.toDto(rt);
     }

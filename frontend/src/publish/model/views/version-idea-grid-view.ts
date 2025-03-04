@@ -494,7 +494,7 @@ export default {
                     cssClass: 'fa fa-edit',
                     glyph: 'xf044@FontAwesome',
                   },
-                  id: 'ua99aa07',
+                  id: 'u454386e',
                 },
                 {
                   actionLevel: 100,
@@ -509,7 +509,7 @@ export default {
                     cssClass: 'fa fa-refresh',
                     glyph: 'xf021@FontAwesome',
                   },
-                  id: 'u5dd3d9c',
+                  id: 'u09bb19e',
                 },
                 {
                   actionLevel: 100,
@@ -525,7 +525,7 @@ export default {
                     cssClass: 'fa fa-exchange',
                     glyph: 'xf0ec@FontAwesome',
                   },
-                  id: 'ubfcda6b',
+                  id: 'ucef3d72',
                 },
               ],
               appDataEntityId: 'plmweb.version',
@@ -685,7 +685,7 @@ export default {
         controlParam: {
           id: 'searchform',
         },
-        modelId: 'dd05b070cc978d7027207317ed3e958e',
+        modelId: '3a4027eac15afc19b92d676a3b469f5e',
         modelType: 'PSDEFORM_SEARCHFORM',
         name: 'searchform',
         id: 'plmweb.version.default',
@@ -729,7 +729,7 @@ export default {
         controlParam: {
           id: 'toolbar',
         },
-        modelId: '5ACAD5F0-9ED6-46D4-8A55-5964F08AE447',
+        modelId: '3ef1241a90328ab225a727a42d720a41',
         modelType: 'PSDETOOLBAR',
         name: 'toolbar',
         id: 'idea_grid_view_toolbar',
@@ -761,7 +761,7 @@ export default {
     logicName: '版本表格视图布局',
     appDataEntityId: 'plmweb.version',
     controlParam: {},
-    modelId: '967CAF88-5F27-4A3F-B92A-DF5B77616B0D',
+    modelId: 'c56bc15a3b5ebe23ac08b9b8c7d964d9',
     modelType: 'PSSYSVIEWLAYOUTPANEL',
     name: 'layoutpanel',
     id: 'usr0415686475',

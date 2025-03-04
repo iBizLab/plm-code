@@ -4,7 +4,7 @@ export default {
   loadDefault: true,
   openMode: 'POPUPMODAL',
   deviewCodeName: 'drill_detail_grid_view',
-  deviewId: 'EA12BD4B-B503-483D-8D44-3EFD8B574298',
+  deviewId: '3e1fe9c872f3d6ffb83796deb97f9494',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.WORKLOAD',
@@ -68,14 +68,6 @@ export default {
   ],
   appViewRefs: [
     {
-      openMode: 'POPUPMODAL',
-      realOpenMode: 'POPUPMODAL',
-      realTitle: '修改实际工时视图',
-      refAppViewId: 'plmweb.workload_update_view',
-      name: 'EDITDATA',
-      id: 'editdata',
-    },
-    {
       realTitle: '工时编辑视图',
       realTitleLanguageRes: {
         lanResTag: 'PAGE.TITLE.WORKLOAD.EDITVIEW',
@@ -83,6 +75,14 @@ export default {
       refAppViewId: 'plmweb.workload_edit_view',
       name: 'NEWDATA',
       id: 'newdata',
+    },
+    {
+      openMode: 'POPUPMODAL',
+      realOpenMode: 'POPUPMODAL',
+      realTitle: '修改实际工时视图',
+      refAppViewId: 'plmweb.workload_update_view',
+      name: 'EDITDATA',
+      id: 'editdata',
     },
   ],
   controls: [
@@ -95,7 +95,7 @@ export default {
       controlParam: {
         id: 'toolbar',
       },
-      modelId: '3AD61106-F121-4696-8E07-EEB3CB3F1A7D',
+      modelId: 'c7f2af8ae798a3abedf93aa7d725f462',
       modelType: 'PSDETOOLBAR',
       name: 'toolbar',
       id: 'drill_detail_grid_view_toolbar',
@@ -279,7 +279,7 @@ export default {
       controlParam: {
         id: 'grid',
       },
-      modelId: '4C2A5188-4AA8-4FE6-AC90-C88E274A6EDE',
+      modelId: '7627a5ca6a965c10a73e935cc577e42e',
       modelType: 'PSDEGRID',
       name: 'grid',
       id: 'plmweb.workload.drill_detail_grid_view_grid',
@@ -314,7 +314,7 @@ export default {
       controlParam: {
         id: 'searchform',
       },
-      modelId: '79AA4588-4C8D-4A2B-A268-0B0BAC68D44B',
+      modelId: '16ae861dd210d7ea83fa171fbda4749d',
       modelType: 'PSDEFORM_SEARCHFORM',
       name: 'searchform',
       id: 'plmweb.workload.usr07173798_search_form',
@@ -360,7 +360,7 @@ export default {
   width: 90,
   enableDP: true,
   showCaptionBar: true,
-  modelId: '4188a9fc1b9abe8dbea41d7d72d49cb4',
+  modelId: 'f1bd63ab8cfb751dbb5858d54b081513',
   modelType: 'PSAPPDEVIEW',
   name: 'workloaddrill_detail_grid_view',
   id: 'plmweb.workload_drill_detail_grid_view',

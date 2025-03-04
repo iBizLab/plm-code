@@ -700,13 +700,6 @@ export default {
       ],
       deuilogicParams: [
         {
-          codeName: 'Default',
-          default: true,
-          entityParam: true,
-          name: '传入变量',
-          id: 'default',
-        },
-        {
           codeName: 'disabled',
           entityParam: true,
           name: '是否禁用',
@@ -717,6 +710,13 @@ export default {
           ctrlParam: true,
           name: '表单',
           id: 'form',
+        },
+        {
+          codeName: 'Default',
+          default: true,
+          entityParam: true,
+          name: '传入变量',
+          id: 'default',
         },
       ],
       startDEUILogicNodeId: 'begin',

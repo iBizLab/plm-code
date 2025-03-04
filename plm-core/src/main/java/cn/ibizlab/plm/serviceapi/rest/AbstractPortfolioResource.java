@@ -291,7 +291,8 @@ public abstract class AbstractPortfolioResource {
     * @return Mono<ResponseEntity<PortfolioDTO>>
     */
     @ApiOperation(value = "remove_from_project_set", tags = {"文件夹" },  notes = "Portfolio-remove_from_project_set ")
-    @PostMapping("portfolios/remove_from_project_set")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Portfolio-remove_from_project_set-all') or hasPermission(this.portfolioDtoMapping.toDomain(#dto),'ibizplm-Portfolio-remove_from_project_set')")
+    @DeleteMapping("portfolios/remove_from_project_set")
     public Mono<ResponseEntity<ResponseWrapper<PortfolioDTO>>>removeFromProjectSet
             (@Validated @RequestBody RequestWrapper<PortfolioDTO> dto) {
         ResponseWrapper<PortfolioDTO> rt = new ResponseWrapper<>();

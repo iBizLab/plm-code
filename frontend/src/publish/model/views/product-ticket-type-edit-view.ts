@@ -5,7 +5,7 @@ export default {
   loadDefault: true,
   openMode: 'POPUPMODAL',
   deviewCodeName: 'edit_view',
-  deviewId: '9681FFF1-1A0A-4E1F-A495-2A58EEEEA432',
+  deviewId: '7c458e8719c7ba5b7a82da9cddaab593',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.PRODUCT_TICKET_TYPE',
@@ -315,7 +315,7 @@ export default {
   width: 800,
   enableDP: true,
   showCaptionBar: true,
-  modelId: '66be3c4a2a0e67d3d93b2bef89d8b007',
+  modelId: 'b2e55cfb0c48c3f83a1a6fe5d5cc45e8',
   modelType: 'PSAPPDEVIEW',
   name: 'product_ticket_typeedit_view',
   id: 'plmweb.product_ticket_type_edit_view',

@@ -6,7 +6,7 @@ export default {
   funcViewMode: 'EDITVIEW',
   openMode: 'POPUPMODAL',
   deviewCodeName: 'EditView',
-  deviewId: 'ebd0ff9913ccb4bfde02e85776c19c70',
+  deviewId: 'a48545bcb530828438516dfaf10f59f1',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.PSSYSBICUBEMEASURE',
@@ -341,7 +341,7 @@ export default {
       controlParam: {
         id: 'form',
       },
-      modelId: '43127E96-8FBF-4B87-B6F7-519E93AA747A',
+      modelId: '72f3c5b7fb9786745efe8486e62d9cd5',
       modelType: 'PSDEFORM_EDITFORM',
       name: 'form',
       id: 'plmweb.pssysbicubemeasure.quick_create_measure_form',
@@ -389,7 +389,7 @@ export default {
   width: 50,
   enableDP: true,
   showCaptionBar: true,
-  modelId: 'fd8cd9c5991a310d1f6394a2271b99dc',
+  modelId: 'd6dd9946a8415bee8ca3ee0158ac9a34',
   modelType: 'PSAPPDEVIEW',
   name: 'PSSysBICubeMeasureEditView',
   id: 'plmweb.ps_sys_bi_cube_measure_edit_view',

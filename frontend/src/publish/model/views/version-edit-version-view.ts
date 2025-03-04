@@ -5,7 +5,7 @@ export default {
   loadDefault: true,
   openMode: 'POPUPMODAL',
   deviewCodeName: 'edit_version_view',
-  deviewId: '7A784A3E-0687-4D8E-B4B7-682595D72659',
+  deviewId: 'b949ef9cbd45c5e070cdd253932e2616',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.VERSION',
@@ -187,7 +187,7 @@ export default {
       controlParam: {
         id: 'form',
       },
-      modelId: '453B9914-4E49-4A56-9629-765B9E057435',
+      modelId: 'a2b89d43780a814fb154b613589aa3e7',
       modelType: 'PSDEFORM_EDITFORM',
       name: 'form',
       id: 'plmweb.version.edit_version_form',
@@ -232,7 +232,7 @@ export default {
   width: 600,
   enableDP: true,
   showCaptionBar: true,
-  modelId: 'bc2c59ce0af946a70ea9f1302a47753c',
+  modelId: '3f09e933e2694cb4c1057d63319cfc76',
   modelType: 'PSAPPDEVIEW',
   name: 'versionedit_version_view',
   id: 'plmweb.version_edit_version_view',

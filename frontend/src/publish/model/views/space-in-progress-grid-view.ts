@@ -3,7 +3,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'in_progress_grid_view',
-  deviewId: '2667d38c5188f79ae94921942e02f7ee',
+  deviewId: '0f8045ad419a76757341e90829224cfb',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.SPACE',
@@ -66,6 +66,15 @@ export default {
   ],
   appViewRefs: [
     {
+      realTitle: '空间编辑视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.SPACE.EDITVIEW',
+      },
+      refAppViewId: 'plmweb.space_edit_view',
+      name: 'NEWDATA',
+      id: 'newdata',
+    },
+    {
       realOpenMode: 'POPUPMODAL',
       realTitle: '空间信息',
       realTitleLanguageRes: {
@@ -74,15 +83,6 @@ export default {
       refAppViewId: 'plmweb.space_info_view',
       name: 'EDITDATA',
       id: 'editdata',
-    },
-    {
-      realTitle: '空间编辑视图',
-      realTitleLanguageRes: {
-        lanResTag: 'PAGE.TITLE.SPACE.EDITVIEW',
-      },
-      refAppViewId: 'plmweb.space_edit_view',
-      name: 'NEWDATA',
-      id: 'newdata',
     },
   ],
   controls: [
@@ -318,7 +318,7 @@ export default {
       controlParam: {
         id: 'grid',
       },
-      modelId: 'a709d3ead7479b55508729d53d9b0dc7',
+      modelId: 'afd8924355faefa3c9144e01cc4c707b',
       modelType: 'PSDEGRID',
       name: 'grid',
       id: 'plmweb.space.in_progress',
@@ -372,7 +372,7 @@ export default {
         },
         id: 'tabsearchbar',
       },
-      modelId: 'B8BE30FB-56A4-4143-B85A-8D320AB4CEAC',
+      modelId: '28437d43822e09ce3871d0339cd9000c',
       modelType: 'PSSYSSEARCHBAR',
       name: 'tabsearchbar',
       id: 'plmweb.space.query_search_bar',
@@ -415,7 +415,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: false,
-  modelId: '4fdbd706c1fde5df05b891744c97b44b',
+  modelId: '71f9e15f85cca71b925d611ba7531fda',
   modelType: 'PSAPPDEVIEW',
   name: 'spacein_progress_grid_view',
   id: 'plmweb.space_in_progress_grid_view',

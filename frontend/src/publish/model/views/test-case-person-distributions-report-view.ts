@@ -2,7 +2,7 @@ export default {
   enableSearch: true,
   loadDefault: true,
   deviewCodeName: 'person_distributions_report_view',
-  deviewId: '90cf7cdc36802bb156e2c575b40c2362',
+  deviewId: '7916c73c80def40446cab02c11079797',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.TEST_CASE',
@@ -685,7 +685,7 @@ export default {
   viewType: 'DECHARTVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '9f5f83db72d63cd3f031a0a6c94ff64a',
+  modelId: '17a84db7d8b5b30f7914e18a077e3dff',
   modelType: 'PSAPPDEVIEW',
   name: 'test_caseperson_distributions_report_view',
   id: 'plmweb.test_case_person_distributions_report_view',

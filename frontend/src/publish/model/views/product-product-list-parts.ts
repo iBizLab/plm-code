@@ -3,7 +3,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'product_list_parts',
-  deviewId: 'F46CCA1C-5AA3-42A5-8C04-B83E1D76525D',
+  deviewId: '93276221e37b27ec1bc70cc543549fec',
   accUserMode: 2,
   caption: '产品列表',
   codeName: 'product_product_list_parts',
@@ -342,16 +342,16 @@ export default {
     ],
     appViewRefs: [
       {
-        realTitle: '产品',
-        refAppViewId: 'plmweb.product_index_view',
-        name: 'EDITDATA',
-        id: 'editdata',
-      },
-      {
         realTitle: '产品主视图',
         refAppViewId: 'plmweb.product_main_view',
         name: 'OPENDATA',
         id: 'opendata',
+      },
+      {
+        realTitle: '产品',
+        refAppViewId: 'plmweb.product_index_view',
+        name: 'EDITDATA',
+        id: 'editdata',
       },
       {
         realTitle: '产品编辑视图',
@@ -393,7 +393,7 @@ export default {
         controlParam: {
           id: 'toolbar',
         },
-        modelId: 'FFAE4801-1247-4ED8-A25B-9B2F581D9238',
+        modelId: '3f3a8de2cf47ec21f9f502f0448f0915',
         modelType: 'PSDETOOLBAR',
         name: 'toolbar',
         id: 'product_list_parts_toolbar',
@@ -556,7 +556,7 @@ export default {
         controlParam: {
           id: 'grid',
         },
-        modelId: '7A3A34DA-D3FD-4DE3-BB1F-E79198E78A27',
+        modelId: '45bb59fffa7762bd392cff89e43aebf2',
         modelType: 'PSDEGRID',
         name: 'grid',
         id: 'plmweb.product.product_list_parts_grid',
@@ -591,7 +591,7 @@ export default {
         controlParam: {
           id: 'searchform',
         },
-        modelId: '8CC6C1D3-E6FA-4E37-8BF3-6351CEA6B612',
+        modelId: '057d7cc03ec0fecaeae68547202d4792',
         modelType: 'PSDEFORM_SEARCHFORM',
         name: 'searchform',
         id: 'plmweb.product.product_list_parts_search_form',
@@ -620,7 +620,7 @@ export default {
     logicName: 'product_list_parts表格视图布局',
     appDataEntityId: 'plmweb.product',
     controlParam: {},
-    modelId: 'F15D38EE-0117-4039-B2AA-0B563E05CC19',
+    modelId: '2a82e596810c8c9d0979aacacb3b1d66',
     modelType: 'PSSYSVIEWLAYOUTPANEL',
     name: 'layoutpanel',
     id: 'usr1114719630',
@@ -630,7 +630,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '5c3d7da4bf307b5e8dd8f6a7bc3e2e9f',
+  modelId: '4b789497d66e04c73cb3a050a8c0d8a3',
   modelType: 'PSAPPDEVIEW',
   name: 'productproduct_list_parts',
   id: 'plmweb.product_product_list_parts',

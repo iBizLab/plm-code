@@ -1,7 +1,7 @@
 export default {
   loadDefault: true,
   deviewCodeName: 'waterfall_index_view',
-  deviewId: '635672c7685165d96634808a472d66f1',
+  deviewId: 'bcc695f1a7ac15b403a0953b1bce46c0',
   accUserMode: 2,
   caption: '项目',
   codeName: 'project_waterfall_index_view',
@@ -402,7 +402,7 @@ export default {
         showTitle: true,
         dataRelationTag: 'waterfall',
         editItemCaption: '项目',
-        appCounterRefId: 'd3d8763d3794df6a38d49a4edb2003e5',
+        appCounterRefId: 'e90fd0153a8be95dd1a453eef679739d',
         dedrctrlItems: [
           {
             dedrbarGroupId: 'usrdrgroup1225572368',
@@ -618,9 +618,9 @@ export default {
             refMode: {
               srfdeid: 'PROJECT',
             },
-            tag: 'd3d8763d3794df6a38d49a4edb2003e5',
+            tag: 'e90fd0153a8be95dd1a453eef679739d',
             uniqueTag: 'waterfall_project_add_on_counters',
-            id: 'd3d8763d3794df6a38d49a4edb2003e5',
+            id: 'e90fd0153a8be95dd1a453eef679739d',
           },
         ],
         codeName: 'waterfall',
@@ -631,7 +631,7 @@ export default {
           id: 'drbar',
         },
         sysPFPluginId: 'drbar_ex',
-        modelId: 'b0fe2278a7baa3d6b6cfd539b4f3d0f6',
+        modelId: 'c74f34561111670b5cf1c5ab9b939778',
         modelType: 'PSDEDRBAR',
         name: 'drbar',
         id: 'waterfall',
@@ -923,7 +923,7 @@ export default {
   viewType: 'DEINDEXVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '46647009377f68a658c39cfab9f7774c',
+  modelId: 'e2e5d7e575242f26ebd7175754fe13f9',
   modelType: 'PSAPPDEVIEW',
   name: 'projectwaterfall_index_view',
   id: 'plmweb.project_waterfall_index_view',

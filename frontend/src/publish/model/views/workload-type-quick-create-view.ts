@@ -5,7 +5,7 @@ export default {
   loadDefault: true,
   openMode: 'POPUPMODAL',
   deviewCodeName: 'quick_create_view',
-  deviewId: 'F7CB61DA-A95E-4E08-9C77-42DE2D93914E',
+  deviewId: 'ee7d146aead81baf7b0e7cb81c5cf0e2',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.WORKLOAD_TYPE',
@@ -233,7 +233,7 @@ export default {
   width: 660,
   enableDP: true,
   showCaptionBar: true,
-  modelId: 'a65db38bea646608257e1367f8a2f589',
+  modelId: '5312138ded14d175ecfff973b0d6b578',
   modelType: 'PSAPPDEVIEW',
   name: 'workload_typequick_create_view',
   id: 'plmweb.workload_type_quick_create_view',

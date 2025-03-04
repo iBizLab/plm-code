@@ -3,7 +3,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'ticket_re_work_item_grid_view',
-  deviewId: '36ECB1FC-B8FA-4920-A356-404FE77C3FB1',
+  deviewId: '9b14bd5b4f23045ec04de086bdd9c7fc',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.RELATION',
@@ -451,15 +451,6 @@ export default {
     ],
     appViewRefs: [
       {
-        realTitle: '工作项关联编辑视图',
-        realTitleLanguageRes: {
-          lanResTag: 'PAGE.TITLE.RELATION.EDITVIEW',
-        },
-        refAppViewId: 'plmweb.relation_edit_view',
-        name: 'NEWDATA',
-        id: 'newdata',
-      },
-      {
         openMode: 'POPUPMODAL',
         navigateContexts: [
           {
@@ -499,6 +490,15 @@ export default {
         refAppViewId: 'plmweb.work_item_dyna_main_view',
         name: 'EDITDATA',
         id: 'editdata',
+      },
+      {
+        realTitle: '工作项关联编辑视图',
+        realTitleLanguageRes: {
+          lanResTag: 'PAGE.TITLE.RELATION.EDITVIEW',
+        },
+        refAppViewId: 'plmweb.relation_edit_view',
+        name: 'NEWDATA',
+        id: 'newdata',
       },
     ],
     controls: [
@@ -541,7 +541,7 @@ export default {
         controlParam: {
           id: 'toolbar',
         },
-        modelId: '1EC05DD6-680A-43DE-8175-2E7D9C1A910B',
+        modelId: '954d0be6cf3388597f3e7afce71744eb',
         modelType: 'PSDETOOLBAR',
         name: 'toolbar',
         id: 'ticket_re_work_item_grid_view_toolbar',
@@ -648,7 +648,7 @@ export default {
                     cssClass: 'fa fa-unlink',
                     glyph: 'xf127@FontAwesome',
                   },
-                  id: 'ue009d6d',
+                  id: 'ua71fcf1',
                 },
               ],
               appDataEntityId: 'plmweb.relation',
@@ -912,7 +912,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: false,
-  modelId: '0ec4268b0ddfd396a16bd9d7a223f22b',
+  modelId: '7f3cb53acf2209fc56ea733a0d0dd5d3',
   modelType: 'PSAPPDEVIEW',
   name: 'relationticket_re_work_item_grid_view',
   id: 'plmweb.relation_ticket_re_work_item_grid_view',

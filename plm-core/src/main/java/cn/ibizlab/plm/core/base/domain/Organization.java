@@ -18,6 +18,7 @@ import java.io.Serializable;
 import lombok.*;
 import lombok.experimental.Accessors;
 import io.swagger.annotations.*;
+import cn.ibizlab.plm.core.base.domain.Department;
 import cn.ibizlab.plm.core.base.domain.User;
 
 /**

@@ -1,7 +1,7 @@
 export default {
   openMode: 'POPUPMODAL',
   deviewCodeName: 'plan_work_item_mpick_up_view',
-  deviewId: 'b1033a714d6c6ff3e06d4e4c8e2a128f',
+  deviewId: '105d844e5dc7a7c4ac1d65c4302e4b36',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.WORK_ITEM',
@@ -680,7 +680,7 @@ export default {
         controlParam: {
           id: 'treeexpbar',
         },
-        modelId: '747631dca7e56838468abd0361664612_treeexpbar',
+        modelId: '8d6e25d65d732332cd16180842931143_treeexpbar',
         modelType: 'PSEXPBAR',
         name: 'treeexpbar',
         id: 'plan_work_item_mpick_up_view_treeexpbar',
@@ -837,7 +837,7 @@ export default {
   viewType: 'DEMPICKUPVIEW2',
   enableDP: true,
   showCaptionBar: false,
-  modelId: '747631dca7e56838468abd0361664612',
+  modelId: '8d6e25d65d732332cd16180842931143',
   modelType: 'PSAPPDEVIEW',
   name: 'work_itemplan_work_item_mpick_up_view',
   id: 'plmweb.work_item_plan_work_item_mpick_up_view',

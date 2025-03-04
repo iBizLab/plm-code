@@ -42,6 +42,16 @@ public class DiscussPost extends EntityMP implements Serializable
 {
 
     /**
+    * 编号
+    */
+    @TableField(value = "identifier")
+    @DEField(name = "identifier" , dupCheck = DupCheck.ALL , dupCheckField = "topicId")
+    @JSONField(name = "identifier")
+    @JsonProperty("identifier")
+    @ApiModelProperty(value = "identifier", notes = "编号")
+    private String identifier;
+
+    /**
     * 是否已删除
     */
     @TableField(value = "is_deleted")
@@ -130,6 +140,26 @@ public class DiscussPost extends EntityMP implements Serializable
     @JsonProperty("comment_count")
     @ApiModelProperty(value = "comment_count", notes = "评论数")
     private String commentCount;
+
+    /**
+    * 话题标识
+    */
+    @TableField(value = "topic_identifier" , exist = false)
+    @DEField(name = "topic_identifier")
+    @JSONField(name = "topic_identifier")
+    @JsonProperty("topic_identifier")
+    @ApiModelProperty(value = "topic_identifier", notes = "话题标识")
+    private String topicIdentifier;
+
+    /**
+    * 阅读次数
+    */
+    @TableField(value = "read_count" , exist = false)
+    @DEField(name = "read_count" , defaultValue = "0")
+    @JSONField(name = "read_count")
+    @JsonProperty("read_count")
+    @ApiModelProperty(value = "read_count", notes = "阅读次数")
+    private String readCount;
 
     /**
     * 讨论内容
@@ -235,6 +265,15 @@ public class DiscussPost extends EntityMP implements Serializable
     private DiscussTopic discussTopic;
 
     /**
+    * 设置 [编号]
+    */
+    public DiscussPost setIdentifier(String identifier) {
+        this.identifier = identifier;
+        this.modify("identifier", identifier);
+        return this;
+    }
+
+    /**
     * 设置 [是否已删除]
     */
     public DiscussPost setIsDeleted(Integer isDeleted) {
@@ -312,6 +351,24 @@ public class DiscussPost extends EntityMP implements Serializable
     public DiscussPost setCommentCount(String commentCount) {
         this.commentCount = commentCount;
         this.modify("comment_count", commentCount);
+        return this;
+    }
+
+    /**
+    * 设置 [话题标识]
+    */
+    public DiscussPost setTopicIdentifier(String topicIdentifier) {
+        this.topicIdentifier = topicIdentifier;
+        this.modify("topic_identifier", topicIdentifier);
+        return this;
+    }
+
+    /**
+    * 设置 [阅读次数]
+    */
+    public DiscussPost setReadCount(String readCount) {
+        this.readCount = readCount;
+        this.modify("read_count", readCount);
         return this;
     }
 

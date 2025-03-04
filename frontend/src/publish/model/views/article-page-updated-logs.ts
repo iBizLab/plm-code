@@ -1,6 +1,6 @@
 export default {
   deviewCodeName: 'updated_logs',
-  deviewId: '3d51fd695da5a103d251f21a9c8959c0',
+  deviewId: '626436af40e0748f6f30833125956af0',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.PAGE',
@@ -471,7 +471,7 @@ export default {
   viewType: 'DECUSTOMVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: 'f9adf30a2f0ddf1d828e62e3466629b8',
+  modelId: 'b7352ea1e34cb6fb56c517e83f199602',
   modelType: 'PSAPPDEVIEW',
   name: 'article_pageupdated_logs',
   id: 'plmweb.article_page_updated_logs',

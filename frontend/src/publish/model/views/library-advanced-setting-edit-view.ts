@@ -4,7 +4,7 @@ export default {
   xdataControlName: 'form',
   loadDefault: true,
   deviewCodeName: 'advanced_setting_edit_view',
-  deviewId: 'e3cc05549f583b7a431d10c2e1d3885d',
+  deviewId: '3fb39ba4967a0cd8a84106fc43cd146a',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.LIBRARY',
@@ -320,7 +320,7 @@ export default {
   viewType: 'DEEDITVIEW',
   enableDP: true,
   showCaptionBar: false,
-  modelId: 'ce72eaeff053ee6626325b1aaca58d51',
+  modelId: '28dc893a8ce6dd3d6abb33795fa19250',
   modelType: 'PSAPPDEVIEW',
   name: 'libraryadvanced_setting_edit_view',
   id: 'plmweb.library_advanced_setting_edit_view',

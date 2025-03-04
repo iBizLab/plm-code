@@ -59,6 +59,9 @@ public interface SysOrganizationFeignClient  {
     @PostMapping("sys_organizations/fetchdefault")
     Page<SysOrganization> fetchDefault(@Validated @RequestBody SysOrganizationSearchContext dto) ;
 
+    @PostMapping("sys_organizations/fetchnav")
+    Page<SysOrganization> fetchNav(@Validated @RequestBody SysOrganizationSearchContext dto) ;
+
     @PostMapping("sysorganizations/batch")
     Boolean createBatch(@RequestBody List<SysOrganization> domains);
 

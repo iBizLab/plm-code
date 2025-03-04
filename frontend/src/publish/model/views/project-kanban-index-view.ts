@@ -1,7 +1,7 @@
 export default {
   loadDefault: true,
   deviewCodeName: 'kanban_index_view',
-  deviewId: '6461e757ce9a029dccbfa4d63300f7f5',
+  deviewId: '3b1ab0bc200fdf9fd9c2df7c38f36eef',
   accUserMode: 2,
   caption: '项目',
   codeName: 'project_kanban_index_view',
@@ -392,7 +392,7 @@ export default {
         showTitle: true,
         dataRelationTag: 'kanban',
         editItemCaption: '项目',
-        appCounterRefId: '61bfe1bee0b950d694c40659d403053c',
+        appCounterRefId: 'f910f2d970b3161abcc5acda85eed1df',
         dedrctrlItems: [
           {
             dedrbarGroupId: 'usrdrgroup1225572368',
@@ -562,9 +562,9 @@ export default {
             refMode: {
               srfdeid: 'PROJECT',
             },
-            tag: '61bfe1bee0b950d694c40659d403053c',
+            tag: 'f910f2d970b3161abcc5acda85eed1df',
             uniqueTag: 'kanban_project_add_on_counters',
-            id: '61bfe1bee0b950d694c40659d403053c',
+            id: 'f910f2d970b3161abcc5acda85eed1df',
           },
         ],
         codeName: 'kanban',
@@ -575,7 +575,7 @@ export default {
           id: 'drbar',
         },
         sysPFPluginId: 'drbar_ex',
-        modelId: 'ff222b40715addda4d710b9879ad2fdf',
+        modelId: '02aec586fa09607cb4153df02973f90a',
         modelType: 'PSDEDRBAR',
         name: 'drbar',
         id: 'kanban',
@@ -867,7 +867,7 @@ export default {
   viewType: 'DEINDEXVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: 'b6696fa7664050b244652a4ae65c8b9d',
+  modelId: 'd93becf99dc99430be9dad5f364d6607',
   modelType: 'PSAPPDEVIEW',
   name: 'projectkanban_index_view',
   id: 'plmweb.project_kanban_index_view',

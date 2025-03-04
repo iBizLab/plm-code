@@ -502,6 +502,22 @@ public interface DiscussTopicService extends IService<DiscussTopic> {
     List<DiscussTopic> listNormal(DiscussTopicSearchContext context);
 
     /**
+    * fetchOssMain
+    * 
+    * @param context
+    * @return
+    */
+    Page<DiscussTopic> fetchOssMain(DiscussTopicSearchContext context);
+
+    /**
+    * listOssMain
+    * 
+    * @param context
+    * @return
+    */
+    List<DiscussTopic> listOssMain(DiscussTopicSearchContext context);
+
+    /**
     * fetchQuickUser
     * 
     * @param context

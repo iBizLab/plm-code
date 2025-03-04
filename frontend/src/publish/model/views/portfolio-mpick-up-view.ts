@@ -2,7 +2,7 @@ export default {
   funcViewMode: 'MPICKUPVIEW',
   openMode: 'POPUPMODAL',
   deviewCodeName: 'mpick_up_view',
-  deviewId: '1d6d4775ce5906329ad327f206cc5c96',
+  deviewId: '6b5339686047943d7e934d677e7278c8',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.PORTFOLIO',
@@ -181,7 +181,7 @@ export default {
   viewType: 'DEMPICKUPVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: 'c2f4b208dd819171bc41d2bacc432995',
+  modelId: 'da32befd579ff5e3486751d4cea0e6bf',
   modelType: 'PSAPPDEVIEW',
   name: 'portfoliompick_up_view',
   id: 'plmweb.portfolio_mpick_up_view',

@@ -3,7 +3,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'all_grid_view',
-  deviewId: 'd7538c9659522b09111af6a0edc98d83',
+  deviewId: '0c5c0bf8a5423df0c156d6a035350dea',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.LIBRARY',
@@ -73,17 +73,17 @@ export default {
   ],
   appViewRefs: [
     {
+      realTitle: '测试库',
+      refAppViewId: 'plmweb.library_index_view',
+      name: 'EDITDATA',
+      id: 'editdata',
+    },
+    {
       realOpenMode: 'POPUPMODAL',
       realTitle: '新建测试库',
       refAppViewId: 'plmweb.library_create_wizard_view',
       name: 'NEWDATA',
       id: 'newdata',
-    },
-    {
-      realTitle: '测试库',
-      refAppViewId: 'plmweb.library_index_view',
-      name: 'EDITDATA',
-      id: 'editdata',
     },
   ],
   controls: [
@@ -506,7 +506,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '4290c17506afcb3390d0caee0b82ddc7',
+  modelId: 'dbcb9da6300529109c4bb2db0c122d5b',
   modelType: 'PSAPPDEVIEW',
   name: 'libraryall_grid_view',
   id: 'plmweb.library_all_grid_view',

@@ -2,7 +2,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'global_setting_view',
-  deviewId: '4B3C4CB1-00FB-40D9-9DC8-67B77F3ABAFF',
+  deviewId: 'f69998c2e4b466905276c17ebd9504d1',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.TICKET_TYPE',
@@ -69,6 +69,13 @@ export default {
   appViewRefs: [
     {
       realOpenMode: 'POPUPMODAL',
+      realTitle: '新建工单类型',
+      refAppViewId: 'plmweb.ticket_type_quick_create_view',
+      name: 'NEWDATA',
+      id: 'newdata',
+    },
+    {
+      realOpenMode: 'POPUPMODAL',
       realTitle: '编辑工单类型',
       refAppViewId: 'plmweb.ticket_type_editor_view',
       name: 'EDITDATA',
@@ -80,13 +87,6 @@ export default {
       refAppViewId: 'plmweb.ticket_type_editor_view',
       name: 'OPENDATA',
       id: 'opendata',
-    },
-    {
-      realOpenMode: 'POPUPMODAL',
-      realTitle: '新建工单类型',
-      refAppViewId: 'plmweb.ticket_type_quick_create_view',
-      name: 'NEWDATA',
-      id: 'newdata',
     },
   ],
   controls: [
@@ -194,7 +194,7 @@ export default {
                   cssClass: 'fa fa-edit',
                   glyph: 'xf044@FontAwesome',
                 },
-                id: 'ub26e592',
+                id: 'uc771d16',
               },
               {
                 actionLevel: 100,
@@ -208,7 +208,7 @@ export default {
                   cssClass: 'fa fa-trash-o',
                   glyph: 'xf014@FontAwesome',
                 },
-                id: 'u1b3d86c',
+                id: 'u9370fb6',
               },
             ],
             appDataEntityId: 'plmweb.ticket_type',
@@ -312,7 +312,7 @@ export default {
       controlParam: {
         id: 'grid',
       },
-      modelId: '1F1A1B3B-3DB0-4823-AFB9-ABC190B76DE6',
+      modelId: '33a2f24357181c47a80341479451babe',
       modelType: 'PSDEGRID',
       name: 'grid',
       id: 'plmweb.ticket_type.global_setting_view_grid',
@@ -331,7 +331,7 @@ export default {
         },
         id: 'tabsearchbar',
       },
-      modelId: 'C711F18C-0731-45DA-922B-7E94D0D1F5C2',
+      modelId: 'e7584f4cd4afbdbd5774b7f59cc55b01',
       modelType: 'PSSYSSEARCHBAR',
       name: 'tabsearchbar',
       id: 'plmweb.ticket_type.tabsearchbar',
@@ -410,7 +410,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: false,
-  modelId: '4f7e9e59ff4242597d79778e258f5755',
+  modelId: 'dba56297bb3b3c238f479a4080904015',
   modelType: 'PSAPPDEVIEW',
   name: 'ticket_typeglobal_setting_view',
   id: 'plmweb.ticket_type_global_setting_view',

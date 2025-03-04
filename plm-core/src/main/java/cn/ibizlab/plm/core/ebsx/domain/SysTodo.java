@@ -118,15 +118,6 @@ public class SysTodo extends EntityClient implements Serializable
     private Date updateDate;
 
     /**
-     * 参数04
-     */
-    @DEField(name = "param04")
-    @JSONField(name = "param04")
-    @JsonProperty("param04")
-    @ApiModelProperty(value = "param04", notes = "参数04")
-    private String param04;
-
-    /**
      * 长文本参数01
      */
     @DEField(name = "clobparam01")
@@ -134,6 +125,15 @@ public class SysTodo extends EntityClient implements Serializable
     @JsonProperty("clobparam01")
     @ApiModelProperty(value = "clobparam01", notes = "长文本参数01")
     private String clobParam01;
+
+    /**
+     * 参数04
+     */
+    @DEField(name = "param04")
+    @JSONField(name = "param04")
+    @JsonProperty("param04")
+    @ApiModelProperty(value = "param04", notes = "参数04")
+    private String param04;
 
     /**
      * 业务对象
@@ -236,6 +236,15 @@ public class SysTodo extends EntityClient implements Serializable
     private String param02;
 
     /**
+     * 连接地址
+     */
+    @DEField(name = "linkurl")
+    @JSONField(name = "linkurl")
+    @JsonProperty("linkurl")
+    @ApiModelProperty(value = "linkurl", notes = "连接地址")
+    private String linkUrl;
+
+    /**
      * 过期时间
      */
     @DEField(name = "duedate")
@@ -244,15 +253,6 @@ public class SysTodo extends EntityClient implements Serializable
     @JsonProperty("duedate")
     @ApiModelProperty(value = "duedate", notes = "过期时间")
     private Date dueDate;
-
-    /**
-     * 连接地址
-     */
-    @DEField(name = "linkurl")
-    @JSONField(name = "linkurl")
-    @JsonProperty("linkurl")
-    @ApiModelProperty(value = "linkurl", notes = "连接地址")
-    private String linkUrl;
 
     /**
      * 待办子类
@@ -309,15 +309,6 @@ public class SysTodo extends EntityClient implements Serializable
     private String todoType;
 
     /**
-     * 内容
-     */
-    @DEField(name = "content")
-    @JSONField(name = "content")
-    @JsonProperty("content")
-    @ApiModelProperty(value = "content", notes = "内容")
-    private String content;
-
-    /**
      * 参数03
      */
     @DEField(name = "param03")
@@ -325,6 +316,15 @@ public class SysTodo extends EntityClient implements Serializable
     @JsonProperty("param03")
     @ApiModelProperty(value = "param03", notes = "参数03")
     private String param03;
+
+    /**
+     * 内容
+     */
+    @DEField(name = "content")
+    @JSONField(name = "content")
+    @JsonProperty("content")
+    @ApiModelProperty(value = "content", notes = "内容")
+    private String content;
 
     /**
      * 待办地址类型
@@ -372,20 +372,20 @@ public class SysTodo extends EntityClient implements Serializable
     }
 
     /**
-    * 设置 [参数04]
-    */
-    public SysTodo setParam04(String param04) {
-        this.param04 = param04;
-        this.modify("param04", param04);
-        return this;
-    }
-
-    /**
     * 设置 [长文本参数01]
     */
     public SysTodo setClobParam01(String clobParam01) {
         this.clobParam01 = clobParam01;
         this.modify("clobparam01", clobParam01);
+        return this;
+    }
+
+    /**
+    * 设置 [参数04]
+    */
+    public SysTodo setParam04(String param04) {
+        this.param04 = param04;
+        this.modify("param04", param04);
         return this;
     }
 
@@ -489,20 +489,20 @@ public class SysTodo extends EntityClient implements Serializable
     }
 
     /**
-    * 设置 [过期时间]
-    */
-    public SysTodo setDueDate(Date dueDate) {
-        this.dueDate = dueDate;
-        this.modify("duedate", dueDate);
-        return this;
-    }
-
-    /**
     * 设置 [连接地址]
     */
     public SysTodo setLinkUrl(String linkUrl) {
         this.linkUrl = linkUrl;
         this.modify("linkurl", linkUrl);
+        return this;
+    }
+
+    /**
+    * 设置 [过期时间]
+    */
+    public SysTodo setDueDate(Date dueDate) {
+        this.dueDate = dueDate;
+        this.modify("duedate", dueDate);
         return this;
     }
 
@@ -552,20 +552,20 @@ public class SysTodo extends EntityClient implements Serializable
     }
 
     /**
-    * 设置 [内容]
-    */
-    public SysTodo setContent(String content) {
-        this.content = content;
-        this.modify("content", content);
-        return this;
-    }
-
-    /**
     * 设置 [参数03]
     */
     public SysTodo setParam03(String param03) {
         this.param03 = param03;
         this.modify("param03", param03);
+        return this;
+    }
+
+    /**
+    * 设置 [内容]
+    */
+    public SysTodo setContent(String content) {
+        this.content = content;
+        this.modify("content", content);
         return this;
     }
 

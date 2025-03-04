@@ -3,7 +3,7 @@ export default {
   expandSearchForm: true,
   loadDefault: true,
   deviewCodeName: 'kanban_acklog_age_report_view',
-  deviewId: 'fc5869c872263cb553d0bc0e03c2db8b',
+  deviewId: 'c36cb37dca180b567d97bcc021fa6ca0',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.WORK_ITEM',
@@ -789,7 +789,7 @@ export default {
   viewType: 'DECHARTVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '68926517aacf6cee76320ff14c9c68a3',
+  modelId: 'd25159e47289076253bd64fd63ecb0d3',
   modelType: 'PSAPPDEVIEW',
   name: 'work_itemkanban_acklog_age_report_view',
   id: 'plmweb.work_item_kanban_acklog_age_report_view',

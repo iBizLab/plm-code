@@ -3,7 +3,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'relation_grid_view',
-  deviewId: '5BB7E24F-6454-4BC8-B0BB-F93C723FAFC6',
+  deviewId: 'd4bfc252ed56be70aa22f0988e5f888f',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.BASELINE_WORK_ITEM',
@@ -163,15 +163,6 @@ export default {
   ],
   appViewRefs: [
     {
-      realTitle: '基线工作项编辑视图',
-      realTitleLanguageRes: {
-        lanResTag: 'PAGE.TITLE.BASELINE_WORK_ITEM.EDITVIEW',
-      },
-      refAppViewId: 'plmweb.baseline_work_item_edit_view',
-      name: 'NEWDATA',
-      id: 'newdata',
-    },
-    {
       openMode: 'POPUPMODAL',
       navigateContexts: [
         {
@@ -223,6 +214,15 @@ export default {
       refAppViewId: 'plmweb.work_item_dyna_main_view',
       name: 'EDITDATA',
       id: 'editdata',
+    },
+    {
+      realTitle: '基线工作项编辑视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.BASELINE_WORK_ITEM.EDITVIEW',
+      },
+      refAppViewId: 'plmweb.baseline_work_item_edit_view',
+      name: 'NEWDATA',
+      id: 'newdata',
     },
   ],
   controls: [
@@ -546,7 +546,7 @@ export default {
           controlParam: {
             id: 'grid_batchtoolbar',
           },
-          modelId: 'F4A28EA2-2BF2-4DB4-A648-146BA929F400',
+          modelId: 'f13f904054bb1784fedcb3a3fbba1e81',
           modelType: 'PSDETOOLBAR',
           name: 'grid_batchtoolbar',
           id: 'relation_grid_view_grid_batchtoolbar',
@@ -564,7 +564,7 @@ export default {
         id: 'grid',
       },
       sysPFPluginId: 'number_grid',
-      modelId: '9c5f445e03fdb3dd1b2430e8ccb2add1',
+      modelId: '146c106a9c03c66802f93ba8906a13ae',
       modelType: 'PSDEGRID',
       name: 'grid',
       id: 'plmweb.baseline_work_item.main',
@@ -603,7 +603,7 @@ export default {
       controlParam: {
         id: 'searchform',
       },
-      modelId: '5658bd6648270951edc39a22abea6b8d',
+      modelId: 'bbbfee9105ddc8f23d074413cadb60e8',
       modelType: 'PSDEFORM_SEARCHFORM',
       name: 'searchform',
       id: 'plmweb.baseline_work_item.default',
@@ -691,7 +691,7 @@ export default {
         },
         id: 'tabtoolbar',
       },
-      modelId: '8A9D3774-8083-4AC7-B065-9AEEF6DDA671',
+      modelId: 'c901e8430a11af1c02c2eb1c42665b9f',
       modelType: 'PSDETOOLBAR',
       name: 'tabtoolbar',
       id: 'relation_grid_view_tabtoolbar',
@@ -734,7 +734,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: false,
-  modelId: '85f3ac67efc1de7a0ef837c10df1814d',
+  modelId: '7d02b49ef6cee691151f9e8be4c4e731',
   modelType: 'PSAPPDEVIEW',
   name: 'baseline_work_itemrelation_grid_view',
   id: 'plmweb.baseline_work_item_relation_grid_view',

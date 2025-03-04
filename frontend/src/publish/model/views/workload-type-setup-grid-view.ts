@@ -3,7 +3,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'setup_grid_view',
-  deviewId: '68D1FE47-D102-481B-9CED-0B096B8614C1',
+  deviewId: 'b2b89599712dd6fcbaa90acc17998c72',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.WORKLOAD_TYPE',
@@ -70,17 +70,17 @@ export default {
   appViewRefs: [
     {
       realOpenMode: 'POPUPMODAL',
-      realTitle: '编辑类别',
-      refAppViewId: 'plmweb.workload_type_quick_edit_view',
-      name: 'EDITDATA',
-      id: 'editdata',
-    },
-    {
-      realOpenMode: 'POPUPMODAL',
       realTitle: '新建类别',
       refAppViewId: 'plmweb.workload_type_quick_create_view',
       name: 'NEWDATA',
       id: 'newdata',
+    },
+    {
+      realOpenMode: 'POPUPMODAL',
+      realTitle: '编辑类别',
+      refAppViewId: 'plmweb.workload_type_quick_edit_view',
+      name: 'EDITDATA',
+      id: 'editdata',
     },
   ],
   controls: [
@@ -205,7 +205,7 @@ export default {
                   cssClass: 'fa fa-edit',
                   glyph: 'xf044@FontAwesome',
                 },
-                id: 'u083b1ee',
+                id: 'u8ddb81b',
               },
               {
                 actionLevel: 100,
@@ -219,7 +219,7 @@ export default {
                   cssClass: 'fa fa-trash-o',
                   glyph: 'xf014@FontAwesome',
                 },
-                id: 'u7d889a1',
+                id: 'u014f195',
               },
             ],
             appDataEntityId: 'plmweb.workload_type',
@@ -350,7 +350,7 @@ export default {
       controlParam: {
         id: 'grid',
       },
-      modelId: 'FCE3A78F-F872-43E0-A3BA-54F4705A50C6',
+      modelId: '61def768b7335e172934a6540d466f0a',
       modelType: 'PSDEGRID',
       name: 'grid',
       id: 'plmweb.workload_type.setup_grid_view_grid',
@@ -395,7 +395,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '35773d43fad11912ee46e8fb01a30101',
+  modelId: '59e02d302644f3abb6bec2673e534b2d',
   modelType: 'PSAPPDEVIEW',
   name: 'workload_typesetup_grid_view',
   id: 'plmweb.workload_type_setup_grid_view',

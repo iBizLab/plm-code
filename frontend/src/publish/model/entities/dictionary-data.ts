@@ -860,18 +860,18 @@ export default {
       ],
       deuilogicParams: [
         {
-          codeName: 'Default',
-          default: true,
-          entityParam: true,
-          name: '传入变量',
-          id: 'default',
-        },
-        {
           codeName: 'Grid',
           activeCtrlParam: true,
           ctrlParam: true,
           name: '表格',
           id: 'grid',
+        },
+        {
+          codeName: 'Default',
+          default: true,
+          entityParam: true,
+          name: '传入变量',
+          id: 'default',
         },
       ],
       startDEUILogicNodeId: 'begin',

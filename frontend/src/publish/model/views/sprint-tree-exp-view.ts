@@ -501,7 +501,7 @@ export default {
                   actionLevel: 100,
                   noPrivDisplayMode: 2,
                   uiactionId:
-                    'toolbar_tree_exp_view_node1_cm_deuiaction1_click@sprint',
+                    'toolbar_tree_exp_view_node3_cm_deuiaction1_click@sprint',
                   uiactionTarget: 'SINGLEDATA',
                   valid: true,
                   caption: '编辑',
@@ -509,7 +509,7 @@ export default {
                   controlLogics: [
                     {
                       itemName: 'deuiaction1',
-                      logicTag: 'node_1_cm',
+                      logicTag: 'node_3_cm',
                       logicType: 'SCRIPT',
                       scriptCode: '!context.srfreadonly',
                       triggerType: 'ITEMVISIBLE',
@@ -529,7 +529,7 @@ export default {
                   actionLevel: 100,
                   noPrivDisplayMode: 2,
                   uiactionId:
-                    'toolbar_tree_exp_view_node1_cm_deuiaction2_click@sprint',
+                    'toolbar_tree_exp_view_node3_cm_deuiaction2_click@sprint',
                   uiactionTarget: 'SINGLEDATA',
                   valid: true,
                   caption: '删除',
@@ -537,7 +537,7 @@ export default {
                   controlLogics: [
                     {
                       itemName: 'deuiaction2',
-                      logicTag: 'node_1_cm',
+                      logicTag: 'node_3_cm',
                       logicType: 'SCRIPT',
                       scriptCode: '!context.srfreadonly',
                       triggerType: 'ITEMVISIBLE',
@@ -555,17 +555,17 @@ export default {
                 },
               ],
               toolbarStyle: 'CONTEXTMENU',
-              codeName: 'tree_exp_view_node1_cm',
+              codeName: 'tree_exp_view_node3_cm',
               controlType: 'CONTEXTMENU',
               logicName: '树节点上下文菜单',
               appDataEntityId: 'plmweb.sprint',
               controlParam: {
-                id: 'node_1_cm',
+                id: 'node_3_cm',
               },
               modelId: '543565081aa885721f9f24522a62c7a5',
               modelType: 'PSDETOOLBAR',
-              name: 'node_1_cm',
-              id: 'tree_exp_view_node1_cm',
+              name: 'node_3_cm',
+              id: 'tree_exp_view_node3_cm',
             },
             {
               detoolbarItems: [
@@ -645,7 +645,7 @@ export default {
                   actionLevel: 100,
                   noPrivDisplayMode: 2,
                   uiactionId:
-                    'toolbar_tree_exp_view_node3_cm_deuiaction1_click@sprint',
+                    'toolbar_tree_exp_view_node1_cm_deuiaction1_click@sprint',
                   uiactionTarget: 'SINGLEDATA',
                   valid: true,
                   caption: '编辑',
@@ -653,7 +653,7 @@ export default {
                   controlLogics: [
                     {
                       itemName: 'deuiaction1',
-                      logicTag: 'node_3_cm',
+                      logicTag: 'node_1_cm',
                       logicType: 'SCRIPT',
                       scriptCode: '!context.srfreadonly',
                       triggerType: 'ITEMVISIBLE',
@@ -673,7 +673,7 @@ export default {
                   actionLevel: 100,
                   noPrivDisplayMode: 2,
                   uiactionId:
-                    'toolbar_tree_exp_view_node3_cm_deuiaction2_click@sprint',
+                    'toolbar_tree_exp_view_node1_cm_deuiaction2_click@sprint',
                   uiactionTarget: 'SINGLEDATA',
                   valid: true,
                   caption: '删除',
@@ -681,7 +681,7 @@ export default {
                   controlLogics: [
                     {
                       itemName: 'deuiaction2',
-                      logicTag: 'node_3_cm',
+                      logicTag: 'node_1_cm',
                       logicType: 'SCRIPT',
                       scriptCode: '!context.srfreadonly',
                       triggerType: 'ITEMVISIBLE',
@@ -699,17 +699,17 @@ export default {
                 },
               ],
               toolbarStyle: 'CONTEXTMENU',
-              codeName: 'tree_exp_view_node3_cm',
+              codeName: 'tree_exp_view_node1_cm',
               controlType: 'CONTEXTMENU',
               logicName: '树节点上下文菜单',
               appDataEntityId: 'plmweb.sprint',
               controlParam: {
-                id: 'node_3_cm',
+                id: 'node_1_cm',
               },
               modelId: '543565081aa885721f9f24522a62c7a5',
               modelType: 'PSDETOOLBAR',
-              name: 'node_3_cm',
-              id: 'tree_exp_view_node3_cm',
+              name: 'node_1_cm',
+              id: 'tree_exp_view_node1_cm',
             },
           ],
           codeName: 'tree_exp_view_tree_view',

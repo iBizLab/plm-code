@@ -1,0 +1,55 @@
+/* stylelint-disable selector-class-pattern */
+@include b(form-shell) {
+  width: 100%;
+  height: 100%;
+  @include b(form-tab-panel) {
+    &.el-tabs {
+      .el-tabs__active-bar {
+        bottom: 0;
+        height: 2px;
+        background-color: getCssVar(form-tab-panel, active, border-color) !important;
+      }
+      .el-tabs__header.is-top .el-tabs__item.is-top.is-active {
+        color: getCssVar(form-tab-panel, active, text-color) !important;
+        background-color: getCssVar(form-tab-panel, active, bg-color) !important;
+      }
+    }
+    &.el-tabs--top {
+      .el-tabs__item.is-top:nth-child(2) {
+        padding-left: 0 !important;
+      }
+    } 
+  }
+}
+
+@include b(light-theme-shell) {
+  // 滑动输入条
+  .el-slider {
+    .el-slider__bar {
+      background-color: getCssVar(color, primary);
+    }
+
+    .el-slider__button-wrapper .el-slider__button {
+      border-color: getCssVar(color, primary);
+    }
+
+    .el-slider__input {
+      .el-input-number__decrease,
+      .el-input-number__increase {
+        background: getCssVar(color, primary);
+      }
+
+      .el-input-number__decrease {
+        border-right-color: getCssVar(color, primary);
+      }
+
+      .el-input-number__increase {
+        border-left-color: getCssVar(color, primary);
+      }
+    }
+  }
+
+  .el-checkbox__input .el-checkbox__inner{
+    border-color:getCssVar(color, primary);
+  }
+}

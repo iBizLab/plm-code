@@ -876,7 +876,7 @@ export default {
                               },
                               deformDetails: [
                                 {
-                                  appViewId: 'plmweb.comment_list_view',
+                                  appViewId: 'plmweb.comment_ticket_list_view',
                                   parentDataJO: {
                                     srfparentdename: 'TICKET',
                                     SRFPARENTTYPE: 'CUSTOM',

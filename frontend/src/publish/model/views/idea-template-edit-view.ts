@@ -6,7 +6,7 @@ export default {
   funcViewMode: 'EDITVIEW',
   openMode: 'POPUPMODAL',
   deviewCodeName: 'EditView',
-  deviewId: '3097395771aa94f227dc96e96ce34142',
+  deviewId: 'c1d9bf9d0d2ee009308696c4b6a1b4ae',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.IDEA_TEMPLATE',
@@ -511,7 +511,7 @@ export default {
       controlParam: {
         id: 'form',
       },
-      modelId: 'ce3ac1beae9ca42ad3244792b3987365',
+      modelId: '4ac9b9ec5cf4d6ab086f2b75201c9a70',
       modelType: 'PSDEFORM_EDITFORM',
       name: 'form',
       id: 'plmweb.idea_template.main',
@@ -559,7 +559,7 @@ export default {
   width: 90,
   enableDP: true,
   showCaptionBar: true,
-  modelId: '5c8673d6ebc17eacae92e0832133a874',
+  modelId: 'ded0a50b1305c0ca2215b700e9ecffc5',
   modelType: 'PSAPPDEVIEW',
   name: 'idea_templateEditView',
   id: 'plmweb.idea_template_edit_view',

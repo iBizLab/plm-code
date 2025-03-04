@@ -3,7 +3,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'filter_grid_view',
-  deviewId: '2CCCA074-AF07-45A4-997D-913CD3CF574C',
+  deviewId: 'da5abeb8db2e1c5fc4e185f4ec6019f2',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.TICKET',
@@ -297,15 +297,6 @@ export default {
     ],
     appViewRefs: [
       {
-        realTitle: '工单编辑视图',
-        realTitleLanguageRes: {
-          lanResTag: 'PAGE.TITLE.TICKET.EDITVIEW',
-        },
-        refAppViewId: 'plmweb.ticket_edit_view',
-        name: 'NEWDATA',
-        id: 'newdata',
-      },
-      {
         navigateContexts: [
           {
             key: 'PRODUCT',
@@ -320,6 +311,15 @@ export default {
         name: 'EDITDATA',
         id: 'editdata',
       },
+      {
+        realTitle: '工单编辑视图',
+        realTitleLanguageRes: {
+          lanResTag: 'PAGE.TITLE.TICKET.EDITVIEW',
+        },
+        refAppViewId: 'plmweb.ticket_edit_view',
+        name: 'NEWDATA',
+        id: 'newdata',
+      },
     ],
     controls: [
       {
@@ -331,7 +331,7 @@ export default {
         controlParam: {
           id: 'toolbar',
         },
-        modelId: '02993DD9-B849-457F-8CE4-F2A3673B6088',
+        modelId: '64784a10364a7ebc032cab4b05538b52',
         modelType: 'PSDETOOLBAR',
         name: 'toolbar',
         id: 'filter_grid_view_toolbar',
@@ -780,7 +780,7 @@ export default {
         controlParam: {
           id: 'grid',
         },
-        modelId: 'AED50596-8FB7-4A44-9783-537E8F308477',
+        modelId: '4fbbbc38cce1b697505ceceefe973c96',
         modelType: 'PSDEGRID',
         name: 'grid',
         id: 'plmweb.ticket.filter_grid_view_grid',
@@ -1629,7 +1629,7 @@ export default {
     logicName: 'filter_grid_view表格视图布局',
     appDataEntityId: 'plmweb.ticket',
     controlParam: {},
-    modelId: '22F393DF-25B9-4C21-BE7E-50E7603B861A',
+    modelId: 'c61f6ff231ac7d6781e0a68b73d59598',
     modelType: 'PSSYSVIEWLAYOUTPANEL',
     name: 'layoutpanel',
     id: 'usr0813092077',
@@ -1639,7 +1639,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: false,
-  modelId: 'b868a091d06f1bd67d8868388f7c82a6',
+  modelId: '521e7cdaa1e56a7dc433f58e0f022326',
   modelType: 'PSAPPDEVIEW',
   name: 'ticketfilter_grid_view',
   id: 'plmweb.ticket_filter_grid_view',

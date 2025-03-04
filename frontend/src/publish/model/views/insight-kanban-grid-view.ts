@@ -83,6 +83,15 @@ export default {
   ],
   appViewRefs: [
     {
+      realTitle: '洞察力数据重定向视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.INSIGHT.REDIRECTVIEW',
+      },
+      refAppViewId: 'plmweb.insight_redirect_view',
+      name: 'EDITDATA',
+      id: 'editdata',
+    },
+    {
       realOpenMode: 'POPUPMODAL',
       realTitle: '洞察力编辑视图',
       realTitleLanguageRes: {
@@ -91,15 +100,6 @@ export default {
       refAppViewId: 'plmweb.insight_edit_view',
       name: 'NEWDATA',
       id: 'newdata',
-    },
-    {
-      realTitle: '洞察力数据重定向视图',
-      realTitleLanguageRes: {
-        lanResTag: 'PAGE.TITLE.INSIGHT.REDIRECTVIEW',
-      },
-      refAppViewId: 'plmweb.insight_redirect_view',
-      name: 'EDITDATA',
-      id: 'editdata',
     },
   ],
   controls: [

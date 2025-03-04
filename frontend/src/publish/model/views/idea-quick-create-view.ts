@@ -1218,7 +1218,7 @@ export default {
       controlParam: {
         id: 'toolbar',
       },
-      modelId: '881E5447-8708-4256-B71B-2CB995F6C481',
+      modelId: 'c17f102af9eb73181f638aba8f0630ca',
       modelType: 'PSDETOOLBAR',
       name: 'toolbar',
       id: 'quick_create_view_toolbar',

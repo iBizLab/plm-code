@@ -2,7 +2,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'data_global_grid_view',
-  deviewId: '42A1A966-72E5-4F6D-B9F4-4A4D3199CB58',
+  deviewId: '1eafdb499711bf5b59ecae2daa7a23d4',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.STAGE',
@@ -66,6 +66,13 @@ export default {
   appViewMsgGroupId: 'usrvmgroup0419846925',
   appViewRefs: [
     {
+      realOpenMode: 'POPUPMODAL',
+      realTitle: '发布阶段快速建立视图',
+      refAppViewId: 'plmweb.stage_quick_create_view',
+      name: 'NEWDATA',
+      id: 'newdata',
+    },
+    {
       realTitle: '发布阶段数据重定向视图',
       realTitleLanguageRes: {
         lanResTag: 'PAGE.TITLE.STAGE.REDIRECTVIEW',
@@ -73,13 +80,6 @@ export default {
       refAppViewId: 'plmweb.stage_redirect_view',
       name: 'EDITDATA',
       id: 'editdata',
-    },
-    {
-      realOpenMode: 'POPUPMODAL',
-      realTitle: '发布阶段快速建立视图',
-      refAppViewId: 'plmweb.stage_quick_create_view',
-      name: 'NEWDATA',
-      id: 'newdata',
     },
   ],
   controls: [
@@ -144,7 +144,7 @@ export default {
                   cssClass: 'fa fa-edit',
                   glyph: 'xf044@FontAwesome',
                 },
-                id: 'uafe647e',
+                id: 'ub1163df',
               },
               {
                 actionLevel: 100,
@@ -158,7 +158,7 @@ export default {
                   cssClass: 'fa fa-trash-o',
                   glyph: 'xf014@FontAwesome',
                 },
-                id: 'uf45d18f',
+                id: 'ud97a94b',
               },
             ],
             appDataEntityId: 'plmweb.stage',
@@ -273,7 +273,7 @@ export default {
       controlParam: {
         id: 'grid',
       },
-      modelId: 'BB87720C-F517-49B2-B0F3-4F1735493C17',
+      modelId: '03d482b2d1f2d1285babc7e973c4e1d7',
       modelType: 'PSDEGRID',
       name: 'grid',
       id: 'plmweb.stage.global_grid',
@@ -292,7 +292,7 @@ export default {
         },
         id: 'tabsearchbar',
       },
-      modelId: '060806FD-7E72-434E-BCB8-DA90150B889E',
+      modelId: '01955a28afd80316533e0f0b5ccc227c',
       modelType: 'PSSYSSEARCHBAR',
       name: 'tabsearchbar',
       id: 'plmweb.stage.quick_search',
@@ -333,7 +333,7 @@ export default {
         },
         id: 'tabtoolbar',
       },
-      modelId: '57D2B36C-DADD-4B58-8C0D-5CCC4A4E27B0',
+      modelId: '6966126d86a7dfa02a39b94bbc1c5716',
       modelType: 'PSDETOOLBAR',
       name: 'tabtoolbar',
       id: 'data_global_grid_view_tabtoolbar',
@@ -376,7 +376,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: false,
-  modelId: '35de7554818cf89034d1ba56bbfef1c8',
+  modelId: 'e5917eb65acfe09c0138d25153c5253c',
   modelType: 'PSAPPDEVIEW',
   name: 'stagedata_global_grid_view',
   id: 'plmweb.stage_data_global_grid_view',

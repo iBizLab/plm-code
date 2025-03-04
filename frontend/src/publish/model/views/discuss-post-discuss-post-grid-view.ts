@@ -3,7 +3,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'discuss_post_grid_view',
-  deviewId: 'E88EDBA7-E05E-4D91-B7D8-65AA2F60380B',
+  deviewId: '31a06eaefdbae07e50cc2a6c293789d1',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.DISCUSS_POST',
@@ -397,7 +397,7 @@ export default {
         controlParam: {
           id: 'toolbar',
         },
-        modelId: '25FC3A64-1847-4805-9A85-FB5762783736',
+        modelId: '8ad30b38c533b26191687bbeb163de3d',
         modelType: 'PSDETOOLBAR',
         name: 'toolbar',
         id: 'discuss_post_grid_view_toolbar',
@@ -536,7 +536,7 @@ export default {
         controlParam: {
           id: 'grid',
         },
-        modelId: '23A5F70F-1CFC-48A8-B113-7B6D926D4EBC',
+        modelId: 'ce419acda39144bb8f27d82bb70625da',
         modelType: 'PSDEGRID',
         name: 'grid',
         id: 'plmweb.discuss_post.discuss_post_grid_view_grid',
@@ -571,7 +571,7 @@ export default {
         controlParam: {
           id: 'searchform',
         },
-        modelId: '9A81E6A3-73A3-4A9F-B9E3-C12D8E45AC96',
+        modelId: '2bb135102c04e935524f2b7d4a06cfae',
         modelType: 'PSDEFORM_SEARCHFORM',
         name: 'searchform',
         id: 'plmweb.discuss_post.usr11121265_search_form',
@@ -603,7 +603,7 @@ export default {
     logicName: 'discuss_post_grid_view表格视图布局',
     appDataEntityId: 'plmweb.discuss_post',
     controlParam: {},
-    modelId: 'EA00C990-0627-4B9E-B5B8-1BEAD0F7827E',
+    modelId: '58f520aa086ddcd1b8d4954f0209320b',
     modelType: 'PSSYSVIEWLAYOUTPANEL',
     name: 'layoutpanel',
     id: 'usr1112701909',
@@ -613,7 +613,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: 'ec8a23b5fbd08c1c92490ac6a42ff233',
+  modelId: '57a56a4791a4f65ca3f172eaa2d6666a',
   modelType: 'PSAPPDEVIEW',
   name: 'discuss_postdiscuss_post_grid_view',
   id: 'plmweb.discuss_post_discuss_post_grid_view',

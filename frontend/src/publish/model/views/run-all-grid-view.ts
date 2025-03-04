@@ -4,7 +4,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'all_grid_view',
-  deviewId: '59adc894d723833e929f4daf9a545330',
+  deviewId: '493f3914a98a58308018c506b686d81f',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.RUN',
@@ -99,6 +99,26 @@ export default {
   ],
   appViewRefs: [
     {
+      realOpenMode: 'POPUPMODAL',
+      realTitle: '执行用例主视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.RUN.EDITVIEW',
+      },
+      refAppViewId: 'plmweb.run_main_view',
+      name: 'NEWDATA',
+      id: 'newdata',
+    },
+    {
+      realOpenMode: 'POPUPMODAL',
+      realTitle: '执行用例主视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.RUN.EDITVIEW',
+      },
+      refAppViewId: 'plmweb.run_main_view',
+      name: 'OPENDATA',
+      id: 'opendata',
+    },
+    {
       openMode: 'INDEXVIEWTAB_POPUPMODAL',
       navigateContexts: [
         {
@@ -119,26 +139,6 @@ export default {
       },
       name: 'EDITDATA',
       id: 'editdata',
-    },
-    {
-      realOpenMode: 'POPUPMODAL',
-      realTitle: '执行用例主视图',
-      realTitleLanguageRes: {
-        lanResTag: 'PAGE.TITLE.RUN.EDITVIEW',
-      },
-      refAppViewId: 'plmweb.run_main_view',
-      name: 'OPENDATA',
-      id: 'opendata',
-    },
-    {
-      realOpenMode: 'POPUPMODAL',
-      realTitle: '执行用例主视图',
-      realTitleLanguageRes: {
-        lanResTag: 'PAGE.TITLE.RUN.EDITVIEW',
-      },
-      refAppViewId: 'plmweb.run_main_view',
-      name: 'NEWDATA',
-      id: 'newdata',
     },
     {
       realOpenMode: 'POPUPMODAL',
@@ -1642,7 +1642,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '4114c0946ed38c3b18d6f7abc455e661',
+  modelId: 'c65805e75f541b00f2e4cc0c35c01297',
   modelType: 'PSAPPDEVIEW',
   name: 'runall_grid_view',
   id: 'plmweb.run_all_grid_view',

@@ -115,6 +115,21 @@ export default {
                 actionGroupExtractMode: 'ITEM',
                 panelItems: [
                   {
+                    rawItem: {
+                      predefinedType: 'COOP_POS',
+                      id: 'coop_pos',
+                    },
+                    caption: '协同编辑消息占位',
+                    itemStyle: 'DEFAULT',
+                    itemType: 'RAWITEM',
+                    layoutPos: {
+                      shrink: 1,
+                      layout: 'FLEX',
+                    },
+                    showCaption: true,
+                    id: 'coop_pos',
+                  },
+                  {
                     caption: '工具栏',
                     itemStyle: 'DEFAULT',
                     itemType: 'CTRLPOS',
@@ -128,7 +143,9 @@ export default {
                 ],
                 layout: {
                   align: 'center',
+                  dir: 'row',
                   layout: 'FLEX',
+                  valign: 'center',
                 },
                 dataRegionType: 'INHERIT',
                 caption: '容器',
@@ -316,7 +333,6 @@ export default {
                                           },
                                         ],
                                         logicType: 'GROUP',
-                                        id: '面板成员[comment_cancel][面板显示]逻辑',
                                       },
                                     ],
                                     showCaption: true,
@@ -353,7 +369,6 @@ export default {
                                           },
                                         ],
                                         logicType: 'GROUP',
-                                        id: '面板成员[comment_send][面板显示]逻辑',
                                       },
                                     ],
                                     showCaption: true,
@@ -617,7 +632,6 @@ export default {
                               },
                             ],
                             logicType: 'GROUP',
-                            id: '面板成员[client_panelpart1][面板显示]逻辑',
                           },
                         ],
                         showCaption: true,
@@ -649,7 +663,6 @@ export default {
                           },
                         ],
                         logicType: 'GROUP',
-                        id: '面板成员[client_panel_container][面板显示]逻辑',
                       },
                     ],
                     id: 'client_panel_container',
@@ -1956,7 +1969,8 @@ export default {
                                 },
                                 deformDetails: [
                                   {
-                                    appViewId: 'plmweb.comment_list_view',
+                                    appViewId:
+                                      'plmweb.comment_ticket_list_view',
                                     parentDataJO: {
                                       srfparentdename: 'TICKET',
                                       SRFPARENTTYPE: 'CUSTOM',
@@ -3034,7 +3048,7 @@ export default {
       },
     ],
     controlParam: {},
-    modelId: '918b875053f0056ab1c5a74cf1083f1d',
+    modelId: 'f79bd20905914c96f4b74932d33a0d63',
     modelType: 'PSSYSVIEWLAYOUTPANEL',
     name: 'layoutpanel',
     id: 'ticket_main_view',

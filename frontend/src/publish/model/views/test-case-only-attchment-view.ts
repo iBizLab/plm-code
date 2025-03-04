@@ -4,7 +4,7 @@ export default {
   xdataControlName: 'form',
   loadDefault: true,
   deviewCodeName: 'only_attchment_view',
-  deviewId: 'C4A273C0-B02A-48DC-8221-73CE6B269655',
+  deviewId: '91de1438a72da4f13a132d00c61c0a0e',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.TEST_CASE',
@@ -361,7 +361,7 @@ export default {
       controlParam: {
         id: 'form',
       },
-      modelId: '88064FAB-815C-4B48-B8C2-17DF4EB451A2',
+      modelId: '29a053d9674556075191425fd3addf67',
       modelType: 'PSDEFORM_EDITFORM',
       name: 'form',
       id: 'plmweb.test_case.attachment_form',
@@ -405,7 +405,7 @@ export default {
   viewType: 'DEEDITVIEW',
   enableDP: true,
   showCaptionBar: false,
-  modelId: '65dcc0d2f400d8e564df08da810d4b66',
+  modelId: '7cabd5ed766f44a8396ccb0bd4cc6529',
   modelType: 'PSAPPDEVIEW',
   name: 'test_caseonly_attchment_view',
   id: 'plmweb.test_case_only_attchment_view',

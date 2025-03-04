@@ -136,6 +136,15 @@ public class SysDepartment extends EntityClient implements Serializable
     private String shortName;
 
     /**
+     * 是否叶子节点
+     */
+    @DEField(name = "is_leaf" , defaultValue = "1" , dict = "YesNo")
+    @JSONField(name = "is_leaf")
+    @JsonProperty("is_leaf")
+    @ApiModelProperty(value = "is_leaf", notes = "是否叶子节点")
+    private Integer isLeaf;
+
+    /**
      * 排序
      */
     @DEField(name = "sort")
@@ -268,6 +277,15 @@ public class SysDepartment extends EntityClient implements Serializable
     public SysDepartment setShortName(String shortName) {
         this.shortName = shortName;
         this.modify("short_name", shortName);
+        return this;
+    }
+
+    /**
+    * 设置 [是否叶子节点]
+    */
+    public SysDepartment setIsLeaf(Integer isLeaf) {
+        this.isLeaf = isLeaf;
+        this.modify("is_leaf", isLeaf);
         return this;
     }
 

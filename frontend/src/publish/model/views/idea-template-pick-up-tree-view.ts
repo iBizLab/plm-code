@@ -299,7 +299,7 @@ export default {
     logicName: '需求选择树视图布局面板',
     appDataEntityId: 'plmweb.idea_template',
     controlParam: {},
-    modelId: '822c2805aede9da11dd124d281e63cad',
+    modelId: '3d9cfa0b1afc6a9cac6aa2171761b03f',
     modelType: 'PSSYSVIEWLAYOUTPANEL',
     name: 'layoutpanel',
     id: 'pickup_tree_view',

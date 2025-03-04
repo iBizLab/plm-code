@@ -1,7 +1,7 @@
 export default {
   loadDefault: true,
   deviewCodeName: 'scrum_index_view',
-  deviewId: 'e6886dc5e8aae323e4d910c5c8962ccd',
+  deviewId: '7a1f36b363a72f2fe6b1bf0221676515',
   accUserMode: 2,
   caption: '项目',
   codeName: 'project_scrum_index_view',
@@ -496,7 +496,7 @@ export default {
         showTitle: true,
         dataRelationTag: 'scrum',
         editItemCaption: '项目',
-        appCounterRefId: '66ac10a2d294987993f581b2c962e011',
+        appCounterRefId: '6ba5874841059f3683741efa52ca2a07',
         dedrctrlItems: [
           {
             dedrbarGroupId: 'usrdrgroup1225572368',
@@ -692,9 +692,9 @@ export default {
             refMode: {
               srfdeid: 'PROJECT',
             },
-            tag: '66ac10a2d294987993f581b2c962e011',
+            tag: '6ba5874841059f3683741efa52ca2a07',
             uniqueTag: 'scrum_project_add_on_counters',
-            id: '66ac10a2d294987993f581b2c962e011',
+            id: '6ba5874841059f3683741efa52ca2a07',
           },
         ],
         codeName: 'scrum',
@@ -708,7 +708,7 @@ export default {
           id: 'drbar',
         },
         sysPFPluginId: 'drbar_ex',
-        modelId: 'acd66a6c1e1fd5926d97cf6e96dd1784',
+        modelId: 'e59b66e87500e501a3e4330fd7c36b64',
         modelType: 'PSDEDRBAR',
         name: 'drbar',
         id: 'scrum',
@@ -907,7 +907,7 @@ export default {
   viewType: 'DEINDEXVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '0c35668b86d3d74af28b1fef1996ca1b',
+  modelId: '04dc3d30b616aec140930ec3738d56ed',
   modelType: 'PSAPPDEVIEW',
   name: 'projectscrum_index_view',
   id: 'plmweb.project_scrum_index_view',

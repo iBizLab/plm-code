@@ -131,21 +131,19 @@ public abstract class AbstractWorkResource {
     * add_project 工作
     * 
     *
-    * @param id id
     * @param dto dto
     * @return Mono<ResponseEntity<WorkDTO>>
     */
     @ApiOperation(value = "add_project", tags = {"工作" },  notes = "Work-add_project ")
-    @PostMapping("works/{id}/add_project")
-    public Mono<ResponseEntity<ResponseWrapper<WorkDTO>>>addProjectById
-            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<WorkDTO> dto) {
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Work-add_project-all') or hasPermission(this.workDtoMapping.toDomain(#dto),'ibizplm-Work-add_project')")
+    @PostMapping("works/add_project")
+    public Mono<ResponseEntity<ResponseWrapper<WorkDTO>>>addProject
+            (@Validated @RequestBody RequestWrapper<WorkDTO> dto) {
         ResponseWrapper<WorkDTO> rt = new ResponseWrapper<>();
-        if (dto.isArray()) {
-            String [] ids = id.split(";");
-            IntStream.range(0, ids.length).forEach(i -> rt.add(addProjectById(ids[i], dto.getList().get(i))));
-        }
+        if (dto.isArray())
+            dto.getList().forEach(item -> rt.add(addProject(item)));
         else
-            rt.set(addProjectById(id, dto.getDto()));
+            rt.set(addProject(dto.getDto()));
         return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
@@ -153,14 +151,12 @@ public abstract class AbstractWorkResource {
     * add_project 工作
     * 
     *
-    * @param id id
     * @param dto dto
     * @return ResponseEntity<WorkDTO>
     */   
-    public WorkDTO addProjectById
-            (String id, WorkDTO dto) {
+    public WorkDTO addProject
+            (WorkDTO dto) {
         Work domain = workDtoMapping.toDomain(dto);
-        domain.setId(id);
         Work rt = workService.addProject(domain);
         return workDtoMapping.toDto(rt);
     }
@@ -169,21 +165,19 @@ public abstract class AbstractWorkResource {
     * add_project_portfolio 工作
     * 
     *
-    * @param id id
     * @param dto dto
     * @return Mono<ResponseEntity<WorkDTO>>
     */
     @ApiOperation(value = "add_project_portfolio", tags = {"工作" },  notes = "Work-add_project_portfolio ")
-    @PostMapping("works/{id}/add_project_portfolio")
-    public Mono<ResponseEntity<ResponseWrapper<WorkDTO>>>addProjectPortfolioById
-            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<WorkDTO> dto) {
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Work-add_project_portfolio-all') or hasPermission(this.workDtoMapping.toDomain(#dto),'ibizplm-Work-add_project_portfolio')")
+    @PostMapping("works/add_project_portfolio")
+    public Mono<ResponseEntity<ResponseWrapper<WorkDTO>>>addProjectPortfolio
+            (@Validated @RequestBody RequestWrapper<WorkDTO> dto) {
         ResponseWrapper<WorkDTO> rt = new ResponseWrapper<>();
-        if (dto.isArray()) {
-            String [] ids = id.split(";");
-            IntStream.range(0, ids.length).forEach(i -> rt.add(addProjectPortfolioById(ids[i], dto.getList().get(i))));
-        }
+        if (dto.isArray())
+            dto.getList().forEach(item -> rt.add(addProjectPortfolio(item)));
         else
-            rt.set(addProjectPortfolioById(id, dto.getDto()));
+            rt.set(addProjectPortfolio(dto.getDto()));
         return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
@@ -191,14 +185,12 @@ public abstract class AbstractWorkResource {
     * add_project_portfolio 工作
     * 
     *
-    * @param id id
     * @param dto dto
     * @return ResponseEntity<WorkDTO>
     */   
-    public WorkDTO addProjectPortfolioById
-            (String id, WorkDTO dto) {
+    public WorkDTO addProjectPortfolio
+            (WorkDTO dto) {
         Work domain = workDtoMapping.toDomain(dto);
-        domain.setId(id);
         Work rt = workService.addProjectPortfolio(domain);
         return workDtoMapping.toDto(rt);
     }
@@ -324,21 +316,19 @@ public abstract class AbstractWorkResource {
     * 
     *
     * @param portfolioId portfolioId
-    * @param id id
     * @param dto dto
     * @return Mono<ResponseEntity<WorkDTO>>
     */
     @ApiOperation(value = "add_project", tags = {"工作" },  notes = "Work-add_project ")
-    @PostMapping("portfolios/{portfolioId}/works/{id}/add_project")
-    public Mono<ResponseEntity<ResponseWrapper<WorkDTO>>>addProjectByPortfolioIdAndId
-            (@PathVariable("portfolioId") String portfolioId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<WorkDTO> dto) {
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Work-add_project-all') or hasPermission('portfolio',#portfolioId,this.workDtoMapping.toDomain(#dto),'ibizplm-Work-add_project')")
+    @PostMapping("portfolios/{portfolioId}/works/add_project")
+    public Mono<ResponseEntity<ResponseWrapper<WorkDTO>>>addProjectByPortfolioId
+            (@PathVariable("portfolioId") String portfolioId, @Validated @RequestBody RequestWrapper<WorkDTO> dto) {
         ResponseWrapper<WorkDTO> rt = new ResponseWrapper<>();
-        if (dto.isArray()) {
-            String [] ids = id.split(";");
-            IntStream.range(0, ids.length).forEach(i -> rt.add(addProjectByPortfolioIdAndId(portfolioId, ids[i], dto.getList().get(i))));
-        }
+        if (dto.isArray())
+            dto.getList().forEach(item -> rt.add(addProjectByPortfolioId(portfolioId, item)));
         else
-            rt.set(addProjectByPortfolioIdAndId(portfolioId, id, dto.getDto()));
+            rt.set(addProjectByPortfolioId(portfolioId, dto.getDto()));
         return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
@@ -347,14 +337,13 @@ public abstract class AbstractWorkResource {
     * 
     *
     * @param portfolioId portfolioId
-    * @param id id
     * @param dto dto
     * @return ResponseEntity<WorkDTO>
     */   
-    public WorkDTO addProjectByPortfolioIdAndId
-            (String portfolioId, String id, WorkDTO dto) {
+    public WorkDTO addProjectByPortfolioId
+            (String portfolioId, WorkDTO dto) {
         Work domain = workDtoMapping.toDomain(dto);
-        domain.setId(id);
+        domain.setPortfolioId(portfolioId);
         Work rt = workService.addProject(domain);
         return workDtoMapping.toDto(rt);
     }
@@ -364,21 +353,19 @@ public abstract class AbstractWorkResource {
     * 
     *
     * @param portfolioId portfolioId
-    * @param id id
     * @param dto dto
     * @return Mono<ResponseEntity<WorkDTO>>
     */
     @ApiOperation(value = "add_project_portfolio", tags = {"工作" },  notes = "Work-add_project_portfolio ")
-    @PostMapping("portfolios/{portfolioId}/works/{id}/add_project_portfolio")
-    public Mono<ResponseEntity<ResponseWrapper<WorkDTO>>>addProjectPortfolioByPortfolioIdAndId
-            (@PathVariable("portfolioId") String portfolioId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<WorkDTO> dto) {
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Work-add_project_portfolio-all') or hasPermission('portfolio',#portfolioId,this.workDtoMapping.toDomain(#dto),'ibizplm-Work-add_project_portfolio')")
+    @PostMapping("portfolios/{portfolioId}/works/add_project_portfolio")
+    public Mono<ResponseEntity<ResponseWrapper<WorkDTO>>>addProjectPortfolioByPortfolioId
+            (@PathVariable("portfolioId") String portfolioId, @Validated @RequestBody RequestWrapper<WorkDTO> dto) {
         ResponseWrapper<WorkDTO> rt = new ResponseWrapper<>();
-        if (dto.isArray()) {
-            String [] ids = id.split(";");
-            IntStream.range(0, ids.length).forEach(i -> rt.add(addProjectPortfolioByPortfolioIdAndId(portfolioId, ids[i], dto.getList().get(i))));
-        }
+        if (dto.isArray())
+            dto.getList().forEach(item -> rt.add(addProjectPortfolioByPortfolioId(portfolioId, item)));
         else
-            rt.set(addProjectPortfolioByPortfolioIdAndId(portfolioId, id, dto.getDto()));
+            rt.set(addProjectPortfolioByPortfolioId(portfolioId, dto.getDto()));
         return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
@@ -387,14 +374,13 @@ public abstract class AbstractWorkResource {
     * 
     *
     * @param portfolioId portfolioId
-    * @param id id
     * @param dto dto
     * @return ResponseEntity<WorkDTO>
     */   
-    public WorkDTO addProjectPortfolioByPortfolioIdAndId
-            (String portfolioId, String id, WorkDTO dto) {
+    public WorkDTO addProjectPortfolioByPortfolioId
+            (String portfolioId, WorkDTO dto) {
         Work domain = workDtoMapping.toDomain(dto);
-        domain.setId(id);
+        domain.setPortfolioId(portfolioId);
         Work rt = workService.addProjectPortfolio(domain);
         return workDtoMapping.toDto(rt);
     }

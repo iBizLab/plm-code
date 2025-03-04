@@ -1,7 +1,7 @@
 export default {
   openMode: 'POPUPMODAL',
   deviewCodeName: 'relation_mpick_up_view',
-  deviewId: '086EB4A6-4B69-446E-A8CA-8FC267181398',
+  deviewId: 'c62dbd808baaf225d2e724ee7fcf19d2',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.RELEASE',
@@ -708,7 +708,7 @@ export default {
               id: 'treeexpbar_tree',
             },
             sysPFPluginId: 'group_tree',
-            modelId: '8603B713-E923-4144-98ED-9F854B3992BD',
+            modelId: '6c781be2fb0e942c0051d04fe97fb4ae',
             modelType: 'PSDETREEVIEW',
             name: 'treeexpbar_tree',
             id: 'plmweb.release.relation_mpick_up_view_tree_view',
@@ -720,7 +720,7 @@ export default {
         controlParam: {
           id: 'treeexpbar',
         },
-        modelId: '8383c569b6b24befa9d1c099baa86751_treeexpbar',
+        modelId: '9fdf5e6e56b9ce8e5ff831b362e73526_treeexpbar',
         modelType: 'PSEXPBAR',
         name: 'treeexpbar',
         id: 'relation_mpick_up_view_treeexpbar',
@@ -815,7 +815,7 @@ export default {
   viewType: 'DEMPICKUPVIEW2',
   enableDP: true,
   showCaptionBar: false,
-  modelId: '8383c569b6b24befa9d1c099baa86751',
+  modelId: '9fdf5e6e56b9ce8e5ff831b362e73526',
   modelType: 'PSAPPDEVIEW',
   name: 'releaserelation_mpick_up_view',
   id: 'plmweb.release_relation_mpick_up_view',

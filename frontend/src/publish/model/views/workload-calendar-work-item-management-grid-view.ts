@@ -234,15 +234,6 @@ export default {
     ],
     appViewRefs: [
       {
-        realTitle: '工时数据重定向视图',
-        realTitleLanguageRes: {
-          lanResTag: 'PAGE.TITLE.WORKLOAD.REDIRECTVIEW',
-        },
-        refAppViewId: 'plmweb.workload_redirect_view',
-        name: 'EDITDATA',
-        id: 'editdata',
-      },
-      {
         realTitle: '工时编辑视图',
         realTitleLanguageRes: {
           lanResTag: 'PAGE.TITLE.WORKLOAD.EDITVIEW',
@@ -250,6 +241,15 @@ export default {
         refAppViewId: 'plmweb.workload_edit_view',
         name: 'NEWDATA',
         id: 'newdata',
+      },
+      {
+        realTitle: '工时数据重定向视图',
+        realTitleLanguageRes: {
+          lanResTag: 'PAGE.TITLE.WORKLOAD.REDIRECTVIEW',
+        },
+        refAppViewId: 'plmweb.workload_redirect_view',
+        name: 'EDITDATA',
+        id: 'editdata',
       },
     ],
     controls: [
@@ -898,7 +898,7 @@ export default {
         controlParam: {
           id: 'searchbar',
         },
-        modelId: 'e9d668862bff4ce59e43c4a5abc27f3e',
+        modelId: 'f9d77061d357056840bb4641d83dff10',
         modelType: 'PSSYSSEARCHBAR',
         name: 'searchbar',
         id: 'plmweb.workload.work_item_management_searchbar',

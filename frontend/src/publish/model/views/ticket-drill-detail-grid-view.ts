@@ -4,7 +4,7 @@ export default {
   loadDefault: true,
   openMode: 'POPUPMODAL',
   deviewCodeName: 'drill_detail_grid_view',
-  deviewId: 'F69F5031-7CC2-4201-A2DD-4CB89334C333',
+  deviewId: '4dd3e1381045292191d89f8e28752147',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.TICKET',
@@ -68,6 +68,14 @@ export default {
   ],
   appViewRefs: [
     {
+      openMode: 'POPUPMODAL',
+      realOpenMode: 'POPUPMODAL',
+      realTitle: '工单',
+      refAppViewId: 'plmweb.ticket_main_view',
+      name: 'EDITDATA',
+      id: 'editdata',
+    },
+    {
       realTitle: '工单编辑视图',
       realTitleLanguageRes: {
         lanResTag: 'PAGE.TITLE.TICKET.EDITVIEW',
@@ -75,14 +83,6 @@ export default {
       refAppViewId: 'plmweb.ticket_edit_view',
       name: 'NEWDATA',
       id: 'newdata',
-    },
-    {
-      openMode: 'POPUPMODAL',
-      realOpenMode: 'POPUPMODAL',
-      realTitle: '工单',
-      refAppViewId: 'plmweb.ticket_main_view',
-      name: 'EDITDATA',
-      id: 'editdata',
     },
   ],
   controls: [
@@ -95,7 +95,7 @@ export default {
       controlParam: {
         id: 'toolbar',
       },
-      modelId: '459C8A5B-10AB-40A1-9B22-39FE48578EBC',
+      modelId: '663bd155e7545f9bbc444a5f990666ce',
       modelType: 'PSDETOOLBAR',
       name: 'toolbar',
       id: 'drill_detail_grid_view_toolbar',
@@ -387,7 +387,7 @@ export default {
       controlParam: {
         id: 'grid',
       },
-      modelId: 'FEF39956-91F6-45D8-977C-D14D277BB00C',
+      modelId: 'c684af476f7efdf9e5f6a7c452c56789',
       modelType: 'PSDEGRID',
       name: 'grid',
       id: 'plmweb.ticket.drill_detail_grid_view_grid',
@@ -422,7 +422,7 @@ export default {
       controlParam: {
         id: 'searchform',
       },
-      modelId: '597AF0B8-F06A-4B99-984A-79FAF601C375',
+      modelId: '58c393a81770f636bfd996731a3b7101',
       modelType: 'PSDEFORM_SEARCHFORM',
       name: 'searchform',
       id: 'plmweb.ticket.usr07178753_search_form',
@@ -468,7 +468,7 @@ export default {
   width: 90,
   enableDP: true,
   showCaptionBar: true,
-  modelId: '9dc62f5879796434675a308227426490',
+  modelId: '6e3a37e025c113a0d56569f7a425edd7',
   modelType: 'PSAPPDEVIEW',
   name: 'ticketdrill_detail_grid_view',
   id: 'plmweb.ticket_drill_detail_grid_view',

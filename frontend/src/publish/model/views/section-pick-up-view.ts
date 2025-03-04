@@ -1,7 +1,7 @@
 export default {
   funcViewMode: 'PICKUPVIEW',
   deviewCodeName: 'pick_up_view',
-  deviewId: '15e290696f6df7f2704dc6a423c97541',
+  deviewId: 'c513d4469de5a014148ad2f90e577086',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.SECTION',
@@ -60,7 +60,7 @@ export default {
   viewType: 'DEPICKUPVIEW',
   enableDP: true,
   showCaptionBar: false,
-  modelId: 'c2b920841ddf638bb024402a1b506b5c',
+  modelId: '3728daca1110a2e083b6a53a248bab98',
   modelType: 'PSAPPDEVIEW',
   name: 'sectionPickupView',
   id: 'plmweb.section_pick_up_view',

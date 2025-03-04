@@ -1,8 +1,9 @@
 export default {
-  bkcolorAppDEFieldId: 'color',
+  clsAppDEFieldId: 'style',
   codeListTag: 'ProjMgmt__cur_project_stage',
   codeListType: 'DYNAMIC',
   codeName: 'ProjMgmt__cur_project_stage',
+  colorAppDEFieldId: 'color',
   emptyText: '未定义',
   appDEDataSetId: 'fetch_cur_project',
   appDataEntityId: 'plmweb.stage',

@@ -210,6 +210,17 @@ public abstract class AbstractTestPlanService extends ServiceImpl<TestPlanMapper
         return list;
    }
 	
+   public Page<TestPlan> fetchCurProject(TestPlanSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<TestPlan> pages=baseMapper.searchCurProject(context.getPages(),context,context.getSelectCond());
+        List<TestPlan> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<TestPlan> listCurProject(TestPlanSearchContext context) {
+        List<TestPlan> list = baseMapper.listCurProject(context,context.getSelectCond());
+        return list;
+   }
+	
    public Page<TestPlan> fetchMyAssignee(TestPlanSearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<TestPlan> pages=baseMapper.searchMyAssignee(context.getPages(),context,context.getSelectCond());
         List<TestPlan> list = pages.getRecords();

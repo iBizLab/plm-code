@@ -234,15 +234,6 @@ export default {
     ],
     appViewRefs: [
       {
-        realTitle: '工时编辑视图',
-        realTitleLanguageRes: {
-          lanResTag: 'PAGE.TITLE.WORKLOAD.EDITVIEW',
-        },
-        refAppViewId: 'plmweb.workload_edit_view',
-        name: 'NEWDATA',
-        id: 'newdata',
-      },
-      {
         realTitle: '工时数据重定向视图',
         realTitleLanguageRes: {
           lanResTag: 'PAGE.TITLE.WORKLOAD.REDIRECTVIEW',
@@ -250,6 +241,15 @@ export default {
         refAppViewId: 'plmweb.workload_redirect_view',
         name: 'EDITDATA',
         id: 'editdata',
+      },
+      {
+        realTitle: '工时编辑视图',
+        realTitleLanguageRes: {
+          lanResTag: 'PAGE.TITLE.WORKLOAD.EDITVIEW',
+        },
+        refAppViewId: 'plmweb.workload_edit_view',
+        name: 'NEWDATA',
+        id: 'newdata',
       },
     ],
     controls: [
@@ -859,7 +859,7 @@ export default {
     logicName: 'calendar_idea_grid_view表格视图布局',
     appDataEntityId: 'plmweb.workload',
     controlParam: {},
-    modelId: '0A12EA1C-EEC5-4754-9F66-D199F8E35C26',
+    modelId: 'd96705a4605cd35bba19f0d2f9736fc5',
     modelType: 'PSSYSVIEWLAYOUTPANEL',
     name: 'layoutpanel',
     id: 'usr0326498718',

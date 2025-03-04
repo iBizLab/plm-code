@@ -5,7 +5,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'pick_up_around_grid_view',
-  deviewId: '51de79445e3054714d54f0f1c3af6842',
+  deviewId: '7ad25eaa77172b6598c33295873d0855',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.SPRINT',
@@ -263,7 +263,7 @@ export default {
       controlParam: {
         id: 'grid',
       },
-      modelId: '99427f789842b07583c91c83e57ace15',
+      modelId: '4b8aa69a454a373ea77fcacb524b4c68',
       modelType: 'PSDEGRID',
       name: 'grid',
       id: 'plmweb.sprint.pick_up_grid_view',
@@ -371,7 +371,7 @@ export default {
   viewType: 'DEPICKUPGRIDVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: 'dbaded45595feaf6d329653506de19f9',
+  modelId: 'ceb4abae491613960ad310bce0f59b94',
   modelType: 'PSAPPDEVIEW',
   name: 'sprintpick_up_around_grid_view',
   id: 'plmweb.sprint_pick_up_around_grid_view',

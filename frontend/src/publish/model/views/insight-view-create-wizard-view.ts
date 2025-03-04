@@ -1,7 +1,7 @@
 export default {
   openMode: 'POPUPMODAL',
   deviewCodeName: 'create_wizard_view',
-  deviewId: '902976DC-23F5-48BB-BD83-6DE4C74D1D2C',
+  deviewId: '94f833eb21f3906f5c94e17234f89005',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'PAGE.CAPTION.INSIGHT_VIEW.CREATE_WIZARD_VIEW',
@@ -466,7 +466,7 @@ export default {
           controlParam: {
             id: 'wizardpanel_form_fill_info',
           },
-          modelId: '172EEB4B-A35D-400C-8656-1246D9A4AF7B',
+          modelId: '9d0ef4bef6691927cb88fd580e327fef',
           modelType: 'PSDEFORM_EDITFORM',
           name: 'wizardpanel_form_fill_info',
           id: 'plmweb.insight_view.wizard_create',
@@ -847,7 +847,7 @@ export default {
           controlParam: {
             id: 'wizardpanel_form_bind_member',
           },
-          modelId: '9107BACB-3A32-4EF7-90D3-B0275C2A1280',
+          modelId: 'e016f6aaea886b1a32f4f493c01c00b7',
           modelType: 'PSDEFORM_EDITFORM',
           name: 'wizardpanel_form_bind_member',
           id: 'plmweb.insight_view.wizard_member_bind',
@@ -906,7 +906,7 @@ export default {
       controlParam: {
         id: 'wizardpanel',
       },
-      modelId: '345E484B-1964-4D64-B4FA-AE7133ED0006',
+      modelId: '4bdf25a9a35f4eeb60a2cb159f371699',
       modelType: 'PSDEWIZARDPANEL',
       name: 'wizardpanel',
       id: 'plmweb.insight_view.insight_view_wizard',
@@ -944,7 +944,7 @@ export default {
   width: 1024,
   enableDP: true,
   showCaptionBar: true,
-  modelId: '677ac5a796293477e9a1926d8f0e3f96',
+  modelId: '9a3aa587c3f7c90b2e94050b239a41a0',
   modelType: 'PSAPPDEVIEW',
   name: 'insight_viewcreate_wizard_view',
   id: 'plmweb.insight_view_create_wizard_view',

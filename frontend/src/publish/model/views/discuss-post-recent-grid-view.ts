@@ -3,7 +3,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'recent_grid_view',
-  deviewId: '0783B2D9-562D-49FC-AB8B-D57A2456CA13',
+  deviewId: '402adda973545957bb4207911a6c2467',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.DISCUSS_POST',
@@ -82,15 +82,6 @@ export default {
   ],
   appViewRefs: [
     {
-      realTitle: '讨论编辑视图',
-      realTitleLanguageRes: {
-        lanResTag: 'PAGE.TITLE.DISCUSS_POST.EDITVIEW',
-      },
-      refAppViewId: 'plmweb.discuss_post_edit_view',
-      name: 'NEWDATA',
-      id: 'newdata',
-    },
-    {
       openMode: 'INDEXVIEWTAB_POPUPMODAL',
       navigateContexts: [
         {
@@ -105,6 +96,15 @@ export default {
       refAppViewId: 'plmweb.discuss_post_main_view',
       name: 'EDITDATA',
       id: 'editdata',
+    },
+    {
+      realTitle: '讨论编辑视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.DISCUSS_POST.EDITVIEW',
+      },
+      refAppViewId: 'plmweb.discuss_post_edit_view',
+      name: 'NEWDATA',
+      id: 'newdata',
     },
   ],
   controls: [
@@ -146,7 +146,7 @@ export default {
       controlParam: {
         id: 'toolbar',
       },
-      modelId: '66CB0F7C-540A-4B9E-AB7E-5E816E278F5B',
+      modelId: 'ede9de517082ff9319a85138bc1c2f10',
       modelType: 'PSDETOOLBAR',
       name: 'toolbar',
       id: 'recent_grid_view_toolbar',
@@ -338,7 +338,7 @@ export default {
       sysCss: {
         cssName: 'discuss-border-style',
       },
-      modelId: 'b0341745e4649d6bfd4469785368efab',
+      modelId: '77eb354120650cfe471ae8355d8ad7f9',
       modelType: 'PSDEGRID',
       name: 'grid',
       id: 'plmweb.discuss_post.main',
@@ -376,7 +376,7 @@ export default {
       controlParam: {
         id: 'searchform',
       },
-      modelId: '6ddf84ea9f2e0947a515ac4d6c41bd37',
+      modelId: 'b00d71ef80e41212c88c28a82b67e90b',
       modelType: 'PSDEFORM_SEARCHFORM',
       name: 'searchform',
       id: 'plmweb.discuss_post.default',
@@ -421,7 +421,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '0f014eb33c70a951adac40b3bd430711',
+  modelId: '5d7bb62a5ab10b79fd73fc60fa0a4d53',
   modelType: 'PSAPPDEVIEW',
   name: 'discuss_postrecent_grid_view',
   id: 'plmweb.discuss_post_recent_grid_view',

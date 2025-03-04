@@ -3,7 +3,7 @@ export default {
   xdataControlName: 'form',
   loadDefault: true,
   deviewCodeName: 'config_view',
-  deviewId: '8952c9db4fe9f85c3ea583cf045e1d18',
+  deviewId: 'b57b4c45a4162fa864c320ed61484119',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.NOTIFY_SETTING',
@@ -339,7 +339,7 @@ export default {
                         },
                       ],
                       controlParam: {},
-                      modelId: '9EF686B5-2BAA-45B5-91CB-DE8E11D551FC',
+                      modelId: 'a3175d96abdba426f7b9b6cb8d258807',
                       modelType: 'PSSYSVIEWPANEL',
                       name: 'setting_model_list_itempanel',
                       id: 'plmweb.notify_event.usr0428284495',
@@ -347,7 +347,7 @@ export default {
                     delistDataItems: [
                       {
                         dataType: 25,
-                        id: 'name',
+                        id: 'id',
                       },
                       {
                         dataType: 25,
@@ -355,7 +355,7 @@ export default {
                       },
                       {
                         dataType: 25,
-                        id: 'id',
+                        id: 'name',
                       },
                       {
                         frontCodeListId: 'plmweb.extension__wfinfommsgtype',
@@ -409,7 +409,7 @@ export default {
                     logicName: 'List',
                     appDataEntityId: 'plmweb.notify_event',
                     controlParam: {},
-                    modelId: '8532217D-475D-4721-B541-001B12559E4F',
+                    modelId: 'cb7902105c6d2e9689c04d8490e2558d',
                     modelType: 'PSDELIST',
                     name: 'setting_model_list',
                     id: 'plmweb.notify_event.list',
@@ -491,7 +491,7 @@ export default {
       controlParam: {
         id: 'form',
       },
-      modelId: '0122cf8a2f9dc169d5601c6d1f83cd60',
+      modelId: '55619e09d85925b704460a68689a7257',
       modelType: 'PSDEFORM_EDITFORM',
       name: 'form',
       id: 'plmweb.notify_setting.config_view_form',
@@ -525,7 +525,7 @@ export default {
   viewType: 'DEEDITVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '0d34c077a763b5390567f4212408face',
+  modelId: 'f2d0a653c0f431ae3d60d801b3346b61',
   modelType: 'PSAPPDEVIEW',
   name: 'notify_settingconfig_view',
   id: 'plmweb.notify_setting_config_view',

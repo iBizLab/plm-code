@@ -333,6 +333,28 @@ public abstract class AbstractSectionResource {
     }
 
     /**
+    * 查询fetch_my_section 分组
+    * 
+    *
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<SectionDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_my_section", tags = {"分组" },  notes = "Section-fetch_my_section ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Section-fetch_my_section-all') or hasPermission(#dto,'ibizplm-Section-fetch_my_section')")
+    @PostMapping("sections/fetch_my_section")
+    public Mono<ResponseEntity<List<SectionDTO>>> fetchMySection
+            (@Validated @RequestBody SectionFilterDTO dto) {
+        SectionSearchContext context = sectionFilterDtoMapping.toDomain(dto);
+        Page<Section> domains = sectionService.fetchMySection(context) ;
+        List<SectionDTO> list = sectionDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
     * 查询fetch_this_product_section 分组
     * 
     *

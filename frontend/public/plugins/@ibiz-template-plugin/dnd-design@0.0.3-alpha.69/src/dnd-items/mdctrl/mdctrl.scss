@@ -1,0 +1,34 @@
+@include b(dnd-design-mdctrl) {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  padding: 0 getCssVar('spacing', 'tight');
+  font-size: getCssVar('font-size', 'regular');
+  color: getCssVar(color, text, 1);
+  @include e(info) {
+    min-height: 38px;
+    display: flex;
+    align-items: center;
+  }
+}
+
+@include b(dnd-design-mdctrl-repeater) {
+  padding: 0;
+  .#{bem('dnd-design-mdctrl', 'info')} {
+    overflow: hidden;
+    display: block;
+    line-height: 18px;
+    min-height: 18px;
+    text-align: right;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: getCssVar('font-size', 'small');
+    color: getCssVar(color, primary);
+  }
+  .#{bem('dnd-design-mdctrl', 'content')} {
+    flex: 1;
+    min-height: 40px;
+    border: 1px dashed getCssVar(color, border);
+  }
+}

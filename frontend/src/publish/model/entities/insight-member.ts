@@ -793,14 +793,6 @@ export default {
           id: 'begin',
         },
         {
-          codeName: 'END1',
-          leftPos: 910,
-          logicNodeType: 'END',
-          topPos: 200,
-          name: '结束',
-          id: 'end1',
-        },
-        {
           codeName: 'PREPAREJSPARAM1',
           leftPos: 392,
           logicNodeType: 'PREPAREJSPARAM',
@@ -840,6 +832,14 @@ export default {
           topPos: 208,
           name: '获取当前用户数据',
           id: 'preparejsparam1',
+        },
+        {
+          codeName: 'END1',
+          leftPos: 910,
+          logicNodeType: 'END',
+          topPos: 200,
+          name: '结束',
+          id: 'end1',
         },
         {
           code: "ibiz.hub.getApp(context.srfappid).deService.exec(\r\n    'plmweb.insight_member',\r\n    'Create',\r\n    context,\r\n    uiLogic.user,\r\n);",
@@ -893,20 +893,15 @@ export default {
     },
     {
       logicName: '删除',
-      name: 'DELETE',
-      id: 'delete',
-    },
-    {
-      logicName: '删除',
       mapDEName: 'INSIGHT_VIEW',
       mapDEOPPrivName: 'DELETE',
       name: 'DELETE',
       id: 'insight_view__delete',
     },
     {
-      logicName: '读取',
-      name: 'READ',
-      id: 'read',
+      logicName: '删除',
+      name: 'DELETE',
+      id: 'delete',
     },
     {
       logicName: '读取',
@@ -916,9 +911,9 @@ export default {
       id: 'insight_view__read',
     },
     {
-      logicName: '更新',
-      name: 'UPDATE',
-      id: 'update',
+      logicName: '读取',
+      name: 'READ',
+      id: 'read',
     },
     {
       logicName: '更新',
@@ -926,6 +921,11 @@ export default {
       mapDEOPPrivName: 'UPDATE',
       name: 'UPDATE',
       id: 'insight_view__update',
+    },
+    {
+      logicName: '更新',
+      name: 'UPDATE',
+      id: 'update',
     },
   ],
   codeName: 'insight_member',

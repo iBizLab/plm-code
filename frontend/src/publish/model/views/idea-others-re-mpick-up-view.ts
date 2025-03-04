@@ -1,7 +1,7 @@
 export default {
   openMode: 'POPUPMODAL',
   deviewCodeName: 'others_re_mpick_up_view',
-  deviewId: '8a2a36a29febd431d3946cc887bb9cb4',
+  deviewId: '785af68305a3302138920e9312c16c5e',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'PAGE.CAPTION.IDEA.OTHERS_RELATION_IDEA_VIEW',
@@ -380,7 +380,7 @@ export default {
       controlParam: {
         id: 'treeexpbar',
       },
-      modelId: '0029da1e56e8b71b07e9da709206d140_treeexpbar',
+      modelId: '4a3df8b3522c803b2b60e40f912f2065_treeexpbar',
       modelType: 'PSEXPBAR',
       name: 'treeexpbar',
       id: 'others_re_mpick_up_view_treeexpbar',
@@ -898,7 +898,7 @@ export default {
   viewType: 'DEMPICKUPVIEW2',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '0029da1e56e8b71b07e9da709206d140',
+  modelId: '4a3df8b3522c803b2b60e40f912f2065',
   modelType: 'PSAPPDEVIEW',
   name: 'ideaothers_re_mpick_up_view',
   id: 'plmweb.idea_others_re_mpick_up_view',

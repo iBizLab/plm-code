@@ -624,9 +624,9 @@ export default {
   ],
   appDEUILogics: [
     {
-      codeName: 'cal_is_system',
+      codeName: 'judge_column_state',
       defaultParamName: 'Default',
-      logicName: '系统工作项状态隐藏操作列',
+      logicName: '判断操作列是否禁用',
       deuilogicNodes: [
         {
           codeName: 'Begin',
@@ -645,15 +645,7 @@ export default {
           id: 'begin',
         },
         {
-          codeName: 'END1',
-          leftPos: 200,
-          logicNodeType: 'END',
-          topPos: 448,
-          name: '结束',
-          id: 'end1',
-        },
-        {
-          code: 'const rows = uiLogic.grid.state.rows;\r\nif (rows && rows.length > 0) {\r\n    rows.forEach(row => {\r\n        const is_system = row.data.is_system;\r\n        if (is_system === 1) {\r\n            row.uaColStates.uagridcolumn1.u2cc9dd2.visible = false;\r\n            row.uaColStates.uagridcolumn1.u8247bb2.visible = false;\r\n        }\r\n    })\r\n}',
+          code: '\tconst rows = uiLogic.grid.state.rows;\r\n    console.log(rows);\r\n\tif (rows && rows.length > 0) {\r\n\t\trows.forEach(row => {\r\n\t\t\tconst is_system = row.data.is_system;\r\n\t\t\t\t\t if (is_system === 1) {\r\n\t\t\t\t\t\t// 禁用\r\n                        row.uaColStates.uagridcolumn1.visible = false;\r\n                        Object.values(row.uaColStates.uagridcolumn1).forEach(item => {\r\n                            item.visible = false;\r\n                            item.disabled = true;\r\n                        })\r\n\t\t\t\t\t} \t\r\n\t\t})\r\n\t}\r\n',
           codeName: 'RAWJSCODE1',
           leftPos: 160,
           logicNodeType: 'RAWJSCODE',
@@ -664,19 +656,20 @@ export default {
               id: '连接名称',
             },
           ],
-          topPos: 328,
-          name: '系统工作项状态隐藏编辑列',
+          topPos: 358,
+          name: '判断操作列是否禁用',
           id: 'rawjscode1',
+        },
+        {
+          codeName: 'END1',
+          leftPos: 200,
+          logicNodeType: 'END',
+          topPos: 484,
+          name: '结束',
+          id: 'end1',
         },
       ],
       deuilogicParams: [
-        {
-          codeName: 'grid',
-          activeCtrlParam: true,
-          ctrlParam: true,
-          name: '表格',
-          id: 'grid',
-        },
         {
           codeName: 'Default',
           default: true,
@@ -684,10 +677,17 @@ export default {
           name: '传入变量',
           id: 'default',
         },
+        {
+          codeName: 'Grid',
+          activeCtrlParam: true,
+          ctrlParam: true,
+          name: '表格',
+          id: 'grid',
+        },
       ],
       startDEUILogicNodeId: 'begin',
-      name: '系统工作项状态隐藏操作列',
-      id: 'cal_is_system',
+      name: '判断操作列是否禁用',
+      id: 'judge_column_state',
     },
   ],
   deopprivs: [

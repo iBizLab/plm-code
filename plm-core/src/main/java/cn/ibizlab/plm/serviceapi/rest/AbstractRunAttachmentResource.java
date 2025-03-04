@@ -793,6 +793,137 @@ public abstract class AbstractRunAttachmentResource {
         return runAttachmentDtoMapping.toDto(rt);
     }
 
+    /**
+    * 创建Create 执行用例结果附件
+    * 
+    *
+    * @param projectId projectId
+    * @param planId planId
+    * @param ownerId ownerId
+    * @param dto dto
+    * @return Mono<ResponseEntity<RunAttachmentDTO>>
+    */
+    @ApiOperation(value = "创建Create", tags = {"执行用例结果附件" },  notes = "RunAttachment-Create ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-RunAttachment-Create-all') or hasPermission('project',#projectId,this.runAttachmentDtoMapping.toDomain(#dto),'ibizplm-RunAttachment-Create')")
+    @PostMapping("projects/{projectId}/test_plans/{planId}/runs/{ownerId}/run_attachments")
+    public Mono<ResponseEntity<ResponseWrapper<RunAttachmentDTO>>>createByProjectIdAndPlanIdAndOwnerId
+            (@PathVariable("projectId") String projectId, @PathVariable("planId") String planId, @PathVariable("ownerId") String ownerId, @Validated @RequestBody RequestWrapper<RunAttachmentDTO> dto) {
+        ResponseWrapper<RunAttachmentDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray())
+            dto.getList().forEach(item -> rt.add(createByProjectIdAndPlanIdAndOwnerId(projectId, planId, ownerId, item)));
+        else
+            rt.set(createByProjectIdAndPlanIdAndOwnerId(projectId, planId, ownerId, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * 创建Create 执行用例结果附件
+    * 
+    *
+    * @param projectId projectId
+    * @param planId planId
+    * @param ownerId ownerId
+    * @param dto dto
+    * @return ResponseEntity<RunAttachmentDTO>
+    */   
+    public RunAttachmentDTO createByProjectIdAndPlanIdAndOwnerId
+            (String projectId, String planId, String ownerId, RunAttachmentDTO dto) {
+        RunAttachment domain = runAttachmentDtoMapping.toDomain(dto);
+        domain.setOwnerId(ownerId);
+        runAttachmentService.create(domain);
+        RunAttachment rt = domain;
+        return runAttachmentDtoMapping.toDto(rt);
+    }
+
+    /**
+    * 更新Update 执行用例结果附件
+    * 
+    *
+    * @param projectId projectId
+    * @param planId planId
+    * @param ownerId ownerId
+    * @param id id
+    * @param dto dto
+    * @return Mono<ResponseEntity<RunAttachmentDTO>>
+    */
+    @ApiOperation(value = "更新Update", tags = {"执行用例结果附件" },  notes = "RunAttachment-Update ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-RunAttachment-Update-all') or hasPermission('project',#projectId,this.runAttachmentService.get(#id),'ibizplm-RunAttachment-Update')")
+    @VersionCheck(entity = "runattachment" , versionfield = "updateTime")
+    @PutMapping("projects/{projectId}/test_plans/{planId}/runs/{ownerId}/run_attachments/{id}")
+    public Mono<ResponseEntity<ResponseWrapper<RunAttachmentDTO>>>updateByProjectIdAndPlanIdAndOwnerIdAndId
+            (@PathVariable("projectId") String projectId, @PathVariable("planId") String planId, @PathVariable("ownerId") String ownerId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<RunAttachmentDTO> dto) {
+        ResponseWrapper<RunAttachmentDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(updateByProjectIdAndPlanIdAndOwnerIdAndId(projectId, planId, ownerId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(updateByProjectIdAndPlanIdAndOwnerIdAndId(projectId, planId, ownerId, id, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * 更新Update 执行用例结果附件
+    * 
+    *
+    * @param projectId projectId
+    * @param planId planId
+    * @param ownerId ownerId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<RunAttachmentDTO>
+    */   
+    public RunAttachmentDTO updateByProjectIdAndPlanIdAndOwnerIdAndId
+            (String projectId, String planId, String ownerId, String id, RunAttachmentDTO dto) {
+        RunAttachment domain = runAttachmentDtoMapping.toDomain(dto);
+        domain.setId(id);
+        runAttachmentService.update(domain);
+        RunAttachment rt = domain;
+        return runAttachmentDtoMapping.toDto(rt);
+    }
+
+    /**
+    * 保存Save 执行用例结果附件
+    * 
+    *
+    * @param projectId projectId
+    * @param planId planId
+    * @param ownerId ownerId
+    * @param dto dto
+    * @return Mono<ResponseEntity<RunAttachmentDTO>>
+    */
+    @ApiOperation(value = "保存Save", tags = {"执行用例结果附件" },  notes = "RunAttachment-Save ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-RunAttachment-Save-all') or hasPermission('project',#projectId,this.runAttachmentDtoMapping.toDomain(#dto),'ibizplm-RunAttachment-Save')")
+    @PostMapping("projects/{projectId}/test_plans/{planId}/runs/{ownerId}/run_attachments/save")
+    public Mono<ResponseEntity<ResponseWrapper<RunAttachmentDTO>>>saveByProjectIdAndPlanIdAndOwnerId
+            (@PathVariable("projectId") String projectId, @PathVariable("planId") String planId, @PathVariable("ownerId") String ownerId, @Validated @RequestBody RequestWrapper<RunAttachmentDTO> dto) {
+        ResponseWrapper<RunAttachmentDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray())
+            dto.getList().forEach(item -> rt.add(saveByProjectIdAndPlanIdAndOwnerId(projectId, planId, ownerId, item)));
+        else
+            rt.set(saveByProjectIdAndPlanIdAndOwnerId(projectId, planId, ownerId, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * 保存Save 执行用例结果附件
+    * 
+    *
+    * @param projectId projectId
+    * @param planId planId
+    * @param ownerId ownerId
+    * @param dto dto
+    * @return ResponseEntity<RunAttachmentDTO>
+    */   
+    public RunAttachmentDTO saveByProjectIdAndPlanIdAndOwnerId
+            (String projectId, String planId, String ownerId, RunAttachmentDTO dto) {
+        RunAttachment domain = runAttachmentDtoMapping.toDomain(dto);
+        domain.setOwnerId(ownerId);
+        runAttachmentService.save(domain);
+        RunAttachment rt = domain;
+        return runAttachmentDtoMapping.toDto(rt);
+    }
+
 
     /**
     * 获取Get 执行用例结果附件
@@ -1369,6 +1500,110 @@ public abstract class AbstractRunAttachmentResource {
     @PostMapping("libraries/{libraryId}/test_plans/{planId}/runs/{ownerId}/run_attachments/fetch_default")
     public Mono<ResponseEntity<List<RunAttachmentDTO>>> fetchDefaultByLibraryIdAndPlanIdAndOwnerId
             (@PathVariable("libraryId") String libraryId, @PathVariable("planId") String planId, @PathVariable("ownerId") String ownerId, @Validated @RequestBody RunAttachmentFilterDTO dto) {
+        dto.setOwnerIdEQ(ownerId);
+        RunAttachmentSearchContext context = runAttachmentFilterDtoMapping.toDomain(dto);
+        Page<RunAttachment> domains = runAttachmentService.fetchDefault(context) ;
+        List<RunAttachmentDTO> list = runAttachmentDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
+    * 获取Get 执行用例结果附件
+    * 
+    *
+    * @param projectId projectId
+    * @param planId planId
+    * @param ownerId ownerId
+    * @param id id
+    * @return Mono<ResponseEntity<RunAttachmentDTO>>
+    */
+    @ApiOperation(value = "获取Get", tags = {"执行用例结果附件" },  notes = "RunAttachment-Get ")
+    @PostAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-RunAttachment-Get-all')  or hasPermission('project',#projectId,this.runAttachmentDtoMapping.toDomain(returnObject.block().getBody()),'ibizplm-RunAttachment-Get')")
+    @GetMapping("projects/{projectId}/test_plans/{planId}/runs/{ownerId}/run_attachments/{id}")
+    public Mono<ResponseEntity<RunAttachmentDTO>> getByProjectIdAndPlanIdAndOwnerIdAndId
+            (@PathVariable("projectId") String projectId, @PathVariable("planId") String planId, @PathVariable("ownerId") String ownerId, @PathVariable("id") String id) {
+        RunAttachment rt = runAttachmentService.get(id);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(runAttachmentDtoMapping.toDto(rt)));
+    }
+
+    /**
+    * 删除Remove 执行用例结果附件
+    * 
+    *
+    * @param projectId projectId
+    * @param planId planId
+    * @param ownerId ownerId
+    * @param id id
+    * @return Mono<ResponseEntity<Boolean>>
+    */
+    @ApiOperation(value = "删除Remove", tags = {"执行用例结果附件" },  notes = "RunAttachment-Remove ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-RunAttachment-Remove-all') or hasPermission('project',#projectId,this.runAttachmentService.get(#id),'ibizplm-RunAttachment-Remove')")
+    @DeleteMapping("projects/{projectId}/test_plans/{planId}/runs/{ownerId}/run_attachments/{id}")
+    public Mono<ResponseEntity<Boolean>> removeByProjectIdAndPlanIdAndOwnerIdAndId
+            (@PathVariable("projectId") String projectId, @PathVariable("planId") String planId, @PathVariable("ownerId") String ownerId, @PathVariable("id") String id) {
+        Boolean rt = runAttachmentService.remove(id);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * 校验CheckKey 执行用例结果附件
+    * 
+    *
+    * @param projectId projectId
+    * @param planId planId
+    * @param ownerId ownerId
+    * @param dto dto
+    * @return Mono<ResponseEntity<Integer>>
+    */
+    @ApiOperation(value = "校验CheckKey", tags = {"执行用例结果附件" },  notes = "RunAttachment-CheckKey ")
+    @PostMapping("projects/{projectId}/test_plans/{planId}/runs/{ownerId}/run_attachments/check_key")
+    public Mono<ResponseEntity<CheckKeyStatus>> checkKeyByProjectIdAndPlanIdAndOwnerId
+            (@PathVariable("projectId") String projectId, @PathVariable("planId") String planId, @PathVariable("ownerId") String ownerId, @Validated @RequestBody RunAttachmentDTO dto) {
+        RunAttachment domain = runAttachmentDtoMapping.toDomain(dto);
+        domain.setOwnerId(ownerId);
+        CheckKeyStatus rt = runAttachmentService.checkKey(domain);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * 草稿GetDraft 执行用例结果附件
+    * 
+    *
+    * @param projectId projectId
+    * @param planId planId
+    * @param ownerId ownerId
+    * @param dto dto
+    * @return Mono<ResponseEntity<RunAttachmentDTO>>
+    */
+    @ApiOperation(value = "草稿GetDraft", tags = {"执行用例结果附件" },  notes = "RunAttachment-GetDraft ")
+    @GetMapping("projects/{projectId}/test_plans/{planId}/runs/{ownerId}/run_attachments/get_draft")
+    public Mono<ResponseEntity<RunAttachmentDTO>> getDraftByProjectIdAndPlanIdAndOwnerId
+            (@PathVariable("projectId") String projectId, @PathVariable("planId") String planId, @PathVariable("ownerId") String ownerId, @SpringQueryMap RunAttachmentDTO dto) {
+        RunAttachment domain = runAttachmentDtoMapping.toDomain(dto);
+        domain.setOwnerId(ownerId);
+        RunAttachment rt = runAttachmentService.getDraft(domain);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(runAttachmentDtoMapping.toDto(rt)));
+    }
+
+    /**
+    * 查询fetch_default 执行用例结果附件
+    * 
+    *
+    * @param projectId projectId
+    * @param planId planId
+    * @param ownerId ownerId
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<RunAttachmentDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_default", tags = {"执行用例结果附件" },  notes = "RunAttachment-fetch_default ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-RunAttachment-fetch_default-all') or hasPermission('project',#projectId,#dto,'ibizplm-RunAttachment-fetch_default')")
+    @PostMapping("projects/{projectId}/test_plans/{planId}/runs/{ownerId}/run_attachments/fetch_default")
+    public Mono<ResponseEntity<List<RunAttachmentDTO>>> fetchDefaultByProjectIdAndPlanIdAndOwnerId
+            (@PathVariable("projectId") String projectId, @PathVariable("planId") String planId, @PathVariable("ownerId") String ownerId, @Validated @RequestBody RunAttachmentFilterDTO dto) {
         dto.setOwnerIdEQ(ownerId);
         RunAttachmentSearchContext context = runAttachmentFilterDtoMapping.toDomain(dto);
         Page<RunAttachment> domains = runAttachmentService.fetchDefault(context) ;

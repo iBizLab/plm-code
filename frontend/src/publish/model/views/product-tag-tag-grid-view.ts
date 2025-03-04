@@ -3,7 +3,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'tag_grid_view',
-  deviewId: '2bc39b0f8648422659932845d0beb097',
+  deviewId: '96c902200e7351e305e511588a6cc1c5',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.PRODUCT_TAG',
@@ -89,6 +89,13 @@ export default {
   ],
   appViewRefs: [
     {
+      realOpenMode: 'POPUPMODAL',
+      realTitle: '新建标签',
+      refAppViewId: 'plmweb.product_tag_new_option_view',
+      name: 'NEWDATA',
+      id: 'newdata',
+    },
+    {
       openMode: 'POPUPMODAL',
       navigateParams: [
         {
@@ -102,13 +109,6 @@ export default {
       refAppViewId: 'plmweb.ticket_tags_tciket_grid_view',
       name: 'EDITDATA',
       id: 'editdata',
-    },
-    {
-      realOpenMode: 'POPUPMODAL',
-      realTitle: '新建标签',
-      refAppViewId: 'plmweb.product_tag_new_option_view',
-      name: 'NEWDATA',
-      id: 'newdata',
     },
   ],
   controls: [
@@ -437,7 +437,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '702a45db3e957dfdf64f776456ec59d2',
+  modelId: 'bb1704cef81e4ba105145daaf6d319c2',
   modelType: 'PSAPPDEVIEW',
   name: 'product_tagtag_grid_view',
   id: 'plmweb.product_tag_tag_grid_view',

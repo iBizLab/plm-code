@@ -131,18 +131,22 @@ public abstract class AbstractStencilResource {
     * new_draft_form_stencil 页面模板
     * 
     *
+    * @param id id
     * @param dto dto
     * @return Mono<ResponseEntity<StencilDTO>>
     */
     @ApiOperation(value = "new_draft_form_stencil", tags = {"页面模板" },  notes = "Stencil-new_draft_form_stencil ")
-    @PostMapping("stencils/new_draft_form_stencil")
-    public Mono<ResponseEntity<ResponseWrapper<StencilDTO>>>newDraftFormStencil
-            (@Validated @RequestBody RequestWrapper<StencilDTO> dto) {
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Stencil-new_draft_form_stencil-all') or hasPermission(this.stencilDtoMapping.toDomain(#dto),'ibizplm-Stencil-new_draft_form_stencil')")
+    @PostMapping("stencils/{id}/new_draft_form_stencil")
+    public Mono<ResponseEntity<ResponseWrapper<StencilDTO>>>newDraftFormStencilById
+            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<StencilDTO> dto) {
         ResponseWrapper<StencilDTO> rt = new ResponseWrapper<>();
-        if (dto.isArray())
-            dto.getList().forEach(item -> rt.add(newDraftFormStencil(item)));
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(newDraftFormStencilById(ids[i], dto.getList().get(i))));
+        }
         else
-            rt.set(newDraftFormStencil(dto.getDto()));
+            rt.set(newDraftFormStencilById(id, dto.getDto()));
         return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
@@ -150,12 +154,14 @@ public abstract class AbstractStencilResource {
     * new_draft_form_stencil 页面模板
     * 
     *
+    * @param id id
     * @param dto dto
     * @return ResponseEntity<StencilDTO>
     */   
-    public StencilDTO newDraftFormStencil
-            (StencilDTO dto) {
+    public StencilDTO newDraftFormStencilById
+            (String id, StencilDTO dto) {
         Stencil domain = stencilDtoMapping.toDomain(dto);
+        domain.setId(id);
         Stencil rt = stencilService.newDraftFormStencil(domain);
         return stencilDtoMapping.toDto(rt);
     }
@@ -281,18 +287,22 @@ public abstract class AbstractStencilResource {
     * 
     *
     * @param spaceId spaceId
+    * @param id id
     * @param dto dto
     * @return Mono<ResponseEntity<StencilDTO>>
     */
     @ApiOperation(value = "new_draft_form_stencil", tags = {"页面模板" },  notes = "Stencil-new_draft_form_stencil ")
-    @PostMapping("spaces/{spaceId}/stencils/new_draft_form_stencil")
-    public Mono<ResponseEntity<ResponseWrapper<StencilDTO>>>newDraftFormStencilBySpaceId
-            (@PathVariable("spaceId") String spaceId, @Validated @RequestBody RequestWrapper<StencilDTO> dto) {
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Stencil-new_draft_form_stencil-all') or hasPermission('space',#spaceId,this.stencilDtoMapping.toDomain(#dto),'ibizplm-Stencil-new_draft_form_stencil')")
+    @PostMapping("spaces/{spaceId}/stencils/{id}/new_draft_form_stencil")
+    public Mono<ResponseEntity<ResponseWrapper<StencilDTO>>>newDraftFormStencilBySpaceIdAndId
+            (@PathVariable("spaceId") String spaceId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<StencilDTO> dto) {
         ResponseWrapper<StencilDTO> rt = new ResponseWrapper<>();
-        if (dto.isArray())
-            dto.getList().forEach(item -> rt.add(newDraftFormStencilBySpaceId(spaceId, item)));
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(newDraftFormStencilBySpaceIdAndId(spaceId, ids[i], dto.getList().get(i))));
+        }
         else
-            rt.set(newDraftFormStencilBySpaceId(spaceId, dto.getDto()));
+            rt.set(newDraftFormStencilBySpaceIdAndId(spaceId, id, dto.getDto()));
         return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
@@ -301,13 +311,14 @@ public abstract class AbstractStencilResource {
     * 
     *
     * @param spaceId spaceId
+    * @param id id
     * @param dto dto
     * @return ResponseEntity<StencilDTO>
     */   
-    public StencilDTO newDraftFormStencilBySpaceId
-            (String spaceId, StencilDTO dto) {
+    public StencilDTO newDraftFormStencilBySpaceIdAndId
+            (String spaceId, String id, StencilDTO dto) {
         Stencil domain = stencilDtoMapping.toDomain(dto);
-        domain.setSpaceId(spaceId);
+        domain.setId(id);
         Stencil rt = stencilService.newDraftFormStencil(domain);
         return stencilDtoMapping.toDto(rt);
     }

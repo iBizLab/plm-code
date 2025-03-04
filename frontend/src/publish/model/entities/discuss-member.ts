@@ -848,14 +848,6 @@ export default {
           id: 'begin',
         },
         {
-          codeName: 'END1',
-          leftPos: 910,
-          logicNodeType: 'END',
-          topPos: 200,
-          name: '结束',
-          id: 'end1',
-        },
-        {
           code: "ibiz.hub.getApp(context.srfappid).deService.exec(\r\n    'plmweb.discuss_member',\r\n    'Create',\r\n    context,\r\n    uiLogic.user,\r\n);",
           codeName: 'RAWJSCODE1',
           leftPos: 660,
@@ -912,6 +904,14 @@ export default {
           name: '获取当前用户数据',
           id: 'preparejsparam1',
         },
+        {
+          codeName: 'END1',
+          leftPos: 910,
+          logicNodeType: 'END',
+          topPos: 200,
+          name: '结束',
+          id: 'end1',
+        },
       ],
       deuilogicParams: [
         {
@@ -960,20 +960,15 @@ export default {
     },
     {
       logicName: '读取',
-      mapDEName: 'DISCUSS_TOPIC',
-      mapDEOPPrivName: 'READ',
-      name: 'READ',
-      id: 'discuss_topic__read',
-    },
-    {
-      logicName: '读取',
       name: 'READ',
       id: 'read',
     },
     {
-      logicName: '更新',
-      name: 'UPDATE',
-      id: 'update',
+      logicName: '读取',
+      mapDEName: 'DISCUSS_TOPIC',
+      mapDEOPPrivName: 'READ',
+      name: 'READ',
+      id: 'discuss_topic__read',
     },
     {
       logicName: '更新',
@@ -981,6 +976,11 @@ export default {
       mapDEOPPrivName: 'UPDATE',
       name: 'UPDATE',
       id: 'discuss_topic__update',
+    },
+    {
+      logicName: '更新',
+      name: 'UPDATE',
+      id: 'update',
     },
   ],
   codeName: 'discuss_member',

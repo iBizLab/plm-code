@@ -4,7 +4,7 @@ export default {
   loadDefault: true,
   openMode: 'POPUPMODAL',
   deviewCodeName: 'day_link_management_grid_view',
-  deviewId: 'E662A0CF-AEEB-4343-AA1D-0B7704B79B7F',
+  deviewId: '093ba54b352bc50fbdca124d74df0f1a',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.WORKLOAD',
@@ -67,13 +67,6 @@ export default {
   ],
   appViewRefs: [
     {
-      realOpenMode: 'POPUPMODAL',
-      realTitle: '修改实际工时视图',
-      refAppViewId: 'plmweb.workload_update_view',
-      name: 'EDITDATA',
-      id: 'editdata',
-    },
-    {
       realTitle: '工时编辑视图',
       realTitleLanguageRes: {
         lanResTag: 'PAGE.TITLE.WORKLOAD.EDITVIEW',
@@ -81,6 +74,13 @@ export default {
       refAppViewId: 'plmweb.workload_edit_view',
       name: 'NEWDATA',
       id: 'newdata',
+    },
+    {
+      realOpenMode: 'POPUPMODAL',
+      realTitle: '修改实际工时视图',
+      refAppViewId: 'plmweb.workload_update_view',
+      name: 'EDITDATA',
+      id: 'editdata',
     },
   ],
   controls: [
@@ -411,7 +411,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: 'fbefab4b61756f7a3ffc3901f64d054e',
+  modelId: '6472e4cecdfe4f2c1167c6ded5b8502e',
   modelType: 'PSAPPDEVIEW',
   name: 'workloadday_link_management_grid_view',
   id: 'plmweb.workload_day_link_management_grid_view',

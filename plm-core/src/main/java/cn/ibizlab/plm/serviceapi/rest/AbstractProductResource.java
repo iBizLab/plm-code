@@ -214,6 +214,7 @@ public abstract class AbstractProductResource {
     * @return Mono<ResponseEntity<ProductDTO>>
     */
     @ApiOperation(value = "change_admin_role", tags = {"产品" },  notes = "Product-change_admin_role ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Product-change_admin_role-all') or hasPermission(this.productDtoMapping.toDomain(#dto),'ibizplm-Product-change_admin_role')")
     @PostMapping("products/{id}/change_admin_role")
     public Mono<ResponseEntity<ResponseWrapper<ProductDTO>>>changeAdminRoleById
             (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<ProductDTO> dto) {
@@ -408,6 +409,7 @@ public abstract class AbstractProductResource {
     * @return Mono<ResponseEntity<ProductDTO>>
     */
     @ApiOperation(value = "product_counters", tags = {"产品" },  notes = "Product-product_counters ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Product-product_counters-all') or hasPermission(this.productDtoMapping.toDomain(#dto),'ibizplm-Product-product_counters')")
     @PostMapping("products/{id}/product_counters")
     public Mono<ResponseEntity<ResponseWrapper<ProductDTO>>>productCountersById
             (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<ProductDTO> dto) {

@@ -3,7 +3,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'comparison_grid_view',
-  deviewId: 'FC3940E3-8FF4-4EC3-A13F-CAC261F46590',
+  deviewId: 'afcf655ab1a975a47093426b35821263',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.BASELINE_TEST_CASE',
@@ -129,6 +129,15 @@ export default {
   ],
   appViewRefs: [
     {
+      realTitle: '基线用例编辑视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.BASELINE_TEST_CASE.EDITVIEW',
+      },
+      refAppViewId: 'plmweb.baseline_test_case_edit_view',
+      name: 'NEWDATA',
+      id: 'newdata',
+    },
+    {
       openMode: 'POPUPMODAL',
       navigateContexts: [
         {
@@ -163,15 +172,6 @@ export default {
       refAppViewId: 'plmweb.test_case_main_view',
       name: 'EDITDATA',
       id: 'editdata',
-    },
-    {
-      realTitle: '基线用例编辑视图',
-      realTitleLanguageRes: {
-        lanResTag: 'PAGE.TITLE.BASELINE_TEST_CASE.EDITVIEW',
-      },
-      refAppViewId: 'plmweb.baseline_test_case_edit_view',
-      name: 'NEWDATA',
-      id: 'newdata',
     },
   ],
   controls: [
@@ -321,7 +321,7 @@ export default {
                   cssClass: 'fa fa-exchange',
                   glyph: 'xf0ec@FontAwesome',
                 },
-                id: 'u8a25c79',
+                id: 'u19305da',
               },
             ],
             appDataEntityId: 'plmweb.baseline_test_case',
@@ -481,7 +481,7 @@ export default {
         id: 'grid',
       },
       sysPFPluginId: 'baselinecompare',
-      modelId: 'CB3CF34F-164C-4EC4-A178-DE3346179504',
+      modelId: 'a1ca92191108957c0dc5b60a64e5777f',
       modelType: 'PSDEGRID',
       name: 'grid',
       id: 'plmweb.baseline_test_case.baseline_comparison_grid',
@@ -520,7 +520,7 @@ export default {
       controlParam: {
         id: 'searchform',
       },
-      modelId: 'd06d72eac7d7733e90735156b5910fb4',
+      modelId: '3eb862eda7fe4a0c7644748d8fa2a680',
       modelType: 'PSDEFORM_SEARCHFORM',
       name: 'searchform',
       id: 'plmweb.baseline_test_case.default',
@@ -563,7 +563,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: false,
-  modelId: '8370ca80061cf6c373615ac8ef1d50c2',
+  modelId: '5af5f6f28f2093827cd76fb6352f855b',
   modelType: 'PSAPPDEVIEW',
   name: 'baseline_test_casecomparison_grid_view',
   id: 'plmweb.baseline_test_case_comparison_grid_view',

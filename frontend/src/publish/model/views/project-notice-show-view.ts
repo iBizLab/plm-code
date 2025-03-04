@@ -4,7 +4,7 @@ export default {
   xdataControlName: 'form',
   loadDefault: true,
   deviewCodeName: 'notice_show_view',
-  deviewId: '053F8578-A6B2-4C5F-8973-BB9DDCC23214',
+  deviewId: 'ac3046260bce4e2298bfcf74d2f07a79',
   accUserMode: 2,
   caption: '项目',
   codeName: 'project_notice_show_view',
@@ -63,7 +63,6 @@ export default {
               deformDetails: [
                 {
                   dataType: 21,
-                  enableCond: 3,
                   labelPos: 'NONE',
                   noPrivDisplayMode: 1,
                   appDEFieldId: 'notice',
@@ -153,9 +152,12 @@ export default {
       logicName: '项目公告展示_表单',
       appDataEntityId: 'plmweb.project',
       controlParam: {
+        ctrlParams: {
+          EDITMODE: 'hover',
+        },
         id: 'form',
       },
-      modelId: 'FC8D2F94-8AC7-40B4-80BA-2BB461F010F9',
+      modelId: '7238a61e4533a50aef605e67dfa46dfa',
       modelType: 'PSDEFORM_EDITFORM',
       name: 'form',
       id: 'plmweb.project.notice_show_form',
@@ -196,7 +198,7 @@ export default {
   viewType: 'DEEDITVIEW',
   enableDP: true,
   showCaptionBar: false,
-  modelId: '609b27a7e353e5aee4aea2a1f6f7986c',
+  modelId: 'b2e9ec34aa51ca295312dd858232af6c',
   modelType: 'PSAPPDEVIEW',
   name: 'projectnotice_show_view',
   id: 'plmweb.project_notice_show_view',

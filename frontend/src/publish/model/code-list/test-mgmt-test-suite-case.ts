@@ -1,0 +1,17 @@
+export default {
+  codeListTag: 'TestMgmt__test_suite_case',
+  codeListType: 'DYNAMIC',
+  codeName: 'TestMgmt__test_suite_case',
+  emptyText: '未定义',
+  orMode: 'STR',
+  appDEDataSetId: 'fetch_normal',
+  appDataEntityId: 'plmweb.test_suite',
+  pvalueAppDEFieldId: 'pid',
+  textAppDEFieldId: 'name',
+  textSeparator: '、',
+  valueAppDEFieldId: 'id',
+  valueSeparator: ';',
+  enableCache: true,
+  name: '用例模块（测试用例）',
+  id: 'plmweb.testmgmt__test_suite_case',
+};

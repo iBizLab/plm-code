@@ -297,7 +297,7 @@ export default {
     logicName: 'recover_tab_exp_view分页导航视图布局面板',
     appDataEntityId: 'plmweb.product',
     controlParam: {},
-    modelId: 'CE49A23F-9CBA-443D-A609-61A74BB63E7F',
+    modelId: 'e7788e92263320b033c232bfb20bb98b',
     modelType: 'PSSYSVIEWLAYOUTPANEL',
     name: 'layoutpanel',
     id: 'usr0530937495',

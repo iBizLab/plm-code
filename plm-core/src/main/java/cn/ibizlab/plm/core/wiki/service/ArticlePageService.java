@@ -318,16 +318,6 @@ public interface ArticlePageService extends IService<ArticlePage> {
     }
 
     /**
-    * newDraftFormStencil
-    * 
-    * @param et
-    * @return
-    */
-    default ArticlePage newDraftFormStencil(ArticlePage et) {
-        return et;
-    }
-
-    /**
     * nothing
     * 
     * @param et
@@ -344,16 +334,6 @@ public interface ArticlePageService extends IService<ArticlePage> {
     * @return
     */
     default ArticlePage publishPage(ArticlePage et) {
-        return et;
-    }
-
-    /**
-    * publishPageTest
-    * 
-    * @param et
-    * @return
-    */
-    default ArticlePage publishPageTest(ArticlePage et) {
         return et;
     }
 

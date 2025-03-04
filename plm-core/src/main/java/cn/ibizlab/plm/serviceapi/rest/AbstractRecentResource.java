@@ -131,21 +131,19 @@ public abstract class AbstractRecentResource {
     * my_charge_entry 最近访问
     * 
     *
-    * @param id id
     * @param dto dto
     * @return Mono<ResponseEntity<RecentDTO>>
     */
     @ApiOperation(value = "my_charge_entry", tags = {"最近访问" },  notes = "Recent-my_charge_entry ")
-    @PostMapping("recents/{id}/my_charge_entry")
-    public Mono<ResponseEntity<ResponseWrapper<RecentDTO>>>myChargeEntryById
-            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<RecentDTO> dto) {
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Recent-my_charge_entry-all') or hasPermission(this.recentDtoMapping.toDomain(#dto),'ibizplm-Recent-my_charge_entry')")
+    @PostMapping("recents/my_charge_entry")
+    public Mono<ResponseEntity<ResponseWrapper<RecentDTO>>>myChargeEntry
+            (@Validated @RequestBody RequestWrapper<RecentDTO> dto) {
         ResponseWrapper<RecentDTO> rt = new ResponseWrapper<>();
-        if (dto.isArray()) {
-            String [] ids = id.split(";");
-            IntStream.range(0, ids.length).forEach(i -> rt.add(myChargeEntryById(ids[i], dto.getList().get(i))));
-        }
+        if (dto.isArray())
+            dto.getList().forEach(item -> rt.add(myChargeEntry(item)));
         else
-            rt.set(myChargeEntryById(id, dto.getDto()));
+            rt.set(myChargeEntry(dto.getDto()));
         return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
@@ -153,14 +151,12 @@ public abstract class AbstractRecentResource {
     * my_charge_entry 最近访问
     * 
     *
-    * @param id id
     * @param dto dto
     * @return ResponseEntity<RecentDTO>
     */   
-    public RecentDTO myChargeEntryById
-            (String id, RecentDTO dto) {
+    public RecentDTO myChargeEntry
+            (RecentDTO dto) {
         Recent domain = recentDtoMapping.toDomain(dto);
-        domain.setId(id);
         Recent rt = recentService.myChargeEntry(domain);
         return recentDtoMapping.toDto(rt);
     }
@@ -169,21 +165,19 @@ public abstract class AbstractRecentResource {
     * my_created_entry 最近访问
     * 
     *
-    * @param id id
     * @param dto dto
     * @return Mono<ResponseEntity<RecentDTO>>
     */
     @ApiOperation(value = "my_created_entry", tags = {"最近访问" },  notes = "Recent-my_created_entry ")
-    @PostMapping("recents/{id}/my_created_entry")
-    public Mono<ResponseEntity<ResponseWrapper<RecentDTO>>>myCreatedEntryById
-            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<RecentDTO> dto) {
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Recent-my_created_entry-all') or hasPermission(this.recentDtoMapping.toDomain(#dto),'ibizplm-Recent-my_created_entry')")
+    @PostMapping("recents/my_created_entry")
+    public Mono<ResponseEntity<ResponseWrapper<RecentDTO>>>myCreatedEntry
+            (@Validated @RequestBody RequestWrapper<RecentDTO> dto) {
         ResponseWrapper<RecentDTO> rt = new ResponseWrapper<>();
-        if (dto.isArray()) {
-            String [] ids = id.split(";");
-            IntStream.range(0, ids.length).forEach(i -> rt.add(myCreatedEntryById(ids[i], dto.getList().get(i))));
-        }
+        if (dto.isArray())
+            dto.getList().forEach(item -> rt.add(myCreatedEntry(item)));
         else
-            rt.set(myCreatedEntryById(id, dto.getDto()));
+            rt.set(myCreatedEntry(dto.getDto()));
         return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
@@ -191,14 +185,12 @@ public abstract class AbstractRecentResource {
     * my_created_entry 最近访问
     * 
     *
-    * @param id id
     * @param dto dto
     * @return ResponseEntity<RecentDTO>
     */   
-    public RecentDTO myCreatedEntryById
-            (String id, RecentDTO dto) {
+    public RecentDTO myCreatedEntry
+            (RecentDTO dto) {
         Recent domain = recentDtoMapping.toDomain(dto);
-        domain.setId(id);
         Recent rt = recentService.myCreatedEntry(domain);
         return recentDtoMapping.toDto(rt);
     }
@@ -211,6 +203,7 @@ public abstract class AbstractRecentResource {
     * @return Mono<ResponseEntity<RecentDTO>>
     */
     @ApiOperation(value = "my_summary", tags = {"最近访问" },  notes = "Recent-my_summary ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Recent-my_summary-all') or hasPermission(this.recentDtoMapping.toDomain(#dto),'ibizplm-Recent-my_summary')")
     @PostMapping("recents/my_summary")
     public Mono<ResponseEntity<ResponseWrapper<RecentDTO>>>mySummary
             (@Validated @RequestBody RequestWrapper<RecentDTO> dto) {

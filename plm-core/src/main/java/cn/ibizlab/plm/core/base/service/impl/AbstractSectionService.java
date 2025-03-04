@@ -191,6 +191,17 @@ public abstract class AbstractSectionService extends ServiceImpl<SectionMapper,S
         return list;
    }
 	
+   public Page<Section> fetchMySection(SectionSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Section> pages=baseMapper.searchMySection(context.getPages(),context,context.getSelectCond());
+        List<Section> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<Section> listMySection(SectionSearchContext context) {
+        List<Section> list = baseMapper.listMySection(context,context.getSelectCond());
+        return list;
+   }
+	
    public Page<Section> fetchView(SectionSearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<Section> pages=baseMapper.searchView(context.getPages(),context,context.getSelectCond());
         List<Section> list = pages.getRecords();

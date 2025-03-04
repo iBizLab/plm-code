@@ -1,6 +1,6 @@
 export default {
   deviewCodeName: 'global_setting_view',
-  deviewId: 'CAA1DC2D-FF3E-4D98-9D02-9350F950B3ED',
+  deviewId: 'e177c8ea8ba94bfcdc3879c0209e937d',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.IDEA',
@@ -408,7 +408,7 @@ export default {
     logicName: '需求全局配置视图布局面板',
     appDataEntityId: 'plmweb.idea',
     controlParam: {},
-    modelId: 'EFE2878C-0EF9-4D3E-AEEC-FB96FAEECE31',
+    modelId: 'e1b54ad5cab59f4a91d52d0b44a0051c',
     modelType: 'PSSYSVIEWLAYOUTPANEL',
     name: 'layoutpanel',
     id: 'usr1022252701',
@@ -418,7 +418,7 @@ export default {
   viewType: 'DECUSTOMVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: 'f38e5204a102c9e22f513b08de7e2f23',
+  modelId: '5183be2de546e81e1859c58ea2990439',
   modelType: 'PSAPPDEVIEW',
   name: 'ideaglobal_setting_view',
   id: 'plmweb.idea_global_setting_view',

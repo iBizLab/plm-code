@@ -1,6 +1,6 @@
 export default {
   deviewCodeName: 'setting_view',
-  deviewId: 'A6759B9D-9E7C-4591-B497-414F9DAECDE3',
+  deviewId: 'cacc7b9b78d9a1f5a81cb56fa6d228cb',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.TICKET',
@@ -389,7 +389,7 @@ export default {
     logicName: '工单设置视图布局面板',
     appDataEntityId: 'plmweb.ticket',
     controlParam: {},
-    modelId: '655C678D-C7F9-4E0B-A1CC-21EF12DD45D2',
+    modelId: 'ecd894690deb0fda37349a6c0cb33301',
     modelType: 'PSSYSVIEWLAYOUTPANEL',
     name: 'layoutpanel',
     id: 'usr1023088817',
@@ -399,7 +399,7 @@ export default {
   viewType: 'DECUSTOMVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '666cd4b78417c9205b1ab95ba9a0fd78',
+  modelId: 'af4f5147363d34ea319974e32a48db34',
   modelType: 'PSAPPDEVIEW',
   name: 'ticketsetting_view',
   id: 'plmweb.ticket_setting_view',

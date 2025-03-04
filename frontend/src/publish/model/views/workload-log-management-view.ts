@@ -241,6 +241,13 @@ export default {
     ],
     appViewRefs: [
       {
+        realOpenMode: 'POPUPMODAL',
+        realTitle: '修改实际工时视图',
+        refAppViewId: 'plmweb.workload_update_view',
+        name: 'EDITDATA',
+        id: 'editdata',
+      },
+      {
         realTitle: '工时编辑视图',
         realTitleLanguageRes: {
           lanResTag: 'PAGE.TITLE.WORKLOAD.EDITVIEW',
@@ -248,13 +255,6 @@ export default {
         refAppViewId: 'plmweb.workload_edit_view',
         name: 'NEWDATA',
         id: 'newdata',
-      },
-      {
-        realOpenMode: 'POPUPMODAL',
-        realTitle: '修改实际工时视图',
-        refAppViewId: 'plmweb.workload_update_view',
-        name: 'EDITDATA',
-        id: 'editdata',
       },
     ],
     controls: [
@@ -892,7 +892,7 @@ export default {
     logicName: 'log_management_view表格视图布局',
     appDataEntityId: 'plmweb.workload',
     controlParam: {},
-    modelId: '43051671-B595-4DAD-99DF-0D002CD44B96',
+    modelId: '9180301d9e81139394a3d66b497ec5c5',
     modelType: 'PSSYSVIEWLAYOUTPANEL',
     name: 'layoutpanel',
     id: 'usr0407743019',

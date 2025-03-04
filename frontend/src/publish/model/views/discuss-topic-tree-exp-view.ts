@@ -2,7 +2,7 @@ export default {
   showDataInfoBar: true,
   loadDefault: true,
   deviewCodeName: 'tree_exp_view',
-  deviewId: 'E061E27D-7E4F-43D9-AD88-A13D7CABA1B5',
+  deviewId: '8c33a1fb2bfd94e2704432177b412a7d',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'PAGE.CAPTION.DISCUSS_TOPIC.TREE_EXP_VIEW',
@@ -381,7 +381,7 @@ export default {
                 controlParam: {
                   id: 'node_4_cm',
                 },
-                modelId: '125AB223-9AD5-49D0-BD49-FBDF5A5B30D8',
+                modelId: '8d4b6c81e34954f53c85c73533bffa64',
                 modelType: 'PSDETOOLBAR',
                 name: 'node_4_cm',
                 id: 'tree_exp_view_node4_cm',
@@ -495,7 +495,7 @@ export default {
                 controlParam: {
                   id: 'node_9_cm',
                 },
-                modelId: 'CA4DB425-B441-4952-9071-9CA9A8D70423',
+                modelId: '333d19a4e514676a100e3ffbb658211b',
                 modelType: 'PSDETOOLBAR',
                 name: 'node_9_cm',
                 id: 'tree_exp_view_node9_cm',
@@ -580,7 +580,7 @@ export default {
               controlParam: {
                 id: 'node_9_cm',
               },
-              modelId: 'CA4DB425-B441-4952-9071-9CA9A8D70423',
+              modelId: '333d19a4e514676a100e3ffbb658211b',
               modelType: 'PSDETOOLBAR',
               name: 'node_9_cm',
               id: 'tree_exp_view_node9_cm',
@@ -608,7 +608,7 @@ export default {
               controlParam: {
                 id: 'node_4_cm',
               },
-              modelId: '125AB223-9AD5-49D0-BD49-FBDF5A5B30D8',
+              modelId: '8d4b6c81e34954f53c85c73533bffa64',
               modelType: 'PSDETOOLBAR',
               name: 'node_4_cm',
               id: 'tree_exp_view_node4_cm',
@@ -639,7 +639,7 @@ export default {
             id: 'treeexpbar_tree',
           },
           sysPFPluginId: 'list_tree',
-          modelId: '8CCB73B8-FD36-4902-B911-42D1462E2187',
+          modelId: '62aa346d1279898b9357b23a36cf0bc4',
           modelType: 'PSDETREEVIEW',
           name: 'treeexpbar_tree',
           id: 'plmweb.discuss_topic.tree_exp_view_tree_view',
@@ -651,7 +651,7 @@ export default {
       controlParam: {
         id: 'treeexpbar',
       },
-      modelId: '2a4a06406230d1948b724cada3994e01_treeexpbar',
+      modelId: '031ebb30cf519f9e5e7f5424c4d25b35_treeexpbar',
       modelType: 'PSEXPBAR',
       name: 'treeexpbar',
       id: 'tree_exp_view_treeexpbar',
@@ -699,7 +699,7 @@ export default {
   viewType: 'DETREEEXPVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '2a4a06406230d1948b724cada3994e01',
+  modelId: '031ebb30cf519f9e5e7f5424c4d25b35',
   modelType: 'PSAPPDEVIEW',
   name: 'discuss_topictree_exp_view',
   id: 'plmweb.discuss_topic_tree_exp_view',

@@ -3,7 +3,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'filter_grid_view',
-  deviewId: '72699652-ABDA-4B0F-ACD2-16A5B33C1635',
+  deviewId: '1e1a36fbf321b5b7f5da1053e9c469fd',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.TEST_CASE',
@@ -280,15 +280,6 @@ export default {
     ],
     appViewRefs: [
       {
-        realTitle: '用例编辑视图',
-        realTitleLanguageRes: {
-          lanResTag: 'PAGE.TITLE.TEST_CASE.EDITVIEW',
-        },
-        refAppViewId: 'plmweb.test_case_edit_view',
-        name: 'NEWDATA',
-        id: 'newdata',
-      },
-      {
         openMode: 'INDEXVIEWTAB_POPUPMODAL',
         navigateContexts: [
           {
@@ -304,6 +295,15 @@ export default {
         name: 'EDITDATA',
         id: 'editdata',
       },
+      {
+        realTitle: '用例编辑视图',
+        realTitleLanguageRes: {
+          lanResTag: 'PAGE.TITLE.TEST_CASE.EDITVIEW',
+        },
+        refAppViewId: 'plmweb.test_case_edit_view',
+        name: 'NEWDATA',
+        id: 'newdata',
+      },
     ],
     controls: [
       {
@@ -315,7 +315,7 @@ export default {
         controlParam: {
           id: 'toolbar',
         },
-        modelId: '3ECFE32F-BDD7-43EE-AC22-6BC2CB82F030',
+        modelId: '2d0f6cd0dc0fbf110b604ca2804f3618',
         modelType: 'PSDETOOLBAR',
         name: 'toolbar',
         id: 'filter_grid_view_toolbar',
@@ -723,7 +723,7 @@ export default {
         controlParam: {
           id: 'grid',
         },
-        modelId: '838F3AEC-55A6-4D69-9FD9-A54CDD9423E9',
+        modelId: '33d9a4a56bcc239a634e0781576f75fd',
         modelType: 'PSDEGRID',
         name: 'grid',
         id: 'plmweb.test_case.filter_grid_view_grid',
@@ -1404,7 +1404,7 @@ export default {
     logicName: 'filter_grid_view表格视图布局',
     appDataEntityId: 'plmweb.test_case',
     controlParam: {},
-    modelId: '481677D6-0119-488D-B1C9-16BC408EFB51',
+    modelId: 'd537736eac5aa56e6dfeb7c538601943',
     modelType: 'PSSYSVIEWLAYOUTPANEL',
     name: 'layoutpanel',
     id: 'usr0813558706',
@@ -1414,7 +1414,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: false,
-  modelId: 'e5744baee77ace379af8d5824a0a0818',
+  modelId: '605ae5e54c28c2d88745fc884b070372',
   modelType: 'PSAPPDEVIEW',
   name: 'test_casefilter_grid_view',
   id: 'plmweb.test_case_filter_grid_view',

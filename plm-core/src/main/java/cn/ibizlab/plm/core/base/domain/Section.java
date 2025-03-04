@@ -90,6 +90,16 @@ public class Section extends EntityMP implements Serializable
     private Integer isLeaf;
 
     /**
+    * 是否叶子节点2
+    */
+    @TableField(value = "is_leaf2")
+    @DEField(name = "is_leaf2" , defaultValue = "1" , dict = "YesNo")
+    @JSONField(name = "is_leaf2")
+    @JsonProperty("is_leaf2")
+    @ApiModelProperty(value = "is_leaf2", notes = "是否叶子节点2")
+    private Integer isLeaf2;
+
+    /**
     * 标识
     */
     @Id
@@ -158,6 +168,15 @@ public class Section extends EntityMP implements Serializable
     public Section setIsLeaf(Integer isLeaf) {
         this.isLeaf = isLeaf;
         this.modify("is_leaf", isLeaf);
+        return this;
+    }
+
+    /**
+    * 设置 [是否叶子节点2]
+    */
+    public Section setIsLeaf2(Integer isLeaf2) {
+        this.isLeaf2 = isLeaf2;
+        this.modify("is_leaf2", isLeaf2);
         return this;
     }
 

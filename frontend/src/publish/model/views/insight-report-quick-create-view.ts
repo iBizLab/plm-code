@@ -5,7 +5,7 @@ export default {
   loadDefault: true,
   openMode: 'POPUPMODAL',
   deviewCodeName: 'quick_create_view',
-  deviewId: 'BAD06C67-1AA0-46B0-A442-2962B2F25100',
+  deviewId: '84b8d53c613984cf36f39ec71b6eeb34',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.INSIGHT_REPORT',
@@ -156,7 +156,7 @@ export default {
       controlParam: {
         id: 'form',
       },
-      modelId: '41CEE613-5F6B-4EC8-B0C1-16EC9E4A9E36',
+      modelId: '4a43548027e813326b6f60d075bd41ab',
       modelType: 'PSDEFORM_EDITFORM',
       name: 'form',
       id: 'plmweb.insight_report.quick_create_view_form',
@@ -201,7 +201,7 @@ export default {
   width: 600,
   enableDP: true,
   showCaptionBar: true,
-  modelId: 'c634c2403ff4e858eec66d53bf3443d5',
+  modelId: '41a86991453c780c6dcf708986991b34',
   modelType: 'PSAPPDEVIEW',
   name: 'insight_reportquick_create_view',
   id: 'plmweb.insight_report_quick_create_view',

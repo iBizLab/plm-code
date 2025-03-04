@@ -222,6 +222,7 @@ public abstract class AbstractProjectResource {
     * @return Mono<ResponseEntity<ProjectDTO>>
     */
     @ApiOperation(value = "change_admin_role", tags = {"项目" },  notes = "Project-change_admin_role ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Project-change_admin_role-all') or hasPermission(this.projectDtoMapping.toDomain(#dto),'ibizplm-Project-change_admin_role')")
     @PostMapping("projects/{id}/change_admin_role")
     public Mono<ResponseEntity<ResponseWrapper<ProjectDTO>>>changeAdminRoleById
             (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<ProjectDTO> dto) {
@@ -610,7 +611,8 @@ public abstract class AbstractProjectResource {
     * @return Mono<ResponseEntity<ProjectDTO>>
     */
     @ApiOperation(value = "remove_from_project_set", tags = {"项目" },  notes = "Project-remove_from_project_set ")
-    @PostMapping("projects/remove_from_project_set")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Project-remove_from_project_set-all') or hasPermission(this.projectDtoMapping.toDomain(#dto),'ibizplm-Project-remove_from_project_set')")
+    @DeleteMapping("projects/remove_from_project_set")
     public Mono<ResponseEntity<ResponseWrapper<ProjectDTO>>>removeFromProjectSet
             (@Validated @RequestBody RequestWrapper<ProjectDTO> dto) {
         ResponseWrapper<ProjectDTO> rt = new ResponseWrapper<>();
@@ -1317,6 +1319,28 @@ public abstract class AbstractProjectResource {
             (@Validated @RequestBody ProjectFilterDTO dto) {
         ProjectSearchContext context = projectFilterDtoMapping.toDomain(dto);
         Page<Project> domains = projectService.fetchUser(context) ;
+        List<ProjectDTO> list = projectDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
+    * 查询fetch_view 项目
+    * 
+    *
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<ProjectDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_view", tags = {"项目" },  notes = "Project-fetch_view ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Project-fetch_view-all') or hasPermission(#dto,'ibizplm-Project-fetch_view')")
+    @PostMapping("projects/fetch_view")
+    public Mono<ResponseEntity<List<ProjectDTO>>> fetchView
+            (@Validated @RequestBody ProjectFilterDTO dto) {
+        ProjectSearchContext context = projectFilterDtoMapping.toDomain(dto);
+        Page<Project> domains = projectService.fetchView(context) ;
         List<ProjectDTO> list = projectDtoMapping.toDto(domains.getContent());
             return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))

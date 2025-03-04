@@ -4,7 +4,7 @@ export default {
   xdataControlName: 'form',
   loadDefault: true,
   deviewCodeName: 'account_view',
-  deviewId: '4A402A07-7FD9-4C3A-837A-C53330F7007F',
+  deviewId: '07ec35b82f2d023d8791fcab6a57b439',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.USER',
@@ -392,7 +392,7 @@ export default {
       controlParam: {
         id: 'form',
       },
-      modelId: '4C190F1E-EE8A-4C66-91B4-AB3D9BE9F2E9',
+      modelId: 'df3f993074a1eb16149a3799985e840b',
       modelType: 'PSDEFORM_EDITFORM',
       name: 'form',
       id: 'plmweb.user.account',
@@ -436,7 +436,7 @@ export default {
   viewType: 'DEEDITVIEW',
   enableDP: true,
   showCaptionBar: false,
-  modelId: 'b8581af2e0f8209e8dd515bdf5969765',
+  modelId: 'a5be3a5bd4bd39740814e11e36cdfecd',
   modelType: 'PSAPPDEVIEW',
   name: 'useraccount_view',
   id: 'plmweb.user_account_view',

@@ -421,6 +421,7 @@ public abstract class AbstractArticlePageResource {
     * @return Mono<ResponseEntity<ArticlePageDTO>>
     */
     @ApiOperation(value = "favorite", tags = {"页面" },  notes = "ArticlePage-favorite ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ArticlePage-favorite-all') or hasPermission(this.articlePageDtoMapping.toDomain(#dto),'ibizplm-ArticlePage-favorite')")
     @PostMapping("article_pages/{id}/favorite")
     public Mono<ResponseEntity<ResponseWrapper<ArticlePageDTO>>>favoriteById
             (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<ArticlePageDTO> dto) {
@@ -646,39 +647,6 @@ public abstract class AbstractArticlePageResource {
     }
 
     /**
-    * new_draft_form_stencil 页面
-    * 
-    *
-    * @param dto dto
-    * @return Mono<ResponseEntity<ArticlePageDTO>>
-    */
-    @ApiOperation(value = "new_draft_form_stencil", tags = {"页面" },  notes = "ArticlePage-new_draft_form_stencil ")
-    @PostMapping("article_pages/new_draft_form_stencil")
-    public Mono<ResponseEntity<ResponseWrapper<ArticlePageDTO>>>newDraftFormStencil
-            (@Validated @RequestBody RequestWrapper<ArticlePageDTO> dto) {
-        ResponseWrapper<ArticlePageDTO> rt = new ResponseWrapper<>();
-        if (dto.isArray())
-            dto.getList().forEach(item -> rt.add(newDraftFormStencil(item)));
-        else
-            rt.set(newDraftFormStencil(dto.getDto()));
-        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
-    }
-
-    /**
-    * new_draft_form_stencil 页面
-    * 
-    *
-    * @param dto dto
-    * @return ResponseEntity<ArticlePageDTO>
-    */   
-    public ArticlePageDTO newDraftFormStencil
-            (ArticlePageDTO dto) {
-        ArticlePage domain = articlePageDtoMapping.toDomain(dto);
-        ArticlePage rt = articlePageService.newDraftFormStencil(domain);
-        return articlePageDtoMapping.toDto(rt);
-    }
-
-    /**
     * publish_page 页面
     * 
     *
@@ -709,44 +677,6 @@ public abstract class AbstractArticlePageResource {
             (ArticlePageDTO dto) {
         ArticlePage domain = articlePageDtoMapping.toDomain(dto);
         ArticlePage rt = articlePageService.publishPage(domain);
-        return articlePageDtoMapping.toDto(rt);
-    }
-
-    /**
-    * publish_page_test 页面
-    * 
-    *
-    * @param id id
-    * @param dto dto
-    * @return Mono<ResponseEntity<ArticlePageDTO>>
-    */
-    @ApiOperation(value = "publish_page_test", tags = {"页面" },  notes = "ArticlePage-publish_page_test ")
-    @PostMapping("article_pages/{id}/publish_page_test")
-    public Mono<ResponseEntity<ResponseWrapper<ArticlePageDTO>>>publishPageTestById
-            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<ArticlePageDTO> dto) {
-        ResponseWrapper<ArticlePageDTO> rt = new ResponseWrapper<>();
-        if (dto.isArray()) {
-            String [] ids = id.split(";");
-            IntStream.range(0, ids.length).forEach(i -> rt.add(publishPageTestById(ids[i], dto.getList().get(i))));
-        }
-        else
-            rt.set(publishPageTestById(id, dto.getDto()));
-        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
-    }
-
-    /**
-    * publish_page_test 页面
-    * 
-    *
-    * @param id id
-    * @param dto dto
-    * @return ResponseEntity<ArticlePageDTO>
-    */   
-    public ArticlePageDTO publishPageTestById
-            (String id, ArticlePageDTO dto) {
-        ArticlePage domain = articlePageDtoMapping.toDomain(dto);
-        domain.setId(id);
-        ArticlePage rt = articlePageService.publishPageTest(domain);
         return articlePageDtoMapping.toDto(rt);
     }
 
@@ -872,6 +802,7 @@ public abstract class AbstractArticlePageResource {
     * @return Mono<ResponseEntity<ArticlePageDTO>>
     */
     @ApiOperation(value = "save_to_stencil", tags = {"页面" },  notes = "ArticlePage-save_to_stencil ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ArticlePage-save_to_stencil-all') or hasPermission(this.articlePageDtoMapping.toDomain(#dto),'ibizplm-ArticlePage-save_to_stencil')")
     @PostMapping("article_pages/{id}/save_to_stencil")
     public Mono<ResponseEntity<ResponseWrapper<ArticlePageDTO>>>saveToStencilById
             (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<ArticlePageDTO> dto) {
@@ -988,6 +919,7 @@ public abstract class AbstractArticlePageResource {
     * @return Mono<ResponseEntity<ArticlePageDTO>>
     */
     @ApiOperation(value = "un_favorite", tags = {"页面" },  notes = "ArticlePage-un_favorite ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ArticlePage-un_favorite-all') or hasPermission(this.articlePageDtoMapping.toDomain(#dto),'ibizplm-ArticlePage-un_favorite')")
     @PostMapping("article_pages/{id}/un_favorite")
     public Mono<ResponseEntity<ResponseWrapper<ArticlePageDTO>>>unFavoriteById
             (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<ArticlePageDTO> dto) {
@@ -1434,6 +1366,7 @@ public abstract class AbstractArticlePageResource {
     * @return Mono<ResponseEntity<ArticlePageDTO>>
     */
     @ApiOperation(value = "favorite", tags = {"页面" },  notes = "ArticlePage-favorite ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ArticlePage-favorite-all') or hasPermission('shared_space',#spaceId,this.articlePageDtoMapping.toDomain(#dto),'ibizplm-ArticlePage-favorite')")
     @PostMapping("shared_spaces/{spaceId}/article_pages/{id}/favorite")
     public Mono<ResponseEntity<ResponseWrapper<ArticlePageDTO>>>favoriteBySpaceIdAndId
             (@PathVariable("spaceId") String spaceId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<ArticlePageDTO> dto) {
@@ -1670,42 +1603,6 @@ public abstract class AbstractArticlePageResource {
     }
 
     /**
-    * new_draft_form_stencil 页面
-    * 
-    *
-    * @param spaceId spaceId
-    * @param dto dto
-    * @return Mono<ResponseEntity<ArticlePageDTO>>
-    */
-    @ApiOperation(value = "new_draft_form_stencil", tags = {"页面" },  notes = "ArticlePage-new_draft_form_stencil ")
-    @PostMapping("shared_spaces/{spaceId}/article_pages/new_draft_form_stencil")
-    public Mono<ResponseEntity<ResponseWrapper<ArticlePageDTO>>>newDraftFormStencilBySpaceId
-            (@PathVariable("spaceId") String spaceId, @Validated @RequestBody RequestWrapper<ArticlePageDTO> dto) {
-        ResponseWrapper<ArticlePageDTO> rt = new ResponseWrapper<>();
-        if (dto.isArray())
-            dto.getList().forEach(item -> rt.add(newDraftFormStencilBySpaceId(spaceId, item)));
-        else
-            rt.set(newDraftFormStencilBySpaceId(spaceId, dto.getDto()));
-        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
-    }
-
-    /**
-    * new_draft_form_stencil 页面
-    * 
-    *
-    * @param spaceId spaceId
-    * @param dto dto
-    * @return ResponseEntity<ArticlePageDTO>
-    */   
-    public ArticlePageDTO newDraftFormStencilBySpaceId
-            (String spaceId, ArticlePageDTO dto) {
-        ArticlePage domain = articlePageDtoMapping.toDomain(dto);
-        domain.setSpaceId(spaceId);
-        ArticlePage rt = articlePageService.newDraftFormStencil(domain);
-        return articlePageDtoMapping.toDto(rt);
-    }
-
-    /**
     * publish_page 页面
     * 
     *
@@ -1739,46 +1636,6 @@ public abstract class AbstractArticlePageResource {
         ArticlePage domain = articlePageDtoMapping.toDomain(dto);
         domain.setSpaceId(spaceId);
         ArticlePage rt = articlePageService.publishPage(domain);
-        return articlePageDtoMapping.toDto(rt);
-    }
-
-    /**
-    * publish_page_test 页面
-    * 
-    *
-    * @param spaceId spaceId
-    * @param id id
-    * @param dto dto
-    * @return Mono<ResponseEntity<ArticlePageDTO>>
-    */
-    @ApiOperation(value = "publish_page_test", tags = {"页面" },  notes = "ArticlePage-publish_page_test ")
-    @PostMapping("shared_spaces/{spaceId}/article_pages/{id}/publish_page_test")
-    public Mono<ResponseEntity<ResponseWrapper<ArticlePageDTO>>>publishPageTestBySpaceIdAndId
-            (@PathVariable("spaceId") String spaceId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<ArticlePageDTO> dto) {
-        ResponseWrapper<ArticlePageDTO> rt = new ResponseWrapper<>();
-        if (dto.isArray()) {
-            String [] ids = id.split(";");
-            IntStream.range(0, ids.length).forEach(i -> rt.add(publishPageTestBySpaceIdAndId(spaceId, ids[i], dto.getList().get(i))));
-        }
-        else
-            rt.set(publishPageTestBySpaceIdAndId(spaceId, id, dto.getDto()));
-        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
-    }
-
-    /**
-    * publish_page_test 页面
-    * 
-    *
-    * @param spaceId spaceId
-    * @param id id
-    * @param dto dto
-    * @return ResponseEntity<ArticlePageDTO>
-    */   
-    public ArticlePageDTO publishPageTestBySpaceIdAndId
-            (String spaceId, String id, ArticlePageDTO dto) {
-        ArticlePage domain = articlePageDtoMapping.toDomain(dto);
-        domain.setId(id);
-        ArticlePage rt = articlePageService.publishPageTest(domain);
         return articlePageDtoMapping.toDto(rt);
     }
 
@@ -1912,6 +1769,7 @@ public abstract class AbstractArticlePageResource {
     * @return Mono<ResponseEntity<ArticlePageDTO>>
     */
     @ApiOperation(value = "save_to_stencil", tags = {"页面" },  notes = "ArticlePage-save_to_stencil ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ArticlePage-save_to_stencil-all') or hasPermission('shared_space',#spaceId,this.articlePageDtoMapping.toDomain(#dto),'ibizplm-ArticlePage-save_to_stencil')")
     @PostMapping("shared_spaces/{spaceId}/article_pages/{id}/save_to_stencil")
     public Mono<ResponseEntity<ResponseWrapper<ArticlePageDTO>>>saveToStencilBySpaceIdAndId
             (@PathVariable("spaceId") String spaceId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<ArticlePageDTO> dto) {
@@ -2034,6 +1892,7 @@ public abstract class AbstractArticlePageResource {
     * @return Mono<ResponseEntity<ArticlePageDTO>>
     */
     @ApiOperation(value = "un_favorite", tags = {"页面" },  notes = "ArticlePage-un_favorite ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ArticlePage-un_favorite-all') or hasPermission('shared_space',#spaceId,this.articlePageDtoMapping.toDomain(#dto),'ibizplm-ArticlePage-un_favorite')")
     @PostMapping("shared_spaces/{spaceId}/article_pages/{id}/un_favorite")
     public Mono<ResponseEntity<ResponseWrapper<ArticlePageDTO>>>unFavoriteBySpaceIdAndId
             (@PathVariable("spaceId") String spaceId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<ArticlePageDTO> dto) {
@@ -2194,6 +2053,7 @@ public abstract class AbstractArticlePageResource {
     * @return Mono<ResponseEntity<ArticlePageDTO>>
     */
     @ApiOperation(value = "get_draft_pages", tags = {"页面" },  notes = "ArticlePage-get_draft_pages ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ArticlePage-get_draft_pages-all') or hasPermission(this.articlePageDtoMapping.toDomain(#dto),'ibizplm-ArticlePage-get_draft_pages')")
     @GetMapping("article_pages/get_draft_pages")
     public Mono<ResponseEntity<ArticlePageDTO>> getDraftPages
             (@SpringQueryMap ArticlePageDTO dto) {
@@ -2379,6 +2239,7 @@ public abstract class AbstractArticlePageResource {
     * @return Mono<ResponseEntity<List<ArticlePageDTO>>>
     */
     @ApiOperation(value = "查询fetch_is_deleted", tags = {"页面" },  notes = "ArticlePage-fetch_is_deleted ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ArticlePage-fetch_is_deleted-all') or hasPermission(#dto,'ibizplm-ArticlePage-fetch_is_deleted')")
     @PostMapping("article_pages/fetch_is_deleted")
     public Mono<ResponseEntity<List<ArticlePageDTO>>> fetchIsDeleted
             (@Validated @RequestBody ArticlePageFilterDTO dto) {
@@ -2773,6 +2634,7 @@ public abstract class AbstractArticlePageResource {
     * @return Mono<ResponseEntity<ArticlePageDTO>>
     */
     @ApiOperation(value = "get_draft_pages", tags = {"页面" },  notes = "ArticlePage-get_draft_pages ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ArticlePage-get_draft_pages-all') or hasPermission('shared_space',#spaceId,this.articlePageDtoMapping.toDomain(#dto),'ibizplm-ArticlePage-get_draft_pages')")
     @GetMapping("shared_spaces/{spaceId}/article_pages/get_draft_pages")
     public Mono<ResponseEntity<ArticlePageDTO>> getDraftPagesBySpaceId
             (@PathVariable("spaceId") String spaceId, @SpringQueryMap ArticlePageDTO dto) {
@@ -2975,6 +2837,7 @@ public abstract class AbstractArticlePageResource {
     * @return Mono<ResponseEntity<List<ArticlePageDTO>>>
     */
     @ApiOperation(value = "查询fetch_is_deleted", tags = {"页面" },  notes = "ArticlePage-fetch_is_deleted ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ArticlePage-fetch_is_deleted-all') or hasPermission('shared_space',#spaceId,#dto,'ibizplm-ArticlePage-fetch_is_deleted')")
     @PostMapping("shared_spaces/{spaceId}/article_pages/fetch_is_deleted")
     public Mono<ResponseEntity<List<ArticlePageDTO>>> fetchIsDeletedBySpaceId
             (@PathVariable("spaceId") String spaceId, @Validated @RequestBody ArticlePageFilterDTO dto) {

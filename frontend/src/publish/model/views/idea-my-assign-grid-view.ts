@@ -85,16 +85,6 @@ export default {
   ],
   appViewRefs: [
     {
-      realOpenMode: 'POPUPMODAL',
-      realTitle: '需求编辑视图',
-      realTitleLanguageRes: {
-        lanResTag: 'PAGE.TITLE.IDEA.EDITVIEW',
-      },
-      refAppViewId: 'plmweb.idea_edit_view',
-      name: 'NEWDATA',
-      id: 'newdata',
-    },
-    {
       openMode: 'INDEXVIEWTAB_POPUPMODAL',
       navigateContexts: [
         {
@@ -112,6 +102,16 @@ export default {
       refAppViewId: 'plmweb.idea_main_view',
       name: 'EDITDATA',
       id: 'editdata',
+    },
+    {
+      realOpenMode: 'POPUPMODAL',
+      realTitle: '需求编辑视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.IDEA.EDITVIEW',
+      },
+      refAppViewId: 'plmweb.idea_edit_view',
+      name: 'NEWDATA',
+      id: 'newdata',
     },
   ],
   controls: [

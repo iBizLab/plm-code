@@ -251,6 +251,22 @@ public interface TestPlanService extends IService<TestPlan> {
     List<TestPlan> listBiSearch(TestPlanSearchContext context);
 
     /**
+    * fetchCurProject
+    * 
+    * @param context
+    * @return
+    */
+    Page<TestPlan> fetchCurProject(TestPlanSearchContext context);
+
+    /**
+    * listCurProject
+    * 
+    * @param context
+    * @return
+    */
+    List<TestPlan> listCurProject(TestPlanSearchContext context);
+
+    /**
     * fetchMyAssignee
     * 
     * @param context

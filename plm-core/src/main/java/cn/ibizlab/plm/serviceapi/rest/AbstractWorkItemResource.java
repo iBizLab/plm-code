@@ -285,6 +285,7 @@ public abstract class AbstractWorkItemResource {
     * @return Mono<ResponseEntity<WorkItemDTO>>
     */
     @ApiOperation(value = "change_assignee", tags = {"工作项" },  notes = "WorkItem-change_assignee ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-WorkItem-change_assignee-all') or hasPermission(this.workItemDtoMapping.toDomain(#dto),'ibizplm-WorkItem-change_assignee')")
     @PostMapping("work_items/{id}/change_assignee")
     public Mono<ResponseEntity<ResponseWrapper<WorkItemDTO>>>changeAssigneeById
             (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<WorkItemDTO> dto) {
@@ -362,6 +363,7 @@ public abstract class AbstractWorkItemResource {
     * @return Mono<ResponseEntity<WorkItemDTO>>
     */
     @ApiOperation(value = "change_state", tags = {"工作项" },  notes = "WorkItem-change_state ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-WorkItem-change_state-all') or hasPermission(this.workItemDtoMapping.toDomain(#dto),'ibizplm-WorkItem-change_state')")
     @PostMapping("work_items/{id}/change_state")
     public Mono<ResponseEntity<ResponseWrapper<WorkItemDTO>>>changeStateById
             (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<WorkItemDTO> dto) {
@@ -400,6 +402,7 @@ public abstract class AbstractWorkItemResource {
     * @return Mono<ResponseEntity<WorkItemDTO>>
     */
     @ApiOperation(value = "change_time", tags = {"工作项" },  notes = "WorkItem-change_time ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-WorkItem-change_time-all') or hasPermission(this.workItemDtoMapping.toDomain(#dto),'ibizplm-WorkItem-change_time')")
     @PostMapping("work_items/{id}/change_time")
     public Mono<ResponseEntity<ResponseWrapper<WorkItemDTO>>>changeTimeById
             (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<WorkItemDTO> dto) {
@@ -516,6 +519,7 @@ public abstract class AbstractWorkItemResource {
     * @return Mono<ResponseEntity<WorkItemDTO>>
     */
     @ApiOperation(value = "copy", tags = {"工作项" },  notes = "WorkItem-copy ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-WorkItem-copy-all') or hasPermission(this.workItemDtoMapping.toDomain(#dto),'ibizplm-WorkItem-copy')")
     @PostMapping("work_items/{id}/copy")
     public Mono<ResponseEntity<ResponseWrapper<WorkItemDTO>>>copyById
             (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<WorkItemDTO> dto) {
@@ -836,18 +840,22 @@ public abstract class AbstractWorkItemResource {
     * move_work_item 工作项
     * 
     *
+    * @param id id
     * @param dto dto
     * @return Mono<ResponseEntity<WorkItemDTO>>
     */
     @ApiOperation(value = "move_work_item", tags = {"工作项" },  notes = "WorkItem-move_work_item ")
-    @PostMapping("work_items/move_work_item")
-    public Mono<ResponseEntity<ResponseWrapper<WorkItemDTO>>>moveWorkItem
-            (@Validated @RequestBody RequestWrapper<WorkItemDTO> dto) {
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-WorkItem-move_work_item-all') or hasPermission(this.workItemDtoMapping.toDomain(#dto),'ibizplm-WorkItem-move_work_item')")
+    @PostMapping("work_items/{id}/move_work_item")
+    public Mono<ResponseEntity<ResponseWrapper<WorkItemDTO>>>moveWorkItemById
+            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<WorkItemDTO> dto) {
         ResponseWrapper<WorkItemDTO> rt = new ResponseWrapper<>();
-        if (dto.isArray())
-            dto.getList().forEach(item -> rt.add(moveWorkItem(item)));
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(moveWorkItemById(ids[i], dto.getList().get(i))));
+        }
         else
-            rt.set(moveWorkItem(dto.getDto()));
+            rt.set(moveWorkItemById(id, dto.getDto()));
         return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
@@ -855,12 +863,14 @@ public abstract class AbstractWorkItemResource {
     * move_work_item 工作项
     * 
     *
+    * @param id id
     * @param dto dto
     * @return ResponseEntity<WorkItemDTO>
     */   
-    public WorkItemDTO moveWorkItem
-            (WorkItemDTO dto) {
+    public WorkItemDTO moveWorkItemById
+            (String id, WorkItemDTO dto) {
         WorkItem domain = workItemDtoMapping.toDomain(dto);
+        domain.setId(id);
         WorkItem rt = workItemService.moveWorkItem(domain);
         return workItemDtoMapping.toDto(rt);
     }
@@ -1024,6 +1034,7 @@ public abstract class AbstractWorkItemResource {
     * @return Mono<ResponseEntity<WorkItemDTO>>
     */
     @ApiOperation(value = "resource_member_setting", tags = {"工作项" },  notes = "WorkItem-resource_member_setting ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-WorkItem-resource_member_setting-all') or hasPermission(this.workItemDtoMapping.toDomain(#dto),'ibizplm-WorkItem-resource_member_setting')")
     @PostMapping("work_items/resource_member_setting")
     public Mono<ResponseEntity<ResponseWrapper<WorkItemDTO>>>resourceMemberSetting
             (@Validated @RequestBody RequestWrapper<WorkItemDTO> dto) {
@@ -1131,6 +1142,7 @@ public abstract class AbstractWorkItemResource {
     * @return Mono<ResponseEntity<WorkItemDTO>>
     */
     @ApiOperation(value = "set_default_entry", tags = {"工作项" },  notes = "WorkItem-set_default_entry ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-WorkItem-set_default_entry-all') or hasPermission(this.workItemDtoMapping.toDomain(#dto),'ibizplm-WorkItem-set_default_entry')")
     @PostMapping("work_items/set_default_entry")
     public Mono<ResponseEntity<ResponseWrapper<WorkItemDTO>>>setDefaultEntry
             (@Validated @RequestBody RequestWrapper<WorkItemDTO> dto) {
@@ -1164,6 +1176,7 @@ public abstract class AbstractWorkItemResource {
     * @return Mono<ResponseEntity<WorkItemDTO>>
     */
     @ApiOperation(value = "set_type_bug", tags = {"工作项" },  notes = "WorkItem-set_type_bug ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-WorkItem-set_type_bug-all') or hasPermission(this.workItemDtoMapping.toDomain(#dto),'ibizplm-WorkItem-set_type_bug')")
     @PostMapping("work_items/set_type_bug")
     public Mono<ResponseEntity<ResponseWrapper<WorkItemDTO>>>setTypeBug
             (@Validated @RequestBody RequestWrapper<WorkItemDTO> dto) {
@@ -1198,6 +1211,7 @@ public abstract class AbstractWorkItemResource {
     * @return Mono<ResponseEntity<WorkItemDTO>>
     */
     @ApiOperation(value = "shift_in_kanban", tags = {"工作项" },  notes = "WorkItem-shift_in_kanban ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-WorkItem-shift_in_kanban-all') or hasPermission(this.workItemDtoMapping.toDomain(#dto),'ibizplm-WorkItem-shift_in_kanban')")
     @PostMapping("work_items/{id}/shift_in_kanban")
     public Mono<ResponseEntity<ResponseWrapper<WorkItemDTO>>>shiftInKanbanById
             (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<WorkItemDTO> dto) {
@@ -1392,6 +1406,7 @@ public abstract class AbstractWorkItemResource {
     * @return Mono<ResponseEntity<WorkItemDTO>>
     */
     @ApiOperation(value = "work_item_re_counters", tags = {"工作项" },  notes = "WorkItem-work_item_re_counters ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-WorkItem-work_item_re_counters-all') or hasPermission(this.workItemDtoMapping.toDomain(#dto),'ibizplm-WorkItem-work_item_re_counters')")
     @PostMapping("work_items/{id}/work_item_re_counters")
     public Mono<ResponseEntity<ResponseWrapper<WorkItemDTO>>>workItemReCountersById
             (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<WorkItemDTO> dto) {
@@ -1713,6 +1728,7 @@ public abstract class AbstractWorkItemResource {
     * @return Mono<ResponseEntity<WorkItemDTO>>
     */
     @ApiOperation(value = "change_assignee", tags = {"工作项" },  notes = "WorkItem-change_assignee ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-WorkItem-change_assignee-all') or hasPermission('project',#projectId,this.workItemDtoMapping.toDomain(#dto),'ibizplm-WorkItem-change_assignee')")
     @PostMapping("projects/{projectId}/work_items/{id}/change_assignee")
     public Mono<ResponseEntity<ResponseWrapper<WorkItemDTO>>>changeAssigneeByProjectIdAndId
             (@PathVariable("projectId") String projectId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<WorkItemDTO> dto) {
@@ -1794,6 +1810,7 @@ public abstract class AbstractWorkItemResource {
     * @return Mono<ResponseEntity<WorkItemDTO>>
     */
     @ApiOperation(value = "change_state", tags = {"工作项" },  notes = "WorkItem-change_state ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-WorkItem-change_state-all') or hasPermission('project',#projectId,this.workItemDtoMapping.toDomain(#dto),'ibizplm-WorkItem-change_state')")
     @PostMapping("projects/{projectId}/work_items/{id}/change_state")
     public Mono<ResponseEntity<ResponseWrapper<WorkItemDTO>>>changeStateByProjectIdAndId
             (@PathVariable("projectId") String projectId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<WorkItemDTO> dto) {
@@ -1834,6 +1851,7 @@ public abstract class AbstractWorkItemResource {
     * @return Mono<ResponseEntity<WorkItemDTO>>
     */
     @ApiOperation(value = "change_time", tags = {"工作项" },  notes = "WorkItem-change_time ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-WorkItem-change_time-all') or hasPermission('project',#projectId,this.workItemDtoMapping.toDomain(#dto),'ibizplm-WorkItem-change_time')")
     @PostMapping("projects/{projectId}/work_items/{id}/change_time")
     public Mono<ResponseEntity<ResponseWrapper<WorkItemDTO>>>changeTimeByProjectIdAndId
             (@PathVariable("projectId") String projectId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<WorkItemDTO> dto) {
@@ -1956,6 +1974,7 @@ public abstract class AbstractWorkItemResource {
     * @return Mono<ResponseEntity<WorkItemDTO>>
     */
     @ApiOperation(value = "copy", tags = {"工作项" },  notes = "WorkItem-copy ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-WorkItem-copy-all') or hasPermission('project',#projectId,this.workItemDtoMapping.toDomain(#dto),'ibizplm-WorkItem-copy')")
     @PostMapping("projects/{projectId}/work_items/{id}/copy")
     public Mono<ResponseEntity<ResponseWrapper<WorkItemDTO>>>copyByProjectIdAndId
             (@PathVariable("projectId") String projectId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<WorkItemDTO> dto) {
@@ -2299,18 +2318,22 @@ public abstract class AbstractWorkItemResource {
     * 
     *
     * @param projectId projectId
+    * @param id id
     * @param dto dto
     * @return Mono<ResponseEntity<WorkItemDTO>>
     */
     @ApiOperation(value = "move_work_item", tags = {"工作项" },  notes = "WorkItem-move_work_item ")
-    @PostMapping("projects/{projectId}/work_items/move_work_item")
-    public Mono<ResponseEntity<ResponseWrapper<WorkItemDTO>>>moveWorkItemByProjectId
-            (@PathVariable("projectId") String projectId, @Validated @RequestBody RequestWrapper<WorkItemDTO> dto) {
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-WorkItem-move_work_item-all') or hasPermission('project',#projectId,this.workItemDtoMapping.toDomain(#dto),'ibizplm-WorkItem-move_work_item')")
+    @PostMapping("projects/{projectId}/work_items/{id}/move_work_item")
+    public Mono<ResponseEntity<ResponseWrapper<WorkItemDTO>>>moveWorkItemByProjectIdAndId
+            (@PathVariable("projectId") String projectId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<WorkItemDTO> dto) {
         ResponseWrapper<WorkItemDTO> rt = new ResponseWrapper<>();
-        if (dto.isArray())
-            dto.getList().forEach(item -> rt.add(moveWorkItemByProjectId(projectId, item)));
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(moveWorkItemByProjectIdAndId(projectId, ids[i], dto.getList().get(i))));
+        }
         else
-            rt.set(moveWorkItemByProjectId(projectId, dto.getDto()));
+            rt.set(moveWorkItemByProjectIdAndId(projectId, id, dto.getDto()));
         return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
@@ -2319,13 +2342,14 @@ public abstract class AbstractWorkItemResource {
     * 
     *
     * @param projectId projectId
+    * @param id id
     * @param dto dto
     * @return ResponseEntity<WorkItemDTO>
     */   
-    public WorkItemDTO moveWorkItemByProjectId
-            (String projectId, WorkItemDTO dto) {
+    public WorkItemDTO moveWorkItemByProjectIdAndId
+            (String projectId, String id, WorkItemDTO dto) {
         WorkItem domain = workItemDtoMapping.toDomain(dto);
-        domain.setProjectId(projectId);
+        domain.setId(id);
         WorkItem rt = workItemService.moveWorkItem(domain);
         return workItemDtoMapping.toDto(rt);
     }
@@ -2499,6 +2523,7 @@ public abstract class AbstractWorkItemResource {
     * @return Mono<ResponseEntity<WorkItemDTO>>
     */
     @ApiOperation(value = "resource_member_setting", tags = {"工作项" },  notes = "WorkItem-resource_member_setting ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-WorkItem-resource_member_setting-all') or hasPermission('project',#projectId,this.workItemDtoMapping.toDomain(#dto),'ibizplm-WorkItem-resource_member_setting')")
     @PostMapping("projects/{projectId}/work_items/resource_member_setting")
     public Mono<ResponseEntity<ResponseWrapper<WorkItemDTO>>>resourceMemberSettingByProjectId
             (@PathVariable("projectId") String projectId, @Validated @RequestBody RequestWrapper<WorkItemDTO> dto) {
@@ -2614,6 +2639,7 @@ public abstract class AbstractWorkItemResource {
     * @return Mono<ResponseEntity<WorkItemDTO>>
     */
     @ApiOperation(value = "set_default_entry", tags = {"工作项" },  notes = "WorkItem-set_default_entry ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-WorkItem-set_default_entry-all') or hasPermission('project',#projectId,this.workItemDtoMapping.toDomain(#dto),'ibizplm-WorkItem-set_default_entry')")
     @PostMapping("projects/{projectId}/work_items/set_default_entry")
     public Mono<ResponseEntity<ResponseWrapper<WorkItemDTO>>>setDefaultEntryByProjectId
             (@PathVariable("projectId") String projectId, @Validated @RequestBody RequestWrapper<WorkItemDTO> dto) {
@@ -2650,6 +2676,7 @@ public abstract class AbstractWorkItemResource {
     * @return Mono<ResponseEntity<WorkItemDTO>>
     */
     @ApiOperation(value = "set_type_bug", tags = {"工作项" },  notes = "WorkItem-set_type_bug ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-WorkItem-set_type_bug-all') or hasPermission('project',#projectId,this.workItemDtoMapping.toDomain(#dto),'ibizplm-WorkItem-set_type_bug')")
     @PostMapping("projects/{projectId}/work_items/set_type_bug")
     public Mono<ResponseEntity<ResponseWrapper<WorkItemDTO>>>setTypeBugByProjectId
             (@PathVariable("projectId") String projectId, @Validated @RequestBody RequestWrapper<WorkItemDTO> dto) {
@@ -2687,6 +2714,7 @@ public abstract class AbstractWorkItemResource {
     * @return Mono<ResponseEntity<WorkItemDTO>>
     */
     @ApiOperation(value = "shift_in_kanban", tags = {"工作项" },  notes = "WorkItem-shift_in_kanban ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-WorkItem-shift_in_kanban-all') or hasPermission('project',#projectId,this.workItemDtoMapping.toDomain(#dto),'ibizplm-WorkItem-shift_in_kanban')")
     @PostMapping("projects/{projectId}/work_items/{id}/shift_in_kanban")
     public Mono<ResponseEntity<ResponseWrapper<WorkItemDTO>>>shiftInKanbanByProjectIdAndId
             (@PathVariable("projectId") String projectId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<WorkItemDTO> dto) {
@@ -2891,6 +2919,7 @@ public abstract class AbstractWorkItemResource {
     * @return Mono<ResponseEntity<WorkItemDTO>>
     */
     @ApiOperation(value = "work_item_re_counters", tags = {"工作项" },  notes = "WorkItem-work_item_re_counters ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-WorkItem-work_item_re_counters-all') or hasPermission('project',#projectId,this.workItemDtoMapping.toDomain(#dto),'ibizplm-WorkItem-work_item_re_counters')")
     @PostMapping("projects/{projectId}/work_items/{id}/work_item_re_counters")
     public Mono<ResponseEntity<ResponseWrapper<WorkItemDTO>>>workItemReCountersByProjectIdAndId
             (@PathVariable("projectId") String projectId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<WorkItemDTO> dto) {
@@ -3108,6 +3137,7 @@ public abstract class AbstractWorkItemResource {
     * @return Mono<ResponseEntity<WorkItemDTO>>
     */
     @ApiOperation(value = "work_item_type_id", tags = {"工作项" },  notes = "WorkItem-work_item_type_id ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-WorkItem-work_item_type_id-all') or hasPermission(this.workItemService.get(#id),'ibizplm-WorkItem-work_item_type_id')")
     @GetMapping("work_items/{id}/work_item_type_id")
     public Mono<ResponseEntity<WorkItemDTO>> workItemTypeIdById
             (@PathVariable("id") String id) {
@@ -4619,6 +4649,7 @@ public abstract class AbstractWorkItemResource {
     * @return Mono<ResponseEntity<WorkItemDTO>>
     */
     @ApiOperation(value = "work_item_type_id", tags = {"工作项" },  notes = "WorkItem-work_item_type_id ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-WorkItem-work_item_type_id-all') or hasPermission('project',#projectId,this.workItemService.get(#id),'ibizplm-WorkItem-work_item_type_id')")
     @GetMapping("projects/{projectId}/work_items/{id}/work_item_type_id")
     public Mono<ResponseEntity<WorkItemDTO>> workItemTypeIdByProjectIdAndId
             (@PathVariable("projectId") String projectId, @PathVariable("id") String id) {

@@ -2,7 +2,7 @@ export default {
   showDataInfoBar: true,
   loadDefault: true,
   deviewCodeName: 'config_tree_exp_view',
-  deviewId: 'a431c7d3ee1e9656164fc255c27b21df',
+  deviewId: 'ad97dd786eae768cd042873ed98b345f',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.LIBRARY',
@@ -312,7 +312,7 @@ export default {
           controlParam: {
             id: 'treeexpbar_toolbar',
           },
-          modelId: 'A18F0469-F5DB-4EF1-BB2F-832EA9AE889C',
+          modelId: 'be873c7b0d54fcd8bd373a87dc6c926b',
           modelType: 'PSDETOOLBAR',
           name: 'treeexpbar_toolbar',
           id: 'config_tree_exp_view_treeexpbar_toolbar',
@@ -324,7 +324,7 @@ export default {
       controlParam: {
         id: 'treeexpbar',
       },
-      modelId: '17099fe42d3b6d835864bdabb88c9937_treeexpbar',
+      modelId: '1850760f1f2e8202f2509880d51c9e4a_treeexpbar',
       modelType: 'PSEXPBAR',
       name: 'treeexpbar',
       id: 'config_tree_exp_view_treeexpbar',
@@ -369,7 +369,7 @@ export default {
   viewType: 'DETREEEXPVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '17099fe42d3b6d835864bdabb88c9937',
+  modelId: '1850760f1f2e8202f2509880d51c9e4a',
   modelType: 'PSAPPDEVIEW',
   name: 'libraryconfig_tree_exp_view',
   id: 'plmweb.library_config_tree_exp_view',

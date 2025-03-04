@@ -370,6 +370,7 @@ public abstract class AbstractDiscussPostResource {
     * @return Mono<ResponseEntity<DiscussPostDTO>>
     */
     @ApiOperation(value = "move", tags = {"讨论" },  notes = "DiscussPost-move ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-DiscussPost-move-all') or hasPermission(this.discussPostDtoMapping.toDomain(#dto),'ibizplm-DiscussPost-move')")
     @PostMapping("discuss_posts/{id}/move")
     public Mono<ResponseEntity<ResponseWrapper<DiscussPostDTO>>>moveById
             (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<DiscussPostDTO> dto) {
@@ -548,6 +549,45 @@ public abstract class AbstractDiscussPostResource {
         DiscussPost domain = discussPostDtoMapping.toDomain(dto);
         domain.setId(id);
         DiscussPost rt = discussPostService.sendComment(domain);
+        return discussPostDtoMapping.toDto(rt);
+    }
+
+    /**
+    * update_comment 讨论
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return Mono<ResponseEntity<DiscussPostDTO>>
+    */
+    @ApiOperation(value = "update_comment", tags = {"讨论" },  notes = "DiscussPost-update_comment ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-DiscussPost-update_comment-all') or hasPermission(this.discussPostDtoMapping.toDomain(#dto),'ibizplm-DiscussPost-update_comment')")
+    @PutMapping("discuss_posts/{id}/update_comment")
+    public Mono<ResponseEntity<ResponseWrapper<DiscussPostDTO>>>updateCommentById
+            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<DiscussPostDTO> dto) {
+        ResponseWrapper<DiscussPostDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(updateCommentById(ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(updateCommentById(id, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * update_comment 讨论
+    * 
+    *
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<DiscussPostDTO>
+    */   
+    public DiscussPostDTO updateCommentById
+            (String id, DiscussPostDTO dto) {
+        DiscussPost domain = discussPostDtoMapping.toDomain(dto);
+        domain.setId(id);
+        DiscussPost rt = discussPostService.updateComment(domain);
         return discussPostDtoMapping.toDto(rt);
     }
 
@@ -888,6 +928,7 @@ public abstract class AbstractDiscussPostResource {
     * @return Mono<ResponseEntity<DiscussPostDTO>>
     */
     @ApiOperation(value = "move", tags = {"讨论" },  notes = "DiscussPost-move ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-DiscussPost-move-all') or hasPermission('discuss_topic',#topicId,this.discussPostDtoMapping.toDomain(#dto),'ibizplm-DiscussPost-move')")
     @PostMapping("discuss_topics/{topicId}/discuss_posts/{id}/move")
     public Mono<ResponseEntity<ResponseWrapper<DiscussPostDTO>>>moveByTopicIdAndId
             (@PathVariable("topicId") String topicId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<DiscussPostDTO> dto) {
@@ -1079,6 +1120,47 @@ public abstract class AbstractDiscussPostResource {
         return discussPostDtoMapping.toDto(rt);
     }
 
+    /**
+    * update_comment 讨论
+    * 
+    *
+    * @param topicId topicId
+    * @param id id
+    * @param dto dto
+    * @return Mono<ResponseEntity<DiscussPostDTO>>
+    */
+    @ApiOperation(value = "update_comment", tags = {"讨论" },  notes = "DiscussPost-update_comment ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-DiscussPost-update_comment-all') or hasPermission('discuss_topic',#topicId,this.discussPostDtoMapping.toDomain(#dto),'ibizplm-DiscussPost-update_comment')")
+    @PutMapping("discuss_topics/{topicId}/discuss_posts/{id}/update_comment")
+    public Mono<ResponseEntity<ResponseWrapper<DiscussPostDTO>>>updateCommentByTopicIdAndId
+            (@PathVariable("topicId") String topicId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<DiscussPostDTO> dto) {
+        ResponseWrapper<DiscussPostDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(updateCommentByTopicIdAndId(topicId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(updateCommentByTopicIdAndId(topicId, id, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * update_comment 讨论
+    * 
+    *
+    * @param topicId topicId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<DiscussPostDTO>
+    */   
+    public DiscussPostDTO updateCommentByTopicIdAndId
+            (String topicId, String id, DiscussPostDTO dto) {
+        DiscussPost domain = discussPostDtoMapping.toDomain(dto);
+        domain.setId(id);
+        DiscussPost rt = discussPostService.updateComment(domain);
+        return discussPostDtoMapping.toDto(rt);
+    }
+
 
     /**
     * 获取Get 讨论
@@ -1262,6 +1344,28 @@ public abstract class AbstractDiscussPostResource {
             (@Validated @RequestBody DiscussPostFilterDTO dto) {
         DiscussPostSearchContext context = discussPostFilterDtoMapping.toDomain(dto);
         Page<DiscussPost> domains = discussPostService.fetchMyCreate(context) ;
+        List<DiscussPostDTO> list = discussPostDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
+    * 查询fetch_my_post 讨论
+    * 
+    *
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<DiscussPostDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_my_post", tags = {"讨论" },  notes = "DiscussPost-fetch_my_post ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-DiscussPost-fetch_my_post-all') or hasPermission(#dto,'ibizplm-DiscussPost-fetch_my_post')")
+    @PostMapping("discuss_posts/fetch_my_post")
+    public Mono<ResponseEntity<List<DiscussPostDTO>>> fetchMyPost
+            (@Validated @RequestBody DiscussPostFilterDTO dto) {
+        DiscussPostSearchContext context = discussPostFilterDtoMapping.toDomain(dto);
+        Page<DiscussPost> domains = discussPostService.fetchMyPost(context) ;
         List<DiscussPostDTO> list = discussPostDtoMapping.toDto(domains.getContent());
             return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
@@ -1557,6 +1661,30 @@ public abstract class AbstractDiscussPostResource {
         dto.setTopicIdEQ(topicId);
         DiscussPostSearchContext context = discussPostFilterDtoMapping.toDomain(dto);
         Page<DiscussPost> domains = discussPostService.fetchMyCreate(context) ;
+        List<DiscussPostDTO> list = discussPostDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
+    * 查询fetch_my_post 讨论
+    * 
+    *
+    * @param topicId topicId
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<DiscussPostDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_my_post", tags = {"讨论" },  notes = "DiscussPost-fetch_my_post ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-DiscussPost-fetch_my_post-all') or hasPermission('discuss_topic',#topicId,#dto,'ibizplm-DiscussPost-fetch_my_post')")
+    @PostMapping("discuss_topics/{topicId}/discuss_posts/fetch_my_post")
+    public Mono<ResponseEntity<List<DiscussPostDTO>>> fetchMyPostByTopicId
+            (@PathVariable("topicId") String topicId, @Validated @RequestBody DiscussPostFilterDTO dto) {
+        dto.setTopicIdEQ(topicId);
+        DiscussPostSearchContext context = discussPostFilterDtoMapping.toDomain(dto);
+        Page<DiscussPost> domains = discussPostService.fetchMyPost(context) ;
         List<DiscussPostDTO> list = discussPostDtoMapping.toDto(domains.getContent());
             return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))

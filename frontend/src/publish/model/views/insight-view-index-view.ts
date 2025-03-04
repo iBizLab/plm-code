@@ -1,7 +1,7 @@
 export default {
   loadDefault: true,
   deviewCodeName: 'index_view',
-  deviewId: 'CCE52FBF-F78E-49CC-8351-6AC8D7F0BE17',
+  deviewId: '74e4325c0909c486d17f83c27770680a',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'PAGE.CAPTION.INSIGHT_VIEW.INDEX_VIEW_2',
@@ -400,7 +400,7 @@ export default {
           id: 'drbar',
         },
         sysPFPluginId: 'drbar_ex',
-        modelId: 'ED78DD83-E6B5-4E26-BDFA-086D0AA1F480',
+        modelId: 'e19692b82c8a60af76e7876ef4a12f90',
         modelType: 'PSDEDRBAR',
         name: 'drbar',
         id: 'index_view_dr',
@@ -498,7 +498,7 @@ export default {
         controlParam: {
           id: 'form',
         },
-        modelId: 'E250BF07-E8DF-4F49-BA92-F04DBBF57748',
+        modelId: 'f491bef79d4bf39cb09ffb7a5bfc6ca2',
         modelType: 'PSDEFORM_EDITFORM',
         name: 'form',
         id: 'plmweb.insight_view.index_view2_form',
@@ -667,7 +667,7 @@ export default {
         controlParam: {
           id: 'toolbar',
         },
-        modelId: '9D6065D4-DBB1-4A23-B3B4-4C24036F3801',
+        modelId: '316ac972122538706f6e06fefdeba186',
         modelType: 'PSDETOOLBAR',
         name: 'toolbar',
         id: 'index_view_toolbar',
@@ -703,7 +703,7 @@ export default {
   viewType: 'DEINDEXVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: 'd6857dec5552af27a5188cbfbdab3046',
+  modelId: '68694a63990fe52392cdfe239f03632e',
   modelType: 'PSAPPDEVIEW',
   name: 'insight_viewindex_view',
   id: 'plmweb.insight_view_index_view',

@@ -557,6 +557,13 @@ export default {
       id: 'read',
     },
     {
+      logicName: '读取',
+      mapDEName: 'WORK_ITEM',
+      mapDEOPPrivName: 'READ',
+      name: 'READ',
+      id: 'work_item__read',
+    },
+    {
       logicName: '更新',
       name: 'UPDATE',
       id: 'update',
@@ -567,7 +574,7 @@ export default {
   deapicodeName2: 'transition_histories',
   deapitag: 'TRANSITION_HISTORY',
   dataAccCtrlArch: 1,
-  dataAccCtrlMode: 1,
+  dataAccCtrlMode: 3,
   enableUIActions: 15,
   keyAppDEFieldId: 'id',
   lnlanguageRes: {
@@ -575,6 +582,17 @@ export default {
   },
   logicName: '流转记录',
   majorAppDEFieldId: 'name',
+  minorAppDERSs: [
+    {
+      actionRSMode: 1,
+      codeName: 'transition_histories',
+      majorAppDataEntityId: 'plmweb.work_item',
+      parentAppDEFieldId: 'owner_id',
+      rsmode: 2,
+      name: 'DERCUSTOM_TRANSITION_HISTORY_WORK_ITEM',
+      id: 'transition_histories',
+    },
+  ],
   quickSearchAppDEFieldIds: ['name'],
   sysAPITag: 'ServiceAPI',
   defaultMode: true,
@@ -583,5 +601,7 @@ export default {
   name: 'TRANSITION_HISTORY',
   id: 'plmweb.transition_history',
   codeName2: 'transition_histories',
-  requestPaths: [],
+  requestPaths: [
+    'work_items/${work_item}/transition_histories/${transition_history}',
+  ],
 };

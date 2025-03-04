@@ -140,6 +140,7 @@ public abstract class AbstractDynaDashboardResource {
     * @return Mono<ResponseEntity<DynaDashboardDTO>>
     */
     @ApiOperation(value = "fill_other_board", tags = {"动态数据看板" },  notes = "DynaDashboard-fill_other_board ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-DynaDashboard-fill_other_board-all') or hasPermission(this.dynaDashboardDtoMapping.toDomain(#dto),'ibizplm-DynaDashboard-fill_other_board')")
     @PostMapping("dyna_dashboards/{dynaDashboardId}/fill_other_board")
     public Mono<ResponseEntity<ResponseWrapper<DynaDashboardDTO>>>fillOtherBoardByDynaDashboardId
             (@PathVariable("dynaDashboardId") String dynaDashboardId, @Validated @RequestBody RequestWrapper<DynaDashboardDTO> dto) {
@@ -373,6 +374,7 @@ public abstract class AbstractDynaDashboardResource {
     * @return Mono<ResponseEntity<DynaDashboardDTO>>
     */
     @ApiOperation(value = "fill_other_board", tags = {"动态数据看板" },  notes = "DynaDashboard-fill_other_board ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-DynaDashboard-fill_other_board-all') or hasPermission('insight_view',#ownerId,this.dynaDashboardDtoMapping.toDomain(#dto),'ibizplm-DynaDashboard-fill_other_board')")
     @PostMapping("insight_views/{ownerId}/dyna_dashboards/{dynaDashboardId}/fill_other_board")
     public Mono<ResponseEntity<ResponseWrapper<DynaDashboardDTO>>>fillOtherBoardByOwnerIdAndDynaDashboardId
             (@PathVariable("ownerId") String ownerId, @PathVariable("dynaDashboardId") String dynaDashboardId, @Validated @RequestBody RequestWrapper<DynaDashboardDTO> dto) {
@@ -671,6 +673,28 @@ public abstract class AbstractDynaDashboardResource {
     }
 
     /**
+    * 查询fetch_my_dashboard 动态数据看板
+    * 
+    *
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<DynaDashboardDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_my_dashboard", tags = {"动态数据看板" },  notes = "DynaDashboard-fetch_my_dashboard ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-DynaDashboard-fetch_my_dashboard-all') or hasPermission(#dto,'ibizplm-DynaDashboard-fetch_my_dashboard')")
+    @PostMapping("dyna_dashboards/fetch_my_dashboard")
+    public Mono<ResponseEntity<List<DynaDashboardDTO>>> fetchMyDashboard
+            (@Validated @RequestBody DynaDashboardFilterDTO dto) {
+        DynaDashboardSearchContext context = dynaDashboardFilterDtoMapping.toDomain(dto);
+        Page<DynaDashboard> domains = dynaDashboardService.fetchMyDashboard(context) ;
+        List<DynaDashboardDTO> list = dynaDashboardDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
     * 查询fetch_normal 动态数据看板
     * 
     *
@@ -843,6 +867,30 @@ public abstract class AbstractDynaDashboardResource {
         dto.setOwnerIdEQ(ownerId);
         DynaDashboardSearchContext context = dynaDashboardFilterDtoMapping.toDomain(dto);
         Page<DynaDashboard> domains = dynaDashboardService.fetchIsSystem(context) ;
+        List<DynaDashboardDTO> list = dynaDashboardDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
+    * 查询fetch_my_dashboard 动态数据看板
+    * 
+    *
+    * @param ownerId ownerId
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<DynaDashboardDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_my_dashboard", tags = {"动态数据看板" },  notes = "DynaDashboard-fetch_my_dashboard ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-DynaDashboard-fetch_my_dashboard-all') or hasPermission('insight_view',#ownerId,#dto,'ibizplm-DynaDashboard-fetch_my_dashboard')")
+    @PostMapping("insight_views/{ownerId}/dyna_dashboards/fetch_my_dashboard")
+    public Mono<ResponseEntity<List<DynaDashboardDTO>>> fetchMyDashboardByOwnerId
+            (@PathVariable("ownerId") String ownerId, @Validated @RequestBody DynaDashboardFilterDTO dto) {
+        dto.setOwnerIdEQ(ownerId);
+        DynaDashboardSearchContext context = dynaDashboardFilterDtoMapping.toDomain(dto);
+        Page<DynaDashboard> domains = dynaDashboardService.fetchMyDashboard(context) ;
         List<DynaDashboardDTO> list = dynaDashboardDtoMapping.toDto(domains.getContent());
             return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))

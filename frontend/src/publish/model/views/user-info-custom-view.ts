@@ -1,6 +1,6 @@
 export default {
   deviewCodeName: 'info_custom_view',
-  deviewId: '968019809b7ac4407586f0c6e9f698f6',
+  deviewId: '919a2ce95e6084e00b3a779c08531471',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.USER',
@@ -96,7 +96,6 @@ export default {
                           },
                         ],
                         logicType: 'GROUP',
-                        id: '面板成员[user_avatar][面板显示]逻辑',
                       },
                     ],
                     id: 'user_avatar',
@@ -141,7 +140,6 @@ export default {
                           },
                         ],
                         logicType: 'GROUP',
-                        id: '面板成员[user_name][面板显示]逻辑',
                       },
                     ],
                     id: 'user_name',
@@ -428,7 +426,7 @@ export default {
   viewType: 'DECUSTOMVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: 'd476918d206abc12aab661d50b8d633c',
+  modelId: 'd34271b0440355c94c6beb03f17a2b18',
   modelType: 'PSAPPDEVIEW',
   name: 'userinfo_custom_view',
   id: 'plmweb.user_info_custom_view',

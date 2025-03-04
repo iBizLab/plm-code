@@ -2,7 +2,7 @@ export default {
   gridRowActiveMode: 1,
   xdataControlName: 'grid',
   deviewCodeName: 'comparison_grid_view',
-  deviewId: '52EBF42E-8BD4-4E27-BAE0-F03158F00B24',
+  deviewId: '380dce4a139bd11c8502bbd79589e937',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.BASELINE_PAGE',
@@ -128,15 +128,6 @@ export default {
   ],
   appViewRefs: [
     {
-      realTitle: '基线页面编辑视图',
-      realTitleLanguageRes: {
-        lanResTag: 'PAGE.TITLE.BASELINE_PAGE.EDITVIEW',
-      },
-      refAppViewId: 'plmweb.baseline_page_edit_view',
-      name: 'NEWDATA',
-      id: 'newdata',
-    },
-    {
       openMode: 'POPUPMODAL',
       navigateContexts: [
         {
@@ -171,6 +162,15 @@ export default {
       refAppViewId: 'plmweb.article_page_with_version_view',
       name: 'EDITDATA',
       id: 'editdata',
+    },
+    {
+      realTitle: '基线页面编辑视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.BASELINE_PAGE.EDITVIEW',
+      },
+      refAppViewId: 'plmweb.baseline_page_edit_view',
+      name: 'NEWDATA',
+      id: 'newdata',
     },
   ],
   controls: [
@@ -347,7 +347,7 @@ export default {
         id: 'grid',
       },
       sysPFPluginId: 'baselinecompare',
-      modelId: '3BD80021-3924-4A0F-8005-2FA6E7D3A929',
+      modelId: '0349f04750828840674c58ea66893c8b',
       modelType: 'PSDEGRID',
       name: 'grid',
       id: 'plmweb.baseline_page.comparison_grid',
@@ -386,7 +386,7 @@ export default {
       controlParam: {
         id: 'searchform',
       },
-      modelId: '4909b667bad404575b55365fbfb8d06f',
+      modelId: '5ed4dcc8887f045d558d18201ede7259',
       modelType: 'PSDEFORM_SEARCHFORM',
       name: 'searchform',
       id: 'plmweb.baseline_page.default',
@@ -429,7 +429,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: false,
-  modelId: 'f7afc6641bd693fbcae75c0518561d7f',
+  modelId: 'b91eea71e320de68081bc59658255e5c',
   modelType: 'PSAPPDEVIEW',
   name: 'baseline_pagecomparison_grid_view',
   id: 'plmweb.baseline_page_comparison_grid_view',

@@ -5,7 +5,7 @@ export default {
   loadDefault: true,
   openMode: 'POPUPMODAL',
   deviewCodeName: 'members_distribution_option_view',
-  deviewId: 'A40063AB-BBC2-463E-9D08-28DA11F40FCE',
+  deviewId: '1bb3fc741a714327c5862d75ecf5d523',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.RUN',
@@ -133,7 +133,7 @@ export default {
       controlParam: {
         id: 'form',
       },
-      modelId: '10A3699C-57AA-4703-87AC-AD4D99D18AA8',
+      modelId: '7cceea38aca9a2115b0e93e851c2db3a',
       modelType: 'PSDEFORM_EDITFORM',
       name: 'form',
       id: 'plmweb.run.usr04307192_form',
@@ -178,7 +178,7 @@ export default {
   width: 500,
   enableDP: true,
   showCaptionBar: true,
-  modelId: 'aae0cc4c7c16f964ebfc7fc3492e9081',
+  modelId: '5ae2d1a3b5738c52a9950952bac8e506',
   modelType: 'PSAPPDEVIEW',
   name: 'runmembers_distribution_option_view',
   id: 'plmweb.run_members_distribution_option_view',

@@ -18,6 +18,7 @@ import java.util.Optional;
  */
 public enum Entities {
 
+    AUTH_LOG ("AuthLog","认证日志",cn.ibizlab.plm.core.ebsx.domain.AuthLog.class,cn.ibizlab.plm.core.ebsx.filter.AuthLogSearchContext.class,cn.ibizlab.plm.core.ebsx.service.AuthLogService.class),
     MS_VALUE_PROXY ("MSValueProxy","主状态值代理",cn.ibizlab.plm.core.extension.domain.MSValueProxy.class,null,null),
     PS_APP_PORTLET ("PSAppPortlet","应用门户部件",cn.ibizlab.plm.core.extension.domain.PSAppPortlet.class,null,null),
     PS_CORE_PRD ("PSCorePrd","核心产品",cn.ibizlab.plm.core.extension.domain.PSCorePrd.class,null,null),
@@ -40,6 +41,12 @@ public enum Entities {
     PS_SYS_BI_REPORT_ITEM ("PSSysBIReportItem","智能报表项",cn.ibizlab.plm.core.extension.domain.PSSysBIReportItem.class,null,null),
     PSWF_VERSION ("PSWFVersion","工作流版本",cn.ibizlab.plm.core.extension.domain.PSWFVersion.class,null,null),
     PS_WORKFLOW ("PSWorkflow","工作流",cn.ibizlab.plm.core.extension.domain.PSWorkflow.class,null,null),
+    ROLE ("Role","系统角色",cn.ibizlab.plm.core.ebsx.domain.Role.class,cn.ibizlab.plm.core.ebsx.filter.RoleSearchContext.class,cn.ibizlab.plm.core.ebsx.service.RoleService.class),
+    SYS_DEPARTMENT ("SysDepartment","部门",cn.ibizlab.plm.core.ebsx.domain.SysDepartment.class,cn.ibizlab.plm.core.ebsx.filter.SysDepartmentSearchContext.class,cn.ibizlab.plm.core.ebsx.service.SysDepartmentService.class),
+    SYS_EMPLOYEE ("SysEmployee","人员",cn.ibizlab.plm.core.ebsx.domain.SysEmployee.class,cn.ibizlab.plm.core.ebsx.filter.SysEmployeeSearchContext.class,cn.ibizlab.plm.core.ebsx.service.SysEmployeeService.class),
+    SYS_ORGANIZATION ("SysOrganization","组织",cn.ibizlab.plm.core.ebsx.domain.SysOrganization.class,cn.ibizlab.plm.core.ebsx.filter.SysOrganizationSearchContext.class,cn.ibizlab.plm.core.ebsx.service.SysOrganizationService.class),
+    SYS_TODO ("SysTodo","待办",cn.ibizlab.plm.core.ebsx.domain.SysTodo.class,cn.ibizlab.plm.core.ebsx.filter.SysTodoSearchContext.class,cn.ibizlab.plm.core.ebsx.service.SysTodoService.class),
+    USER_ROLE ("UserRole","用户角色关系",cn.ibizlab.plm.core.ebsx.domain.UserRole.class,cn.ibizlab.plm.core.ebsx.filter.UserRoleSearchContext.class,cn.ibizlab.plm.core.ebsx.service.UserRoleService.class),
     ACTIVITY ("Activity","活动",cn.ibizlab.plm.core.base.domain.Activity.class,cn.ibizlab.plm.core.base.filter.ActivitySearchContext.class,cn.ibizlab.plm.core.base.service.ActivityService.class),
     ADDON ("Addon","组件",cn.ibizlab.plm.core.base.domain.Addon.class,cn.ibizlab.plm.core.base.filter.AddonSearchContext.class,cn.ibizlab.plm.core.base.service.AddonService.class),
     ADDON_APPLICATION_ACTIVITY ("AddonApplicationActivity","应用插件活动",cn.ibizlab.plm.core.base.domain.AddonApplicationActivity.class,cn.ibizlab.plm.core.base.filter.AddonApplicationActivitySearchContext.class,cn.ibizlab.plm.core.base.service.AddonApplicationActivityService.class),
@@ -135,7 +142,7 @@ public enum Entities {
     REVIEW_RULE ("ReviewRule","评审规则",cn.ibizlab.plm.core.testmgmt.domain.ReviewRule.class,null,null),
     REVIEW_STAGE ("ReviewStage","评审阶段",cn.ibizlab.plm.core.testmgmt.domain.ReviewStage.class,null,null),
     REVIEW_WIZARD ("ReviewWizard","评审向导",cn.ibizlab.plm.core.testmgmt.domain.ReviewWizard.class,cn.ibizlab.plm.core.testmgmt.filter.ReviewWizardSearchContext.class,cn.ibizlab.plm.core.testmgmt.service.ReviewWizardService.class),
-    ROLE ("Role","角色",cn.ibizlab.plm.core.base.domain.Role.class,null,null),
+    ROLE_MEMBER ("RoleMember","系统角色成员",cn.ibizlab.plm.core.base.domain.RoleMember.class,null,null),
     RUN ("Run","执行用例",cn.ibizlab.plm.core.testmgmt.domain.Run.class,cn.ibizlab.plm.core.testmgmt.filter.RunSearchContext.class,cn.ibizlab.plm.core.testmgmt.service.RunService.class),
     RUN_ATTACHMENT ("RunAttachment","执行用例结果附件",cn.ibizlab.plm.core.testmgmt.domain.RunAttachment.class,cn.ibizlab.plm.core.testmgmt.filter.RunAttachmentSearchContext.class,cn.ibizlab.plm.core.testmgmt.service.RunAttachmentService.class),
     RUN_HISTORY ("RunHistory","执行结果",cn.ibizlab.plm.core.testmgmt.domain.RunHistory.class,cn.ibizlab.plm.core.testmgmt.filter.RunHistorySearchContext.class,cn.ibizlab.plm.core.testmgmt.service.RunHistoryService.class),
@@ -155,6 +162,8 @@ public enum Entities {
     STEP ("Step","用例步骤",cn.ibizlab.plm.core.testmgmt.domain.Step.class,null,null),
     SWIMLANE ("Swimlane","泳道",cn.ibizlab.plm.core.projmgmt.domain.Swimlane.class,cn.ibizlab.plm.core.projmgmt.filter.SwimlaneSearchContext.class,cn.ibizlab.plm.core.projmgmt.service.SwimlaneService.class),
     SYS_PERSON ("SysPerson","人员",cn.ibizlab.plm.core.ibizsysmgr.domain.SysPerson.class,cn.ibizlab.plm.core.ibizsysmgr.filter.SysPersonSearchContext.class,cn.ibizlab.plm.core.ibizsysmgr.service.SysPersonService.class),
+    SYS_ROLE ("SysRole","系统角色",cn.ibizlab.plm.core.ibizsysmgr.domain.SysRole.class,cn.ibizlab.plm.core.ibizsysmgr.filter.SysRoleSearchContext.class,cn.ibizlab.plm.core.ibizsysmgr.service.SysRoleService.class),
+    SYS_ROLE_MEMBER ("SysRoleMember","系统角色成员",cn.ibizlab.plm.core.ibizsysmgr.domain.SysRoleMember.class,cn.ibizlab.plm.core.ibizsysmgr.filter.SysRoleMemberSearchContext.class,cn.ibizlab.plm.core.ibizsysmgr.service.SysRoleMemberService.class),
     SYSTEM_EXTENSION_NOTIFY_SETTING ("SystemExtensionNotifySetting","通知设置",cn.ibizlab.plm.core.extension.domain.SystemExtensionNotifySetting.class,cn.ibizlab.plm.core.extension.filter.SystemExtensionNotifySettingSearchContext.class,cn.ibizlab.plm.core.extension.service.SystemExtensionNotifySettingService.class),
     TEAM ("Team","企业",cn.ibizlab.plm.core.base.domain.Team.class,null,null),
     TEMPLATE_FLOW ("TemplateFlow","规则模板",cn.ibizlab.plm.core.base.domain.TemplateFlow.class,null,null),

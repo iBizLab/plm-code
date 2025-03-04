@@ -435,7 +435,7 @@ export default {
       controlParam: {
         id: 'grid',
       },
-      modelId: '6a26f4af9a8fca306f0c9d135a5c1e3a',
+      modelId: 'ed8120dcdee6d8010f10352b5c903821',
       modelType: 'PSDEGRID',
       name: 'grid',
       id: 'plmweb.idea.my_attention_grid',

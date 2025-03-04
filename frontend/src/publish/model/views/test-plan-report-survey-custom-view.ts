@@ -1,6 +1,6 @@
 export default {
   deviewCodeName: 'report_survey_custom_view',
-  deviewId: '93CDE579-FE51-46DC-AAFE-4128864F52F9',
+  deviewId: '296713d75f94cbe77fc20daa22b4641e',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.TEST_PLAN',
@@ -792,7 +792,7 @@ export default {
         controlParam: {
           id: 'form',
         },
-        modelId: 'B75C2076-C028-407D-8334-D6C286214409',
+        modelId: 'f72e0f943cab6e2665031787b9bce4c1',
         modelType: 'PSDEFORM_EDITFORM',
         name: 'form',
         id: 'plmweb.test_plan.report_form',
@@ -815,7 +815,7 @@ export default {
     logicName: '报告概览自定义视图布局面板',
     appDataEntityId: 'plmweb.test_plan',
     controlParam: {},
-    modelId: '80E5C6CE-ACD3-444B-9199-3889779B358F',
+    modelId: '96834bfff4b78d14f15e07426fed68cc',
     modelType: 'PSSYSVIEWLAYOUTPANEL',
     name: 'layoutpanel',
     id: 'usr0412899555',
@@ -825,7 +825,7 @@ export default {
   viewType: 'DECUSTOMVIEW',
   enableDP: true,
   showCaptionBar: false,
-  modelId: '03e085432d8cc4b2bd68fca216ba7f0a',
+  modelId: 'f9b16ee9fb7f2e7b474062688468121e',
   modelType: 'PSAPPDEVIEW',
   name: 'test_planreport_survey_custom_view',
   id: 'plmweb.test_plan_report_survey_custom_view',

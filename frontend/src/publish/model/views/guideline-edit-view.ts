@@ -5,7 +5,7 @@ export default {
   loadDefault: true,
   funcViewMode: 'EDITVIEW',
   deviewCodeName: 'EditView',
-  deviewId: '8246f924bccbb0eeea01d4e2dfe054a6',
+  deviewId: 'bb2a0d2a285b0a781f1e740a37a38f90',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.GUIDELINE',
@@ -234,7 +234,7 @@ export default {
       controlParam: {
         id: 'form',
       },
-      modelId: '327f17710a95c36a1fde3b3682f27bd4',
+      modelId: '9d7d943353b49818bbd6c4b5e704c470',
       modelType: 'PSDEFORM_EDITFORM',
       name: 'form',
       id: 'plmweb.guideline.main',
@@ -281,7 +281,7 @@ export default {
   viewType: 'DEEDITVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '7c8243387dd7a321ecdeb98627dcd453',
+  modelId: '0956f766defc440b921f074131aa3f1f',
   modelType: 'PSAPPDEVIEW',
   name: 'guidelineEditView',
   id: 'plmweb.guideline_edit_view',

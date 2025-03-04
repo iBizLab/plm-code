@@ -3,7 +3,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'my_attention_grid_view',
-  deviewId: 'BB7C7C32-C684-4CFE-9F8F-6289B71EB35A',
+  deviewId: '7cfb6dfa29a63fe3859786178b39a795',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.DISCUSS_POST',
@@ -145,7 +145,7 @@ export default {
       controlParam: {
         id: 'toolbar',
       },
-      modelId: '66CB0F7C-540A-4B9E-AB7E-5E816E278F5B',
+      modelId: 'ede9de517082ff9319a85138bc1c2f10',
       modelType: 'PSDETOOLBAR',
       name: 'toolbar',
       id: 'my_attention_grid_view_toolbar',
@@ -337,7 +337,7 @@ export default {
       sysCss: {
         cssName: 'discuss-border-style',
       },
-      modelId: 'b0341745e4649d6bfd4469785368efab',
+      modelId: '77eb354120650cfe471ae8355d8ad7f9',
       modelType: 'PSDEGRID',
       name: 'grid',
       id: 'plmweb.discuss_post.main',
@@ -375,7 +375,7 @@ export default {
       controlParam: {
         id: 'searchform',
       },
-      modelId: '6ddf84ea9f2e0947a515ac4d6c41bd37',
+      modelId: 'b00d71ef80e41212c88c28a82b67e90b',
       modelType: 'PSDEFORM_SEARCHFORM',
       name: 'searchform',
       id: 'plmweb.discuss_post.default',
@@ -420,7 +420,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '17cdea0cc240f2b4e77483464b62a6f4',
+  modelId: '1e90b1f64cad43e87a3d18ba44c51030',
   modelType: 'PSAPPDEVIEW',
   name: 'discuss_postmy_attention_grid_view',
   id: 'plmweb.discuss_post_my_attention_grid_view',

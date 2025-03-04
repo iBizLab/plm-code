@@ -5,7 +5,7 @@ export default {
   loadDefault: true,
   openMode: 'POPUPMODAL',
   deviewCodeName: 'edit_snapshot_view',
-  deviewId: '9AA18476-FFEF-4F12-8EF5-0D047C17A882',
+  deviewId: '238f82a9202041cac4b184268fea4a17',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.BASELINE',
@@ -179,7 +179,7 @@ export default {
       controlParam: {
         id: 'form',
       },
-      modelId: '7088CBAB-976B-4C09-AA56-0D20949FFBC9',
+      modelId: '5f9929b374343b5208810ff001d907ad',
       modelType: 'PSDEFORM_EDITFORM',
       name: 'form',
       id: 'plmweb.baseline.edit_snapshot_form',
@@ -224,7 +224,7 @@ export default {
   width: 600,
   enableDP: true,
   showCaptionBar: true,
-  modelId: 'afe41e7ee007bf599b4b0f5a7d784f4c',
+  modelId: '679bc137dc14ee8e0c0d3fab83381d71',
   modelType: 'PSAPPDEVIEW',
   name: 'baselineedit_snapshot_view',
   id: 'plmweb.baseline_edit_snapshot_view',

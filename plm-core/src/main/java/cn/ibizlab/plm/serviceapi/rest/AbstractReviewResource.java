@@ -329,6 +329,7 @@ public abstract class AbstractReviewResource {
     * @return Mono<ResponseEntity<ReviewDTO>>
     */
     @ApiOperation(value = "fill_stage_reviewer", tags = {"评审" },  notes = "Review-fill_stage_reviewer ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Review-fill_stage_reviewer-all') or hasPermission(this.reviewDtoMapping.toDomain(#dto),'ibizplm-Review-fill_stage_reviewer')")
     @PostMapping("reviews/{id}/fill_stage_reviewer")
     public Mono<ResponseEntity<ResponseWrapper<ReviewDTO>>>fillStageReviewerById
             (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<ReviewDTO> dto) {
@@ -759,6 +760,7 @@ public abstract class AbstractReviewResource {
     * @return Mono<ResponseEntity<ReviewDTO>>
     */
     @ApiOperation(value = "fill_stage_reviewer", tags = {"评审" },  notes = "Review-fill_stage_reviewer ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Review-fill_stage_reviewer-all') or hasPermission('library',#libraryId,this.reviewDtoMapping.toDomain(#dto),'ibizplm-Review-fill_stage_reviewer')")
     @PostMapping("libraries/{libraryId}/reviews/{id}/fill_stage_reviewer")
     public Mono<ResponseEntity<ResponseWrapper<ReviewDTO>>>fillStageReviewerByLibraryIdAndId
             (@PathVariable("libraryId") String libraryId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<ReviewDTO> dto) {

@@ -539,7 +539,7 @@ export default {
       controlParam: {
         id: 'form',
       },
-      modelId: '21DF4A8D-D434-4612-89D3-1F0FE5FB1EE0',
+      modelId: 'd093f37399ab0fb6ca2079675c61f54d',
       modelType: 'PSDEFORM_EDITFORM',
       name: 'form',
       id: 'plmweb.addon_resource.capacity_form',

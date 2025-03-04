@@ -140,6 +140,26 @@ public interface SysPersonService{
     CheckKeyStatus checkKey(SysPerson et);
 
     /**
+    * getSimple
+    * 
+    * @param key
+    * @return
+    */
+    default SysPerson getSimple(String key) {
+        return getSelf().getSimple(new SysPerson().setId(key));
+    }
+
+    /**
+    * resetPassword
+    * 
+    * @param et
+    * @return
+    */
+    default SysPerson resetPassword(SysPerson et) {
+        return et;
+    }
+
+    /**
     * 保存
     * @param et
     * @return
@@ -184,6 +204,16 @@ public interface SysPersonService{
     * @return
     */
     List<SysPerson> listUser(SysPersonSearchContext context);
+
+    /**
+    * getSimple
+    * 
+    * @param et
+    * @return
+    */
+    default SysPerson getSimple(SysPerson et) {
+        return et;
+    }
 
 
     default ImportResult importData(String config, Boolean ignoreError, List<SysPerson> list) {

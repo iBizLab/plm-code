@@ -119,6 +119,25 @@ public interface DiscussPostMapper extends BaseMapper<DiscussPost> {
     List<DiscussPost> listMyCreate(@Param("ctx") DiscussPostSearchContext context, @Param("ew") Wrapper<DiscussPost> wrapper);
 
     /**
+     * 数据集合my_post分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<DiscussPost> searchMyPost(IPage<DiscussPost> page, @Param("ctx") DiscussPostSearchContext context, @Param("ew") Wrapper<DiscussPost> wrapper);
+    
+    /**
+     * 数据集合my_post查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<DiscussPost> listMyPost(@Param("ctx") DiscussPostSearchContext context, @Param("ew") Wrapper<DiscussPost> wrapper);
+
+    /**
      * 数据集合my_reply分页查询
      * 
      * @param page

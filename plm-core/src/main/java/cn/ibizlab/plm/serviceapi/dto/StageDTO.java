@@ -45,11 +45,19 @@ public class StageDTO extends DTOBase implements Serializable {
     private String color;
 
     /**
+     * 背景样式
+     */
+    @JsonProperty("style")
+    @JSONField(name = "style")
+    @ApiModelProperty(value = "背景样式", position = 1)
+    private String style;
+
+    /**
      * 是否发布当前阶段
      */
     @JsonProperty("is_current")
     @JSONField(name = "is_current")
-    @ApiModelProperty(value = "是否发布当前阶段", position = 1)
+    @ApiModelProperty(value = "是否发布当前阶段", position = 2)
     private Integer isCurrent;
 
     /**
@@ -58,7 +66,7 @@ public class StageDTO extends DTOBase implements Serializable {
     @JsonProperty("operated_time")
     @JsonFormat(pattern = "yyyy-MM-dd", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "operated_time" , format = "yyyy-MM-dd")
-    @ApiModelProperty(value = "操作时间", position = 2)
+    @ApiModelProperty(value = "操作时间", position = 3)
     private Date operatedTime;
 
     /**
@@ -66,7 +74,7 @@ public class StageDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("type")
     @JSONField(name = "type")
-    @ApiModelProperty(value = "阶段类型", position = 3)
+    @ApiModelProperty(value = "阶段类型", position = 4)
     private String type;
 
     /**
@@ -74,7 +82,7 @@ public class StageDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("p_color")
     @JSONField(name = "p_color")
-    @ApiModelProperty(value = "父颜色", position = 4)
+    @ApiModelProperty(value = "父颜色", position = 5)
     private String pColor;
 
     /**
@@ -82,7 +90,7 @@ public class StageDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("p_type")
     @JSONField(name = "p_type")
-    @ApiModelProperty(value = "父阶段类型", position = 5)
+    @ApiModelProperty(value = "父阶段类型", position = 6)
     private String pType;
 
     /**
@@ -90,7 +98,7 @@ public class StageDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("p_sequence")
     @JSONField(name = "p_sequence")
-    @ApiModelProperty(value = "父阶段排序", position = 6)
+    @ApiModelProperty(value = "父阶段排序", position = 7)
     private BigDecimal pSequence;
 
     /**
@@ -98,7 +106,7 @@ public class StageDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("sequence")
     @JSONField(name = "sequence")
-    @ApiModelProperty(value = "排序", position = 7)
+    @ApiModelProperty(value = "排序", position = 8)
     private BigDecimal sequence;
 
     /**
@@ -106,7 +114,7 @@ public class StageDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("create_man")
     @JSONField(name = "create_man")
-    @ApiModelProperty(value = "建立人", position = 8)
+    @ApiModelProperty(value = "建立人", position = 9)
     private String createMan;
 
     /**
@@ -115,7 +123,7 @@ public class StageDTO extends DTOBase implements Serializable {
     @JsonProperty("create_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "create_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "建立时间", position = 9)
+    @ApiModelProperty(value = "建立时间", position = 10)
     private Date createTime;
 
     /**
@@ -123,7 +131,7 @@ public class StageDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("id")
     @JSONField(name = "id")
-    @ApiModelProperty(value = "标识", position = 10)
+    @ApiModelProperty(value = "标识", position = 11)
     private String id;
 
     /**
@@ -131,7 +139,7 @@ public class StageDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("name")
     @JSONField(name = "name")
-    @ApiModelProperty(value = "名称", position = 11)
+    @ApiModelProperty(value = "名称", position = 12)
     private String name;
 
     /**
@@ -139,7 +147,7 @@ public class StageDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("pid")
     @JSONField(name = "pid")
-    @ApiModelProperty(value = "父标识", position = 12)
+    @ApiModelProperty(value = "父标识", position = 13)
     private String pid;
 
     /**
@@ -147,7 +155,7 @@ public class StageDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("pname")
     @JSONField(name = "pname")
-    @ApiModelProperty(value = "父名称", position = 13)
+    @ApiModelProperty(value = "父名称", position = 14)
     private String pname;
 
     /**
@@ -155,7 +163,7 @@ public class StageDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("release_id")
     @JSONField(name = "release_id")
-    @ApiModelProperty(value = "项目发布标识", position = 14)
+    @ApiModelProperty(value = "项目发布标识", position = 15)
     private String releaseId;
 
     /**
@@ -163,7 +171,7 @@ public class StageDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("update_man")
     @JSONField(name = "update_man")
-    @ApiModelProperty(value = "更新人", position = 15)
+    @ApiModelProperty(value = "更新人", position = 16)
     private String updateMan;
 
     /**
@@ -172,7 +180,7 @@ public class StageDTO extends DTOBase implements Serializable {
     @JsonProperty("update_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "update_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "更新时间", position = 16)
+    @ApiModelProperty(value = "更新时间", position = 17)
     private Date updateTime;
 
 
@@ -182,6 +190,15 @@ public class StageDTO extends DTOBase implements Serializable {
     public StageDTO setColor(String color) {
         this.color = color;
         this.modify("color", color);
+        return this;
+    }
+
+    /**
+     * 设置 [背景样式]
+     */
+    public StageDTO setStyle(String style) {
+        this.style = style;
+        this.modify("style", style);
         return this;
     }
 

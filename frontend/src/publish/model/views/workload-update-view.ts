@@ -57,10 +57,10 @@ export default {
           codeName: 'duration_updateform',
           defiupdateDetails: [
             {
-              id: 'workload_schedule',
+              id: 'remaining_workload',
             },
             {
-              id: 'remaining_workload',
+              id: 'workload_schedule',
             },
           ],
           scriptCode:
@@ -398,6 +398,39 @@ export default {
               },
               showCaption: true,
               id: 'description',
+            },
+            {
+              dataType: 5,
+              enableCond: 3,
+              ignoreInput: 3,
+              labelPos: 'TOP',
+              labelWidth: 130,
+              noPrivDisplayMode: 1,
+              appDEFieldId: 'create_time',
+              editor: {
+                halign: 'LEFT',
+                valign: 'MIDDLE',
+                wrapMode: 'NOWRAP',
+                editorType: 'SPAN',
+                valueType: 'SIMPLE',
+                editable: true,
+                id: 'create_time',
+              },
+              valueFormat: 'YYYY-MM-DD HH:mm:ss',
+              allowEmpty: true,
+              capLanguageRes: {
+                lanResTag: 'DEF.LNAME.CREATE_TIME',
+              },
+              caption: '建立时间',
+              codeName: 'create_time',
+              detailStyle: 'DEFAULT',
+              detailType: 'FORMITEM',
+              layoutPos: {
+                colMD: 24,
+                layout: 'TABLE_24COL',
+              },
+              showCaption: true,
+              id: 'create_time',
             },
             {
               dataType: 25,

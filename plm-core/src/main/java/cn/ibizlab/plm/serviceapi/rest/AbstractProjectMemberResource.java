@@ -175,6 +175,7 @@ public abstract class AbstractProjectMemberResource {
     * @return Mono<ResponseEntity<ProjectMemberDTO>>
     */
     @ApiOperation(value = "change_role", tags = {"项目成员" },  notes = "ProjectMember-change_role ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ProjectMember-change_role-all') or hasPermission(this.projectMemberDtoMapping.toDomain(#dto),'ibizplm-ProjectMember-change_role')")
     @PostMapping("project_members/{id}/change_role")
     public Mono<ResponseEntity<ResponseWrapper<ProjectMemberDTO>>>changeRoleById
             (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<ProjectMemberDTO> dto) {
@@ -405,6 +406,7 @@ public abstract class AbstractProjectMemberResource {
     * @return Mono<ResponseEntity<ProjectMemberDTO>>
     */
     @ApiOperation(value = "change_role", tags = {"项目成员" },  notes = "ProjectMember-change_role ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ProjectMember-change_role-all') or hasPermission('project',#projectId,this.projectMemberDtoMapping.toDomain(#dto),'ibizplm-ProjectMember-change_role')")
     @PostMapping("projects/{projectId}/project_members/{id}/change_role")
     public Mono<ResponseEntity<ResponseWrapper<ProjectMemberDTO>>>changeRoleByProjectIdAndId
             (@PathVariable("projectId") String projectId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<ProjectMemberDTO> dto) {
@@ -642,6 +644,7 @@ public abstract class AbstractProjectMemberResource {
     * @return Mono<ResponseEntity<ProjectMemberDTO>>
     */
     @ApiOperation(value = "change_role", tags = {"项目成员" },  notes = "ProjectMember-change_role ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ProjectMember-change_role-all') or hasPermission('user',#userId,this.projectMemberDtoMapping.toDomain(#dto),'ibizplm-ProjectMember-change_role')")
     @PostMapping("users/{userId}/project_members/{id}/change_role")
     public Mono<ResponseEntity<ResponseWrapper<ProjectMemberDTO>>>changeRoleByUserIdAndId
             (@PathVariable("userId") String userId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<ProjectMemberDTO> dto) {
@@ -740,6 +743,256 @@ public abstract class AbstractProjectMemberResource {
     */   
     public ProjectMemberDTO saveByUserId
             (String userId, ProjectMemberDTO dto) {
+        ProjectMember domain = projectMemberDtoMapping.toDomain(dto);
+        domain.setUserId(userId);
+        projectMemberService.save(domain);
+        ProjectMember rt = domain;
+        return projectMemberDtoMapping.toDto(rt);
+    }
+
+    /**
+    * 创建Create 项目成员
+    * 
+    *
+    * @param departmentId departmentId
+    * @param userId userId
+    * @param dto dto
+    * @return Mono<ResponseEntity<ProjectMemberDTO>>
+    */
+    @ApiOperation(value = "创建Create", tags = {"项目成员" },  notes = "ProjectMember-Create ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ProjectMember-Create-all') or hasPermission('department',#departmentId,this.projectMemberDtoMapping.toDomain(#dto),'ibizplm-ProjectMember-Create')")
+    @PostMapping("departments/{departmentId}/users/{userId}/project_members")
+    public Mono<ResponseEntity<ResponseWrapper<ProjectMemberDTO>>>createByDepartmentIdAndUserId
+            (@PathVariable("departmentId") String departmentId, @PathVariable("userId") String userId, @Validated @RequestBody RequestWrapper<ProjectMemberDTO> dto) {
+        ResponseWrapper<ProjectMemberDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray())
+            dto.getList().forEach(item -> rt.add(createByDepartmentIdAndUserId(departmentId, userId, item)));
+        else
+            rt.set(createByDepartmentIdAndUserId(departmentId, userId, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * 创建Create 项目成员
+    * 
+    *
+    * @param departmentId departmentId
+    * @param userId userId
+    * @param dto dto
+    * @return ResponseEntity<ProjectMemberDTO>
+    */   
+    public ProjectMemberDTO createByDepartmentIdAndUserId
+            (String departmentId, String userId, ProjectMemberDTO dto) {
+        ProjectMember domain = projectMemberDtoMapping.toDomain(dto);
+        domain.setUserId(userId);
+        projectMemberService.create(domain);
+        ProjectMember rt = domain;
+        return projectMemberDtoMapping.toDto(rt);
+    }
+
+    /**
+    * 更新Update 项目成员
+    * 
+    *
+    * @param departmentId departmentId
+    * @param userId userId
+    * @param id id
+    * @param dto dto
+    * @return Mono<ResponseEntity<ProjectMemberDTO>>
+    */
+    @ApiOperation(value = "更新Update", tags = {"项目成员" },  notes = "ProjectMember-Update ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ProjectMember-Update-all') or hasPermission('department',#departmentId,this.projectMemberService.get(#id),'ibizplm-ProjectMember-Update')")
+    @VersionCheck(entity = "projectmember" , versionfield = "updateTime")
+    @PutMapping("departments/{departmentId}/users/{userId}/project_members/{id}")
+    public Mono<ResponseEntity<ResponseWrapper<ProjectMemberDTO>>>updateByDepartmentIdAndUserIdAndId
+            (@PathVariable("departmentId") String departmentId, @PathVariable("userId") String userId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<ProjectMemberDTO> dto) {
+        ResponseWrapper<ProjectMemberDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(updateByDepartmentIdAndUserIdAndId(departmentId, userId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(updateByDepartmentIdAndUserIdAndId(departmentId, userId, id, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * 更新Update 项目成员
+    * 
+    *
+    * @param departmentId departmentId
+    * @param userId userId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<ProjectMemberDTO>
+    */   
+    public ProjectMemberDTO updateByDepartmentIdAndUserIdAndId
+            (String departmentId, String userId, String id, ProjectMemberDTO dto) {
+        ProjectMember domain = projectMemberDtoMapping.toDomain(dto);
+        domain.setId(id);
+        projectMemberService.update(domain);
+        ProjectMember rt = domain;
+        return projectMemberDtoMapping.toDto(rt);
+    }
+
+    /**
+    * change_position 项目成员
+    * 
+    *
+    * @param departmentId departmentId
+    * @param userId userId
+    * @param id id
+    * @param dto dto
+    * @return Mono<ResponseEntity<ProjectMemberDTO>>
+    */
+    @ApiOperation(value = "change_position", tags = {"项目成员" },  notes = "ProjectMember-change_position ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ProjectMember-change_position-all') or hasPermission('department',#departmentId,this.projectMemberDtoMapping.toDomain(#dto),'ibizplm-ProjectMember-change_position')")
+    @PostMapping("departments/{departmentId}/users/{userId}/project_members/{id}/change_position")
+    public Mono<ResponseEntity<ResponseWrapper<ProjectMemberDTO>>>changePositionByDepartmentIdAndUserIdAndId
+            (@PathVariable("departmentId") String departmentId, @PathVariable("userId") String userId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<ProjectMemberDTO> dto) {
+        ResponseWrapper<ProjectMemberDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(changePositionByDepartmentIdAndUserIdAndId(departmentId, userId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(changePositionByDepartmentIdAndUserIdAndId(departmentId, userId, id, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * change_position 项目成员
+    * 
+    *
+    * @param departmentId departmentId
+    * @param userId userId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<ProjectMemberDTO>
+    */   
+    public ProjectMemberDTO changePositionByDepartmentIdAndUserIdAndId
+            (String departmentId, String userId, String id, ProjectMemberDTO dto) {
+        ProjectMember domain = projectMemberDtoMapping.toDomain(dto);
+        domain.setId(id);
+        ProjectMember rt = projectMemberService.changePosition(domain);
+        return projectMemberDtoMapping.toDto(rt);
+    }
+
+    /**
+    * change_role 项目成员
+    * 
+    *
+    * @param departmentId departmentId
+    * @param userId userId
+    * @param id id
+    * @param dto dto
+    * @return Mono<ResponseEntity<ProjectMemberDTO>>
+    */
+    @ApiOperation(value = "change_role", tags = {"项目成员" },  notes = "ProjectMember-change_role ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ProjectMember-change_role-all') or hasPermission('department',#departmentId,this.projectMemberDtoMapping.toDomain(#dto),'ibizplm-ProjectMember-change_role')")
+    @PostMapping("departments/{departmentId}/users/{userId}/project_members/{id}/change_role")
+    public Mono<ResponseEntity<ResponseWrapper<ProjectMemberDTO>>>changeRoleByDepartmentIdAndUserIdAndId
+            (@PathVariable("departmentId") String departmentId, @PathVariable("userId") String userId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<ProjectMemberDTO> dto) {
+        ResponseWrapper<ProjectMemberDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(changeRoleByDepartmentIdAndUserIdAndId(departmentId, userId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(changeRoleByDepartmentIdAndUserIdAndId(departmentId, userId, id, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * change_role 项目成员
+    * 
+    *
+    * @param departmentId departmentId
+    * @param userId userId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<ProjectMemberDTO>
+    */   
+    public ProjectMemberDTO changeRoleByDepartmentIdAndUserIdAndId
+            (String departmentId, String userId, String id, ProjectMemberDTO dto) {
+        ProjectMember domain = projectMemberDtoMapping.toDomain(dto);
+        domain.setId(id);
+        ProjectMember rt = projectMemberService.changeRole(domain);
+        return projectMemberDtoMapping.toDto(rt);
+    }
+
+    /**
+    * mob_create_project_member 项目成员
+    * 
+    *
+    * @param departmentId departmentId
+    * @param userId userId
+    * @param dto dto
+    * @return Mono<ResponseEntity<ProjectMemberDTO>>
+    */
+    @ApiOperation(value = "mob_create_project_member", tags = {"项目成员" },  notes = "ProjectMember-mob_create_project_member ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ProjectMember-mob_create_project_member-all') or hasPermission('department',#departmentId,this.projectMemberDtoMapping.toDomain(#dto),'ibizplm-ProjectMember-mob_create_project_member')")
+    @PostMapping("departments/{departmentId}/users/{userId}/project_members/mob_create_project_member")
+    public Mono<ResponseEntity<ResponseWrapper<ProjectMemberDTO>>>mobCreateProjectMemberByDepartmentIdAndUserId
+            (@PathVariable("departmentId") String departmentId, @PathVariable("userId") String userId, @Validated @RequestBody RequestWrapper<ProjectMemberDTO> dto) {
+        ResponseWrapper<ProjectMemberDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray())
+            dto.getList().forEach(item -> rt.add(mobCreateProjectMemberByDepartmentIdAndUserId(departmentId, userId, item)));
+        else
+            rt.set(mobCreateProjectMemberByDepartmentIdAndUserId(departmentId, userId, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * mob_create_project_member 项目成员
+    * 
+    *
+    * @param departmentId departmentId
+    * @param userId userId
+    * @param dto dto
+    * @return ResponseEntity<ProjectMemberDTO>
+    */   
+    public ProjectMemberDTO mobCreateProjectMemberByDepartmentIdAndUserId
+            (String departmentId, String userId, ProjectMemberDTO dto) {
+        ProjectMember domain = projectMemberDtoMapping.toDomain(dto);
+        domain.setUserId(userId);
+        ProjectMember rt = projectMemberService.mobCreateProjectMember(domain);
+        return projectMemberDtoMapping.toDto(rt);
+    }
+
+    /**
+    * 保存Save 项目成员
+    * 
+    *
+    * @param departmentId departmentId
+    * @param userId userId
+    * @param dto dto
+    * @return Mono<ResponseEntity<ProjectMemberDTO>>
+    */
+    @ApiOperation(value = "保存Save", tags = {"项目成员" },  notes = "ProjectMember-Save ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ProjectMember-Save-all') or hasPermission('department',#departmentId,this.projectMemberDtoMapping.toDomain(#dto),'ibizplm-ProjectMember-Save')")
+    @PostMapping("departments/{departmentId}/users/{userId}/project_members/save")
+    public Mono<ResponseEntity<ResponseWrapper<ProjectMemberDTO>>>saveByDepartmentIdAndUserId
+            (@PathVariable("departmentId") String departmentId, @PathVariable("userId") String userId, @Validated @RequestBody RequestWrapper<ProjectMemberDTO> dto) {
+        ResponseWrapper<ProjectMemberDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray())
+            dto.getList().forEach(item -> rt.add(saveByDepartmentIdAndUserId(departmentId, userId, item)));
+        else
+            rt.set(saveByDepartmentIdAndUserId(departmentId, userId, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * 保存Save 项目成员
+    * 
+    *
+    * @param departmentId departmentId
+    * @param userId userId
+    * @param dto dto
+    * @return ResponseEntity<ProjectMemberDTO>
+    */   
+    public ProjectMemberDTO saveByDepartmentIdAndUserId
+            (String departmentId, String userId, ProjectMemberDTO dto) {
         ProjectMember domain = projectMemberDtoMapping.toDomain(dto);
         domain.setUserId(userId);
         projectMemberService.save(domain);
@@ -1151,6 +1404,155 @@ public abstract class AbstractProjectMemberResource {
     @PostMapping("users/{userId}/project_members/fetch_no_attention")
     public Mono<ResponseEntity<List<ProjectMemberDTO>>> fetchNoAttentionByUserId
             (@PathVariable("userId") String userId, @Validated @RequestBody ProjectMemberFilterDTO dto) {
+        dto.setUserIdEQ(userId);
+        ProjectMemberSearchContext context = projectMemberFilterDtoMapping.toDomain(dto);
+        Page<ProjectMember> domains = projectMemberService.fetchNoAttention(context) ;
+        List<ProjectMemberDTO> list = projectMemberDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
+    * 获取Get 项目成员
+    * 
+    *
+    * @param departmentId departmentId
+    * @param userId userId
+    * @param id id
+    * @return Mono<ResponseEntity<ProjectMemberDTO>>
+    */
+    @ApiOperation(value = "获取Get", tags = {"项目成员" },  notes = "ProjectMember-Get ")
+    @PostAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ProjectMember-Get-all')  or hasPermission('department',#departmentId,this.projectMemberDtoMapping.toDomain(returnObject.block().getBody()),'ibizplm-ProjectMember-Get')")
+    @GetMapping("departments/{departmentId}/users/{userId}/project_members/{id}")
+    public Mono<ResponseEntity<ProjectMemberDTO>> getByDepartmentIdAndUserIdAndId
+            (@PathVariable("departmentId") String departmentId, @PathVariable("userId") String userId, @PathVariable("id") String id) {
+        ProjectMember rt = projectMemberService.get(id);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(projectMemberDtoMapping.toDto(rt)));
+    }
+
+    /**
+    * 删除Remove 项目成员
+    * 
+    *
+    * @param departmentId departmentId
+    * @param userId userId
+    * @param id id
+    * @return Mono<ResponseEntity<Boolean>>
+    */
+    @ApiOperation(value = "删除Remove", tags = {"项目成员" },  notes = "ProjectMember-Remove ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ProjectMember-Remove-all') or hasPermission('department',#departmentId,this.projectMemberService.get(#id),'ibizplm-ProjectMember-Remove')")
+    @DeleteMapping("departments/{departmentId}/users/{userId}/project_members/{id}")
+    public Mono<ResponseEntity<Boolean>> removeByDepartmentIdAndUserIdAndId
+            (@PathVariable("departmentId") String departmentId, @PathVariable("userId") String userId, @PathVariable("id") String id) {
+        Boolean rt = projectMemberService.remove(id);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * 校验CheckKey 项目成员
+    * 
+    *
+    * @param departmentId departmentId
+    * @param userId userId
+    * @param dto dto
+    * @return Mono<ResponseEntity<Integer>>
+    */
+    @ApiOperation(value = "校验CheckKey", tags = {"项目成员" },  notes = "ProjectMember-CheckKey ")
+    @PostMapping("departments/{departmentId}/users/{userId}/project_members/check_key")
+    public Mono<ResponseEntity<CheckKeyStatus>> checkKeyByDepartmentIdAndUserId
+            (@PathVariable("departmentId") String departmentId, @PathVariable("userId") String userId, @Validated @RequestBody ProjectMemberDTO dto) {
+        ProjectMember domain = projectMemberDtoMapping.toDomain(dto);
+        domain.setUserId(userId);
+        CheckKeyStatus rt = projectMemberService.checkKey(domain);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * 草稿GetDraft 项目成员
+    * 
+    *
+    * @param departmentId departmentId
+    * @param userId userId
+    * @param dto dto
+    * @return Mono<ResponseEntity<ProjectMemberDTO>>
+    */
+    @ApiOperation(value = "草稿GetDraft", tags = {"项目成员" },  notes = "ProjectMember-GetDraft ")
+    @GetMapping("departments/{departmentId}/users/{userId}/project_members/get_draft")
+    public Mono<ResponseEntity<ProjectMemberDTO>> getDraftByDepartmentIdAndUserId
+            (@PathVariable("departmentId") String departmentId, @PathVariable("userId") String userId, @SpringQueryMap ProjectMemberDTO dto) {
+        ProjectMember domain = projectMemberDtoMapping.toDomain(dto);
+        domain.setUserId(userId);
+        ProjectMember rt = projectMemberService.getDraft(domain);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(projectMemberDtoMapping.toDto(rt)));
+    }
+
+    /**
+    * 查询fetch_cur_project 项目成员
+    * 
+    *
+    * @param departmentId departmentId
+    * @param userId userId
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<ProjectMemberDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_cur_project", tags = {"项目成员" },  notes = "ProjectMember-fetch_cur_project ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ProjectMember-fetch_cur_project-all') or hasPermission('department',#departmentId,#dto,'ibizplm-ProjectMember-fetch_cur_project')")
+    @PostMapping("departments/{departmentId}/users/{userId}/project_members/fetch_cur_project")
+    public Mono<ResponseEntity<List<ProjectMemberDTO>>> fetchCurProjectByDepartmentIdAndUserId
+            (@PathVariable("departmentId") String departmentId, @PathVariable("userId") String userId, @Validated @RequestBody ProjectMemberFilterDTO dto) {
+        dto.setUserIdEQ(userId);
+        ProjectMemberSearchContext context = projectMemberFilterDtoMapping.toDomain(dto);
+        Page<ProjectMember> domains = projectMemberService.fetchCurProject(context) ;
+        List<ProjectMemberDTO> list = projectMemberDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
+    * 查询fetch_default 项目成员
+    * 
+    *
+    * @param departmentId departmentId
+    * @param userId userId
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<ProjectMemberDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_default", tags = {"项目成员" },  notes = "ProjectMember-fetch_default ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ProjectMember-fetch_default-all') or hasPermission('department',#departmentId,#dto,'ibizplm-ProjectMember-fetch_default')")
+    @PostMapping("departments/{departmentId}/users/{userId}/project_members/fetch_default")
+    public Mono<ResponseEntity<List<ProjectMemberDTO>>> fetchDefaultByDepartmentIdAndUserId
+            (@PathVariable("departmentId") String departmentId, @PathVariable("userId") String userId, @Validated @RequestBody ProjectMemberFilterDTO dto) {
+        dto.setUserIdEQ(userId);
+        ProjectMemberSearchContext context = projectMemberFilterDtoMapping.toDomain(dto);
+        Page<ProjectMember> domains = projectMemberService.fetchDefault(context) ;
+        List<ProjectMemberDTO> list = projectMemberDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
+    * 查询fetch_no_attention 项目成员
+    * 
+    *
+    * @param departmentId departmentId
+    * @param userId userId
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<ProjectMemberDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_no_attention", tags = {"项目成员" },  notes = "ProjectMember-fetch_no_attention ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ProjectMember-fetch_no_attention-all') or hasPermission('department',#departmentId,#dto,'ibizplm-ProjectMember-fetch_no_attention')")
+    @PostMapping("departments/{departmentId}/users/{userId}/project_members/fetch_no_attention")
+    public Mono<ResponseEntity<List<ProjectMemberDTO>>> fetchNoAttentionByDepartmentIdAndUserId
+            (@PathVariable("departmentId") String departmentId, @PathVariable("userId") String userId, @Validated @RequestBody ProjectMemberFilterDTO dto) {
         dto.setUserIdEQ(userId);
         ProjectMemberSearchContext context = projectMemberFilterDtoMapping.toDomain(dto);
         Page<ProjectMember> domains = projectMemberService.fetchNoAttention(context) ;

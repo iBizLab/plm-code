@@ -2,7 +2,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'shared_grid_view',
-  deviewId: '0AC09F0F-1CFA-4E87-B855-A3742E800629',
+  deviewId: '9241f204f1e70adec1beb00d90701495',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.PAGE',
@@ -63,15 +63,6 @@ export default {
   ],
   appViewRefs: [
     {
-      realTitle: '页面编辑视图',
-      realTitleLanguageRes: {
-        lanResTag: 'PAGE.TITLE.PAGE.EDITVIEW',
-      },
-      refAppViewId: 'plmweb.article_page_edit_view',
-      name: 'NEWDATA',
-      id: 'newdata',
-    },
-    {
       realTitle: '页面数据重定向视图',
       realTitleLanguageRes: {
         lanResTag: 'PAGE.TITLE.PAGE.REDIRECTVIEW',
@@ -79,6 +70,15 @@ export default {
       refAppViewId: 'plmweb.article_page_redirect_view',
       name: 'EDITDATA',
       id: 'editdata',
+    },
+    {
+      realTitle: '页面编辑视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.PAGE.EDITVIEW',
+      },
+      refAppViewId: 'plmweb.article_page_edit_view',
+      name: 'NEWDATA',
+      id: 'newdata',
     },
   ],
   controls: [
@@ -194,7 +194,7 @@ export default {
                   cssClass: 'fa fa-edit',
                   glyph: 'xf044@FontAwesome',
                 },
-                id: 'u7a9dd5a',
+                id: 'ubf08146',
               },
               {
                 actionLevel: 100,
@@ -208,7 +208,7 @@ export default {
                   rawContent:
                     '<svg xmlns="http://www.w3.org/2000/svg" class="icon design-iconfont" viewBox="0 0 1024 1024" width="15" height="15" fill="currentColor">\n  <path d="M823.14043 167.852074c16.375812 35.822089 4.093953 78.808596-28.657671 97.231384L224.3998 568.035982c-32.751624 18.422789-72.667666 4.093953-90.066966-30.704648-16.375812-35.822089-4.093953-78.808596 28.657671-97.231384l570.082958-302.952524c32.751624-18.422789 73.691154-5.117441 90.066967 30.704648z"></path>\n  <path d="M135.356322 485.133433c-16.375812 35.822089-4.093953 79.832084 28.657671 98.254873l315.234383 176.03998c32.751624 18.422789 72.667666 4.093953 90.066966-31.728136 16.375812-35.822089 4.093953-79.832084-28.657671-98.254873L225.423288 454.428786c-32.751624-18.422789-72.667666-4.093953-90.066966 30.704647zM659.382309 657.07946c-25.587206 26.610695-25.587206 68.573713 0 95.184408l249.731134 251.778111c25.587206 26.610695 68.573713 26.610695 94.16092 0 25.587206-26.610695 25.587206-68.573713 0-95.184408L754.566717 657.07946c-26.610695-25.587206-68.573713-25.587206-95.184408 0z"></path>\n  <path d="M1002.250875 659.126437c25.587206 26.610695 25.587206 68.573713 0 94.160919L752.51974 1004.041979c-25.587206 25.587206-68.573713 25.587206-94.160919 0-25.587206-26.610695-25.587206-68.573713 0-94.16092l249.731134-249.731134c25.587206-26.610695 67.550225-26.610695 94.16092-1.023488zM191.648176 319.328336c105.41929 0 191.392304 85.973013 191.392304 191.392304 0 106.442779-85.973013 192.415792-191.392304 192.415792C86.228886 703.136432 0.255872 618.186907 0.255872 511.744128c0-106.442779 85.973013-192.415792 191.392304-192.415792zM831.328336 0c105.41929 0 191.392304 85.973013 191.392304 192.415792s-85.973013 192.415792-191.392304 192.415792c-105.41929 0-191.392304-85.973013-191.392304-192.415792C638.912544 85.973013 724.885557 0 831.328336 0z"></path>\n</svg>',
                 },
-                id: 'u6d7381f',
+                id: 'udbc42dc',
               },
             ],
             appDataEntityId: 'plmweb.article_page',
@@ -327,7 +327,7 @@ export default {
       controlParam: {
         id: 'grid',
       },
-      modelId: '01263142-6E07-43DA-9C7E-AAE8D7557B30',
+      modelId: '57d2c13bb43880990a4f48e9396b393c',
       modelType: 'PSDEGRID',
       name: 'grid',
       id: 'plmweb.article_page.shared_page_grid',
@@ -372,7 +372,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: 'f1f9e83c500c2e3ea81b25719614e418',
+  modelId: '05d5f19b81c6301ffe9d58c980bbcac9',
   modelType: 'PSAPPDEVIEW',
   name: 'article_pageshared_grid_view',
   id: 'plmweb.article_page_shared_grid_view',

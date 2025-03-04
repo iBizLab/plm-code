@@ -5,7 +5,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'waterfall_bug_grid_view',
-  deviewId: '685904827958e2220f978fecc0733ad2',
+  deviewId: '4ae2b01645fdff2c3106cb3abd2d9c69',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.WORK_ITEM',
@@ -132,6 +132,13 @@ export default {
   ],
   appViewRefs: [
     {
+      realOpenMode: 'POPUPMODAL',
+      realTitle: '新建缺陷',
+      refAppViewId: 'plmweb.work_item_quick_create_bug_view',
+      name: 'NEWDATA',
+      id: 'newdata',
+    },
+    {
       openMode: 'INDEXVIEWTAB_POPUPMODAL',
       navigateContexts: [
         {
@@ -159,13 +166,6 @@ export default {
       refAppViewId: 'plmweb.work_item_dyna_main_view',
       name: 'EDITDATA',
       id: 'editdata',
-    },
-    {
-      realOpenMode: 'POPUPMODAL',
-      realTitle: '新建缺陷',
-      refAppViewId: 'plmweb.work_item_quick_create_bug_view',
-      name: 'NEWDATA',
-      id: 'newdata',
     },
   ],
   controls: [
@@ -434,7 +434,7 @@ export default {
                   cssClass: 'fa fa-send-o',
                   glyph: 'xf1d9@FontAwesome',
                 },
-                id: 'u0f2b72c',
+                id: 'ud7b3a0b',
               },
               {
                 actionLevel: 100,
@@ -2385,6 +2385,64 @@ export default {
           appDEFieldId: 'end_at',
           id: 'end_at_lt',
         },
+        {
+          dataType: 21,
+          labelPos: 'NONE',
+          defsearchMode: {
+            codeName: 'N_EXECUTORS_EXISTS__N_USER_ID_EQ',
+            stdDataType: 25,
+            valueOP: 'EXISTS',
+            name: 'N_EXECUTORS_EXISTS__N_USER_ID_EQ',
+            id: 'n_executors_exists__n_user_id_eq',
+          },
+          editor: {
+            singleSelect: true,
+            enableAC: true,
+            forceSelection: true,
+            showTrigger: true,
+            valueItemName: 'user_id',
+            editorParams: {
+              'SRFNAVPARAM.n_department_id_eq': '%srforgsectorid%',
+              AC: 'TRUE',
+              'SRFNAVPARAM.n_status_eq': '1',
+              TRIGGER: 'TRUE',
+              URL: 'projects/${context.project}/project_members/fetch_default',
+              PICKUPVIEW: 'FALSE',
+              USERMETHOD: 'post',
+              USERMAP: '{"id":"user_id","name":"name"}',
+              DEPTMAP: '{"id":"id","name":"display_name"}',
+              DEPTMETHOD: 'get',
+              DEPTURL: '/users/fetch_default',
+            },
+            editorStyle: 'PERSONEL_SELECT_PROJECT',
+            editorType: 'PICKEREX_TRIGGER',
+            sysPFPluginId: 'person_select',
+            valueType: 'SIMPLE',
+            editable: true,
+            navigateParams: [
+              {
+                key: 'n_department_id_eq',
+                value: 'srforgsectorid',
+                id: 'n_department_id_eq',
+              },
+              {
+                key: 'n_status_eq',
+                value: '1',
+                rawValue: true,
+                id: 'n_status_eq',
+              },
+            ],
+            id: 'executors_user_id',
+          },
+          allowEmpty: true,
+          caption: '执行人',
+          itemType: 'FILTER',
+          appDEFieldId: 'executors',
+          userParam: {
+            ITEMTYPE: 'SIMPLE',
+          },
+          id: 'executors_user_id',
+        },
       ],
       searchBarGroups: [
         {
@@ -2481,7 +2539,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '9c95fe720fc5bf708d2af00257d96da0',
+  modelId: '33f1aebcf3768d612f048f1341145966',
   modelType: 'PSAPPDEVIEW',
   name: 'work_itemwaterfall_bug_grid_view',
   id: 'plmweb.work_item_waterfall_bug_grid_view',

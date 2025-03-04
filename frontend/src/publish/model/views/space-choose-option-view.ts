@@ -5,7 +5,7 @@ export default {
   loadDefault: true,
   openMode: 'POPUPMODAL',
   deviewCodeName: 'choose_option_view',
-  deviewId: '124b1f5b7254e637b7460f2d61ba392f',
+  deviewId: 'b57fca20511028493299a30ee9fcd10a',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.SPACE',
@@ -521,7 +521,7 @@ export default {
   width: 500,
   enableDP: true,
   showCaptionBar: true,
-  modelId: '4049a976636935e7897428f4a0fe92c7',
+  modelId: '8eb65fdd04f110f0cca1f53310eb750c',
   modelType: 'PSAPPDEVIEW',
   name: 'spacechoose_option_view',
   id: 'plmweb.space_choose_option_view',

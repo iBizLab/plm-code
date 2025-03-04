@@ -4,7 +4,7 @@ export default {
   expandSearchForm: true,
   loadDefault: true,
   deviewCodeName: 'scrum_temp_speed_report_view',
-  deviewId: '0de1854a85c6a46a88299a46fbca1afe',
+  deviewId: 'd675f9dce95cc98f0da99b5b0fc75382',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.WORK_ITEM',
@@ -672,7 +672,7 @@ export default {
   viewType: 'DECHARTVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '1afe32853f898b49a07dc581d603ef13',
+  modelId: 'c2c511719002bb0707c6a0cf08ef2abf',
   modelType: 'PSAPPDEVIEW',
   name: 'work_itemscrum_temp_speed_report_view',
   id: 'plmweb.work_item_scrum_temp_speed_report_view',

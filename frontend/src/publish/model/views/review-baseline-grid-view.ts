@@ -70,17 +70,6 @@ export default {
     {
       openMode: 'INDEXVIEWTAB_POPUPMODAL',
       realOpenMode: 'INDEXVIEWTAB_POPUPMODAL',
-      realTitle: '评审主视图',
-      realTitleLanguageRes: {
-        lanResTag: 'PAGE.TITLE.REVIEW.MAIN_VIEW',
-      },
-      refAppViewId: 'plmweb.review_main_view',
-      name: 'EDITDATA',
-      id: 'editdata',
-    },
-    {
-      openMode: 'INDEXVIEWTAB_POPUPMODAL',
-      realOpenMode: 'INDEXVIEWTAB_POPUPMODAL',
       realTitle: '评审新建向导',
       realTitleLanguageRes: {
         lanResTag: 'PAGE.TITLE.REVIEW.CREATE_WIZARD_VIEW',
@@ -88,6 +77,17 @@ export default {
       refAppViewId: 'plmweb.review_wizard_create_wizard_view',
       name: 'NEWDATA',
       id: 'newdata',
+    },
+    {
+      openMode: 'INDEXVIEWTAB_POPUPMODAL',
+      realOpenMode: 'INDEXVIEWTAB_POPUPMODAL',
+      realTitle: '评审主视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.REVIEW.MAIN_VIEW',
+      },
+      refAppViewId: 'plmweb.review_main_view',
+      name: 'EDITDATA',
+      id: 'editdata',
     },
   ],
   controls: [
@@ -134,7 +134,7 @@ export default {
       controlParam: {
         id: 'toolbar',
       },
-      modelId: '40C1B2BA-304C-4260-8E37-DD608AD4C78B',
+      modelId: 'ed4eb55ab61e6e94ca177bc884d0f9ef',
       modelType: 'PSDETOOLBAR',
       name: 'toolbar',
       id: 'baseline_grid_view_toolbar',
@@ -187,7 +187,7 @@ export default {
                   cssClass: 'fa fa-send-o',
                   glyph: 'xf1d9@FontAwesome',
                 },
-                id: 'uc5aab37',
+                id: 'u7ad4217',
               },
               {
                 actionLevel: 200,
@@ -201,7 +201,7 @@ export default {
                   cssClass: 'fa fa-mail-reply',
                   glyph: 'xf112@FontAwesome',
                 },
-                id: 'u400a479',
+                id: 'uf2e6622',
               },
               {
                 actionLevel: 50,
@@ -216,7 +216,7 @@ export default {
                   cssClass: 'fa fa-trash-o',
                   glyph: 'xf014@FontAwesome',
                 },
-                id: 'u10cbfb3',
+                id: 'ud3d7e2f',
               },
               {
                 actionLevel: 50,
@@ -231,7 +231,7 @@ export default {
                   cssClass: 'fa fa-edit',
                   glyph: 'xf044@FontAwesome',
                 },
-                id: 'u92af992',
+                id: 'u41b27be',
               },
             ],
             appDataEntityId: 'plmweb.review',
@@ -657,7 +657,7 @@ export default {
       controlParam: {
         id: 'grid',
       },
-      modelId: 'DF9E5608-D565-4F03-ABB3-B854F85FE140',
+      modelId: '01cae8358f25022f0686bb4565a3b9ad',
       modelType: 'PSDEGRID',
       name: 'grid',
       id: 'plmweb.review.all_grid_view_grid',
@@ -696,7 +696,7 @@ export default {
       controlParam: {
         id: 'searchform',
       },
-      modelId: 'B0488E25-08EE-4528-834B-C8582460BBA2',
+      modelId: 'cda0b5b40f1e5fbb71a4f68001d08a27',
       modelType: 'PSDEFORM_SEARCHFORM',
       name: 'searchform',
       id: 'plmweb.review.all_grid_view_search_form',

@@ -2,7 +2,7 @@ export default {
   xdataControlName: 'list',
   loadDefault: true,
   deviewCodeName: 'shared_page_list_view',
-  deviewId: '5500A15F-6D23-466B-8F18-BEAC9A315A23',
+  deviewId: 'a0dee16f7ce6dbfa096d04a88a4ce85a',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.MEMBER',
@@ -663,18 +663,12 @@ export default {
             },
           ],
           controlParam: {},
-          modelId: 'D0DF5C87-31EB-4D36-AF84-8B82832AFBED',
+          modelId: '0e19f571973046453cf42a6caaeb460a',
           modelType: 'PSSYSVIEWPANEL',
           name: 'list_itempanel',
           id: 'plmweb.member.usr0701843143',
         },
         delistDataItems: [
-          {
-            appDEFieldId: 'role_id',
-            frontCodeListId: 'plmweb.base__user_group_role_type',
-            dataType: 25,
-            id: 'role_id',
-          },
           {
             appDEFieldId: 'id',
             dataType: 25,
@@ -684,6 +678,12 @@ export default {
             appDEFieldId: 'name',
             dataType: 25,
             id: 'name',
+          },
+          {
+            appDEFieldId: 'role_id',
+            frontCodeListId: 'plmweb.base__user_group_role_type',
+            dataType: 25,
+            id: 'role_id',
           },
           {
             appDEFieldId: 'user_id',
@@ -743,7 +743,7 @@ export default {
         controlParam: {
           id: 'list',
         },
-        modelId: 'ABF54DD5-5F78-488C-8152-DE2B1CC44789',
+        modelId: 'ae402d34bc79ed0c6b56a0b5c28c5053',
         modelType: 'PSDELIST',
         name: 'list',
         id: 'plmweb.member.shared_member',
@@ -788,7 +788,7 @@ export default {
       },
     ],
     controlParam: {},
-    modelId: 'C56F6B06-4BDE-47CA-8989-A35E82A31205',
+    modelId: '75e8892e6721a0c1a7163fa41ea3a19f',
     modelType: 'PSSYSVIEWLAYOUTPANEL',
     name: 'layoutpanel',
     id: 'usr0701901658',
@@ -798,7 +798,7 @@ export default {
   viewType: 'DELISTVIEW',
   enableDP: true,
   showCaptionBar: false,
-  modelId: 'c54e389bfc5a2e7d84f7bc6b4c70c1de',
+  modelId: '6a51b76e218665a271d6b70694a504c4',
   modelType: 'PSAPPDEVIEW',
   name: 'membershared_page_list_view',
   id: 'plmweb.member_shared_page_list_view',

@@ -2,7 +2,7 @@ export default {
   xdataControlName: 'list',
   loadDefault: true,
   deviewCodeName: 'list_view',
-  deviewId: '7F73E669-186B-45F5-A422-AE20996955A9',
+  deviewId: '02b93ed6e3061855c10220daf9cc4ad4',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.DISCUSS_REPLY',
@@ -18,16 +18,6 @@ export default {
     },
   ],
   appViewLogics: [
-    {
-      eventNames: 'onLoadSuccess',
-      logicTrigger: 'VIEWEVENT',
-      logicType: 'APPDEUILOGIC',
-      appDEUILogicId: 'get_reply_num',
-      appDataEntityId: 'plmweb.discuss_reply',
-      builtinLogic: true,
-      name: 'TOTAL',
-      id: 'total',
-    },
     {
       logicTrigger: 'CUSTOM',
       logicType: 'APPUILOGIC',
@@ -55,6 +45,13 @@ export default {
       id: 'opendata',
     },
   ],
+  appViewNavParams: [
+    {
+      key: 'n_post_id_eq',
+      value: 'discuss_post',
+      id: 'n_post_id_eq',
+    },
+  ],
   appViewRefs: [
     {
       name: 'NEWDATA',
@@ -66,20 +63,6 @@ export default {
     },
   ],
   controls: [
-    {
-      xdataControlName: 'list',
-      codeName: 'list_view_toolbar',
-      controlType: 'TOOLBAR',
-      logicName: '工具栏模板（默认表格界面）',
-      appDataEntityId: 'plmweb.discuss_reply',
-      controlParam: {
-        id: 'toolbar',
-      },
-      modelId: 'ec6fbb681f5e3e6783c2af57e5eefaaa',
-      modelType: 'PSDETOOLBAR',
-      name: 'toolbar',
-      id: 'list_view_toolbar',
-    },
     {
       searchButtonStyle: 'DEFAULT',
       deformPages: [
@@ -114,7 +97,7 @@ export default {
       controlParam: {
         id: 'searchform',
       },
-      modelId: 'fabc8ef6b9ea6b3d12cfe4d381a884bd',
+      modelId: '6f703755323cec7d6bf031b0397f3846',
       modelType: 'PSDEFORM_SEARCHFORM',
       name: 'searchform',
       id: 'plmweb.discuss_reply.default',
@@ -162,6 +145,7 @@ export default {
                         layoutPos: {
                           shrink: 1,
                           layout: 'FLEX',
+                          spacingRight: 'OUTERSMALL',
                         },
                         id: 'user_name',
                       },
@@ -329,7 +313,7 @@ export default {
                       shrink: 1,
                       layout: 'FLEX',
                     },
-                    id: 'container2',
+                    id: 'reply_btns',
                   },
                 ],
                 layout: {
@@ -352,18 +336,36 @@ export default {
                 panelItems: [
                   {
                     editor: {
-                      contentType: 'HTML',
                       editorParams: {
-                        contenttype: 'HTML',
-                        SCRIPTCODE:
-                          'data.content?.replace(/@{[^,]*,"name":"(.*?)"}/g,"<span class=\'comment-tag\'>@$1</span>").replace(/@{[^,]*,name=(.*?)}/g,"<span class=\'comment-tag\'>@$1</span>").replaceAll(/\\#\\{(\\".+?\\":\\".+?\\")(,\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\")*\\}/g, (x, value, icon) => {const item = JSON.parse("{" + value + "}"); if (icon) { icon = icon.slice(8).slice(1, -1).trim(); } return controller.parseCommentTag({icon, ...item});}).replaceAll(/\\{\\"\\emoji\\":\\"(.+?)\\"\\}/g,(x, emoji) => {const tempVal = decodeURIComponent(atob(emoji)); return `<span class="emoji-tag">${tempVal}</span>`})',
+                        USERINSCRIPT:
+                          'value.replaceAll(/\\@\\{\\"(user)?id\\":\\"(.+?)\\",\\"name\\":\\"(.+?)\\"\\}/g,(x, user, id, name) => {return controller.getNodeInfo({ id, name })}).replaceAll(/\\@\\{userid=(.+?),name=(.+?)\\}/g,(x, id, name) => {return controller.getNodeInfo({ id, name })})',
+                        MAXHEIGHT: '450',
+                        QUOTECODELISTMAP:
+                          '{"type":"plmweb.base__recent_visite"}',
+                        QUOTEFIELDMAP:
+                          '{"identifier":"show_identifier","name":"name","id":"id","owner_subtype":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
+                        QUOTEPARAMS: '{"sort":"update_time,desc"}',
+                        MODE: 'default',
+                        readonly: 'true',
+                        QUOTEINSCRIPT:
+                          'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\")(,\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\")*\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); if (icon) { icon = icon.slice(8).slice(1, -1); } return controller.getNodeInfo({ icon, ...item })})',
+                        USERSCRIPT:
+                          '`@{"id":"${data.id}","name":"${data.name}"}`',
+                        QUOTESCRIPT:
+                          '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.owner_subtype}","recent_parent":"${data.recent_parent}"}`',
+                        USERURL:
+                          "`${context.library ? `libraries/${context.library}/library_members/fetch_default` : context.product ? `products/${context.product}/product_members/fetch_default` : context.project ? `projects/${context.project}/project_members/fetch_default` : ''}`",
+                        USERFIELDMAP: '{"id":"user_id","name":"name"}',
+                        INSERTKEYS:
+                          '[{"index":66,"keys":["marker"]},{"index":5,"keys":["paintformat"]}]',
+                        QUOTEURL: '`recents/fetch_recent_access`',
                       },
-                      editorStyle: 'COMMENT_ITEM',
-                      editorType: 'RAW',
-                      sysPFPluginId: 'comment_item',
-                      predefinedType: 'FIELD_TEXT_DYNAMIC',
+                      editorStyle: 'COLLAPSE',
+                      editorType: 'HTMLEDITOR',
+                      sysPFPluginId: 'comment',
                       valueType: 'SIMPLE',
                       editable: true,
+                      readOnly: true,
                       id: 'content',
                     },
                     viewFieldName: 'CONTENT',
@@ -395,82 +397,91 @@ export default {
                 actionGroupExtractMode: 'ITEM',
                 panelItems: [
                   {
-                    actionType: 'NONE',
-                    buttonStyle: 'STYLE2',
-                    buttonType: 'PANELBUTTON',
-                    buttonWidth: 100,
-                    renderMode: 'BUTTON',
-                    tooltip: '发表评论',
-                    uiactionTarget: 'NONE',
-                    caption: '发表评论',
-                    contentWidth: 100,
-                    itemStyle: 'STYLE2',
-                    itemType: 'BUTTON',
-                    controlLogics: [
+                    actionGroupExtractMode: 'ITEM',
+                    panelItems: [
                       {
-                        itemName: 'btn_show',
-                        logicTag: 'list_itempanel',
-                        logicType: 'SCRIPT',
-                        scriptCode: 'data.id != null',
-                        triggerType: 'ITEMVISIBLE',
-                        id: 'logic4',
+                        editor: {
+                          halign: 'LEFT',
+                          renderMode: 'TEXT_DYNAMIC',
+                          valign: 'MIDDLE',
+                          wrapMode: 'NOWRAP',
+                          editorType: 'SPAN',
+                          predefinedType: 'FIELD_TEXT_DYNAMIC',
+                          valueType: 'SIMPLE',
+                          editable: true,
+                          id: 'comment_count',
+                        },
+                        valueFormat: '共0条评论',
+                        viewFieldName: 'comment_count',
+                        allowEmpty: true,
+                        caption: '文本(动态)',
+                        itemStyle: 'DEFAULT',
+                        itemType: 'FIELD',
+                        layoutPos: {
+                          shrink: 1,
+                          layout: 'FLEX',
+                          spacingRight: 'OUTERMEDIUM',
+                        },
+                        panelItemGroupLogics: [
+                          {
+                            logicCat: 'PANELVISIBLE',
+                            relatedItemNames: ['comment_count'],
+                            groupOP: 'AND',
+                            panelItemLogics: [
+                              {
+                                condOp: 'NOTEQ',
+                                dstModelField: 'comment_count',
+                                value: '0',
+                                logicType: 'SINGLE',
+                                id: '逻辑项',
+                              },
+                            ],
+                            logicType: 'GROUP',
+                          },
+                        ],
+                        id: 'comment_count',
+                      },
+                      {
+                        actionType: 'UIACTION',
+                        buttonStyle: 'STYLE2',
+                        buttonType: 'PANELBUTTON',
+                        uiactionId:
+                          'panel_usr0516087018_button_calluilogic2_click@discuss_post',
+                        renderMode: 'BUTTON',
+                        tooltip: '评论',
+                        uiactionTarget: 'SINGLEDATA',
+                        caption: '评论',
+                        itemStyle: 'STYLE2',
+                        itemType: 'BUTTON',
+                        layoutPos: {
+                          shrink: 1,
+                          layout: 'FLEX',
+                        },
+                        sysImage: {
+                          cssClass: 'fa fa-comments',
+                          glyph: 'xf086@FontAwesome',
+                        },
+                        id: 'button_calluilogic2',
                       },
                     ],
+                    layout: {
+                      align: 'flex-start',
+                      dir: 'row',
+                      layout: 'FLEX',
+                      valign: 'center',
+                    },
+                    dataRegionType: 'INHERIT',
+                    caption: '容器',
+                    itemStyle: 'DEFAULT',
+                    itemType: 'CONTAINER',
                     layoutPos: {
                       shrink: 1,
                       layout: 'FLEX',
-                      width: 100,
-                      widthMode: 'PX',
                     },
-                    sysImage: {
-                      cssClass: 'fa fa-comment-o',
-                      glyph: 'xf0e5@FontAwesome',
-                    },
-                    width: 100,
-                    showCaption: true,
-                    id: 'btn_show',
-                  },
-                  {
-                    actionType: 'NONE',
-                    buttonStyle: 'STYLE2',
-                    buttonType: 'PANELBUTTON',
-                    buttonWidth: 100,
-                    renderMode: 'BUTTON',
-                    tooltip: '收起评论',
-                    uiactionTarget: 'NONE',
-                    caption: '收起评论',
-                    contentWidth: 100,
-                    itemStyle: 'STYLE2',
-                    itemType: 'BUTTON',
-                    controlLogics: [
-                      {
-                        itemName: 'btn_hidden',
-                        logicTag: 'list_itempanel',
-                        logicType: 'SCRIPT',
-                        scriptCode: 'data.id == null',
-                        triggerType: 'ITEMVISIBLE',
-                        id: 'btn_default_hidden',
-                      },
-                    ],
-                    layoutPos: {
-                      shrink: 1,
-                      layout: 'FLEX',
-                      width: 100,
-                      widthMode: 'PX',
-                    },
-                    sysImage: {
-                      cssClass: 'fa fa-comment-o',
-                      glyph: 'xf0e5@FontAwesome',
-                    },
-                    width: 100,
-                    showCaption: true,
-                    id: 'btn_hidden',
+                    id: 'exten_info',
                   },
                   {
                     editor: {
-                      editorParams: {
-                        PID: '%id%',
-                      },
                       editorStyle: 'COMMENT_LIST',
                       editorType: 'TEXTBOX',
                       sysPFPluginId: 'comment_list',
@@ -479,46 +490,33 @@ export default {
                       editable: true,
                       id: 'comments',
                     },
-                    viewFieldName: 'COMMENTS',
+                    viewFieldName: 'comments',
                     allowEmpty: true,
                     caption: '文本(动态)',
                     itemStyle: 'DEFAULT',
                     itemType: 'FIELD',
-                    controlLogics: [
+                    layoutPos: {
+                      shrink: 1,
+                      layout: 'FLEX',
+                    },
+                    panelItemGroupLogics: [
                       {
-                        itemName: 'COMMENTS',
-                        logicTag: 'list_itempanel',
-                        logicType: 'SCRIPT',
-                        scriptCode: 'data.id == null',
-                        triggerType: 'ITEMVISIBLE',
-                        id: 'comments_default_hidden',
+                        logicCat: 'PANELVISIBLE',
+                        relatedItemNames: ['comment_count'],
+                        groupOP: 'AND',
+                        panelItemLogics: [
+                          {
+                            condOp: 'EQ',
+                            dstModelField: 'comment_count',
+                            value: '-1',
+                            logicType: 'SINGLE',
+                            id: '逻辑项',
+                          },
+                        ],
+                        logicType: 'GROUP',
                       },
                     ],
-                    layoutPos: {
-                      shrink: 1,
-                      layout: 'FLEX',
-                    },
                     id: 'comments',
-                  },
-                  {
-                    rawItem: {
-                      contentType: 'DIVIDER',
-                      predefinedType: 'STATIC_LABEL',
-                      rawContent: '标签',
-                      rawItemWidth: 100,
-                      id: 'static_label',
-                    },
-                    contentWidth: 100,
-                    itemStyle: 'DEFAULT',
-                    itemType: 'RAWITEM',
-                    layoutPos: {
-                      shrink: 1,
-                      layout: 'FLEX',
-                      width: 100,
-                      widthMode: 'FULL',
-                    },
-                    width: 100,
-                    id: 'static_label',
                   },
                 ],
                 layout: {
@@ -556,7 +554,7 @@ export default {
         controlLogics: [
           {
             eventNames: 'deletecomment',
-            itemName: 'COMMENTS',
+            itemName: 'comments',
             logicTag: 'list_itempanel',
             logicType: 'APPDEUIACTION',
             appDEUIActionId: 'del_commnet@discuss_reply',
@@ -564,49 +562,53 @@ export default {
             id: 'deletecomment',
           },
           {
-            eventNames: 'onClick',
-            itemName: 'btn_hidden',
+            eventNames: 'editreply',
+            itemName: 'comments',
             logicTag: 'list_itempanel',
-            logicType: 'SCRIPT',
-            scriptCode:
-              'ctrl.panelItems.btn_show.state.visible = true;\r\nctrl.panelItems.btn_hidden.state.visible = false;\r\nctrl.panelItems.comments.state.visible = false;',
+            logicType: 'APPDEUILOGIC',
+            appDEUILogicId: 'edit_reply_comment',
+            appDataEntityId: 'plmweb.discuss_post',
             triggerType: 'CTRLEVENT',
-            id: 'reply_comment_hidden',
+            id: 'editreply',
           },
           {
             eventNames: 'onClick',
-            itemName: 'btn_show',
+            itemName: 'comment_count',
             logicTag: 'list_itempanel',
             logicType: 'SCRIPT',
             scriptCode:
-              'ctrl.panelItems.btn_show.state.visible = false;\r\nctrl.panelItems.btn_hidden.state.visible = true;\r\nctrl.panelItems.comments.state.visible = true;',
+              'ctrl.panelItems.comments.state.visible = !ctrl.panelItems.comments.state.visible;',
             triggerType: 'CTRLEVENT',
-            id: 'reply_comment_visible',
-          },
-          {
-            eventNames: 'sendcomment',
-            itemName: 'COMMENTS',
-            logicTag: 'list_itempanel',
-            logicType: 'APPDEUIACTION',
-            appDEUIActionId: 'reply_comment@discuss_reply',
-            appDEUILogicId: 'reply_send_comment',
-            appDataEntityId: 'plmweb.discuss_reply',
-            triggerType: 'CTRLEVENT',
-            id: 'sendcomment',
+            id: 'show_comments',
           },
         ],
         controlParam: {},
-        modelId: '8F59673F-20E8-4EF4-B439-CC8F303C6A60',
+        modelId: '0a84ab9beb6880ef612b5a7e377dbb06',
         modelType: 'PSSYSVIEWPANEL',
         name: 'list_itempanel',
         id: 'plmweb.discuss_reply.usr0516087018',
       },
       delistDataItems: [
         {
+          appDEFieldId: 'post_id',
+          dataType: 25,
+          id: 'post_id',
+        },
+        {
           appDEFieldId: 'create_time',
           dataType: 5,
           format: 'YYYY-MM-DD HH:mm:ss',
           id: 'create_time',
+        },
+        {
+          appDEFieldId: 'comments',
+          dataType: 21,
+          id: 'comments',
+        },
+        {
+          appDEFieldId: 'id',
+          dataType: 25,
+          id: 'id',
         },
         {
           appDEFieldId: 'content',
@@ -618,21 +620,6 @@ export default {
           frontCodeListId: 'plmweb.sysoperator',
           dataType: 25,
           id: 'create_man',
-        },
-        {
-          appDEFieldId: 'post_id',
-          dataType: 25,
-          id: 'post_id',
-        },
-        {
-          appDEFieldId: 'id',
-          dataType: 25,
-          id: 'id',
-        },
-        {
-          appDEFieldId: 'comments',
-          dataType: 21,
-          id: 'comments',
         },
         {
           appDEFieldId: 'id',
@@ -682,7 +669,7 @@ export default {
       controlParam: {
         id: 'list',
       },
-      modelId: '014FAAF6-19F6-4666-A8CF-F77C581C7C4A',
+      modelId: '2e0253149c1b3de712f3c17f8a7a4d41',
       modelType: 'PSDELIST',
       name: 'list',
       id: 'plmweb.discuss_reply.list',
@@ -709,6 +696,9 @@ export default {
       id: 'list_view_captionbar',
     },
   ],
+  sysCss: {
+    cssName: 'reply_list_style',
+  },
   viewLayoutPanel: {
     layoutBodyOnly: true,
     useDefaultLayout: true,
@@ -725,7 +715,7 @@ export default {
   viewType: 'DELISTVIEW',
   enableDP: true,
   showCaptionBar: false,
-  modelId: 'ac557d82c05947a10ff30b3747206c28',
+  modelId: '3d4b38c60167b7cacaf758788cf73de6',
   modelType: 'PSAPPDEVIEW',
   name: 'discuss_replylist_view',
   id: 'plmweb.discuss_reply_list_view',

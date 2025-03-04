@@ -1385,17 +1385,17 @@ export default {
       ],
       deuilogicParams: [
         {
-          codeName: 'ctx',
-          navContextParam: true,
-          name: '应用上下文变量',
-          id: 'ctx',
-        },
-        {
           codeName: 'Default',
           default: true,
           entityParam: true,
           name: '传入变量',
           id: 'default',
+        },
+        {
+          codeName: 'ctx',
+          navContextParam: true,
+          name: '应用上下文变量',
+          id: 'ctx',
         },
         {
           codeName: 'view',
@@ -1435,11 +1435,6 @@ export default {
     },
     {
       logicName: '读取',
-      name: 'READ',
-      id: 'read',
-    },
-    {
-      logicName: '读取',
       mapDEName: 'GROUP',
       mapDEOPPrivName: 'READ',
       name: 'READ',
@@ -1447,17 +1442,15 @@ export default {
     },
     {
       logicName: '读取',
+      name: 'READ',
+      id: 'read',
+    },
+    {
+      logicName: '读取',
       mapDEName: 'PAGE',
       mapDEOPPrivName: 'UPDATE',
       name: 'READ',
       id: 'shared_page_member__read',
-    },
-    {
-      logicName: '更新',
-      mapDEName: 'PAGE',
-      mapDEOPPrivName: 'UPDATE',
-      name: 'UPDATE',
-      id: 'shared_page_member__update',
     },
     {
       logicName: '更新',
@@ -1470,6 +1463,13 @@ export default {
       logicName: '更新',
       name: 'UPDATE',
       id: 'update',
+    },
+    {
+      logicName: '更新',
+      mapDEName: 'PAGE',
+      mapDEOPPrivName: 'UPDATE',
+      name: 'UPDATE',
+      id: 'shared_page_member__update',
     },
   ],
   codeName: 'member',

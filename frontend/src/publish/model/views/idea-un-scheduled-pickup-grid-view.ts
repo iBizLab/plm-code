@@ -5,7 +5,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'un_scheduled_pickup_grid_view',
-  deviewId: '2e396a1ee12f38e9ac476068cce408f3',
+  deviewId: 'cf65ac676e51fbda931d6dc7a929ab2f',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'PAGE.CAPTION.IDEA.NOT_RE_PICKUP_GRID',
@@ -328,7 +328,7 @@ export default {
   viewType: 'DEPICKUPGRIDVIEW',
   enableDP: true,
   showCaptionBar: false,
-  modelId: 'a728c8dc1a30d60b6f7d85fdd7ce353e',
+  modelId: 'c031189422e54d63628a9888283c7b97',
   modelType: 'PSAPPDEVIEW',
   name: 'ideaun_scheduled_pickup_grid_view',
   id: 'plmweb.idea_un_scheduled_pickup_grid_view',

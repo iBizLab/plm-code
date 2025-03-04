@@ -5,7 +5,7 @@ export default {
   loadDefault: true,
   openMode: 'POPUPMODAL',
   deviewCodeName: 'show_edit_view',
-  deviewId: '78b0f62bb0290b97394a0f0f19154371',
+  deviewId: '8156e9e2f3c8e88d69f4cc8f202839b2',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.STENCIL',
@@ -616,7 +616,7 @@ export default {
   width: 90,
   enableDP: true,
   showCaptionBar: true,
-  modelId: '8ce6d9f1511ada033f6e045dad79216d',
+  modelId: '979030cafa3de518d608fdd0df62d590',
   modelType: 'PSAPPDEVIEW',
   name: 'stencilshow_edit_view',
   id: 'plmweb.stencil_show_edit_view',

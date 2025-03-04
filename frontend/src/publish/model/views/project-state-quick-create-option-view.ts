@@ -5,7 +5,7 @@ export default {
   loadDefault: true,
   openMode: 'POPUPMODAL',
   deviewCodeName: 'quick_create_option_view',
-  deviewId: 'A90D96BF-6C54-4827-BA03-82D81A46AB62',
+  deviewId: '8df713f7c67c2785c6b5aee2744371ca',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.PROJECT_STATE',
@@ -266,7 +266,7 @@ export default {
       controlParam: {
         id: 'form',
       },
-      modelId: '1A73E9E6-C645-44B4-BFD5-BE9BCF1B5AE6',
+      modelId: '835c45d50d55e54d034366f3f8e0c83d',
       modelType: 'PSDEFORM_EDITFORM',
       name: 'form',
       id: 'plmweb.project_state.quick_create_option_view_form',
@@ -311,7 +311,7 @@ export default {
   width: 800,
   enableDP: true,
   showCaptionBar: true,
-  modelId: '3dd5438cae59a148a3bda608c2509d1d',
+  modelId: '9a4a77a7a1d1d46f65fdbbf56adfd6dc',
   modelType: 'PSAPPDEVIEW',
   name: 'project_statequick_create_option_view',
   id: 'plmweb.project_state_quick_create_option_view',

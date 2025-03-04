@@ -4,7 +4,7 @@ export default {
   loadDefault: true,
   openMode: 'POPOVER',
   deviewCodeName: 'set_maintenance_option_view',
-  deviewId: 'fb96ed70229416d9896abb5bcee82b55',
+  deviewId: '5a7459627c6531641561fe7e985de33b',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.TEST_CASE',
@@ -302,7 +302,7 @@ export default {
   viewType: 'DEOPTVIEW',
   enableDP: true,
   showCaptionBar: false,
-  modelId: 'd77dc62188c7b7c9957f87430afb0a94',
+  modelId: 'f0a20ab0a84a00c203b6d5035cda59d6',
   modelType: 'PSAPPDEVIEW',
   name: 'test_caseset_maintenance_option_view',
   id: 'plmweb.test_case_set_maintenance_option_view',

@@ -188,12 +188,32 @@ public interface DiscussReplyService extends IService<DiscussReply> {
     }
 
     /**
+    * editReply
+    * 
+    * @param et
+    * @return
+    */
+    default DiscussReply editReply(DiscussReply et) {
+        return et;
+    }
+
+    /**
     * sendComment
     * 
     * @param et
     * @return
     */
     default DiscussReply sendComment(DiscussReply et) {
+        return et;
+    }
+
+    /**
+    * updateComment
+    * 
+    * @param et
+    * @return
+    */
+    default DiscussReply updateComment(DiscussReply et) {
         return et;
     }
 
@@ -212,6 +232,22 @@ public interface DiscussReplyService extends IService<DiscussReply> {
     * @return
     */
     List<DiscussReply> listDefault(DiscussReplySearchContext context);
+
+    /**
+    * fetchMyAllReply
+    * 
+    * @param context
+    * @return
+    */
+    Page<DiscussReply> fetchMyAllReply(DiscussReplySearchContext context);
+
+    /**
+    * listMyAllReply
+    * 
+    * @param context
+    * @return
+    */
+    List<DiscussReply> listMyAllReply(DiscussReplySearchContext context);
 
     /**
     * fetchMyReply

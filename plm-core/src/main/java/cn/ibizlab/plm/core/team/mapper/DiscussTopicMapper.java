@@ -195,6 +195,25 @@ public interface DiscussTopicMapper extends BaseMapper<DiscussTopic> {
     List<DiscussTopic> listNormal(@Param("ctx") DiscussTopicSearchContext context, @Param("ew") Wrapper<DiscussTopic> wrapper);
 
     /**
+     * 数据集合oss_main分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<DiscussTopic> searchOssMain(IPage<DiscussTopic> page, @Param("ctx") DiscussTopicSearchContext context, @Param("ew") Wrapper<DiscussTopic> wrapper);
+    
+    /**
+     * 数据集合oss_main查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<DiscussTopic> listOssMain(@Param("ctx") DiscussTopicSearchContext context, @Param("ew") Wrapper<DiscussTopic> wrapper);
+
+    /**
      * 数据集合quick_user分页查询
      * 
      * @param page

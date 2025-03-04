@@ -104,7 +104,7 @@ export default {
       ],
       controls: [
         {
-          appCounterRefId: 'a53bd25f15a3aa8c631ceae20db553cc',
+          appCounterRefId: 'a7288c0a3ca13f2800eec7b8db0ef6d3',
           detreeNodeRSs: [
             {
               childDETreeNodeId: 'node_3',
@@ -299,9 +299,9 @@ export default {
                 name: '首页待完成项计数器',
                 id: 'plmweb.count_my_todo',
               },
-              tag: 'a53bd25f15a3aa8c631ceae20db553cc',
+              tag: 'a7288c0a3ca13f2800eec7b8db0ef6d3',
               uniqueTag: 'count_my_todo',
-              id: 'a53bd25f15a3aa8c631ceae20db553cc',
+              id: 'a7288c0a3ca13f2800eec7b8db0ef6d3',
             },
           ],
           codeName: 'tree_exp_view_tree_view',

@@ -2,7 +2,7 @@ export default {
   funcViewMode: 'MPICKUPVIEW',
   openMode: 'POPUPMODAL',
   deviewCodeName: 'mpick_up_view2_review',
-  deviewId: '13877EBE-95E4-4620-94F0-B7373A5ED788',
+  deviewId: 'd9ead23099321ac2fd31d9e655e3671c',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.TEST_CASE',
@@ -677,7 +677,7 @@ export default {
         controlParam: {
           id: 'treeexpbar',
         },
-        modelId: 'b6eb3881c6880db7e3e9472a7ff97ee3_treeexpbar',
+        modelId: 'd6337b45ed70524b06872919fa169e7e_treeexpbar',
         modelType: 'PSEXPBAR',
         name: 'treeexpbar',
         id: 'mpick_up_view2_review_treeexpbar',
@@ -783,7 +783,7 @@ export default {
   viewType: 'DEMPICKUPVIEW2',
   enableDP: true,
   showCaptionBar: false,
-  modelId: 'b6eb3881c6880db7e3e9472a7ff97ee3',
+  modelId: 'd6337b45ed70524b06872919fa169e7e',
   modelType: 'PSAPPDEVIEW',
   name: 'test_casempick_up_view2_review',
   id: 'plmweb.test_case_mpick_up_view2_review',

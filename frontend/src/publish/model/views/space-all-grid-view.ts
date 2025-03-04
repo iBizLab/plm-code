@@ -3,7 +3,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'all_grid_view',
-  deviewId: '38db9b5d40ea265029dcea1589707185',
+  deviewId: 'b8bd2868ea0d44a9b1c9b2ecbe62a552',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'PAGE.CAPTION.SPACE.GRID_VIEW_ALL',
@@ -551,7 +551,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: 'dfebc86f23e4b9c270d116e1f8d58b37',
+  modelId: '08e911dc255561eb74546743784686e3',
   modelType: 'PSAPPDEVIEW',
   name: 'spaceall_grid_view',
   id: 'plmweb.space_all_grid_view',

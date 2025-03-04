@@ -1,6 +1,6 @@
 export default {
   deviewCodeName: 'custom_view',
-  deviewId: 'E8ED38A1-CFC6-4088-8B54-615DC2D57B8A',
+  deviewId: '2f442435977f68130b89c0af0d3e12b7',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'PAGE.CAPTION.INSIGHT_VIEW.CUSTOM_VIEW',
@@ -57,7 +57,7 @@ export default {
                           cssClass: 'fa fa-plus',
                           glyph: 'xf067@FontAwesome',
                         },
-                        id: 'uf0361c0',
+                        id: 'u2596525',
                       },
                       {
                         actionLevel: 100,
@@ -72,7 +72,7 @@ export default {
                           cssClass: 'fa fa-gear',
                           glyph: 'xf013@FontAwesome',
                         },
-                        id: 'ud31344a',
+                        id: 'uccbab55',
                       },
                     ],
                     appDataEntityId: 'plmweb.dyna_dashboard',
@@ -213,7 +213,7 @@ export default {
         sysCss: {
           cssName: 'recentcustom_dashboard_view_style',
         },
-        modelId: 'd7204f47b51a0cc29f8e4e7d1b87f23b',
+        modelId: 'bf7c9bf4f4997a5f2aeb648cbd55e682',
         modelType: 'PSSYSDASHBOARD',
         name: 'dashboard',
         id: 'plmweb.insight_view.dashboard_view_dashboard',
@@ -236,7 +236,7 @@ export default {
     logicName: '效能度量仪表盘自定义视图布局面板',
     appDataEntityId: 'plmweb.insight_view',
     controlParam: {},
-    modelId: '8FCD80B6-90D3-4784-9AC7-23FE4249CC87',
+    modelId: '3384e753452ba42aea6745e114c2152d',
     modelType: 'PSSYSVIEWLAYOUTPANEL',
     name: 'layoutpanel',
     id: 'usr0621731521',
@@ -249,7 +249,7 @@ export default {
   viewType: 'DECUSTOMVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: 'd7204f47b51a0cc29f8e4e7d1b87f23b',
+  modelId: 'bf7c9bf4f4997a5f2aeb648cbd55e682',
   modelType: 'PSAPPDEVIEW',
   name: 'insight_viewcustom_view',
   id: 'plmweb.insight_view_custom_view',

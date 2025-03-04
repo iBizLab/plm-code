@@ -18,6 +18,7 @@ import java.io.Serializable;
 import lombok.*;
 import lombok.experimental.Accessors;
 import io.swagger.annotations.*;
+import cn.ibizlab.plm.core.base.domain.RoleMember;
 
 /**
  * 角色实体类[Role]
@@ -33,13 +34,22 @@ import io.swagger.annotations.*;
 public class Role extends EntityBase implements Serializable
 {
     /**
-     * 角色代码标记
+     * 角色标识
      */
     @DEField(name = "authority")
     @JSONField(name = "authority")
     @JsonProperty("authority")
-    @ApiModelProperty(value = "authority", notes = "角色代码标记")
+    @ApiModelProperty(value = "authority", notes = "角色标识")
     private String authority;
+
+    /**
+     * 描述
+     */
+    @DEField(name = "description")
+    @JSONField(name = "description")
+    @JsonProperty("description")
+    @ApiModelProperty(value = "description", notes = "描述")
+    private String description;
 
     /**
      * 标识
@@ -52,12 +62,12 @@ public class Role extends EntityBase implements Serializable
     private String id;
 
     /**
-     * 名称
+     * 角色名称
      */
     @DEField(name = "name")
     @JSONField(name = "name")
     @JsonProperty("name")
-    @ApiModelProperty(value = "name", notes = "名称")
+    @ApiModelProperty(value = "name", notes = "角色名称")
     private String name;
 
     /**
@@ -117,7 +127,7 @@ public class Role extends EntityBase implements Serializable
     private Integer globalFlag;
 
     /**
-    * 设置 [角色代码标记]
+    * 设置 [角色标识]
     */
     public Role setAuthority(String authority) {
         this.authority = authority;
@@ -126,7 +136,16 @@ public class Role extends EntityBase implements Serializable
     }
 
     /**
-    * 设置 [名称]
+    * 设置 [描述]
+    */
+    public Role setDescription(String description) {
+        this.description = description;
+        this.modify("description", description);
+        return this;
+    }
+
+    /**
+    * 设置 [角色名称]
     */
     public Role setName(String name) {
         this.name = name;

@@ -5,7 +5,7 @@ export default {
   loadDefault: true,
   openMode: 'POPUPMODAL',
   deviewCodeName: 'update_view',
-  deviewId: '276F149D-2FF2-4D72-A7F8-6ABF378BC644',
+  deviewId: '345cc06d47a548bc5a98aa74d1a2078c',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.GROUP',
@@ -376,7 +376,7 @@ export default {
   width: 800,
   enableDP: true,
   showCaptionBar: true,
-  modelId: '6daad8d98801fae63811ba64efaaf090',
+  modelId: '0578e3e380fa356d1cb3ff6eb1fedddb',
   modelType: 'PSAPPDEVIEW',
   name: 'groupupdate_view',
   id: 'plmweb.group_update_view',

@@ -44,6 +44,14 @@ public class SysPersonSearchContext extends SearchContextBase {
     private String dcEQ;
 
     /**
+     * uid/loginnameEQ
+     */
+    @JsonProperty("n_uid_eq")
+    @JSONField(name = "n_uid_eq")
+    @ApiModelProperty("uid/loginnameEQ")
+    private String uidEQ;
+
+    /**
      * 标识EQ
      */
     @JsonProperty("n_id_eq")

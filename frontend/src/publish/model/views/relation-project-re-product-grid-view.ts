@@ -2,7 +2,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'project_re_product_grid_view',
-  deviewId: 'FF50C174-AD5C-4770-905E-0B78E102F51A',
+  deviewId: '0fc5eaa802507585298b5dbbb75974f2',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.RELATION',
@@ -124,15 +124,6 @@ export default {
   ],
   appViewRefs: [
     {
-      realTitle: '工作项关联编辑视图',
-      realTitleLanguageRes: {
-        lanResTag: 'PAGE.TITLE.RELATION.EDITVIEW',
-      },
-      refAppViewId: 'plmweb.relation_edit_view',
-      name: 'NEWDATA',
-      id: 'newdata',
-    },
-    {
       openMode: 'POPUPAPP',
       navigateContexts: [
         {
@@ -154,6 +145,15 @@ export default {
       refAppViewId: 'plmweb.product_index_view',
       name: 'EDITDATA',
       id: 'editdata',
+    },
+    {
+      realTitle: '工作项关联编辑视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.RELATION.EDITVIEW',
+      },
+      refAppViewId: 'plmweb.relation_edit_view',
+      name: 'NEWDATA',
+      id: 'newdata',
     },
   ],
   controls: [
@@ -195,7 +195,7 @@ export default {
       controlParam: {
         id: 'toolbar',
       },
-      modelId: '3D759395-C0D1-4D5E-8ADC-6A1A7A896C73',
+      modelId: '7ff7c9a825e484b93fa59a951bdf8573',
       modelType: 'PSDETOOLBAR',
       name: 'toolbar',
       id: 'project_re_product_grid_view_toolbar',
@@ -230,7 +230,7 @@ export default {
                   cssClass: 'fa fa-unlink',
                   glyph: 'xf127@FontAwesome',
                 },
-                id: 'ue009d6d',
+                id: 'ua71fcf1',
               },
             ],
             appDataEntityId: 'plmweb.relation',
@@ -355,7 +355,7 @@ export default {
         id: 'grid',
       },
       sysPFPluginId: 'number_grid',
-      modelId: 'B378C448-C111-4234-8DE0-A7CEFE60290F',
+      modelId: '9f786ff784c0c0f74d27a37a9f179895',
       modelType: 'PSDEGRID',
       name: 'grid',
       id: 'plmweb.relation.project_re_grid_view_grid',
@@ -390,7 +390,7 @@ export default {
       controlParam: {
         id: 'searchform',
       },
-      modelId: '31A218BB-C898-4D93-BF79-980D16144878',
+      modelId: 'ad5fa1c80e9f15fbbedaabb0854df5d3',
       modelType: 'PSDEFORM_SEARCHFORM',
       name: 'searchform',
       id: 'plmweb.relation.usr12045546_search_form',
@@ -433,7 +433,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: 'd6a137c87da1669a32e08e2a2e4121bf',
+  modelId: '749692e777768665d18be8339e888b87',
   modelType: 'PSAPPDEVIEW',
   name: 'relationproject_re_product_grid_view',
   id: 'plmweb.relation_project_re_product_grid_view',

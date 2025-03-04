@@ -4,7 +4,7 @@ export default {
   loadDefault: true,
   openMode: 'POPUPMODAL',
   deviewCodeName: 'test_drill_detail_grid_view',
-  deviewId: '92A2BA74-8D61-47ED-A2E6-7F9EC8FE86C7',
+  deviewId: '78b6f2ae212306a0c354091160eb41ff',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.WORK_ITEM',
@@ -75,6 +75,14 @@ export default {
   ],
   appViewRefs: [
     {
+      openMode: 'POPUPMODAL',
+      realOpenMode: 'POPUPMODAL',
+      realTitle: '工作项',
+      refAppViewId: 'plmweb.work_item_main_view',
+      name: 'EDITDATA',
+      id: 'editdata',
+    },
+    {
       realTitle: '工作项编辑视图',
       realTitleLanguageRes: {
         lanResTag: 'PAGE.TITLE.WORK_ITEM.EDITVIEW',
@@ -82,14 +90,6 @@ export default {
       refAppViewId: 'plmweb.work_item_edit_view',
       name: 'NEWDATA',
       id: 'newdata',
-    },
-    {
-      openMode: 'POPUPMODAL',
-      realOpenMode: 'POPUPMODAL',
-      realTitle: '工作项',
-      refAppViewId: 'plmweb.work_item_main_view',
-      name: 'EDITDATA',
-      id: 'editdata',
     },
   ],
   controls: [
@@ -102,7 +102,7 @@ export default {
       controlParam: {
         id: 'toolbar',
       },
-      modelId: '722E354F-E5D8-4822-BF58-BA89F923D82F',
+      modelId: 'a704cef02e4a953258c304673d2db842',
       modelType: 'PSDETOOLBAR',
       name: 'toolbar',
       id: 'test_drill_detail_grid_view_toolbar',
@@ -422,7 +422,7 @@ export default {
       controlParam: {
         id: 'grid',
       },
-      modelId: '75C87D15-796B-4066-AEE7-B58DA01C9345',
+      modelId: '7b662a52680cfa511d1ae21c82d1b37d',
       modelType: 'PSDEGRID',
       name: 'grid',
       id: 'plmweb.work_item.test_drill_down_grid',
@@ -457,7 +457,7 @@ export default {
       controlParam: {
         id: 'searchform',
       },
-      modelId: 'E7B7EF0C-DF8E-4979-858B-8BC6CBA6F2D1',
+      modelId: '32e376b1befc95e21249ad19e4143851',
       modelType: 'PSDEFORM_SEARCHFORM',
       name: 'searchform',
       id: 'plmweb.work_item.test_drill_down_search_form',
@@ -503,7 +503,7 @@ export default {
   width: 90,
   enableDP: true,
   showCaptionBar: true,
-  modelId: '6f029f08ffa4d33fb40ebaffbe32d907',
+  modelId: '54c7829c6f70b1f6e5871d43bbcc4993',
   modelType: 'PSAPPDEVIEW',
   name: 'work_itemtest_drill_detail_grid_view',
   id: 'plmweb.work_item_test_drill_detail_grid_view',

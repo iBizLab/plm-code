@@ -184,7 +184,7 @@ export default {
       controlParam: {
         id: 'tree',
       },
-      modelId: 'FCF8B9B5-2077-4015-AE36-8324282820B5',
+      modelId: '63fbb0c7957e1bf3f0dc8f413c7b1a35',
       modelType: 'PSDETREEVIEW',
       name: 'tree',
       id: 'plmweb.baseline.pick_up_tree_view_tree_view',

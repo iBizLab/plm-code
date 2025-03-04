@@ -3,7 +3,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'run_re_work_item_grid_view',
-  deviewId: 'E641C2E5-C4B2-4484-8626-9A9FE7CE3481',
+  deviewId: '8c966ff6694325350c639884764281de',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.RELATION',
@@ -351,6 +351,15 @@ export default {
     ],
     appViewRefs: [
       {
+        realTitle: '工作项关联编辑视图',
+        realTitleLanguageRes: {
+          lanResTag: 'PAGE.TITLE.RELATION.EDITVIEW',
+        },
+        refAppViewId: 'plmweb.relation_edit_view',
+        name: 'NEWDATA',
+        id: 'newdata',
+      },
+      {
         openMode: 'POPUPMODAL',
         navigateContexts: [
           {
@@ -390,15 +399,6 @@ export default {
         refAppViewId: 'plmweb.work_item_dyna_main_view',
         name: 'EDITDATA',
         id: 'editdata',
-      },
-      {
-        realTitle: '工作项关联编辑视图',
-        realTitleLanguageRes: {
-          lanResTag: 'PAGE.TITLE.RELATION.EDITVIEW',
-        },
-        refAppViewId: 'plmweb.relation_edit_view',
-        name: 'NEWDATA',
-        id: 'newdata',
       },
     ],
     controls: [
@@ -719,7 +719,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '7002dd9338522250d137965af3a3ef22',
+  modelId: '9a92a3d5d36d9142f412fa58b7c0ac0a',
   modelType: 'PSAPPDEVIEW',
   name: 'relationrun_re_work_item_grid_view',
   id: 'plmweb.relation_run_re_work_item_grid_view',

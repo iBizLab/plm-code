@@ -226,7 +226,7 @@ export default {
       controlParam: {
         id: 'grid',
       },
-      modelId: 'C04285BB-F267-4C26-A9A7-ED211E3DEC53',
+      modelId: 'd8ff53fa6357834dbc8e073fbf78b13d',
       modelType: 'PSDEGRID',
       name: 'grid',
       id: 'plmweb.addon.setting_view_grid',

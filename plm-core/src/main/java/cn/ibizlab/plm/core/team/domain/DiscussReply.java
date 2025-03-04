@@ -79,6 +79,16 @@ public class DiscussReply extends EntityMP implements Serializable
     private String commentCount;
 
     /**
+    * 话题标识
+    */
+    @TableField(value = "topic_id" , exist = false)
+    @DEField(name = "topic_id")
+    @JSONField(name = "topic_id")
+    @JsonProperty("topic_id")
+    @ApiModelProperty(value = "topic_id", notes = "话题标识")
+    private String topicId;
+
+    /**
     * 回复内容
     */
     @TableField(value = "content")
@@ -204,6 +214,15 @@ public class DiscussReply extends EntityMP implements Serializable
     public DiscussReply setCommentCount(String commentCount) {
         this.commentCount = commentCount;
         this.modify("comment_count", commentCount);
+        return this;
+    }
+
+    /**
+    * 设置 [话题标识]
+    */
+    public DiscussReply setTopicId(String topicId) {
+        this.topicId = topicId;
+        this.modify("topic_id", topicId);
         return this;
     }
 

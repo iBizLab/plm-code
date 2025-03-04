@@ -107,5 +107,14 @@ public abstract class AbstractSysOrganizationService implements SysOrganizationS
         return fetchDefault(context).getContent();
     }
 	
+     public Page<SysOrganization> fetchNav(SysOrganizationSearchContext context) {
+        return sysOrganizationFeignClient.fetchNav(context);
+    }
+	
+    public List<SysOrganization> listNav(SysOrganizationSearchContext context) {
+        context.setSize(Short.MAX_VALUE);
+        return fetchNav(context).getContent();
+    }
+	
 
 }

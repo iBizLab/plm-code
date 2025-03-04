@@ -3,7 +3,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'in_progress_grid_view',
-  deviewId: '7cd6c926720d5d92d7bd27434acadbcd',
+  deviewId: 'c575321905b33d1a447f8ba639ae8b30',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.LIBRARY',
@@ -66,17 +66,17 @@ export default {
   ],
   appViewRefs: [
     {
-      realTitle: '测试库',
-      refAppViewId: 'plmweb.library_index_view',
-      name: 'NEWDATA',
-      id: 'newdata',
-    },
-    {
       realOpenMode: 'POPUPMODAL',
       realTitle: '测试库展示信息视图',
       refAppViewId: 'plmweb.library_show_edit_view',
       name: 'EDITDATA',
       id: 'editdata',
+    },
+    {
+      realTitle: '测试库',
+      refAppViewId: 'plmweb.library_index_view',
+      name: 'NEWDATA',
+      id: 'newdata',
     },
   ],
   controls: [
@@ -292,7 +292,7 @@ export default {
       controlParam: {
         id: 'grid',
       },
-      modelId: '174b1d57aea4b957b491b666c9f72859',
+      modelId: '194b1fefc7e588b7be0223cb6da018e2',
       modelType: 'PSDEGRID',
       name: 'grid',
       id: 'plmweb.library.in_progress',
@@ -349,7 +349,7 @@ export default {
         },
         id: 'tabsearchbar',
       },
-      modelId: 'B1CD8686-5BAD-4D75-818C-EAE5E3D93803',
+      modelId: '5145384b931d29f23a8225d7f1fd3707',
       modelType: 'PSSYSSEARCHBAR',
       name: 'tabsearchbar',
       id: 'plmweb.library.query_search_bar',
@@ -392,7 +392,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: false,
-  modelId: '415c0ba036246ff1e95365cec767a6e1',
+  modelId: 'd822a7f6d637a0b9fc4b119e894c0af3',
   modelType: 'PSAPPDEVIEW',
   name: 'libraryin_progress_grid_view',
   id: 'plmweb.library_in_progress_grid_view',

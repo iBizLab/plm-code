@@ -1,7 +1,7 @@
 export default {
   openMode: 'POPUPMODAL',
   deviewCodeName: 'pick_up_around_view',
-  deviewId: '9cbfbac431dfb090d9a4ca55de810768',
+  deviewId: '650cf1693b3f9bdadc518936c5632e37',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.RELEASE',
@@ -259,7 +259,7 @@ export default {
       controlParam: {
         id: 'treeexpbar',
       },
-      modelId: '80d4b90543caac6826d5f6865e4832d2_treeexpbar',
+      modelId: '1a4d706aab9a2cf9513127416f44f8a3_treeexpbar',
       modelType: 'PSEXPBAR',
       name: 'treeexpbar',
       id: 'pick_up_around_view_treeexpbar',
@@ -572,7 +572,7 @@ export default {
   viewType: 'DEPICKUPVIEW2',
   enableDP: true,
   showCaptionBar: false,
-  modelId: '80d4b90543caac6826d5f6865e4832d2',
+  modelId: '1a4d706aab9a2cf9513127416f44f8a3',
   modelType: 'PSAPPDEVIEW',
   name: 'releasepick_up_around_view',
   id: 'plmweb.release_pick_up_around_view',

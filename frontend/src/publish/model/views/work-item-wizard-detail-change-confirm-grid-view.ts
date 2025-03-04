@@ -2,7 +2,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'change_confirm_grid_view',
-  deviewId: 'CD81F616-0160-49CB-A0AF-4CBAF5D1873A',
+  deviewId: '5e93e4fdf1fe0d53c87d0c308614fac0',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.WORK_ITEM_WIZARD_DETAIL',
@@ -63,15 +63,6 @@ export default {
   ],
   appViewRefs: [
     {
-      realTitle: '工作项操作向导成员数据重定向视图',
-      realTitleLanguageRes: {
-        lanResTag: 'PAGE.TITLE.WORK_ITEM_WIZARD_DETAIL.REDIRECTVIEW',
-      },
-      refAppViewId: 'plmweb.work_item_wizard_detail_redirect_view',
-      name: 'EDITDATA',
-      id: 'editdata',
-    },
-    {
       realTitle: '工作项操作向导成员编辑视图',
       realTitleLanguageRes: {
         lanResTag: 'PAGE.TITLE.WORK_ITEM_WIZARD_DETAIL.EDITVIEW',
@@ -79,6 +70,15 @@ export default {
       refAppViewId: 'plmweb.work_item_wizard_detail_edit_view',
       name: 'NEWDATA',
       id: 'newdata',
+    },
+    {
+      realTitle: '工作项操作向导成员数据重定向视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.WORK_ITEM_WIZARD_DETAIL.REDIRECTVIEW',
+      },
+      refAppViewId: 'plmweb.work_item_wizard_detail_redirect_view',
+      name: 'EDITDATA',
+      id: 'editdata',
     },
   ],
   controls: [
@@ -281,7 +281,7 @@ export default {
       controlParam: {
         id: 'grid',
       },
-      modelId: '1011F9DA-36E2-4B69-BDCD-F03E169F9E68',
+      modelId: 'a1d85707a144ff935bc4d0bed8ea3e10',
       modelType: 'PSDEGRID',
       name: 'grid',
       id: 'plmweb.work_item_wizard_detail.change_confirm_grid',
@@ -324,7 +324,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: false,
-  modelId: 'cff9d97afdb937118aae2dda5eb35fc1',
+  modelId: '8a6a5c72c07e86bd519749b410d530e7',
   modelType: 'PSAPPDEVIEW',
   name: 'work_item_wizard_detailchange_confirm_grid_view',
   id: 'plmweb.work_item_wizard_detail_change_confirm_grid_view',

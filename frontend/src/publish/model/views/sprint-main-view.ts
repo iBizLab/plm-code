@@ -371,7 +371,7 @@ export default {
     logicName: 'main_view分页导航视图布局面板',
     appDataEntityId: 'plmweb.sprint',
     controlParam: {},
-    modelId: 'EF61B03F-8E24-4342-9030-CFA6A2C74C4F',
+    modelId: '697ac12f9ec8813742f1834667a36e7b',
     modelType: 'PSSYSVIEWLAYOUTPANEL',
     name: 'layoutpanel',
     id: 'usr0530608745',

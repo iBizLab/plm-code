@@ -31,11 +31,19 @@ import io.swagger.annotations.ApiModelProperty;
 public class StageFilterDTO extends FilterBase implements Serializable {
 
     /**
+     * 背景样式EQ
+     */
+    @JsonProperty("n_style_eq")
+    @JSONField(name = "n_style_eq")
+    @ApiModelProperty(value = "背景样式EQ", position = 10)
+	private String styleEQ;
+
+    /**
      * 标识IN
      */
     @JsonProperty("n_id_in")
     @JSONField(name = "n_id_in")
-    @ApiModelProperty(value = "标识IN", position = 80)
+    @ApiModelProperty(value = "标识IN", position = 90)
 	private String idIN;
 
     /**
@@ -43,7 +51,7 @@ public class StageFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_id_noteq")
     @JSONField(name = "n_id_noteq")
-    @ApiModelProperty(value = "标识NOTEQ", position = 81)
+    @ApiModelProperty(value = "标识NOTEQ", position = 91)
 	private String idNOTEQ;
 
     /**
@@ -51,7 +59,7 @@ public class StageFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_id_eq")
     @JSONField(name = "n_id_eq")
-    @ApiModelProperty(value = "标识EQ", position = 82)
+    @ApiModelProperty(value = "标识EQ", position = 92)
 	private String idEQ;
 
     /**
@@ -59,7 +67,7 @@ public class StageFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_name_like")
     @JSONField(name = "n_name_like")
-    @ApiModelProperty(value = "名称LIKE", position = 90)
+    @ApiModelProperty(value = "名称LIKE", position = 100)
 	private String nameLIKE;
 
     /**
@@ -67,7 +75,7 @@ public class StageFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_release_id_eq")
     @JSONField(name = "n_release_id_eq")
-    @ApiModelProperty(value = "项目发布标识EQ", position = 140)
+    @ApiModelProperty(value = "项目发布标识EQ", position = 150)
 	private String releaseIdEQ;
 
     /**
@@ -75,7 +83,7 @@ public class StageFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_pid_eq")
     @JSONField(name = "n_pid_eq")
-    @ApiModelProperty(value = "父标识EQ", position = 150)
+    @ApiModelProperty(value = "父标识EQ", position = 160)
 	private String pidEQ;
 
     /**
@@ -83,7 +91,7 @@ public class StageFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_pname_eq")
     @JSONField(name = "n_pname_eq")
-    @ApiModelProperty(value = "父名称EQ", position = 160)
+    @ApiModelProperty(value = "父名称EQ", position = 170)
 	private String pnameEQ;
 
     /**
@@ -91,7 +99,7 @@ public class StageFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_pname_like")
     @JSONField(name = "n_pname_like")
-    @ApiModelProperty(value = "父名称LIKE", position = 161)
+    @ApiModelProperty(value = "父名称LIKE", position = 171)
 	private String pnameLIKE;
 
 

@@ -3,7 +3,7 @@ export default {
   loadDefault: true,
   openMode: 'POPUPMODAL',
   deviewCodeName: 'snapshot_management_gird_view',
-  deviewId: '705B02B7-3353-4528-AB1B-842DC997BC1B',
+  deviewId: '635451f405548dc8bea6aac0cd2d1cda',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.BASELINE',
@@ -113,7 +113,7 @@ export default {
       controlParam: {
         id: 'toolbar',
       },
-      modelId: 'D392DD54-6634-454A-A404-28CF6C5A570B',
+      modelId: 'b739a2c8879938bddbf8e8ad0b6030b1',
       modelType: 'PSDETOOLBAR',
       name: 'toolbar',
       id: 'snapshot_management_gird_view_toolbar',
@@ -175,7 +175,7 @@ export default {
                 uiactionId: 'open_snapshot_gantt_view@baseline',
                 showCaption: true,
                 showIcon: true,
-                id: 'u9212e4e',
+                id: 'u191401b',
               },
               {
                 actionLevel: 100,
@@ -186,7 +186,7 @@ export default {
                 uiactionId: 'edit_snapshot@baseline',
                 showCaption: true,
                 showIcon: true,
-                id: 'u02281fe',
+                id: 'u3fe42b9',
               },
               {
                 actionLevel: 100,
@@ -197,7 +197,7 @@ export default {
                 uiactionId: 'del_snapshot@baseline',
                 showCaption: true,
                 showIcon: true,
-                id: 'uf648486',
+                id: 'u75c69e4',
               },
             ],
             appDataEntityId: 'plmweb.baseline',
@@ -293,7 +293,7 @@ export default {
       controlParam: {
         id: 'grid',
       },
-      modelId: '81600334-D3DB-4EDD-9D09-8B6A71E1390C',
+      modelId: '3bc92955a205511e966e7ab47654fa74',
       modelType: 'PSDEGRID',
       name: 'grid',
       id: 'plmweb.baseline.snapshot_grid',
@@ -375,7 +375,7 @@ export default {
   width: 800,
   enableDP: true,
   showCaptionBar: true,
-  modelId: 'a7d971f37e658ea7fca7773c4036bc72',
+  modelId: '535eaf5aaa59b4473d94da7e993714b3',
   modelType: 'PSAPPDEVIEW',
   name: 'baselinesnapshot_management_gird_view',
   id: 'plmweb.baseline_snapshot_management_gird_view',

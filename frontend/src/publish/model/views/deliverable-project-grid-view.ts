@@ -3,7 +3,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'project_grid_view',
-  deviewId: '5ff1794829b09dbe2da16ab33cc1f2b2',
+  deviewId: '8e709b2bd9b8cdf19bfb4c1f5f8030aa',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.DELIVERABLE',
@@ -121,7 +121,7 @@ export default {
       controlParam: {
         id: 'toolbar',
       },
-      modelId: '4938C1A3-911C-4A51-AB4D-008E9859701B',
+      modelId: 'd18aeca6b145c04d01ec8dbe47828547',
       modelType: 'PSDETOOLBAR',
       name: 'toolbar',
       id: 'project_grid_view_toolbar',
@@ -199,7 +199,7 @@ export default {
                   cssClass: 'fa fa-edit',
                   glyph: 'xf044@FontAwesome',
                 },
-                id: 'u238a6c5',
+                id: 'u73b6741',
               },
               {
                 actionLevel: 100,
@@ -585,7 +585,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: 'f83fece66b57054661da2c6bc826c9c6',
+  modelId: '62103c7e400cea7aa71dbd179a2d007d',
   modelType: 'PSAPPDEVIEW',
   name: 'deliverableproject_grid_view',
   id: 'plmweb.deliverable_project_grid_view',

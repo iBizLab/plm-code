@@ -2,7 +2,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'tag_grid_view',
-  deviewId: 'cb1c006e5d44a335b2753b50ee1fc007',
+  deviewId: '2632d88f3fa31cc8e25bbeaceffcc74e',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.PROJECT_TAG',
@@ -402,7 +402,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: 'a1325c597e362bb1af2957e1d6451bec',
+  modelId: 'e2af36ddb767136d9016a04384544fa0',
   modelType: 'PSAPPDEVIEW',
   name: 'project_tagtag_grid_view',
   id: 'plmweb.project_tag_tag_grid_view',

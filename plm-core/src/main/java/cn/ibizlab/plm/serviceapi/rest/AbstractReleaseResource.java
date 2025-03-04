@@ -242,21 +242,19 @@ public abstract class AbstractReleaseResource {
     * delete_categories 项目发布
     * 
     *
-    * @param id id
     * @param dto dto
     * @return Mono<ResponseEntity<ReleaseDTO>>
     */
     @ApiOperation(value = "delete_categories", tags = {"项目发布" },  notes = "Release-delete_categories ")
-    @PostMapping("releases/{id}/delete_categories")
-    public Mono<ResponseEntity<ResponseWrapper<ReleaseDTO>>>deleteCategoriesById
-            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<ReleaseDTO> dto) {
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Release-delete_categories-all') or hasPermission(this.releaseDtoMapping.toDomain(#dto),'ibizplm-Release-delete_categories')")
+    @PostMapping("releases/delete_categories")
+    public Mono<ResponseEntity<ResponseWrapper<ReleaseDTO>>>deleteCategories
+            (@Validated @RequestBody RequestWrapper<ReleaseDTO> dto) {
         ResponseWrapper<ReleaseDTO> rt = new ResponseWrapper<>();
-        if (dto.isArray()) {
-            String [] ids = id.split(";");
-            IntStream.range(0, ids.length).forEach(i -> rt.add(deleteCategoriesById(ids[i], dto.getList().get(i))));
-        }
+        if (dto.isArray())
+            dto.getList().forEach(item -> rt.add(deleteCategories(item)));
         else
-            rt.set(deleteCategoriesById(id, dto.getDto()));
+            rt.set(deleteCategories(dto.getDto()));
         return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
@@ -264,14 +262,12 @@ public abstract class AbstractReleaseResource {
     * delete_categories 项目发布
     * 
     *
-    * @param id id
     * @param dto dto
     * @return ResponseEntity<ReleaseDTO>
     */   
-    public ReleaseDTO deleteCategoriesById
-            (String id, ReleaseDTO dto) {
+    public ReleaseDTO deleteCategories
+            (ReleaseDTO dto) {
         Release domain = releaseDtoMapping.toDomain(dto);
-        domain.setId(id);
         Release rt = releaseService.deleteCategories(domain);
         return releaseDtoMapping.toDto(rt);
     }
@@ -585,21 +581,19 @@ public abstract class AbstractReleaseResource {
     * 
     *
     * @param projectId projectId
-    * @param id id
     * @param dto dto
     * @return Mono<ResponseEntity<ReleaseDTO>>
     */
     @ApiOperation(value = "delete_categories", tags = {"项目发布" },  notes = "Release-delete_categories ")
-    @PostMapping("projects/{projectId}/releases/{id}/delete_categories")
-    public Mono<ResponseEntity<ResponseWrapper<ReleaseDTO>>>deleteCategoriesByProjectIdAndId
-            (@PathVariable("projectId") String projectId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<ReleaseDTO> dto) {
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Release-delete_categories-all') or hasPermission('project',#projectId,this.releaseDtoMapping.toDomain(#dto),'ibizplm-Release-delete_categories')")
+    @PostMapping("projects/{projectId}/releases/delete_categories")
+    public Mono<ResponseEntity<ResponseWrapper<ReleaseDTO>>>deleteCategoriesByProjectId
+            (@PathVariable("projectId") String projectId, @Validated @RequestBody RequestWrapper<ReleaseDTO> dto) {
         ResponseWrapper<ReleaseDTO> rt = new ResponseWrapper<>();
-        if (dto.isArray()) {
-            String [] ids = id.split(";");
-            IntStream.range(0, ids.length).forEach(i -> rt.add(deleteCategoriesByProjectIdAndId(projectId, ids[i], dto.getList().get(i))));
-        }
+        if (dto.isArray())
+            dto.getList().forEach(item -> rt.add(deleteCategoriesByProjectId(projectId, item)));
         else
-            rt.set(deleteCategoriesByProjectIdAndId(projectId, id, dto.getDto()));
+            rt.set(deleteCategoriesByProjectId(projectId, dto.getDto()));
         return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
@@ -608,14 +602,13 @@ public abstract class AbstractReleaseResource {
     * 
     *
     * @param projectId projectId
-    * @param id id
     * @param dto dto
     * @return ResponseEntity<ReleaseDTO>
     */   
-    public ReleaseDTO deleteCategoriesByProjectIdAndId
-            (String projectId, String id, ReleaseDTO dto) {
+    public ReleaseDTO deleteCategoriesByProjectId
+            (String projectId, ReleaseDTO dto) {
         Release domain = releaseDtoMapping.toDomain(dto);
-        domain.setId(id);
+        domain.setProjectId(projectId);
         Release rt = releaseService.deleteCategories(domain);
         return releaseDtoMapping.toDto(rt);
     }

@@ -77,11 +77,19 @@ public class SectionDTO extends DTOBase implements Serializable {
     private Integer isLeaf;
 
     /**
+     * 是否叶子节点2
+     */
+    @JsonProperty("is_leaf2")
+    @JSONField(name = "is_leaf2")
+    @ApiModelProperty(value = "是否叶子节点2", position = 5)
+    private Integer isLeaf2;
+
+    /**
      * 建立人
      */
     @JsonProperty("create_man")
     @JSONField(name = "create_man")
-    @ApiModelProperty(value = "建立人", position = 5)
+    @ApiModelProperty(value = "建立人", position = 6)
     private String createMan;
 
     /**
@@ -90,7 +98,7 @@ public class SectionDTO extends DTOBase implements Serializable {
     @JsonProperty("create_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "create_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "建立时间", position = 6)
+    @ApiModelProperty(value = "建立时间", position = 7)
     private Date createTime;
 
     /**
@@ -98,7 +106,7 @@ public class SectionDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("id")
     @JSONField(name = "id")
-    @ApiModelProperty(value = "标识", position = 7)
+    @ApiModelProperty(value = "标识", position = 8)
     private String id;
 
     /**
@@ -106,7 +114,7 @@ public class SectionDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("name")
     @JSONField(name = "name")
-    @ApiModelProperty(value = "名称", position = 8)
+    @ApiModelProperty(value = "名称", position = 9)
     private String name;
 
     /**
@@ -114,7 +122,7 @@ public class SectionDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("update_man")
     @JSONField(name = "update_man")
-    @ApiModelProperty(value = "更新人", position = 9)
+    @ApiModelProperty(value = "更新人", position = 10)
     private String updateMan;
 
     /**
@@ -123,7 +131,7 @@ public class SectionDTO extends DTOBase implements Serializable {
     @JsonProperty("update_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "update_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "更新时间", position = 10)
+    @ApiModelProperty(value = "更新时间", position = 11)
     private Date updateTime;
 
 
@@ -133,6 +141,15 @@ public class SectionDTO extends DTOBase implements Serializable {
     public SectionDTO setIsLeaf(Integer isLeaf) {
         this.isLeaf = isLeaf;
         this.modify("is_leaf", isLeaf);
+        return this;
+    }
+
+    /**
+     * 设置 [是否叶子节点2]
+     */
+    public SectionDTO setIsLeaf2(Integer isLeaf2) {
+        this.isLeaf2 = isLeaf2;
+        this.modify("is_leaf2", isLeaf2);
         return this;
     }
 

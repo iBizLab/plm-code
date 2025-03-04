@@ -1,7 +1,7 @@
 export default {
   openMode: 'INDEXVIEWTAB_POPUPMODAL',
   deviewCodeName: 'change_view',
-  deviewId: '426A3739-9DAA-4AFE-A32A-F74CB5D41730',
+  deviewId: 'd82f47e6a37722cd724e20a9ddcc0ce0',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.WORK_ITEM_WIZARD',
@@ -227,7 +227,7 @@ export default {
             controlParam: {
               id: 'wizardpanel_form_choose_types',
             },
-            modelId: '563AD7B7-EA4F-4432-9F66-261348D2270C',
+            modelId: '19f1be308866c283d9326d56a696e811',
             modelType: 'PSDEFORM_EDITFORM',
             name: 'wizardpanel_form_choose_types',
             id: 'plmweb.work_item_wizard.step_target_types',
@@ -405,7 +405,7 @@ export default {
             controlParam: {
               id: 'wizardpanel_form_choose_states',
             },
-            modelId: '31412398-4757-4D92-8541-25406B791986',
+            modelId: 'df3014dc93d209d99ba66a635e2ee021',
             modelType: 'PSDEFORM_EDITFORM',
             name: 'wizardpanel_form_choose_states',
             id: 'plmweb.work_item_wizard.step_target_states',
@@ -1135,7 +1135,7 @@ export default {
             controlParam: {
               id: 'wizardpanel_form_choose_parent',
             },
-            modelId: '49385FC7-767E-4749-B03F-CD83586782DE',
+            modelId: '971f448995c12599b4103020cc22cd0c',
             modelType: 'PSDEFORM_EDITFORM',
             name: 'wizardpanel_form_choose_parent',
             id: 'plmweb.work_item_wizard.step_child_work_item_parent',
@@ -1311,7 +1311,7 @@ export default {
             controlParam: {
               id: 'wizardpanel_form_confirm',
             },
-            modelId: 'E6ACDDE1-E864-4AE1-BBA0-0ABD7BFF0761',
+            modelId: '02780d739d3a3d06601873e6073daeb4',
             modelType: 'PSDEFORM_EDITFORM',
             name: 'wizardpanel_form_confirm',
             id: 'plmweb.work_item_wizard.step_confirm',
@@ -1395,7 +1395,7 @@ export default {
         controlParam: {
           id: 'wizardpanel',
         },
-        modelId: 'C92533D6-8A96-42DF-BE88-1EF703B00BC4',
+        modelId: '69c4b43c0e884793c0b2bd600e273e5f',
         modelType: 'PSDEWIZARDPANEL',
         name: 'wizardpanel',
         id: 'plmweb.work_item_wizard.change_wizard',
@@ -1418,7 +1418,7 @@ export default {
     logicName: 'change_view向导视图布局面板',
     appDataEntityId: 'plmweb.work_item_wizard',
     controlParam: {},
-    modelId: '7A85C107-185E-408F-A763-7C01DCC0D8AB',
+    modelId: 'f1b21c1c0714ab129c419885cc0dc55d',
     modelType: 'PSSYSVIEWLAYOUTPANEL',
     name: 'layoutpanel',
     id: 'usr0717603071',
@@ -1428,7 +1428,7 @@ export default {
   viewType: 'DEWIZARDVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '00623b8638a8ded365a745e76199974a',
+  modelId: 'f453458bc482b00a31140e9042f68b77',
   modelType: 'PSAPPDEVIEW',
   name: 'work_item_wizardchange_view',
   id: 'plmweb.work_item_wizard_change_view',

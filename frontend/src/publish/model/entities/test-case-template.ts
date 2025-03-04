@@ -1107,20 +1107,15 @@ export default {
     },
     {
       logicName: '删除',
-      mapDEName: 'LIBRARY',
-      mapDEOPPrivName: 'DELETE',
-      name: 'DELETE',
-      id: 'library__delete',
-    },
-    {
-      logicName: '删除',
       name: 'DELETE',
       id: 'delete',
     },
     {
-      logicName: '读取',
-      name: 'READ',
-      id: 'read',
+      logicName: '删除',
+      mapDEName: 'LIBRARY',
+      mapDEOPPrivName: 'DELETE',
+      name: 'DELETE',
+      id: 'library__delete',
     },
     {
       logicName: '读取',
@@ -1128,6 +1123,11 @@ export default {
       mapDEOPPrivName: 'READ',
       name: 'READ',
       id: 'library__read',
+    },
+    {
+      logicName: '读取',
+      name: 'READ',
+      id: 'read',
     },
     {
       logicName: '更新',

@@ -1195,7 +1195,6 @@ export default {
       requestMethod: 'POST',
       requestParamType: 'ENTITY',
       requestPath: '/recognize_cur_user_role',
-      needResourceKey: true,
       actionMode: 'CUSTOM',
       actionType: 'REMOTE',
       dataSetType: 'REMOTE',
@@ -3478,14 +3477,6 @@ export default {
           id: 'begin',
         },
         {
-          codeName: 'END1',
-          leftPos: 200,
-          logicNodeType: 'END',
-          topPos: 571,
-          name: '结束',
-          id: 'end1',
-        },
-        {
           code: "\tconst rows = uiLogic.grid.state.rows;\r\n\tif (rows && rows.length > 0) {\r\n\t\trows.forEach(row => {\r\n\t\t\tconst titleColumn = row.uiActionGroupStates.name;\r\n\t\t\tconst is_favorite = row.data.is_favorite;\r\n\t\t\tif (titleColumn && Object.values(titleColumn).length > 0) {\r\n\t\t\t\tObject.values(titleColumn).forEach(action => {\r\n\t\t\t\t\t// 收藏\r\n\t\t\t\t\tif (action.uiActionId === 'add_favorite@space') {\r\n\t\t\t\t\t\taction.visible = is_favorite == 0;\r\n\t\t\t\t\t} else if (action.uiActionId === 'cancel_favorite@space') {\r\n\t\t\t\t\t\t// 取消收藏\r\n\t\t\t\t\t\taction.visible = is_favorite != 0;\r\n\t\t\t\t\t}\r\n\t\t\t\t})\r\n\t\t\t}\r\n\t\t})\r\n\t}\r\n",
           codeName: 'RAWJSCODE1',
           leftPos: 160,
@@ -3500,6 +3491,14 @@ export default {
           topPos: 420,
           name: '计算表格列行为状态',
           id: 'rawjscode1',
+        },
+        {
+          codeName: 'END1',
+          leftPos: 200,
+          logicNodeType: 'END',
+          topPos: 571,
+          name: '结束',
+          id: 'end1',
         },
       ],
       deuilogicParams: [
@@ -3667,24 +3666,6 @@ export default {
           id: 'begin',
         },
         {
-          dstAppDEActionId: 'other_re_space',
-          dstAppDataEntityId: 'plmweb.product',
-          codeName: 'DEACTION1',
-          dstDEUILogicParamId: 'default',
-          leftPos: 769,
-          logicNodeType: 'DEACTION',
-          deuilogicLinks: [
-            {
-              dstDEUILogicNodeId: 'end1',
-              srcDEUILogicNodeId: 'deaction1',
-              id: '连接名称',
-            },
-          ],
-          topPos: 208,
-          name: '创建关联数据',
-          id: 'deaction1',
-        },
-        {
           codeName: 'END1',
           leftPos: 969,
           logicNodeType: 'END',
@@ -3729,20 +3710,38 @@ export default {
           name: '准备参数',
           id: 'preparejsparam1',
         },
+        {
+          dstAppDEActionId: 'other_re_space',
+          dstAppDataEntityId: 'plmweb.product',
+          codeName: 'DEACTION1',
+          dstDEUILogicParamId: 'default',
+          leftPos: 769,
+          logicNodeType: 'DEACTION',
+          deuilogicLinks: [
+            {
+              dstDEUILogicNodeId: 'end1',
+              srcDEUILogicNodeId: 'deaction1',
+              id: '连接名称',
+            },
+          ],
+          topPos: 208,
+          name: '创建关联数据',
+          id: 'deaction1',
+        },
       ],
       deuilogicParams: [
+        {
+          codeName: 'ctx',
+          navContextParam: true,
+          name: '上下文参数',
+          id: 'ctx',
+        },
         {
           codeName: 'Default',
           default: true,
           entityParam: true,
           name: '传入变量',
           id: 'default',
-        },
-        {
-          codeName: 'ctx',
-          navContextParam: true,
-          name: '上下文参数',
-          id: 'ctx',
         },
       ],
       startDEUILogicNodeId: 'begin',
@@ -3769,6 +3768,14 @@ export default {
           parallelOutput: true,
           name: '开始',
           id: 'begin',
+        },
+        {
+          codeName: 'END1',
+          leftPos: 969,
+          logicNodeType: 'END',
+          topPos: 200,
+          name: '结束',
+          id: 'end1',
         },
         {
           dstAppDEActionId: 'other_re_space',
@@ -3825,14 +3832,6 @@ export default {
           name: '准备参数',
           id: 'preparejsparam1',
         },
-        {
-          codeName: 'END1',
-          leftPos: 969,
-          logicNodeType: 'END',
-          topPos: 200,
-          name: '结束',
-          id: 'end1',
-        },
       ],
       deuilogicParams: [
         {
@@ -3875,22 +3874,6 @@ export default {
           id: 'begin',
         },
         {
-          code: 'uiLogic.treeexpbar.layoutPanel.panelItems.control_toolbar.state.visible=false;\r\n',
-          codeName: 'RAWJSCODE1',
-          leftPos: 1012,
-          logicNodeType: 'RAWJSCODE',
-          deuilogicLinks: [
-            {
-              dstDEUILogicNodeId: 'end1',
-              srcDEUILogicNodeId: 'rawjscode1',
-              id: '连接名称',
-            },
-          ],
-          topPos: 208,
-          name: '隐藏工具栏',
-          id: 'rawjscode1',
-        },
-        {
           dstAppDEActionId: 'recognize_cur_user_role',
           dstAppDataEntityId: 'plmweb.space',
           retDEUILogicParamId: 'ctx',
@@ -3908,6 +3891,30 @@ export default {
           topPos: 208,
           name: '判断当前用户角色权限',
           id: 'deaction1',
+        },
+        {
+          codeName: 'END1',
+          leftPos: 1280,
+          logicNodeType: 'END',
+          topPos: 200,
+          name: '结束',
+          id: 'end1',
+        },
+        {
+          code: 'uiLogic.treeexpbar.layoutPanel.panelItems.control_toolbar.state.visible=false;\r\n',
+          codeName: 'RAWJSCODE1',
+          leftPos: 1012,
+          logicNodeType: 'RAWJSCODE',
+          deuilogicLinks: [
+            {
+              dstDEUILogicNodeId: 'end1',
+              srcDEUILogicNodeId: 'rawjscode1',
+              id: '连接名称',
+            },
+          ],
+          topPos: 208,
+          name: '隐藏工具栏',
+          id: 'rawjscode1',
         },
         {
           codeName: 'PREPAREJSPARAM1',
@@ -3967,14 +3974,6 @@ export default {
           name: '准备参数',
           id: 'preparejsparam1',
         },
-        {
-          codeName: 'END1',
-          leftPos: 1280,
-          logicNodeType: 'END',
-          topPos: 200,
-          name: '结束',
-          id: 'end1',
-        },
       ],
       deuilogicParams: [
         {
@@ -3984,17 +3983,17 @@ export default {
           id: 'ctx',
         },
         {
+          codeName: 'view',
+          activeViewParam: true,
+          name: '当前视图',
+          id: 'view',
+        },
+        {
           codeName: 'Default',
           default: true,
           entityParam: true,
           name: '传入变量',
           id: 'default',
-        },
-        {
-          codeName: 'view',
-          activeViewParam: true,
-          name: '当前视图',
-          id: 'view',
         },
         {
           codeName: 'treeexpbar',
@@ -4075,16 +4074,16 @@ export default {
       ],
       deuilogicParams: [
         {
-          codeName: 'grid',
-          ctrlParam: true,
-          name: '当前表格',
-          id: 'grid',
-        },
-        {
           codeName: 'view',
           activeViewParam: true,
           name: '当前工具栏',
           id: 'view',
+        },
+        {
+          codeName: 'grid',
+          ctrlParam: true,
+          name: '当前表格',
+          id: 'grid',
         },
         {
           codeName: 'Default',
@@ -4120,14 +4119,6 @@ export default {
           id: 'begin',
         },
         {
-          codeName: 'END1',
-          leftPos: 700,
-          logicNodeType: 'END',
-          topPos: 200,
-          name: '结束',
-          id: 'end1',
-        },
-        {
           code: "return (async function() { \r\n    // 获取所有临时数据\r\n    const serviceUtil = ibiz.hub.getApp(context.srfappid).deService;\r\n    const service = await serviceUtil.getService(context, 'plmweb.space_member');\r\n    const list = service.local.getList();\r\n    // 遍历临时数据删除\r\n    list.forEach(item => {\r\n        service.local.delete(context, item.id);\r\n    })\r\n    } \r\n)();\r\n",
           codeName: 'RAWJSCODE1',
           leftPos: 433,
@@ -4142,6 +4133,14 @@ export default {
           topPos: 208,
           name: '批量删除临时数据（临时）',
           id: 'rawjscode1',
+        },
+        {
+          codeName: 'END1',
+          leftPos: 700,
+          logicNodeType: 'END',
+          topPos: 200,
+          name: '结束',
+          id: 'end1',
         },
       ],
       deuilogicParams: [

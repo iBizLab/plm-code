@@ -4,7 +4,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'plan_count_grid_view',
-  deviewId: '2bb2649e5b56feddd2bfdf7b5b117c6f',
+  deviewId: 'bef743b410758dcb4221d9f253c9b08b',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'PAGE.CAPTION.IDEA.MAIN_VIEW_PLAN',
@@ -1406,7 +1406,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: 'df6f3e16622cefba8d01a4bcde914d43',
+  modelId: 'df9fe3f864b5134cc6092fab4e570b19',
   modelType: 'PSAPPDEVIEW',
   name: 'ideaplan_count_grid_view',
   id: 'plmweb.idea_plan_count_grid_view',

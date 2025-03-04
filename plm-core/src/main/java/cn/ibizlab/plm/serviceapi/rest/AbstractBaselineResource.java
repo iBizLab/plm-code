@@ -137,21 +137,19 @@ public abstract class AbstractBaselineResource {
     * 
     *
     * @param ownerId ownerId
-    * @param id id
     * @param dto dto
     * @return Mono<ResponseEntity<BaselineDTO>>
     */
     @ApiOperation(value = "delete_categories", tags = {"基线" },  notes = "Baseline-delete_categories ")
-    @PostMapping("libraries/{ownerId}/baselines/{id}/delete_categories")
-    public Mono<ResponseEntity<ResponseWrapper<BaselineDTO>>>deleteCategoriesByOwnerIdAndId
-            (@PathVariable("ownerId") String ownerId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<BaselineDTO> dto) {
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Baseline-delete_categories-all') or hasPermission('library',#ownerId,this.baselineDtoMapping.toDomain(#dto),'ibizplm-Baseline-delete_categories')")
+    @PostMapping("libraries/{ownerId}/baselines/delete_categories")
+    public Mono<ResponseEntity<ResponseWrapper<BaselineDTO>>>deleteCategoriesByOwnerId
+            (@PathVariable("ownerId") String ownerId, @Validated @RequestBody RequestWrapper<BaselineDTO> dto) {
         ResponseWrapper<BaselineDTO> rt = new ResponseWrapper<>();
-        if (dto.isArray()) {
-            String [] ids = id.split(";");
-            IntStream.range(0, ids.length).forEach(i -> rt.add(deleteCategoriesByOwnerIdAndId(ownerId, ids[i], dto.getList().get(i))));
-        }
+        if (dto.isArray())
+            dto.getList().forEach(item -> rt.add(deleteCategoriesByOwnerId(ownerId, item)));
         else
-            rt.set(deleteCategoriesByOwnerIdAndId(ownerId, id, dto.getDto()));
+            rt.set(deleteCategoriesByOwnerId(ownerId, dto.getDto()));
         return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
@@ -160,14 +158,13 @@ public abstract class AbstractBaselineResource {
     * 
     *
     * @param ownerId ownerId
-    * @param id id
     * @param dto dto
     * @return ResponseEntity<BaselineDTO>
     */   
-    public BaselineDTO deleteCategoriesByOwnerIdAndId
-            (String ownerId, String id, BaselineDTO dto) {
+    public BaselineDTO deleteCategoriesByOwnerId
+            (String ownerId, BaselineDTO dto) {
         Baseline domain = baselineDtoMapping.toDomain(dto);
-        domain.setId(id);
+        domain.setOwnerId(ownerId);
         Baseline rt = baselineService.deleteCategories(domain);
         return baselineDtoMapping.toDto(rt);
     }
@@ -515,6 +512,7 @@ public abstract class AbstractBaselineResource {
     * @return Mono<ResponseEntity<List<BaselineDTO>>>
     */
     @ApiOperation(value = "查询fetch_default", tags = {"基线" },  notes = "Baseline-fetch_default ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Baseline-fetch_default-all') or hasPermission('library',#ownerId,#dto,'ibizplm-Baseline-fetch_default')")
     @PostMapping("libraries/{ownerId}/baselines/fetch_default")
     public Mono<ResponseEntity<List<BaselineDTO>>> fetchDefaultByOwnerId
             (@PathVariable("ownerId") String ownerId, @Validated @RequestBody BaselineFilterDTO dto) {

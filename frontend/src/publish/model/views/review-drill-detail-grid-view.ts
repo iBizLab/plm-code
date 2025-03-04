@@ -4,7 +4,7 @@ export default {
   loadDefault: true,
   openMode: 'POPUPMODAL',
   deviewCodeName: 'drill_detail_grid_view',
-  deviewId: '781DBA56-6FE2-4C75-B9D7-2C18FDCC9539',
+  deviewId: 'bb6c265a7cdeb3f5b2b8683da6ccf8bc',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.REVIEW',
@@ -101,7 +101,7 @@ export default {
       controlParam: {
         id: 'toolbar',
       },
-      modelId: 'F8826397-0EB6-4A6A-869B-3368434B0F13',
+      modelId: 'c54a06e6a2008177c42ba3ab3886c634',
       modelType: 'PSDETOOLBAR',
       name: 'toolbar',
       id: 'drill_detail_grid_view_toolbar',
@@ -349,7 +349,7 @@ export default {
       controlParam: {
         id: 'grid',
       },
-      modelId: 'F00B0A8C-0349-4027-9140-D15BF89E66BD',
+      modelId: '610fab1515be8e682ca6133665838cd8',
       modelType: 'PSDEGRID',
       name: 'grid',
       id: 'plmweb.review.drill_detail_grid_view_grid',
@@ -384,7 +384,7 @@ export default {
       controlParam: {
         id: 'searchform',
       },
-      modelId: 'F9B301CC-6B31-4430-954F-AE58F5A98A5E',
+      modelId: 'c2611846cd797ad788e008c739aad0e9',
       modelType: 'PSDEFORM_SEARCHFORM',
       name: 'searchform',
       id: 'plmweb.review.usr07173777_search_form',
@@ -430,7 +430,7 @@ export default {
   width: 90,
   enableDP: true,
   showCaptionBar: true,
-  modelId: '31ddd317acba72d7ddb8d23feb098f5a',
+  modelId: '294190891fb8a48fa6f93f12021da379',
   modelType: 'PSAPPDEVIEW',
   name: 'reviewdrill_detail_grid_view',
   id: 'plmweb.review_drill_detail_grid_view',

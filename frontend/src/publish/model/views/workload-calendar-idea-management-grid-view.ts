@@ -898,7 +898,7 @@ export default {
         controlParam: {
           id: 'searchbar',
         },
-        modelId: '0AAE2D75-B294-43B4-94A3-FEA0C755C504',
+        modelId: '1ee91cedf1ff4e6257d5b811b053da55',
         modelType: 'PSSYSSEARCHBAR',
         name: 'searchbar',
         id: 'plmweb.workload.idea_management_searchbar',
@@ -959,7 +959,7 @@ export default {
     logicName: 'calendar_idea_management_grid_view表格视图布局',
     appDataEntityId: 'plmweb.workload',
     controlParam: {},
-    modelId: 'FC250C4B-3C38-42CF-B628-B1D7FB69DC51',
+    modelId: '5fba3016ced5e8f187ef35c83d19a5f0',
     modelType: 'PSSYSVIEWLAYOUTPANEL',
     name: 'layoutpanel',
     id: 'usr0326495678',

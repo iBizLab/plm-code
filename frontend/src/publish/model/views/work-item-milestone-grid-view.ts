@@ -5,7 +5,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'milestone_grid_view',
-  deviewId: '716caeec4dc47995b0cf11a690960644',
+  deviewId: '6eb93f197a4e917dd5852fc13fcc5412',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.WORK_ITEM',
@@ -959,7 +959,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: 'af2a6eb937c085677ff2bdf271b24902',
+  modelId: '61447cf329740559f52060ddd4b27bf8',
   modelType: 'PSAPPDEVIEW',
   name: 'work_itemmilestone_grid_view',
   id: 'plmweb.work_item_milestone_grid_view',

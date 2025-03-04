@@ -29,6 +29,12 @@ export default {
       value: 'space',
       id: 'space',
     },
+    {
+      codeName: 'discuss',
+      text: '话题管理',
+      value: 'discuss',
+      id: 'discuss',
+    },
   ],
   enableCache: true,
   name: '最近访问对象',

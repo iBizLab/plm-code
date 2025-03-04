@@ -1,7 +1,7 @@
 export default {
   funcViewMode: 'PICKUPVIEW',
   deviewCodeName: 'pick_up_view',
-  deviewId: 'd22058390b00a09be51b467d53359cdd',
+  deviewId: 'a1cbdbf63699c844696efb3ccae41cbe',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.TEST_SUITE',
@@ -60,7 +60,7 @@ export default {
   viewType: 'DEPICKUPVIEW',
   enableDP: true,
   showCaptionBar: false,
-  modelId: '3b83b4efbc16f93517bd638c2f6c9580',
+  modelId: 'b4b04daf6565f69bbfd98d5ed7a67604',
   modelType: 'PSAPPDEVIEW',
   name: 'test_suitePickupView',
   id: 'plmweb.test_suite_pick_up_view',

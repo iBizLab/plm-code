@@ -129,6 +129,26 @@ public class DiscussTopic extends EntityMP implements Serializable
     private String scopeId;
 
     /**
+    * 当日贴数
+    */
+    @TableField(value = "today_post_count" , exist = false)
+    @DEField(name = "today_post_count")
+    @JSONField(name = "today_post_count")
+    @JsonProperty("today_post_count")
+    @ApiModelProperty(value = "today_post_count", notes = "当日贴数")
+    private String todayPostCount;
+
+    /**
+    * 当日人数
+    */
+    @TableField(value = "today_read_count" , exist = false)
+    @DEField(name = "today_read_count")
+    @JSONField(name = "today_read_count")
+    @JsonProperty("today_read_count")
+    @ApiModelProperty(value = "today_read_count", notes = "当日人数")
+    private String todayReadCount;
+
+    /**
     * 标识
     */
     @Id
@@ -269,6 +289,24 @@ public class DiscussTopic extends EntityMP implements Serializable
     public DiscussTopic setScopeId(String scopeId) {
         this.scopeId = scopeId;
         this.modify("scope_id", scopeId);
+        return this;
+    }
+
+    /**
+    * 设置 [当日贴数]
+    */
+    public DiscussTopic setTodayPostCount(String todayPostCount) {
+        this.todayPostCount = todayPostCount;
+        this.modify("today_post_count", todayPostCount);
+        return this;
+    }
+
+    /**
+    * 设置 [当日人数]
+    */
+    public DiscussTopic setTodayReadCount(String todayReadCount) {
+        this.todayReadCount = todayReadCount;
+        this.modify("today_read_count", todayReadCount);
         return this;
     }
 

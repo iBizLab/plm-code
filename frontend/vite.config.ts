@@ -86,7 +86,7 @@ export default defineConfig({
         'vuedraggable',
         'pinia',
         '@floating-ui/dom',
-        // 'vue-grid-layout',
+        'vue-grid-layout',
         '@imengyu/vue3-context-menu',
         '@wangeditor/editor',
         '@wangeditor/editor-for-vue',

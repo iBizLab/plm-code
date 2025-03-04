@@ -4,7 +4,7 @@ export default {
   loadDefault: true,
   openMode: 'POPUPMODAL',
   deviewCodeName: 'qucik_create_view',
-  deviewId: '2e6e780cad2630e97974a6ec85a83ced',
+  deviewId: 'd6927a4b08dd95e07adb83d388697ae6',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.PAGE',
@@ -279,7 +279,7 @@ export default {
                 {
                   dataType: 21,
                   enableCond: 3,
-                  ignoreInput: 12,
+                  ignoreInput: 4,
                   itemHeight: 450,
                   labelPos: 'NONE',
                   noPrivDisplayMode: 1,
@@ -363,7 +363,7 @@ export default {
                 {
                   dataType: 21,
                   enableCond: 3,
-                  ignoreInput: 12,
+                  ignoreInput: 4,
                   itemHeight: 450,
                   labelPos: 'NONE',
                   noPrivDisplayMode: 1,
@@ -425,7 +425,7 @@ export default {
                 {
                   dataType: 21,
                   enableCond: 3,
-                  ignoreInput: 12,
+                  ignoreInput: 4,
                   itemHeight: 480,
                   labelPos: 'NONE',
                   noPrivDisplayMode: 1,
@@ -1045,7 +1045,7 @@ export default {
   width: 90,
   enableDP: true,
   showCaptionBar: true,
-  modelId: '9bab0e8efe2bc7b1696c4a3827600d8b',
+  modelId: 'e71e5c966a9cd4034d61b14242e83b72',
   modelType: 'PSAPPDEVIEW',
   name: 'article_pagequcik_create_view',
   id: 'plmweb.article_page_qucik_create_view',

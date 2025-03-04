@@ -3176,6 +3176,13 @@ export default {
       codeName: 'save_run_history',
       fullCodeName: 'run_save_run_history',
       appDEMethodId: 'save_run_history',
+      navigateParams: [
+        {
+          key: 'status',
+          value: 'status2',
+          id: 'status',
+        },
+      ],
       refreshMode: 1,
       successMsg: '成功记录',
       timeout: 60000,
@@ -3200,6 +3207,13 @@ export default {
       fullCodeName: 'run_save_run_history_and_next',
       nextId: 'nextrecord',
       appDEMethodId: 'save_run_history',
+      navigateParams: [
+        {
+          key: 'status',
+          value: 'status2',
+          id: 'status',
+        },
+      ],
       refreshMode: 1,
       successMsg: '成功记录',
       timeout: 60000,
@@ -3428,12 +3442,20 @@ export default {
           id: 'begin',
         },
         {
-          codeName: 'END1',
-          leftPos: 1022,
-          logicNodeType: 'END',
-          topPos: 200,
-          name: '结束',
-          id: 'end1',
+          code: 'if (uiLogic.ctrl) {\r\nuiLogic.ctrl.refresh();\r\n}',
+          codeName: 'RAWJSCODE2',
+          leftPos: 697,
+          logicNodeType: 'RAWJSCODE',
+          deuilogicLinks: [
+            {
+              dstDEUILogicNodeId: 'end1',
+              srcDEUILogicNodeId: 'rawjscode2',
+              id: '连接名称',
+            },
+          ],
+          topPos: 208,
+          name: '门户刷新',
+          id: 'rawjscode2',
         },
         {
           code: "const report_id = uiLogic.ctrl.model.id;\r\nconst prefix = \"uxbireport__\";\r\nconst remainingId = report_id.replace(prefix, '');\r\nconst newRemainingId = remainingId.replace(/__(?!__)/, '.');\r\n\r\nconst result = await ibiz.util.biReport.openDesignPage(context, params, { mode: 'DATA', reportId: newRemainingId });\r\nreturn result;\r\n",
@@ -3452,20 +3474,12 @@ export default {
           id: 'rawjscode1',
         },
         {
-          code: 'if (uiLogic.ctrl) {\r\nuiLogic.ctrl.refresh();\r\n}',
-          codeName: 'RAWJSCODE2',
-          leftPos: 697,
-          logicNodeType: 'RAWJSCODE',
-          deuilogicLinks: [
-            {
-              dstDEUILogicNodeId: 'end1',
-              srcDEUILogicNodeId: 'rawjscode2',
-              id: '连接名称',
-            },
-          ],
-          topPos: 208,
-          name: '门户刷新',
-          id: 'rawjscode2',
+          codeName: 'END1',
+          leftPos: 1022,
+          logicNodeType: 'END',
+          topPos: 200,
+          name: '结束',
+          id: 'end1',
         },
       ],
       deuilogicParams: [
@@ -3476,18 +3490,18 @@ export default {
           id: 'view',
         },
         {
-          codeName: 'ctrl',
-          activeCtrlParam: true,
-          ctrlParam: true,
-          name: '门户部件',
-          id: 'ctrl',
-        },
-        {
           codeName: 'Default',
           default: true,
           entityParam: true,
           name: '传入变量',
           id: 'default',
+        },
+        {
+          codeName: 'ctrl',
+          activeCtrlParam: true,
+          ctrlParam: true,
+          name: '门户部件',
+          id: 'ctrl',
         },
       ],
       startDEUILogicNodeId: 'begin',
@@ -3514,32 +3528,6 @@ export default {
           parallelOutput: true,
           name: '开始',
           id: 'begin',
-        },
-        {
-          invokeCtrlId: 'ctrl',
-          invokeMethod: 'refresh',
-          invokeParamId: 'default',
-          codeName: 'VIEWCTRLINVOKE2',
-          leftPos: 670,
-          logicNodeType: 'VIEWCTRLINVOKE',
-          deuilogicLinks: [
-            {
-              dstDEUILogicNodeId: 'end1',
-              srcDEUILogicNodeId: 'viewctrlinvoke2',
-              id: '连接名称',
-            },
-          ],
-          topPos: 208,
-          name: '刷新门户部件',
-          id: 'viewctrlinvoke2',
-        },
-        {
-          codeName: 'END1',
-          leftPos: 1073,
-          logicNodeType: 'END',
-          topPos: 200,
-          name: '结束',
-          id: 'end1',
         },
         {
           code: 'const dataUIMap = uiLogic.default.$dataUIMap;\r\nuiLogic.config = {};\r\ndataUIMap.forEach((value, key) => {\r\n    if (!value.isOriginField) {\r\n        uiLogic.config[key] = uiLogic.default[key];\r\n    }\r\n})\r\n\r\nuiLogic.config = Object.fromEntries(\r\n  Object.entries(uiLogic.config).filter(([key, value]) => !!value)\r\n);',
@@ -3575,6 +3563,32 @@ export default {
           name: '设置门户配置数据',
           id: 'viewctrlinvoke1',
         },
+        {
+          invokeCtrlId: 'ctrl',
+          invokeMethod: 'refresh',
+          invokeParamId: 'default',
+          codeName: 'VIEWCTRLINVOKE2',
+          leftPos: 670,
+          logicNodeType: 'VIEWCTRLINVOKE',
+          deuilogicLinks: [
+            {
+              dstDEUILogicNodeId: 'end1',
+              srcDEUILogicNodeId: 'viewctrlinvoke2',
+              id: '连接名称',
+            },
+          ],
+          topPos: 208,
+          name: '刷新门户部件',
+          id: 'viewctrlinvoke2',
+        },
+        {
+          codeName: 'END1',
+          leftPos: 1073,
+          logicNodeType: 'END',
+          topPos: 200,
+          name: '结束',
+          id: 'end1',
+        },
       ],
       deuilogicParams: [
         {
@@ -3585,17 +3599,17 @@ export default {
           id: 'ctrl',
         },
         {
-          codeName: 'config',
-          entityParam: true,
-          name: '门户配置',
-          id: 'config',
-        },
-        {
           codeName: 'Default',
           default: true,
           entityParam: true,
           name: '传入变量',
           id: 'default',
+        },
+        {
+          codeName: 'config',
+          entityParam: true,
+          name: '门户配置',
+          id: 'config',
         },
       ],
       startDEUILogicNodeId: 'begin',
@@ -3675,16 +3689,6 @@ export default {
           id: 'begin',
         },
         {
-          returnParamId: 'default',
-          returnType: 'LOGICPARAM',
-          codeName: 'END1',
-          leftPos: 200,
-          logicNodeType: 'END',
-          topPos: 710,
-          name: '结束',
-          id: 'end1',
-        },
-        {
           code: 'var form_data = view.layoutPanel.panelItems.form.control.data;\r\nform_data.estimated_workload = uiLogic.temp.estimated_workload;\r\nform_data.remaining_workload = uiLogic.temp.remaining_workload;\r\nvar remaining_workload = form_data.remaining_workload;\r\nvar actual_workload = uiLogic.temp.actual_workload;\r\nform_data.actual_workload = actual_workload;\r\nvar estimated_workload = form_data.estimated_workload;  \r\nvar estimated = 0; // 预估工时\r\nif(estimated_workload){\r\n\testimated = Number(estimated_workload);\r\n}\r\nvar actual = 0; // 之前登记的实际工时\r\nif(actual_workload){\r\n\tactual = Number(actual_workload);\r\n}\r\nvar remaining = 0;\r\nif(remaining_workload){\r\n\tremaining = Number(remaining_workload);\r\n}\r\n// 计算工时进度\r\nif((actual + remaining) != 0){\r\n\tvar schedule = ((actual / (actual + remaining)) * 100).toFixed(1);\r\n\tform_data.workload_schedule = schedule;\r\n}',
           codeName: 'RAWJSCODE1',
           leftPos: 160,
@@ -3699,6 +3703,16 @@ export default {
           topPos: 570,
           name: '计算工时进度',
           id: 'rawjscode1',
+        },
+        {
+          returnParamId: 'default',
+          returnType: 'LOGICPARAM',
+          codeName: 'END1',
+          leftPos: 200,
+          logicNodeType: 'END',
+          topPos: 710,
+          name: '结束',
+          id: 'end1',
         },
         {
           dstAppDEActionId: 'get_actual_workload',
@@ -3761,14 +3775,6 @@ export default {
           id: 'begin',
         },
         {
-          codeName: 'END1',
-          leftPos: 698,
-          logicNodeType: 'END',
-          topPos: 150,
-          name: '结束',
-          id: 'end1',
-        },
-        {
           dstAppDEUIActionId: 'open_re_run@run',
           dstAppDataEntityId: 'plmweb.run',
           codeName: 'DEUIACTION1',
@@ -3784,6 +3790,14 @@ export default {
           topPos: 158,
           name: '打开关联用例',
           id: 'deuiaction1',
+        },
+        {
+          codeName: 'END1',
+          leftPos: 698,
+          logicNodeType: 'END',
+          topPos: 150,
+          name: '结束',
+          id: 'end1',
         },
       ],
       deuilogicParams: [
@@ -3883,6 +3897,12 @@ export default {
       ],
       deuilogicParams: [
         {
+          codeName: 'hjbl',
+          envParam: true,
+          name: '环境变量',
+          id: 'hjbl',
+        },
+        {
           codeName: 'APP',
           applicationParam: true,
           name: 'APP',
@@ -3900,12 +3920,6 @@ export default {
           entityParam: true,
           name: '传入变量',
           id: 'default',
-        },
-        {
-          codeName: 'hjbl',
-          envParam: true,
-          name: '环境变量',
-          id: 'hjbl',
         },
         {
           codeName: 'grid',
@@ -3929,17 +3943,17 @@ export default {
   deopprivs: [
     {
       logicName: '建立',
-      mapDEName: 'TEST_CASE',
-      mapDEOPPrivName: 'CREATE',
-      name: 'CREATE',
-      id: 'test_case__create',
-    },
-    {
-      logicName: '建立',
       mapDEName: 'TEST_PLAN',
       mapDEOPPrivName: 'CREATE',
       name: 'CREATE',
       id: 'test_plan__create',
+    },
+    {
+      logicName: '建立',
+      mapDEName: 'TEST_CASE',
+      mapDEOPPrivName: 'CREATE',
+      name: 'CREATE',
+      id: 'test_case__create',
     },
     {
       logicName: '建立',
@@ -3948,15 +3962,15 @@ export default {
     },
     {
       logicName: '删除',
-      name: 'DELETE',
-      id: 'delete',
-    },
-    {
-      logicName: '删除',
       mapDEName: 'TEST_PLAN',
       mapDEOPPrivName: 'DELETE',
       name: 'DELETE',
       id: 'test_plan__delete',
+    },
+    {
+      logicName: '删除',
+      name: 'DELETE',
+      id: 'delete',
     },
     {
       logicName: '删除',
@@ -3972,17 +3986,17 @@ export default {
     },
     {
       logicName: '读取',
-      mapDEName: 'TEST_CASE',
-      mapDEOPPrivName: 'READ',
-      name: 'READ',
-      id: 'test_case__read',
-    },
-    {
-      logicName: '读取',
       mapDEName: 'TEST_PLAN',
       mapDEOPPrivName: 'READ',
       name: 'READ',
       id: 'test_plan__read',
+    },
+    {
+      logicName: '读取',
+      mapDEName: 'TEST_CASE',
+      mapDEOPPrivName: 'READ',
+      name: 'READ',
+      id: 'test_case__read',
     },
     {
       logicName: '更新',
@@ -3991,17 +4005,17 @@ export default {
     },
     {
       logicName: '更新',
-      mapDEName: 'TEST_PLAN',
-      mapDEOPPrivName: 'UPDATE',
-      name: 'UPDATE',
-      id: 'test_plan__update',
-    },
-    {
-      logicName: '更新',
       mapDEName: 'TEST_CASE',
       mapDEOPPrivName: 'UPDATE',
       name: 'UPDATE',
       id: 'test_case__update',
+    },
+    {
+      logicName: '更新',
+      mapDEName: 'TEST_PLAN',
+      mapDEOPPrivName: 'UPDATE',
+      name: 'UPDATE',
+      id: 'test_plan__update',
     },
   ],
   codeName: 'run',

@@ -4,7 +4,7 @@ export default {
   loadDefault: true,
   openMode: 'POPUPMODAL',
   deviewCodeName: 'drill_detail_grid_view',
-  deviewId: 'C98F924A-3FD5-48AE-B479-D684FA328CDB',
+  deviewId: '09950e67e5b40932ba5d59cad0f3c633',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.TEST_PLAN',
@@ -86,13 +86,6 @@ export default {
   ],
   appViewRefs: [
     {
-      realOpenMode: 'POPUPMODAL',
-      realTitle: '测试计划编辑视图',
-      refAppViewId: 'plmweb.test_plan_update_option_view',
-      name: 'NEWDATA',
-      id: 'newdata',
-    },
-    {
       openMode: 'POPUPAPP',
       navigateContexts: [
         {
@@ -108,6 +101,13 @@ export default {
       name: 'EDITDATA',
       id: 'editdata',
     },
+    {
+      realOpenMode: 'POPUPMODAL',
+      realTitle: '测试计划编辑视图',
+      refAppViewId: 'plmweb.test_plan_update_option_view',
+      name: 'NEWDATA',
+      id: 'newdata',
+    },
   ],
   controls: [
     {
@@ -119,7 +119,7 @@ export default {
       controlParam: {
         id: 'toolbar',
       },
-      modelId: '576436AE-98E9-4F73-8C2A-6BAE1450B502',
+      modelId: '8c143c5a230a0b33d3885445d6941f0e',
       modelType: 'PSDETOOLBAR',
       name: 'toolbar',
       id: 'drill_detail_grid_view_toolbar',
@@ -368,7 +368,7 @@ export default {
       controlParam: {
         id: 'grid',
       },
-      modelId: 'BDB19039-7B9B-4A43-8F31-C672595B0CE7',
+      modelId: 'a384fda8b3e3fd96e0aa74a45a73954b',
       modelType: 'PSDEGRID',
       name: 'grid',
       id: 'plmweb.test_plan.drill_detail_grid_view_grid',
@@ -403,7 +403,7 @@ export default {
       controlParam: {
         id: 'searchform',
       },
-      modelId: '7A406528-B485-4D5E-A3FD-BDB0BF646EB2',
+      modelId: '65c121c81e3455f3190fb1a3f56b47f6',
       modelType: 'PSDEFORM_SEARCHFORM',
       name: 'searchform',
       id: 'plmweb.test_plan.usr07179506_search_form',
@@ -449,7 +449,7 @@ export default {
   width: 90,
   enableDP: true,
   showCaptionBar: true,
-  modelId: 'e5269595015f664dbc9fb7cc1f750b2d',
+  modelId: '5a0d89174c4fb605db7d6cf321ea3141',
   modelType: 'PSAPPDEVIEW',
   name: 'test_plandrill_detail_grid_view',
   id: 'plmweb.test_plan_drill_detail_grid_view',

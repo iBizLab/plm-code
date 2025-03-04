@@ -3,7 +3,7 @@ export default {
   loadDefault: true,
   openMode: 'INDEXVIEWTAB',
   deviewCodeName: 'config_tree_exp_view',
-  deviewId: '84973d4edc923f54118f4a7123168139',
+  deviewId: 'a19dad17404136a830fbab202d80fdd9',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.SPACE',
@@ -352,7 +352,7 @@ export default {
           controlParam: {
             id: 'treeexpbar_toolbar',
           },
-          modelId: 'A18F0469-F5DB-4EF1-BB2F-832EA9AE889C',
+          modelId: 'be873c7b0d54fcd8bd373a87dc6c926b',
           modelType: 'PSDETOOLBAR',
           name: 'treeexpbar_toolbar',
           id: 'config_tree_exp_view_treeexpbar_toolbar',
@@ -364,7 +364,7 @@ export default {
       controlParam: {
         id: 'treeexpbar',
       },
-      modelId: '00ad2b75ca078ab825d2860a947e770f_treeexpbar',
+      modelId: 'd0f250efa95a31f9562b4dfe3bb77416_treeexpbar',
       modelType: 'PSEXPBAR',
       name: 'treeexpbar',
       id: 'config_tree_exp_view_treeexpbar',
@@ -409,7 +409,7 @@ export default {
   viewType: 'DETREEEXPVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '00ad2b75ca078ab825d2860a947e770f',
+  modelId: 'd0f250efa95a31f9562b4dfe3bb77416',
   modelType: 'PSAPPDEVIEW',
   name: 'spaceconfig_tree_exp_view',
   id: 'plmweb.space_config_tree_exp_view',

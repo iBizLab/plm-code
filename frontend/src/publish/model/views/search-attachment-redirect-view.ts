@@ -22,7 +22,7 @@ export default {
   enableWorkflow: true,
   funcViewMode: 'REDIRECTVIEW',
   deviewCodeName: 'RedirectView',
-  deviewId: '0a9565639f30bcb36a0414a468387886',
+  deviewId: 'ec421c5e76bc3802c00e72b6419c9891',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.SEARCH_ATTACHMENT',
@@ -64,7 +64,7 @@ export default {
   enableDP: true,
   redirectView: true,
   showCaptionBar: true,
-  modelId: '18234ca3dae8eaf43d894be2d71d54ff',
+  modelId: '1b365cce1defb0072c397ebe054364b0',
   modelType: 'PSAPPDEVIEW',
   name: 'search_attachmentRedirectView',
   id: 'plmweb.search_attachment_redirect_view',

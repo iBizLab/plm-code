@@ -201,44 +201,6 @@ public abstract class AbstractReviewContentResource {
     }
 
     /**
-    * nothing 评审内容
-    * 
-    *
-    * @param id id
-    * @param dto dto
-    * @return Mono<ResponseEntity<ReviewContentDTO>>
-    */
-    @ApiOperation(value = "nothing", tags = {"评审内容" },  notes = "ReviewContent-nothing ")
-    @PostMapping("review_contents/{id}/nothing")
-    public Mono<ResponseEntity<ResponseWrapper<ReviewContentDTO>>>nothingById
-            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<ReviewContentDTO> dto) {
-        ResponseWrapper<ReviewContentDTO> rt = new ResponseWrapper<>();
-        if (dto.isArray()) {
-            String [] ids = id.split(";");
-            IntStream.range(0, ids.length).forEach(i -> rt.add(nothingById(ids[i], dto.getList().get(i))));
-        }
-        else
-            rt.set(nothingById(id, dto.getDto()));
-        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
-    }
-
-    /**
-    * nothing 评审内容
-    * 
-    *
-    * @param id id
-    * @param dto dto
-    * @return ResponseEntity<ReviewContentDTO>
-    */   
-    public ReviewContentDTO nothingById
-            (String id, ReviewContentDTO dto) {
-        ReviewContent domain = reviewContentDtoMapping.toDomain(dto);
-        domain.setId(id);
-        ReviewContent rt = reviewContentService.nothing(domain);
-        return reviewContentDtoMapping.toDto(rt);
-    }
-
-    /**
     * program_test_case 评审内容
     * 
     *
@@ -285,6 +247,7 @@ public abstract class AbstractReviewContentResource {
     * @return Mono<ResponseEntity<ReviewContentDTO>>
     */
     @ApiOperation(value = "review_content_total", tags = {"评审内容" },  notes = "ReviewContent-review_content_total ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ReviewContent-review_content_total-all') or hasPermission(this.reviewContentDtoMapping.toDomain(#dto),'ibizplm-ReviewContent-review_content_total')")
     @PostMapping("review_contents/review_content_total")
     public Mono<ResponseEntity<ResponseWrapper<ReviewContentDTO>>>reviewContentTotal
             (@Validated @RequestBody RequestWrapper<ReviewContentDTO> dto) {
@@ -646,46 +609,6 @@ public abstract class AbstractReviewContentResource {
     }
 
     /**
-    * nothing 评审内容
-    * 
-    *
-    * @param principalId principalId
-    * @param id id
-    * @param dto dto
-    * @return Mono<ResponseEntity<ReviewContentDTO>>
-    */
-    @ApiOperation(value = "nothing", tags = {"评审内容" },  notes = "ReviewContent-nothing ")
-    @PostMapping("reviews/{principalId}/review_contents/{id}/nothing")
-    public Mono<ResponseEntity<ResponseWrapper<ReviewContentDTO>>>nothingByPrincipalIdAndId
-            (@PathVariable("principalId") String principalId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<ReviewContentDTO> dto) {
-        ResponseWrapper<ReviewContentDTO> rt = new ResponseWrapper<>();
-        if (dto.isArray()) {
-            String [] ids = id.split(";");
-            IntStream.range(0, ids.length).forEach(i -> rt.add(nothingByPrincipalIdAndId(principalId, ids[i], dto.getList().get(i))));
-        }
-        else
-            rt.set(nothingByPrincipalIdAndId(principalId, id, dto.getDto()));
-        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
-    }
-
-    /**
-    * nothing 评审内容
-    * 
-    *
-    * @param principalId principalId
-    * @param id id
-    * @param dto dto
-    * @return ResponseEntity<ReviewContentDTO>
-    */   
-    public ReviewContentDTO nothingByPrincipalIdAndId
-            (String principalId, String id, ReviewContentDTO dto) {
-        ReviewContent domain = reviewContentDtoMapping.toDomain(dto);
-        domain.setId(id);
-        ReviewContent rt = reviewContentService.nothing(domain);
-        return reviewContentDtoMapping.toDto(rt);
-    }
-
-    /**
     * program_test_case 评审内容
     * 
     *
@@ -735,6 +658,7 @@ public abstract class AbstractReviewContentResource {
     * @return Mono<ResponseEntity<ReviewContentDTO>>
     */
     @ApiOperation(value = "review_content_total", tags = {"评审内容" },  notes = "ReviewContent-review_content_total ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ReviewContent-review_content_total-all') or hasPermission('review',#principalId,this.reviewContentDtoMapping.toDomain(#dto),'ibizplm-ReviewContent-review_content_total')")
     @PostMapping("reviews/{principalId}/review_contents/review_content_total")
     public Mono<ResponseEntity<ResponseWrapper<ReviewContentDTO>>>reviewContentTotalByPrincipalId
             (@PathVariable("principalId") String principalId, @Validated @RequestBody RequestWrapper<ReviewContentDTO> dto) {
@@ -1120,48 +1044,6 @@ public abstract class AbstractReviewContentResource {
     }
 
     /**
-    * nothing 评审内容
-    * 
-    *
-    * @param libraryId libraryId
-    * @param principalId principalId
-    * @param id id
-    * @param dto dto
-    * @return Mono<ResponseEntity<ReviewContentDTO>>
-    */
-    @ApiOperation(value = "nothing", tags = {"评审内容" },  notes = "ReviewContent-nothing ")
-    @PostMapping("libraries/{libraryId}/reviews/{principalId}/review_contents/{id}/nothing")
-    public Mono<ResponseEntity<ResponseWrapper<ReviewContentDTO>>>nothingByLibraryIdAndPrincipalIdAndId
-            (@PathVariable("libraryId") String libraryId, @PathVariable("principalId") String principalId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<ReviewContentDTO> dto) {
-        ResponseWrapper<ReviewContentDTO> rt = new ResponseWrapper<>();
-        if (dto.isArray()) {
-            String [] ids = id.split(";");
-            IntStream.range(0, ids.length).forEach(i -> rt.add(nothingByLibraryIdAndPrincipalIdAndId(libraryId, principalId, ids[i], dto.getList().get(i))));
-        }
-        else
-            rt.set(nothingByLibraryIdAndPrincipalIdAndId(libraryId, principalId, id, dto.getDto()));
-        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
-    }
-
-    /**
-    * nothing 评审内容
-    * 
-    *
-    * @param libraryId libraryId
-    * @param principalId principalId
-    * @param id id
-    * @param dto dto
-    * @return ResponseEntity<ReviewContentDTO>
-    */   
-    public ReviewContentDTO nothingByLibraryIdAndPrincipalIdAndId
-            (String libraryId, String principalId, String id, ReviewContentDTO dto) {
-        ReviewContent domain = reviewContentDtoMapping.toDomain(dto);
-        domain.setId(id);
-        ReviewContent rt = reviewContentService.nothing(domain);
-        return reviewContentDtoMapping.toDto(rt);
-    }
-
-    /**
     * program_test_case 评审内容
     * 
     *
@@ -1214,6 +1096,7 @@ public abstract class AbstractReviewContentResource {
     * @return Mono<ResponseEntity<ReviewContentDTO>>
     */
     @ApiOperation(value = "review_content_total", tags = {"评审内容" },  notes = "ReviewContent-review_content_total ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ReviewContent-review_content_total-all') or hasPermission('library',#libraryId,this.reviewContentDtoMapping.toDomain(#dto),'ibizplm-ReviewContent-review_content_total')")
     @PostMapping("libraries/{libraryId}/reviews/{principalId}/review_contents/review_content_total")
     public Mono<ResponseEntity<ResponseWrapper<ReviewContentDTO>>>reviewContentTotalByLibraryIdAndPrincipalId
             (@PathVariable("libraryId") String libraryId, @PathVariable("principalId") String principalId, @Validated @RequestBody RequestWrapper<ReviewContentDTO> dto) {
@@ -1602,46 +1485,6 @@ public abstract class AbstractReviewContentResource {
     }
 
     /**
-    * nothing 评审内容
-    * 
-    *
-    * @param targetId targetId
-    * @param id id
-    * @param dto dto
-    * @return Mono<ResponseEntity<ReviewContentDTO>>
-    */
-    @ApiOperation(value = "nothing", tags = {"评审内容" },  notes = "ReviewContent-nothing ")
-    @PostMapping("test_cases/{targetId}/review_contents/{id}/nothing")
-    public Mono<ResponseEntity<ResponseWrapper<ReviewContentDTO>>>nothingByTargetIdAndId
-            (@PathVariable("targetId") String targetId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<ReviewContentDTO> dto) {
-        ResponseWrapper<ReviewContentDTO> rt = new ResponseWrapper<>();
-        if (dto.isArray()) {
-            String [] ids = id.split(";");
-            IntStream.range(0, ids.length).forEach(i -> rt.add(nothingByTargetIdAndId(targetId, ids[i], dto.getList().get(i))));
-        }
-        else
-            rt.set(nothingByTargetIdAndId(targetId, id, dto.getDto()));
-        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
-    }
-
-    /**
-    * nothing 评审内容
-    * 
-    *
-    * @param targetId targetId
-    * @param id id
-    * @param dto dto
-    * @return ResponseEntity<ReviewContentDTO>
-    */   
-    public ReviewContentDTO nothingByTargetIdAndId
-            (String targetId, String id, ReviewContentDTO dto) {
-        ReviewContent domain = reviewContentDtoMapping.toDomain(dto);
-        domain.setId(id);
-        ReviewContent rt = reviewContentService.nothing(domain);
-        return reviewContentDtoMapping.toDto(rt);
-    }
-
-    /**
     * program_test_case 评审内容
     * 
     *
@@ -1691,6 +1534,7 @@ public abstract class AbstractReviewContentResource {
     * @return Mono<ResponseEntity<ReviewContentDTO>>
     */
     @ApiOperation(value = "review_content_total", tags = {"评审内容" },  notes = "ReviewContent-review_content_total ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ReviewContent-review_content_total-all') or hasPermission('test_case',#targetId,this.reviewContentDtoMapping.toDomain(#dto),'ibizplm-ReviewContent-review_content_total')")
     @PostMapping("test_cases/{targetId}/review_contents/review_content_total")
     public Mono<ResponseEntity<ResponseWrapper<ReviewContentDTO>>>reviewContentTotalByTargetId
             (@PathVariable("targetId") String targetId, @Validated @RequestBody RequestWrapper<ReviewContentDTO> dto) {
@@ -2076,48 +1920,6 @@ public abstract class AbstractReviewContentResource {
     }
 
     /**
-    * nothing 评审内容
-    * 
-    *
-    * @param testLibraryId testLibraryId
-    * @param targetId targetId
-    * @param id id
-    * @param dto dto
-    * @return Mono<ResponseEntity<ReviewContentDTO>>
-    */
-    @ApiOperation(value = "nothing", tags = {"评审内容" },  notes = "ReviewContent-nothing ")
-    @PostMapping("libraries/{testLibraryId}/test_cases/{targetId}/review_contents/{id}/nothing")
-    public Mono<ResponseEntity<ResponseWrapper<ReviewContentDTO>>>nothingByTestLibraryIdAndTargetIdAndId
-            (@PathVariable("testLibraryId") String testLibraryId, @PathVariable("targetId") String targetId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<ReviewContentDTO> dto) {
-        ResponseWrapper<ReviewContentDTO> rt = new ResponseWrapper<>();
-        if (dto.isArray()) {
-            String [] ids = id.split(";");
-            IntStream.range(0, ids.length).forEach(i -> rt.add(nothingByTestLibraryIdAndTargetIdAndId(testLibraryId, targetId, ids[i], dto.getList().get(i))));
-        }
-        else
-            rt.set(nothingByTestLibraryIdAndTargetIdAndId(testLibraryId, targetId, id, dto.getDto()));
-        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
-    }
-
-    /**
-    * nothing 评审内容
-    * 
-    *
-    * @param testLibraryId testLibraryId
-    * @param targetId targetId
-    * @param id id
-    * @param dto dto
-    * @return ResponseEntity<ReviewContentDTO>
-    */   
-    public ReviewContentDTO nothingByTestLibraryIdAndTargetIdAndId
-            (String testLibraryId, String targetId, String id, ReviewContentDTO dto) {
-        ReviewContent domain = reviewContentDtoMapping.toDomain(dto);
-        domain.setId(id);
-        ReviewContent rt = reviewContentService.nothing(domain);
-        return reviewContentDtoMapping.toDto(rt);
-    }
-
-    /**
     * program_test_case 评审内容
     * 
     *
@@ -2170,6 +1972,7 @@ public abstract class AbstractReviewContentResource {
     * @return Mono<ResponseEntity<ReviewContentDTO>>
     */
     @ApiOperation(value = "review_content_total", tags = {"评审内容" },  notes = "ReviewContent-review_content_total ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ReviewContent-review_content_total-all') or hasPermission('library',#testLibraryId,this.reviewContentDtoMapping.toDomain(#dto),'ibizplm-ReviewContent-review_content_total')")
     @PostMapping("libraries/{testLibraryId}/test_cases/{targetId}/review_contents/review_content_total")
     public Mono<ResponseEntity<ResponseWrapper<ReviewContentDTO>>>reviewContentTotalByTestLibraryIdAndTargetId
             (@PathVariable("testLibraryId") String testLibraryId, @PathVariable("targetId") String targetId, @Validated @RequestBody RequestWrapper<ReviewContentDTO> dto) {

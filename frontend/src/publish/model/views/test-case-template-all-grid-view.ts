@@ -3,7 +3,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'all_grid_view',
-  deviewId: 'BD3FE446-B974-450E-B328-AF978037C3C0',
+  deviewId: '4f7e48e4162c11fa35a0f587963dcd83',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.TEST_CASE_TEMPLATE',
@@ -77,14 +77,6 @@ export default {
     {
       openMode: 'POPUPMODAL',
       realOpenMode: 'POPUPMODAL',
-      realTitle: '用例模板新建',
-      refAppViewId: 'plmweb.test_case_template_new_edit_view',
-      name: 'NEWDATA',
-      id: 'newdata',
-    },
-    {
-      openMode: 'POPUPMODAL',
-      realOpenMode: 'POPUPMODAL',
       realTitle: '用例模板编辑视图',
       realTitleLanguageRes: {
         lanResTag: 'PAGE.TITLE.TEST_CASE_TEMPLATE.EDITVIEW',
@@ -92,6 +84,14 @@ export default {
       refAppViewId: 'plmweb.test_case_template_edit_view',
       name: 'EDITDATA',
       id: 'editdata',
+    },
+    {
+      openMode: 'POPUPMODAL',
+      realOpenMode: 'POPUPMODAL',
+      realTitle: '用例模板新建',
+      refAppViewId: 'plmweb.test_case_template_new_edit_view',
+      name: 'NEWDATA',
+      id: 'newdata',
     },
   ],
   controls: [
@@ -128,7 +128,7 @@ export default {
       controlParam: {
         id: 'toolbar',
       },
-      modelId: '9AE0C3FF-6ECB-4117-AC3E-EADE5349BC8B',
+      modelId: '98e57ddc34e3920cb3613862af850574',
       modelType: 'PSDETOOLBAR',
       name: 'toolbar',
       id: 'all_grid_view_toolbar',
@@ -217,7 +217,7 @@ export default {
                   cssClass: 'fa fa-edit',
                   glyph: 'xf044@FontAwesome',
                 },
-                id: 'u7e70a79',
+                id: 'u89c1c6e',
               },
               {
                 actionLevel: 200,
@@ -231,7 +231,7 @@ export default {
                   cssClass: 'fa fa-trash-o',
                   glyph: 'xf014@FontAwesome',
                 },
-                id: 'u6d1c7bc',
+                id: 'ua1a2a0c',
               },
             ],
             appDataEntityId: 'plmweb.test_case_template',
@@ -343,7 +343,7 @@ export default {
       controlParam: {
         id: 'grid',
       },
-      modelId: '229FCCC4-1CCB-4B6D-B2C3-52CF40FE32AB',
+      modelId: 'bff26f3162eda7f15ba465bc2687f510',
       modelType: 'PSDEGRID',
       name: 'grid',
       id: 'plmweb.test_case_template.all_grid_view_grid',
@@ -378,7 +378,7 @@ export default {
       controlParam: {
         id: 'searchform',
       },
-      modelId: '33C6D859-5E34-4318-B724-8C3C7D14838F',
+      modelId: '1700c1ca1a1b1806ae58597727c5cb5d',
       modelType: 'PSDEFORM_SEARCHFORM',
       name: 'searchform',
       id: 'plmweb.test_case_template.all_grid_view_search_form',
@@ -423,7 +423,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '4071d1e274b371759f6cee9d692cc0c0',
+  modelId: '5a866c32ba9d8fbe3d9f03b68c98cf46',
   modelType: 'PSAPPDEVIEW',
   name: 'test_case_templateall_grid_view',
   id: 'plmweb.test_case_template_all_grid_view',

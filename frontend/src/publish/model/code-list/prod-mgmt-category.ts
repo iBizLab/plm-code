@@ -1,5 +1,5 @@
 export default {
-  cacheTimeout: 1000,
+  cacheTimeout: 2000,
   codeListTag: 'ProdMgmt__category',
   codeListType: 'DYNAMIC',
   codeName: 'ProdMgmt__category',

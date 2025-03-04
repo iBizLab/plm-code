@@ -2,7 +2,7 @@ export default {
   xdataControlName: 'list',
   loadDefault: true,
   deviewCodeName: 'list_view',
-  deviewId: '8EB43CE1-512B-4209-A9C2-FEE5CB7F411C',
+  deviewId: '4bbb21d1872ebcd758ad32ec9b51d22b',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.REVIEW_STAGE',
@@ -80,19 +80,6 @@ export default {
             panelItems: [
               {
                 actionGroupExtractMode: 'ITEM',
-                panelItems: [
-                  {
-                    caption: '工具栏',
-                    itemStyle: 'DEFAULT',
-                    itemType: 'CTRLPOS',
-                    layoutPos: {
-                      shrink: 1,
-                      layout: 'FLEX',
-                    },
-                    showCaption: true,
-                    id: 'toolbar',
-                  },
-                ],
                 layout: {
                   align: 'center',
                   layout: 'FLEX',
@@ -258,20 +245,6 @@ export default {
     ],
     controls: [
       {
-        xdataControlName: 'list',
-        codeName: 'list_view_toolbar',
-        controlType: 'TOOLBAR',
-        logicName: '工具栏模板（默认表格界面）',
-        appDataEntityId: 'plmweb.review_stage',
-        controlParam: {
-          id: 'toolbar',
-        },
-        modelId: 'ec6fbb681f5e3e6783c2af57e5eefaaa',
-        modelType: 'PSDETOOLBAR',
-        name: 'toolbar',
-        id: 'list_view_toolbar',
-      },
-      {
         searchButtonStyle: 'DEFAULT',
         deformPages: [
           {
@@ -305,7 +278,7 @@ export default {
         controlParam: {
           id: 'searchform',
         },
-        modelId: '29f7692674b3c17f74651f790fbc213a',
+        modelId: '6a830069f68f3cacd06e018e773f245e',
         modelType: 'PSDEFORM_SEARCHFORM',
         name: 'searchform',
         id: 'plmweb.review_stage.default',
@@ -524,7 +497,6 @@ export default {
                                 },
                               ],
                               logicType: 'GROUP',
-                              id: '面板成员[reviewer_name][面板显示]逻辑',
                             },
                           ],
                           id: 'reviewer_name',
@@ -590,7 +562,6 @@ export default {
                                 },
                               ],
                               logicType: 'GROUP',
-                              id: '面板成员[reviewer_readonly][面板显示]逻辑',
                             },
                           ],
                           id: 'reviewer_readonly',
@@ -695,7 +666,7 @@ export default {
             },
           ],
           controlParam: {},
-          modelId: 'F8C732C6-AA6C-4C00-8ECD-DCDC8A13793C',
+          modelId: '6a14381f2e563365a984919d97e65a4f',
           modelType: 'PSSYSVIEWPANEL',
           name: 'list_itempanel',
           id: 'plmweb.review_stage.usr0516263811',
@@ -767,7 +738,7 @@ export default {
           id: 'list',
         },
         sysPFPluginId: 'review_list',
-        modelId: '0A95AC68-7F2D-4625-AA91-4EC079E07AAA',
+        modelId: 'd3d04b69a45d623ce8307afb2b4dc1f3',
         modelType: 'PSDELIST',
         name: 'list',
         id: 'plmweb.review_stage.stage_list',
@@ -801,7 +772,7 @@ export default {
     logicName: 'list_view列表视图布局面板',
     appDataEntityId: 'plmweb.review_stage',
     controlParam: {},
-    modelId: '8B9206B8-28DE-4B61-895E-8F614265EE6A',
+    modelId: 'd7c9940e5793e559c4da263b73e484a1',
     modelType: 'PSSYSVIEWLAYOUTPANEL',
     name: 'layoutpanel',
     id: 'usr0520728860',
@@ -811,7 +782,7 @@ export default {
   viewType: 'DELISTVIEW',
   enableDP: true,
   showCaptionBar: false,
-  modelId: '5c4e8de04e2df1c286ac0b5b466dffce',
+  modelId: 'fe1747f4c00f8f335c9075f0b50d29c5',
   modelType: 'PSAPPDEVIEW',
   name: 'review_stagelist_view',
   id: 'plmweb.review_stage_list_view',

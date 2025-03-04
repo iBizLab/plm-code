@@ -2,7 +2,7 @@ export default {
   enableSearch: true,
   loadDefault: true,
   deviewCodeName: 'scrum_property_distribution_report_view',
-  deviewId: '61eff9e9bf52a45830d31caf4ce84887',
+  deviewId: '1d605ef57ac84fc922f545932367d122',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.WORK_ITEM',
@@ -934,7 +934,7 @@ export default {
   viewType: 'DECHARTVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: 'b3aaf0b933b7fa311602fb2ba86ba1d4',
+  modelId: '4dc6495e3b3997e66a357f1b3e8d81ca',
   modelType: 'PSAPPDEVIEW',
   name: 'work_itemscrum_property_distribution_report_view',
   id: 'plmweb.work_item_scrum_property_distribution_report_view',

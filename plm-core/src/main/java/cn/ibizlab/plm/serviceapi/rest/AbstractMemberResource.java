@@ -213,6 +213,7 @@ public abstract class AbstractMemberResource {
     * @return Mono<ResponseEntity<MemberDTO>>
     */
     @ApiOperation(value = "change_role", tags = {"成员" },  notes = "Member-change_role ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Member-change_role-all') or hasPermission(this.memberDtoMapping.toDomain(#dto),'ibizplm-Member-change_role')")
     @PostMapping("members/{id}/change_role")
     public Mono<ResponseEntity<ResponseWrapper<MemberDTO>>>changeRoleById
             (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<MemberDTO> dto) {
@@ -514,6 +515,7 @@ public abstract class AbstractMemberResource {
     * @return Mono<ResponseEntity<MemberDTO>>
     */
     @ApiOperation(value = "change_role", tags = {"成员" },  notes = "Member-change_role ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Member-change_role-all') or hasPermission('group',#ownerId,this.memberDtoMapping.toDomain(#dto),'ibizplm-Member-change_role')")
     @PostMapping("groups/{ownerId}/members/{id}/change_role")
     public Mono<ResponseEntity<ResponseWrapper<MemberDTO>>>changeRoleByOwnerIdAndId
             (@PathVariable("ownerId") String ownerId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<MemberDTO> dto) {
@@ -649,6 +651,334 @@ public abstract class AbstractMemberResource {
     */   
     public MemberDTO saveByOwnerId
             (String ownerId, MemberDTO dto) {
+        Member domain = memberDtoMapping.toDomain(dto);
+        domain.setOwnerId(ownerId);
+        memberService.save(domain);
+        Member rt = domain;
+        return memberDtoMapping.toDto(rt);
+    }
+
+    /**
+    * 创建Create 成员
+    * 
+    *
+    * @param sectionId sectionId
+    * @param ownerId ownerId
+    * @param dto dto
+    * @return Mono<ResponseEntity<MemberDTO>>
+    */
+    @ApiOperation(value = "创建Create", tags = {"成员" },  notes = "Member-Create ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Member-Create-all') or hasPermission('section',#sectionId,this.memberDtoMapping.toDomain(#dto),'ibizplm-Member-Create')")
+    @PostMapping("sections/{sectionId}/groups/{ownerId}/members")
+    public Mono<ResponseEntity<ResponseWrapper<MemberDTO>>>createBySectionIdAndOwnerId
+            (@PathVariable("sectionId") String sectionId, @PathVariable("ownerId") String ownerId, @Validated @RequestBody RequestWrapper<MemberDTO> dto) {
+        ResponseWrapper<MemberDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray())
+            dto.getList().forEach(item -> rt.add(createBySectionIdAndOwnerId(sectionId, ownerId, item)));
+        else
+            rt.set(createBySectionIdAndOwnerId(sectionId, ownerId, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * 创建Create 成员
+    * 
+    *
+    * @param sectionId sectionId
+    * @param ownerId ownerId
+    * @param dto dto
+    * @return ResponseEntity<MemberDTO>
+    */   
+    public MemberDTO createBySectionIdAndOwnerId
+            (String sectionId, String ownerId, MemberDTO dto) {
+        Member domain = memberDtoMapping.toDomain(dto);
+        domain.setOwnerId(ownerId);
+        memberService.create(domain);
+        Member rt = domain;
+        return memberDtoMapping.toDto(rt);
+    }
+
+    /**
+    * 更新Update 成员
+    * 
+    *
+    * @param sectionId sectionId
+    * @param ownerId ownerId
+    * @param id id
+    * @param dto dto
+    * @return Mono<ResponseEntity<MemberDTO>>
+    */
+    @ApiOperation(value = "更新Update", tags = {"成员" },  notes = "Member-Update ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Member-Update-all') or hasPermission('section',#sectionId,this.memberService.get(#id),'ibizplm-Member-Update')")
+    @VersionCheck(entity = "member" , versionfield = "updateTime")
+    @PutMapping("sections/{sectionId}/groups/{ownerId}/members/{id}")
+    public Mono<ResponseEntity<ResponseWrapper<MemberDTO>>>updateBySectionIdAndOwnerIdAndId
+            (@PathVariable("sectionId") String sectionId, @PathVariable("ownerId") String ownerId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<MemberDTO> dto) {
+        ResponseWrapper<MemberDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(updateBySectionIdAndOwnerIdAndId(sectionId, ownerId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(updateBySectionIdAndOwnerIdAndId(sectionId, ownerId, id, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * 更新Update 成员
+    * 
+    *
+    * @param sectionId sectionId
+    * @param ownerId ownerId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<MemberDTO>
+    */   
+    public MemberDTO updateBySectionIdAndOwnerIdAndId
+            (String sectionId, String ownerId, String id, MemberDTO dto) {
+        Member domain = memberDtoMapping.toDomain(dto);
+        domain.setId(id);
+        memberService.update(domain);
+        Member rt = domain;
+        return memberDtoMapping.toDto(rt);
+    }
+
+    /**
+    * add_member_position 成员
+    * 
+    *
+    * @param sectionId sectionId
+    * @param ownerId ownerId
+    * @param id id
+    * @param dto dto
+    * @return Mono<ResponseEntity<MemberDTO>>
+    */
+    @ApiOperation(value = "add_member_position", tags = {"成员" },  notes = "Member-add_member_position ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Member-add_member_position-all') or hasPermission('section',#sectionId,this.memberDtoMapping.toDomain(#dto),'ibizplm-Member-add_member_position')")
+    @PostMapping("sections/{sectionId}/groups/{ownerId}/members/{id}/add_member_position")
+    public Mono<ResponseEntity<ResponseWrapper<MemberDTO>>>addMemberPositionBySectionIdAndOwnerIdAndId
+            (@PathVariable("sectionId") String sectionId, @PathVariable("ownerId") String ownerId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<MemberDTO> dto) {
+        ResponseWrapper<MemberDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(addMemberPositionBySectionIdAndOwnerIdAndId(sectionId, ownerId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(addMemberPositionBySectionIdAndOwnerIdAndId(sectionId, ownerId, id, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * add_member_position 成员
+    * 
+    *
+    * @param sectionId sectionId
+    * @param ownerId ownerId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<MemberDTO>
+    */   
+    public MemberDTO addMemberPositionBySectionIdAndOwnerIdAndId
+            (String sectionId, String ownerId, String id, MemberDTO dto) {
+        Member domain = memberDtoMapping.toDomain(dto);
+        domain.setId(id);
+        Member rt = memberService.addMemberPosition(domain);
+        return memberDtoMapping.toDto(rt);
+    }
+
+    /**
+    * add_shared_page_member 成员
+    * 
+    *
+    * @param sectionId sectionId
+    * @param ownerId ownerId
+    * @param dto dto
+    * @return Mono<ResponseEntity<MemberDTO>>
+    */
+    @ApiOperation(value = "add_shared_page_member", tags = {"成员" },  notes = "Member-add_shared_page_member ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Member-add_shared_page_member-all') or hasPermission('section',#sectionId,this.memberDtoMapping.toDomain(#dto),'ibizplm-Member-add_shared_page_member')")
+    @PostMapping("sections/{sectionId}/groups/{ownerId}/members/add_shared_page_member")
+    public Mono<ResponseEntity<ResponseWrapper<MemberDTO>>>addSharedPageMemberBySectionIdAndOwnerId
+            (@PathVariable("sectionId") String sectionId, @PathVariable("ownerId") String ownerId, @Validated @RequestBody RequestWrapper<MemberDTO> dto) {
+        ResponseWrapper<MemberDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray())
+            dto.getList().forEach(item -> rt.add(addSharedPageMemberBySectionIdAndOwnerId(sectionId, ownerId, item)));
+        else
+            rt.set(addSharedPageMemberBySectionIdAndOwnerId(sectionId, ownerId, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * add_shared_page_member 成员
+    * 
+    *
+    * @param sectionId sectionId
+    * @param ownerId ownerId
+    * @param dto dto
+    * @return ResponseEntity<MemberDTO>
+    */   
+    public MemberDTO addSharedPageMemberBySectionIdAndOwnerId
+            (String sectionId, String ownerId, MemberDTO dto) {
+        Member domain = memberDtoMapping.toDomain(dto);
+        domain.setOwnerId(ownerId);
+        Member rt = memberService.addSharedPageMember(domain);
+        return memberDtoMapping.toDto(rt);
+    }
+
+    /**
+    * change_role 成员
+    * 
+    *
+    * @param sectionId sectionId
+    * @param ownerId ownerId
+    * @param id id
+    * @param dto dto
+    * @return Mono<ResponseEntity<MemberDTO>>
+    */
+    @ApiOperation(value = "change_role", tags = {"成员" },  notes = "Member-change_role ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Member-change_role-all') or hasPermission('section',#sectionId,this.memberDtoMapping.toDomain(#dto),'ibizplm-Member-change_role')")
+    @PostMapping("sections/{sectionId}/groups/{ownerId}/members/{id}/change_role")
+    public Mono<ResponseEntity<ResponseWrapper<MemberDTO>>>changeRoleBySectionIdAndOwnerIdAndId
+            (@PathVariable("sectionId") String sectionId, @PathVariable("ownerId") String ownerId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<MemberDTO> dto) {
+        ResponseWrapper<MemberDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(changeRoleBySectionIdAndOwnerIdAndId(sectionId, ownerId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(changeRoleBySectionIdAndOwnerIdAndId(sectionId, ownerId, id, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * change_role 成员
+    * 
+    *
+    * @param sectionId sectionId
+    * @param ownerId ownerId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<MemberDTO>
+    */   
+    public MemberDTO changeRoleBySectionIdAndOwnerIdAndId
+            (String sectionId, String ownerId, String id, MemberDTO dto) {
+        Member domain = memberDtoMapping.toDomain(dto);
+        domain.setId(id);
+        Member rt = memberService.changeRole(domain);
+        return memberDtoMapping.toDto(rt);
+    }
+
+    /**
+    * create_member 成员
+    * 
+    *
+    * @param sectionId sectionId
+    * @param ownerId ownerId
+    * @param dto dto
+    * @return Mono<ResponseEntity<MemberDTO>>
+    */
+    @ApiOperation(value = "create_member", tags = {"成员" },  notes = "Member-create_member ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Member-create_member-all') or hasPermission('section',#sectionId,this.memberDtoMapping.toDomain(#dto),'ibizplm-Member-create_member')")
+    @PostMapping("sections/{sectionId}/groups/{ownerId}/members/create_member")
+    public Mono<ResponseEntity<ResponseWrapper<MemberDTO>>>createMemberBySectionIdAndOwnerId
+            (@PathVariable("sectionId") String sectionId, @PathVariable("ownerId") String ownerId, @Validated @RequestBody RequestWrapper<MemberDTO> dto) {
+        ResponseWrapper<MemberDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray())
+            dto.getList().forEach(item -> rt.add(createMemberBySectionIdAndOwnerId(sectionId, ownerId, item)));
+        else
+            rt.set(createMemberBySectionIdAndOwnerId(sectionId, ownerId, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * create_member 成员
+    * 
+    *
+    * @param sectionId sectionId
+    * @param ownerId ownerId
+    * @param dto dto
+    * @return ResponseEntity<MemberDTO>
+    */   
+    public MemberDTO createMemberBySectionIdAndOwnerId
+            (String sectionId, String ownerId, MemberDTO dto) {
+        Member domain = memberDtoMapping.toDomain(dto);
+        domain.setOwnerId(ownerId);
+        Member rt = memberService.createMember(domain);
+        return memberDtoMapping.toDto(rt);
+    }
+
+    /**
+    * mob_add_shared_member 成员
+    * 
+    *
+    * @param sectionId sectionId
+    * @param ownerId ownerId
+    * @param dto dto
+    * @return Mono<ResponseEntity<MemberDTO>>
+    */
+    @ApiOperation(value = "mob_add_shared_member", tags = {"成员" },  notes = "Member-mob_add_shared_member ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Member-mob_add_shared_member-all') or hasPermission('section',#sectionId,this.memberDtoMapping.toDomain(#dto),'ibizplm-Member-mob_add_shared_member')")
+    @PostMapping("sections/{sectionId}/groups/{ownerId}/members/mob_add_shared_member")
+    public Mono<ResponseEntity<ResponseWrapper<MemberDTO>>>mobAddSharedMemberBySectionIdAndOwnerId
+            (@PathVariable("sectionId") String sectionId, @PathVariable("ownerId") String ownerId, @Validated @RequestBody RequestWrapper<MemberDTO> dto) {
+        ResponseWrapper<MemberDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray())
+            dto.getList().forEach(item -> rt.add(mobAddSharedMemberBySectionIdAndOwnerId(sectionId, ownerId, item)));
+        else
+            rt.set(mobAddSharedMemberBySectionIdAndOwnerId(sectionId, ownerId, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * mob_add_shared_member 成员
+    * 
+    *
+    * @param sectionId sectionId
+    * @param ownerId ownerId
+    * @param dto dto
+    * @return ResponseEntity<MemberDTO>
+    */   
+    public MemberDTO mobAddSharedMemberBySectionIdAndOwnerId
+            (String sectionId, String ownerId, MemberDTO dto) {
+        Member domain = memberDtoMapping.toDomain(dto);
+        domain.setOwnerId(ownerId);
+        Member rt = memberService.mobAddSharedMember(domain);
+        return memberDtoMapping.toDto(rt);
+    }
+
+    /**
+    * 保存Save 成员
+    * 
+    *
+    * @param sectionId sectionId
+    * @param ownerId ownerId
+    * @param dto dto
+    * @return Mono<ResponseEntity<MemberDTO>>
+    */
+    @ApiOperation(value = "保存Save", tags = {"成员" },  notes = "Member-Save ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Member-Save-all') or hasPermission('section',#sectionId,this.memberDtoMapping.toDomain(#dto),'ibizplm-Member-Save')")
+    @PostMapping("sections/{sectionId}/groups/{ownerId}/members/save")
+    public Mono<ResponseEntity<ResponseWrapper<MemberDTO>>>saveBySectionIdAndOwnerId
+            (@PathVariable("sectionId") String sectionId, @PathVariable("ownerId") String ownerId, @Validated @RequestBody RequestWrapper<MemberDTO> dto) {
+        ResponseWrapper<MemberDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray())
+            dto.getList().forEach(item -> rt.add(saveBySectionIdAndOwnerId(sectionId, ownerId, item)));
+        else
+            rt.set(saveBySectionIdAndOwnerId(sectionId, ownerId, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * 保存Save 成员
+    * 
+    *
+    * @param sectionId sectionId
+    * @param ownerId ownerId
+    * @param dto dto
+    * @return ResponseEntity<MemberDTO>
+    */   
+    public MemberDTO saveBySectionIdAndOwnerId
+            (String sectionId, String ownerId, MemberDTO dto) {
         Member domain = memberDtoMapping.toDomain(dto);
         domain.setOwnerId(ownerId);
         memberService.save(domain);
@@ -834,6 +1164,7 @@ public abstract class AbstractMemberResource {
     * @return Mono<ResponseEntity<MemberDTO>>
     */
     @ApiOperation(value = "change_role", tags = {"成员" },  notes = "Member-change_role ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Member-change_role-all') or hasPermission('shared_space',#spaceId,this.memberDtoMapping.toDomain(#dto),'ibizplm-Member-change_role')")
     @PostMapping("shared_spaces/{spaceId}/article_pages/{ownerId}/members/{id}/change_role")
     public Mono<ResponseEntity<ResponseWrapper<MemberDTO>>>changeRoleBySpaceIdAndOwnerIdAndId
             (@PathVariable("spaceId") String spaceId, @PathVariable("ownerId") String ownerId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<MemberDTO> dto) {
@@ -1291,6 +1622,180 @@ public abstract class AbstractMemberResource {
     @PostMapping("groups/{ownerId}/members/fetch_user_group_admin")
     public Mono<ResponseEntity<List<MemberDefGroupDTO>>> fetchUserGroupAdminByOwnerId
             (@PathVariable("ownerId") String ownerId, @Validated @RequestBody MemberFilterDTO dto) {
+        dto.setOwnerIdEQ(ownerId);
+        MemberSearchContext context = memberFilterDtoMapping.toDomain(dto);
+        Page<Member> domains = memberService.fetchUserGroupAdmin(context) ;
+        List<MemberDefGroupDTO> list = memberDefGroupDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
+    * 获取Get 成员
+    * 
+    *
+    * @param sectionId sectionId
+    * @param ownerId ownerId
+    * @param id id
+    * @return Mono<ResponseEntity<MemberDTO>>
+    */
+    @ApiOperation(value = "获取Get", tags = {"成员" },  notes = "Member-Get ")
+    @PostAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Member-Get-all')  or hasPermission('section',#sectionId,this.memberDtoMapping.toDomain(returnObject.block().getBody()),'ibizplm-Member-Get')")
+    @GetMapping("sections/{sectionId}/groups/{ownerId}/members/{id}")
+    public Mono<ResponseEntity<MemberDTO>> getBySectionIdAndOwnerIdAndId
+            (@PathVariable("sectionId") String sectionId, @PathVariable("ownerId") String ownerId, @PathVariable("id") String id) {
+        Member rt = memberService.get(id);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(memberDtoMapping.toDto(rt)));
+    }
+
+    /**
+    * 删除Remove 成员
+    * 
+    *
+    * @param sectionId sectionId
+    * @param ownerId ownerId
+    * @param id id
+    * @return Mono<ResponseEntity<Boolean>>
+    */
+    @ApiOperation(value = "删除Remove", tags = {"成员" },  notes = "Member-Remove ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Member-Remove-all') or hasPermission('section',#sectionId,this.memberService.get(#id),'ibizplm-Member-Remove')")
+    @DeleteMapping("sections/{sectionId}/groups/{ownerId}/members/{id}")
+    public Mono<ResponseEntity<Boolean>> removeBySectionIdAndOwnerIdAndId
+            (@PathVariable("sectionId") String sectionId, @PathVariable("ownerId") String ownerId, @PathVariable("id") String id) {
+        Boolean rt = memberService.remove(id);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * 校验CheckKey 成员
+    * 
+    *
+    * @param sectionId sectionId
+    * @param ownerId ownerId
+    * @param dto dto
+    * @return Mono<ResponseEntity<Integer>>
+    */
+    @ApiOperation(value = "校验CheckKey", tags = {"成员" },  notes = "Member-CheckKey ")
+    @PostMapping("sections/{sectionId}/groups/{ownerId}/members/check_key")
+    public Mono<ResponseEntity<CheckKeyStatus>> checkKeyBySectionIdAndOwnerId
+            (@PathVariable("sectionId") String sectionId, @PathVariable("ownerId") String ownerId, @Validated @RequestBody MemberDTO dto) {
+        Member domain = memberDtoMapping.toDomain(dto);
+        domain.setOwnerId(ownerId);
+        CheckKeyStatus rt = memberService.checkKey(domain);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * 草稿GetDraft 成员
+    * 
+    *
+    * @param sectionId sectionId
+    * @param ownerId ownerId
+    * @param dto dto
+    * @return Mono<ResponseEntity<MemberDTO>>
+    */
+    @ApiOperation(value = "草稿GetDraft", tags = {"成员" },  notes = "Member-GetDraft ")
+    @GetMapping("sections/{sectionId}/groups/{ownerId}/members/get_draft")
+    public Mono<ResponseEntity<MemberDTO>> getDraftBySectionIdAndOwnerId
+            (@PathVariable("sectionId") String sectionId, @PathVariable("ownerId") String ownerId, @SpringQueryMap MemberDTO dto) {
+        Member domain = memberDtoMapping.toDomain(dto);
+        domain.setOwnerId(ownerId);
+        Member rt = memberService.getDraft(domain);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(memberDtoMapping.toDto(rt)));
+    }
+
+    /**
+    * 查询fetch_default 成员
+    * 
+    *
+    * @param sectionId sectionId
+    * @param ownerId ownerId
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<MemberDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_default", tags = {"成员" },  notes = "Member-fetch_default ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Member-fetch_default-all') or hasPermission('section',#sectionId,#dto,'ibizplm-Member-fetch_default')")
+    @PostMapping("sections/{sectionId}/groups/{ownerId}/members/fetch_default")
+    public Mono<ResponseEntity<List<MemberDTO>>> fetchDefaultBySectionIdAndOwnerId
+            (@PathVariable("sectionId") String sectionId, @PathVariable("ownerId") String ownerId, @Validated @RequestBody MemberFilterDTO dto) {
+        dto.setOwnerIdEQ(ownerId);
+        MemberSearchContext context = memberFilterDtoMapping.toDomain(dto);
+        Page<Member> domains = memberService.fetchDefault(context) ;
+        List<MemberDTO> list = memberDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
+    * 查询fetch_no_attention 成员
+    * 
+    *
+    * @param sectionId sectionId
+    * @param ownerId ownerId
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<MemberDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_no_attention", tags = {"成员" },  notes = "Member-fetch_no_attention ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Member-fetch_no_attention-all') or hasPermission('section',#sectionId,#dto,'ibizplm-Member-fetch_no_attention')")
+    @PostMapping("sections/{sectionId}/groups/{ownerId}/members/fetch_no_attention")
+    public Mono<ResponseEntity<List<MemberDTO>>> fetchNoAttentionBySectionIdAndOwnerId
+            (@PathVariable("sectionId") String sectionId, @PathVariable("ownerId") String ownerId, @Validated @RequestBody MemberFilterDTO dto) {
+        dto.setOwnerIdEQ(ownerId);
+        MemberSearchContext context = memberFilterDtoMapping.toDomain(dto);
+        Page<Member> domains = memberService.fetchNoAttention(context) ;
+        List<MemberDTO> list = memberDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
+    * 查询fetch_shared_page_member 成员
+    * 
+    *
+    * @param sectionId sectionId
+    * @param ownerId ownerId
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<MemberDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_shared_page_member", tags = {"成员" },  notes = "Member-fetch_shared_page_member ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Member-fetch_shared_page_member-all') or hasPermission('section',#sectionId,#dto,'ibizplm-Member-fetch_shared_page_member')")
+    @PostMapping("sections/{sectionId}/groups/{ownerId}/members/fetch_shared_page_member")
+    public Mono<ResponseEntity<List<MemberDTO>>> fetchSharedPageMemberBySectionIdAndOwnerId
+            (@PathVariable("sectionId") String sectionId, @PathVariable("ownerId") String ownerId, @Validated @RequestBody MemberFilterDTO dto) {
+        dto.setOwnerIdEQ(ownerId);
+        MemberSearchContext context = memberFilterDtoMapping.toDomain(dto);
+        Page<Member> domains = memberService.fetchSharedPageMember(context) ;
+        List<MemberDTO> list = memberDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
+    * 查询fetch_user_group_admin 成员
+    * 
+    *
+    * @param sectionId sectionId
+    * @param ownerId ownerId
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<MemberDefGroupDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_user_group_admin", tags = {"成员" },  notes = "Member-fetch_user_group_admin ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Member-fetch_user_group_admin-all') or hasPermission('section',#sectionId,#dto,'ibizplm-Member-fetch_user_group_admin')")
+    @PostMapping("sections/{sectionId}/groups/{ownerId}/members/fetch_user_group_admin")
+    public Mono<ResponseEntity<List<MemberDefGroupDTO>>> fetchUserGroupAdminBySectionIdAndOwnerId
+            (@PathVariable("sectionId") String sectionId, @PathVariable("ownerId") String ownerId, @Validated @RequestBody MemberFilterDTO dto) {
         dto.setOwnerIdEQ(ownerId);
         MemberSearchContext context = memberFilterDtoMapping.toDomain(dto);
         Page<Member> domains = memberService.fetchUserGroupAdmin(context) ;

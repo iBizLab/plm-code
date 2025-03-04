@@ -136,6 +136,7 @@ public abstract class AbstractCategoryResource {
     * @return Mono<ResponseEntity<CategoryDTO>>
     */
     @ApiOperation(value = "delete_child_category", tags = {"类别" },  notes = "Category-delete_child_category ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Category-delete_child_category-all') or hasPermission(this.categoryDtoMapping.toDomain(#dto),'ibizplm-Category-delete_child_category')")
     @PostMapping("categories/{id}/delete_child_category")
     public Mono<ResponseEntity<ResponseWrapper<CategoryDTO>>>deleteChildCategoryById
             (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<CategoryDTO> dto) {
@@ -384,6 +385,28 @@ public abstract class AbstractCategoryResource {
             (@Validated @RequestBody CategoryFilterDTO dto) {
         CategorySearchContext context = categoryFilterDtoMapping.toDomain(dto);
         Page<Category> domains = categoryService.fetchDefault(context) ;
+        List<CategoryDTO> list = categoryDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
+    * 查询fetch_my_category 类别
+    * 
+    *
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<CategoryDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_my_category", tags = {"类别" },  notes = "Category-fetch_my_category ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Category-fetch_my_category-all') or hasPermission(#dto,'ibizplm-Category-fetch_my_category')")
+    @PostMapping("categories/fetch_my_category")
+    public Mono<ResponseEntity<List<CategoryDTO>>> fetchMyCategory
+            (@Validated @RequestBody CategoryFilterDTO dto) {
+        CategorySearchContext context = categoryFilterDtoMapping.toDomain(dto);
+        Page<Category> domains = categoryService.fetchMyCategory(context) ;
         List<CategoryDTO> list = categoryDtoMapping.toDto(domains.getContent());
             return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))

@@ -1,7 +1,7 @@
 export default {
   openMode: 'POPUPMODAL',
   deviewCodeName: 're_case_by_release_pickup_view',
-  deviewId: '2C407B0C-3BA8-4B4C-B852-CCD9FF974281',
+  deviewId: '0e203e36cb4529b3643b088bce9dfabc',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.TEST_CASE',
@@ -737,7 +737,7 @@ export default {
         controlParam: {
           id: 'treeexpbar',
         },
-        modelId: '8a0fd6693a8a24f94cc0b214a720b752_treeexpbar',
+        modelId: '5397b6ad36a4786f7368b9646bc82282_treeexpbar',
         modelType: 'PSEXPBAR',
         name: 'treeexpbar',
         id: 're_case_by_release_pickup_view_treeexpbar',
@@ -843,7 +843,7 @@ export default {
   viewType: 'DEMPICKUPVIEW2',
   enableDP: true,
   showCaptionBar: false,
-  modelId: '8a0fd6693a8a24f94cc0b214a720b752',
+  modelId: '5397b6ad36a4786f7368b9646bc82282',
   modelType: 'PSAPPDEVIEW',
   name: 'test_casere_case_by_release_pickup_view',
   id: 'plmweb.test_case_re_case_by_release_pickup_view',

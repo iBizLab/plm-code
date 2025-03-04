@@ -112,6 +112,22 @@ export default {
       id: 'scope_id',
     },
     {
+      codeName: 'today_post_count',
+      logicName: '当日贴数',
+      stdDataType: 25,
+      stringLength: 200,
+      name: 'TODAY_POST_COUNT',
+      id: 'today_post_count',
+    },
+    {
+      codeName: 'today_read_count',
+      logicName: '当日人数',
+      stdDataType: 25,
+      stringLength: 200,
+      name: 'TODAY_READ_COUNT',
+      id: 'today_read_count',
+    },
+    {
       codeName: 'id',
       lnlanguageRes: {
         lanResTag: 'DEF.LNAME.ID',
@@ -305,6 +321,26 @@ export default {
           type: 'SIMPLE',
           allowEmpty: true,
           id: 'scope_id',
+        },
+        {
+          codeName: 'today_post_count',
+          logicName: '当日贴数',
+          appDEFieldId: 'today_post_count',
+          sourceType: 'DEFIELD',
+          stdDataType: 25,
+          type: 'SIMPLE',
+          allowEmpty: true,
+          id: 'today_post_count',
+        },
+        {
+          codeName: 'today_read_count',
+          logicName: '当日人数',
+          appDEFieldId: 'today_read_count',
+          sourceType: 'DEFIELD',
+          stdDataType: 25,
+          type: 'SIMPLE',
+          allowEmpty: true,
+          id: 'today_read_count',
         },
         {
           codeName: 'create_man',
@@ -1230,6 +1266,28 @@ export default {
       id: 'fetch_normal',
     },
     {
+      codeName: 'fetch_oss_main',
+      methodType: 'FETCH',
+      appDEMethodInput: {
+        appDEMethodDTOId: 'discuss_topic_filter_dto',
+        type: 'DTO',
+        id: '输入对象',
+      },
+      appDEMethodReturn: {
+        appDEMethodDTOId: 'discuss_topic_dto',
+        type: 'PAGE',
+        id: '返回对象',
+      },
+      requestMethod: 'POST',
+      requestParamType: 'ENTITY',
+      requestPath: '/fetch_oss_main',
+      actionType: 'REMOTE',
+      dataSetName: 'oss_main',
+      dataSetTag: 'oss_main',
+      dataSetType: 'REMOTE',
+      id: 'fetch_oss_main',
+    },
+    {
       codeName: 'fetch_quick',
       methodType: 'FETCH',
       appDEMethodInput: {
@@ -1791,6 +1849,75 @@ export default {
       ],
       name: 'normal',
       id: 'fetchtempnormal',
+    },
+    {
+      codeName: 'FetchTempOss_main',
+      methodType: 'FETCHTEMP',
+      appDEMethodInput: {
+        appDEMethodDTOId: 'discuss_topic_filter_dto',
+        type: 'DTO',
+        name: 'Oss_mainInput',
+        id: 'oss_maininput',
+      },
+      appDEMethodReturn: {
+        appDEMethodDTOId: 'discuss_topic_dto',
+        type: 'PAGE',
+        name: 'Oss_mainResult',
+        id: 'oss_mainresult',
+      },
+      tempDataMode: 2,
+      actionType: 'REMOTE',
+      dataSetTag: 'oss_main',
+      dataSetType: 'DATAQUERY',
+      dedqgroupConditions: [
+        {
+          condOp: 'AND',
+          dedqconditions: [
+            {
+              condOp: 'EQ',
+              condValue: '0',
+              fieldName: 'IS_DELETED',
+              condType: 'SINGLE',
+              name: '(IS_DELETED) 等于(=) 0',
+              id: '(is_deleted) 等于(=) 0',
+            },
+            {
+              condOp: 'EQ',
+              condValue: '0',
+              fieldName: 'IS_ARCHIVED',
+              condType: 'SINGLE',
+              name: '(IS_ARCHIVED) 等于(=) 0',
+              id: '(is_archived) 等于(=) 0',
+            },
+            {
+              condOp: 'OR',
+              dedqconditions: [
+                {
+                  condOp: 'EQ',
+                  condValue: 'public',
+                  fieldName: 'VISIBILITY',
+                  condType: 'SINGLE',
+                  name: '(VISIBILITY) 等于(=) public',
+                  id: '(visibility) 等于(=) public',
+                },
+                {
+                  condition:
+                    'EXISTS(SELECT * FROM `MEMBER` t11 \n WHERE \n t1.`ID` = t11.`OWNER_ID`  AND  ( t11.`USER_ID` = #{ctx.sessioncontext.srfpersonid} ) )',
+                  condType: 'CUSTOM',
+                  id: 'members',
+                },
+              ],
+              condType: 'GROUP',
+              name: 'OR',
+              id: 'or',
+            },
+          ],
+          condType: 'GROUP',
+          id: '连接条件',
+        },
+      ],
+      name: 'oss_main',
+      id: 'fetchtemposs_main',
     },
     {
       codeName: 'FetchTempQuick_user',
@@ -2584,14 +2711,6 @@ export default {
           id: 'begin',
         },
         {
-          codeName: 'END1',
-          leftPos: 200,
-          logicNodeType: 'END',
-          topPos: 571,
-          name: '结束',
-          id: 'end1',
-        },
-        {
           code: "const rows = uiLogic.grid.state.rows;\r\nif (rows && rows.length > 0) {\r\n\trows.forEach(row => {\r\n\t\tconst titleColumn = row.uiActionGroupStates.name;\r\n\t\tconst is_favorite = row.data.is_favorite;\r\n\t\tif (titleColumn && Object.values(titleColumn).length > 0) {\r\n\t\t\tObject.values(titleColumn).forEach(action => {\r\n\t\t\t\t// 星标\r\n\t\t\t\tif (action.uiActionId === 'add_favorite@discuss_topic') {\r\n\t\t\t\t\taction.visible = is_favorite == 0;\r\n\t\t\t\t} else if (action.uiActionId === 'cancel_favorite@discuss_topic') {\r\n\t\t\t\t\t// 取消星标\r\n\t\t\t\t\taction.visible = is_favorite != 0;\r\n\t\t\t\t}\r\n\t\t\t})\r\n\t\t}\r\n\t})\r\n}\r\n",
           codeName: 'RAWJSCODE1',
           leftPos: 160,
@@ -2606,6 +2725,14 @@ export default {
           topPos: 420,
           name: '依据is_favorite显示星标按钮',
           id: 'rawjscode1',
+        },
+        {
+          codeName: 'END1',
+          leftPos: 200,
+          logicNodeType: 'END',
+          topPos: 571,
+          name: '结束',
+          id: 'end1',
         },
       ],
       deuilogicParams: [
@@ -2650,14 +2777,6 @@ export default {
           id: 'begin',
         },
         {
-          codeName: 'END1',
-          leftPos: 680,
-          logicNodeType: 'END',
-          topPos: 200,
-          name: '结束',
-          id: 'end1',
-        },
-        {
           code: "ibiz.mc.command.update.send({ srfdecodename: 'discuss_topic', srfkey: params.owner_id})",
           codeName: 'RAWJSCODE1',
           leftPos: 383,
@@ -2672,6 +2791,14 @@ export default {
           topPos: 208,
           name: '通知实体刷新界面',
           id: 'rawjscode1',
+        },
+        {
+          codeName: 'END1',
+          leftPos: 680,
+          logicNodeType: 'END',
+          topPos: 200,
+          name: '结束',
+          id: 'end1',
         },
       ],
       deuilogicParams: [
@@ -2735,17 +2862,17 @@ export default {
       ],
       deuilogicParams: [
         {
+          codeName: 'list',
+          entityListParam: true,
+          name: '临时数据列表',
+          id: 'list',
+        },
+        {
           codeName: 'Default',
           default: true,
           entityParam: true,
           name: '传入变量',
           id: 'default',
-        },
-        {
-          codeName: 'list',
-          entityListParam: true,
-          name: '临时数据列表',
-          id: 'list',
         },
       ],
       startDEUILogicNodeId: 'begin',

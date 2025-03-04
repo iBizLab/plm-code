@@ -506,7 +506,7 @@ export default {
                     cssClass: 'fa fa-edit',
                     glyph: 'xf044@FontAwesome',
                   },
-                  id: 'uaf180f6',
+                  id: 'u75cf0ed',
                 },
                 {
                   actionLevel: 100,
@@ -521,7 +521,7 @@ export default {
                     cssClass: 'fa fa-refresh',
                     glyph: 'xf021@FontAwesome',
                   },
-                  id: 'u327de75',
+                  id: 'udd14231',
                 },
                 {
                   actionLevel: 100,
@@ -537,7 +537,7 @@ export default {
                     cssClass: 'fa fa-exchange',
                     glyph: 'xf0ec@FontAwesome',
                   },
-                  id: 'uef49e11',
+                  id: 'u55ff28f',
                 },
               ],
               appDataEntityId: 'plmweb.version',
@@ -669,7 +669,7 @@ export default {
         controlParam: {
           id: 'grid',
         },
-        modelId: '5234259897d1a73b79a9346e5da05fe9',
+        modelId: 'ba8b8d5f7a3eb28848908098719e606e',
         modelType: 'PSDEGRID',
         name: 'grid',
         id: 'plmweb.version.main',
@@ -707,7 +707,7 @@ export default {
         controlParam: {
           id: 'searchform',
         },
-        modelId: 'dd05b070cc978d7027207317ed3e958e',
+        modelId: '3a4027eac15afc19b92d676a3b469f5e',
         modelType: 'PSDEFORM_SEARCHFORM',
         name: 'searchform',
         id: 'plmweb.version.default',
@@ -751,7 +751,7 @@ export default {
         controlParam: {
           id: 'toolbar',
         },
-        modelId: '5ACAD5F0-9ED6-46D4-8A55-5964F08AE447',
+        modelId: '3ef1241a90328ab225a727a42d720a41',
         modelType: 'PSDETOOLBAR',
         name: 'toolbar',
         id: 'work_item_grid_view_toolbar',
@@ -783,7 +783,7 @@ export default {
     logicName: '版本表格视图布局',
     appDataEntityId: 'plmweb.version',
     controlParam: {},
-    modelId: '967CAF88-5F27-4A3F-B92A-DF5B77616B0D',
+    modelId: 'c56bc15a3b5ebe23ac08b9b8c7d964d9',
     modelType: 'PSSYSVIEWLAYOUTPANEL',
     name: 'layoutpanel',
     id: 'usr0415686475',

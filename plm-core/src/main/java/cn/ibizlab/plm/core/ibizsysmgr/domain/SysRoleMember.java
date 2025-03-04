@@ -109,6 +109,15 @@ public class SysRoleMember extends EntityClient implements Serializable
     private String roleId;
 
     /**
+     * 成员姓名
+     */
+    @DEField(name = "member_name")
+    @JSONField(name = "member_name")
+    @JsonProperty("member_name")
+    @ApiModelProperty(value = "member_name", notes = "成员姓名")
+    private String memberName;
+
+    /**
      * 成员分组名称
      */
     @DEField(name = "member_group_name")
@@ -150,6 +159,15 @@ public class SysRoleMember extends EntityClient implements Serializable
     public SysRoleMember setRoleId(String roleId) {
         this.roleId = roleId;
         this.modify("role_id", roleId);
+        return this;
+    }
+
+    /**
+    * 设置 [成员姓名]
+    */
+    public SysRoleMember setMemberName(String memberName) {
+        this.memberName = memberName;
+        this.modify("member_name", memberName);
         return this;
     }
 

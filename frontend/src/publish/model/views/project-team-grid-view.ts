@@ -3,7 +3,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'team_grid_view',
-  deviewId: '397fe10368d59899804959389b2a70e8',
+  deviewId: '1796ffa67f6f97aec33de4f2b042537d',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'PAGE.CAPTION.PROJECT.GRID_VIEW_TEAM',
@@ -73,17 +73,17 @@ export default {
   ],
   appViewRefs: [
     {
+      realTitle: '项目主视图',
+      refAppViewId: 'plmweb.project_scrum_main_view',
+      name: 'EDITDATA',
+      id: 'editdata',
+    },
+    {
       realOpenMode: 'POPUPMODAL',
       realTitle: '新建项目',
       refAppViewId: 'plmweb.project_create_wizard_view',
       name: 'NEWDATA',
       id: 'newdata',
-    },
-    {
-      realTitle: '项目主视图',
-      refAppViewId: 'plmweb.project_scrum_main_view',
-      name: 'EDITDATA',
-      id: 'editdata',
     },
   ],
   controls: [
@@ -763,7 +763,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: 'd4efef00ceada053a279cf0a44f24310',
+  modelId: '3c6631d3a4f8c3c7933596d44899d810',
   modelType: 'PSAPPDEVIEW',
   name: 'projectteam_grid_view',
   id: 'plmweb.project_team_grid_view',

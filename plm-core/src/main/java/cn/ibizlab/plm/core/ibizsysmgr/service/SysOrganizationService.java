@@ -170,6 +170,22 @@ public interface SysOrganizationService{
     List<SysOrganization> listDefault(SysOrganizationSearchContext context);
 
     /**
+    * fetchNav
+    * 
+    * @param context
+    * @return
+    */
+    Page<SysOrganization> fetchNav(SysOrganizationSearchContext context);
+
+    /**
+    * listNav
+    * 
+    * @param context
+    * @return
+    */
+    List<SysOrganization> listNav(SysOrganizationSearchContext context);
+
+    /**
     * findByParentId
     * @param parentIds
     * @return

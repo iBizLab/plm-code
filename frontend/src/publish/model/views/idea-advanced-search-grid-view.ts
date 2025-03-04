@@ -85,6 +85,16 @@ export default {
   ],
   appViewRefs: [
     {
+      realOpenMode: 'POPUPMODAL',
+      realTitle: '需求编辑视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.IDEA.EDITVIEW',
+      },
+      refAppViewId: 'plmweb.idea_edit_view',
+      name: 'NEWDATA',
+      id: 'newdata',
+    },
+    {
       openMode: 'INDEXVIEWTAB_POPUPMODAL',
       navigateContexts: [
         {
@@ -102,16 +112,6 @@ export default {
       refAppViewId: 'plmweb.idea_main_view',
       name: 'EDITDATA',
       id: 'editdata',
-    },
-    {
-      realOpenMode: 'POPUPMODAL',
-      realTitle: '需求编辑视图',
-      realTitleLanguageRes: {
-        lanResTag: 'PAGE.TITLE.IDEA.EDITVIEW',
-      },
-      refAppViewId: 'plmweb.idea_edit_view',
-      name: 'NEWDATA',
-      id: 'newdata',
     },
   ],
   controls: [
@@ -710,7 +710,7 @@ export default {
         },
         id: 'tabsearchform',
       },
-      modelId: 'CD8A473D-A2C7-406C-A402-DD437AA72A6C',
+      modelId: 'f9a6b776a05979058a8b6a3193435c70',
       modelType: 'PSDEFORM_SEARCHFORM',
       name: 'tabsearchform',
       id: 'plmweb.idea.advanced_search_form',

@@ -277,7 +277,7 @@ export default {
         dedrtabPages: [
           {
             caption: '工作项属性',
-            appViewId: 'plmweb.psde_field_grid_view',
+            appViewId: 'plmweb.psde_field_global_work_item_grid_view',
             navigateContexts: [
               {
                 key: 'PSDATAENTITY',
@@ -340,7 +340,7 @@ export default {
     logicName: 'global_setting_view分页导航视图布局面板',
     appDataEntityId: 'plmweb.work_item',
     controlParam: {},
-    modelId: '30CC0849-02A8-4DA8-BA8B-0116442FA95E',
+    modelId: 'ece676899341fe697377ec967ef19d57',
     modelType: 'PSSYSVIEWLAYOUTPANEL',
     name: 'layoutpanel',
     id: 'usr0530370945',

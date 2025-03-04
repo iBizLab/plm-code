@@ -2,7 +2,7 @@ export default {
   funcViewMode: 'PICKUPVIEW',
   openMode: 'POPUPMODAL',
   deviewCodeName: 'pick_up_view',
-  deviewId: 'ab7a7da7488a4d7ec0d18dc0efdc5024',
+  deviewId: '4fbf1376d3e76930c2c99d57fb7b6263',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.SPRINT',
@@ -68,7 +68,7 @@ export default {
   viewType: 'DEPICKUPVIEW',
   enableDP: true,
   showCaptionBar: false,
-  modelId: 'cb3e5f46fa41586ef22d036981511add',
+  modelId: '02f8b5fc0ac977528533aa835db10f54',
   modelType: 'PSAPPDEVIEW',
   name: 'sprintPickupView',
   id: 'plmweb.sprint_pick_up_view',

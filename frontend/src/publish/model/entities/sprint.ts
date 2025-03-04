@@ -1077,14 +1077,14 @@ export default {
         id: '输入对象',
       },
       appDEMethodReturn: {
-        type: 'VOID',
+        appDEMethodDTOId: 'sprint_dto',
+        type: 'DTO',
         id: '返回对象',
       },
       requestMethod: 'POST',
       requestParamType: 'ENTITY',
       requestPath: '/delete_categories',
-      needResourceKey: true,
-      actionMode: 'CUSTOM',
+      actionMode: 'GETDRAFT',
       actionType: 'REMOTE',
       dataSetType: 'REMOTE',
       id: 'delete_categories',
@@ -2313,10 +2313,10 @@ export default {
           id: 'node_param',
         },
         {
-          codeName: 'treeexpbar_tree',
-          ctrlParam: true,
-          name: '树部件',
-          id: 'treeexpbar_tree',
+          codeName: 'defaultValue',
+          entityParam: true,
+          name: '默认值对象',
+          id: 'defaultvalue',
         },
         {
           codeName: 'Default',
@@ -2326,10 +2326,10 @@ export default {
           id: 'default',
         },
         {
-          codeName: 'defaultValue',
-          entityParam: true,
-          name: '默认值对象',
-          id: 'defaultvalue',
+          codeName: 'treeexpbar_tree',
+          ctrlParam: true,
+          name: '树部件',
+          id: 'treeexpbar_tree',
         },
       ],
       startDEUILogicNodeId: 'begin',
@@ -2441,16 +2441,16 @@ export default {
           id: 'default',
         },
         {
-          codeName: 'defaultValue',
-          entityParam: true,
-          name: '默认值',
-          id: 'defaultvalue',
-        },
-        {
           codeName: 'treeexpbar_tree',
           ctrlParam: true,
           name: '树部件',
           id: 'treeexpbar_tree',
+        },
+        {
+          codeName: 'defaultValue',
+          entityParam: true,
+          name: '默认值',
+          id: 'defaultvalue',
         },
         {
           codeName: 'context',
@@ -2584,22 +2584,6 @@ export default {
           id: 'end1',
         },
         {
-          code: 'if (uiLogic.ctrl) {\r\nuiLogic.ctrl.refresh();\r\n}',
-          codeName: 'RAWJSCODE2',
-          leftPos: 800,
-          logicNodeType: 'RAWJSCODE',
-          deuilogicLinks: [
-            {
-              dstDEUILogicNodeId: 'end1',
-              srcDEUILogicNodeId: 'rawjscode2',
-              id: '连接名称',
-            },
-          ],
-          topPos: 208,
-          name: '门户刷新',
-          id: 'rawjscode2',
-        },
-        {
           code: "const report_id = uiLogic.ctrl.model.id;\r\nconst prefix = \"uxbireport__\";\r\nconst remainingId = report_id.replace(prefix, '');\r\nconst newRemainingId = remainingId.replace(/__(?!__)/, '.');\r\n\r\nconst result = await ibiz.util.biReport.openDesignPage(context, params, { mode: 'DATA', reportId: newRemainingId });\r\nreturn result;\r\n",
           codeName: 'RAWJSCODE1',
           leftPos: 581,
@@ -2614,6 +2598,22 @@ export default {
           topPos: 208,
           name: '跳转设计页',
           id: 'rawjscode1',
+        },
+        {
+          code: 'if (uiLogic.ctrl) {\r\nuiLogic.ctrl.refresh();\r\n}',
+          codeName: 'RAWJSCODE2',
+          leftPos: 800,
+          logicNodeType: 'RAWJSCODE',
+          deuilogicLinks: [
+            {
+              dstDEUILogicNodeId: 'end1',
+              srcDEUILogicNodeId: 'rawjscode2',
+              id: '连接名称',
+            },
+          ],
+          topPos: 208,
+          name: '门户刷新',
+          id: 'rawjscode2',
         },
       ],
       deuilogicParams: [
@@ -2887,19 +2887,6 @@ export default {
       ],
       deuilogicParams: [
         {
-          codeName: 'node_data',
-          entityParam: true,
-          name: '节点数据',
-          id: 'node_data',
-        },
-        {
-          codeName: 'Default',
-          default: true,
-          entityParam: true,
-          name: '传入变量',
-          id: 'default',
-        },
-        {
           codeName: 'treeexpbar_tree',
           ctrlParam: true,
           name: '树部件',
@@ -2910,6 +2897,19 @@ export default {
           activeViewParam: true,
           name: '当前视图',
           id: 'view',
+        },
+        {
+          codeName: 'Default',
+          default: true,
+          entityParam: true,
+          name: '传入变量',
+          id: 'default',
+        },
+        {
+          codeName: 'node_data',
+          entityParam: true,
+          name: '节点数据',
+          id: 'node_data',
         },
         {
           codeName: 'node_param',

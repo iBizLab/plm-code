@@ -4,7 +4,7 @@ export default {
   xdataControlName: 'gantt',
   loadDefault: true,
   deviewCodeName: 'project_set_resource_gantt_view',
-  deviewId: 'F4C80A42-B53C-4067-BECB-F2B38ECF9362',
+  deviewId: 'c93be9cd0a34ad5a4531d0bd1b980624',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.WORK_ITEM',
@@ -157,7 +157,7 @@ export default {
             controlParam: {
               id: 'root_cm',
             },
-            modelId: '7F9B25BB-27B2-4C84-9897-D62034E09921',
+            modelId: '70f50a404f4f3df1a399043fd3bea6cd',
             modelType: 'PSDETOOLBAR',
             name: 'root_cm',
             id: 'project_set_resource_gantt_view_root_cm',
@@ -484,7 +484,7 @@ export default {
           controlParam: {
             id: 'root_cm',
           },
-          modelId: '7F9B25BB-27B2-4C84-9897-D62034E09921',
+          modelId: '70f50a404f4f3df1a399043fd3bea6cd',
           modelType: 'PSDETOOLBAR',
           name: 'root_cm',
           id: 'project_set_resource_gantt_view_root_cm',
@@ -502,7 +502,7 @@ export default {
         id: 'gantt',
       },
       sysPFPluginId: 'resource_gantt',
-      modelId: 'CA53B6A6-2239-4C48-A4F6-89F26B53E027',
+      modelId: '2991f44bd48c8d6079642148e2ed38de',
       modelType: 'PSDEGANTT',
       name: 'gantt',
       id: 'plmweb.work_item.project_set_resource_gantt',
@@ -621,7 +621,7 @@ export default {
       controlParam: {
         id: 'searchform',
       },
-      modelId: 'EAF421E8-DFE7-4AAB-97A2-EFC9DE03957C',
+      modelId: 'e4424dc11efbb19547a3b91e9d48d7d4',
       modelType: 'PSDEFORM_SEARCHFORM',
       name: 'searchform',
       id: 'plmweb.work_item.resource_search_form',
@@ -1633,7 +1633,7 @@ export default {
   viewType: 'DEGANTTVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '3fb7281ed1b73cc26123d6a31c1c115b',
+  modelId: 'f7a4c9b7ffd4e73c8209093549ee6998',
   modelType: 'PSAPPDEVIEW',
   name: 'work_itemproject_set_resource_gantt_view',
   id: 'plmweb.work_item_project_set_resource_gantt_view',

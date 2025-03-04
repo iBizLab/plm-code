@@ -4,7 +4,7 @@ export default {
   loadDefault: true,
   openMode: 'POPUPMODAL',
   deviewCodeName: 'shared_setting_view',
-  deviewId: '45B3CDE8-C63C-4FFB-991C-B8B5FFCC0320',
+  deviewId: 'be78d213afec39a952d256447f12ea82',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.PAGE',
@@ -692,7 +692,7 @@ export default {
       sysCss: {
         cssName: 'shared_setting_style',
       },
-      modelId: 'DFC7EEE7-07B6-453D-A74F-D9D956F14D03',
+      modelId: '6f262e8026899123ab237bf397c00368',
       modelType: 'PSDEFORM_EDITFORM',
       name: 'form',
       id: 'plmweb.article_page.shared_setting_form',
@@ -737,7 +737,7 @@ export default {
   width: 700,
   enableDP: true,
   showCaptionBar: true,
-  modelId: 'a01f49c53f0cb599ee56ddc5b910888d',
+  modelId: '3b3d23e4aed110c7f081f86c541fe5b6',
   modelType: 'PSAPPDEVIEW',
   name: 'article_pageshared_setting_view',
   id: 'plmweb.article_page_shared_setting_view',

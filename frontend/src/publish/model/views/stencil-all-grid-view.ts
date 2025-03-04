@@ -68,14 +68,6 @@ export default {
   ],
   appViewRefs: [
     {
-      openMode: 'INDEXVIEWTAB_POPUPMODAL',
-      realOpenMode: 'INDEXVIEWTAB_POPUPMODAL',
-      realTitle: '页面模板编辑视图',
-      refAppViewId: 'plmweb.stencil_model_edit_view',
-      name: 'NEWDATA',
-      id: 'newdata',
-    },
-    {
       openMode: 'POPUPMODAL',
       realOpenMode: 'POPUPMODAL',
       realTitle: '页面模板编辑视图',
@@ -86,6 +78,14 @@ export default {
       name: 'EDITDATA',
       id: 'editdata',
     },
+    {
+      openMode: 'INDEXVIEWTAB_POPUPMODAL',
+      realOpenMode: 'INDEXVIEWTAB_POPUPMODAL',
+      realTitle: '页面模板编辑视图',
+      refAppViewId: 'plmweb.stencil_model_edit_view',
+      name: 'NEWDATA',
+      id: 'newdata',
+    },
   ],
   controls: [
     {
@@ -93,7 +93,7 @@ export default {
         {
           actionLevel: 100,
           noPrivDisplayMode: 2,
-          uiactionId: 'new_common',
+          uiactionId: 'gridview_newaction',
           valid: true,
           capLanguageRes: {
             lanResTag: 'TBB.TEXT.*.NEW',

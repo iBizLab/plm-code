@@ -3,7 +3,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'all_grid_view',
-  deviewId: '1990d0fd8e5d1cb901e5b79fab5b0c20',
+  deviewId: '2ec529b9121c57d960782f172cd39ed2',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.SPRINT',
@@ -271,17 +271,17 @@ export default {
     ],
     appViewRefs: [
       {
-        realTitle: '迭代实体分页导航视图',
-        refAppViewId: 'plmweb.sprint_main_view',
-        name: 'EDITDATA',
-        id: 'editdata',
-      },
-      {
         realOpenMode: 'POPUPMODAL',
         realTitle: '迭代快速建立视图',
         refAppViewId: 'plmweb.sprint_quick_create_view',
         name: 'NEWDATA',
         id: 'newdata',
+      },
+      {
+        realTitle: '迭代实体分页导航视图',
+        refAppViewId: 'plmweb.sprint_main_view',
+        name: 'EDITDATA',
+        id: 'editdata',
       },
     ],
     controls: [
@@ -451,6 +451,7 @@ export default {
             appCodeListId: 'plmweb.prodmgmt__category',
             appDEFieldId: 'categories',
             valueType: 'SIMPLE',
+            enableRowEdit: true,
             aggMode: 'NONE',
             align: 'LEFT',
             caption: '类别',
@@ -734,6 +735,26 @@ export default {
           },
         ],
         degridEditItems: [
+          {
+            caption: '类别',
+            codeName: 'categories',
+            enableCond: 3,
+            appDEFieldId: 'categories',
+            editor: {
+              appCodeListId: 'plmweb.prodmgmt__category',
+              editorParams: {
+                readonly: 'true',
+              },
+              editorType: 'MDROPDOWNLIST',
+              valueType: 'SIMPLE',
+              editable: true,
+              readOnly: true,
+              id: 'categories',
+            },
+            allowEmpty: true,
+            needCodeListConfig: true,
+            id: 'categories',
+          },
           {
             caption: '负责人',
             codeName: 'assignee_name',
@@ -1478,7 +1499,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: 'bda4b06ff279923a594c9930f7c57bcd',
+  modelId: '8b1f76cd7c1efe342b236dd32bdf3e88',
   modelType: 'PSAPPDEVIEW',
   name: 'sprintall_grid_view',
   id: 'plmweb.sprint_all_grid_view',

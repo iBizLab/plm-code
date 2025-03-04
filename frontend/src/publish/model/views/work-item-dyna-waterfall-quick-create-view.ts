@@ -7,7 +7,7 @@ export default {
   loadDefault: true,
   openMode: 'POPUPMODAL',
   deviewCodeName: 'dyna_waterfall_quick_create_view',
-  deviewId: '771177F2-D13F-4D33-8C5D-3810509CE397',
+  deviewId: 'd8f07a1fb43a49efa4443b63100e131d',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.WORK_ITEM',
@@ -1181,25 +1181,6 @@ export default {
                           appDEACModeId: 'default',
                           appDEDataSetId: 'fetch_quick',
                           appDataEntityId: 'plmweb.project',
-                          uiactionGroup: {
-                            uiactionGroupDetails: [
-                              {
-                                actionLevel: 100,
-                                afterItemType: 'NONE',
-                                beforeItemType: 'NONE',
-                                caption: '项目配置',
-                                detailType: 'DEUIACTION',
-                                uiactionId: 'open_global_setting@project',
-                                showCaption: true,
-                                showIcon: true,
-                                id: 'u3fee786',
-                              },
-                            ],
-                            appDataEntityId: 'plmweb.project',
-                            uniqueTag: 'project__Usr1221520658',
-                            name: '自填模式行为组',
-                            id: 'usr1221520658',
-                          },
                           enableAC: true,
                           forceSelection: true,
                           showTrigger: true,
@@ -2614,24 +2595,6 @@ export default {
         },
         deformItemUpdates: [
           {
-            codeName: 'set_type_bug',
-            appDEMethodId: 'set_type_bug',
-            defiupdateDetails: [
-              {
-                id: 'project_type',
-              },
-              {
-                id: 'work_item_type_name',
-              },
-              {
-                id: 'work_item_type_id',
-              },
-            ],
-            showBusyIndicator: true,
-            name: '设置缺陷类型',
-            id: 'set_type_bug',
-          },
-          {
             codeName: 'calc_parent_work_item_type',
             defiupdateDetails: [
               {
@@ -2644,6 +2607,24 @@ export default {
             showBusyIndicator: true,
             name: '计算父工作项类型',
             id: 'calc_parent_work_item_type',
+          },
+          {
+            codeName: 'set_type_bug',
+            appDEMethodId: 'set_type_bug',
+            defiupdateDetails: [
+              {
+                id: 'work_item_type_id',
+              },
+              {
+                id: 'work_item_type_name',
+              },
+              {
+                id: 'project_type',
+              },
+            ],
+            showBusyIndicator: true,
+            name: '设置缺陷类型',
+            id: 'set_type_bug',
           },
         ],
         deformItemVRs: [
@@ -3596,25 +3577,6 @@ export default {
                           appDEACModeId: 'default',
                           appDEDataSetId: 'fetch_quick',
                           appDataEntityId: 'plmweb.project',
-                          uiactionGroup: {
-                            uiactionGroupDetails: [
-                              {
-                                actionLevel: 100,
-                                afterItemType: 'NONE',
-                                beforeItemType: 'NONE',
-                                caption: '项目配置',
-                                detailType: 'DEUIACTION',
-                                uiactionId: 'open_global_setting@project',
-                                showCaption: true,
-                                showIcon: true,
-                                id: 'u3fee786',
-                              },
-                            ],
-                            appDataEntityId: 'plmweb.project',
-                            uniqueTag: 'project__Usr1221520658',
-                            name: '自填模式行为组',
-                            id: 'usr1221520658',
-                          },
                           enableAC: true,
                           forceSelection: true,
                           showTrigger: true,
@@ -3871,7 +3833,6 @@ export default {
                               {
                                 dataType: 9,
                                 enableCond: 3,
-                                ignoreInput: 2,
                                 labelPos: 'RIGHT',
                                 labelWidth: 130,
                                 noPrivDisplayMode: 1,
@@ -4555,7 +4516,7 @@ export default {
         controlParam: {
           id: '_form_waterfall_task',
         },
-        modelId: '0245E704-3946-4B12-90A8-B15B0D1D6987',
+        modelId: '625c169783aa9fc0c1c7fda0bfac0f84',
         modelType: 'PSDEFORM_EDITFORM',
         name: '_form_waterfall_task',
         id: 'plmweb.work_item.new_waterfall_task',
@@ -4592,6 +4553,24 @@ export default {
         },
         deformItemUpdates: [
           {
+            codeName: 'set_type_bug',
+            appDEMethodId: 'set_type_bug',
+            defiupdateDetails: [
+              {
+                id: 'work_item_type_id',
+              },
+              {
+                id: 'project_type',
+              },
+              {
+                id: 'work_item_type_name',
+              },
+            ],
+            showBusyIndicator: true,
+            name: '设置缺陷类型',
+            id: 'set_type_bug',
+          },
+          {
             codeName: 'calc_parent_work_item_type',
             defiupdateDetails: [
               {
@@ -4604,24 +4583,6 @@ export default {
             showBusyIndicator: true,
             name: '计算父工作项类型',
             id: 'calc_parent_work_item_type',
-          },
-          {
-            codeName: 'set_type_bug',
-            appDEMethodId: 'set_type_bug',
-            defiupdateDetails: [
-              {
-                id: 'work_item_type_name',
-              },
-              {
-                id: 'work_item_type_id',
-              },
-              {
-                id: 'project_type',
-              },
-            ],
-            showBusyIndicator: true,
-            name: '设置缺陷类型',
-            id: 'set_type_bug',
           },
         ],
         deformItemVRs: [
@@ -5574,25 +5535,6 @@ export default {
                           appDEACModeId: 'default',
                           appDEDataSetId: 'fetch_quick',
                           appDataEntityId: 'plmweb.project',
-                          uiactionGroup: {
-                            uiactionGroupDetails: [
-                              {
-                                actionLevel: 100,
-                                afterItemType: 'NONE',
-                                beforeItemType: 'NONE',
-                                caption: '项目配置',
-                                detailType: 'DEUIACTION',
-                                uiactionId: 'open_global_setting@project',
-                                showCaption: true,
-                                showIcon: true,
-                                id: 'u3fee786',
-                              },
-                            ],
-                            appDataEntityId: 'plmweb.project',
-                            uniqueTag: 'project__Usr1221520658',
-                            name: '自填模式行为组',
-                            id: 'usr1221520658',
-                          },
                           enableAC: true,
                           forceSelection: true,
                           showTrigger: true,
@@ -6219,7 +6161,7 @@ export default {
         controlParam: {
           id: '_form_waterfall_stage',
         },
-        modelId: 'FD5B748D-FD8E-458B-8880-E87C246F6333',
+        modelId: '4233ad6c4315c5f7bd6d477b79df1f8f',
         modelType: 'PSDEFORM_EDITFORM',
         name: '_form_waterfall_stage',
         id: 'plmweb.work_item.new_waterfall_stage',
@@ -6274,13 +6216,13 @@ export default {
             appDEMethodId: 'set_type_bug',
             defiupdateDetails: [
               {
-                id: 'work_item_type_id',
-              },
-              {
                 id: 'project_type',
               },
               {
                 id: 'work_item_type_name',
+              },
+              {
+                id: 'work_item_type_id',
               },
             ],
             showBusyIndicator: true,
@@ -7238,25 +7180,6 @@ export default {
                           appDEACModeId: 'default',
                           appDEDataSetId: 'fetch_quick',
                           appDataEntityId: 'plmweb.project',
-                          uiactionGroup: {
-                            uiactionGroupDetails: [
-                              {
-                                actionLevel: 100,
-                                afterItemType: 'NONE',
-                                beforeItemType: 'NONE',
-                                caption: '项目配置',
-                                detailType: 'DEUIACTION',
-                                uiactionId: 'open_global_setting@project',
-                                showCaption: true,
-                                showIcon: true,
-                                id: 'u3fee786',
-                              },
-                            ],
-                            appDataEntityId: 'plmweb.project',
-                            uniqueTag: 'project__Usr1221520658',
-                            name: '自填模式行为组',
-                            id: 'usr1221520658',
-                          },
                           enableAC: true,
                           forceSelection: true,
                           showTrigger: true,
@@ -7970,7 +7893,7 @@ export default {
         controlParam: {
           id: '_form_waterfall_requirement',
         },
-        modelId: '64AD913A-750D-44B1-92BC-CCA545560FF3',
+        modelId: '9bbccbdfec35867fa36282b9db592b36',
         modelType: 'PSDEFORM_EDITFORM',
         name: '_form_waterfall_requirement',
         id: 'plmweb.work_item.new_waterfall_requirement',
@@ -8007,24 +7930,6 @@ export default {
         },
         deformItemUpdates: [
           {
-            codeName: 'set_type_bug',
-            appDEMethodId: 'set_type_bug',
-            defiupdateDetails: [
-              {
-                id: 'work_item_type_id',
-              },
-              {
-                id: 'work_item_type_name',
-              },
-              {
-                id: 'project_type',
-              },
-            ],
-            showBusyIndicator: true,
-            name: '设置缺陷类型',
-            id: 'set_type_bug',
-          },
-          {
             codeName: 'calc_parent_work_item_type',
             defiupdateDetails: [
               {
@@ -8037,6 +7942,24 @@ export default {
             showBusyIndicator: true,
             name: '计算父工作项类型',
             id: 'calc_parent_work_item_type',
+          },
+          {
+            codeName: 'set_type_bug',
+            appDEMethodId: 'set_type_bug',
+            defiupdateDetails: [
+              {
+                id: 'work_item_type_id',
+              },
+              {
+                id: 'project_type',
+              },
+              {
+                id: 'work_item_type_name',
+              },
+            ],
+            showBusyIndicator: true,
+            name: '设置缺陷类型',
+            id: 'set_type_bug',
           },
         ],
         deformItemVRs: [
@@ -8989,25 +8912,6 @@ export default {
                           appDEACModeId: 'default',
                           appDEDataSetId: 'fetch_quick',
                           appDataEntityId: 'plmweb.project',
-                          uiactionGroup: {
-                            uiactionGroupDetails: [
-                              {
-                                actionLevel: 100,
-                                afterItemType: 'NONE',
-                                beforeItemType: 'NONE',
-                                caption: '项目配置',
-                                detailType: 'DEUIACTION',
-                                uiactionId: 'open_global_setting@project',
-                                showCaption: true,
-                                showIcon: true,
-                                id: 'u3fee786',
-                              },
-                            ],
-                            appDataEntityId: 'plmweb.project',
-                            uniqueTag: 'project__Usr1221520658',
-                            name: '自填模式行为组',
-                            id: 'usr1221520658',
-                          },
                           enableAC: true,
                           forceSelection: true,
                           showTrigger: true,
@@ -9634,7 +9538,7 @@ export default {
         controlParam: {
           id: '_form_waterfall_milestone',
         },
-        modelId: '745F2797-4548-42A5-A5D5-6CBD0F2C306D',
+        modelId: 'f34d55b346458600b8598d9b55417c1e',
         modelType: 'PSDEFORM_EDITFORM',
         name: '_form_waterfall_milestone',
         id: 'plmweb.work_item.new_waterfall_milestone',
@@ -9671,24 +9575,6 @@ export default {
         },
         deformItemUpdates: [
           {
-            codeName: 'set_type_bug',
-            appDEMethodId: 'set_type_bug',
-            defiupdateDetails: [
-              {
-                id: 'work_item_type_name',
-              },
-              {
-                id: 'project_type',
-              },
-              {
-                id: 'work_item_type_id',
-              },
-            ],
-            showBusyIndicator: true,
-            name: '设置缺陷类型',
-            id: 'set_type_bug',
-          },
-          {
             codeName: 'calc_parent_work_item_type',
             defiupdateDetails: [
               {
@@ -9701,6 +9587,24 @@ export default {
             showBusyIndicator: true,
             name: '计算父工作项类型',
             id: 'calc_parent_work_item_type',
+          },
+          {
+            codeName: 'set_type_bug',
+            appDEMethodId: 'set_type_bug',
+            defiupdateDetails: [
+              {
+                id: 'project_type',
+              },
+              {
+                id: 'work_item_type_name',
+              },
+              {
+                id: 'work_item_type_id',
+              },
+            ],
+            showBusyIndicator: true,
+            name: '设置缺陷类型',
+            id: 'set_type_bug',
           },
         ],
         deformItemVRs: [
@@ -10653,25 +10557,6 @@ export default {
                           appDEACModeId: 'default',
                           appDEDataSetId: 'fetch_quick',
                           appDataEntityId: 'plmweb.project',
-                          uiactionGroup: {
-                            uiactionGroupDetails: [
-                              {
-                                actionLevel: 100,
-                                afterItemType: 'NONE',
-                                beforeItemType: 'NONE',
-                                caption: '项目配置',
-                                detailType: 'DEUIACTION',
-                                uiactionId: 'open_global_setting@project',
-                                showCaption: true,
-                                showIcon: true,
-                                id: 'u3fee786',
-                              },
-                            ],
-                            appDataEntityId: 'plmweb.project',
-                            uniqueTag: 'project__Usr1221520658',
-                            name: '自填模式行为组',
-                            id: 'usr1221520658',
-                          },
                           enableAC: true,
                           forceSelection: true,
                           showTrigger: true,
@@ -11357,7 +11242,7 @@ export default {
         controlParam: {
           id: '_form_waterfall_bug',
         },
-        modelId: 'D9ED98B9-2AE4-49E5-9AC0-DD96625240F0',
+        modelId: '0c51612e35d895dceee42ab79cdc0729',
         modelType: 'PSDEFORM_EDITFORM',
         name: '_form_waterfall_bug',
         id: 'plmweb.work_item.new_waterfall_bug',
@@ -11390,7 +11275,7 @@ export default {
     logicName: 'dyna_scrum_qucik_create_view选项操作视图布局面',
     appDataEntityId: 'plmweb.work_item',
     controlParam: {},
-    modelId: '65F05913-876B-486B-A9FA-8E735C5D3F67',
+    modelId: '752a87c7333836b202a76fa748fd44ba',
     modelType: 'PSSYSVIEWLAYOUTPANEL',
     name: 'layoutpanel',
     id: 'usr1122272397',
@@ -11401,7 +11286,7 @@ export default {
   width: 90,
   enableDP: true,
   showCaptionBar: true,
-  modelId: '06b9787a08962c09b6c297a2ff307131',
+  modelId: '19910dcb2b2c6e9c0dfd193faec5fea4',
   modelType: 'PSAPPDEVIEW',
   name: 'work_itemdyna_waterfall_quick_create_view',
   id: 'plmweb.work_item_dyna_waterfall_quick_create_view',

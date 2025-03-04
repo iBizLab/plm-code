@@ -660,7 +660,7 @@ export default {
         },
         id: 'tabsearchform',
       },
-      modelId: '4555ED40-7869-43A0-9797-CC5EE2971168',
+      modelId: '3280be8abba034e123307c360cae5bdb',
       modelType: 'PSDEFORM_SEARCHFORM',
       name: 'tabsearchform',
       id: 'plmweb.ticket.advanced_search_form',

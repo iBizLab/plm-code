@@ -4,7 +4,7 @@ export default {
   xdataControlName: 'form',
   loadDefault: true,
   deviewCodeName: 'overview_base_view',
-  deviewId: '10B09D14-B247-4529-85C5-6C749DB43004',
+  deviewId: 'ca0553a768955ec7680bda976b0785fe',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.RELEASE',
@@ -273,7 +273,7 @@ export default {
       controlParam: {
         id: 'form',
       },
-      modelId: '80A35691-509D-4E69-8343-E6A432B093A8',
+      modelId: 'c30a1c86b36fd1a4e7cff8f2ab7a8ed4',
       modelType: 'PSDEFORM_EDITFORM',
       name: 'form',
       id: 'plmweb.release.overview_base_form',
@@ -320,7 +320,7 @@ export default {
   viewType: 'DEEDITVIEW',
   enableDP: true,
   showCaptionBar: false,
-  modelId: 'b28eb271f4bd898c2e8afc12ad45ec40',
+  modelId: '4760774a01b5c75fcb0cb07a3a836fb5',
   modelType: 'PSAPPDEVIEW',
   name: 'releaseoverview_base_view',
   id: 'plmweb.release_overview_base_view',

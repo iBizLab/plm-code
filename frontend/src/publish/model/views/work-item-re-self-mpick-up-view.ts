@@ -1,7 +1,7 @@
 export default {
   openMode: 'POPUPMODAL',
   deviewCodeName: 're_self_mpick_up_view',
-  deviewId: '6e3f81565e356fb6ba9b028c13ab6252',
+  deviewId: '8032690c8e18758d7f799f2fdcce39f5',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.WORK_ITEM',
@@ -260,7 +260,7 @@ export default {
         id: 'treeexpbar',
       },
       sysPFPluginId: 'treeexpbar_default_expand',
-      modelId: 'b9070b7862d830506e41f8abd4f297e7_treeexpbar',
+      modelId: 'f0b90bfae79dc19c21122bf6133ac53f_treeexpbar',
       modelType: 'PSEXPBAR',
       name: 'treeexpbar',
       id: 're_self_mpick_up_view_treeexpbar',
@@ -822,7 +822,7 @@ export default {
   viewType: 'DEMPICKUPVIEW2',
   enableDP: true,
   showCaptionBar: false,
-  modelId: 'b9070b7862d830506e41f8abd4f297e7',
+  modelId: 'f0b90bfae79dc19c21122bf6133ac53f',
   modelType: 'PSAPPDEVIEW',
   name: 'work_itemre_self_mpick_up_view',
   id: 'plmweb.work_item_re_self_mpick_up_view',

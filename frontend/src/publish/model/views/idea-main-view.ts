@@ -120,6 +120,21 @@ export default {
                 actionGroupExtractMode: 'ITEM',
                 panelItems: [
                   {
+                    rawItem: {
+                      predefinedType: 'COOP_POS',
+                      id: 'coop_pos',
+                    },
+                    caption: '协同编辑消息占位',
+                    itemStyle: 'DEFAULT',
+                    itemType: 'RAWITEM',
+                    layoutPos: {
+                      shrink: 1,
+                      layout: 'FLEX',
+                    },
+                    showCaption: true,
+                    id: 'coop_pos',
+                  },
+                  {
                     caption: '工具栏',
                     itemStyle: 'DEFAULT',
                     itemType: 'CTRLPOS',
@@ -133,7 +148,9 @@ export default {
                 ],
                 layout: {
                   align: 'center',
+                  dir: 'row',
                   layout: 'FLEX',
+                  valign: 'center',
                 },
                 dataRegionType: 'INHERIT',
                 caption: '容器',
@@ -316,7 +333,6 @@ export default {
                                       },
                                     ],
                                     logicType: 'GROUP',
-                                    id: '面板成员[comment_cancel][面板显示]逻辑',
                                   },
                                 ],
                                 showCaption: true,
@@ -353,7 +369,6 @@ export default {
                                       },
                                     ],
                                     logicType: 'GROUP',
-                                    id: '面板成员[comment_send][面板显示]逻辑',
                                   },
                                 ],
                                 showCaption: true,
@@ -995,7 +1010,7 @@ export default {
         controlParam: {
           id: 'toolbar',
         },
-        modelId: 'FD8ECFBB-B13A-479F-98DA-8954D2194069',
+        modelId: '89e1dc8d64e1e707401b9ed2eff95167',
         modelType: 'PSDETOOLBAR',
         name: 'toolbar',
         id: 'main_view_toolbar',
@@ -1763,7 +1778,7 @@ export default {
                                 },
                                 deformDetails: [
                                   {
-                                    appViewId: 'plmweb.comment_list_view',
+                                    appViewId: 'plmweb.comment_idea_list_view',
                                     parentDataJO: {
                                       srfparentdename: 'IDEA',
                                       SRFPARENTTYPE: 'CUSTOM',
@@ -3729,7 +3744,7 @@ export default {
       },
     ],
     controlParam: {},
-    modelId: '068b80466a5100dcff8ace4e3898c5ee',
+    modelId: '94d3996dd7c0beee3fd3f6a54427c626',
     modelType: 'PSSYSVIEWLAYOUTPANEL',
     name: 'layoutpanel',
     id: 'idea_main_view',

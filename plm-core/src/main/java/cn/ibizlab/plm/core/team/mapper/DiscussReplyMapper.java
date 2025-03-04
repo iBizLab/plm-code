@@ -43,6 +43,25 @@ public interface DiscussReplyMapper extends BaseMapper<DiscussReply> {
     List<DiscussReply> listDefault(@Param("ctx") DiscussReplySearchContext context, @Param("ew") Wrapper<DiscussReply> wrapper);
 
     /**
+     * 数据集合my_all_reply分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<DiscussReply> searchMyAllReply(IPage<DiscussReply> page, @Param("ctx") DiscussReplySearchContext context, @Param("ew") Wrapper<DiscussReply> wrapper);
+    
+    /**
+     * 数据集合my_all_reply查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<DiscussReply> listMyAllReply(@Param("ctx") DiscussReplySearchContext context, @Param("ew") Wrapper<DiscussReply> wrapper);
+
+    /**
      * 数据集合my_reply分页查询
      * 
      * @param page

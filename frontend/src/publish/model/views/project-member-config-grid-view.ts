@@ -2,7 +2,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'config_grid_view',
-  deviewId: '3c93792f402587f4c06c66434241048c',
+  deviewId: 'a00979585c98f6a97c01eef459048083',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.PROJECT_MEMBER',
@@ -97,15 +97,6 @@ export default {
   ],
   appViewRefs: [
     {
-      realTitle: '项目成员数据重定向视图',
-      realTitleLanguageRes: {
-        lanResTag: 'PAGE.TITLE.PROJECT_MEMBER.REDIRECTVIEW',
-      },
-      refAppViewId: 'plmweb.project_member_redirect_view',
-      name: 'EDITDATA',
-      id: 'editdata',
-    },
-    {
       realOpenMode: 'POPUPMODAL',
       realTitle: '项目成员编辑视图',
       realTitleLanguageRes: {
@@ -114,6 +105,15 @@ export default {
       refAppViewId: 'plmweb.project_member_edit_view',
       name: 'NEWDATA',
       id: 'newdata',
+    },
+    {
+      realTitle: '项目成员数据重定向视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.PROJECT_MEMBER.REDIRECTVIEW',
+      },
+      refAppViewId: 'plmweb.project_member_redirect_view',
+      name: 'EDITDATA',
+      id: 'editdata',
     },
     {
       realOpenMode: 'POPUPMODAL',
@@ -220,9 +220,10 @@ export default {
           id: 'role_id',
         },
         {
-          clconvertMode: 'NONE',
+          clconvertMode: 'FRONT',
           dataItemName: 'title',
           excelCaption: '职位',
+          appCodeListId: 'plmweb.base__position',
           appDEFieldId: 'title',
           valueType: 'SIMPLE',
           aggMode: 'NONE',
@@ -462,7 +463,7 @@ export default {
       controlParam: {
         id: 'grid',
       },
-      modelId: '112de0e8ac280a71beb62a6d7c6df6d8',
+      modelId: '201a276b1276c21f79027943d5f8c803',
       modelType: 'PSDEGRID',
       name: 'grid',
       id: 'plmweb.project_member.setting_table',
@@ -507,7 +508,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '3d41427d83a0b492d3ab2cc2be75b90f',
+  modelId: '2358230a12f5836449304479be50c1fb',
   modelType: 'PSAPPDEVIEW',
   name: 'project_memberconfig_grid_view',
   id: 'plmweb.project_member_config_grid_view',

@@ -3,7 +3,7 @@ export default {
   loadDefault: true,
   showDataInfoBar: true,
   deviewCodeName: 'pick_up_tap_exp_view',
-  deviewId: 'A18D5905-A446-43FE-87E2-9CCA479DAC93',
+  deviewId: '9874916bc649a17be65163d58bd0b2c7',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.WORKLOAD_TYPE',
@@ -42,7 +42,7 @@ export default {
       controlParam: {
         id: 'tabexppanel',
       },
-      modelId: '62C524A1-0BD3-447E-8675-D444D84D4DC3',
+      modelId: '048daa1fc67215fbfc1ae82203439253',
       modelType: 'PSDEDRTAB',
       name: 'tabexppanel',
       id: 'pick_up_tap_exp_view_dr',
@@ -76,7 +76,7 @@ export default {
   viewType: 'DETABEXPVIEW',
   enableDP: true,
   showCaptionBar: false,
-  modelId: 'ba6793e549d48703a777120338ef5c47',
+  modelId: '3a4f0df2d1a679bdd7e4f393cf20e8fd',
   modelType: 'PSAPPDEVIEW',
   name: 'workload_typepick_up_tap_exp_view',
   id: 'plmweb.workload_type_pick_up_tap_exp_view',

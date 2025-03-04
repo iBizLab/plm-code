@@ -1,6 +1,6 @@
 export default {
   deviewCodeName: 'setting_view',
-  deviewId: '422B6BE3-FF1B-4A87-8741-4E31254E0A90',
+  deviewId: 'c6dc15e04ae9d08dca79af1c6b651664',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.MANAGEMENT',
@@ -176,6 +176,16 @@ export default {
         dedrctrlItems: [
           {
             dedrbarGroupId: 'usrdrgroup0514095082',
+            caption: '角色配置',
+            appViewId: 'plmweb.role_grid_view',
+            sysImage: {
+              cssClass: 'fa fa-users',
+              glyph: 'xf0c0@FontAwesome',
+            },
+            id: 'role',
+          },
+          {
+            dedrbarGroupId: 'usrdrgroup0514095082',
             caption: '工时设置',
             appViewId: 'plmweb.workload_type_setup_grid_view',
             sysImage: {
@@ -262,7 +272,7 @@ export default {
           id: 'drbar',
         },
         sysPFPluginId: 'route_drbar',
-        modelId: '73F9D095-4112-43A5-B444-F9A1DB2349C1',
+        modelId: 'fdaddc168287baf717c525401bb92d52',
         modelType: 'PSDEDRBAR',
         name: 'drbar',
         id: 'config_tab_exp_view_dr',
@@ -285,7 +295,7 @@ export default {
     logicName: '配置中心布局面板',
     appDataEntityId: 'plmweb.management',
     controlParam: {},
-    modelId: '14413E01-D292-405F-8349-8FAC6EC2A45A',
+    modelId: '30f71c235e0a227c0f97bbc82df6b2e8',
     modelType: 'PSSYSVIEWLAYOUTPANEL',
     name: 'layoutpanel',
     id: 'usr0514640216',
@@ -295,7 +305,7 @@ export default {
   viewType: 'DECUSTOMVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: 'ab6df94fbc9bd7efff9f0d2c52eb1faa',
+  modelId: 'fc26a7b93e50981871878e8eebfee3b9',
   modelType: 'PSAPPDEVIEW',
   name: 'managementsetting_view',
   id: 'plmweb.management_setting_view',

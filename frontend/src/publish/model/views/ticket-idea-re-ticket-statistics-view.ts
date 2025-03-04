@@ -4,7 +4,7 @@ export default {
   xdataControlName: 'form',
   loadDefault: true,
   deviewCodeName: 'idea_re_ticket_statistics_view',
-  deviewId: 'E2B330F5-30CF-448A-AD10-7CE26EF0DB79',
+  deviewId: 'b808fbbeabf3d8f0f05473ad3f72b671',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.TICKET',
@@ -219,7 +219,7 @@ export default {
         controlParam: {
           id: 'toolbar',
         },
-        modelId: 'CB03A21E-188D-49F9-9C8D-3B4B9D824CA8',
+        modelId: '5cbaaf40905bc21e2b3be22b214bdfd5',
         modelType: 'PSDETOOLBAR',
         name: 'toolbar',
         id: 'idea_re_ticket_statistics_view_toolbar',
@@ -373,7 +373,7 @@ export default {
         controlParam: {
           id: 'form',
         },
-        modelId: '86946F24-6588-4A8A-AB66-00C39398CDC2',
+        modelId: '9d01feb316e98f1100f029b40eb86953',
         modelType: 'PSDEFORM_EDITFORM',
         name: 'form',
         id: 'plmweb.ticket.idea_re_view_form',
@@ -466,7 +466,7 @@ export default {
         controlParam: {
           id: 'chart',
         },
-        modelId: '6404ECFF-5827-46EB-AD74-B117A0BA5CA6',
+        modelId: '35011e1dc7356bb85c0b6f8ccb2565b1',
         modelType: 'PSDECHART',
         userParam: {
           'EC.color':
@@ -503,7 +503,7 @@ export default {
     logicName: 'idea_re_ticket_statistics_view编辑视图布局面板',
     appDataEntityId: 'plmweb.ticket',
     controlParam: {},
-    modelId: 'BF0D0678-982F-447E-8AE4-ADB931B620F9',
+    modelId: '558824c95b22b2392ed453067b1fab89',
     modelType: 'PSSYSVIEWLAYOUTPANEL',
     name: 'layoutpanel',
     id: 'usr0729177843',
@@ -513,7 +513,7 @@ export default {
   viewType: 'DEEDITVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '953aa958646ec2aebfc59282f7bfefdb',
+  modelId: '2b2191c8ae838337adfcd5370db75110',
   modelType: 'PSAPPDEVIEW',
   name: 'ticketidea_re_ticket_statistics_view',
   id: 'plmweb.ticket_idea_re_ticket_statistics_view',

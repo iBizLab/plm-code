@@ -63,6 +63,15 @@ export default {
   ],
   appViewRefs: [
     {
+      realTitle: '效能报表编辑视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.INSIGHT_REPORT.EDITVIEW',
+      },
+      refAppViewId: 'plmweb.insight_report_edit_view',
+      name: 'NEWDATA',
+      id: 'newdata',
+    },
+    {
       realTitle: 'BI报表呈现态面板视图',
       refAppViewId: 'plmweb.insight_report_bi_report_content_panel_view',
       name: 'OPENDATA',
@@ -73,15 +82,6 @@ export default {
       refAppViewId: 'plmweb.insight_report_bi_report_content_panel_view',
       name: 'EDITDATA',
       id: 'editdata',
-    },
-    {
-      realTitle: '效能报表编辑视图',
-      realTitleLanguageRes: {
-        lanResTag: 'PAGE.TITLE.INSIGHT_REPORT.EDITVIEW',
-      },
-      refAppViewId: 'plmweb.insight_report_edit_view',
-      name: 'NEWDATA',
-      id: 'newdata',
     },
   ],
   controls: [
@@ -132,7 +132,7 @@ export default {
                   cssClass: 'fa fa-wrench',
                   glyph: 'xf0ad@FontAwesome',
                 },
-                id: 'u9d57385',
+                id: 'uc366f1d',
               },
               {
                 actionLevel: 100,
@@ -147,7 +147,7 @@ export default {
                   cssClass: 'fa fa-remove',
                   glyph: 'xf00d@FontAwesome',
                 },
-                id: 'uefea2ee',
+                id: 'ue435e32',
               },
             ],
             appDataEntityId: 'plmweb.insight_report',
@@ -386,7 +386,7 @@ export default {
       controlParam: {
         id: 'grid',
       },
-      modelId: 'F0E6E318-FA00-4C61-B532-E9CD6AF85699',
+      modelId: '4e817949bdd4eb77fc8f62502ea16c3f',
       modelType: 'PSDEGRID',
       name: 'grid',
       id: 'plmweb.insight_report.all_grid',
@@ -421,7 +421,7 @@ export default {
       controlParam: {
         id: 'searchform',
       },
-      modelId: '5466781D-9298-4D2F-A6D8-C543C32815F3',
+      modelId: '20e23df8203681e0e2517dd2df02e4b3',
       modelType: 'PSDEFORM_SEARCHFORM',
       name: 'searchform',
       id: 'plmweb.insight_report.usr05200683_search_form',
@@ -454,7 +454,7 @@ export default {
       controlParam: {
         id: 'toolbar',
       },
-      modelId: 'A858FE20-5FF3-464E-A8D3-30B3D0EBA57A',
+      modelId: '1deaed0d87e60b5659cdc7119e8b562f',
       modelType: 'PSDETOOLBAR',
       name: 'toolbar',
       id: 'system_report_grid_view_toolbar',

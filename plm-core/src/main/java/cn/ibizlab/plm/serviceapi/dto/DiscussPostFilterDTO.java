@@ -35,7 +35,7 @@ public class DiscussPostFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_status_eq")
     @JSONField(name = "n_status_eq")
-    @ApiModelProperty(value = "状态EQ", position = 30)
+    @ApiModelProperty(value = "状态EQ", position = 40)
 	private String statusEQ;
 
     /**
@@ -43,7 +43,7 @@ public class DiscussPostFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_id_eq")
     @JSONField(name = "n_id_eq")
-    @ApiModelProperty(value = "标识EQ", position = 100)
+    @ApiModelProperty(value = "标识EQ", position = 130)
 	private String idEQ;
 
     /**
@@ -51,7 +51,7 @@ public class DiscussPostFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_name_like")
     @JSONField(name = "n_name_like")
-    @ApiModelProperty(value = "讨论名称LIKE", position = 110)
+    @ApiModelProperty(value = "讨论名称LIKE", position = 140)
 	private String nameLIKE;
 
     /**
@@ -59,7 +59,7 @@ public class DiscussPostFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_create_man_eq")
     @JSONField(name = "n_create_man_eq")
-    @ApiModelProperty(value = "建立人EQ", position = 120)
+    @ApiModelProperty(value = "建立人EQ", position = 150)
 	private String createManEQ;
 
     /**
@@ -67,7 +67,7 @@ public class DiscussPostFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_topic_id_eq")
     @JSONField(name = "n_topic_id_eq")
-    @ApiModelProperty(value = "话题标识EQ", position = 160)
+    @ApiModelProperty(value = "话题标识EQ", position = 190)
 	private String topicIdEQ;
 
     /**
@@ -75,7 +75,7 @@ public class DiscussPostFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_topic_name_eq")
     @JSONField(name = "n_topic_name_eq")
-    @ApiModelProperty(value = "话题EQ", position = 170)
+    @ApiModelProperty(value = "话题EQ", position = 200)
 	private String topicNameEQ;
 
     /**
@@ -83,7 +83,7 @@ public class DiscussPostFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_topic_name_like")
     @JSONField(name = "n_topic_name_like")
-    @ApiModelProperty(value = "话题LIKE", position = 171)
+    @ApiModelProperty(value = "话题LIKE", position = 201)
 	private String topicNameLIKE;
 
 

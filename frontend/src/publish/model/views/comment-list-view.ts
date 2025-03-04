@@ -538,7 +538,6 @@ export default {
                             },
                           ],
                           logicType: 'GROUP',
-                          id: '面板成员[container2][面板显示]逻辑',
                         },
                       ],
                       id: 'container2',
@@ -696,7 +695,6 @@ export default {
                             },
                           ],
                           logicType: 'GROUP',
-                          id: '面板成员[container3][面板显示]逻辑',
                         },
                       ],
                       sysCss: {
@@ -748,17 +746,6 @@ export default {
         minorSortAppDEFieldId: 'create_time',
         delistDataItems: [
           {
-            appDEFieldId: 'id',
-            dataType: 25,
-            id: 'id',
-          },
-          {
-            appDEFieldId: 'create_man',
-            frontCodeListId: 'plmweb.sysoperator',
-            dataType: 25,
-            id: 'create_man',
-          },
-          {
             appDEFieldId: 'pcreate_man',
             frontCodeListId: 'plmweb.sysoperator',
             dataType: 25,
@@ -771,19 +758,30 @@ export default {
             id: 'create_time',
           },
           {
-            appDEFieldId: 'content',
-            dataType: 21,
-            id: 'content',
-          },
-          {
             appDEFieldId: 'pcontent',
             dataType: 21,
             id: 'pcontent',
           },
           {
+            appDEFieldId: 'create_man',
+            frontCodeListId: 'plmweb.sysoperator',
+            dataType: 25,
+            id: 'create_man',
+          },
+          {
             appDEFieldId: 'pid',
             dataType: 25,
             id: 'pid',
+          },
+          {
+            appDEFieldId: 'id',
+            dataType: 25,
+            id: 'id',
+          },
+          {
+            appDEFieldId: 'content',
+            dataType: 21,
+            id: 'content',
           },
           {
             appDEFieldId: 'id',

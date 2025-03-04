@@ -1,7 +1,7 @@
 export default {
   openMode: 'POPUPMODAL',
   deviewCodeName: 're_case_by_workitem_pickup_view',
-  deviewId: '2F125CE5-F484-4CC4-A91F-FB8EE3C017BD',
+  deviewId: 'ba76c25a60ae8014575734e356e5b824',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.TEST_CASE',
@@ -693,7 +693,7 @@ export default {
                       logicName: '项目树节点面板',
                       appDataEntityId: 'plmweb.test_case',
                       controlParam: {},
-                      modelId: '9D16BBE4-5212-478A-9592-72BB6AB71CF9',
+                      modelId: 'cbace59bed7e5910335a2043b18c86cd',
                       modelType: 'PSSYSVIEWPANEL',
                       name: 'tree_icon',
                       id: 'plmweb.test_case.usr1112966912',
@@ -801,7 +801,7 @@ export default {
         controlParam: {
           id: 'treeexpbar',
         },
-        modelId: '486d1beee3ea9d950f9921e3628706cc_treeexpbar',
+        modelId: '4e94683dcd147872f1cf43019d88581b_treeexpbar',
         modelType: 'PSEXPBAR',
         name: 'treeexpbar',
         id: 're_case_by_workitem_pickup_view_treeexpbar',
@@ -907,7 +907,7 @@ export default {
   viewType: 'DEMPICKUPVIEW2',
   enableDP: true,
   showCaptionBar: false,
-  modelId: '486d1beee3ea9d950f9921e3628706cc',
+  modelId: '4e94683dcd147872f1cf43019d88581b',
   modelType: 'PSAPPDEVIEW',
   name: 'test_casere_case_by_workitem_pickup_view',
   id: 'plmweb.test_case_re_case_by_workitem_pickup_view',

@@ -136,6 +136,7 @@ public abstract class AbstractProductTagResource {
     * @return Mono<ResponseEntity<ProductTagDTO>>
     */
     @ApiOperation(value = "delete_tag", tags = {"产品标签" },  notes = "ProductTag-delete_tag ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ProductTag-delete_tag-all') or hasPermission(this.productTagDtoMapping.toDomain(#dto),'ibizplm-ProductTag-delete_tag')")
     @PostMapping("product_tags/{id}/delete_tag")
     public Mono<ResponseEntity<ResponseWrapper<ProductTagDTO>>>deleteTagById
             (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<ProductTagDTO> dto) {
@@ -291,6 +292,7 @@ public abstract class AbstractProductTagResource {
     * @return Mono<ResponseEntity<ProductTagDTO>>
     */
     @ApiOperation(value = "delete_tag", tags = {"产品标签" },  notes = "ProductTag-delete_tag ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ProductTag-delete_tag-all') or hasPermission('product',#productId,this.productTagDtoMapping.toDomain(#dto),'ibizplm-ProductTag-delete_tag')")
     @PostMapping("products/{productId}/product_tags/{id}/delete_tag")
     public Mono<ResponseEntity<ResponseWrapper<ProductTagDTO>>>deleteTagByProductIdAndId
             (@PathVariable("productId") String productId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<ProductTagDTO> dto) {

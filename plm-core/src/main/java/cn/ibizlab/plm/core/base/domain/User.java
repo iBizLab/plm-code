@@ -36,6 +36,7 @@ import cn.ibizlab.plm.core.wiki.domain.SpaceMember;
 import cn.ibizlab.plm.core.testmgmt.domain.TestCase;
 import cn.ibizlab.plm.core.prodmgmt.domain.Ticket;
 import cn.ibizlab.plm.core.projmgmt.domain.WorkItem;
+import cn.ibizlab.plm.core.base.domain.RoleMember;
 
 /**
  * 企业用户实体类[User]
@@ -134,7 +135,7 @@ public class User extends EntityBase implements Serializable
     /**
      * 职位
      */
-    @DEField(name = "title")
+    @DEField(name = "title" , dict = "position")
     @JSONField(name = "title")
     @JsonProperty("title")
     @ApiModelProperty(value = "title", notes = "职位")
@@ -225,12 +226,12 @@ public class User extends EntityBase implements Serializable
     private String jobName;
 
     /**
-     * 部门名称
+     * 部门
      */
     @DEField(name = "department_name")
     @JSONField(name = "department_name")
     @JsonProperty("department_name")
-    @ApiModelProperty(value = "department_name", notes = "部门名称")
+    @ApiModelProperty(value = "department_name", notes = "部门")
     private String departmentName;
 
     /**
@@ -405,7 +406,7 @@ public class User extends EntityBase implements Serializable
     }
 
     /**
-    * 设置 [部门名称]
+    * 设置 [部门]
     */
     public User setDepartmentName(String departmentName) {
         this.departmentName = departmentName;

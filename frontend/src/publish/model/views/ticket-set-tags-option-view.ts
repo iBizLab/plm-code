@@ -4,7 +4,7 @@ export default {
   loadDefault: true,
   openMode: 'POPOVER',
   deviewCodeName: 'set_tags_option_view',
-  deviewId: 'a1b4ba69963e78d3db113277e3f2d1fe',
+  deviewId: '8b8b523f6b69dd68cb3f41b987b041b9',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.TICKET',
@@ -214,7 +214,7 @@ export default {
   viewType: 'DEOPTVIEW',
   enableDP: true,
   showCaptionBar: false,
-  modelId: '2e3a6cb9016144cce341932d0dd83e72',
+  modelId: '57862c87e2e062cd892b391bf1eebcd5',
   modelType: 'PSAPPDEVIEW',
   name: 'ticketset_tags_option_view',
   id: 'plmweb.ticket_set_tags_option_view',

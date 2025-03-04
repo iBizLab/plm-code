@@ -3,7 +3,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'relation_grid_view',
-  deviewId: 'E2116964-7EAF-4224-98BE-303804AA78E0',
+  deviewId: 'c89a1573dab992ac73554ffba96bcc04',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.BASELINE_TEST_CASE',
@@ -129,15 +129,6 @@ export default {
   ],
   appViewRefs: [
     {
-      realTitle: '基线用例编辑视图',
-      realTitleLanguageRes: {
-        lanResTag: 'PAGE.TITLE.BASELINE_TEST_CASE.EDITVIEW',
-      },
-      refAppViewId: 'plmweb.baseline_test_case_edit_view',
-      name: 'NEWDATA',
-      id: 'newdata',
-    },
-    {
       openMode: 'POPUPMODAL',
       navigateContexts: [
         {
@@ -172,6 +163,15 @@ export default {
       refAppViewId: 'plmweb.test_case_main_view',
       name: 'EDITDATA',
       id: 'editdata',
+    },
+    {
+      realTitle: '基线用例编辑视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.BASELINE_TEST_CASE.EDITVIEW',
+      },
+      refAppViewId: 'plmweb.baseline_test_case_edit_view',
+      name: 'NEWDATA',
+      id: 'newdata',
     },
   ],
   controls: [
@@ -530,7 +530,7 @@ export default {
         id: 'grid',
       },
       sysPFPluginId: 'number_grid',
-      modelId: 'a8a223e8f0ecec618e74a85dfd35938c',
+      modelId: 'dd4e8c2c54d5f20b65d410cddedb5ac9',
       modelType: 'PSDEGRID',
       name: 'grid',
       id: 'plmweb.baseline_test_case.main',
@@ -569,7 +569,7 @@ export default {
       controlParam: {
         id: 'searchform',
       },
-      modelId: 'd06d72eac7d7733e90735156b5910fb4',
+      modelId: '3eb862eda7fe4a0c7644748d8fa2a680',
       modelType: 'PSDEFORM_SEARCHFORM',
       name: 'searchform',
       id: 'plmweb.baseline_test_case.default',
@@ -700,7 +700,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: false,
-  modelId: '26fad733d4b26a4567621de99a3993fc',
+  modelId: 'f33933a2c9d4388b3f8765c3001c4602',
   modelType: 'PSAPPDEVIEW',
   name: 'baseline_test_caserelation_grid_view',
   id: 'plmweb.baseline_test_case_relation_grid_view',

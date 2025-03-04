@@ -1,7 +1,7 @@
 export default {
   openMode: 'POPUPMODAL',
   deviewCodeName: 'all_resource_mpick_up_view',
-  deviewId: '924D87F0-98AB-4C16-A464-1FBE2A376F45',
+  deviewId: '6ddc4a42f112d7910c097ae962fe8dc3',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.MEMBER',
@@ -473,7 +473,9 @@ export default {
                 childDETreeNodeId: 'node',
                 parentAppDEFieldId: 'parent_id',
                 parentDER1N: {
+                  masterRS: 16,
                   pickupDEFName: 'PARENT_ID',
+                  recursiveRS: true,
                   codeName: 'department',
                   dertype: 'DER1N',
                   logicName: '父部门',
@@ -493,7 +495,9 @@ export default {
                 childDETreeNodeId: 'node',
                 parentAppDEFieldId: 'parent_id',
                 parentDER1N: {
+                  masterRS: 16,
                   pickupDEFName: 'PARENT_ID',
+                  recursiveRS: true,
                   codeName: 'department',
                   dertype: 'DER1N',
                   logicName: '父部门',
@@ -682,7 +686,7 @@ export default {
               id: 'treeexpbar_tree',
             },
             sysPFPluginId: 'group_tree',
-            modelId: '710E8E00-36B2-4424-81F6-D091468B6E93',
+            modelId: '6410ed3530602eacd7ef652708c5c0e5',
             modelType: 'PSDETREEVIEW',
             name: 'treeexpbar_tree',
             id: 'plmweb.member.all_resource_mpick_up_tree_view',
@@ -694,7 +698,7 @@ export default {
         controlParam: {
           id: 'treeexpbar',
         },
-        modelId: '263fdda45a1ae83526b0528b612862eb_treeexpbar',
+        modelId: '894920afe72104693bf17a568102063b_treeexpbar',
         modelType: 'PSEXPBAR',
         name: 'treeexpbar',
         id: 'all_resource_mpick_up_view_treeexpbar',
@@ -755,7 +759,7 @@ export default {
           logicName: 'list_列表项面板',
           appDataEntityId: 'plmweb.member',
           controlParam: {},
-          modelId: 'E1DE69F0-0BE6-447F-9FFE-F3ACA994821C',
+          modelId: '2a1b8a6e629ca0de1395d4148a27f353',
           modelType: 'PSSYSVIEWPANEL',
           name: 'simplelist_itempanel',
           id: 'plmweb.member.usr0530102091',
@@ -824,7 +828,7 @@ export default {
         controlParam: {
           id: 'simplelist',
         },
-        modelId: '94F42B8C-9025-4A0E-9D2D-64DB87CC8C52',
+        modelId: '8887cbd965b1aaa8a2077da6e9f7e9d8',
         modelType: 'PSDELIST',
         name: 'simplelist',
         id: 'plmweb.member.list',
@@ -857,7 +861,7 @@ export default {
   viewType: 'DEMPICKUPVIEW2',
   enableDP: true,
   showCaptionBar: false,
-  modelId: '263fdda45a1ae83526b0528b612862eb',
+  modelId: '894920afe72104693bf17a568102063b',
   modelType: 'PSAPPDEVIEW',
   name: 'memberall_resource_mpick_up_view',
   id: 'plmweb.member_all_resource_mpick_up_view',

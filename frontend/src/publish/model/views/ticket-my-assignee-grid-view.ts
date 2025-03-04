@@ -3,7 +3,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'my_assignee_grid_view',
-  deviewId: 'f6f5474f82c579ad6ca4712556d1a5ef',
+  deviewId: '6870c94882efaaa822a09183f329d5ad',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.TICKET',
@@ -1300,7 +1300,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: 'a1194da75673bc29c1459d70c90ca155',
+  modelId: 'd4cc60728cd196ac8905c3d3c3f97c75',
   modelType: 'PSAPPDEVIEW',
   name: 'ticketmy_assignee_grid_view',
   id: 'plmweb.ticket_my_assignee_grid_view',

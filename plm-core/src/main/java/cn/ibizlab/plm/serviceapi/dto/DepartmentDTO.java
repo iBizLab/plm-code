@@ -44,11 +44,44 @@ public class DepartmentDTO extends DTOBase implements Serializable {
     private String identifier;
 
     /**
+     * 备注
+     */
+    @JsonProperty("description")
+    @JSONField(name = "description")
+    @ApiModelProperty(value = "备注", position = 1)
+    private String description;
+
+    /**
+     * 是否叶子节点
+     */
+    @JsonProperty("is_leaf")
+    @JSONField(name = "is_leaf")
+    @ApiModelProperty(value = "是否叶子节点", position = 2)
+    private Integer isLeaf;
+
+    /**
+     * 排序
+     */
+    @JsonProperty("sort")
+    @JSONField(name = "sort")
+    @JsonSerialize(using = ToStringSerializer.class)
+    @ApiModelProperty(value = "排序", position = 3)
+    private Long sort;
+
+    /**
+     * 父名称
+     */
+    @JsonProperty("pname")
+    @JSONField(name = "pname")
+    @ApiModelProperty(value = "父名称", position = 4)
+    private String pname;
+
+    /**
      * 建立人
      */
     @JsonProperty("create_man")
     @JSONField(name = "create_man")
-    @ApiModelProperty(value = "建立人", position = 1)
+    @ApiModelProperty(value = "建立人", position = 5)
     private String createMan;
 
     /**
@@ -57,7 +90,7 @@ public class DepartmentDTO extends DTOBase implements Serializable {
     @JsonProperty("create_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "create_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "建立时间", position = 2)
+    @ApiModelProperty(value = "建立时间", position = 6)
     private Date createTime;
 
     /**
@@ -65,7 +98,7 @@ public class DepartmentDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("head_id")
     @JSONField(name = "head_id")
-    @ApiModelProperty(value = "部门负责人标识", position = 3)
+    @ApiModelProperty(value = "部门负责人标识", position = 7)
     private String headId;
 
     /**
@@ -73,7 +106,7 @@ public class DepartmentDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("id")
     @JSONField(name = "id")
-    @ApiModelProperty(value = "标识", position = 4)
+    @ApiModelProperty(value = "标识", position = 8)
     private String id;
 
     /**
@@ -81,15 +114,23 @@ public class DepartmentDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("name")
     @JSONField(name = "name")
-    @ApiModelProperty(value = "名称", position = 5)
+    @ApiModelProperty(value = "名称", position = 9)
     private String name;
+
+    /**
+     * 组织标识
+     */
+    @JsonProperty("organization_id")
+    @JSONField(name = "organization_id")
+    @ApiModelProperty(value = "组织标识", position = 10)
+    private String organizationId;
 
     /**
      * 父部门标识
      */
     @JsonProperty("parent_id")
     @JSONField(name = "parent_id")
-    @ApiModelProperty(value = "父部门标识", position = 6)
+    @ApiModelProperty(value = "父部门标识", position = 11)
     private String parentId;
 
     /**
@@ -97,7 +138,7 @@ public class DepartmentDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("update_man")
     @JSONField(name = "update_man")
-    @ApiModelProperty(value = "更新人", position = 7)
+    @ApiModelProperty(value = "更新人", position = 12)
     private String updateMan;
 
     /**
@@ -106,7 +147,7 @@ public class DepartmentDTO extends DTOBase implements Serializable {
     @JsonProperty("update_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "update_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "更新时间", position = 8)
+    @ApiModelProperty(value = "更新时间", position = 13)
     private Date updateTime;
 
 
@@ -116,6 +157,42 @@ public class DepartmentDTO extends DTOBase implements Serializable {
     public DepartmentDTO setIdentifier(String identifier) {
         this.identifier = identifier;
         this.modify("identifier", identifier);
+        return this;
+    }
+
+    /**
+     * 设置 [备注]
+     */
+    public DepartmentDTO setDescription(String description) {
+        this.description = description;
+        this.modify("description", description);
+        return this;
+    }
+
+    /**
+     * 设置 [是否叶子节点]
+     */
+    public DepartmentDTO setIsLeaf(Integer isLeaf) {
+        this.isLeaf = isLeaf;
+        this.modify("is_leaf", isLeaf);
+        return this;
+    }
+
+    /**
+     * 设置 [排序]
+     */
+    public DepartmentDTO setSort(Long sort) {
+        this.sort = sort;
+        this.modify("sort", sort);
+        return this;
+    }
+
+    /**
+     * 设置 [父名称]
+     */
+    public DepartmentDTO setPname(String pname) {
+        this.pname = pname;
+        this.modify("pname", pname);
         return this;
     }
 
@@ -134,6 +211,15 @@ public class DepartmentDTO extends DTOBase implements Serializable {
     public DepartmentDTO setName(String name) {
         this.name = name;
         this.modify("name", name);
+        return this;
+    }
+
+    /**
+     * 设置 [组织标识]
+     */
+    public DepartmentDTO setOrganizationId(String organizationId) {
+        this.organizationId = organizationId;
+        this.modify("organization_id", organizationId);
         return this;
     }
 

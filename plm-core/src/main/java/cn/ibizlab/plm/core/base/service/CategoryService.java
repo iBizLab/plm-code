@@ -246,6 +246,22 @@ public interface CategoryService extends IService<Category> {
     List<Category> listCurProductIdeaCategory(CategorySearchContext context);
 
     /**
+    * fetchMyCategory
+    * 
+    * @param context
+    * @return
+    */
+    Page<Category> fetchMyCategory(CategorySearchContext context);
+
+    /**
+    * listMyCategory
+    * 
+    * @param context
+    * @return
+    */
+    List<Category> listMyCategory(CategorySearchContext context);
+
+    /**
     * fetchNoParent
     * 
     * @param context

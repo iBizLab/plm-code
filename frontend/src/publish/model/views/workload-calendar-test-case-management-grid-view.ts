@@ -839,7 +839,7 @@ export default {
         controlParam: {
           id: 'searchbar',
         },
-        modelId: '0C3EEB62-1886-4FD0-81A4-CCBBF9BAB5FC',
+        modelId: '3f1789d00addf2b9d884fbd8049685c7',
         modelType: 'PSSYSSEARCHBAR',
         name: 'searchbar',
         id: 'plmweb.workload.test_case_management_searchbar',
@@ -900,7 +900,7 @@ export default {
     logicName: 'calendar_test_case_management_grid_view表格视图布局',
     appDataEntityId: 'plmweb.workload',
     controlParam: {},
-    modelId: '5C7922B2-4BAA-43A9-9ED8-BCD9ACC09AEB',
+    modelId: 'ccaaa48b42a0e8a3df0e0234c07012d6',
     modelType: 'PSSYSVIEWLAYOUTPANEL',
     name: 'layoutpanel',
     id: 'usr0326623502',

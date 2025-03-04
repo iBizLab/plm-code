@@ -3,7 +3,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'run_re_idea_grid_view',
-  deviewId: '34571677-2D27-4E9E-978F-D38EB40D315A',
+  deviewId: 'c822a5278b29d98af0631729502a793e',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.RELATION',
@@ -285,15 +285,6 @@ export default {
     ],
     appViewRefs: [
       {
-        realTitle: '工作项关联编辑视图',
-        realTitleLanguageRes: {
-          lanResTag: 'PAGE.TITLE.RELATION.EDITVIEW',
-        },
-        refAppViewId: 'plmweb.relation_edit_view',
-        name: 'NEWDATA',
-        id: 'newdata',
-      },
-      {
         openMode: 'POPUPMODAL',
         navigateContexts: [
           {
@@ -317,6 +308,15 @@ export default {
         refAppViewId: 'plmweb.idea_main_view',
         name: 'EDITDATA',
         id: 'editdata',
+      },
+      {
+        realTitle: '工作项关联编辑视图',
+        realTitleLanguageRes: {
+          lanResTag: 'PAGE.TITLE.RELATION.EDITVIEW',
+        },
+        refAppViewId: 'plmweb.relation_edit_view',
+        name: 'NEWDATA',
+        id: 'newdata',
       },
     ],
     controls: [
@@ -582,7 +582,7 @@ export default {
     logicName: '执行用例关联需求表格视图布局',
     appDataEntityId: 'plmweb.relation',
     controlParam: {},
-    modelId: '7ae503201512d9ba35ff4db7956af8e0',
+    modelId: 'd12675b08a91292a3a981ec7910cee5f',
     modelType: 'PSSYSVIEWLAYOUTPANEL',
     name: 'layoutpanel',
     id: 'run_re_idea_grid_view',
@@ -592,7 +592,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '7379496f892f2103ac0e877637aa3418',
+  modelId: 'ccaf7b62880fb24d9c240382a2aceeaa',
   modelType: 'PSAPPDEVIEW',
   name: 'relationrun_re_idea_grid_view',
   id: 'plmweb.relation_run_re_idea_grid_view',

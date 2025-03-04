@@ -5,7 +5,7 @@ export default {
   loadDefault: true,
   openMode: 'POPUPMODAL',
   deviewCodeName: 'quick_create_view',
-  deviewId: 'DC49CD3D-191C-4143-B0F6-55902C97B30C',
+  deviewId: '853eff3c36ea98e930783df8f713524d',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.TICKET_TYPE',
@@ -235,7 +235,7 @@ export default {
       controlParam: {
         id: 'form',
       },
-      modelId: '7DCFF80A-2EA2-4BAE-B526-25B766983455',
+      modelId: '9f87e26f46eb01292b0a2907bad85437',
       modelType: 'PSDEFORM_EDITFORM',
       name: 'form',
       id: 'plmweb.ticket_type.quick_create_view_form',
@@ -280,7 +280,7 @@ export default {
   width: 800,
   enableDP: true,
   showCaptionBar: true,
-  modelId: 'f9aacbd8ad514c905464d3ba965191a7',
+  modelId: '48a4960202fcb2d3c48ff8769a17559a',
   modelType: 'PSAPPDEVIEW',
   name: 'ticket_typequick_create_view',
   id: 'plmweb.ticket_type_quick_create_view',

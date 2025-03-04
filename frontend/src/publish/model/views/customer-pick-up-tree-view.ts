@@ -5,7 +5,7 @@ export default {
   xdataControlName: 'tree',
   loadDefault: true,
   deviewCodeName: 'pick_up_tree_view',
-  deviewId: '5f1d988fd2e3d665669ceea64939f17b',
+  deviewId: 'fcad8289217783a700f43aa7aa40ccbe',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.CUSTOMER',
@@ -234,7 +234,7 @@ export default {
   viewType: 'DEPICKUPTREEVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '33b7372420d929d6e47b60ac88da7857',
+  modelId: 'dfde328a1bb6885cf0f1ffd6fc71466d',
   modelType: 'PSAPPDEVIEW',
   name: 'customerpick_up_tree_view',
   id: 'plmweb.customer_pick_up_tree_view',

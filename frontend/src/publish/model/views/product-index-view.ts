@@ -371,7 +371,7 @@ export default {
         showTitle: true,
         dataRelationTag: 'product',
         editItemCaption: '产品',
-        appCounterRefId: 'a0bae0287de963bd22cdc7c0b52d6895',
+        appCounterRefId: 'dc574843010c8f47b9b2b7c4bb61cdd7',
         dedrctrlItems: [
           {
             dedrbarGroupId: 'usrdrgroup1228809432',
@@ -516,9 +516,9 @@ export default {
             refMode: {
               srfdeid: 'PRODUCT',
             },
-            tag: 'a0bae0287de963bd22cdc7c0b52d6895',
+            tag: 'dc574843010c8f47b9b2b7c4bb61cdd7',
             uniqueTag: 'product_add_on_counters',
-            id: 'a0bae0287de963bd22cdc7c0b52d6895',
+            id: 'dc574843010c8f47b9b2b7c4bb61cdd7',
           },
         ],
         codeName: 'product',
@@ -529,7 +529,7 @@ export default {
           id: 'drbar',
         },
         sysPFPluginId: 'drbar_ex',
-        modelId: '1842ec47d0c1674d37d3c1368731abb2',
+        modelId: '4ef3210a4942160fe3c09df9b0ab37a3',
         modelType: 'PSDEDRBAR',
         name: 'drbar',
         id: 'product',

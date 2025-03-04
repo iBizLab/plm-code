@@ -5,7 +5,7 @@ export default {
   loadDefault: true,
   openMode: 'INDEXVIEWTAB_POPUPMODAL',
   deviewCodeName: 'model_show_view',
-  deviewId: '27793c4fa76207117d649e443177b0da',
+  deviewId: 'f3136fa0ff60ef871d2db8af00915767',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.PAGE',
@@ -108,7 +108,6 @@ export default {
                       },
                     ],
                     logicType: 'GROUP',
-                    id: '面板成员[static_image][面板显示]逻辑',
                   },
                 ],
                 sysImage: {
@@ -455,7 +454,6 @@ export default {
                                               },
                                             ],
                                             logicType: 'GROUP',
-                                            id: '面板成员[comment_cancel][面板显示]逻辑',
                                           },
                                         ],
                                         showCaption: true,
@@ -492,7 +490,6 @@ export default {
                                               },
                                             ],
                                             logicType: 'GROUP',
-                                            id: '面板成员[comment_send][面板显示]逻辑',
                                           },
                                         ],
                                         showCaption: true,
@@ -2376,7 +2373,6 @@ export default {
                             },
                           ],
                           logicType: 'GROUP',
-                          id: '面板成员[container2][面板显示]逻辑',
                         },
                       ],
                       id: 'container2',
@@ -2538,7 +2534,6 @@ export default {
                             },
                           ],
                           logicType: 'GROUP',
-                          id: '面板成员[container3][面板显示]逻辑',
                         },
                       ],
                       sysCss: {
@@ -2594,17 +2589,6 @@ export default {
             id: 'content',
           },
           {
-            appDEFieldId: 'pcontent',
-            dataType: 21,
-            id: 'pcontent',
-          },
-          {
-            appDEFieldId: 'create_time',
-            dataType: 5,
-            format: 'YYYY-MM-DD HH:mm:ss',
-            id: 'create_time',
-          },
-          {
             appDEFieldId: 'pid',
             dataType: 25,
             id: 'pid',
@@ -2616,15 +2600,26 @@ export default {
             id: 'create_man',
           },
           {
-            appDEFieldId: 'id',
-            dataType: 25,
-            id: 'id',
-          },
-          {
             appDEFieldId: 'pcreate_man',
             frontCodeListId: 'plmweb.sysoperator',
             dataType: 25,
             id: 'pcreate_man',
+          },
+          {
+            appDEFieldId: 'pcontent',
+            dataType: 21,
+            id: 'pcontent',
+          },
+          {
+            appDEFieldId: 'create_time',
+            dataType: 5,
+            format: 'YYYY-MM-DD HH:mm:ss',
+            id: 'create_time',
+          },
+          {
+            appDEFieldId: 'id',
+            dataType: 25,
+            id: 'id',
           },
           {
             appDEFieldId: 'id',
@@ -2763,7 +2758,7 @@ export default {
   width: 90,
   enableDP: true,
   showCaptionBar: true,
-  modelId: '3772667dc942faf6ee6d062a16e4ba14',
+  modelId: 'fccca4d0bea313182bbae1abd5bc7158',
   modelType: 'PSAPPDEVIEW',
   name: 'article_pagemodel_show_view',
   id: 'plmweb.article_page_model_show_view',

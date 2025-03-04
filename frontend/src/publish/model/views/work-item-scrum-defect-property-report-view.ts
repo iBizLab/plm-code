@@ -3,7 +3,7 @@ export default {
   expandSearchForm: true,
   loadDefault: true,
   deviewCodeName: 'scrum_defect_property_report_view',
-  deviewId: '2725c2ec9870d5176fb8f69f44a6b1c4',
+  deviewId: '08f054b986194bb7c8362b3300a17c56',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.WORK_ITEM',
@@ -1050,7 +1050,7 @@ export default {
         controlParam: {
           id: 'toolbar',
         },
-        modelId: '39CBDECE-BDDD-4C5C-A49A-51F8980ACC50',
+        modelId: '609bf7530ae5e2c44389d7d08e457f08',
         modelType: 'PSDETOOLBAR',
         name: 'toolbar',
         id: 'scrum_defect_property_report_view_toolbar',
@@ -1092,7 +1092,7 @@ export default {
   viewType: 'DECHARTVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '35caa6e510af5235fa1284192b7ac301',
+  modelId: '5dc539ee8cf1ca8987a43061c21c4263',
   modelType: 'PSAPPDEVIEW',
   name: 'work_itemscrum_defect_property_report_view',
   id: 'plmweb.work_item_scrum_defect_property_report_view',

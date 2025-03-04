@@ -5,7 +5,7 @@ export default {
   loadDefault: true,
   openMode: 'POPUPMODAL',
   deviewCodeName: 'daily_test_option_view',
-  deviewId: '8C75F979-AD83-4A7B-AD76-32958E442FE1',
+  deviewId: 'fa96a844539f64482426cecbc2d7b8f9',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.RUN',
@@ -241,7 +241,7 @@ export default {
       controlParam: {
         id: 'form',
       },
-      modelId: '4E86337D-A720-484B-9B0D-6A69D808EE14',
+      modelId: '1957a7aa5485b6dea6964737b004f2b4',
       modelType: 'PSDEFORM_EDITFORM',
       name: 'form',
       id: 'plmweb.run.daily_test_option_view_form',
@@ -286,7 +286,7 @@ export default {
   width: 500,
   enableDP: true,
   showCaptionBar: true,
-  modelId: '34f640b7ed1a01075e9f3b1b85b2f4c9',
+  modelId: '206c4f36c2852372669d8ee622f38fd9',
   modelType: 'PSAPPDEVIEW',
   name: 'rundaily_test_option_view',
   id: 'plmweb.run_daily_test_option_view',

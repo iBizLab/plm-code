@@ -3,7 +3,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'category_grid_view',
-  deviewId: 'db1065606ff6fd0de1224fc4186daa9d',
+  deviewId: 'bc447ccb5f9dea3845c5bb1075381eeb',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'PAGE.CAPTION.SPACE.GRID_VIEW_ALL',
@@ -66,15 +66,6 @@ export default {
   ],
   appViewRefs: [
     {
-      realTitle: '空间',
-      realTitleLanguageRes: {
-        lanResTag: 'PAGE.TITLE.SPACE.INDEX_VIEW',
-      },
-      refAppViewId: 'plmweb.space_index_view',
-      name: 'EDITDATA',
-      id: 'editdata',
-    },
-    {
       realOpenMode: 'POPUPMODAL',
       realTitle: '新建空间',
       realTitleLanguageRes: {
@@ -83,6 +74,15 @@ export default {
       refAppViewId: 'plmweb.space_create_wizard_view',
       name: 'NEWDATA',
       id: 'newdata',
+    },
+    {
+      realTitle: '空间',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.SPACE.INDEX_VIEW',
+      },
+      refAppViewId: 'plmweb.space_index_view',
+      name: 'EDITDATA',
+      id: 'editdata',
     },
   ],
   controls: [
@@ -576,7 +576,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '778eedf84d4cf0f515ab4dfa3cc1e950',
+  modelId: '3239cc98334a0b49f88be55f2d873c11',
   modelType: 'PSAPPDEVIEW',
   name: 'spacecategory_grid_view',
   id: 'plmweb.space_category_grid_view',

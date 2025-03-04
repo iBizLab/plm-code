@@ -3,7 +3,7 @@ export default {
   expandSearchForm: true,
   loadDefault: true,
   deviewCodeName: 'priority_distributions_report_view',
-  deviewId: '17c7f90d4909f56786c8d08b868421ef',
+  deviewId: 'bbc70916ed79813a6c87180adc3b500d',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.RUN',
@@ -767,7 +767,7 @@ export default {
   viewType: 'DECHARTVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '55880e06f46301a6f1cf5d89fdd7a47f',
+  modelId: 'c132462828aeb43decfd421022abac25',
   modelType: 'PSAPPDEVIEW',
   name: 'runpriority_distributions_report_view',
   id: 'plmweb.run_priority_distributions_report_view',

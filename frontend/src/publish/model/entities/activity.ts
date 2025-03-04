@@ -76,14 +76,6 @@ export default {
       id: 'audit_info',
     },
     {
-      codeName: 'object_id',
-      logicName: '对象标识',
-      stdDataType: 25,
-      stringLength: 100,
-      name: 'OBJECTID',
-      id: 'object_id',
-    },
-    {
       codeName: 'op_person_id',
       logicName: '操作人',
       stdDataType: 25,
@@ -106,6 +98,14 @@ export default {
       stringLength: 500,
       name: 'IPADDRESS',
       id: 'ip_address',
+    },
+    {
+      codeName: 'object_id',
+      logicName: '对象标识',
+      stdDataType: 25,
+      stringLength: 100,
+      name: 'OBJECTID',
+      id: 'object_id',
     },
     {
       codeName: 'audit_type',
@@ -664,6 +664,13 @@ export default {
       ],
       deuilogicParams: [
         {
+          codeName: 'Default',
+          default: true,
+          entityParam: true,
+          name: '传入变量',
+          id: 'default',
+        },
+        {
           codeName: 'obj_info',
           entityParam: true,
           name: '活动对象详情信息',
@@ -674,13 +681,6 @@ export default {
           ctrlParam: true,
           name: '列表部件',
           id: 'list',
-        },
-        {
-          codeName: 'Default',
-          default: true,
-          entityParam: true,
-          name: '传入变量',
-          id: 'default',
         },
         {
           codeName: 'view',

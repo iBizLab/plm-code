@@ -3,7 +3,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'shared_with_me_grid_view',
-  deviewId: '6134C2F0-A619-41AB-A542-B66552C2AD61',
+  deviewId: '4ed3d57bf9acc7e47d0ccebeffbf48c0',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.PAGE',
@@ -66,13 +66,6 @@ export default {
   ],
   appViewRefs: [
     {
-      realOpenMode: 'POPUPMODAL',
-      realTitle: '页面',
-      refAppViewId: 'plmweb.article_page_shared_with_me_view',
-      name: 'EDITDATA',
-      id: 'editdata',
-    },
-    {
       realTitle: '页面编辑视图',
       realTitleLanguageRes: {
         lanResTag: 'PAGE.TITLE.PAGE.EDITVIEW',
@@ -80,6 +73,13 @@ export default {
       refAppViewId: 'plmweb.article_page_edit_view',
       name: 'NEWDATA',
       id: 'newdata',
+    },
+    {
+      realOpenMode: 'POPUPMODAL',
+      realTitle: '页面',
+      refAppViewId: 'plmweb.article_page_shared_with_me_view',
+      name: 'EDITDATA',
+      id: 'editdata',
     },
   ],
   controls: [
@@ -237,7 +237,7 @@ export default {
       controlParam: {
         id: 'grid',
       },
-      modelId: '5D7A4176-D565-45D2-A0AC-767F0A4E0242',
+      modelId: '4b463e627a21901ea775854825dacb4c',
       modelType: 'PSDEGRID',
       name: 'grid',
       id: 'plmweb.article_page.shared_with_me',
@@ -282,7 +282,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: 'fbb0a52c3faaba1c6e78f3c6a1a81983',
+  modelId: 'c36c7ba04dc1b99cbf0419e3ad5f977c',
   modelType: 'PSAPPDEVIEW',
   name: 'article_pageshared_with_me_grid_view',
   id: 'plmweb.article_page_shared_with_me_grid_view',

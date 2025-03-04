@@ -341,7 +341,7 @@ public class WorkItemDTO extends DTOBase implements Serializable {
     @JsonProperty("p_work_item_type_id")
     @JSONField(name = "p_work_item_type_id")
     @ApiModelProperty(value = "父工作项类型", position = 37)
-    private String pWorkItemTypeId;
+    private String PWorkItemTypeId;
 
     /**
      * 评论数
@@ -1125,7 +1125,7 @@ public class WorkItemDTO extends DTOBase implements Serializable {
      * 设置 [父工作项类型]
      */
     public WorkItemDTO setPWorkItemTypeId(String pWorkItemTypeId) {
-        this.pWorkItemTypeId = pWorkItemTypeId;
+        this.PWorkItemTypeId = pWorkItemTypeId;
         this.modify("p_work_item_type_id", pWorkItemTypeId);
         return this;
     }

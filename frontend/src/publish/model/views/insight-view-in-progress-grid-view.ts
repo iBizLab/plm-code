@@ -3,7 +3,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'in_progress_grid_view',
-  deviewId: 'D871B236-96D3-403D-B3B3-8D510A0E572C',
+  deviewId: '40e7502c58b646b5e1d36b0080fcdf41',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.INSIGHT_VIEW',
@@ -167,7 +167,7 @@ export default {
                   cssClass: 'fa fa-sun-o',
                   glyph: 'xf185@FontAwesome',
                 },
-                id: 'uf2fbb62',
+                id: 'u1bcd7e7',
               },
               {
                 actionLevel: 100,
@@ -181,7 +181,7 @@ export default {
                   cssClass: 'fa fa-trash-o',
                   glyph: 'xf014@FontAwesome',
                 },
-                id: 'u3d89309',
+                id: 'u3ae0772',
               },
             ],
             appDataEntityId: 'plmweb.insight_view',
@@ -281,7 +281,7 @@ export default {
       controlParam: {
         id: 'grid',
       },
-      modelId: '75C18C00-3ADF-4562-975A-367456292117',
+      modelId: '54a3ecfebc117ec0ad7f5101397d5ac3',
       modelType: 'PSDEGRID',
       name: 'grid',
       id: 'plmweb.insight_view.in_progress',
@@ -319,7 +319,7 @@ export default {
       controlParam: {
         id: 'searchform',
       },
-      modelId: 'bab3a1edb20820991765e185a33d0565',
+      modelId: '3e935d87b177a8f6c290a70d16cc0e4e',
       modelType: 'PSDEFORM_SEARCHFORM',
       name: 'searchform',
       id: 'plmweb.insight_view.default',
@@ -381,7 +381,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: false,
-  modelId: '3172fdf28417532466e2e34d5831d516',
+  modelId: 'fbcb8919f88c5254b11d475d29857349',
   modelType: 'PSAPPDEVIEW',
   name: 'insight_viewin_progress_grid_view',
   id: 'plmweb.insight_view_in_progress_grid_view',

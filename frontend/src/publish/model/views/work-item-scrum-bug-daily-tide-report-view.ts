@@ -4,7 +4,7 @@ export default {
   expandSearchForm: true,
   loadDefault: true,
   deviewCodeName: 'scrum_bug_daily_tide_report_view',
-  deviewId: 'e5e8266e8ff06e24d99f98dfeccc2bbc',
+  deviewId: '1213a66a54aefb72883b70436b6fb4b1',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.WORK_ITEM',
@@ -863,7 +863,7 @@ export default {
   viewType: 'DECHARTVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: 'b49eaff1ec6288cd0fad735a8e3c0b24',
+  modelId: '40a851030ace3739aef070ab34d70922',
   modelType: 'PSAPPDEVIEW',
   name: 'work_itemscrum_bug_daily_tide_report_view',
   id: 'plmweb.work_item_scrum_bug_daily_tide_report_view',

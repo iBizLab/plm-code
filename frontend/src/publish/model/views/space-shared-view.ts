@@ -4,7 +4,7 @@ export default {
   xdataControlName: 'form',
   loadDefault: true,
   deviewCodeName: 'shared_view',
-  deviewId: '05E637EA-075B-451E-AF8F-18CCBA08262A',
+  deviewId: 'db66004925d96f516f2449848031ac3c',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.SPACE',
@@ -258,7 +258,7 @@ export default {
       controlParam: {
         id: 'form',
       },
-      modelId: 'A25ECB95-DC5C-4FCC-AAAB-D14A658F7CD3',
+      modelId: 'f553cff505f96cb2cf263ca6a3dfbb3f',
       modelType: 'PSDEFORM_EDITFORM',
       name: 'form',
       id: 'plmweb.space.shared_form',
@@ -302,7 +302,7 @@ export default {
   viewType: 'DEEDITVIEW',
   enableDP: true,
   showCaptionBar: false,
-  modelId: '3afc3491a14b4207696b85cc21a0ea0a',
+  modelId: '3c3d86e5eb72451bc47bc3b0284cf635',
   modelType: 'PSAPPDEVIEW',
   name: 'spaceshared_view',
   id: 'plmweb.space_shared_view',

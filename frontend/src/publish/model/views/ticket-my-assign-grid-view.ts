@@ -83,15 +83,6 @@ export default {
   ],
   appViewRefs: [
     {
-      realTitle: '工单编辑视图',
-      realTitleLanguageRes: {
-        lanResTag: 'PAGE.TITLE.TICKET.EDITVIEW',
-      },
-      refAppViewId: 'plmweb.ticket_edit_view',
-      name: 'NEWDATA',
-      id: 'newdata',
-    },
-    {
       openMode: 'INDEXVIEWTAB_POPUPMODAL',
       navigateContexts: [
         {
@@ -106,6 +97,15 @@ export default {
       refAppViewId: 'plmweb.ticket_main_view',
       name: 'EDITDATA',
       id: 'editdata',
+    },
+    {
+      realTitle: '工单编辑视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.TICKET.EDITVIEW',
+      },
+      refAppViewId: 'plmweb.ticket_edit_view',
+      name: 'NEWDATA',
+      id: 'newdata',
     },
   ],
   controls: [

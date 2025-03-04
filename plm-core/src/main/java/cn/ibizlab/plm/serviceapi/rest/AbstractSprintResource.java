@@ -174,21 +174,19 @@ public abstract class AbstractSprintResource {
     * delete_categories 迭代
     * 
     *
-    * @param id id
     * @param dto dto
     * @return Mono<ResponseEntity<SprintDTO>>
     */
     @ApiOperation(value = "delete_categories", tags = {"迭代" },  notes = "Sprint-delete_categories ")
-    @PostMapping("sprints/{id}/delete_categories")
-    public Mono<ResponseEntity<ResponseWrapper<SprintDTO>>>deleteCategoriesById
-            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<SprintDTO> dto) {
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Sprint-delete_categories-all') or hasPermission(this.sprintDtoMapping.toDomain(#dto),'ibizplm-Sprint-delete_categories')")
+    @PostMapping("sprints/delete_categories")
+    public Mono<ResponseEntity<ResponseWrapper<SprintDTO>>>deleteCategories
+            (@Validated @RequestBody RequestWrapper<SprintDTO> dto) {
         ResponseWrapper<SprintDTO> rt = new ResponseWrapper<>();
-        if (dto.isArray()) {
-            String [] ids = id.split(";");
-            IntStream.range(0, ids.length).forEach(i -> rt.add(deleteCategoriesById(ids[i], dto.getList().get(i))));
-        }
+        if (dto.isArray())
+            dto.getList().forEach(item -> rt.add(deleteCategories(item)));
         else
-            rt.set(deleteCategoriesById(id, dto.getDto()));
+            rt.set(deleteCategories(dto.getDto()));
         return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
@@ -196,14 +194,12 @@ public abstract class AbstractSprintResource {
     * delete_categories 迭代
     * 
     *
-    * @param id id
     * @param dto dto
     * @return ResponseEntity<SprintDTO>
     */   
-    public SprintDTO deleteCategoriesById
-            (String id, SprintDTO dto) {
+    public SprintDTO deleteCategories
+            (SprintDTO dto) {
         Sprint domain = sprintDtoMapping.toDomain(dto);
-        domain.setId(id);
         Sprint rt = sprintService.deleteCategories(domain);
         return sprintDtoMapping.toDto(rt);
     }
@@ -482,21 +478,19 @@ public abstract class AbstractSprintResource {
     * 
     *
     * @param projectId projectId
-    * @param id id
     * @param dto dto
     * @return Mono<ResponseEntity<SprintDTO>>
     */
     @ApiOperation(value = "delete_categories", tags = {"迭代" },  notes = "Sprint-delete_categories ")
-    @PostMapping("projects/{projectId}/sprints/{id}/delete_categories")
-    public Mono<ResponseEntity<ResponseWrapper<SprintDTO>>>deleteCategoriesByProjectIdAndId
-            (@PathVariable("projectId") String projectId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<SprintDTO> dto) {
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Sprint-delete_categories-all') or hasPermission('project',#projectId,this.sprintDtoMapping.toDomain(#dto),'ibizplm-Sprint-delete_categories')")
+    @PostMapping("projects/{projectId}/sprints/delete_categories")
+    public Mono<ResponseEntity<ResponseWrapper<SprintDTO>>>deleteCategoriesByProjectId
+            (@PathVariable("projectId") String projectId, @Validated @RequestBody RequestWrapper<SprintDTO> dto) {
         ResponseWrapper<SprintDTO> rt = new ResponseWrapper<>();
-        if (dto.isArray()) {
-            String [] ids = id.split(";");
-            IntStream.range(0, ids.length).forEach(i -> rt.add(deleteCategoriesByProjectIdAndId(projectId, ids[i], dto.getList().get(i))));
-        }
+        if (dto.isArray())
+            dto.getList().forEach(item -> rt.add(deleteCategoriesByProjectId(projectId, item)));
         else
-            rt.set(deleteCategoriesByProjectIdAndId(projectId, id, dto.getDto()));
+            rt.set(deleteCategoriesByProjectId(projectId, dto.getDto()));
         return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
@@ -505,14 +499,13 @@ public abstract class AbstractSprintResource {
     * 
     *
     * @param projectId projectId
-    * @param id id
     * @param dto dto
     * @return ResponseEntity<SprintDTO>
     */   
-    public SprintDTO deleteCategoriesByProjectIdAndId
-            (String projectId, String id, SprintDTO dto) {
+    public SprintDTO deleteCategoriesByProjectId
+            (String projectId, SprintDTO dto) {
         Sprint domain = sprintDtoMapping.toDomain(dto);
-        domain.setId(id);
+        domain.setProjectId(projectId);
         Sprint rt = sprintService.deleteCategories(domain);
         return sprintDtoMapping.toDto(rt);
     }

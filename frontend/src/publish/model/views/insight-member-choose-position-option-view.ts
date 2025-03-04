@@ -5,7 +5,7 @@ export default {
   loadDefault: true,
   openMode: 'POPUPMODAL',
   deviewCodeName: 'choose_position_option_view',
-  deviewId: '4B78DA20-6AB4-48CB-86E3-9706DE1047E2',
+  deviewId: '196980aa74b3785e98e8ec94eebe43e2',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.INSIGHT_MEMBER',
@@ -139,7 +139,7 @@ export default {
       controlParam: {
         id: 'form',
       },
-      modelId: '15B8E64B-67DF-491C-801F-8E7ACF627FEC',
+      modelId: 'de101daaf21abe9da3724303010cbb42',
       modelType: 'PSDEFORM_EDITFORM',
       name: 'form',
       id: 'plmweb.insight_member.usr12125039_form',
@@ -184,7 +184,7 @@ export default {
   width: 400,
   enableDP: true,
   showCaptionBar: true,
-  modelId: 'b3743535a46c697aebd558d788e6003d',
+  modelId: 'c28bce63cd26efb2916407bc0771b677',
   modelType: 'PSAPPDEVIEW',
   name: 'insight_memberchoose_position_option_view',
   id: 'plmweb.insight_member_choose_position_option_view',

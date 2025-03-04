@@ -59,7 +59,7 @@ public class ActivityFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_objectid_eq")
     @JSONField(name = "n_objectid_eq")
-    @ApiModelProperty(value = "对象标识EQ", position = 70)
+    @ApiModelProperty(value = "对象标识EQ", position = 100)
 	private String objectIdEQ;
 
 

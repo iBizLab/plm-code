@@ -66,6 +66,13 @@ export default {
   ],
   appViewRefs: [
     {
+      realOpenMode: 'INDEXVIEWTAB_POPUPMODAL',
+      realTitle: '工单',
+      refAppViewId: 'plmweb.ticket_main_view',
+      name: 'EDITDATA',
+      id: 'editdata',
+    },
+    {
       realTitle: '工单编辑视图',
       realTitleLanguageRes: {
         lanResTag: 'PAGE.TITLE.TICKET.EDITVIEW',
@@ -73,13 +80,6 @@ export default {
       refAppViewId: 'plmweb.ticket_edit_view',
       name: 'NEWDATA',
       id: 'newdata',
-    },
-    {
-      realOpenMode: 'INDEXVIEWTAB_POPUPMODAL',
-      realTitle: '工单',
-      refAppViewId: 'plmweb.ticket_main_view',
-      name: 'EDITDATA',
-      id: 'editdata',
     },
   ],
   controls: [
@@ -336,7 +336,7 @@ export default {
         },
         id: 'tabsearchbar',
       },
-      modelId: '0E51AE94-BC36-416B-BBD5-5E558D2C6220',
+      modelId: '5600a56a38ac99c1a2a04804be21be02',
       modelType: 'PSSYSSEARCHBAR',
       name: 'tabsearchbar',
       id: 'plmweb.ticket.fast_searchbar',

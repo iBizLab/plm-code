@@ -289,7 +289,7 @@ export default {
       sysCss: {
         cssName: 'confirm-remove-view',
       },
-      modelId: '4EF909A3-F911-4221-A794-77C757C4069B',
+      modelId: '68d6c51b1efb679d600be0f7665057e7',
       modelType: 'PSDEFORM_EDITFORM',
       name: 'form',
       id: 'plmweb.dictionary_data.idea_remove_view_form',

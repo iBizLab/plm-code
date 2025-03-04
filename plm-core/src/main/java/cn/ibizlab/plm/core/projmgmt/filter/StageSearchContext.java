@@ -39,6 +39,14 @@ import cn.ibizlab.plm.core.projmgmt.domain.Stage;
 public class StageSearchContext extends QueryWrapperContext<Stage> {
 
     /**
+     * 背景样式EQ
+     */
+    @JsonProperty("n_style_eq")
+    @JSONField(name = "n_style_eq")
+    @ApiModelProperty("背景样式EQ")
+    private String styleEQ;
+
+    /**
      * 标识IN
      */
     @JsonProperty("n_id_in")

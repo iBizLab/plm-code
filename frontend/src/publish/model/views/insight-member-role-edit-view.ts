@@ -5,7 +5,7 @@ export default {
   loadDefault: true,
   openMode: 'POPUPMODAL',
   deviewCodeName: 'role_edit_view',
-  deviewId: 'CD98C5ED-C915-4E07-882B-E0FC04CF7705',
+  deviewId: '885368c57c6d0a8263f6929e90e2c8be',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.INSIGHT_MEMBER',
@@ -222,7 +222,7 @@ export default {
   width: 660,
   enableDP: true,
   showCaptionBar: true,
-  modelId: 'f3bae867a7568eb7687105f808fe09d8',
+  modelId: '98d2237fd1a06eeb57a809fd160a5793',
   modelType: 'PSAPPDEVIEW',
   name: 'insight_memberrole_edit_view',
   id: 'plmweb.insight_member_role_edit_view',

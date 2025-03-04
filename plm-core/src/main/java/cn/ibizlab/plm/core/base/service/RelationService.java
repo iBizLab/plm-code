@@ -392,6 +392,22 @@ public interface RelationService extends IService<Relation> {
     List<Relation> listIdeaVersionRelation(RelationSearchContext context);
 
     /**
+    * fetchMyRelation
+    * 
+    * @param context
+    * @return
+    */
+    Page<Relation> fetchMyRelation(RelationSearchContext context);
+
+    /**
+    * listMyRelation
+    * 
+    * @param context
+    * @return
+    */
+    List<Relation> listMyRelation(RelationSearchContext context);
+
+    /**
     * fetchProductPlanIdea
     * 
     * @param context

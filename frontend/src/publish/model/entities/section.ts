@@ -64,6 +64,13 @@ export default {
       id: 'is_leaf',
     },
     {
+      codeName: 'is_leaf2',
+      logicName: '是否叶子节点2',
+      stdDataType: 9,
+      name: 'IS_LEAF2',
+      id: 'is_leaf2',
+    },
+    {
       codeName: 'id',
       lnlanguageRes: {
         lanResTag: 'DEF.LNAME.ID',
@@ -184,6 +191,16 @@ export default {
           type: 'SIMPLE',
           allowEmpty: true,
           id: 'is_leaf',
+        },
+        {
+          codeName: 'is_leaf2',
+          logicName: '是否叶子节点2',
+          appDEFieldId: 'is_leaf2',
+          sourceType: 'DEFIELD',
+          stdDataType: 9,
+          type: 'SIMPLE',
+          allowEmpty: true,
+          id: 'is_leaf2',
         },
         {
           codeName: 'create_man',
@@ -611,6 +628,28 @@ export default {
       dataSetTag: 'idea_section',
       dataSetType: 'REMOTE',
       id: 'fetch_idea_section',
+    },
+    {
+      codeName: 'fetch_my_section',
+      methodType: 'FETCH',
+      appDEMethodInput: {
+        appDEMethodDTOId: 'section_filter_dto',
+        type: 'DTO',
+        id: '输入对象',
+      },
+      appDEMethodReturn: {
+        appDEMethodDTOId: 'section_dto',
+        type: 'PAGE',
+        id: '返回对象',
+      },
+      requestMethod: 'POST',
+      requestParamType: 'ENTITY',
+      requestPath: '/fetch_my_section',
+      actionType: 'REMOTE',
+      dataSetName: 'my_section',
+      dataSetTag: 'my_section',
+      dataSetType: 'REMOTE',
+      id: 'fetch_my_section',
     },
     {
       codeName: 'fetch_this_product_section',

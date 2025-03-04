@@ -650,14 +650,6 @@ export default {
           id: 'begin',
         },
         {
-          codeName: 'END1',
-          leftPos: 200,
-          logicNodeType: 'END',
-          topPos: 842,
-          name: '结束',
-          id: 'end1',
-        },
-        {
           code: "uiLogic.run_attachment.name = uiLogic.files[0].name;\r\nuiLogic.run_attachment.file_id = uiLogic.files[0].id;\r\nuiLogic.run_attachment.owner_id = uiLogic.context.run;\r\nuiLogic.run_attachment.owner_type = 'RUN';",
           codeName: 'RAWJSCODE1',
           leftPos: 160,
@@ -672,40 +664,6 @@ export default {
           topPos: 507,
           name: '获取文件名称',
           id: 'rawjscode1',
-        },
-        {
-          code: "view.layoutPanel.panelItems.grid.state.visible = true;\r\nibiz.hub.getApp(context.srfappid).deService.exec(\r\n    'plmweb.run_attachment',\r\n    'create',\r\n    context,\r\n    uiLogic.run_attachment,\r\n);\r\n",
-          codeName: 'RAWJSCODE2',
-          leftPos: 160,
-          logicNodeType: 'RAWJSCODE',
-          deuilogicLinks: [
-            {
-              dstDEUILogicNodeId: 'viewctrlinvoke1',
-              srcDEUILogicNodeId: 'rawjscode2',
-              id: '连接名称',
-            },
-          ],
-          topPos: 613,
-          name: '添加结果附件实体临时数据',
-          id: 'rawjscode2',
-        },
-        {
-          invokeCtrlId: 'form',
-          invokeMethod: 'save',
-          invokeParamId: 'form',
-          codeName: 'VIEWCTRLINVOKE1',
-          leftPos: 160,
-          logicNodeType: 'VIEWCTRLINVOKE',
-          deuilogicLinks: [
-            {
-              dstDEUILogicNodeId: 'end1',
-              srcDEUILogicNodeId: 'viewctrlinvoke1',
-              id: '连接名称',
-            },
-          ],
-          topPos: 724,
-          name: '视图部件调用',
-          id: 'viewctrlinvoke1',
         },
         {
           codeName: 'PREPAREJSPARAM1',
@@ -734,6 +692,32 @@ export default {
           id: 'preparejsparam1',
         },
         {
+          codeName: 'END1',
+          leftPos: 200,
+          logicNodeType: 'END',
+          topPos: 842,
+          name: '结束',
+          id: 'end1',
+        },
+        {
+          invokeCtrlId: 'form',
+          invokeMethod: 'save',
+          invokeParamId: 'form',
+          codeName: 'VIEWCTRLINVOKE1',
+          leftPos: 160,
+          logicNodeType: 'VIEWCTRLINVOKE',
+          deuilogicLinks: [
+            {
+              dstDEUILogicNodeId: 'end1',
+              srcDEUILogicNodeId: 'viewctrlinvoke1',
+              id: '连接名称',
+            },
+          ],
+          topPos: 724,
+          name: '视图部件调用',
+          id: 'viewctrlinvoke1',
+        },
+        {
           dstAppDEUIActionId: 'upload_attachment@run_attachment',
           dstAppDataEntityId: 'plmweb.run_attachment',
           codeName: 'DEUIACTION1',
@@ -751,14 +735,24 @@ export default {
           name: '上传附件',
           id: 'deuiaction1',
         },
+        {
+          code: "view.layoutPanel.panelItems.grid.state.visible = true;\r\nibiz.hub.getApp(context.srfappid).deService.exec(\r\n    'plmweb.run_attachment',\r\n    'create',\r\n    context,\r\n    uiLogic.run_attachment,\r\n);\r\n",
+          codeName: 'RAWJSCODE2',
+          leftPos: 160,
+          logicNodeType: 'RAWJSCODE',
+          deuilogicLinks: [
+            {
+              dstDEUILogicNodeId: 'viewctrlinvoke1',
+              srcDEUILogicNodeId: 'rawjscode2',
+              id: '连接名称',
+            },
+          ],
+          topPos: 613,
+          name: '添加结果附件实体临时数据',
+          id: 'rawjscode2',
+        },
       ],
       deuilogicParams: [
-        {
-          codeName: 'form',
-          ctrlParam: true,
-          name: '主表单',
-          id: 'form',
-        },
         {
           codeName: 'run_attachment',
           entityParam: true,
@@ -766,10 +760,10 @@ export default {
           id: 'run_attachment',
         },
         {
-          codeName: 'context',
-          navContextParam: true,
-          name: '上下文',
-          id: 'context',
+          codeName: 'files',
+          entityListParam: true,
+          name: '上传文件',
+          id: 'files',
         },
         {
           codeName: 'view',
@@ -778,10 +772,16 @@ export default {
           id: 'view',
         },
         {
-          codeName: 'files',
-          entityListParam: true,
-          name: '上传文件',
-          id: 'files',
+          codeName: 'context',
+          navContextParam: true,
+          name: '上下文',
+          id: 'context',
+        },
+        {
+          codeName: 'form',
+          ctrlParam: true,
+          name: '主表单',
+          id: 'form',
         },
       ],
       startDEUILogicNodeId: 'begin',
@@ -843,6 +843,15 @@ export default {
           id: 'rawjscode2',
         },
         {
+          code: 'if(uiLogic.view.layoutPanel.panelItems.total.data.total == 0){\r\n    view.layoutPanel.panelItems.grid.state.visible = false;\r\n}',
+          codeName: 'RAWJSCODE3',
+          leftPos: 160,
+          logicNodeType: 'RAWJSCODE',
+          topPos: 635,
+          name: '根据条件隐藏表格',
+          id: 'rawjscode3',
+        },
+        {
           codeName: 'PREPAREJSPARAM1',
           leftPos: 160,
           logicNodeType: 'PREPAREJSPARAM',
@@ -878,15 +887,6 @@ export default {
           name: '准备参数',
           id: 'preparejsparam1',
         },
-        {
-          code: 'if(uiLogic.view.layoutPanel.panelItems.total.data.total == 0){\r\n    view.layoutPanel.panelItems.grid.state.visible = false;\r\n}',
-          codeName: 'RAWJSCODE3',
-          leftPos: 160,
-          logicNodeType: 'RAWJSCODE',
-          topPos: 635,
-          name: '根据条件隐藏表格',
-          id: 'rawjscode3',
-        },
       ],
       deuilogicParams: [
         {
@@ -895,12 +895,6 @@ export default {
           entityParam: true,
           name: '传入变量',
           id: 'default',
-        },
-        {
-          codeName: 'form',
-          ctrlParam: true,
-          name: '主表单对象',
-          id: 'form',
         },
         {
           codeName: 'context',
@@ -913,6 +907,12 @@ export default {
           activeViewParam: true,
           name: '当前视图对象',
           id: 'view',
+        },
+        {
+          codeName: 'form',
+          ctrlParam: true,
+          name: '主表单对象',
+          id: 'form',
         },
       ],
       startDEUILogicNodeId: 'begin',
@@ -941,6 +941,14 @@ export default {
           id: 'begin',
         },
         {
+          codeName: 'END1',
+          leftPos: 210,
+          logicNodeType: 'END',
+          topPos: 551,
+          name: '结束',
+          id: 'end1',
+        },
+        {
           code: 'uiLogic.view.layoutPanel.panelItems.total.data.total = uiLogic.view.layoutPanel.panelItems.grid.control.state.items.length;\r\nif(uiLogic.view.layoutPanel.panelItems.total.data.total == 0){\r\n    view.layoutPanel.panelItems.grid.state.visible = false\r\n}else{\r\n    view.layoutPanel.panelItems.grid.state.visible = true\r\n}',
           codeName: 'RAWJSCODE2',
           leftPos: 170,
@@ -955,14 +963,6 @@ export default {
           topPos: 430,
           name: '获取表格条数',
           id: 'rawjscode2',
-        },
-        {
-          codeName: 'END1',
-          leftPos: 210,
-          logicNodeType: 'END',
-          topPos: 551,
-          name: '结束',
-          id: 'end1',
         },
       ],
       deuilogicParams: [

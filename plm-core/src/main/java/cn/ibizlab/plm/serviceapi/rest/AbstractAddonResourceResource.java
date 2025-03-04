@@ -136,6 +136,7 @@ public abstract class AbstractAddonResourceResource {
     * @return Mono<ResponseEntity<AddonResourceDTO>>
     */
     @ApiOperation(value = "check_resource_is_deleted", tags = {"资源组件" },  notes = "AddonResource-check_resource_is_deleted ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-AddonResource-check_resource_is_deleted-all') or hasPermission(this.addonResourceDtoMapping.toDomain(#dto),'ibizplm-AddonResource-check_resource_is_deleted')")
     @PostMapping("addon_resources/{id}/check_resource_is_deleted")
     public Mono<ResponseEntity<ResponseWrapper<AddonResourceDTO>>>checkResourceIsDeletedById
             (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<AddonResourceDTO> dto) {
@@ -291,6 +292,7 @@ public abstract class AbstractAddonResourceResource {
     * @return Mono<ResponseEntity<AddonResourceDTO>>
     */
     @ApiOperation(value = "check_resource_is_deleted", tags = {"资源组件" },  notes = "AddonResource-check_resource_is_deleted ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-AddonResource-check_resource_is_deleted-all') or hasPermission('project',#ownerId,this.addonResourceDtoMapping.toDomain(#dto),'ibizplm-AddonResource-check_resource_is_deleted')")
     @PostMapping("projects/{ownerId}/addon_resources/{id}/check_resource_is_deleted")
     public Mono<ResponseEntity<ResponseWrapper<AddonResourceDTO>>>checkResourceIsDeletedByOwnerIdAndId
             (@PathVariable("ownerId") String ownerId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<AddonResourceDTO> dto) {

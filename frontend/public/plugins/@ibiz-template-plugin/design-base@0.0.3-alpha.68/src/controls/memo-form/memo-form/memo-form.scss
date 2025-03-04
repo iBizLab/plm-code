@@ -1,0 +1,34 @@
+@include b(memo-form) {
+  width: 100%;
+  height: 100%;
+  padding-bottom: getCssVar(spacing, tight);
+}
+
+@include b(memo-form-container) {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+@include b(memo-form-content) {
+  flex-grow: 1;
+  overflow: auto;
+  >.#{bem(form-page, '', no-tab-header)} {
+    padding-top: getCssVar(spacing, tight);
+  }
+}
+
+@include b(memo-form-footer) {
+  flex: 0 0 auto;
+
+  @include b(form-item-container) {
+    $form-item-container: (
+      'padding': 0,
+    );
+
+    @include set-component-css-var('form-item-container', $form-item-container);
+  }
+}

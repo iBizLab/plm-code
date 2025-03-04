@@ -100,6 +100,25 @@ public interface CategoryMapper extends BaseMapper<Category> {
     List<Category> listCurProductIdeaCategory(@Param("ctx") CategorySearchContext context, @Param("ew") Wrapper<Category> wrapper);
 
     /**
+     * 数据集合my_category分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Category> searchMyCategory(IPage<Category> page, @Param("ctx") CategorySearchContext context, @Param("ew") Wrapper<Category> wrapper);
+    
+    /**
+     * 数据集合my_category查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Category> listMyCategory(@Param("ctx") CategorySearchContext context, @Param("ew") Wrapper<Category> wrapper);
+
+    /**
      * 数据集合no_parent分页查询
      * 
      * @param page

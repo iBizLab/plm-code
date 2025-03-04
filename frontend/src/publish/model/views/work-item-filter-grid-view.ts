@@ -1900,7 +1900,7 @@ export default {
     logicName: 'filter_grid_view表格视图布局',
     appDataEntityId: 'plmweb.work_item',
     controlParam: {},
-    modelId: 'CF9778BD-D309-4F05-989F-A119C084997A',
+    modelId: 'fc8694e938738405ecfe5815dbaad713',
     modelType: 'PSSYSVIEWLAYOUTPANEL',
     name: 'layoutpanel',
     id: 'usr0812427041',

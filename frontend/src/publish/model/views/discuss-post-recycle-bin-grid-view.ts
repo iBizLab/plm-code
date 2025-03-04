@@ -3,7 +3,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'recycle_bin_grid_view',
-  deviewId: 'E66F61F1-6C6D-4653-8757-9F6F57017FA7',
+  deviewId: 'e428565d60429f57db54e0188542841a',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.DISCUSS_POST',
@@ -64,15 +64,6 @@ export default {
   ],
   appViewRefs: [
     {
-      realTitle: '讨论数据重定向视图',
-      realTitleLanguageRes: {
-        lanResTag: 'PAGE.TITLE.DISCUSS_POST.REDIRECTVIEW',
-      },
-      refAppViewId: 'plmweb.discuss_post_redirect_view',
-      name: 'EDITDATA',
-      id: 'editdata',
-    },
-    {
       realTitle: '讨论编辑视图',
       realTitleLanguageRes: {
         lanResTag: 'PAGE.TITLE.DISCUSS_POST.EDITVIEW',
@@ -80,6 +71,15 @@ export default {
       refAppViewId: 'plmweb.discuss_post_edit_view',
       name: 'NEWDATA',
       id: 'newdata',
+    },
+    {
+      realTitle: '讨论数据重定向视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.DISCUSS_POST.REDIRECTVIEW',
+      },
+      refAppViewId: 'plmweb.discuss_post_redirect_view',
+      name: 'EDITDATA',
+      id: 'editdata',
     },
   ],
   controls: [
@@ -126,7 +126,7 @@ export default {
                   cssClass: 'fa fa-refresh',
                   glyph: 'xf021@FontAwesome',
                 },
-                id: 'u34b4d35',
+                id: 'u508b77e',
               },
             ],
             appDataEntityId: 'plmweb.discuss_post',
@@ -299,7 +299,7 @@ export default {
           controlParam: {
             id: 'grid_batchtoolbar',
           },
-          modelId: '7542A0F4-EA32-4B09-83CD-C04FDE19F897',
+          modelId: 'ec9b3f739bfc6b00c209b739da34cfdc',
           modelType: 'PSDETOOLBAR',
           name: 'grid_batchtoolbar',
           id: 'recycle_bin_grid_view_grid_batchtoolbar',
@@ -312,7 +312,7 @@ export default {
       controlParam: {
         id: 'grid',
       },
-      modelId: 'AC967D15-BEAF-4770-9404-955AAC3B93DA',
+      modelId: '0e3398aaba02bf18fa64aef1a9b96fed',
       modelType: 'PSDEGRID',
       name: 'grid',
       id: 'plmweb.discuss_post.recycle_bin_grid',
@@ -350,7 +350,7 @@ export default {
       controlParam: {
         id: 'searchform',
       },
-      modelId: '6ddf84ea9f2e0947a515ac4d6c41bd37',
+      modelId: 'b00d71ef80e41212c88c28a82b67e90b',
       modelType: 'PSDEFORM_SEARCHFORM',
       name: 'searchform',
       id: 'plmweb.discuss_post.default',
@@ -395,7 +395,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '3ca5b0a8f24582953f55ab13f866ac22',
+  modelId: 'ff718be1c0fbfc9485398ce5217a070f',
   modelType: 'PSAPPDEVIEW',
   name: 'discuss_postrecycle_bin_grid_view',
   id: 'plmweb.discuss_post_recycle_bin_grid_view',

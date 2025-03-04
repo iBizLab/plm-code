@@ -5,7 +5,7 @@ export default {
   loadDefault: true,
   openMode: 'POPUPMODAL',
   deviewCodeName: 'project_capacity_view',
-  deviewId: '32F35281-DAEE-43F8-9C9D-06FD504D7C51',
+  deviewId: '3a26b60bb8cc8d2c971547ce002bb333',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.ADDON_RESOURCE',
@@ -531,7 +531,7 @@ export default {
       controlParam: {
         id: 'form',
       },
-      modelId: '21DF4A8D-D434-4612-89D3-1F0FE5FB1EE0',
+      modelId: 'd093f37399ab0fb6ca2079675c61f54d',
       modelType: 'PSDEFORM_EDITFORM',
       name: 'form',
       id: 'plmweb.addon_resource.capacity_form',
@@ -579,7 +579,7 @@ export default {
   width: 1000,
   enableDP: true,
   showCaptionBar: true,
-  modelId: 'a4aaec58aee52c6a272913928d85d6c0',
+  modelId: '864622b5c7e9c21869d3711974b1b3fc',
   modelType: 'PSAPPDEVIEW',
   name: 'addon_resourceproject_capacity_view',
   id: 'plmweb.addon_resource_project_capacity_view',

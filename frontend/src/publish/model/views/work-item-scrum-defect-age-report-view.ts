@@ -3,7 +3,7 @@ export default {
   expandSearchForm: true,
   loadDefault: true,
   deviewCodeName: 'scrum_defect_age_report_view',
-  deviewId: 'fa3b5b58398b9abf1e676d2761d8cd0e',
+  deviewId: 'b06b233a979a4e2f14806e004da1d7bf',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.WORK_ITEM',
@@ -725,7 +725,7 @@ export default {
   viewType: 'DECHARTVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '752f28614b9fff79ade40ebe5e39a69a',
+  modelId: '556b1c0bdd76fb4310aa738b1c5f0935',
   modelType: 'PSAPPDEVIEW',
   name: 'work_itemscrum_defect_age_report_view',
   id: 'plmweb.work_item_scrum_defect_age_report_view',

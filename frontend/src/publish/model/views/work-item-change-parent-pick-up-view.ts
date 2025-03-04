@@ -1,7 +1,7 @@
 export default {
   openMode: 'POPUPMODAL',
   deviewCodeName: 'change_parent_pick_up_view',
-  deviewId: '4272f83b97bde756f04785c9a5e0e47b',
+  deviewId: '60b54275431dbf64358be3ffabdc7826',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.WORK_ITEM',
@@ -303,7 +303,7 @@ export default {
       controlParam: {
         id: 'treeexpbar',
       },
-      modelId: '2e304a8fa543e81bc783f6d9c14eda6e_treeexpbar',
+      modelId: '68eb13412690344fae9b1e40395c5cb0_treeexpbar',
       modelType: 'PSEXPBAR',
       name: 'treeexpbar',
       id: 'change_parent_pick_up_view_treeexpbar',
@@ -616,7 +616,7 @@ export default {
   viewType: 'DEPICKUPVIEW2',
   enableDP: true,
   showCaptionBar: false,
-  modelId: '2e304a8fa543e81bc783f6d9c14eda6e',
+  modelId: '68eb13412690344fae9b1e40395c5cb0',
   modelType: 'PSAPPDEVIEW',
   name: 'work_itemchange_parent_pick_up_view',
   id: 'plmweb.work_item_change_parent_pick_up_view',

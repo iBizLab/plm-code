@@ -839,20 +839,15 @@ export default {
   deopprivs: [
     {
       logicName: '建立',
-      mapDEName: 'PRODUCT',
-      mapDEOPPrivName: 'CREATE',
-      name: 'CREATE',
-      id: 'product__create',
-    },
-    {
-      logicName: '建立',
       name: 'CREATE',
       id: 'create',
     },
     {
-      logicName: '删除',
-      name: 'DELETE',
-      id: 'delete',
+      logicName: '建立',
+      mapDEName: 'PRODUCT',
+      mapDEOPPrivName: 'CREATE',
+      name: 'CREATE',
+      id: 'product__create',
     },
     {
       logicName: '删除',
@@ -860,6 +855,11 @@ export default {
       mapDEOPPrivName: 'DELETE',
       name: 'DELETE',
       id: 'product__delete',
+    },
+    {
+      logicName: '删除',
+      name: 'DELETE',
+      id: 'delete',
     },
     {
       logicName: '读取',
@@ -875,15 +875,15 @@ export default {
     },
     {
       logicName: '更新',
+      name: 'UPDATE',
+      id: 'update',
+    },
+    {
+      logicName: '更新',
       mapDEName: 'PRODUCT',
       mapDEOPPrivName: 'UPDATE',
       name: 'UPDATE',
       id: 'product__update',
-    },
-    {
-      logicName: '更新',
-      name: 'UPDATE',
-      id: 'update',
     },
   ],
   codeName: 'idea_template',

@@ -78,6 +78,14 @@ export default {
     {
       openMode: 'POPUPMODAL',
       realOpenMode: 'POPUPMODAL',
+      realTitle: '全局需求模板新建编辑',
+      refAppViewId: 'plmweb.idea_template_global_create_edit_view',
+      name: 'NEWDATA',
+      id: 'newdata',
+    },
+    {
+      openMode: 'POPUPMODAL',
+      realOpenMode: 'POPUPMODAL',
       realTitle: '全局需求模板编辑视图',
       realTitleLanguageRes: {
         lanResTag: 'PAGE.TITLE.IDEA_TEMPLATE.EDITVIEW',
@@ -85,14 +93,6 @@ export default {
       refAppViewId: 'plmweb.idea_template_global_edit_view',
       name: 'EDITDATA',
       id: 'editdata',
-    },
-    {
-      openMode: 'POPUPMODAL',
-      realOpenMode: 'POPUPMODAL',
-      realTitle: '全局需求模板新建编辑',
-      refAppViewId: 'plmweb.idea_template_global_create_edit_view',
-      name: 'NEWDATA',
-      id: 'newdata',
     },
   ],
   controls: [
@@ -218,7 +218,7 @@ export default {
                   cssClass: 'fa fa-edit',
                   glyph: 'xf044@FontAwesome',
                 },
-                id: 'u6650703',
+                id: 'uec28e71',
               },
               {
                 actionLevel: 100,
@@ -232,7 +232,7 @@ export default {
                   cssClass: 'fa fa-trash-o',
                   glyph: 'xf014@FontAwesome',
                 },
-                id: 'udf33177',
+                id: 'udce8ec3',
               },
             ],
             appDataEntityId: 'plmweb.idea_template',

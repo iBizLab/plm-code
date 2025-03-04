@@ -146,7 +146,7 @@ public class Member extends EntityMP implements Serializable
     * 职位
     */
     @TableField(value = "title")
-    @DEField(name = "title")
+    @DEField(name = "title" , dict = "position")
     @JSONField(name = "title")
     @JsonProperty("title")
     @ApiModelProperty(value = "title", notes = "职位")

@@ -4,7 +4,7 @@ export default {
   showDataInfoBar: true,
   openMode: 'POPUPMODAL',
   deviewCodeName: 'tab_search_view',
-  deviewId: '871826B8-7D8F-4AFD-90A5-A99B3EDCF3AE',
+  deviewId: '5ec712936ad61d2e636d12db50e60a39',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.SEARCH_HUB',
@@ -307,7 +307,7 @@ export default {
         controlParam: {
           id: 'searchbar',
         },
-        modelId: '2ED65E8E-A88A-42B0-869B-A8FAC66E9D15',
+        modelId: 'fa8c043ba958754a5f055b822580fe78',
         modelType: 'PSSYSSEARCHBAR',
         name: 'searchbar',
         id: 'plmweb.search_hub.advanced_search_bar',
@@ -381,7 +381,7 @@ export default {
             controlParam: {
               id: 'work_item',
             },
-            modelId: '556c4c6a79fdaa933dfbde38cf9b7973_work_item',
+            modelId: '1f9b654957bbd66efaec2b328823368d_work_item',
             modelType: 'PSVIEWPANEL',
             name: 'work_item',
             id: 'tab_search_view_work_item',
@@ -395,7 +395,7 @@ export default {
             controlParam: {
               id: 'idea',
             },
-            modelId: '556c4c6a79fdaa933dfbde38cf9b7973_idea',
+            modelId: '1f9b654957bbd66efaec2b328823368d_idea',
             modelType: 'PSVIEWPANEL',
             name: 'idea',
             id: 'tab_search_view_idea',
@@ -409,7 +409,7 @@ export default {
             controlParam: {
               id: 'ticket',
             },
-            modelId: '556c4c6a79fdaa933dfbde38cf9b7973_ticket',
+            modelId: '1f9b654957bbd66efaec2b328823368d_ticket',
             modelType: 'PSVIEWPANEL',
             name: 'ticket',
             id: 'tab_search_view_ticket',
@@ -424,7 +424,7 @@ export default {
             controlParam: {
               id: 'page',
             },
-            modelId: '556c4c6a79fdaa933dfbde38cf9b7973_page',
+            modelId: '1f9b654957bbd66efaec2b328823368d_page',
             modelType: 'PSVIEWPANEL',
             name: 'page',
             id: 'tab_search_view_page',
@@ -438,7 +438,7 @@ export default {
             controlParam: {
               id: 'test_case',
             },
-            modelId: '556c4c6a79fdaa933dfbde38cf9b7973_test_case',
+            modelId: '1f9b654957bbd66efaec2b328823368d_test_case',
             modelType: 'PSVIEWPANEL',
             name: 'test_case',
             id: 'tab_search_view_test_case',
@@ -453,7 +453,7 @@ export default {
             controlParam: {
               id: 'attachment',
             },
-            modelId: '556c4c6a79fdaa933dfbde38cf9b7973_attachment',
+            modelId: '1f9b654957bbd66efaec2b328823368d_attachment',
             modelType: 'PSVIEWPANEL',
             name: 'attachment',
             id: 'tab_search_view_attachment',
@@ -468,7 +468,7 @@ export default {
             controlParam: {
               id: 'comment',
             },
-            modelId: '556c4c6a79fdaa933dfbde38cf9b7973_comment',
+            modelId: '1f9b654957bbd66efaec2b328823368d_comment',
             modelType: 'PSVIEWPANEL',
             name: 'comment',
             id: 'tab_search_view_comment',
@@ -478,7 +478,7 @@ export default {
         controlType: 'TABEXPPANEL',
         appDataEntityId: 'plmweb.search_hub',
         controlParam: {},
-        modelId: '556c4c6a79fdaa933dfbde38cf9b7973_tabexppanel',
+        modelId: '1f9b654957bbd66efaec2b328823368d_tabexppanel',
         modelType: 'PSTABEXPPANEL',
         name: 'tabexppanel',
         id: 'tab_search_view_tabexppanel',
@@ -501,7 +501,7 @@ export default {
     logicName: 'search_hub_advanced_search_view布局',
     appDataEntityId: 'plmweb.search_hub',
     controlParam: {},
-    modelId: '84FAC10C-55A9-498F-B9B3-C758F7593EB9',
+    modelId: 'b47e918ab23d7ca638b39f1bb592c557',
     modelType: 'PSSYSVIEWLAYOUTPANEL',
     name: 'layoutpanel',
     id: 'usr0329722414',
@@ -511,7 +511,7 @@ export default {
   viewType: 'DETABSEARCHVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '556c4c6a79fdaa933dfbde38cf9b7973',
+  modelId: '1f9b654957bbd66efaec2b328823368d',
   modelType: 'PSAPPDEVIEW',
   name: 'search_hubtab_search_view',
   id: 'plmweb.search_hub_tab_search_view',

@@ -241,6 +241,17 @@ public abstract class AbstractDiscussPostService extends ServiceImpl<DiscussPost
         return list;
    }
 	
+   public Page<DiscussPost> fetchMyPost(DiscussPostSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<DiscussPost> pages=baseMapper.searchMyPost(context.getPages(),context,context.getSelectCond());
+        List<DiscussPost> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<DiscussPost> listMyPost(DiscussPostSearchContext context) {
+        List<DiscussPost> list = baseMapper.listMyPost(context,context.getSelectCond());
+        return list;
+   }
+	
    public Page<DiscussPost> fetchMyReply(DiscussPostSearchContext context) {
         if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
             context.setSort("CREATE_TIME,DESC");
@@ -388,6 +399,7 @@ public abstract class AbstractDiscussPostService extends ServiceImpl<DiscussPost
                 et.setDiscussTopic(discussTopic);
             }
             if(!ObjectUtils.isEmpty(discussTopic)) {
+                et.setTopicIdentifier(discussTopic.getIdentifier());
                 et.setTopicId(discussTopic.getId());
                 et.setTopicName(discussTopic.getName());
             }

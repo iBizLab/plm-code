@@ -3,7 +3,7 @@ export default {
   expandSearchForm: true,
   loadDefault: true,
   deviewCodeName: 'kanban_work_item_report_view',
-  deviewId: 'ec609bc32b3173a790ae0e0fbaec4ccf',
+  deviewId: '802db8230219dfe38bfadc4c180d643b',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.WORK_ITEM',
@@ -692,7 +692,7 @@ export default {
   viewType: 'DECHARTVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '812c1315587aa9778fd0aa59aa09c02d',
+  modelId: '5ec06c77a80cc85088608e93e6be4dac',
   modelType: 'PSAPPDEVIEW',
   name: 'work_itemkanban_work_item_report_view',
   id: 'plmweb.work_item_kanban_work_item_report_view',

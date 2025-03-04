@@ -5,7 +5,7 @@ export default {
   loadDefault: true,
   openMode: 'POPUPMODAL',
   deviewCodeName: 'show_edit_view',
-  deviewId: '9CDA51FA-53D2-48C5-B640-3A09D96D8505',
+  deviewId: '2020050e816aaf5ad519b1a050572597',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.DISCUSS_TOPIC',
@@ -325,7 +325,7 @@ export default {
       controlParam: {
         id: 'form',
       },
-      modelId: 'C39A3F3B-11E6-43EF-8F14-6956D93DA980',
+      modelId: '7b09e82d6b6de99e129643c95b7f3340',
       modelType: 'PSDEFORM_EDITFORM',
       name: 'form',
       id: 'plmweb.discuss_topic.show_form',
@@ -370,7 +370,7 @@ export default {
   width: 700,
   enableDP: true,
   showCaptionBar: true,
-  modelId: '08792d4f03d53d6df89f908fd8d2aefa',
+  modelId: 'b5e7382309b259dc2e6a4ff250b50b15',
   modelType: 'PSAPPDEVIEW',
   name: 'discuss_topicshow_edit_view',
   id: 'plmweb.discuss_topic_show_edit_view',

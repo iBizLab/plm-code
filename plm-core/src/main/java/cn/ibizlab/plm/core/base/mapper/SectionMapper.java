@@ -100,6 +100,25 @@ public interface SectionMapper extends BaseMapper<Section> {
     List<Section> listIdeaSection(@Param("ctx") SectionSearchContext context, @Param("ew") Wrapper<Section> wrapper);
 
     /**
+     * 数据集合my_section分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Section> searchMySection(IPage<Section> page, @Param("ctx") SectionSearchContext context, @Param("ew") Wrapper<Section> wrapper);
+    
+    /**
+     * 数据集合my_section查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Section> listMySection(@Param("ctx") SectionSearchContext context, @Param("ew") Wrapper<Section> wrapper);
+
+    /**
      * 数据集合View分页查询
      * 
      * @param page

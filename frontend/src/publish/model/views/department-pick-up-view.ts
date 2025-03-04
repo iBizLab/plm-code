@@ -1,0 +1,67 @@
+export default {
+  funcViewMode: 'PICKUPVIEW',
+  deviewCodeName: 'pick_up_view',
+  deviewId: 'e987ce64d8f4b5f6fce1b4e545820cbf',
+  accUserMode: 2,
+  capLanguageRes: {
+    lanResTag: 'DE.LNAME.DEPARTMENT',
+  },
+  caption: '部门',
+  codeName: 'department_pick_up_view',
+  appDataEntityId: 'plmweb.department',
+  appViewEngines: [
+    {
+      engineCat: 'VIEW',
+      engineType: 'PickupView',
+      id: 'engine',
+    },
+  ],
+  controls: [
+    {
+      embeddedAppDEViewId: 'plmweb.department_pick_up_grid_view',
+      codeName: 'pick_up_view_pickupviewpanel',
+      controlType: 'PICKUPVIEWPANEL',
+      appDataEntityId: 'plmweb.department',
+      controlParam: {
+        id: 'pickupviewpanel',
+      },
+      name: 'pickupviewpanel',
+      id: 'pick_up_view_pickupviewpanel',
+    },
+    {
+      capLanguageRes: {
+        lanResTag: 'DE.LNAME.DEPARTMENT',
+      },
+      caption: '部门',
+      codeName: 'pick_up_view_captionbar',
+      controlType: 'CAPTIONBAR',
+      appDataEntityId: 'plmweb.department',
+      controlParam: {},
+      name: 'captionbar',
+      id: 'pick_up_view_captionbar',
+    },
+  ],
+  viewLayoutPanel: {
+    layoutBodyOnly: true,
+    useDefaultLayout: true,
+    layoutPanel: true,
+    codeName: 'layoutpanel',
+    controlStyle: 'APPDEPICKUPVIEW',
+    controlType: 'VIEWLAYOUTPANEL',
+    appDataEntityId: 'plmweb.department',
+    controlParam: {},
+    id: 'layoutpanel',
+  },
+  title: '部门数据选择视图',
+  titleLanguageRes: {
+    lanResTag: 'PAGE.TITLE.DEPARTMENT.PICKUPVIEW',
+  },
+  viewStyle: 'DEFAULT',
+  viewType: 'DEPICKUPVIEW',
+  enableDP: true,
+  showCaptionBar: false,
+  modelId: 'ef703b702e696877148685be18e59f73',
+  modelType: 'PSAPPDEVIEW',
+  name: 'departmentpick_up_view',
+  id: 'plmweb.department_pick_up_view',
+};

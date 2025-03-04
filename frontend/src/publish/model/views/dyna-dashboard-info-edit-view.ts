@@ -5,7 +5,7 @@ export default {
   loadDefault: true,
   openMode: 'POPUPMODAL',
   deviewCodeName: 'info_edit_view',
-  deviewId: 'A841B9E4-90CB-4E03-8D90-5491D8A7E4A8',
+  deviewId: 'd69993e86420017e75a313d6dafe7b5f',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.DYNADASHBOARD',
@@ -55,7 +55,7 @@ export default {
       controlParam: {
         id: 'toolbar',
       },
-      modelId: 'F594CD69-A443-4C14-9D59-0EC50C480746',
+      modelId: 'efed127fba84cdda3c85dc0d8c6c5167',
       modelType: 'PSDETOOLBAR',
       name: 'toolbar',
       id: 'info_edit_view_toolbar',
@@ -280,7 +280,7 @@ export default {
       controlParam: {
         id: 'form',
       },
-      modelId: '1A508722-04E8-475F-8CE3-019AC3719DFA',
+      modelId: 'c4b373911646027e40e7276a402168b6',
       modelType: 'PSDEFORM_EDITFORM',
       name: 'form',
       id: 'plmweb.dyna_dashboard.quick_create_view_form',
@@ -325,7 +325,7 @@ export default {
   width: 500,
   enableDP: true,
   showCaptionBar: true,
-  modelId: '0c8d96ad75e965274dc4d7112502ea10',
+  modelId: 'da4cc0716175ddeddc88034f1e9c1539',
   modelType: 'PSAPPDEVIEW',
   name: 'dyna_dashboardinfo_edit_view',
   id: 'plmweb.dyna_dashboard_info_edit_view',

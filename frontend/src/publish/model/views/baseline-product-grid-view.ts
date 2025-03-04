@@ -82,13 +82,6 @@ export default {
   ],
   appViewRefs: [
     {
-      realOpenMode: 'POPUPMODAL',
-      realTitle: '产品基线快速建立视图',
-      refAppViewId: 'plmweb.baseline_product_create_view',
-      name: 'NEWDATA',
-      id: 'newdata',
-    },
-    {
       navigateContexts: [
         {
           key: 'BASELINE_STATUS',
@@ -101,6 +94,13 @@ export default {
       refAppViewId: 'plmweb.baseline_product_main_view',
       name: 'EDITDATA',
       id: 'editdata',
+    },
+    {
+      realOpenMode: 'POPUPMODAL',
+      realTitle: '产品基线快速建立视图',
+      refAppViewId: 'plmweb.baseline_product_create_view',
+      name: 'NEWDATA',
+      id: 'newdata',
     },
   ],
   controls: [
@@ -188,7 +188,7 @@ export default {
       controlParam: {
         id: 'toolbar',
       },
-      modelId: 'F4C7FDFF-9067-4458-8533-CF79BB9ED78D',
+      modelId: '9da2c91cf886e834d5c0fb4bf956ca1f',
       modelType: 'PSDETOOLBAR',
       name: 'toolbar',
       id: 'product_grid_view_toolbar',
@@ -219,7 +219,7 @@ export default {
                   cssClass: 'fa fa-dot-circle-o',
                   glyph: 'xf192@FontAwesome',
                 },
-                id: 'u119fb10',
+                id: 'ue6b55d2',
               },
               {
                 actionLevel: 100,
@@ -234,7 +234,7 @@ export default {
                   cssClass: 'fa fa-edit',
                   glyph: 'xf044@FontAwesome',
                 },
-                id: 'u7d7b8a9',
+                id: 'u5b353fb',
               },
               {
                 actionLevel: 100,
@@ -249,7 +249,7 @@ export default {
                   cssClass: 'fa fa-trash-o',
                   glyph: 'xf014@FontAwesome',
                 },
-                id: 'uab35736',
+                id: 'uc95f550',
               },
             ],
             appDataEntityId: 'plmweb.baseline',
@@ -297,6 +297,7 @@ export default {
           appCodeListId: 'plmweb.prodmgmt__category',
           appDEFieldId: 'categories',
           valueType: 'SIMPLE',
+          enableRowEdit: true,
           aggMode: 'NONE',
           align: 'LEFT',
           caption: '类别',
@@ -513,6 +514,26 @@ export default {
         },
       ],
       degridEditItems: [
+        {
+          caption: '类别',
+          codeName: 'categories',
+          enableCond: 3,
+          appDEFieldId: 'categories',
+          editor: {
+            appCodeListId: 'plmweb.prodmgmt__category',
+            editorParams: {
+              readonly: 'true',
+            },
+            editorType: 'MDROPDOWNLIST',
+            valueType: 'SIMPLE',
+            editable: true,
+            readOnly: true,
+            id: 'categories',
+          },
+          allowEmpty: true,
+          needCodeListConfig: true,
+          id: 'categories',
+        },
         {
           caption: '负责人',
           codeName: 'assignee_name',

@@ -5,7 +5,7 @@ export default {
   loadDefault: true,
   funcViewMode: 'EDITVIEW',
   deviewCodeName: 'EditView',
-  deviewId: '1feff0d33cf0a32c6960af770b83acdf',
+  deviewId: '35e34cf8d2adf76f659946fa5b01ab5b',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.SHARED_SPACE',
@@ -687,7 +687,7 @@ export default {
       sysCss: {
         cssName: 'shared_setting_style',
       },
-      modelId: 'ed01d0630dc80361df42a3b2f78f0e2d',
+      modelId: '36d296c7eff042145cab2b89bb9e2be3',
       modelType: 'PSDEFORM_EDITFORM',
       name: 'form',
       id: 'plmweb.shared_space.main',
@@ -772,7 +772,7 @@ export default {
   viewType: 'DEEDITVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '42f58f4a3eac18530494bfdf99cab3e3',
+  modelId: '7133d07e1ee5b34258e3c1c88da7e398',
   modelType: 'PSAPPDEVIEW',
   name: 'shared_spaceEditView',
   id: 'plmweb.shared_space_edit_view',

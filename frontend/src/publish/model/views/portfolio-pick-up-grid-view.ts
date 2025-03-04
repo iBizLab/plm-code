@@ -4,7 +4,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'pick_up_grid_view',
-  deviewId: '52bebda40b1216bdb0b307f7129fafd5',
+  deviewId: '4758dad43abe81e0f27207a6eaa8ce3d',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.PORTFOLIO',
@@ -252,7 +252,7 @@ export default {
   viewType: 'DEPICKUPGRIDVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: 'a8a7d2c725b318192e62b8e164507ebc',
+  modelId: 'cdd896f6412d5eb71edfb56518eb374e',
   modelType: 'PSAPPDEVIEW',
   name: 'portfolioPickupGridView',
   id: 'plmweb.portfolio_pick_up_grid_view',

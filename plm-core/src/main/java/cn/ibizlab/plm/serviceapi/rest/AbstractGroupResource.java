@@ -201,6 +201,166 @@ public abstract class AbstractGroupResource {
         return groupDtoMapping.toDto(rt);
     }
 
+    /**
+    * 创建Create 团队
+    * 
+    *
+    * @param sectionId sectionId
+    * @param dto dto
+    * @return Mono<ResponseEntity<GroupDTO>>
+    */
+    @ApiOperation(value = "创建Create", tags = {"团队" },  notes = "Group-Create ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Group-Create-all') or hasPermission('section',#sectionId,this.groupDtoMapping.toDomain(#dto),'ibizplm-Group-Create')")
+    @PostMapping("sections/{sectionId}/groups")
+    public Mono<ResponseEntity<ResponseWrapper<GroupDTO>>>createBySectionId
+            (@PathVariable("sectionId") String sectionId, @Validated @RequestBody RequestWrapper<GroupDTO> dto) {
+        ResponseWrapper<GroupDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray())
+            dto.getList().forEach(item -> rt.add(createBySectionId(sectionId, item)));
+        else
+            rt.set(createBySectionId(sectionId, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * 创建Create 团队
+    * 
+    *
+    * @param sectionId sectionId
+    * @param dto dto
+    * @return ResponseEntity<GroupDTO>
+    */   
+    public GroupDTO createBySectionId
+            (String sectionId, GroupDTO dto) {
+        Group domain = groupDtoMapping.toDomain(dto);
+        domain.setSectionId(sectionId);
+        groupService.create(domain);
+        Group rt = domain;
+        return groupDtoMapping.toDto(rt);
+    }
+
+    /**
+    * 更新Update 团队
+    * 
+    *
+    * @param sectionId sectionId
+    * @param id id
+    * @param dto dto
+    * @return Mono<ResponseEntity<GroupDTO>>
+    */
+    @ApiOperation(value = "更新Update", tags = {"团队" },  notes = "Group-Update ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Group-Update-all') or hasPermission('section',#sectionId,this.groupService.get(#id),'ibizplm-Group-Update')")
+    @VersionCheck(entity = "group" , versionfield = "updateTime")
+    @PutMapping("sections/{sectionId}/groups/{id}")
+    public Mono<ResponseEntity<ResponseWrapper<GroupDTO>>>updateBySectionIdAndId
+            (@PathVariable("sectionId") String sectionId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<GroupDTO> dto) {
+        ResponseWrapper<GroupDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(updateBySectionIdAndId(sectionId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(updateBySectionIdAndId(sectionId, id, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * 更新Update 团队
+    * 
+    *
+    * @param sectionId sectionId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<GroupDTO>
+    */   
+    public GroupDTO updateBySectionIdAndId
+            (String sectionId, String id, GroupDTO dto) {
+        Group domain = groupDtoMapping.toDomain(dto);
+        domain.setId(id);
+        groupService.update(domain);
+        Group rt = domain;
+        return groupDtoMapping.toDto(rt);
+    }
+
+    /**
+    * move_order 团队
+    * 
+    *
+    * @param sectionId sectionId
+    * @param id id
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<GroupDTO>>>
+    */
+    @ApiOperation(value = "move_order", tags = {"团队" },  notes = "Group-move_order ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Group-move_order-all') or hasPermission('section',#sectionId,this.groupDtoMapping.toDomain(#dto),'ibizplm-Group-move_order')")
+    @PostMapping("sections/{sectionId}/groups/{id}/move_order")
+    public Mono<ResponseEntity<ResponseWrapper<List<GroupDTO>>>>moveOrderBySectionIdAndId
+            (@PathVariable("sectionId") String sectionId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<GroupDTO> dto) {
+        ResponseWrapper<List<GroupDTO>> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(moveOrderBySectionIdAndId(sectionId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(moveOrderBySectionIdAndId(sectionId, id, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * move_order 团队
+    * 
+    *
+    * @param sectionId sectionId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<List<GroupDTO>>
+    */   
+    public List<GroupDTO> moveOrderBySectionIdAndId
+            (String sectionId, String id, GroupDTO dto) {
+        Group domain = groupDtoMapping.toDomain(dto);
+        domain.setId(id);
+        List<Group> rt = groupService.moveOrder(domain);
+        return groupDtoMapping.toDto(rt);
+    }
+
+    /**
+    * 保存Save 团队
+    * 
+    *
+    * @param sectionId sectionId
+    * @param dto dto
+    * @return Mono<ResponseEntity<GroupDTO>>
+    */
+    @ApiOperation(value = "保存Save", tags = {"团队" },  notes = "Group-Save ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Group-Save-all') or hasPermission('section',#sectionId,this.groupDtoMapping.toDomain(#dto),'ibizplm-Group-Save')")
+    @PostMapping("sections/{sectionId}/groups/save")
+    public Mono<ResponseEntity<ResponseWrapper<GroupDTO>>>saveBySectionId
+            (@PathVariable("sectionId") String sectionId, @Validated @RequestBody RequestWrapper<GroupDTO> dto) {
+        ResponseWrapper<GroupDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray())
+            dto.getList().forEach(item -> rt.add(saveBySectionId(sectionId, item)));
+        else
+            rt.set(saveBySectionId(sectionId, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * 保存Save 团队
+    * 
+    *
+    * @param sectionId sectionId
+    * @param dto dto
+    * @return ResponseEntity<GroupDTO>
+    */   
+    public GroupDTO saveBySectionId
+            (String sectionId, GroupDTO dto) {
+        Group domain = groupDtoMapping.toDomain(dto);
+        domain.setSectionId(sectionId);
+        groupService.save(domain);
+        Group rt = domain;
+        return groupDtoMapping.toDto(rt);
+    }
+
 
     /**
     * 获取Get 团队
@@ -318,6 +478,7 @@ public abstract class AbstractGroupResource {
     * @return Mono<ResponseEntity<List<GroupDTO>>>
     */
     @ApiOperation(value = "查询fetch_reader", tags = {"团队" },  notes = "Group-fetch_reader ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Group-fetch_reader-all') or hasPermission(#dto,'ibizplm-Group-fetch_reader')")
     @PostMapping("groups/fetch_reader")
     public Mono<ResponseEntity<List<GroupDTO>>> fetchReader
             (@Validated @RequestBody GroupFilterDTO dto) {
@@ -365,6 +526,196 @@ public abstract class AbstractGroupResource {
     @PostMapping("groups/fetch_user_group_admin")
     public Mono<ResponseEntity<List<GroupDTO>>> fetchUserGroupAdmin
             (@Validated @RequestBody GroupFilterDTO dto) {
+        GroupSearchContext context = groupFilterDtoMapping.toDomain(dto);
+        Page<Group> domains = groupService.fetchUserGroupAdmin(context) ;
+        List<GroupDTO> list = groupDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
+    * 获取Get 团队
+    * 
+    *
+    * @param sectionId sectionId
+    * @param id id
+    * @return Mono<ResponseEntity<GroupDTO>>
+    */
+    @ApiOperation(value = "获取Get", tags = {"团队" },  notes = "Group-Get ")
+    @PostAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Group-Get-all')  or hasPermission('section',#sectionId,this.groupDtoMapping.toDomain(returnObject.block().getBody()),'ibizplm-Group-Get')")
+    @GetMapping("sections/{sectionId}/groups/{id}")
+    public Mono<ResponseEntity<GroupDTO>> getBySectionIdAndId
+            (@PathVariable("sectionId") String sectionId, @PathVariable("id") String id) {
+        Group rt = groupService.get(id);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(groupDtoMapping.toDto(rt)));
+    }
+
+    /**
+    * 删除Remove 团队
+    * 
+    *
+    * @param sectionId sectionId
+    * @param id id
+    * @return Mono<ResponseEntity<Boolean>>
+    */
+    @ApiOperation(value = "删除Remove", tags = {"团队" },  notes = "Group-Remove ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Group-Remove-all') or hasPermission('section',#sectionId,this.groupService.get(#id),'ibizplm-Group-Remove')")
+    @DeleteMapping("sections/{sectionId}/groups/{id}")
+    public Mono<ResponseEntity<Boolean>> removeBySectionIdAndId
+            (@PathVariable("sectionId") String sectionId, @PathVariable("id") String id) {
+        Boolean rt = groupService.remove(id);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * 校验CheckKey 团队
+    * 
+    *
+    * @param sectionId sectionId
+    * @param dto dto
+    * @return Mono<ResponseEntity<Integer>>
+    */
+    @ApiOperation(value = "校验CheckKey", tags = {"团队" },  notes = "Group-CheckKey ")
+    @PostMapping("sections/{sectionId}/groups/check_key")
+    public Mono<ResponseEntity<CheckKeyStatus>> checkKeyBySectionId
+            (@PathVariable("sectionId") String sectionId, @Validated @RequestBody GroupDTO dto) {
+        Group domain = groupDtoMapping.toDomain(dto);
+        domain.setSectionId(sectionId);
+        CheckKeyStatus rt = groupService.checkKey(domain);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * 草稿GetDraft 团队
+    * 
+    *
+    * @param sectionId sectionId
+    * @param dto dto
+    * @return Mono<ResponseEntity<GroupDTO>>
+    */
+    @ApiOperation(value = "草稿GetDraft", tags = {"团队" },  notes = "Group-GetDraft ")
+    @GetMapping("sections/{sectionId}/groups/get_draft")
+    public Mono<ResponseEntity<GroupDTO>> getDraftBySectionId
+            (@PathVariable("sectionId") String sectionId, @SpringQueryMap GroupDTO dto) {
+        Group domain = groupDtoMapping.toDomain(dto);
+        domain.setSectionId(sectionId);
+        Group rt = groupService.getDraft(domain);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(groupDtoMapping.toDto(rt)));
+    }
+
+    /**
+    * 查询fetch_default 团队
+    * 
+    *
+    * @param sectionId sectionId
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<GroupDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_default", tags = {"团队" },  notes = "Group-fetch_default ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Group-fetch_default-all') or hasPermission('section',#sectionId,#dto,'ibizplm-Group-fetch_default')")
+    @PostMapping("sections/{sectionId}/groups/fetch_default")
+    public Mono<ResponseEntity<List<GroupDTO>>> fetchDefaultBySectionId
+            (@PathVariable("sectionId") String sectionId, @Validated @RequestBody GroupFilterDTO dto) {
+        dto.setSectionIdEQ(sectionId);
+        GroupSearchContext context = groupFilterDtoMapping.toDomain(dto);
+        Page<Group> domains = groupService.fetchDefault(context) ;
+        List<GroupDTO> list = groupDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
+    * 查询fetch_no_section 团队
+    * 
+    *
+    * @param sectionId sectionId
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<GroupDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_no_section", tags = {"团队" },  notes = "Group-fetch_no_section ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Group-fetch_no_section-all') or hasPermission('section',#sectionId,#dto,'ibizplm-Group-fetch_no_section')")
+    @PostMapping("sections/{sectionId}/groups/fetch_no_section")
+    public Mono<ResponseEntity<List<GroupDTO>>> fetchNoSectionBySectionId
+            (@PathVariable("sectionId") String sectionId, @Validated @RequestBody GroupFilterDTO dto) {
+        dto.setSectionIdEQ(sectionId);
+        GroupSearchContext context = groupFilterDtoMapping.toDomain(dto);
+        Page<Group> domains = groupService.fetchNoSection(context) ;
+        List<GroupDTO> list = groupDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
+    * 查询fetch_reader 团队
+    * 
+    *
+    * @param sectionId sectionId
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<GroupDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_reader", tags = {"团队" },  notes = "Group-fetch_reader ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Group-fetch_reader-all') or hasPermission('section',#sectionId,#dto,'ibizplm-Group-fetch_reader')")
+    @PostMapping("sections/{sectionId}/groups/fetch_reader")
+    public Mono<ResponseEntity<List<GroupDTO>>> fetchReaderBySectionId
+            (@PathVariable("sectionId") String sectionId, @Validated @RequestBody GroupFilterDTO dto) {
+        dto.setSectionIdEQ(sectionId);
+        GroupSearchContext context = groupFilterDtoMapping.toDomain(dto);
+        Page<Group> domains = groupService.fetchReader(context) ;
+        List<GroupDTO> list = groupDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
+    * 查询fetch_user 团队
+    * 
+    *
+    * @param sectionId sectionId
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<GroupDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_user", tags = {"团队" },  notes = "Group-fetch_user ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Group-fetch_user-all') or hasPermission('section',#sectionId,#dto,'ibizplm-Group-fetch_user')")
+    @PostMapping("sections/{sectionId}/groups/fetch_user")
+    public Mono<ResponseEntity<List<GroupDTO>>> fetchUserBySectionId
+            (@PathVariable("sectionId") String sectionId, @Validated @RequestBody GroupFilterDTO dto) {
+        dto.setSectionIdEQ(sectionId);
+        GroupSearchContext context = groupFilterDtoMapping.toDomain(dto);
+        Page<Group> domains = groupService.fetchUser(context) ;
+        List<GroupDTO> list = groupDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
+    * 查询fetch_user_group_admin 团队
+    * 
+    *
+    * @param sectionId sectionId
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<GroupDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_user_group_admin", tags = {"团队" },  notes = "Group-fetch_user_group_admin ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Group-fetch_user_group_admin-all') or hasPermission('section',#sectionId,#dto,'ibizplm-Group-fetch_user_group_admin')")
+    @PostMapping("sections/{sectionId}/groups/fetch_user_group_admin")
+    public Mono<ResponseEntity<List<GroupDTO>>> fetchUserGroupAdminBySectionId
+            (@PathVariable("sectionId") String sectionId, @Validated @RequestBody GroupFilterDTO dto) {
+        dto.setSectionIdEQ(sectionId);
         GroupSearchContext context = groupFilterDtoMapping.toDomain(dto);
         Page<Group> domains = groupService.fetchUserGroupAdmin(context) ;
         List<GroupDTO> list = groupDtoMapping.toDto(domains.getContent());

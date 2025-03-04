@@ -3,7 +3,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'project_grid_view',
-  deviewId: '2BAE6A9F-339B-4713-A72C-8FD699A16BC1',
+  deviewId: 'c19789955acbd9a53158886be0aa1d3c',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.BASELINE',
@@ -89,13 +89,6 @@ export default {
   ],
   appViewRefs: [
     {
-      realOpenMode: 'POPUPMODAL',
-      realTitle: '项目基线快速建立视图',
-      refAppViewId: 'plmweb.baseline_project_create_view',
-      name: 'NEWDATA',
-      id: 'newdata',
-    },
-    {
       navigateContexts: [
         {
           key: 'BASELINE_STATUS',
@@ -108,6 +101,13 @@ export default {
       refAppViewId: 'plmweb.baseline_project_main_view',
       name: 'EDITDATA',
       id: 'editdata',
+    },
+    {
+      realOpenMode: 'POPUPMODAL',
+      realTitle: '项目基线快速建立视图',
+      refAppViewId: 'plmweb.baseline_project_create_view',
+      name: 'NEWDATA',
+      id: 'newdata',
     },
   ],
   controls: [
@@ -195,7 +195,7 @@ export default {
       controlParam: {
         id: 'toolbar',
       },
-      modelId: 'F4C7FDFF-9067-4458-8533-CF79BB9ED78D',
+      modelId: '9da2c91cf886e834d5c0fb4bf956ca1f',
       modelType: 'PSDETOOLBAR',
       name: 'toolbar',
       id: 'project_grid_view_toolbar',
@@ -226,7 +226,7 @@ export default {
                   cssClass: 'fa fa-dot-circle-o',
                   glyph: 'xf192@FontAwesome',
                 },
-                id: 'u13edeb4',
+                id: 'ueedd749',
               },
               {
                 actionLevel: 100,
@@ -241,7 +241,7 @@ export default {
                   cssClass: 'fa fa-edit',
                   glyph: 'xf044@FontAwesome',
                 },
-                id: 'uc050d6f',
+                id: 'u111d742',
               },
               {
                 actionLevel: 100,
@@ -256,7 +256,7 @@ export default {
                   cssClass: 'fa fa-trash-o',
                   glyph: 'xf014@FontAwesome',
                 },
-                id: 'u683078d',
+                id: 'ue448a22',
               },
             ],
             appDataEntityId: 'plmweb.baseline',
@@ -304,6 +304,7 @@ export default {
           appCodeListId: 'plmweb.prodmgmt__category',
           appDEFieldId: 'categories',
           valueType: 'SIMPLE',
+          enableRowEdit: true,
           aggMode: 'NONE',
           align: 'LEFT',
           caption: '类别',
@@ -521,6 +522,26 @@ export default {
       ],
       degridEditItems: [
         {
+          caption: '类别',
+          codeName: 'categories',
+          enableCond: 3,
+          appDEFieldId: 'categories',
+          editor: {
+            appCodeListId: 'plmweb.prodmgmt__category',
+            editorParams: {
+              readonly: 'true',
+            },
+            editorType: 'MDROPDOWNLIST',
+            valueType: 'SIMPLE',
+            editable: true,
+            readOnly: true,
+            id: 'categories',
+          },
+          allowEmpty: true,
+          needCodeListConfig: true,
+          id: 'categories',
+        },
+        {
           caption: '负责人',
           codeName: 'assignee_name',
           enableCond: 3,
@@ -717,7 +738,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '99ccba6d42d0ae071ebd02225e9e0a6c',
+  modelId: '74fc24df39ee0ca2e2deed4faf0e806a',
   modelType: 'PSAPPDEVIEW',
   name: 'baselineproject_grid_view',
   id: 'plmweb.baseline_project_grid_view',

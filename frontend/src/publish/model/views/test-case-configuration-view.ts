@@ -1,6 +1,6 @@
 export default {
   deviewCodeName: 'configuration_view',
-  deviewId: 'B61DAE3E-0E69-4EB8-84A3-EDFDB620C355',
+  deviewId: 'eefca7609028aa1f428b9b8e48f8a9c1',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.TEST_CASE',
@@ -397,7 +397,7 @@ export default {
     logicName: '测试用例设置视图（测试库中）布局面板',
     appDataEntityId: 'plmweb.test_case',
     controlParam: {},
-    modelId: '61EB6FCA-6ED8-45EB-B4D4-DBCC913EDD52',
+    modelId: '06b4622d9973eff3a16eb452310dccfb',
     modelType: 'PSSYSVIEWLAYOUTPANEL',
     name: 'layoutpanel',
     id: 'usr1022245764',
@@ -407,7 +407,7 @@ export default {
   viewType: 'DECUSTOMVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '9173beacaf446c6ba07ccd4a9058b44f',
+  modelId: '0bd92e2729438a5ac22b707a286d41fe',
   modelType: 'PSAPPDEVIEW',
   name: 'test_caseconfiguration_view',
   id: 'plmweb.test_case_configuration_view',

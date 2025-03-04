@@ -3,7 +3,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'space_grid_view',
-  deviewId: 'E4542FC9-6E8C-49EF-B2A3-1B2056B92110',
+  deviewId: 'b8fc39e4379e6d0108c3d2ff5f728609',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.SPACE',
@@ -397,7 +397,7 @@ export default {
         controlParam: {
           id: 'toolbar',
         },
-        modelId: 'BB389E8D-2548-46C0-BDC7-DA1E4BC5FA4E',
+        modelId: '39373989c214ee55fee451b3af536775',
         modelType: 'PSDETOOLBAR',
         name: 'toolbar',
         id: 'space_grid_view_toolbar',
@@ -562,7 +562,7 @@ export default {
         controlParam: {
           id: 'grid',
         },
-        modelId: '462F9E83-9042-42D0-9C67-0B3339AD36E1',
+        modelId: '063d488c22e0481d20dcdf2b1ff98389',
         modelType: 'PSDEGRID',
         name: 'grid',
         id: 'plmweb.space.space_grid_view_grid',
@@ -597,7 +597,7 @@ export default {
         controlParam: {
           id: 'searchform',
         },
-        modelId: '72593912-FAD0-4368-A9ED-01BF591CC654',
+        modelId: '60fb5d5cfd517d29cd016c9e2d7b4f2c',
         modelType: 'PSDEFORM_SEARCHFORM',
         name: 'searchform',
         id: 'plmweb.space.space_grid_view_search_form',
@@ -629,7 +629,7 @@ export default {
     logicName: 'space_grid_view表格视图布局',
     appDataEntityId: 'plmweb.space',
     controlParam: {},
-    modelId: 'EF79FDB3-575D-489B-BB10-65937B8D5F49',
+    modelId: '2e16d60ac634d850c3d9a6359cb3bc7c',
     modelType: 'PSSYSVIEWLAYOUTPANEL',
     name: 'layoutpanel',
     id: 'usr1112134752',
@@ -639,7 +639,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '962641a311edbf3088bb798d6753e090',
+  modelId: '77281dafc35e9fe72f31ed4d502b0801',
   modelType: 'PSAPPDEVIEW',
   name: 'spacespace_grid_view',
   id: 'plmweb.space_space_grid_view',

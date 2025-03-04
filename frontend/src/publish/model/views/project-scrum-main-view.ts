@@ -3,7 +3,7 @@ export default {
   loadDefault: true,
   showDataInfoBar: true,
   deviewCodeName: 'scrum_main_view',
-  deviewId: '696869f36d9da22b76c01f15c8291c89',
+  deviewId: 'acd66a6c1e1fd5926d97cf6e96dd1784',
   accUserMode: 2,
   caption: '项目',
   codeName: 'project_scrum_main_view',
@@ -534,7 +534,7 @@ export default {
             controlParam: {
               id: 'overview',
             },
-            modelId: '3c6311066a97250de9e77d37074c6c3d_overview',
+            modelId: 'afa9ebd3351c8cc39630619e8a0848b2_overview',
             modelType: 'PSVIEWPANEL',
             name: 'overview',
             id: 'scrum_main_view_overview',
@@ -567,7 +567,7 @@ export default {
             controlParam: {
               id: 'guihua',
             },
-            modelId: '3c6311066a97250de9e77d37074c6c3d_guihua',
+            modelId: 'afa9ebd3351c8cc39630619e8a0848b2_guihua',
             modelType: 'PSVIEWPANEL',
             name: 'guihua',
             id: 'scrum_main_view_guihua',
@@ -600,7 +600,7 @@ export default {
             controlParam: {
               id: 'workitem',
             },
-            modelId: '3c6311066a97250de9e77d37074c6c3d_workitem',
+            modelId: 'afa9ebd3351c8cc39630619e8a0848b2_workitem',
             modelType: 'PSVIEWPANEL',
             name: 'workitem',
             id: 'scrum_main_view_workitem',
@@ -633,7 +633,7 @@ export default {
             controlParam: {
               id: 'defect',
             },
-            modelId: '3c6311066a97250de9e77d37074c6c3d_defect',
+            modelId: 'afa9ebd3351c8cc39630619e8a0848b2_defect',
             modelType: 'PSVIEWPANEL',
             name: 'defect',
             id: 'scrum_main_view_defect',
@@ -666,13 +666,15 @@ export default {
             controlParam: {
               id: 'sprint',
             },
-            modelId: '3c6311066a97250de9e77d37074c6c3d_sprint',
+            modelId: 'afa9ebd3351c8cc39630619e8a0848b2_sprint',
             modelType: 'PSVIEWPANEL',
             name: 'sprint',
             id: 'scrum_main_view_sprint',
           },
           {
             navDER: {
+              masterOrder: 100,
+              masterRS: 5,
               pickupDEFName: 'PROJECT_ID',
               codeName: 'project',
               dertype: 'DER1N',
@@ -697,7 +699,7 @@ export default {
             controlParam: {
               id: 'test',
             },
-            modelId: '3c6311066a97250de9e77d37074c6c3d_test',
+            modelId: 'afa9ebd3351c8cc39630619e8a0848b2_test',
             modelType: 'PSVIEWPANEL',
             name: 'test',
             id: 'scrum_main_view_test',
@@ -711,7 +713,7 @@ export default {
             controlParam: {
               id: 'viewpage',
             },
-            modelId: '3c6311066a97250de9e77d37074c6c3d_viewpage',
+            modelId: 'afa9ebd3351c8cc39630619e8a0848b2_viewpage',
             modelType: 'PSVIEWPANEL',
             name: 'viewpage',
             id: 'scrum_main_view_viewpage',
@@ -725,7 +727,7 @@ export default {
             controlParam: {
               id: 'resource',
             },
-            modelId: '3c6311066a97250de9e77d37074c6c3d_resource',
+            modelId: 'afa9ebd3351c8cc39630619e8a0848b2_resource',
             modelType: 'PSVIEWPANEL',
             name: 'resource',
             id: 'scrum_main_view_resource',
@@ -739,7 +741,7 @@ export default {
             controlParam: {
               id: 'report',
             },
-            modelId: '3c6311066a97250de9e77d37074c6c3d_report',
+            modelId: 'afa9ebd3351c8cc39630619e8a0848b2_report',
             modelType: 'PSVIEWPANEL',
             name: 'report',
             id: 'scrum_main_view_report',
@@ -749,7 +751,7 @@ export default {
         controlType: 'TABEXPPANEL',
         appDataEntityId: 'plmweb.project',
         controlParam: {},
-        modelId: '3c6311066a97250de9e77d37074c6c3d_tabexppanel',
+        modelId: 'afa9ebd3351c8cc39630619e8a0848b2_tabexppanel',
         modelType: 'PSTABEXPPANEL',
         name: 'tabexppanel',
         id: 'scrum_main_view_tabexppanel',
@@ -779,7 +781,7 @@ export default {
   viewType: 'DETABEXPVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '3c6311066a97250de9e77d37074c6c3d',
+  modelId: 'afa9ebd3351c8cc39630619e8a0848b2',
   modelType: 'PSAPPDEVIEW',
   name: 'projectscrum_main_view',
   id: 'plmweb.project_scrum_main_view',

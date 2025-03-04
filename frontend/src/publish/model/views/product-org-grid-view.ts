@@ -3,7 +3,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'org_grid_view',
-  deviewId: 'e3ae3b3bb4e69ad9861af845114fc4cc',
+  deviewId: 'e2094d6d47e04538183c4cffc0317b88',
   accUserMode: 2,
   caption: '组织产品',
   codeName: 'product_org_grid_view',
@@ -70,12 +70,6 @@ export default {
   ],
   appViewRefs: [
     {
-      realTitle: '产品主视图',
-      refAppViewId: 'plmweb.product_main_view',
-      name: 'OPENDATA',
-      id: 'opendata',
-    },
-    {
       realTitle: '产品',
       refAppViewId: 'plmweb.product_index_view',
       name: 'EDITDATA',
@@ -87,6 +81,12 @@ export default {
       refAppViewId: 'plmweb.product_create_wizard_view',
       name: 'NEWDATA',
       id: 'newdata',
+    },
+    {
+      realTitle: '产品主视图',
+      refAppViewId: 'plmweb.product_main_view',
+      name: 'OPENDATA',
+      id: 'opendata',
     },
   ],
   controls: [
@@ -492,7 +492,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '737f3c8debd05e5226cc5f65921bc1d4',
+  modelId: 'd0b9e420e296ac9ff7fa7be869fa90e5',
   modelType: 'PSAPPDEVIEW',
   name: 'productorg_grid_view',
   id: 'plmweb.product_org_grid_view',

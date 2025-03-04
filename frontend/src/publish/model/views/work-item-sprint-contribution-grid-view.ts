@@ -2,7 +2,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'sprint_contribution_grid_view',
-  deviewId: '5C2B881C-A78C-4C3F-BF79-B2AAF2F9C542',
+  deviewId: '55f47c1f82123287e1702c837ddac47f',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.WORK_ITEM',
@@ -483,7 +483,7 @@ export default {
       controlParam: {
         id: 'grid',
       },
-      modelId: 'ED33EED2-382F-48BA-AE57-EF60099ABA98',
+      modelId: '44258d466245912a6265cf38f5599cec',
       modelType: 'PSDEGRID',
       name: 'grid',
       id: 'plmweb.work_item.sprint_contribution_grid',
@@ -526,7 +526,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: false,
-  modelId: 'df1e4c1b77bd11c824f381968c8f9a70',
+  modelId: 'd85345267575eefccd389e366bd75fb7',
   modelType: 'PSAPPDEVIEW',
   name: 'work_itemsprint_contribution_grid_view',
   id: 'plmweb.work_item_sprint_contribution_grid_view',

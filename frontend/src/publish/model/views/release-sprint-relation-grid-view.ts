@@ -3,7 +3,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'sprint_relation_grid_view',
-  deviewId: '5B6E617A-9E61-45E1-91DC-0A4CEE0F7571',
+  deviewId: 'b5893e06890f981ec28b958656252f4b',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.RELEASE',
@@ -61,15 +61,6 @@ export default {
   ],
   appViewRefs: [
     {
-      realTitle: '项目发布数据重定向视图',
-      realTitleLanguageRes: {
-        lanResTag: 'PAGE.TITLE.RELEASE.REDIRECTVIEW',
-      },
-      refAppViewId: 'plmweb.release_redirect_view',
-      name: 'EDITDATA',
-      id: 'editdata',
-    },
-    {
       realTitle: '项目发布编辑视图',
       realTitleLanguageRes: {
         lanResTag: 'PAGE.TITLE.RELEASE.EDITVIEW',
@@ -77,6 +68,15 @@ export default {
       refAppViewId: 'plmweb.release_edit_view',
       name: 'NEWDATA',
       id: 'newdata',
+    },
+    {
+      realTitle: '项目发布数据重定向视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.RELEASE.REDIRECTVIEW',
+      },
+      refAppViewId: 'plmweb.release_redirect_view',
+      name: 'EDITDATA',
+      id: 'editdata',
     },
   ],
   controls: [
@@ -106,7 +106,7 @@ export default {
                   cssClass: 'fa fa-unlink',
                   glyph: 'xf127@FontAwesome',
                 },
-                id: 'u9a3d247',
+                id: 'u410785d',
               },
             ],
             appDataEntityId: 'plmweb.release',
@@ -285,7 +285,7 @@ export default {
       controlParam: {
         id: 'grid',
       },
-      modelId: '493B8759-D631-492D-8FCB-1A47B026C7D8',
+      modelId: '0b74c01493482610e1e96e4bd002d102',
       modelType: 'PSDEGRID',
       name: 'grid',
       id: 'plmweb.release.sprint_relation_grid',
@@ -328,7 +328,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: false,
-  modelId: '24231cedc94f49c202f83fc0ca4a9bf1',
+  modelId: 'c6372c3ebdf701ef0018acc3d4f4a9b0',
   modelType: 'PSAPPDEVIEW',
   name: 'releasesprint_relation_grid_view',
   id: 'plmweb.release_sprint_relation_grid_view',

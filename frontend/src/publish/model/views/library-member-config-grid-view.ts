@@ -2,7 +2,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'config_grid_view',
-  deviewId: '79d71dc6bf49a2dba926ae1424887d46',
+  deviewId: 'ca019a3f0e52d6b2735ac2c8aeab5bf8',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.LIBRARY_MEMBER',
@@ -85,15 +85,6 @@ export default {
   ],
   appViewRefs: [
     {
-      realTitle: '测试库成员数据重定向视图',
-      realTitleLanguageRes: {
-        lanResTag: 'PAGE.TITLE.LIBRARY_MEMBER.REDIRECTVIEW',
-      },
-      refAppViewId: 'plmweb.library_member_redirect_view',
-      name: 'EDITDATA',
-      id: 'editdata',
-    },
-    {
       realTitle: '测试库成员编辑视图',
       realTitleLanguageRes: {
         lanResTag: 'PAGE.TITLE.LIBRARY_MEMBER.EDITVIEW',
@@ -101,6 +92,15 @@ export default {
       refAppViewId: 'plmweb.library_member_edit_view',
       name: 'NEWDATA',
       id: 'newdata',
+    },
+    {
+      realTitle: '测试库成员数据重定向视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.LIBRARY_MEMBER.REDIRECTVIEW',
+      },
+      refAppViewId: 'plmweb.library_member_redirect_view',
+      name: 'EDITDATA',
+      id: 'editdata',
     },
     {
       name: 'MPICKUPVIEW:LIBRARY',
@@ -204,9 +204,10 @@ export default {
           id: 'role_id',
         },
         {
-          clconvertMode: 'NONE',
+          clconvertMode: 'FRONT',
           dataItemName: 'title',
           excelCaption: '职位',
+          appCodeListId: 'plmweb.base__position',
           appDEFieldId: 'title',
           valueType: 'SIMPLE',
           aggMode: 'NONE',
@@ -524,7 +525,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: 'ba06938c3f112aa7f1884f0e339cdbed',
+  modelId: 'd2683379149127c1a070453576eb7f37',
   modelType: 'PSAPPDEVIEW',
   name: 'library_memberconfig_grid_view',
   id: 'plmweb.library_member_config_grid_view',

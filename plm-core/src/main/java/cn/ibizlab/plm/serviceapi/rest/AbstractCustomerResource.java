@@ -140,6 +140,7 @@ public abstract class AbstractCustomerResource {
     * @return Mono<ResponseEntity<CustomerDTO>>
     */
     @ApiOperation(value = "add_categories", tags = {"客户" },  notes = "Customer-add_categories ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Customer-add_categories-all') or hasPermission(this.customerDtoMapping.toDomain(#dto),'ibizplm-Customer-add_categories')")
     @PostMapping("customers/{id}/add_categories")
     public Mono<ResponseEntity<ResponseWrapper<CustomerDTO>>>addCategoriesById
             (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<CustomerDTO> dto) {
@@ -256,6 +257,7 @@ public abstract class AbstractCustomerResource {
     * @return Mono<ResponseEntity<CustomerDTO>>
     */
     @ApiOperation(value = "del_relation", tags = {"客户" },  notes = "Customer-del_relation ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Customer-del_relation-all') or hasPermission(this.customerDtoMapping.toDomain(#dto),'ibizplm-Customer-del_relation')")
     @PostMapping("customers/{id}/del_relation")
     public Mono<ResponseEntity<ResponseWrapper<CustomerDTO>>>delRelationById
             (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<CustomerDTO> dto) {
@@ -293,6 +295,7 @@ public abstract class AbstractCustomerResource {
     * @return Mono<ResponseEntity<CustomerDTO>>
     */
     @ApiOperation(value = "delete_categories", tags = {"客户" },  notes = "Customer-delete_categories ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Customer-delete_categories-all') or hasPermission(this.customerDtoMapping.toDomain(#dto),'ibizplm-Customer-delete_categories')")
     @PostMapping("customers/delete_categories")
     public Mono<ResponseEntity<ResponseWrapper<CustomerDTO>>>deleteCategories
             (@Validated @RequestBody RequestWrapper<CustomerDTO> dto) {
@@ -366,6 +369,7 @@ public abstract class AbstractCustomerResource {
     * @return Mono<ResponseEntity<CustomerDTO>>
     */
     @ApiOperation(value = "product_customer_re_counters", tags = {"客户" },  notes = "Customer-product_customer_re_counters ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Customer-product_customer_re_counters-all') or hasPermission(this.customerDtoMapping.toDomain(#dto),'ibizplm-Customer-product_customer_re_counters')")
     @PostMapping("customers/{id}/product_customer_re_counters")
     public Mono<ResponseEntity<ResponseWrapper<CustomerDTO>>>productCustomerReCountersById
             (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<CustomerDTO> dto) {
@@ -521,6 +525,7 @@ public abstract class AbstractCustomerResource {
     * @return Mono<ResponseEntity<CustomerDTO>>
     */
     @ApiOperation(value = "add_categories", tags = {"客户" },  notes = "Customer-add_categories ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Customer-add_categories-all') or hasPermission('product',#productId,this.customerDtoMapping.toDomain(#dto),'ibizplm-Customer-add_categories')")
     @PostMapping("products/{productId}/customers/{id}/add_categories")
     public Mono<ResponseEntity<ResponseWrapper<CustomerDTO>>>addCategoriesByProductIdAndId
             (@PathVariable("productId") String productId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<CustomerDTO> dto) {
@@ -643,6 +648,7 @@ public abstract class AbstractCustomerResource {
     * @return Mono<ResponseEntity<CustomerDTO>>
     */
     @ApiOperation(value = "del_relation", tags = {"客户" },  notes = "Customer-del_relation ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Customer-del_relation-all') or hasPermission('product',#productId,this.customerDtoMapping.toDomain(#dto),'ibizplm-Customer-del_relation')")
     @PostMapping("products/{productId}/customers/{id}/del_relation")
     public Mono<ResponseEntity<ResponseWrapper<CustomerDTO>>>delRelationByProductIdAndId
             (@PathVariable("productId") String productId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<CustomerDTO> dto) {
@@ -682,6 +688,7 @@ public abstract class AbstractCustomerResource {
     * @return Mono<ResponseEntity<CustomerDTO>>
     */
     @ApiOperation(value = "delete_categories", tags = {"客户" },  notes = "Customer-delete_categories ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Customer-delete_categories-all') or hasPermission('product',#productId,this.customerDtoMapping.toDomain(#dto),'ibizplm-Customer-delete_categories')")
     @PostMapping("products/{productId}/customers/delete_categories")
     public Mono<ResponseEntity<ResponseWrapper<CustomerDTO>>>deleteCategoriesByProductId
             (@PathVariable("productId") String productId, @Validated @RequestBody RequestWrapper<CustomerDTO> dto) {
@@ -760,6 +767,7 @@ public abstract class AbstractCustomerResource {
     * @return Mono<ResponseEntity<CustomerDTO>>
     */
     @ApiOperation(value = "product_customer_re_counters", tags = {"客户" },  notes = "Customer-product_customer_re_counters ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Customer-product_customer_re_counters-all') or hasPermission('product',#productId,this.customerDtoMapping.toDomain(#dto),'ibizplm-Customer-product_customer_re_counters')")
     @PostMapping("products/{productId}/customers/{id}/product_customer_re_counters")
     public Mono<ResponseEntity<ResponseWrapper<CustomerDTO>>>productCustomerReCountersByProductIdAndId
             (@PathVariable("productId") String productId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<CustomerDTO> dto) {

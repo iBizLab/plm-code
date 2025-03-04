@@ -1158,14 +1158,6 @@ export default {
           id: 'begin',
         },
         {
-          codeName: 'END1',
-          leftPos: 700,
-          logicNodeType: 'END',
-          topPos: 200,
-          name: '结束',
-          id: 'end1',
-        },
-        {
           code: "return (async function() { \r\n    console.log('遍历临时数据删除')\r\n    // 获取所有临时数据\r\n    const serviceUtil = ibiz.hub.getApp(context.srfappid).deService;\r\n    const service = await serviceUtil.getService(context, 'plmweb.review_content');\r\n    const list = service.local.getList();\r\n    // 遍历临时数据删除\r\n    list.forEach(item => {\r\n        service.local.delete(context, item.id);\r\n    })\r\n    const service2 = await serviceUtil.getService(context, 'plmweb.attention');\r\n    const list2 = service2.local.getList();\r\n    // 遍历临时数据删除\r\n    list2.forEach(item => {\r\n        service2.local.delete(context, item.id);\r\n    })\r\n    } \r\n)();\r\n",
           codeName: 'RAWJSCODE1',
           leftPos: 433,
@@ -1180,6 +1172,14 @@ export default {
           topPos: 208,
           name: '批量删除临时数据（临时）',
           id: 'rawjscode1',
+        },
+        {
+          codeName: 'END1',
+          leftPos: 700,
+          logicNodeType: 'END',
+          topPos: 200,
+          name: '结束',
+          id: 'end1',
         },
       ],
       deuilogicParams: [
@@ -1210,15 +1210,20 @@ export default {
   deopprivs: [
     {
       logicName: '建立',
-      name: 'CREATE',
-      id: 'create',
-    },
-    {
-      logicName: '建立',
       mapDEName: 'LIBRARY',
       mapDEOPPrivName: 'SUBDATA',
       name: 'CREATE',
       id: 'library__create',
+    },
+    {
+      logicName: '建立',
+      name: 'CREATE',
+      id: 'create',
+    },
+    {
+      logicName: '删除',
+      name: 'DELETE',
+      id: 'delete',
     },
     {
       logicName: '删除',
@@ -1226,11 +1231,6 @@ export default {
       mapDEOPPrivName: 'SUBDATA',
       name: 'DELETE',
       id: 'library__delete',
-    },
-    {
-      logicName: '删除',
-      name: 'DELETE',
-      id: 'delete',
     },
     {
       logicName: '读取',
@@ -1246,15 +1246,15 @@ export default {
     },
     {
       logicName: '更新',
+      name: 'UPDATE',
+      id: 'update',
+    },
+    {
+      logicName: '更新',
       mapDEName: 'LIBRARY',
       mapDEOPPrivName: 'SUBDATA',
       name: 'UPDATE',
       id: 'library__update',
-    },
-    {
-      logicName: '更新',
-      name: 'UPDATE',
-      id: 'update',
     },
   ],
   codeName: 'review_wizard',

@@ -4,7 +4,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'no_grid_view_all',
-  deviewId: '17DC1979-DA39-400B-8050-39600BCA3ACD',
+  deviewId: '1f1b47c828f497f70adb7f5a6c94c6d9',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.REVIEW_CONTENT',
@@ -76,7 +76,6 @@ export default {
                           },
                         ],
                         logicType: 'GROUP',
-                        id: '面板成员[schedule][表单项启用]逻辑',
                       },
                     ],
                     width: 150,
@@ -430,15 +429,6 @@ export default {
     ],
     appViewRefs: [
       {
-        realTitle: '评审内容编辑视图',
-        realTitleLanguageRes: {
-          lanResTag: 'PAGE.TITLE.REVIEW_CONTENT.EDITVIEW',
-        },
-        refAppViewId: 'plmweb.review_content_edit_view',
-        name: 'NEWDATA',
-        id: 'newdata',
-      },
-      {
         openMode: 'POPUPMODAL',
         navigateContexts: [
           {
@@ -453,6 +443,15 @@ export default {
         refAppViewId: 'plmweb.test_case_main_view',
         name: 'EDITDATA',
         id: 'editdata',
+      },
+      {
+        realTitle: '评审内容编辑视图',
+        realTitleLanguageRes: {
+          lanResTag: 'PAGE.TITLE.REVIEW_CONTENT.EDITVIEW',
+        },
+        refAppViewId: 'plmweb.review_content_edit_view',
+        name: 'NEWDATA',
+        id: 'newdata',
       },
       {
         name: 'MPICKUPVIEW:REVIEW_WIZARD',
@@ -563,7 +562,7 @@ export default {
         controlParam: {
           id: 'toolbar',
         },
-        modelId: 'D8FF3F1F-AB64-4F3F-9D1F-6A0920C67D3E',
+        modelId: '8e59f274160e5e92217521ed9898db1d',
         modelType: 'PSDETOOLBAR',
         name: 'toolbar',
         id: 'no_grid_view_all_toolbar',
@@ -614,7 +613,7 @@ export default {
                     cssClass: 'fa fa-mail-reply',
                     glyph: 'xf112@FontAwesome',
                   },
-                  id: 'uafa07b8',
+                  id: 'ucb9925e',
                 },
                 {
                   actionLevel: 200,
@@ -629,7 +628,7 @@ export default {
                     cssClass: 'fa fa-exchange',
                     glyph: 'xf0ec@FontAwesome',
                   },
-                  id: 'u7c6b8ab',
+                  id: 'u2d8231b',
                 },
               ],
               appDataEntityId: 'plmweb.review_content',
@@ -956,7 +955,7 @@ export default {
             controlParam: {
               id: 'grid_batchtoolbar',
             },
-            modelId: 'F6B0E272-B2D5-48E0-B73E-5B17BC0EDE73',
+            modelId: '8ff97ed8eeac6f5498f6d54910248a1f',
             modelType: 'PSDETOOLBAR',
             name: 'grid_batchtoolbar',
             id: 'no_grid_view_all_grid_batchtoolbar',
@@ -980,7 +979,7 @@ export default {
         controlParam: {
           id: 'grid',
         },
-        modelId: '58ACF61F-05FB-4A71-9F78-92E1D9BCD229',
+        modelId: '43241e27715db36e80bf7ea9d9d68c6b',
         modelType: 'PSDEGRID',
         name: 'grid',
         id: 'plmweb.review_content.no_grid_view_all_grid',
@@ -1015,7 +1014,7 @@ export default {
         controlParam: {
           id: 'searchform',
         },
-        modelId: 'CEE9AB0C-06FA-4337-9882-213C9D95E165',
+        modelId: '1fb467764bc3e7445797626c64d04e8f',
         modelType: 'PSDEFORM_SEARCHFORM',
         name: 'searchform',
         id: 'plmweb.review_content.no_grid_view_all_search_form',
@@ -1049,7 +1048,7 @@ export default {
     logicName: 'wf_grid_view表格视图布局',
     appDataEntityId: 'plmweb.review_content',
     controlParam: {},
-    modelId: '418C0CD0-979F-4377-B27E-FB35135E535D',
+    modelId: 'd023fb941c247a9d45de6b4fabe6b4fc',
     modelType: 'PSSYSVIEWLAYOUTPANEL',
     name: 'layoutpanel',
     id: 'usr0423295749',
@@ -1059,7 +1058,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '6ff0cf3be7e518781325ea366a717715',
+  modelId: '83523b7767f2949141412f8265235d29',
   modelType: 'PSAPPDEVIEW',
   name: 'review_contentno_grid_view_all',
   id: 'plmweb.review_content_no_grid_view_all',

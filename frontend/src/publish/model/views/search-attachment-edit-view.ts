@@ -5,7 +5,7 @@ export default {
   loadDefault: true,
   funcViewMode: 'EDITVIEW',
   deviewCodeName: 'EditView',
-  deviewId: '80375e158941f9a864da98cd9e406cf9',
+  deviewId: '362d180d02ad4af882430ccc092a27aa',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.SEARCH_ATTACHMENT',
@@ -207,7 +207,7 @@ export default {
       controlParam: {
         id: 'form',
       },
-      modelId: '854448f7e32f89eb62fd2862f942ef83',
+      modelId: 'deb66af3e77de94c2d53cff7844845c2',
       modelType: 'PSDEFORM_EDITFORM',
       name: 'form',
       id: 'plmweb.search_attachment.main',
@@ -254,7 +254,7 @@ export default {
   viewType: 'DEEDITVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '702220f1c48c1c6c4bb531637fc0a745',
+  modelId: '96079e12d182a2f7711d18bb4d19138e',
   modelType: 'PSAPPDEVIEW',
   name: 'search_attachmentEditView',
   id: 'plmweb.search_attachment_edit_view',

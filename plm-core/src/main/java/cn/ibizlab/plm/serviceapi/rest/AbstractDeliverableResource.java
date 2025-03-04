@@ -266,6 +266,28 @@ public abstract class AbstractDeliverableResource {
     }
 
     /**
+    * 查询fetch_my_deliverable 交付物
+    * 
+    *
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<DeliverableDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_my_deliverable", tags = {"交付物" },  notes = "Deliverable-fetch_my_deliverable ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Deliverable-fetch_my_deliverable-all') or hasPermission(#dto,'ibizplm-Deliverable-fetch_my_deliverable')")
+    @PostMapping("deliverables/fetch_my_deliverable")
+    public Mono<ResponseEntity<List<DeliverableDTO>>> fetchMyDeliverable
+            (@Validated @RequestBody DeliverableFilterDTO dto) {
+        DeliverableSearchContext context = deliverableFilterDtoMapping.toDomain(dto);
+        Page<Deliverable> domains = deliverableService.fetchMyDeliverable(context) ;
+        List<DeliverableDTO> list = deliverableDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
     * 查询fetch_project_deliverable 交付物
     * 
     *

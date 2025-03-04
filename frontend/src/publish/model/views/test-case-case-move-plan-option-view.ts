@@ -4,7 +4,7 @@ export default {
   loadDefault: true,
   openMode: 'POPUPMODAL',
   deviewCodeName: 'case_move_plan_option_view',
-  deviewId: '56dd665c9ce6a3a4f3073729bcb794ea',
+  deviewId: '56fc81d914fa1a9e44da073b467820a7',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.TEST_CASE',
@@ -242,7 +242,7 @@ export default {
   width: 310,
   enableDP: true,
   showCaptionBar: true,
-  modelId: '658ba6a15777f1c96bf0cd2e406cd035',
+  modelId: '4977a5b62fef081cf79a7f0d7c8a1dfb',
   modelType: 'PSAPPDEVIEW',
   name: 'test_casecase_move_plan_option_view',
   id: 'plmweb.test_case_case_move_plan_option_view',

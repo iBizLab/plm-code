@@ -8,7 +8,7 @@ export default {
   loadDefault: true,
   openMode: 'INDEXVIEWTAB_POPUPMODAL',
   deviewCodeName: 'dyna_main_view',
-  deviewId: 'd359ae36235cf864958147002dcbb968',
+  deviewId: 'cfb9aef1acc853415c61d6bc02786dbc',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.WORK_ITEM',
@@ -134,6 +134,21 @@ export default {
               {
                 actionGroupExtractMode: 'ITEM',
                 panelItems: [
+                  {
+                    rawItem: {
+                      predefinedType: 'COOP_POS',
+                      id: 'coop_pos',
+                    },
+                    caption: '协同编辑消息占位',
+                    itemStyle: 'DEFAULT',
+                    itemType: 'RAWITEM',
+                    layoutPos: {
+                      shrink: 1,
+                      layout: 'FLEX',
+                    },
+                    showCaption: true,
+                    id: 'coop_pos',
+                  },
                   {
                     caption: '工具栏',
                     itemStyle: 'DEFAULT',
@@ -338,7 +353,6 @@ export default {
                                       },
                                     ],
                                     logicType: 'GROUP',
-                                    id: '面板成员[comment_cancel][面板显示]逻辑',
                                   },
                                 ],
                                 showCaption: true,
@@ -375,7 +389,6 @@ export default {
                                       },
                                     ],
                                     logicType: 'GROUP',
-                                    id: '面板成员[comment_send][面板显示]逻辑',
                                   },
                                 ],
                                 showCaption: true,
@@ -1051,7 +1064,7 @@ export default {
         controlParam: {
           id: 'toolbar',
         },
-        modelId: '48F1FF6E-3D55-47FD-AFC7-FC003964DAA0',
+        modelId: '864ec3ce4448e60275aa7de69bf05331',
         modelType: 'PSDETOOLBAR',
         name: 'toolbar',
         id: 'dyna_main_view_toolbar',
@@ -1090,6 +1103,20 @@ export default {
         enableAutoSave: true,
         deformItemUpdates: [
           {
+            codeName: 'remaining_update',
+            defiupdateDetails: [
+              {
+                id: 'workload_schedule',
+              },
+            ],
+            scriptCode:
+              'var form_data = view.layoutPanel.panelItems.form.control.data;\r\nvar actual_workload = form_data.actual_workload;\r\nvar estimated_workload = form_data.estimated_workload; \r\nvar remaining_workload = form_data.remaining_workload;  \r\nvar estimated = 0; // 预估工时\r\nif(estimated_workload){\r\n\testimated = Number(estimated_workload);\r\n}\r\nvar actual = 0; // 已登记的实际工时\r\nif(actual_workload){\r\n\tactual = Number(actual_workload);\r\n}\r\nvar remaining = 0;\r\nif(remaining_workload){\r\n\tremaining = Number(remaining_workload);\r\n}\r\n// 计算工时进度\r\nif((actual + remaining) != 0){\r\n\tvar schedule = ((actual / (actual + remaining)) * 100).toFixed(1);\r\n\tform_data.workload_schedule = schedule;\r\n}\r\n',
+            customCode: true,
+            showBusyIndicator: false,
+            name: '剩余工时表单项更新',
+            id: 'remaining_update',
+          },
+          {
             codeName: 'estimated_update',
             defiupdateDetails: [
               {
@@ -1105,20 +1132,6 @@ export default {
             showBusyIndicator: false,
             name: '预估工时表单项更新',
             id: 'estimated_update',
-          },
-          {
-            codeName: 'remaining_update',
-            defiupdateDetails: [
-              {
-                id: 'workload_schedule',
-              },
-            ],
-            scriptCode:
-              'var form_data = view.layoutPanel.panelItems.form.control.data;\r\nvar actual_workload = form_data.actual_workload;\r\nvar estimated_workload = form_data.estimated_workload; \r\nvar remaining_workload = form_data.remaining_workload;  \r\nvar estimated = 0; // 预估工时\r\nif(estimated_workload){\r\n\testimated = Number(estimated_workload);\r\n}\r\nvar actual = 0; // 已登记的实际工时\r\nif(actual_workload){\r\n\tactual = Number(actual_workload);\r\n}\r\nvar remaining = 0;\r\nif(remaining_workload){\r\n\tremaining = Number(remaining_workload);\r\n}\r\n// 计算工时进度\r\nif((actual + remaining) != 0){\r\n\tvar schedule = ((actual / (actual + remaining)) * 100).toFixed(1);\r\n\tform_data.workload_schedule = schedule;\r\n}\r\n',
-            customCode: true,
-            showBusyIndicator: false,
-            name: '剩余工时表单项更新',
-            id: 'remaining_update',
           },
         ],
         deformItemVRs: [
@@ -7072,6 +7085,20 @@ export default {
         enableAutoSave: true,
         deformItemUpdates: [
           {
+            codeName: 'remaining_update',
+            defiupdateDetails: [
+              {
+                id: 'workload_schedule',
+              },
+            ],
+            scriptCode:
+              'var form_data = view.layoutPanel.panelItems.form.control.data;\r\nvar actual_workload = form_data.actual_workload;\r\nvar estimated_workload = form_data.estimated_workload; \r\nvar remaining_workload = form_data.remaining_workload;  \r\nvar estimated = 0; // 预估工时\r\nif(estimated_workload){\r\n\testimated = Number(estimated_workload);\r\n}\r\nvar actual = 0; // 已登记的实际工时\r\nif(actual_workload){\r\n\tactual = Number(actual_workload);\r\n}\r\nvar remaining = 0;\r\nif(remaining_workload){\r\n\tremaining = Number(remaining_workload);\r\n}\r\n// 计算工时进度\r\nif((actual + remaining) != 0){\r\n\tvar schedule = ((actual / (actual + remaining)) * 100).toFixed(1);\r\n\tform_data.workload_schedule = schedule;\r\n}\r\n',
+            customCode: true,
+            showBusyIndicator: false,
+            name: '剩余工时表单项更新',
+            id: 'remaining_update',
+          },
+          {
             codeName: 'estimated_update',
             defiupdateDetails: [
               {
@@ -7087,20 +7114,6 @@ export default {
             showBusyIndicator: false,
             name: '预估工时表单项更新',
             id: 'estimated_update',
-          },
-          {
-            codeName: 'remaining_update',
-            defiupdateDetails: [
-              {
-                id: 'workload_schedule',
-              },
-            ],
-            scriptCode:
-              'var form_data = view.layoutPanel.panelItems.form.control.data;\r\nvar actual_workload = form_data.actual_workload;\r\nvar estimated_workload = form_data.estimated_workload; \r\nvar remaining_workload = form_data.remaining_workload;  \r\nvar estimated = 0; // 预估工时\r\nif(estimated_workload){\r\n\testimated = Number(estimated_workload);\r\n}\r\nvar actual = 0; // 已登记的实际工时\r\nif(actual_workload){\r\n\tactual = Number(actual_workload);\r\n}\r\nvar remaining = 0;\r\nif(remaining_workload){\r\n\tremaining = Number(remaining_workload);\r\n}\r\n// 计算工时进度\r\nif((actual + remaining) != 0){\r\n\tvar schedule = ((actual / (actual + remaining)) * 100).toFixed(1);\r\n\tform_data.workload_schedule = schedule;\r\n}\r\n',
-            customCode: true,
-            showBusyIndicator: false,
-            name: '剩余工时表单项更新',
-            id: 'remaining_update',
           },
         ],
         deformItemVRs: [
@@ -12537,10 +12550,10 @@ export default {
             codeName: 'estimated_update',
             defiupdateDetails: [
               {
-                id: 'workload_schedule',
+                id: 'remaining_workload',
               },
               {
-                id: 'remaining_workload',
+                id: 'workload_schedule',
               },
             ],
             scriptCode:
@@ -15462,7 +15475,6 @@ export default {
                           {
                             dataType: 9,
                             enableCond: 3,
-                            ignoreInput: 2,
                             labelPos: 'RIGHT',
                             labelWidth: 130,
                             noPrivDisplayMode: 1,
@@ -21363,20 +21375,6 @@ export default {
         enableAutoSave: true,
         deformItemUpdates: [
           {
-            codeName: 'remaining_update',
-            defiupdateDetails: [
-              {
-                id: 'workload_schedule',
-              },
-            ],
-            scriptCode:
-              'var form_data = view.layoutPanel.panelItems.form.control.data;\r\nvar actual_workload = form_data.actual_workload;\r\nvar estimated_workload = form_data.estimated_workload; \r\nvar remaining_workload = form_data.remaining_workload;  \r\nvar estimated = 0; // 预估工时\r\nif(estimated_workload){\r\n\testimated = Number(estimated_workload);\r\n}\r\nvar actual = 0; // 已登记的实际工时\r\nif(actual_workload){\r\n\tactual = Number(actual_workload);\r\n}\r\nvar remaining = 0;\r\nif(remaining_workload){\r\n\tremaining = Number(remaining_workload);\r\n}\r\n// 计算工时进度\r\nif((actual + remaining) != 0){\r\n\tvar schedule = ((actual / (actual + remaining)) * 100).toFixed(1);\r\n\tform_data.workload_schedule = schedule;\r\n}\r\n',
-            customCode: true,
-            showBusyIndicator: false,
-            name: '剩余工时表单项更新',
-            id: 'remaining_update',
-          },
-          {
             codeName: 'estimated_update',
             defiupdateDetails: [
               {
@@ -21392,6 +21390,20 @@ export default {
             showBusyIndicator: false,
             name: '预估工时表单项更新',
             id: 'estimated_update',
+          },
+          {
+            codeName: 'remaining_update',
+            defiupdateDetails: [
+              {
+                id: 'workload_schedule',
+              },
+            ],
+            scriptCode:
+              'var form_data = view.layoutPanel.panelItems.form.control.data;\r\nvar actual_workload = form_data.actual_workload;\r\nvar estimated_workload = form_data.estimated_workload; \r\nvar remaining_workload = form_data.remaining_workload;  \r\nvar estimated = 0; // 预估工时\r\nif(estimated_workload){\r\n\testimated = Number(estimated_workload);\r\n}\r\nvar actual = 0; // 已登记的实际工时\r\nif(actual_workload){\r\n\tactual = Number(actual_workload);\r\n}\r\nvar remaining = 0;\r\nif(remaining_workload){\r\n\tremaining = Number(remaining_workload);\r\n}\r\n// 计算工时进度\r\nif((actual + remaining) != 0){\r\n\tvar schedule = ((actual / (actual + remaining)) * 100).toFixed(1);\r\n\tform_data.workload_schedule = schedule;\r\n}\r\n',
+            customCode: true,
+            showBusyIndicator: false,
+            name: '剩余工时表单项更新',
+            id: 'remaining_update',
           },
         ],
         deformItemVRs: [
@@ -29800,20 +29812,6 @@ export default {
         enableAutoSave: true,
         deformItemUpdates: [
           {
-            codeName: 'remaining_update',
-            defiupdateDetails: [
-              {
-                id: 'workload_schedule',
-              },
-            ],
-            scriptCode:
-              'var form_data = view.layoutPanel.panelItems.form.control.data;\r\nvar actual_workload = form_data.actual_workload;\r\nvar estimated_workload = form_data.estimated_workload; \r\nvar remaining_workload = form_data.remaining_workload;  \r\nvar estimated = 0; // 预估工时\r\nif(estimated_workload){\r\n\testimated = Number(estimated_workload);\r\n}\r\nvar actual = 0; // 已登记的实际工时\r\nif(actual_workload){\r\n\tactual = Number(actual_workload);\r\n}\r\nvar remaining = 0;\r\nif(remaining_workload){\r\n\tremaining = Number(remaining_workload);\r\n}\r\n// 计算工时进度\r\nif((actual + remaining) != 0){\r\n\tvar schedule = ((actual / (actual + remaining)) * 100).toFixed(1);\r\n\tform_data.workload_schedule = schedule;\r\n}\r\n',
-            customCode: true,
-            showBusyIndicator: false,
-            name: '剩余工时表单项更新',
-            id: 'remaining_update',
-          },
-          {
             codeName: 'estimated_update',
             defiupdateDetails: [
               {
@@ -29829,6 +29827,20 @@ export default {
             showBusyIndicator: false,
             name: '预估工时表单项更新',
             id: 'estimated_update',
+          },
+          {
+            codeName: 'remaining_update',
+            defiupdateDetails: [
+              {
+                id: 'workload_schedule',
+              },
+            ],
+            scriptCode:
+              'var form_data = view.layoutPanel.panelItems.form.control.data;\r\nvar actual_workload = form_data.actual_workload;\r\nvar estimated_workload = form_data.estimated_workload; \r\nvar remaining_workload = form_data.remaining_workload;  \r\nvar estimated = 0; // 预估工时\r\nif(estimated_workload){\r\n\testimated = Number(estimated_workload);\r\n}\r\nvar actual = 0; // 已登记的实际工时\r\nif(actual_workload){\r\n\tactual = Number(actual_workload);\r\n}\r\nvar remaining = 0;\r\nif(remaining_workload){\r\n\tremaining = Number(remaining_workload);\r\n}\r\n// 计算工时进度\r\nif((actual + remaining) != 0){\r\n\tvar schedule = ((actual / (actual + remaining)) * 100).toFixed(1);\r\n\tform_data.workload_schedule = schedule;\r\n}\r\n',
+            customCode: true,
+            showBusyIndicator: false,
+            name: '剩余工时表单项更新',
+            id: 'remaining_update',
           },
         ],
         deformItemVRs: [
@@ -32613,10 +32625,10 @@ export default {
             codeName: 'estimated_update',
             defiupdateDetails: [
               {
-                id: 'workload_schedule',
+                id: 'remaining_workload',
               },
               {
-                id: 'remaining_workload',
+                id: 'workload_schedule',
               },
             ],
             scriptCode:
@@ -32828,7 +32840,6 @@ export default {
                           {
                             dataType: 9,
                             enableCond: 3,
-                            ignoreInput: 2,
                             labelPos: 'RIGHT',
                             labelWidth: 130,
                             noPrivDisplayMode: 1,
@@ -35763,6 +35774,20 @@ export default {
         enableAutoSave: true,
         deformItemUpdates: [
           {
+            codeName: 'remaining_update',
+            defiupdateDetails: [
+              {
+                id: 'workload_schedule',
+              },
+            ],
+            scriptCode:
+              'var form_data = view.layoutPanel.panelItems.form.control.data;\r\nvar actual_workload = form_data.actual_workload;\r\nvar estimated_workload = form_data.estimated_workload; \r\nvar remaining_workload = form_data.remaining_workload;  \r\nvar estimated = 0; // 预估工时\r\nif(estimated_workload){\r\n\testimated = Number(estimated_workload);\r\n}\r\nvar actual = 0; // 已登记的实际工时\r\nif(actual_workload){\r\n\tactual = Number(actual_workload);\r\n}\r\nvar remaining = 0;\r\nif(remaining_workload){\r\n\tremaining = Number(remaining_workload);\r\n}\r\n// 计算工时进度\r\nif((actual + remaining) != 0){\r\n\tvar schedule = ((actual / (actual + remaining)) * 100).toFixed(1);\r\n\tform_data.workload_schedule = schedule;\r\n}\r\n',
+            customCode: true,
+            showBusyIndicator: false,
+            name: '剩余工时表单项更新',
+            id: 'remaining_update',
+          },
+          {
             codeName: 'estimated_update',
             defiupdateDetails: [
               {
@@ -35778,20 +35803,6 @@ export default {
             showBusyIndicator: false,
             name: '预估工时表单项更新',
             id: 'estimated_update',
-          },
-          {
-            codeName: 'remaining_update',
-            defiupdateDetails: [
-              {
-                id: 'workload_schedule',
-              },
-            ],
-            scriptCode:
-              'var form_data = view.layoutPanel.panelItems.form.control.data;\r\nvar actual_workload = form_data.actual_workload;\r\nvar estimated_workload = form_data.estimated_workload; \r\nvar remaining_workload = form_data.remaining_workload;  \r\nvar estimated = 0; // 预估工时\r\nif(estimated_workload){\r\n\testimated = Number(estimated_workload);\r\n}\r\nvar actual = 0; // 已登记的实际工时\r\nif(actual_workload){\r\n\tactual = Number(actual_workload);\r\n}\r\nvar remaining = 0;\r\nif(remaining_workload){\r\n\tremaining = Number(remaining_workload);\r\n}\r\n// 计算工时进度\r\nif((actual + remaining) != 0){\r\n\tvar schedule = ((actual / (actual + remaining)) * 100).toFixed(1);\r\n\tform_data.workload_schedule = schedule;\r\n}\r\n',
-            customCode: true,
-            showBusyIndicator: false,
-            name: '剩余工时表单项更新',
-            id: 'remaining_update',
           },
         ],
         deformItemVRs: [
@@ -35981,7 +35992,6 @@ export default {
                           {
                             dataType: 9,
                             enableCond: 3,
-                            ignoreInput: 2,
                             labelPos: 'RIGHT',
                             labelWidth: 130,
                             noPrivDisplayMode: 1,
@@ -38766,23 +38776,6 @@ export default {
         enableAutoSave: true,
         deformItemUpdates: [
           {
-            codeName: 'estimated_update',
-            defiupdateDetails: [
-              {
-                id: 'workload_schedule',
-              },
-              {
-                id: 'remaining_workload',
-              },
-            ],
-            scriptCode:
-              'var form_data = view.layoutPanel.panelItems.form.control.data;\r\nvar actual_workload = form_data.actual_workload;\r\nvar estimated_workload = form_data.estimated_workload;  \r\nvar estimated = 0; // 预估工时\r\nif(estimated_workload){\r\n\testimated = Number(estimated_workload);\r\n}\r\nvar actual = 0; // 已登记的实际工时\r\nvar remaining = 0; // 剩余工时\r\nif(actual_workload){\r\n\tactual = Number(actual_workload);\r\n\tif(estimated_workload){\r\n\t\t// 计算剩余工时\r\n\t\tremaining = (estimated - actual) >= 0 ? (estimated - actual) : 0;\r\n\t\tform_data.remaining_workload = remaining;\r\n\t}\r\n} else {\r\n\tremaining = estimated;\r\n\tform_data.remaining_workload = estimated_workload;\r\n}\r\n// 计算工时进度\r\nif((actual + remaining) != 0){\r\n\tvar schedule = ((actual / (actual + remaining)) * 100).toFixed(1);\r\n\tform_data.workload_schedule = schedule;\r\n}',
-            customCode: true,
-            showBusyIndicator: false,
-            name: '预估工时表单项更新',
-            id: 'estimated_update',
-          },
-          {
             codeName: 'remaining_update',
             defiupdateDetails: [
               {
@@ -38795,6 +38788,23 @@ export default {
             showBusyIndicator: false,
             name: '剩余工时表单项更新',
             id: 'remaining_update',
+          },
+          {
+            codeName: 'estimated_update',
+            defiupdateDetails: [
+              {
+                id: 'remaining_workload',
+              },
+              {
+                id: 'workload_schedule',
+              },
+            ],
+            scriptCode:
+              'var form_data = view.layoutPanel.panelItems.form.control.data;\r\nvar actual_workload = form_data.actual_workload;\r\nvar estimated_workload = form_data.estimated_workload;  \r\nvar estimated = 0; // 预估工时\r\nif(estimated_workload){\r\n\testimated = Number(estimated_workload);\r\n}\r\nvar actual = 0; // 已登记的实际工时\r\nvar remaining = 0; // 剩余工时\r\nif(actual_workload){\r\n\tactual = Number(actual_workload);\r\n\tif(estimated_workload){\r\n\t\t// 计算剩余工时\r\n\t\tremaining = (estimated - actual) >= 0 ? (estimated - actual) : 0;\r\n\t\tform_data.remaining_workload = remaining;\r\n\t}\r\n} else {\r\n\tremaining = estimated;\r\n\tform_data.remaining_workload = estimated_workload;\r\n}\r\n// 计算工时进度\r\nif((actual + remaining) != 0){\r\n\tvar schedule = ((actual / (actual + remaining)) * 100).toFixed(1);\r\n\tform_data.workload_schedule = schedule;\r\n}',
+            customCode: true,
+            showBusyIndicator: false,
+            name: '预估工时表单项更新',
+            id: 'estimated_update',
           },
         ],
         deformItemVRs: [
@@ -41314,23 +41324,6 @@ export default {
         enableAutoSave: true,
         deformItemUpdates: [
           {
-            codeName: 'estimated_update',
-            defiupdateDetails: [
-              {
-                id: 'remaining_workload',
-              },
-              {
-                id: 'workload_schedule',
-              },
-            ],
-            scriptCode:
-              'var form_data = view.layoutPanel.panelItems.form.control.data;\r\nvar actual_workload = form_data.actual_workload;\r\nvar estimated_workload = form_data.estimated_workload;  \r\nvar estimated = 0; // 预估工时\r\nif(estimated_workload){\r\n\testimated = Number(estimated_workload);\r\n}\r\nvar actual = 0; // 已登记的实际工时\r\nvar remaining = 0; // 剩余工时\r\nif(actual_workload){\r\n\tactual = Number(actual_workload);\r\n\tif(estimated_workload){\r\n\t\t// 计算剩余工时\r\n\t\tremaining = (estimated - actual) >= 0 ? (estimated - actual) : 0;\r\n\t\tform_data.remaining_workload = remaining;\r\n\t}\r\n} else {\r\n\tremaining = estimated;\r\n\tform_data.remaining_workload = estimated_workload;\r\n}\r\n// 计算工时进度\r\nif((actual + remaining) != 0){\r\n\tvar schedule = ((actual / (actual + remaining)) * 100).toFixed(1);\r\n\tform_data.workload_schedule = schedule;\r\n}',
-            customCode: true,
-            showBusyIndicator: false,
-            name: '预估工时表单项更新',
-            id: 'estimated_update',
-          },
-          {
             codeName: 'remaining_update',
             defiupdateDetails: [
               {
@@ -41343,6 +41336,23 @@ export default {
             showBusyIndicator: false,
             name: '剩余工时表单项更新',
             id: 'remaining_update',
+          },
+          {
+            codeName: 'estimated_update',
+            defiupdateDetails: [
+              {
+                id: 'workload_schedule',
+              },
+              {
+                id: 'remaining_workload',
+              },
+            ],
+            scriptCode:
+              'var form_data = view.layoutPanel.panelItems.form.control.data;\r\nvar actual_workload = form_data.actual_workload;\r\nvar estimated_workload = form_data.estimated_workload;  \r\nvar estimated = 0; // 预估工时\r\nif(estimated_workload){\r\n\testimated = Number(estimated_workload);\r\n}\r\nvar actual = 0; // 已登记的实际工时\r\nvar remaining = 0; // 剩余工时\r\nif(actual_workload){\r\n\tactual = Number(actual_workload);\r\n\tif(estimated_workload){\r\n\t\t// 计算剩余工时\r\n\t\tremaining = (estimated - actual) >= 0 ? (estimated - actual) : 0;\r\n\t\tform_data.remaining_workload = remaining;\r\n\t}\r\n} else {\r\n\tremaining = estimated;\r\n\tform_data.remaining_workload = estimated_workload;\r\n}\r\n// 计算工时进度\r\nif((actual + remaining) != 0){\r\n\tvar schedule = ((actual / (actual + remaining)) * 100).toFixed(1);\r\n\tform_data.workload_schedule = schedule;\r\n}',
+            customCode: true,
+            showBusyIndicator: false,
+            name: '预估工时表单项更新',
+            id: 'estimated_update',
           },
         ],
         deformItemVRs: [
@@ -43936,10 +43946,10 @@ export default {
             codeName: 'estimated_update',
             defiupdateDetails: [
               {
-                id: 'remaining_workload',
+                id: 'workload_schedule',
               },
               {
-                id: 'workload_schedule',
+                id: 'remaining_workload',
               },
             ],
             scriptCode:
@@ -49245,23 +49255,6 @@ export default {
         enableAutoSave: true,
         deformItemUpdates: [
           {
-            codeName: 'estimated_update',
-            defiupdateDetails: [
-              {
-                id: 'remaining_workload',
-              },
-              {
-                id: 'workload_schedule',
-              },
-            ],
-            scriptCode:
-              'var form_data = view.layoutPanel.panelItems.form.control.data;\r\nvar actual_workload = form_data.actual_workload;\r\nvar estimated_workload = form_data.estimated_workload;  \r\nvar estimated = 0; // 预估工时\r\nif(estimated_workload){\r\n\testimated = Number(estimated_workload);\r\n}\r\nvar actual = 0; // 已登记的实际工时\r\nvar remaining = 0; // 剩余工时\r\nif(actual_workload){\r\n\tactual = Number(actual_workload);\r\n\tif(estimated_workload){\r\n\t\t// 计算剩余工时\r\n\t\tremaining = (estimated - actual) >= 0 ? (estimated - actual) : 0;\r\n\t\tform_data.remaining_workload = remaining;\r\n\t}\r\n} else {\r\n\tremaining = estimated;\r\n\tform_data.remaining_workload = estimated_workload;\r\n}\r\n// 计算工时进度\r\nif((actual + remaining) != 0){\r\n\tvar schedule = ((actual / (actual + remaining)) * 100).toFixed(1);\r\n\tform_data.workload_schedule = schedule;\r\n}',
-            customCode: true,
-            showBusyIndicator: false,
-            name: '预估工时表单项更新',
-            id: 'estimated_update',
-          },
-          {
             codeName: 'remaining_update',
             defiupdateDetails: [
               {
@@ -49274,6 +49267,23 @@ export default {
             showBusyIndicator: false,
             name: '剩余工时表单项更新',
             id: 'remaining_update',
+          },
+          {
+            codeName: 'estimated_update',
+            defiupdateDetails: [
+              {
+                id: 'workload_schedule',
+              },
+              {
+                id: 'remaining_workload',
+              },
+            ],
+            scriptCode:
+              'var form_data = view.layoutPanel.panelItems.form.control.data;\r\nvar actual_workload = form_data.actual_workload;\r\nvar estimated_workload = form_data.estimated_workload;  \r\nvar estimated = 0; // 预估工时\r\nif(estimated_workload){\r\n\testimated = Number(estimated_workload);\r\n}\r\nvar actual = 0; // 已登记的实际工时\r\nvar remaining = 0; // 剩余工时\r\nif(actual_workload){\r\n\tactual = Number(actual_workload);\r\n\tif(estimated_workload){\r\n\t\t// 计算剩余工时\r\n\t\tremaining = (estimated - actual) >= 0 ? (estimated - actual) : 0;\r\n\t\tform_data.remaining_workload = remaining;\r\n\t}\r\n} else {\r\n\tremaining = estimated;\r\n\tform_data.remaining_workload = estimated_workload;\r\n}\r\n// 计算工时进度\r\nif((actual + remaining) != 0){\r\n\tvar schedule = ((actual / (actual + remaining)) * 100).toFixed(1);\r\n\tform_data.workload_schedule = schedule;\r\n}',
+            customCode: true,
+            showBusyIndicator: false,
+            name: '预估工时表单项更新',
+            id: 'estimated_update',
           },
         ],
         deformItemVRs: [
@@ -52134,7 +52144,7 @@ export default {
           },
           id: '_form_hybrid_bug',
         },
-        modelId: 'ADE8AE56-E015-470F-A512-AE73B1F2ED3B',
+        modelId: 'f800c68e83fe74f8e731e1d77531aa45',
         modelType: 'PSDEFORM_EDITFORM',
         name: '_form_hybrid_bug',
         id: 'plmweb.work_item.hybrid_bug',
@@ -52173,6 +52183,20 @@ export default {
         enableAutoSave: true,
         deformItemUpdates: [
           {
+            codeName: 'remaining_update',
+            defiupdateDetails: [
+              {
+                id: 'workload_schedule',
+              },
+            ],
+            scriptCode:
+              'var form_data = view.layoutPanel.panelItems.form.control.data;\r\nvar actual_workload = form_data.actual_workload;\r\nvar estimated_workload = form_data.estimated_workload; \r\nvar remaining_workload = form_data.remaining_workload;  \r\nvar estimated = 0; // 预估工时\r\nif(estimated_workload){\r\n\testimated = Number(estimated_workload);\r\n}\r\nvar actual = 0; // 已登记的实际工时\r\nif(actual_workload){\r\n\tactual = Number(actual_workload);\r\n}\r\nvar remaining = 0;\r\nif(remaining_workload){\r\n\tremaining = Number(remaining_workload);\r\n}\r\n// 计算工时进度\r\nif((actual + remaining) != 0){\r\n\tvar schedule = ((actual / (actual + remaining)) * 100).toFixed(1);\r\n\tform_data.workload_schedule = schedule;\r\n}\r\n',
+            customCode: true,
+            showBusyIndicator: false,
+            name: '剩余工时表单项更新',
+            id: 'remaining_update',
+          },
+          {
             codeName: 'estimated_update',
             defiupdateDetails: [
               {
@@ -52188,20 +52212,6 @@ export default {
             showBusyIndicator: false,
             name: '预估工时表单项更新',
             id: 'estimated_update',
-          },
-          {
-            codeName: 'remaining_update',
-            defiupdateDetails: [
-              {
-                id: 'workload_schedule',
-              },
-            ],
-            scriptCode:
-              'var form_data = view.layoutPanel.panelItems.form.control.data;\r\nvar actual_workload = form_data.actual_workload;\r\nvar estimated_workload = form_data.estimated_workload; \r\nvar remaining_workload = form_data.remaining_workload;  \r\nvar estimated = 0; // 预估工时\r\nif(estimated_workload){\r\n\testimated = Number(estimated_workload);\r\n}\r\nvar actual = 0; // 已登记的实际工时\r\nif(actual_workload){\r\n\tactual = Number(actual_workload);\r\n}\r\nvar remaining = 0;\r\nif(remaining_workload){\r\n\tremaining = Number(remaining_workload);\r\n}\r\n// 计算工时进度\r\nif((actual + remaining) != 0){\r\n\tvar schedule = ((actual / (actual + remaining)) * 100).toFixed(1);\r\n\tform_data.workload_schedule = schedule;\r\n}\r\n',
-            customCode: true,
-            showBusyIndicator: false,
-            name: '剩余工时表单项更新',
-            id: 'remaining_update',
           },
         ],
         deformItemVRs: [
@@ -55062,7 +55072,7 @@ export default {
           },
           id: '_form_hybrid_epic',
         },
-        modelId: 'F2E397A0-ECE9-40B8-A20C-51B6DFFDB85C',
+        modelId: '6295abd2b499c6340a53f9bb207e7d80',
         modelType: 'PSDEFORM_EDITFORM',
         name: '_form_hybrid_epic',
         id: 'plmweb.work_item.hybrid_epic',
@@ -55104,10 +55114,10 @@ export default {
             codeName: 'estimated_update',
             defiupdateDetails: [
               {
-                id: 'workload_schedule',
+                id: 'remaining_workload',
               },
               {
-                id: 'remaining_workload',
+                id: 'workload_schedule',
               },
             ],
             scriptCode:
@@ -57990,7 +58000,7 @@ export default {
           },
           id: '_form_hybrid_feature',
         },
-        modelId: '9A4A0541-8B89-4F5E-B728-1B3486F85D38',
+        modelId: '0311854b5066890dfa8b3b91ed69c427',
         modelType: 'PSDEFORM_EDITFORM',
         name: '_form_hybrid_feature',
         id: 'plmweb.work_item.hybrid_feature',
@@ -58029,6 +58039,23 @@ export default {
         enableAutoSave: true,
         deformItemUpdates: [
           {
+            codeName: 'estimated_update',
+            defiupdateDetails: [
+              {
+                id: 'workload_schedule',
+              },
+              {
+                id: 'remaining_workload',
+              },
+            ],
+            scriptCode:
+              'var form_data = view.layoutPanel.panelItems.form.control.data;\r\nvar actual_workload = form_data.actual_workload;\r\nvar estimated_workload = form_data.estimated_workload;  \r\nvar estimated = 0; // 预估工时\r\nif(estimated_workload){\r\n\testimated = Number(estimated_workload);\r\n}\r\nvar actual = 0; // 已登记的实际工时\r\nvar remaining = 0; // 剩余工时\r\nif(actual_workload){\r\n\tactual = Number(actual_workload);\r\n\tif(estimated_workload){\r\n\t\t// 计算剩余工时\r\n\t\tremaining = (estimated - actual) >= 0 ? (estimated - actual) : 0;\r\n\t\tform_data.remaining_workload = remaining;\r\n\t}\r\n} else {\r\n\tremaining = estimated;\r\n\tform_data.remaining_workload = estimated_workload;\r\n}\r\n// 计算工时进度\r\nif((actual + remaining) != 0){\r\n\tvar schedule = ((actual / (actual + remaining)) * 100).toFixed(1);\r\n\tform_data.workload_schedule = schedule;\r\n}',
+            customCode: true,
+            showBusyIndicator: false,
+            name: '预估工时表单项更新',
+            id: 'estimated_update',
+          },
+          {
             codeName: 'remaining_update',
             defiupdateDetails: [
               {
@@ -58041,23 +58068,6 @@ export default {
             showBusyIndicator: false,
             name: '剩余工时表单项更新',
             id: 'remaining_update',
-          },
-          {
-            codeName: 'estimated_update',
-            defiupdateDetails: [
-              {
-                id: 'remaining_workload',
-              },
-              {
-                id: 'workload_schedule',
-              },
-            ],
-            scriptCode:
-              'var form_data = view.layoutPanel.panelItems.form.control.data;\r\nvar actual_workload = form_data.actual_workload;\r\nvar estimated_workload = form_data.estimated_workload;  \r\nvar estimated = 0; // 预估工时\r\nif(estimated_workload){\r\n\testimated = Number(estimated_workload);\r\n}\r\nvar actual = 0; // 已登记的实际工时\r\nvar remaining = 0; // 剩余工时\r\nif(actual_workload){\r\n\tactual = Number(actual_workload);\r\n\tif(estimated_workload){\r\n\t\t// 计算剩余工时\r\n\t\tremaining = (estimated - actual) >= 0 ? (estimated - actual) : 0;\r\n\t\tform_data.remaining_workload = remaining;\r\n\t}\r\n} else {\r\n\tremaining = estimated;\r\n\tform_data.remaining_workload = estimated_workload;\r\n}\r\n// 计算工时进度\r\nif((actual + remaining) != 0){\r\n\tvar schedule = ((actual / (actual + remaining)) * 100).toFixed(1);\r\n\tform_data.workload_schedule = schedule;\r\n}',
-            customCode: true,
-            showBusyIndicator: false,
-            name: '预估工时表单项更新',
-            id: 'estimated_update',
           },
         ],
         deformItemVRs: [
@@ -60918,7 +60928,7 @@ export default {
           },
           id: '_form_hybrid_issue',
         },
-        modelId: '4E077E42-526F-42D1-9DF4-396DE3C00CF3',
+        modelId: 'e5f458f4dd8ac0cb65f3c4619313b21c',
         modelType: 'PSDEFORM_EDITFORM',
         name: '_form_hybrid_issue',
         id: 'plmweb.work_item.hybrid_issue',
@@ -63846,7 +63856,7 @@ export default {
           },
           id: '_form_hybrid_milestone',
         },
-        modelId: '7663B6B4-4A0F-48D7-BB4F-E68A0BB08343',
+        modelId: '6cad538fd70701219998107088ee4f2c',
         modelType: 'PSDEFORM_EDITFORM',
         name: '_form_hybrid_milestone',
         id: 'plmweb.work_item.hybrid_milestone',
@@ -63885,6 +63895,23 @@ export default {
         enableAutoSave: true,
         deformItemUpdates: [
           {
+            codeName: 'estimated_update',
+            defiupdateDetails: [
+              {
+                id: 'remaining_workload',
+              },
+              {
+                id: 'workload_schedule',
+              },
+            ],
+            scriptCode:
+              'var form_data = view.layoutPanel.panelItems.form.control.data;\r\nvar actual_workload = form_data.actual_workload;\r\nvar estimated_workload = form_data.estimated_workload;  \r\nvar estimated = 0; // 预估工时\r\nif(estimated_workload){\r\n\testimated = Number(estimated_workload);\r\n}\r\nvar actual = 0; // 已登记的实际工时\r\nvar remaining = 0; // 剩余工时\r\nif(actual_workload){\r\n\tactual = Number(actual_workload);\r\n\tif(estimated_workload){\r\n\t\t// 计算剩余工时\r\n\t\tremaining = (estimated - actual) >= 0 ? (estimated - actual) : 0;\r\n\t\tform_data.remaining_workload = remaining;\r\n\t}\r\n} else {\r\n\tremaining = estimated;\r\n\tform_data.remaining_workload = estimated_workload;\r\n}\r\n// 计算工时进度\r\nif((actual + remaining) != 0){\r\n\tvar schedule = ((actual / (actual + remaining)) * 100).toFixed(1);\r\n\tform_data.workload_schedule = schedule;\r\n}',
+            customCode: true,
+            showBusyIndicator: false,
+            name: '预估工时表单项更新',
+            id: 'estimated_update',
+          },
+          {
             codeName: 'remaining_update',
             defiupdateDetails: [
               {
@@ -63897,23 +63924,6 @@ export default {
             showBusyIndicator: false,
             name: '剩余工时表单项更新',
             id: 'remaining_update',
-          },
-          {
-            codeName: 'estimated_update',
-            defiupdateDetails: [
-              {
-                id: 'workload_schedule',
-              },
-              {
-                id: 'remaining_workload',
-              },
-            ],
-            scriptCode:
-              'var form_data = view.layoutPanel.panelItems.form.control.data;\r\nvar actual_workload = form_data.actual_workload;\r\nvar estimated_workload = form_data.estimated_workload;  \r\nvar estimated = 0; // 预估工时\r\nif(estimated_workload){\r\n\testimated = Number(estimated_workload);\r\n}\r\nvar actual = 0; // 已登记的实际工时\r\nvar remaining = 0; // 剩余工时\r\nif(actual_workload){\r\n\tactual = Number(actual_workload);\r\n\tif(estimated_workload){\r\n\t\t// 计算剩余工时\r\n\t\tremaining = (estimated - actual) >= 0 ? (estimated - actual) : 0;\r\n\t\tform_data.remaining_workload = remaining;\r\n\t}\r\n} else {\r\n\tremaining = estimated;\r\n\tform_data.remaining_workload = estimated_workload;\r\n}\r\n// 计算工时进度\r\nif((actual + remaining) != 0){\r\n\tvar schedule = ((actual / (actual + remaining)) * 100).toFixed(1);\r\n\tform_data.workload_schedule = schedule;\r\n}',
-            customCode: true,
-            showBusyIndicator: false,
-            name: '预估工时表单项更新',
-            id: 'estimated_update',
           },
         ],
         deformItemVRs: [
@@ -66774,7 +66784,7 @@ export default {
           },
           id: '_form_hybrid_requirement',
         },
-        modelId: '8AAFE81D-1A40-40A5-8213-4E2985E5AE7E',
+        modelId: '5c6c1a19c8ab3d23b57de1e7d04fd855',
         modelType: 'PSDEFORM_EDITFORM',
         name: '_form_hybrid_requirement',
         id: 'plmweb.work_item.hybrid_requirement',
@@ -66830,10 +66840,10 @@ export default {
             codeName: 'estimated_update',
             defiupdateDetails: [
               {
-                id: 'remaining_workload',
+                id: 'workload_schedule',
               },
               {
-                id: 'workload_schedule',
+                id: 'remaining_workload',
               },
             ],
             scriptCode:
@@ -69702,7 +69712,7 @@ export default {
           },
           id: '_form_hybrid_stage',
         },
-        modelId: '5014C09B-C5A8-4B68-A64B-213B186FF5FB',
+        modelId: '3443fcd57da4384f00d5305dac8e445c',
         modelType: 'PSDEFORM_EDITFORM',
         name: '_form_hybrid_stage',
         id: 'plmweb.work_item.hybrid_stage',
@@ -69741,20 +69751,6 @@ export default {
         enableAutoSave: true,
         deformItemUpdates: [
           {
-            codeName: 'remaining_update',
-            defiupdateDetails: [
-              {
-                id: 'workload_schedule',
-              },
-            ],
-            scriptCode:
-              'var form_data = view.layoutPanel.panelItems.form.control.data;\r\nvar actual_workload = form_data.actual_workload;\r\nvar estimated_workload = form_data.estimated_workload; \r\nvar remaining_workload = form_data.remaining_workload;  \r\nvar estimated = 0; // 预估工时\r\nif(estimated_workload){\r\n\testimated = Number(estimated_workload);\r\n}\r\nvar actual = 0; // 已登记的实际工时\r\nif(actual_workload){\r\n\tactual = Number(actual_workload);\r\n}\r\nvar remaining = 0;\r\nif(remaining_workload){\r\n\tremaining = Number(remaining_workload);\r\n}\r\n// 计算工时进度\r\nif((actual + remaining) != 0){\r\n\tvar schedule = ((actual / (actual + remaining)) * 100).toFixed(1);\r\n\tform_data.workload_schedule = schedule;\r\n}\r\n',
-            customCode: true,
-            showBusyIndicator: false,
-            name: '剩余工时表单项更新',
-            id: 'remaining_update',
-          },
-          {
             codeName: 'estimated_update',
             defiupdateDetails: [
               {
@@ -69770,6 +69766,20 @@ export default {
             showBusyIndicator: false,
             name: '预估工时表单项更新',
             id: 'estimated_update',
+          },
+          {
+            codeName: 'remaining_update',
+            defiupdateDetails: [
+              {
+                id: 'workload_schedule',
+              },
+            ],
+            scriptCode:
+              'var form_data = view.layoutPanel.panelItems.form.control.data;\r\nvar actual_workload = form_data.actual_workload;\r\nvar estimated_workload = form_data.estimated_workload; \r\nvar remaining_workload = form_data.remaining_workload;  \r\nvar estimated = 0; // 预估工时\r\nif(estimated_workload){\r\n\testimated = Number(estimated_workload);\r\n}\r\nvar actual = 0; // 已登记的实际工时\r\nif(actual_workload){\r\n\tactual = Number(actual_workload);\r\n}\r\nvar remaining = 0;\r\nif(remaining_workload){\r\n\tremaining = Number(remaining_workload);\r\n}\r\n// 计算工时进度\r\nif((actual + remaining) != 0){\r\n\tvar schedule = ((actual / (actual + remaining)) * 100).toFixed(1);\r\n\tform_data.workload_schedule = schedule;\r\n}\r\n',
+            customCode: true,
+            showBusyIndicator: false,
+            name: '剩余工时表单项更新',
+            id: 'remaining_update',
           },
         ],
         deformItemVRs: [
@@ -72630,7 +72640,7 @@ export default {
           },
           id: '_form_hybrid_story',
         },
-        modelId: '50CD82C9-EF84-400D-989A-2610FB4996B3',
+        modelId: 'b92e4c8900a7f5e3d44e8b80f5f5710b',
         modelType: 'PSDEFORM_EDITFORM',
         name: '_form_hybrid_story',
         id: 'plmweb.work_item.hybrid_story',
@@ -72887,7 +72897,6 @@ export default {
                           {
                             dataType: 9,
                             enableCond: 3,
-                            ignoreInput: 2,
                             labelPos: 'RIGHT',
                             labelWidth: 130,
                             noPrivDisplayMode: 1,
@@ -75962,7 +75971,7 @@ export default {
           },
           id: '_form_hybrid_task',
         },
-        modelId: 'E8B8476E-5F7E-4516-BB4A-908451949DBD',
+        modelId: '64b826907470379c40b45970ec043af4',
         modelType: 'PSDEFORM_EDITFORM',
         name: '_form_hybrid_task',
         id: 'plmweb.work_item.hybrid_task',
@@ -76060,7 +76069,7 @@ export default {
       },
     ],
     controlParam: {},
-    modelId: 'ad9a020bf2d3dfa6df3a5364ab522c72',
+    modelId: 'bd20622ecedd07a0537ca9ad897b2a18',
     modelType: 'PSSYSVIEWLAYOUTPANEL',
     name: 'layoutpanel',
     id: 'work_item_main_view',
@@ -76071,7 +76080,7 @@ export default {
   width: 90,
   enableDP: true,
   showCaptionBar: true,
-  modelId: '3b711feeda621c6fe5c3dbad9b11ec6c',
+  modelId: '7116913bd8a4af17e6bb780f2f0af448',
   modelType: 'PSAPPDEVIEW',
   name: 'work_itemdyna_main_view',
   id: 'plmweb.work_item_dyna_main_view',

@@ -119,19 +119,19 @@ public class UserFilterDTO extends FilterBase implements Serializable {
 	private String jobNameLIKE;
 
     /**
-     * 部门名称EQ
+     * 部门EQ
      */
     @JsonProperty("n_department_name_eq")
     @JSONField(name = "n_department_name_eq")
-    @ApiModelProperty(value = "部门名称EQ", position = 190)
+    @ApiModelProperty(value = "部门EQ", position = 190)
 	private String departmentNameEQ;
 
     /**
-     * 部门名称LIKE
+     * 部门LIKE
      */
     @JsonProperty("n_department_name_like")
     @JSONField(name = "n_department_name_like")
-    @ApiModelProperty(value = "部门名称LIKE", position = 191)
+    @ApiModelProperty(value = "部门LIKE", position = 191)
 	private String departmentNameLIKE;
 
     /**

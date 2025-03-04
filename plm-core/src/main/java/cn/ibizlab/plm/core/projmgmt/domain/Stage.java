@@ -49,6 +49,16 @@ public class Stage extends EntityMP implements Serializable
     private String color;
 
     /**
+    * 背景样式
+    */
+    @TableField(value = "style")
+    @DEField(name = "style" , dict = "background_style")
+    @JSONField(name = "style")
+    @JsonProperty("style")
+    @ApiModelProperty(value = "style", notes = "背景样式")
+    private String style;
+
+    /**
     * 是否发布当前阶段
     */
     @TableField(value = "is_current")
@@ -238,6 +248,15 @@ public class Stage extends EntityMP implements Serializable
     public Stage setColor(String color) {
         this.color = color;
         this.modify("color", color);
+        return this;
+    }
+
+    /**
+    * 设置 [背景样式]
+    */
+    public Stage setStyle(String style) {
+        this.style = style;
+        this.modify("style", style);
         return this;
     }
 

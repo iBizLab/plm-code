@@ -680,14 +680,14 @@ export default {
     {
       logicName: '建立',
       mapDEName: 'PRODUCT',
-      mapDEOPPrivName: 'CREATE',
+      mapDEOPPrivName: 'UPDATE',
       name: 'CREATE',
       id: 'product__create',
     },
     {
       logicName: '删除',
       mapDEName: 'PRODUCT',
-      mapDEOPPrivName: 'DELETE',
+      mapDEOPPrivName: 'UPDATE',
       name: 'DELETE',
       id: 'product__delete',
     },

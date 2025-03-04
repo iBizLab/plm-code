@@ -849,14 +849,14 @@ export default {
         id: '输入对象',
       },
       appDEMethodReturn: {
-        appDEMethodDTOId: 'baseline_test_case_dto',
-        type: 'DTO',
+        type: 'VOID',
         id: '返回对象',
       },
       requestMethod: 'POST',
       requestParamType: 'ENTITY',
       requestPath: '/shift_out_baseline',
-      actionMode: 'GETDRAFT',
+      needResourceKey: true,
+      actionMode: 'CUSTOM',
       actionType: 'REMOTE',
       dataSetType: 'REMOTE',
       id: 'shift_out_baseline',
@@ -1285,13 +1285,6 @@ export default {
       ],
       deuilogicParams: [
         {
-          codeName: 'Default',
-          default: true,
-          entityParam: true,
-          name: '传入变量',
-          id: 'default',
-        },
-        {
           codeName: 'parentView',
           entityParam: true,
           name: 'parentView',
@@ -1302,6 +1295,13 @@ export default {
           activeViewParam: true,
           name: '当前视图对象',
           id: 'view',
+        },
+        {
+          codeName: 'Default',
+          default: true,
+          entityParam: true,
+          name: '传入变量',
+          id: 'default',
         },
         {
           codeName: 'form',
@@ -1322,14 +1322,42 @@ export default {
       id: 'create',
     },
     {
+      logicName: '建立',
+      mapDEName: 'BASELINE',
+      mapDEOPPrivName: 'CREATE',
+      name: 'CREATE',
+      id: 'baseline_principal_test_case__create',
+    },
+    {
       logicName: '删除',
       name: 'DELETE',
       id: 'delete',
     },
     {
+      logicName: '删除',
+      mapDEName: 'BASELINE',
+      mapDEOPPrivName: 'DELETE',
+      name: 'DELETE',
+      id: 'baseline_principal_test_case__delete',
+    },
+    {
       logicName: '读取',
       name: 'READ',
       id: 'read',
+    },
+    {
+      logicName: '读取',
+      mapDEName: 'BASELINE',
+      mapDEOPPrivName: 'READ',
+      name: 'READ',
+      id: 'baseline_principal_test_case__read',
+    },
+    {
+      logicName: '更新',
+      mapDEName: 'BASELINE',
+      mapDEOPPrivName: 'UPDATE',
+      name: 'UPDATE',
+      id: 'baseline_principal_test_case__update',
     },
     {
       logicName: '更新',

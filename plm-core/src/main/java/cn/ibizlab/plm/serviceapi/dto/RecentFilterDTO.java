@@ -39,6 +39,14 @@ public class RecentFilterDTO extends FilterBase implements Serializable {
 	private String ownerIdEQ;
 
     /**
+     * 所属数据对象EQ
+     */
+    @JsonProperty("n_owner_type_eq")
+    @JSONField(name = "n_owner_type_eq")
+    @ApiModelProperty(value = "所属数据对象EQ", position = 20)
+	private String ownerTypeEQ;
+
+    /**
      * 所属对象子类型EQ
      */
     @JsonProperty("n_owner_subtype_eq")

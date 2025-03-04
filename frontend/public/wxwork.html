@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -19,11 +20,12 @@
             var srfdcsystem = getUrlParam('srfdcsystem');
             var state = getUrlParam('state');
             var baseUrl = getUrlParam('baseUrl');
+            var srfcookiedomain = getUrlParam('srfcookiedomain');
             if (code && id && state) {
                 // 通过授权code请求后台
                 $.ajax({
                     type: "get",
-                    url: baseUrl + "/uaa/open/wxwork/auth/" + code + "?id="+id+"&state=" + state,
+                    url: baseUrl + "/uaa/open/wxwork/auth/" + code + "?id=" + id + "&state=" + state,
                     dataType: "json",
                     contentType: 'application/json',
                     headers: {
@@ -31,21 +33,26 @@
                     },
                     success: function (data) {
                         if (data) {
-                            setCookie('ibzuaa-token', data.token, 0, true);
                             const expiredDate = new Date().getTime() + 7199 * 1000;
-                            setCookie('ibzuaa-token-expires', `${expiredDate}`, 0, true);
+                            if (srfcookiedomain) {
+                                setCookie('ibzuaa-token', data.token, 0, false, srfcookiedomain);
+                                setCookie('ibzuaa-token-expires', `${expiredDate}`, 0, false, srfcookiedomain);
+                            } else {
+                                setCookie('ibzuaa-token', data.token, 0, true);
+                                setCookie('ibzuaa-token-expires', `${expiredDate}`, 0, true);
+                            }
                             window.location.href = "./";
                         }
                     },
                     error: function (XMLHttpRequest, textStatus, errorThrown) {
                         console.error(XMLHttpRequest.readyState + XMLHttpRequest.status + XMLHttpRequest.responseText);
                         // 回到登录页
-                        window.location.href = "./";
+                        window.location.href = "./?srfthird_auth_success=false";
                     }
                 });
             } else {
                 // 回到登录页
-                window.location.href = "./";
+                window.location.href = "./?srfthird_auth_success=false";
             }
 
         });
@@ -68,7 +75,7 @@
          * @param value
          * @param day
          */
-        function setCookie(name, value, day, isDomain) {
+        function setCookie(name, value, day, isDomain, childDomain) {
             var domain = '';
             // 设置cookie到主域下
             if (isDomain) {
@@ -81,6 +88,10 @@
                         domain = ';domain=' + host.substring(host.indexOf('.'), host.length);
                     }
                 }
+            } else {
+                if (childDomain) {
+                    domain = ';domain=' + childDomain;
+                }
             }
             if (day !== 0) { //当设置的时间等于0时，不设置expires属性，cookie在浏览器关闭后删除
                 var curDate = new Date();
@@ -90,16 +101,18 @@
                 var leftTamp = 24 * 60 * 60 * 1000 - passedTamp;
                 var leftTime = new Date();
                 leftTime.setTime(leftTamp + curTamp);
-                document.cookie = name + "=" + escape(value) + ";expires=" + leftTime.toUTCString() + ";path=/"+domain;
+                document.cookie = name + "=" + escape(value) + ";expires=" + leftTime.toUTCString() + ";path=/" + domain;
             } else {
-                document.cookie = name + "=" + escape(value)+domain;
+                document.cookie = name + "=" + escape(value) + domain;
             }
         }
 
     </script>
 
 </head>
+
 <body>
 
 </body>
+
 </html>

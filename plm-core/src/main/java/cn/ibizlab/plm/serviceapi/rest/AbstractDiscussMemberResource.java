@@ -136,6 +136,7 @@ public abstract class AbstractDiscussMemberResource {
     * @return Mono<ResponseEntity<DiscussMemberDTO>>
     */
     @ApiOperation(value = "change_role", tags = {"协作成员" },  notes = "DiscussMember-change_role ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-DiscussMember-change_role-all') or hasPermission(this.discussMemberDtoMapping.toDomain(#dto),'ibizplm-DiscussMember-change_role')")
     @PostMapping("discuss_members/{id}/change_role")
     public Mono<ResponseEntity<ResponseWrapper<DiscussMemberDTO>>>changeRoleById
             (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<DiscussMemberDTO> dto) {
@@ -442,6 +443,7 @@ public abstract class AbstractDiscussMemberResource {
     * @return Mono<ResponseEntity<DiscussMemberDTO>>
     */
     @ApiOperation(value = "change_role", tags = {"协作成员" },  notes = "DiscussMember-change_role ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-DiscussMember-change_role-all') or hasPermission('discuss_topic',#ownerId,this.discussMemberDtoMapping.toDomain(#dto),'ibizplm-DiscussMember-change_role')")
     @PostMapping("discuss_topics/{ownerId}/discuss_members/{id}/change_role")
     public Mono<ResponseEntity<ResponseWrapper<DiscussMemberDTO>>>changeRoleByOwnerIdAndId
             (@PathVariable("ownerId") String ownerId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<DiscussMemberDTO> dto) {
@@ -761,6 +763,7 @@ public abstract class AbstractDiscussMemberResource {
     * @return Mono<ResponseEntity<DiscussMemberDTO>>
     */
     @ApiOperation(value = "change_role", tags = {"协作成员" },  notes = "DiscussMember-change_role ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-DiscussMember-change_role-all') or hasPermission('user',#userId,this.discussMemberDtoMapping.toDomain(#dto),'ibizplm-DiscussMember-change_role')")
     @PostMapping("users/{userId}/discuss_members/{id}/change_role")
     public Mono<ResponseEntity<ResponseWrapper<DiscussMemberDTO>>>changeRoleByUserIdAndId
             (@PathVariable("userId") String userId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<DiscussMemberDTO> dto) {
@@ -983,6 +986,342 @@ public abstract class AbstractDiscussMemberResource {
     */   
     public DiscussMemberDTO stopByUserIdAndId
             (String userId, String id, DiscussMemberDTO dto) {
+        DiscussMember domain = discussMemberDtoMapping.toDomain(dto);
+        domain.setId(id);
+        DiscussMember rt = discussMemberService.stop(domain);
+        return discussMemberDtoMapping.toDto(rt);
+    }
+
+    /**
+    * 创建Create 协作成员
+    * 
+    *
+    * @param departmentId departmentId
+    * @param userId userId
+    * @param dto dto
+    * @return Mono<ResponseEntity<DiscussMemberDTO>>
+    */
+    @ApiOperation(value = "创建Create", tags = {"协作成员" },  notes = "DiscussMember-Create ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-DiscussMember-Create-all') or hasPermission('department',#departmentId,this.discussMemberDtoMapping.toDomain(#dto),'ibizplm-DiscussMember-Create')")
+    @PostMapping("departments/{departmentId}/users/{userId}/discuss_members")
+    public Mono<ResponseEntity<ResponseWrapper<DiscussMemberDTO>>>createByDepartmentIdAndUserId
+            (@PathVariable("departmentId") String departmentId, @PathVariable("userId") String userId, @Validated @RequestBody RequestWrapper<DiscussMemberDTO> dto) {
+        ResponseWrapper<DiscussMemberDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray())
+            dto.getList().forEach(item -> rt.add(createByDepartmentIdAndUserId(departmentId, userId, item)));
+        else
+            rt.set(createByDepartmentIdAndUserId(departmentId, userId, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * 创建Create 协作成员
+    * 
+    *
+    * @param departmentId departmentId
+    * @param userId userId
+    * @param dto dto
+    * @return ResponseEntity<DiscussMemberDTO>
+    */   
+    public DiscussMemberDTO createByDepartmentIdAndUserId
+            (String departmentId, String userId, DiscussMemberDTO dto) {
+        DiscussMember domain = discussMemberDtoMapping.toDomain(dto);
+        domain.setUserId(userId);
+        discussMemberService.create(domain);
+        DiscussMember rt = domain;
+        return discussMemberDtoMapping.toDto(rt);
+    }
+
+    /**
+    * 更新Update 协作成员
+    * 
+    *
+    * @param departmentId departmentId
+    * @param userId userId
+    * @param id id
+    * @param dto dto
+    * @return Mono<ResponseEntity<DiscussMemberDTO>>
+    */
+    @ApiOperation(value = "更新Update", tags = {"协作成员" },  notes = "DiscussMember-Update ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-DiscussMember-Update-all') or hasPermission('department',#departmentId,this.discussMemberService.get(#id),'ibizplm-DiscussMember-Update')")
+    @VersionCheck(entity = "discussmember" , versionfield = "updateTime")
+    @PutMapping("departments/{departmentId}/users/{userId}/discuss_members/{id}")
+    public Mono<ResponseEntity<ResponseWrapper<DiscussMemberDTO>>>updateByDepartmentIdAndUserIdAndId
+            (@PathVariable("departmentId") String departmentId, @PathVariable("userId") String userId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<DiscussMemberDTO> dto) {
+        ResponseWrapper<DiscussMemberDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(updateByDepartmentIdAndUserIdAndId(departmentId, userId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(updateByDepartmentIdAndUserIdAndId(departmentId, userId, id, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * 更新Update 协作成员
+    * 
+    *
+    * @param departmentId departmentId
+    * @param userId userId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<DiscussMemberDTO>
+    */   
+    public DiscussMemberDTO updateByDepartmentIdAndUserIdAndId
+            (String departmentId, String userId, String id, DiscussMemberDTO dto) {
+        DiscussMember domain = discussMemberDtoMapping.toDomain(dto);
+        domain.setId(id);
+        discussMemberService.update(domain);
+        DiscussMember rt = domain;
+        return discussMemberDtoMapping.toDto(rt);
+    }
+
+    /**
+    * change_role 协作成员
+    * 
+    *
+    * @param departmentId departmentId
+    * @param userId userId
+    * @param id id
+    * @param dto dto
+    * @return Mono<ResponseEntity<DiscussMemberDTO>>
+    */
+    @ApiOperation(value = "change_role", tags = {"协作成员" },  notes = "DiscussMember-change_role ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-DiscussMember-change_role-all') or hasPermission('department',#departmentId,this.discussMemberDtoMapping.toDomain(#dto),'ibizplm-DiscussMember-change_role')")
+    @PostMapping("departments/{departmentId}/users/{userId}/discuss_members/{id}/change_role")
+    public Mono<ResponseEntity<ResponseWrapper<DiscussMemberDTO>>>changeRoleByDepartmentIdAndUserIdAndId
+            (@PathVariable("departmentId") String departmentId, @PathVariable("userId") String userId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<DiscussMemberDTO> dto) {
+        ResponseWrapper<DiscussMemberDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(changeRoleByDepartmentIdAndUserIdAndId(departmentId, userId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(changeRoleByDepartmentIdAndUserIdAndId(departmentId, userId, id, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * change_role 协作成员
+    * 
+    *
+    * @param departmentId departmentId
+    * @param userId userId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<DiscussMemberDTO>
+    */   
+    public DiscussMemberDTO changeRoleByDepartmentIdAndUserIdAndId
+            (String departmentId, String userId, String id, DiscussMemberDTO dto) {
+        DiscussMember domain = discussMemberDtoMapping.toDomain(dto);
+        domain.setId(id);
+        DiscussMember rt = discussMemberService.changeRole(domain);
+        return discussMemberDtoMapping.toDto(rt);
+    }
+
+    /**
+    * choose_position 协作成员
+    * 
+    *
+    * @param departmentId departmentId
+    * @param userId userId
+    * @param id id
+    * @param dto dto
+    * @return Mono<ResponseEntity<DiscussMemberDTO>>
+    */
+    @ApiOperation(value = "choose_position", tags = {"协作成员" },  notes = "DiscussMember-choose_position ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-DiscussMember-choose_position-all') or hasPermission('department',#departmentId,this.discussMemberDtoMapping.toDomain(#dto),'ibizplm-DiscussMember-choose_position')")
+    @PostMapping("departments/{departmentId}/users/{userId}/discuss_members/{id}/choose_position")
+    public Mono<ResponseEntity<ResponseWrapper<DiscussMemberDTO>>>choosePositionByDepartmentIdAndUserIdAndId
+            (@PathVariable("departmentId") String departmentId, @PathVariable("userId") String userId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<DiscussMemberDTO> dto) {
+        ResponseWrapper<DiscussMemberDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(choosePositionByDepartmentIdAndUserIdAndId(departmentId, userId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(choosePositionByDepartmentIdAndUserIdAndId(departmentId, userId, id, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * choose_position 协作成员
+    * 
+    *
+    * @param departmentId departmentId
+    * @param userId userId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<DiscussMemberDTO>
+    */   
+    public DiscussMemberDTO choosePositionByDepartmentIdAndUserIdAndId
+            (String departmentId, String userId, String id, DiscussMemberDTO dto) {
+        DiscussMember domain = discussMemberDtoMapping.toDomain(dto);
+        domain.setId(id);
+        DiscussMember rt = discussMemberService.choosePosition(domain);
+        return discussMemberDtoMapping.toDto(rt);
+    }
+
+    /**
+    * mob_create_topic_member 协作成员
+    * 
+    *
+    * @param departmentId departmentId
+    * @param userId userId
+    * @param dto dto
+    * @return Mono<ResponseEntity<DiscussMemberDTO>>
+    */
+    @ApiOperation(value = "mob_create_topic_member", tags = {"协作成员" },  notes = "DiscussMember-mob_create_topic_member ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-DiscussMember-mob_create_topic_member-all') or hasPermission('department',#departmentId,this.discussMemberDtoMapping.toDomain(#dto),'ibizplm-DiscussMember-mob_create_topic_member')")
+    @PostMapping("departments/{departmentId}/users/{userId}/discuss_members/mob_create_topic_member")
+    public Mono<ResponseEntity<ResponseWrapper<DiscussMemberDTO>>>mobCreateTopicMemberByDepartmentIdAndUserId
+            (@PathVariable("departmentId") String departmentId, @PathVariable("userId") String userId, @Validated @RequestBody RequestWrapper<DiscussMemberDTO> dto) {
+        ResponseWrapper<DiscussMemberDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray())
+            dto.getList().forEach(item -> rt.add(mobCreateTopicMemberByDepartmentIdAndUserId(departmentId, userId, item)));
+        else
+            rt.set(mobCreateTopicMemberByDepartmentIdAndUserId(departmentId, userId, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * mob_create_topic_member 协作成员
+    * 
+    *
+    * @param departmentId departmentId
+    * @param userId userId
+    * @param dto dto
+    * @return ResponseEntity<DiscussMemberDTO>
+    */   
+    public DiscussMemberDTO mobCreateTopicMemberByDepartmentIdAndUserId
+            (String departmentId, String userId, DiscussMemberDTO dto) {
+        DiscussMember domain = discussMemberDtoMapping.toDomain(dto);
+        domain.setUserId(userId);
+        DiscussMember rt = discussMemberService.mobCreateTopicMember(domain);
+        return discussMemberDtoMapping.toDto(rt);
+    }
+
+    /**
+    * Restart 协作成员
+    * 
+    *
+    * @param departmentId departmentId
+    * @param userId userId
+    * @param id id
+    * @param dto dto
+    * @return Mono<ResponseEntity<DiscussMemberDTO>>
+    */
+    @ApiOperation(value = "Restart", tags = {"协作成员" },  notes = "DiscussMember-Restart ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-DiscussMember-Restart-all') or hasPermission('department',#departmentId,this.discussMemberDtoMapping.toDomain(#dto),'ibizplm-DiscussMember-Restart')")
+    @PostMapping("departments/{departmentId}/users/{userId}/discuss_members/{id}/restart")
+    public Mono<ResponseEntity<ResponseWrapper<DiscussMemberDTO>>>restartByDepartmentIdAndUserIdAndId
+            (@PathVariable("departmentId") String departmentId, @PathVariable("userId") String userId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<DiscussMemberDTO> dto) {
+        ResponseWrapper<DiscussMemberDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(restartByDepartmentIdAndUserIdAndId(departmentId, userId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(restartByDepartmentIdAndUserIdAndId(departmentId, userId, id, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * Restart 协作成员
+    * 
+    *
+    * @param departmentId departmentId
+    * @param userId userId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<DiscussMemberDTO>
+    */   
+    public DiscussMemberDTO restartByDepartmentIdAndUserIdAndId
+            (String departmentId, String userId, String id, DiscussMemberDTO dto) {
+        DiscussMember domain = discussMemberDtoMapping.toDomain(dto);
+        domain.setId(id);
+        DiscussMember rt = discussMemberService.restart(domain);
+        return discussMemberDtoMapping.toDto(rt);
+    }
+
+    /**
+    * 保存Save 协作成员
+    * 
+    *
+    * @param departmentId departmentId
+    * @param userId userId
+    * @param dto dto
+    * @return Mono<ResponseEntity<DiscussMemberDTO>>
+    */
+    @ApiOperation(value = "保存Save", tags = {"协作成员" },  notes = "DiscussMember-Save ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-DiscussMember-Save-all') or hasPermission('department',#departmentId,this.discussMemberDtoMapping.toDomain(#dto),'ibizplm-DiscussMember-Save')")
+    @PostMapping("departments/{departmentId}/users/{userId}/discuss_members/save")
+    public Mono<ResponseEntity<ResponseWrapper<DiscussMemberDTO>>>saveByDepartmentIdAndUserId
+            (@PathVariable("departmentId") String departmentId, @PathVariable("userId") String userId, @Validated @RequestBody RequestWrapper<DiscussMemberDTO> dto) {
+        ResponseWrapper<DiscussMemberDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray())
+            dto.getList().forEach(item -> rt.add(saveByDepartmentIdAndUserId(departmentId, userId, item)));
+        else
+            rt.set(saveByDepartmentIdAndUserId(departmentId, userId, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * 保存Save 协作成员
+    * 
+    *
+    * @param departmentId departmentId
+    * @param userId userId
+    * @param dto dto
+    * @return ResponseEntity<DiscussMemberDTO>
+    */   
+    public DiscussMemberDTO saveByDepartmentIdAndUserId
+            (String departmentId, String userId, DiscussMemberDTO dto) {
+        DiscussMember domain = discussMemberDtoMapping.toDomain(dto);
+        domain.setUserId(userId);
+        discussMemberService.save(domain);
+        DiscussMember rt = domain;
+        return discussMemberDtoMapping.toDto(rt);
+    }
+
+    /**
+    * Stop 协作成员
+    * 
+    *
+    * @param departmentId departmentId
+    * @param userId userId
+    * @param id id
+    * @param dto dto
+    * @return Mono<ResponseEntity<DiscussMemberDTO>>
+    */
+    @ApiOperation(value = "Stop", tags = {"协作成员" },  notes = "DiscussMember-Stop ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-DiscussMember-Stop-all') or hasPermission('department',#departmentId,this.discussMemberDtoMapping.toDomain(#dto),'ibizplm-DiscussMember-Stop')")
+    @PostMapping("departments/{departmentId}/users/{userId}/discuss_members/{id}/stop")
+    public Mono<ResponseEntity<ResponseWrapper<DiscussMemberDTO>>>stopByDepartmentIdAndUserIdAndId
+            (@PathVariable("departmentId") String departmentId, @PathVariable("userId") String userId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<DiscussMemberDTO> dto) {
+        ResponseWrapper<DiscussMemberDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(stopByDepartmentIdAndUserIdAndId(departmentId, userId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(stopByDepartmentIdAndUserIdAndId(departmentId, userId, id, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * Stop 协作成员
+    * 
+    *
+    * @param departmentId departmentId
+    * @param userId userId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<DiscussMemberDTO>
+    */   
+    public DiscussMemberDTO stopByDepartmentIdAndUserIdAndId
+            (String departmentId, String userId, String id, DiscussMemberDTO dto) {
         DiscussMember domain = discussMemberDtoMapping.toDomain(dto);
         domain.setId(id);
         DiscussMember rt = discussMemberService.stop(domain);
@@ -1253,6 +1592,105 @@ public abstract class AbstractDiscussMemberResource {
     @PostMapping("users/{userId}/discuss_members/fetch_default")
     public Mono<ResponseEntity<List<DiscussMemberDTO>>> fetchDefaultByUserId
             (@PathVariable("userId") String userId, @Validated @RequestBody DiscussMemberFilterDTO dto) {
+        dto.setUserIdEQ(userId);
+        DiscussMemberSearchContext context = discussMemberFilterDtoMapping.toDomain(dto);
+        Page<DiscussMember> domains = discussMemberService.fetchDefault(context) ;
+        List<DiscussMemberDTO> list = discussMemberDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
+    * 获取Get 协作成员
+    * 
+    *
+    * @param departmentId departmentId
+    * @param userId userId
+    * @param id id
+    * @return Mono<ResponseEntity<DiscussMemberDTO>>
+    */
+    @ApiOperation(value = "获取Get", tags = {"协作成员" },  notes = "DiscussMember-Get ")
+    @PostAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-DiscussMember-Get-all')  or hasPermission('department',#departmentId,this.discussMemberDtoMapping.toDomain(returnObject.block().getBody()),'ibizplm-DiscussMember-Get')")
+    @GetMapping("departments/{departmentId}/users/{userId}/discuss_members/{id}")
+    public Mono<ResponseEntity<DiscussMemberDTO>> getByDepartmentIdAndUserIdAndId
+            (@PathVariable("departmentId") String departmentId, @PathVariable("userId") String userId, @PathVariable("id") String id) {
+        DiscussMember rt = discussMemberService.get(id);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(discussMemberDtoMapping.toDto(rt)));
+    }
+
+    /**
+    * 删除Remove 协作成员
+    * 
+    *
+    * @param departmentId departmentId
+    * @param userId userId
+    * @param id id
+    * @return Mono<ResponseEntity<Boolean>>
+    */
+    @ApiOperation(value = "删除Remove", tags = {"协作成员" },  notes = "DiscussMember-Remove ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-DiscussMember-Remove-all') or hasPermission('department',#departmentId,this.discussMemberService.get(#id),'ibizplm-DiscussMember-Remove')")
+    @DeleteMapping("departments/{departmentId}/users/{userId}/discuss_members/{id}")
+    public Mono<ResponseEntity<Boolean>> removeByDepartmentIdAndUserIdAndId
+            (@PathVariable("departmentId") String departmentId, @PathVariable("userId") String userId, @PathVariable("id") String id) {
+        Boolean rt = discussMemberService.remove(id);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * 校验CheckKey 协作成员
+    * 
+    *
+    * @param departmentId departmentId
+    * @param userId userId
+    * @param dto dto
+    * @return Mono<ResponseEntity<Integer>>
+    */
+    @ApiOperation(value = "校验CheckKey", tags = {"协作成员" },  notes = "DiscussMember-CheckKey ")
+    @PostMapping("departments/{departmentId}/users/{userId}/discuss_members/check_key")
+    public Mono<ResponseEntity<CheckKeyStatus>> checkKeyByDepartmentIdAndUserId
+            (@PathVariable("departmentId") String departmentId, @PathVariable("userId") String userId, @Validated @RequestBody DiscussMemberDTO dto) {
+        DiscussMember domain = discussMemberDtoMapping.toDomain(dto);
+        domain.setUserId(userId);
+        CheckKeyStatus rt = discussMemberService.checkKey(domain);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * 草稿GetDraft 协作成员
+    * 
+    *
+    * @param departmentId departmentId
+    * @param userId userId
+    * @param dto dto
+    * @return Mono<ResponseEntity<DiscussMemberDTO>>
+    */
+    @ApiOperation(value = "草稿GetDraft", tags = {"协作成员" },  notes = "DiscussMember-GetDraft ")
+    @GetMapping("departments/{departmentId}/users/{userId}/discuss_members/get_draft")
+    public Mono<ResponseEntity<DiscussMemberDTO>> getDraftByDepartmentIdAndUserId
+            (@PathVariable("departmentId") String departmentId, @PathVariable("userId") String userId, @SpringQueryMap DiscussMemberDTO dto) {
+        DiscussMember domain = discussMemberDtoMapping.toDomain(dto);
+        domain.setUserId(userId);
+        DiscussMember rt = discussMemberService.getDraft(domain);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(discussMemberDtoMapping.toDto(rt)));
+    }
+
+    /**
+    * 查询fetch_default 协作成员
+    * 
+    *
+    * @param departmentId departmentId
+    * @param userId userId
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<DiscussMemberDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_default", tags = {"协作成员" },  notes = "DiscussMember-fetch_default ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-DiscussMember-fetch_default-all') or hasPermission('department',#departmentId,#dto,'ibizplm-DiscussMember-fetch_default')")
+    @PostMapping("departments/{departmentId}/users/{userId}/discuss_members/fetch_default")
+    public Mono<ResponseEntity<List<DiscussMemberDTO>>> fetchDefaultByDepartmentIdAndUserId
+            (@PathVariable("departmentId") String departmentId, @PathVariable("userId") String userId, @Validated @RequestBody DiscussMemberFilterDTO dto) {
         dto.setUserIdEQ(userId);
         DiscussMemberSearchContext context = discussMemberFilterDtoMapping.toDomain(dto);
         Page<DiscussMember> domains = discussMemberService.fetchDefault(context) ;

@@ -32,63 +32,6 @@ export default {
     {
       navigateContexts: [
         {
-          key: 'PROJECT',
-          value: 'openid',
-          name: 'PROJECT',
-          id: 'project',
-        },
-      ],
-      navigateParams: [
-        {
-          key: 'project',
-          value: 'openid',
-          id: 'project',
-        },
-      ],
-      realTitle: '主数据视图scrum',
-      refAppViewId: 'plmweb.project_scrum_index_view',
-      name: 'SCRUM',
-      id: 'scrum',
-    },
-    {
-      openMode: 'INDEXVIEWTAB_POPUPMODAL',
-      realOpenMode: 'INDEXVIEWTAB_POPUPMODAL',
-      realTitle: '页面',
-      refAppViewId: 'plmweb.article_page_model_show_view_noupdown',
-      name: 'PAGE',
-      id: 'page',
-    },
-    {
-      openMode: 'INDEXVIEWTAB_POPUPMODAL',
-      realOpenMode: 'INDEXVIEWTAB_POPUPMODAL',
-      realTitle: '工作项',
-      refAppViewId: 'plmweb.work_item_main_view',
-      name: 'WORK_ITEM',
-      id: 'work_item',
-    },
-    {
-      realTitle: '主数据视图waterfall',
-      refAppViewId: 'plmweb.project_waterfall_index_view',
-      name: 'WATERFALL',
-      id: 'waterfall',
-    },
-    {
-      realTitle: '主数据视图kanban',
-      refAppViewId: 'plmweb.project_kanban_index_view',
-      name: 'KANBAN',
-      id: 'kanban',
-    },
-    {
-      openMode: 'INDEXVIEWTAB_POPUPMODAL',
-      realOpenMode: 'INDEXVIEWTAB_POPUPMODAL',
-      realTitle: '用例',
-      refAppViewId: 'plmweb.test_case_main_view',
-      name: 'TEST_CASE',
-      id: 'test_case',
-    },
-    {
-      navigateContexts: [
-        {
           key: 'ID',
           value: 'id',
           name: 'ID',
@@ -113,27 +56,31 @@ export default {
     {
       openMode: 'INDEXVIEWTAB_POPUPMODAL',
       realOpenMode: 'INDEXVIEWTAB_POPUPMODAL',
-      realTitle: '工单',
-      refAppViewId: 'plmweb.ticket_main_view',
-      name: 'TICKET',
-      id: 'ticket',
+      realTitle: '工作项',
+      refAppViewId: 'plmweb.work_item_main_view',
+      name: 'WORK_ITEM',
+      id: 'work_item',
     },
     {
-      realTitle: '主数据视图hybrid',
-      refAppViewId: 'plmweb.project_hybrid_index_view',
-      name: 'HYBRID',
-      id: 'hybrid',
-    },
-    {
-      openMode: 'INDEXVIEWTAB_POPUPMODAL',
-      realOpenMode: 'INDEXVIEWTAB_POPUPMODAL',
-      realTitle: '需求',
-      realTitleLanguageRes: {
-        lanResTag: 'PAGE.TITLE.IDEA.MAIN_VIEW',
-      },
-      refAppViewId: 'plmweb.idea_main_view',
-      name: 'IDEA',
-      id: 'idea',
+      navigateContexts: [
+        {
+          key: 'PROJECT',
+          value: 'openid',
+          name: 'PROJECT',
+          id: 'project',
+        },
+      ],
+      navigateParams: [
+        {
+          key: 'project',
+          value: 'openid',
+          id: 'project',
+        },
+      ],
+      realTitle: '主数据视图scrum',
+      refAppViewId: 'plmweb.project_scrum_index_view',
+      name: 'SCRUM',
+      id: 'scrum',
     },
     {
       navigateContexts: [
@@ -157,10 +104,63 @@ export default {
       id: 'product',
     },
     {
+      realTitle: '主数据视图waterfall',
+      refAppViewId: 'plmweb.project_waterfall_index_view',
+      name: 'WATERFALL',
+      id: 'waterfall',
+    },
+    {
+      realTitle: '主数据视图hybrid',
+      refAppViewId: 'plmweb.project_hybrid_index_view',
+      name: 'HYBRID',
+      id: 'hybrid',
+    },
+    {
+      openMode: 'INDEXVIEWTAB_POPUPMODAL',
+      realOpenMode: 'INDEXVIEWTAB_POPUPMODAL',
+      realTitle: '页面',
+      refAppViewId: 'plmweb.article_page_model_show_view_noupdown',
+      name: 'PAGE',
+      id: 'page',
+    },
+    {
       realTitle: '测试库',
       refAppViewId: 'plmweb.library_index_view',
       name: 'LIBRARY',
       id: 'library',
+    },
+    {
+      openMode: 'INDEXVIEWTAB_POPUPMODAL',
+      realOpenMode: 'INDEXVIEWTAB_POPUPMODAL',
+      realTitle: '需求',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.IDEA.MAIN_VIEW',
+      },
+      refAppViewId: 'plmweb.idea_main_view',
+      name: 'IDEA',
+      id: 'idea',
+    },
+    {
+      openMode: 'INDEXVIEWTAB_POPUPMODAL',
+      realOpenMode: 'INDEXVIEWTAB_POPUPMODAL',
+      realTitle: '用例',
+      refAppViewId: 'plmweb.test_case_main_view',
+      name: 'TEST_CASE',
+      id: 'test_case',
+    },
+    {
+      openMode: 'INDEXVIEWTAB_POPUPMODAL',
+      realOpenMode: 'INDEXVIEWTAB_POPUPMODAL',
+      realTitle: '工单',
+      refAppViewId: 'plmweb.ticket_main_view',
+      name: 'TICKET',
+      id: 'ticket',
+    },
+    {
+      realTitle: '主数据视图kanban',
+      refAppViewId: 'plmweb.project_kanban_index_view',
+      name: 'KANBAN',
+      id: 'kanban',
     },
   ],
   controls: [

@@ -2,7 +2,7 @@ export default {
   enableSearch: true,
   loadDefault: true,
   deviewCodeName: 'comparative_analysis_report_view',
-  deviewId: '50D490D1-DF6F-4764-9415-B75D186EE9AD',
+  deviewId: '68963ab2a2d0412c2735e36e1abffd7a',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.RUN',
@@ -558,7 +558,7 @@ export default {
         controlParam: {
           id: 'searchform',
         },
-        modelId: '4CCE36FF-3570-47D2-A775-F4B0FF2141F2',
+        modelId: '3000db4ba8a65e1f760c202383a26117',
         modelType: 'PSDEFORM_SEARCHFORM',
         name: 'searchform',
         id: 'plmweb.run.usr03306259_search_form',
@@ -775,7 +775,7 @@ export default {
           id: 'chart',
         },
         sysPFPluginId: 'chart_grid',
-        modelId: '2C3EE9C8-1876-492F-B917-3E6C83182C29',
+        modelId: 'bd0ee1ffd4d37cf87388807021dc9257',
         modelType: 'PSDECHART',
         userParam: {
           'EC.dataZoom':
@@ -825,7 +825,7 @@ export default {
   viewType: 'DECHARTVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '707b048ac42fc4e1e0d828f832e67b50',
+  modelId: '5273d7a62a3ec638c6bd65655f397b2e',
   modelType: 'PSAPPDEVIEW',
   name: 'runcomparative_analysis_report_view',
   id: 'plmweb.run_comparative_analysis_report_view',

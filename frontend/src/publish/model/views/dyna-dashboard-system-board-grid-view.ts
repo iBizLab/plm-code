@@ -2,7 +2,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'system_board_grid_view',
-  deviewId: 'D4403908-1B9C-41EC-AC3C-27867E919F99',
+  deviewId: '5d8d64a3803b682b18734403e1462f9c',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.DYNADASHBOARD',
@@ -65,13 +65,6 @@ export default {
   ],
   appViewRefs: [
     {
-      realOpenMode: 'POPUPMODAL',
-      realTitle: '仪表盘编辑视图',
-      refAppViewId: 'plmweb.dyna_dashboard_info_edit_view',
-      name: 'EDITDATA',
-      id: 'editdata',
-    },
-    {
       realTitle: '动态数据看板编辑视图',
       realTitleLanguageRes: {
         lanResTag: 'PAGE.TITLE.DYNADASHBOARD.EDITVIEW',
@@ -79,6 +72,13 @@ export default {
       refAppViewId: 'plmweb.dyna_dashboard_edit_view',
       name: 'NEWDATA',
       id: 'newdata',
+    },
+    {
+      realOpenMode: 'POPUPMODAL',
+      realTitle: '仪表盘编辑视图',
+      refAppViewId: 'plmweb.dyna_dashboard_info_edit_view',
+      name: 'EDITDATA',
+      id: 'editdata',
     },
   ],
   controls: [
@@ -91,7 +91,7 @@ export default {
       controlParam: {
         id: 'toolbar',
       },
-      modelId: '100F20B4-2407-4BD8-A8D3-19EFB2745D0F',
+      modelId: 'f875e04188d6e5c35c290552fefb7084',
       modelType: 'PSDETOOLBAR',
       name: 'toolbar',
       id: 'system_board_grid_view_toolbar',
@@ -251,7 +251,7 @@ export default {
                   cssClass: 'fa fa-gear',
                   glyph: 'xf013@FontAwesome',
                 },
-                id: 'u3cd746a',
+                id: 'u311c0fe',
               },
               {
                 actionLevel: 100,
@@ -264,7 +264,7 @@ export default {
                   cssClass: 'fa fa-trash-o',
                   glyph: 'xf014@FontAwesome',
                 },
-                id: 'u36f5de4',
+                id: 'u7176ed9',
               },
             ],
             appDataEntityId: 'plmweb.dyna_dashboard',
@@ -383,7 +383,7 @@ export default {
       controlParam: {
         id: 'grid',
       },
-      modelId: '16787382-6413-4D29-8E01-ED7107387C8B',
+      modelId: 'ea60f4d2ba54c5ea5c607199c5b12f7c',
       modelType: 'PSDEGRID',
       name: 'grid',
       id: 'plmweb.dyna_dashboard.system_board_grid_view_grid',
@@ -418,7 +418,7 @@ export default {
       controlParam: {
         id: 'searchform',
       },
-      modelId: '3AA1F14C-9B6C-4520-A027-787A8031B35B',
+      modelId: '5370d6af16e17b3ab396605cd128ff70',
       modelType: 'PSDEFORM_SEARCHFORM',
       name: 'searchform',
       id: 'plmweb.dyna_dashboard.usr07093743_search_form',
@@ -463,7 +463,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '2f237a7c932680a1aab70d7cce919b6d',
+  modelId: '02f8460db57754724b6faba200ed6281',
   modelType: 'PSAPPDEVIEW',
   name: 'dyna_dashboardsystem_board_grid_view',
   id: 'plmweb.dyna_dashboard_system_board_grid_view',

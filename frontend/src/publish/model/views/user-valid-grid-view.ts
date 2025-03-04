@@ -14,6 +14,12 @@ export default {
   appViewNavParams: [
     {
       rawValue: true,
+      key: 'n_id_notin',
+      value: 'aibizhi',
+      id: 'n_id_notin',
+    },
+    {
+      rawValue: true,
       key: 'n_status_eq',
       value: '1',
       id: 'n_status_eq',
@@ -213,6 +219,17 @@ export default {
         showCaption: true,
         id: 'tabsearchbar',
       },
+      {
+        caption: '工具栏',
+        itemStyle: 'DEFAULT',
+        itemType: 'CTRLPOS',
+        layoutPos: {
+          shrink: 1,
+          layout: 'FLEX',
+        },
+        showCaption: true,
+        id: 'tabtoolbar',
+      },
     ],
     layoutPanel: true,
     appViewEngines: [
@@ -229,11 +246,13 @@ export default {
         builtinAppUILogic: {
           actionAfterWizard: 'DEFAULT',
           newDataAppView: {
-            refAppViewId: 'plmweb.user_quick_cfg_view',
+            openMode: 'POPUPMODAL',
+            refAppViewId: 'plmweb.user_quick_create_view',
           },
           appUILogicRefViews: [
             {
-              refAppViewId: 'plmweb.user_quick_cfg_view',
+              openMode: 'POPUPMODAL',
+              refAppViewId: 'plmweb.user_quick_create_view',
             },
           ],
           builtinLogic: true,
@@ -249,12 +268,14 @@ export default {
         logicType: 'APPUILOGIC',
         builtinAppUILogic: {
           openDataAppView: {
-            refAppViewId: 'plmweb.user_redirect_view',
+            openMode: 'POPUPMODAL',
+            refAppViewId: 'plmweb.user_main_view',
           },
           editMode: true,
           appUILogicRefViews: [
             {
-              refAppViewId: 'plmweb.user_redirect_view',
+              openMode: 'POPUPMODAL',
+              refAppViewId: 'plmweb.user_main_view',
             },
           ],
           builtinLogic: true,
@@ -268,17 +289,16 @@ export default {
     ],
     appViewRefs: [
       {
-        realTitle: '企业用户数据重定向视图',
-        realTitleLanguageRes: {
-          lanResTag: 'PAGE.TITLE.USER.REDIRECTVIEW',
-        },
-        refAppViewId: 'plmweb.user_redirect_view',
+        realOpenMode: 'POPUPMODAL',
+        realTitle: '设置成员信息',
+        refAppViewId: 'plmweb.user_main_view',
         name: 'EDITDATA',
         id: 'editdata',
       },
       {
-        realTitle: '设置成员信息',
-        refAppViewId: 'plmweb.user_quick_cfg_view',
+        realOpenMode: 'POPUPMODAL',
+        realTitle: '添加成员',
+        refAppViewId: 'plmweb.user_quick_create_view',
         name: 'NEWDATA',
         id: 'newdata',
       },
@@ -296,6 +316,61 @@ export default {
             dataItemName: 'display_name',
             excelCaption: '姓名',
             appDEFieldId: 'display_name',
+            deuiactionGroup: {
+              uiactionGroupDetails: [
+                {
+                  actionLevel: 200,
+                  afterItemType: 'NONE',
+                  beforeItemType: 'NONE',
+                  detailType: 'DEUIACTION',
+                  uiactionId: 'gridview_editaction',
+                  tooltip: '编辑',
+                  tooltipLanguageRes: {
+                    lanResTag: 'TBB.TOOLTIP.*.EDIT',
+                  },
+                  showIcon: true,
+                  sysImage: {
+                    cssClass: 'fa fa-edit',
+                    glyph: 'xf044@FontAwesome',
+                  },
+                  id: 'u19948a7',
+                },
+                {
+                  actionLevel: 100,
+                  afterItemType: 'NONE',
+                  beforeItemType: 'NONE',
+                  caption: '重置密码',
+                  detailType: 'DEUIACTION',
+                  uiactionId: 'reset_password@user',
+                  showCaption: true,
+                  showIcon: true,
+                  sysImage: {
+                    cssClass: 'fa fa-pinterest',
+                    glyph: 'xf0d2@FontAwesome',
+                  },
+                  id: 'u8343a9b',
+                },
+                {
+                  actionLevel: 100,
+                  afterItemType: 'NONE',
+                  beforeItemType: 'NONE',
+                  caption: '冻结成员',
+                  detailType: 'DEUIACTION',
+                  uiactionId: 'freeze@user',
+                  showCaption: true,
+                  showIcon: true,
+                  sysImage: {
+                    cssClass: 'fa fa-yelp',
+                    glyph: 'xf1e9@FontAwesome',
+                  },
+                  id: 'ucf189b8',
+                },
+              ],
+              appDataEntityId: 'plmweb.user',
+              uniqueTag: 'user__Usr0206064594',
+              name: '正常用户操作列',
+              id: 'usr0206064594',
+            },
             valueType: 'SIMPLE',
             aggMode: 'NONE',
             align: 'LEFT',
@@ -303,7 +378,7 @@ export default {
             codeName: 'display_name',
             columnType: 'DEFGRIDCOLUMN',
             noPrivDisplayMode: 1,
-            width: 150,
+            width: 250,
             widthUnit: 'PX',
             enableSort: true,
             id: 'display_name',
@@ -340,7 +415,7 @@ export default {
             codeName: 'employee_number',
             columnType: 'DEFGRIDCOLUMN',
             noPrivDisplayMode: 1,
-            width: 200,
+            width: 250,
             widthUnit: 'PX',
             enableSort: true,
             id: 'employee_number',
@@ -397,9 +472,10 @@ export default {
             id: 'department_name',
           },
           {
-            clconvertMode: 'NONE',
+            clconvertMode: 'FRONT',
             dataItemName: 'title',
             excelCaption: '职位',
+            appCodeListId: 'plmweb.base__position',
             appDEFieldId: 'title',
             valueType: 'SIMPLE',
             aggMode: 'NONE',
@@ -680,7 +756,7 @@ export default {
         ],
         codeName: 'main_grid',
         controlType: 'GRID',
-        logicName: '企业用户管理表格视图_表格',
+        logicName: '用户信息',
         appDataEntityId: 'plmweb.user',
         controlParam: {
           id: 'grid',
@@ -704,10 +780,92 @@ export default {
           },
           id: 'tabsearchbar',
         },
-        modelId: '93068F88-6076-43F2-812C-812DB121C63C',
+        modelId: 'cc42dfa7abc20ad58f3dae5d84ca5222',
         modelType: 'PSSYSSEARCHBAR',
         name: 'tabsearchbar',
         id: 'plmweb.user.query_search_bar',
+      },
+      {
+        detoolbarItems: [
+          {
+            actionLevel: 100,
+            noPrivDisplayMode: 2,
+            uiactionId: 'gridview_newaction',
+            valid: true,
+            capLanguageRes: {
+              lanResTag: 'TBB.TEXT.*.NEW',
+            },
+            caption: '添加成员',
+            itemType: 'DEUIACTION',
+            sysImage: {
+              cssClass: 'fa fa-plus',
+              glyph: 'xf067@FontAwesome',
+            },
+            tooltip: '添加成员',
+            tooltipLanguageRes: {
+              lanResTag: 'TBB.TOOLTIP.*.NEW',
+            },
+            showCaption: true,
+            showIcon: true,
+            id: 'deuiaction1',
+          },
+          {
+            itemType: 'SEPERATOR',
+            id: 'seperator1',
+          },
+          {
+            actionLevel: 100,
+            buttonStyle: 'STYLE2',
+            detoolbarItems: [
+              {
+                actionLevel: 100,
+                noPrivDisplayMode: 2,
+                uiactionId: 'gridview_exportaction',
+                valid: true,
+                capLanguageRes: {
+                  lanResTag: 'TBB.TEXT.*.EXPORT',
+                },
+                caption: '导出成员',
+                itemType: 'DEUIACTION',
+                sysImage: {
+                  cssClass: 'fa fa-file-excel-o',
+                  glyph: 'xf1c3@FontAwesome',
+                },
+                tooltip: '导出成员',
+                tooltipLanguageRes: {
+                  lanResTag: 'TBB.TOOLTIP.*.EXPORT',
+                },
+                showCaption: true,
+                showIcon: true,
+                id: 'deuiaction2',
+              },
+            ],
+            valid: true,
+            itemType: 'ITEMS',
+            sysImage: {
+              cssClass: 'fa fa-list-ul',
+              glyph: 'xf0ca@FontAwesome',
+            },
+            showCaption: true,
+            showIcon: true,
+            id: 'items1',
+          },
+        ],
+        xdataControlName: 'grid',
+        codeName: 'valid_grid_view_tabtoolbar',
+        controlType: 'TOOLBAR',
+        logicName: '用户快速新建_工具栏',
+        appDataEntityId: 'plmweb.user',
+        controlParam: {
+          ctrlParams: {
+            TELEPORTFLAG: 'true',
+          },
+          id: 'tabtoolbar',
+        },
+        modelId: '16F7E132-0ADE-4494-9197-81578476EE84',
+        modelType: 'PSDETOOLBAR',
+        name: 'tabtoolbar',
+        id: 'valid_grid_view_tabtoolbar',
       },
       {
         groupMode: 'SINGLE',
@@ -738,7 +896,7 @@ export default {
     logicName: 'valid_grid_view表格视图布局',
     appDataEntityId: 'plmweb.user',
     controlParam: {},
-    modelId: 'EA2F15D3-C2DE-4293-8B48-5E49F67CADA9',
+    modelId: '67cd26f82c073a1c83b762811cba023a',
     modelType: 'PSSYSVIEWLAYOUTPANEL',
     name: 'layoutpanel',
     id: 'usr1022273487',

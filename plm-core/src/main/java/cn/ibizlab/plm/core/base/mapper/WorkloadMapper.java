@@ -309,6 +309,25 @@ public interface WorkloadMapper extends BaseMapper<Workload> {
     List<Workload> listMyWorkItemWorkload(@Param("ctx") WorkloadSearchContext context, @Param("ew") Wrapper<Workload> wrapper);
 
     /**
+     * 数据集合my_workload分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Workload> searchMyWorkload(IPage<Workload> page, @Param("ctx") WorkloadSearchContext context, @Param("ew") Wrapper<Workload> wrapper);
+    
+    /**
+     * 数据集合my_workload查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Workload> listMyWorkload(@Param("ctx") WorkloadSearchContext context, @Param("ew") Wrapper<Workload> wrapper);
+
+    /**
      * 数据集合test_case_workload分页查询
      * 
      * @param page

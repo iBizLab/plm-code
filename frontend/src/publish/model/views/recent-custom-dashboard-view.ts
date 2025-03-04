@@ -426,7 +426,7 @@ export default {
                     },
                     id: 'calendar',
                   },
-                  modelId: '8948343a22e6f3e2feaef4c63535db9a',
+                  modelId: '0ce99aef6f6f851a642d204e3d68efa6',
                   modelType: 'PSSYSCALENDAR',
                   name: 'calendar',
                   id: 'plmweb.work_item.work_item_calendar_view_calendar',
@@ -491,7 +491,7 @@ export default {
             height: 780,
             appDataEntityId: 'plmweb.work_item',
             controlParam: {},
-            modelId: 'c185f3eaf8bcd4c36ad068722234b16f',
+            modelId: '993af97f5b6a4db46a8b2f780e3eab06',
             modelType: 'PSSYSDBPART',
             name: 'dashboard_sysportlet1',
             id: 'work_itemalendar_view',
@@ -515,7 +515,7 @@ export default {
               {
                 portletAppView: {
                   deviewCodeName: 'recent_summary_view',
-                  deviewId: 'C407A25F-AEED-48E8-AECB-A9D85CF71072',
+                  deviewId: '5596b1daf053da19f7cab87392cf0ab0',
                   accUserMode: 2,
                   capLanguageRes: {
                     lanResTag: 'DE.LNAME.RECENT',
@@ -1076,7 +1076,7 @@ export default {
                       },
                     ],
                     controlParam: {},
-                    modelId: '30CB4B09-E01F-4193-84B6-D3E2162B0CB4',
+                    modelId: '713399615bb9d5a13e76412e50d44254',
                     modelType: 'PSSYSVIEWLAYOUTPANEL',
                     name: 'layoutpanel',
                     id: 'usr1113171912',
@@ -1086,7 +1086,7 @@ export default {
                   viewType: 'DECUSTOMVIEW',
                   enableDP: true,
                   showCaptionBar: true,
-                  modelId: '4e378825969ef7cf365fef019640b6b2',
+                  modelId: '83f3f4ce8d1db811e08ac5acbc30095c',
                   modelType: 'PSAPPDEVIEW',
                   name: 'recentrecent_summary_view',
                   id: 'plmweb.recent_recent_summary_view',
@@ -1107,7 +1107,7 @@ export default {
                 height: 165,
                 appDataEntityId: 'plmweb.recent',
                 controlParam: {},
-                modelId: '569D929E-696F-4330-B2DD-E8DCF44049FC',
+                modelId: 'bfceea6abd9b79deb37e64c8d6d2a8c8',
                 modelType: 'PSSYSDBPART',
                 name: 'dashboard_sysportlet7',
                 id: 'recent_summary_view',
@@ -1282,7 +1282,7 @@ export default {
               xdataControlName: 'grid',
               loadDefault: true,
               deviewCodeName: 'index_my_assignee_gird_view',
-              deviewId: 'c61ca4d8bdf3d6f137c649494423306b',
+              deviewId: 'b6d7e4f8285a632268b87c3d62a1d58a',
               accUserMode: 2,
               capLanguageRes: {
                 lanResTag: 'DE.LNAME.WORK_ITEM',
@@ -1660,6 +1660,15 @@ export default {
                 ],
                 appViewRefs: [
                   {
+                    realTitle: '工作项编辑视图',
+                    realTitleLanguageRes: {
+                      lanResTag: 'PAGE.TITLE.WORK_ITEM.EDITVIEW',
+                    },
+                    refAppViewId: 'plmweb.work_item_edit_view',
+                    name: 'NEWDATA',
+                    id: 'newdata',
+                  },
+                  {
                     openMode: 'INDEXVIEWTAB_POPUPMODAL',
                     navigateContexts: [
                       {
@@ -1693,15 +1702,6 @@ export default {
                     refAppViewId: 'plmweb.work_item_dyna_main_view',
                     name: 'EDITDATA',
                     id: 'editdata',
-                  },
-                  {
-                    realTitle: '工作项编辑视图',
-                    realTitleLanguageRes: {
-                      lanResTag: 'PAGE.TITLE.WORK_ITEM.EDITVIEW',
-                    },
-                    refAppViewId: 'plmweb.work_item_edit_view',
-                    name: 'NEWDATA',
-                    id: 'newdata',
                   },
                 ],
                 controls: [
@@ -2071,25 +2071,6 @@ export default {
                               appDEACModeId: 'default',
                               appDEDataSetId: 'fetch_main',
                               appDataEntityId: 'plmweb.project',
-                              uiactionGroup: {
-                                uiactionGroupDetails: [
-                                  {
-                                    actionLevel: 100,
-                                    afterItemType: 'NONE',
-                                    beforeItemType: 'NONE',
-                                    caption: '项目配置',
-                                    detailType: 'DEUIACTION',
-                                    uiactionId: 'open_global_setting@project',
-                                    showCaption: true,
-                                    showIcon: true,
-                                    id: 'u3fee786',
-                                  },
-                                ],
-                                appDataEntityId: 'plmweb.project',
-                                uniqueTag: 'project__Usr1221520658',
-                                name: '自填模式行为组',
-                                id: 'usr1221520658',
-                              },
                               enableAC: true,
                               forceSelection: true,
                               showTrigger: true,
@@ -2206,7 +2187,7 @@ export default {
                     controlParam: {
                       id: 'toolbar',
                     },
-                    modelId: 'F3F082CE-DC49-4935-A89D-237BF62981FC',
+                    modelId: '6928a9e64426ba841e886a5136077548',
                     modelType: 'PSDETOOLBAR',
                     name: 'toolbar',
                     id: 'index_my_assignee_gird_view_toolbar',
@@ -2250,7 +2231,7 @@ export default {
               viewType: 'DEGRIDVIEW',
               enableDP: true,
               showCaptionBar: true,
-              modelId: 'e6620074fd79ebc1f63cf108c9e0ed96',
+              modelId: '791c031f498abcbd1285496d6bfbd48e',
               modelType: 'PSAPPDEVIEW',
               name: 'work_itemindex_my_assignee_gird_view',
               id: 'plmweb.work_item_index_my_assignee_gird_view',
@@ -2273,7 +2254,7 @@ export default {
             height: 380,
             appDataEntityId: 'plmweb.recent',
             controlParam: {},
-            modelId: '3d48876f604beb018683359f994fb329',
+            modelId: '8bd0b31715193dec43621d5749868338',
             modelType: 'PSSYSDBPART',
             name: 'dashboard_sysportlet2',
             id: 'work_itemmy_index',
@@ -2284,7 +2265,7 @@ export default {
               xdataControlName: 'grid',
               loadDefault: true,
               deviewCodeName: 'index_my_created_grid_view',
-              deviewId: 'b14d3a4fd741daa7329b28cde5f3adab',
+              deviewId: 'c66002d06f75986965666821a0878816',
               accUserMode: 2,
               capLanguageRes: {
                 lanResTag: 'DE.LNAME.WORK_ITEM',
@@ -2690,6 +2671,15 @@ export default {
                 ],
                 appViewRefs: [
                   {
+                    realTitle: '工作项编辑视图',
+                    realTitleLanguageRes: {
+                      lanResTag: 'PAGE.TITLE.WORK_ITEM.EDITVIEW',
+                    },
+                    refAppViewId: 'plmweb.work_item_edit_view',
+                    name: 'NEWDATA',
+                    id: 'newdata',
+                  },
+                  {
                     openMode: 'INDEXVIEWTAB_POPUPMODAL',
                     navigateContexts: [
                       {
@@ -2723,15 +2713,6 @@ export default {
                     refAppViewId: 'plmweb.work_item_dyna_main_view',
                     name: 'EDITDATA',
                     id: 'editdata',
-                  },
-                  {
-                    realTitle: '工作项编辑视图',
-                    realTitleLanguageRes: {
-                      lanResTag: 'PAGE.TITLE.WORK_ITEM.EDITVIEW',
-                    },
-                    refAppViewId: 'plmweb.work_item_edit_view',
-                    name: 'NEWDATA',
-                    id: 'newdata',
                   },
                 ],
                 controls: [
@@ -3033,7 +3014,7 @@ export default {
                     controlParam: {
                       id: 'toolbar',
                     },
-                    modelId: 'E057D46C-BE29-45F5-B8D0-333D73829CC1',
+                    modelId: '34bc1e081b196c96d2c776c1c27dfe72',
                     modelType: 'PSDETOOLBAR',
                     name: 'toolbar',
                     id: 'index_my_created_grid_view_toolbar',
@@ -3065,7 +3046,7 @@ export default {
                 logicName: 'index_my_created_grid_view表格视图布局',
                 appDataEntityId: 'plmweb.work_item',
                 controlParam: {},
-                modelId: '9D921D19-FD6D-45BF-854D-93DBB8B267B2',
+                modelId: 'da47ce49cfa82a22b9e78c6ab30ccfcc',
                 modelType: 'PSSYSVIEWLAYOUTPANEL',
                 name: 'layoutpanel',
                 id: 'usr1127548022',
@@ -3075,7 +3056,7 @@ export default {
               viewType: 'DEGRIDVIEW',
               enableDP: true,
               showCaptionBar: true,
-              modelId: '61884f67c8b19e590b780153a8b361a9',
+              modelId: '87d9cd4709da8c5cdb02f36c4d223593',
               modelType: 'PSAPPDEVIEW',
               name: 'work_itemindex_my_created_grid_view',
               id: 'plmweb.work_item_index_my_created_grid_view',
@@ -3508,7 +3489,7 @@ export default {
                     controlParam: {
                       id: 'toolbar',
                     },
-                    modelId: '5F92215E-3472-4802-A472-4C2BE4B4A254',
+                    modelId: '582c90b1b9e9c243f506a6e05ee7d657',
                     modelType: 'PSDETOOLBAR',
                     name: 'toolbar',
                     id: 'recent_project_grid_view_toolbar',
@@ -4147,7 +4128,7 @@ export default {
                     controlParam: {
                       id: 'toolbar',
                     },
-                    modelId: 'BD6842F9-14FC-4296-B408-019D5ED9D65E',
+                    modelId: '0023a12a45d8c56bfd4cefd9ea211b63',
                     modelType: 'PSDETOOLBAR',
                     name: 'toolbar',
                     id: 'recent_test_case_grid_view_toolbar',

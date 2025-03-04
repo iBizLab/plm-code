@@ -2,7 +2,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'idea_state_grid_view',
-  deviewId: '21D4A857-B5D2-44CF-A6CC-A0A16FF22EC8',
+  deviewId: '4be07dc83ee63dc915791c252e0388c0',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.DICTIONARY',
@@ -76,17 +76,17 @@ export default {
   appViewRefs: [
     {
       realOpenMode: 'POPUPMODAL',
-      realTitle: '新建状态',
-      refAppViewId: 'plmweb.dictionary_data_quick_create_view',
-      name: 'NEWDATA',
-      id: 'newdata',
-    },
-    {
-      realOpenMode: 'POPUPMODAL',
       realTitle: '编辑状态',
       refAppViewId: 'plmweb.dictionary_data_state_edit_view',
       name: 'EDITDATA',
       id: 'editdata',
+    },
+    {
+      realOpenMode: 'POPUPMODAL',
+      realTitle: '新建状态',
+      refAppViewId: 'plmweb.dictionary_data_quick_create_view',
+      name: 'NEWDATA',
+      id: 'newdata',
     },
   ],
   controls: [
@@ -196,7 +196,7 @@ export default {
                   cssClass: 'fa fa-edit',
                   glyph: 'xf044@FontAwesome',
                 },
-                id: 'uf94f8b4',
+                id: 'u2ccf35f',
               },
               {
                 actionLevel: 100,
@@ -210,7 +210,7 @@ export default {
                   cssClass: 'fa fa-trash-o',
                   glyph: 'xf014@FontAwesome',
                 },
-                id: 'udce33a6',
+                id: 'ub6a64c4',
               },
             ],
             appDataEntityId: 'plmweb.dictionary_data',
@@ -356,7 +356,7 @@ export default {
       controlParam: {
         id: 'grid',
       },
-      modelId: '49C2899C-7DA4-454E-8A94-4A54C2F8DFFD',
+      modelId: 'dc20c005971ca4268e3b7d48ad57bff6',
       modelType: 'PSDEGRID',
       name: 'grid',
       id: 'plmweb.dictionary_data.idea_grid_view',
@@ -375,7 +375,7 @@ export default {
         },
         id: 'tabsearchbar',
       },
-      modelId: '17220FF3-D930-42AB-8E2F-F6CE2CD1B69F',
+      modelId: '26905620d8ecfc6aa3ce85baa38a53d2',
       modelType: 'PSSYSSEARCHBAR',
       name: 'tabsearchbar',
       id: 'plmweb.dictionary_data.fast_searchbar',
@@ -454,7 +454,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: false,
-  modelId: 'ba4d7044222c59c58d663d4d6ea9bb74',
+  modelId: 'e78c589ab6ee871fe98a2e85b9c2f479',
   modelType: 'PSAPPDEVIEW',
   name: 'dictionary_dataidea_state_grid_view',
   id: 'plmweb.dictionary_data_idea_state_grid_view',

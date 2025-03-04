@@ -956,12 +956,6 @@ export default {
       ],
       deuilogicParams: [
         {
-          codeName: 'context',
-          navContextParam: true,
-          name: '上下文对象',
-          id: 'context',
-        },
-        {
           codeName: 'treeexpbar_tree',
           ctrlParam: true,
           name: '树部件',
@@ -974,17 +968,23 @@ export default {
           id: 'defaultvalue',
         },
         {
+          codeName: 'Default',
+          default: true,
+          entityParam: true,
+          name: '传入变量',
+          id: 'default',
+        },
+        {
           codeName: 'node_param',
           entityParam: true,
           name: '节点参数',
           id: 'node_param',
         },
         {
-          codeName: 'Default',
-          default: true,
-          entityParam: true,
-          name: '传入变量',
-          id: 'default',
+          codeName: 'context',
+          navContextParam: true,
+          name: '上下文对象',
+          id: 'context',
         },
       ],
       startDEUILogicNodeId: 'begin',
@@ -1197,6 +1197,17 @@ export default {
   },
   logicName: '团队',
   majorAppDEFieldId: 'name',
+  minorAppDERSs: [
+    {
+      actionRSMode: 1,
+      codeName: 'groups',
+      majorAppDataEntityId: 'plmweb.section',
+      parentAppDEFieldId: 'section_id',
+      rsmode: 2,
+      name: 'DER1N_GROUP_SECTION_SECTION_ID',
+      id: 'groups',
+    },
+  ],
   quickSearchAppDEFieldIds: ['name'],
   sysAPITag: 'ServiceAPI',
   defaultMode: true,
@@ -1205,5 +1216,5 @@ export default {
   name: 'GROUP',
   id: 'plmweb.group',
   codeName2: 'groups',
-  requestPaths: [],
+  requestPaths: ['sections/${section}/groups/${group}'],
 };

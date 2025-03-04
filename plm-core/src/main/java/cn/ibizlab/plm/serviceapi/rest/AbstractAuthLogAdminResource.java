@@ -226,6 +226,28 @@ public abstract class AbstractAuthLogAdminResource {
     }
 
     /**
+    * 查询FetchCur_user 认证日志
+    * 
+    *
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<AuthLogAdminDTO>>>
+    */
+    @ApiOperation(value = "查询FetchCur_user", tags = {"认证日志" },  notes = "AuthLogAdmin-FetchCur_user ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-AuthLogAdmin-FetchCur_user-all')")
+    @PostMapping("auth_log_admins/fetchcur_user")
+    public Mono<ResponseEntity<List<AuthLogAdminDTO>>> fetchCurUser
+            (@Validated @RequestBody AuthLogAdminFilterDTO dto) {
+        AuthLogAdminSearchContext context = authLogAdminFilterDtoMapping.toDomain(dto);
+        Page<AuthLogAdmin> domains = authLogAdminService.fetchCurUser(context) ;
+        List<AuthLogAdminDTO> list = authLogAdminDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
     * 查询FetchDefault 认证日志
     * 
     *

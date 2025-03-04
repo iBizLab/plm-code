@@ -5,7 +5,7 @@ export default {
   loadDefault: true,
   openMode: 'POPUPMODAL',
   deviewCodeName: 'change_stage_view',
-  deviewId: 'B4EF1175-A20C-471A-BF58-2567A89025C1',
+  deviewId: 'cc64bb365f2e7cda6abbc3093a17e579',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.RELEASE',
@@ -216,7 +216,7 @@ export default {
       controlParam: {
         id: 'form',
       },
-      modelId: '6C0D879C-E3B8-416A-9B11-FBC502C7C771',
+      modelId: 'b4c7da553f9a2be3e6417a29c935a4b9',
       modelType: 'PSDEFORM_EDITFORM',
       name: 'form',
       id: 'plmweb.release.change_stage_view_form',
@@ -261,7 +261,7 @@ export default {
   width: 650,
   enableDP: true,
   showCaptionBar: true,
-  modelId: 'd191a2b16ff8cc3269dce8b1222f9c4b',
+  modelId: 'b6226d31a8c841ae448fc7d5802e0aa5',
   modelType: 'PSAPPDEVIEW',
   name: 'releasechange_stage_view',
   id: 'plmweb.release_change_stage_view',

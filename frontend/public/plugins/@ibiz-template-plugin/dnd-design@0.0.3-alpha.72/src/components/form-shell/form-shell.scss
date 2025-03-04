@@ -1,0 +1,35 @@
+/* stylelint-disable selector-class-pattern */
+@include b(form-shell) {
+  width: 100%;
+  height: 100%;
+  font-size: 16px;
+  line-height: normal;
+}
+
+@include b(light-theme-shell) {
+  // 滑动输入条
+  .el-slider {
+    .el-slider__bar {
+      background-color: getCssVar(color, primary);
+    }
+
+    .el-slider__button-wrapper .el-slider__button {
+      border-color: getCssVar(color, primary);
+    }
+
+    .el-slider__input {
+      .el-input-number__decrease,
+      .el-input-number__increase {
+        background: getCssVar(color, primary);
+      }
+
+      .el-input-number__decrease {
+        border-right-color: getCssVar(color, primary);
+      }
+
+      .el-input-number__increase {
+        border-left-color: getCssVar(color, primary);
+      }
+    }
+  }
+}

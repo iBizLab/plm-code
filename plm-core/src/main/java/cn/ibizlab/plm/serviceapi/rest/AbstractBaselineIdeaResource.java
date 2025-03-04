@@ -170,6 +170,7 @@ public abstract class AbstractBaselineIdeaResource {
     * @return Mono<ResponseEntity<BaselineIdeaDTO>>
     */
     @ApiOperation(value = "shift_in_baseline", tags = {"基线需求" },  notes = "BaselineIdea-shift_in_baseline ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-BaselineIdea-shift_in_baseline-all') or hasPermission(this.baselineIdeaDtoMapping.toDomain(#dto),'ibizplm-BaselineIdea-shift_in_baseline')")
     @PostMapping("baseline_ideas/shift_in_baseline")
     public Mono<ResponseEntity<ResponseWrapper<BaselineIdeaDTO>>>shiftInBaseline
             (@Validated @RequestBody RequestWrapper<BaselineIdeaDTO> dto) {
@@ -199,18 +200,22 @@ public abstract class AbstractBaselineIdeaResource {
     * shift_out_baseline 基线需求
     * 
     *
+    * @param id id
     * @param dto dto
     * @return Mono<ResponseEntity<BaselineIdeaDTO>>
     */
     @ApiOperation(value = "shift_out_baseline", tags = {"基线需求" },  notes = "BaselineIdea-shift_out_baseline ")
-    @PostMapping("baseline_ideas/shift_out_baseline")
-    public Mono<ResponseEntity<ResponseWrapper<BaselineIdeaDTO>>>shiftOutBaseline
-            (@Validated @RequestBody RequestWrapper<BaselineIdeaDTO> dto) {
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-BaselineIdea-shift_out_baseline-all') or hasPermission(this.baselineIdeaDtoMapping.toDomain(#dto),'ibizplm-BaselineIdea-shift_out_baseline')")
+    @PostMapping("baseline_ideas/{id}/shift_out_baseline")
+    public Mono<ResponseEntity<ResponseWrapper<BaselineIdeaDTO>>>shiftOutBaselineById
+            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<BaselineIdeaDTO> dto) {
         ResponseWrapper<BaselineIdeaDTO> rt = new ResponseWrapper<>();
-        if (dto.isArray())
-            dto.getList().forEach(item -> rt.add(shiftOutBaseline(item)));
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(shiftOutBaselineById(ids[i], dto.getList().get(i))));
+        }
         else
-            rt.set(shiftOutBaseline(dto.getDto()));
+            rt.set(shiftOutBaselineById(id, dto.getDto()));
         return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
@@ -218,12 +223,14 @@ public abstract class AbstractBaselineIdeaResource {
     * shift_out_baseline 基线需求
     * 
     *
+    * @param id id
     * @param dto dto
     * @return ResponseEntity<BaselineIdeaDTO>
     */   
-    public BaselineIdeaDTO shiftOutBaseline
-            (BaselineIdeaDTO dto) {
+    public BaselineIdeaDTO shiftOutBaselineById
+            (String id, BaselineIdeaDTO dto) {
         BaselineIdea domain = baselineIdeaDtoMapping.toDomain(dto);
+        domain.setId(id);
         BaselineIdea rt = baselineIdeaService.shiftOutBaseline(domain);
         return baselineIdeaDtoMapping.toDto(rt);
     }
@@ -363,6 +370,7 @@ public abstract class AbstractBaselineIdeaResource {
     * @return Mono<ResponseEntity<BaselineIdeaDTO>>
     */
     @ApiOperation(value = "shift_in_baseline", tags = {"基线需求" },  notes = "BaselineIdea-shift_in_baseline ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-BaselineIdea-shift_in_baseline-all') or hasPermission('library',#ownerId,this.baselineIdeaDtoMapping.toDomain(#dto),'ibizplm-BaselineIdea-shift_in_baseline')")
     @PostMapping("libraries/{ownerId}/baselines/{principalId}/baseline_ideas/shift_in_baseline")
     public Mono<ResponseEntity<ResponseWrapper<BaselineIdeaDTO>>>shiftInBaselineByOwnerIdAndPrincipalId
             (@PathVariable("ownerId") String ownerId, @PathVariable("principalId") String principalId, @Validated @RequestBody RequestWrapper<BaselineIdeaDTO> dto) {
@@ -397,18 +405,22 @@ public abstract class AbstractBaselineIdeaResource {
     *
     * @param ownerId ownerId
     * @param principalId principalId
+    * @param id id
     * @param dto dto
     * @return Mono<ResponseEntity<BaselineIdeaDTO>>
     */
     @ApiOperation(value = "shift_out_baseline", tags = {"基线需求" },  notes = "BaselineIdea-shift_out_baseline ")
-    @PostMapping("libraries/{ownerId}/baselines/{principalId}/baseline_ideas/shift_out_baseline")
-    public Mono<ResponseEntity<ResponseWrapper<BaselineIdeaDTO>>>shiftOutBaselineByOwnerIdAndPrincipalId
-            (@PathVariable("ownerId") String ownerId, @PathVariable("principalId") String principalId, @Validated @RequestBody RequestWrapper<BaselineIdeaDTO> dto) {
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-BaselineIdea-shift_out_baseline-all') or hasPermission('library',#ownerId,this.baselineIdeaDtoMapping.toDomain(#dto),'ibizplm-BaselineIdea-shift_out_baseline')")
+    @PostMapping("libraries/{ownerId}/baselines/{principalId}/baseline_ideas/{id}/shift_out_baseline")
+    public Mono<ResponseEntity<ResponseWrapper<BaselineIdeaDTO>>>shiftOutBaselineByOwnerIdAndPrincipalIdAndId
+            (@PathVariable("ownerId") String ownerId, @PathVariable("principalId") String principalId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<BaselineIdeaDTO> dto) {
         ResponseWrapper<BaselineIdeaDTO> rt = new ResponseWrapper<>();
-        if (dto.isArray())
-            dto.getList().forEach(item -> rt.add(shiftOutBaselineByOwnerIdAndPrincipalId(ownerId, principalId, item)));
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(shiftOutBaselineByOwnerIdAndPrincipalIdAndId(ownerId, principalId, ids[i], dto.getList().get(i))));
+        }
         else
-            rt.set(shiftOutBaselineByOwnerIdAndPrincipalId(ownerId, principalId, dto.getDto()));
+            rt.set(shiftOutBaselineByOwnerIdAndPrincipalIdAndId(ownerId, principalId, id, dto.getDto()));
         return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
@@ -418,13 +430,14 @@ public abstract class AbstractBaselineIdeaResource {
     *
     * @param ownerId ownerId
     * @param principalId principalId
+    * @param id id
     * @param dto dto
     * @return ResponseEntity<BaselineIdeaDTO>
     */   
-    public BaselineIdeaDTO shiftOutBaselineByOwnerIdAndPrincipalId
-            (String ownerId, String principalId, BaselineIdeaDTO dto) {
+    public BaselineIdeaDTO shiftOutBaselineByOwnerIdAndPrincipalIdAndId
+            (String ownerId, String principalId, String id, BaselineIdeaDTO dto) {
         BaselineIdea domain = baselineIdeaDtoMapping.toDomain(dto);
-        domain.setPrincipalId(principalId);
+        domain.setId(id);
         BaselineIdea rt = baselineIdeaService.shiftOutBaseline(domain);
         return baselineIdeaDtoMapping.toDto(rt);
     }

@@ -81,6 +81,25 @@ public interface DynaDashboardMapper extends BaseMapper<DynaDashboard> {
     List<DynaDashboard> listIsSystem(@Param("ctx") DynaDashboardSearchContext context, @Param("ew") Wrapper<DynaDashboard> wrapper);
 
     /**
+     * 数据集合my_dashboard分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<DynaDashboard> searchMyDashboard(IPage<DynaDashboard> page, @Param("ctx") DynaDashboardSearchContext context, @Param("ew") Wrapper<DynaDashboard> wrapper);
+    
+    /**
+     * 数据集合my_dashboard查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<DynaDashboard> listMyDashboard(@Param("ctx") DynaDashboardSearchContext context, @Param("ew") Wrapper<DynaDashboard> wrapper);
+
+    /**
      * 数据集合normal分页查询
      * 
      * @param page

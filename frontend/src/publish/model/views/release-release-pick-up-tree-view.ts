@@ -5,7 +5,7 @@ export default {
   xdataControlName: 'tree',
   loadDefault: true,
   deviewCodeName: 'release_pick_up_tree_view',
-  deviewId: '68FF6388-C66D-4CB8-91DC-8512A2C4CFD2',
+  deviewId: '190748050bd8889de823ea22ee0115e9',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.RELEASE',
@@ -184,7 +184,7 @@ export default {
       controlParam: {
         id: 'tree',
       },
-      modelId: '62739D43-5EE7-4EB8-8355-427E0A2233F0',
+      modelId: '9ee4b973e5e7d5207b5fb55ef96b1005',
       modelType: 'PSDETREEVIEW',
       name: 'tree',
       id: 'plmweb.release.release_pick_up_tree_view_tree_view',
@@ -227,7 +227,7 @@ export default {
   viewType: 'DEPICKUPTREEVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '347e0a6bc5cd43bfce3445a007a8f06c',
+  modelId: '61cde796534f69280adcce91634787a0',
   modelType: 'PSAPPDEVIEW',
   name: 'releaserelease_pick_up_tree_view',
   id: 'plmweb.release_release_pick_up_tree_view',

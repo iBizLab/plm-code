@@ -5,7 +5,7 @@ export default {
   loadDefault: true,
   openMode: 'POPUPMODAL',
   deviewCodeName: 'result_option_view',
-  deviewId: 'FA58B808-4E5A-4262-AACE-5FEBC54FB054',
+  deviewId: 'd7d72ea7072f221cb2f6a14a22b7e804',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.REVIEW_CONTENT',
@@ -212,7 +212,7 @@ export default {
       controlParam: {
         id: 'form',
       },
-      modelId: '4CBD732B-DEDD-4A1D-BB2A-A7D695211083',
+      modelId: 'b514c62e359f0d3fb0c2a4740f215f5d',
       modelType: 'PSDEFORM_EDITFORM',
       name: 'form',
       id: 'plmweb.review_content.result_option_view_form',
@@ -257,7 +257,7 @@ export default {
   width: 500,
   enableDP: true,
   showCaptionBar: true,
-  modelId: '5acf9212a6fdb059fc73dce886b3c7c4',
+  modelId: '6d4fd51152c48d7e412d43198b9f5fe4',
   modelType: 'PSAPPDEVIEW',
   name: 'review_contentresult_option_view',
   id: 'plmweb.review_content_result_option_view',

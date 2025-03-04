@@ -5,7 +5,7 @@ export default {
   loadDefault: true,
   openMode: 'POPUPMODAL',
   deviewCodeName: 'new_option_view',
-  deviewId: '9ec1e57ea6a75393e51da3c396f0ce63',
+  deviewId: '40c238a5188eb62c5252d566bb2e76ce',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.PROJECT_TAG',
@@ -201,7 +201,7 @@ export default {
   width: 500,
   enableDP: true,
   showCaptionBar: true,
-  modelId: '8135fea025c668efedb2fc04dcebc87d',
+  modelId: '629609bf8d4eed8219567a9e4388636a',
   modelType: 'PSAPPDEVIEW',
   name: 'project_tagnew_option_view',
   id: 'plmweb.project_tag_new_option_view',

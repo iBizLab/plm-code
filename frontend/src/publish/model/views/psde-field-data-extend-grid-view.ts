@@ -4,7 +4,7 @@ export default {
   deviewCodeName: 'data_extend_grid_view',
   deviewId: '3d2be923ddf5221a46f3d7442e14fbe0',
   accUserMode: 2,
-  caption: '属性管理',
+  caption: '项目属性',
   codeName: 'psde_field_data_extend_grid_view',
   appDataEntityId: 'plmweb.psdefield',
   appViewEngines: [
@@ -79,17 +79,17 @@ export default {
   appViewRefs: [
     {
       realOpenMode: 'POPUPMODAL',
-      realTitle: '实体属性选项操作视图',
-      refAppViewId: 'plmweb.psde_field_quick_create_view',
-      name: 'NEWDATA',
-      id: 'newdata',
-    },
-    {
-      realOpenMode: 'POPUPMODAL',
       realTitle: '实体属性编辑视图',
       refAppViewId: 'plmweb.psde_field_quick_cfg_view',
       name: 'EDITDATA',
       id: 'editdata',
+    },
+    {
+      realOpenMode: 'POPUPMODAL',
+      realTitle: '实体属性选项操作视图',
+      refAppViewId: 'plmweb.psde_field_quick_create_view',
+      name: 'NEWDATA',
+      id: 'newdata',
     },
   ],
   controls: [
@@ -126,7 +126,7 @@ export default {
       controlParam: {
         id: 'toolbar',
       },
-      modelId: '943B7399-94FD-4848-A5D4-8D9670B4F966',
+      modelId: 'a014845252f1e940fb6e6b67e8b66ba4',
       modelType: 'PSDETOOLBAR',
       name: 'toolbar',
       id: 'data_extend_grid_view_toolbar',
@@ -260,7 +260,7 @@ export default {
                   cssClass: 'fa fa-edit',
                   glyph: 'xf044@FontAwesome',
                 },
-                id: 'u6ba1aed',
+                id: 'u89c4513',
               },
               {
                 actionLevel: 100,
@@ -274,7 +274,7 @@ export default {
                   cssClass: 'fa fa-trash-o',
                   glyph: 'xf014@FontAwesome',
                 },
-                id: 'ua16c1ce',
+                id: 'u6f86502',
               },
             ],
             appDataEntityId: 'plmweb.psdefield',
@@ -416,7 +416,7 @@ export default {
       id: 'searchbar',
     },
     {
-      caption: '属性管理',
+      caption: '项目属性',
       codeName: 'data_extend_grid_view_captionbar',
       controlType: 'CAPTIONBAR',
       appDataEntityId: 'plmweb.psdefield',

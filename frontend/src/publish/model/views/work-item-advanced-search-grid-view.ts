@@ -804,7 +804,7 @@ export default {
         },
         id: 'tabsearchform',
       },
-      modelId: '2BBE62BC-D574-419C-AA5A-6E8795580A48',
+      modelId: '961e9ed175a51b6a917a1fdb6bc1efb9',
       modelType: 'PSDEFORM_SEARCHFORM',
       name: 'tabsearchform',
       id: 'plmweb.work_item.advanced_search_form',

@@ -350,7 +350,7 @@ export default {
           lanResTag: 'DE.LNAME.LIBRARY',
         },
         editItemCaption: '测试库',
-        appCounterRefId: 'fdb3c79327ff4c30fbfeb873edf15e44',
+        appCounterRefId: '85c753343030f14d2068314e77bfe430',
         dedrctrlItems: [
           {
             dedrbarGroupId: 'usrdrgroup1227882118',
@@ -415,9 +415,9 @@ export default {
             refMode: {
               srfdeid: 'LIBRARY',
             },
-            tag: 'fdb3c79327ff4c30fbfeb873edf15e44',
+            tag: '85c753343030f14d2068314e77bfe430',
             uniqueTag: 'library_add_on_counters',
-            id: 'fdb3c79327ff4c30fbfeb873edf15e44',
+            id: '85c753343030f14d2068314e77bfe430',
           },
         ],
         codeName: 'library',
@@ -428,7 +428,7 @@ export default {
           id: 'drbar',
         },
         sysPFPluginId: 'drbar_ex',
-        modelId: 'c5ced0fd2a459ef8ac23389779d8db2a',
+        modelId: '10bc076cfeb4a05c52ac097e45b15093',
         modelType: 'PSDEDRBAR',
         name: 'drbar',
         id: 'library',

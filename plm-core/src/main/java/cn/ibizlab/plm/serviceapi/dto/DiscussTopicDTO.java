@@ -108,11 +108,27 @@ public class DiscussTopicDTO extends DTOBase implements Serializable {
     private String scopeId;
 
     /**
+     * 当日贴数
+     */
+    @JsonProperty("today_post_count")
+    @JSONField(name = "today_post_count")
+    @ApiModelProperty(value = "当日贴数", position = 9)
+    private String todayPostCount;
+
+    /**
+     * 当日人数
+     */
+    @JsonProperty("today_read_count")
+    @JSONField(name = "today_read_count")
+    @ApiModelProperty(value = "当日人数", position = 10)
+    private String todayReadCount;
+
+    /**
      * 建立人
      */
     @JsonProperty("create_man")
     @JSONField(name = "create_man")
-    @ApiModelProperty(value = "建立人", position = 9)
+    @ApiModelProperty(value = "建立人", position = 11)
     private String createMan;
 
     /**
@@ -121,7 +137,7 @@ public class DiscussTopicDTO extends DTOBase implements Serializable {
     @JsonProperty("create_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "create_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "建立时间", position = 10)
+    @ApiModelProperty(value = "建立时间", position = 12)
     private Date createTime;
 
     /**
@@ -129,7 +145,7 @@ public class DiscussTopicDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("id")
     @JSONField(name = "id")
-    @ApiModelProperty(value = "标识", position = 11)
+    @ApiModelProperty(value = "标识", position = 13)
     private String id;
 
     /**
@@ -137,7 +153,7 @@ public class DiscussTopicDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("name")
     @JSONField(name = "name")
-    @ApiModelProperty(value = "话题名称", position = 12)
+    @ApiModelProperty(value = "话题名称", position = 14)
     private String name;
 
     /**
@@ -145,7 +161,7 @@ public class DiscussTopicDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("update_man")
     @JSONField(name = "update_man")
-    @ApiModelProperty(value = "更新人", position = 13)
+    @ApiModelProperty(value = "更新人", position = 15)
     private String updateMan;
 
     /**
@@ -154,7 +170,7 @@ public class DiscussTopicDTO extends DTOBase implements Serializable {
     @JsonProperty("update_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "update_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "更新时间", position = 14)
+    @ApiModelProperty(value = "更新时间", position = 16)
     private Date updateTime;
 
 
@@ -236,6 +252,24 @@ public class DiscussTopicDTO extends DTOBase implements Serializable {
     public DiscussTopicDTO setScopeId(String scopeId) {
         this.scopeId = scopeId;
         this.modify("scope_id", scopeId);
+        return this;
+    }
+
+    /**
+     * 设置 [当日贴数]
+     */
+    public DiscussTopicDTO setTodayPostCount(String todayPostCount) {
+        this.todayPostCount = todayPostCount;
+        this.modify("today_post_count", todayPostCount);
+        return this;
+    }
+
+    /**
+     * 设置 [当日人数]
+     */
+    public DiscussTopicDTO setTodayReadCount(String todayReadCount) {
+        this.todayReadCount = todayReadCount;
+        this.modify("today_read_count", todayReadCount);
         return this;
     }
 

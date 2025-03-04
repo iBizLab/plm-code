@@ -90,10 +90,10 @@ export default {
               appDEMethodId: 'fill_guideline',
               defiupdateDetails: [
                 {
-                  id: 'review_guideline_id',
+                  id: 'review_stage',
                 },
                 {
-                  id: 'review_stage',
+                  id: 'review_guideline_id',
                 },
               ],
               showBusyIndicator: true,

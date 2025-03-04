@@ -4,7 +4,7 @@ export default {
   loadDefault: true,
   openMode: 'POPUPMODAL',
   deviewCodeName: 'drill_detail_grid_view',
-  deviewId: '5029B921-A3F8-4A32-8C0A-29BCFF529060',
+  deviewId: 'bdd8399ebe1f502dd43eb55b8bf5aa42',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.RUN',
@@ -84,16 +84,6 @@ export default {
   ],
   appViewRefs: [
     {
-      realOpenMode: 'POPUPMODAL',
-      realTitle: '执行用例主视图',
-      realTitleLanguageRes: {
-        lanResTag: 'PAGE.TITLE.RUN.EDITVIEW',
-      },
-      refAppViewId: 'plmweb.run_main_view',
-      name: 'NEWDATA',
-      id: 'newdata',
-    },
-    {
       openMode: 'POPUPMODAL',
       realOpenMode: 'POPUPMODAL',
       realTitle: '执行用例主视图',
@@ -103,6 +93,16 @@ export default {
       refAppViewId: 'plmweb.run_main_view',
       name: 'EDITDATA',
       id: 'editdata',
+    },
+    {
+      realOpenMode: 'POPUPMODAL',
+      realTitle: '执行用例主视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.RUN.EDITVIEW',
+      },
+      refAppViewId: 'plmweb.run_main_view',
+      name: 'NEWDATA',
+      id: 'newdata',
     },
     {
       realOpenMode: 'POPUPMODAL',
@@ -126,7 +126,7 @@ export default {
       controlParam: {
         id: 'toolbar',
       },
-      modelId: '06069FE6-4A89-4F97-B6F5-AF3BD0A89346',
+      modelId: 'b6496e6e1969c991f7d320c8e6730506',
       modelType: 'PSDETOOLBAR',
       name: 'toolbar',
       id: 'drill_detail_grid_view_toolbar',
@@ -356,7 +356,7 @@ export default {
       controlParam: {
         id: 'grid',
       },
-      modelId: 'B57D47C8-D483-4341-B405-24FD91FE4062',
+      modelId: '3423dcad87d36896e170fbae547ff0fa',
       modelType: 'PSDEGRID',
       name: 'grid',
       id: 'plmweb.run.drill_detail_grid_view_grid',
@@ -391,7 +391,7 @@ export default {
       controlParam: {
         id: 'searchform',
       },
-      modelId: '08B0A2FA-BF9C-486E-B6B5-4CC9AE8CD52E',
+      modelId: '18cf78454dcefd08722bd5e811cd9719',
       modelType: 'PSDEFORM_SEARCHFORM',
       name: 'searchform',
       id: 'plmweb.run.usr07178382_search_form',
@@ -437,7 +437,7 @@ export default {
   width: 90,
   enableDP: true,
   showCaptionBar: true,
-  modelId: 'ad205b7c7fef3cc474df1cb5a57cfc75',
+  modelId: '8554538e884691381fa7f9e3730c6d77',
   modelType: 'PSAPPDEVIEW',
   name: 'rundrill_detail_grid_view',
   id: 'plmweb.run_drill_detail_grid_view',

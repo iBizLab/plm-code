@@ -144,6 +144,7 @@ public abstract class AbstractTestCaseResource {
     * @return Mono<ResponseEntity<TestCaseDTO>>
     */
     @ApiOperation(value = "case_move_plan", tags = {"用例" },  notes = "TestCase-case_move_plan ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-TestCase-case_move_plan-all') or hasPermission(this.testCaseDtoMapping.toDomain(#dto),'ibizplm-TestCase-case_move_plan')")
     @PostMapping("test_cases/{id}/case_move_plan")
     public Mono<ResponseEntity<ResponseWrapper<TestCaseDTO>>>caseMovePlanById
             (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<TestCaseDTO> dto) {
@@ -181,6 +182,7 @@ public abstract class AbstractTestCaseResource {
     * @return Mono<ResponseEntity<TestCaseDTO>>
     */
     @ApiOperation(value = "choose_case_template", tags = {"用例" },  notes = "TestCase-choose_case_template ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-TestCase-choose_case_template-all') or hasPermission(this.testCaseDtoMapping.toDomain(#dto),'ibizplm-TestCase-choose_case_template')")
     @PostMapping("test_cases/choose_case_template")
     public Mono<ResponseEntity<ResponseWrapper<TestCaseDTO>>>chooseCaseTemplate
             (@Validated @RequestBody RequestWrapper<TestCaseDTO> dto) {
@@ -215,6 +217,7 @@ public abstract class AbstractTestCaseResource {
     * @return Mono<ResponseEntity<TestCaseDTO>>
     */
     @ApiOperation(value = "copy_case", tags = {"用例" },  notes = "TestCase-copy_case ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-TestCase-copy_case-all') or hasPermission(this.testCaseDtoMapping.toDomain(#dto),'ibizplm-TestCase-copy_case')")
     @PostMapping("test_cases/{id}/copy_case")
     public Mono<ResponseEntity<ResponseWrapper<TestCaseDTO>>>copyCaseById
             (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<TestCaseDTO> dto) {
@@ -331,6 +334,7 @@ public abstract class AbstractTestCaseResource {
     * @return Mono<ResponseEntity<TestCaseDTO>>
     */
     @ApiOperation(value = "move_case", tags = {"用例" },  notes = "TestCase-move_case ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-TestCase-move_case-all') or hasPermission(this.testCaseDtoMapping.toDomain(#dto),'ibizplm-TestCase-move_case')")
     @PostMapping("test_cases/{id}/move_case")
     public Mono<ResponseEntity<ResponseWrapper<TestCaseDTO>>>moveCaseById
             (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<TestCaseDTO> dto) {
@@ -408,6 +412,7 @@ public abstract class AbstractTestCaseResource {
     * @return Mono<ResponseEntity<TestCaseDTO>>
     */
     @ApiOperation(value = "program_test_case", tags = {"用例" },  notes = "TestCase-program_test_case ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-TestCase-program_test_case-all') or hasPermission(this.testCaseDtoMapping.toDomain(#dto),'ibizplm-TestCase-program_test_case')")
     @PostMapping("test_cases/{id}/program_test_case")
     public Mono<ResponseEntity<ResponseWrapper<TestCaseDTO>>>programTestCaseById
             (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<TestCaseDTO> dto) {
@@ -520,6 +525,7 @@ public abstract class AbstractTestCaseResource {
     * @return Mono<ResponseEntity<TestCaseDTO>>
     */
     @ApiOperation(value = "set_level", tags = {"用例" },  notes = "TestCase-set_level ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-TestCase-set_level-all') or hasPermission(this.testCaseDtoMapping.toDomain(#dto),'ibizplm-TestCase-set_level')")
     @PostMapping("test_cases/{id}/set_level")
     public Mono<ResponseEntity<ResponseWrapper<TestCaseDTO>>>setLevelById
             (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<TestCaseDTO> dto) {
@@ -558,6 +564,7 @@ public abstract class AbstractTestCaseResource {
     * @return Mono<ResponseEntity<TestCaseDTO>>
     */
     @ApiOperation(value = "set_maintenance", tags = {"用例" },  notes = "TestCase-set_maintenance ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-TestCase-set_maintenance-all') or hasPermission(this.testCaseDtoMapping.toDomain(#dto),'ibizplm-TestCase-set_maintenance')")
     @PostMapping("test_cases/{id}/set_maintenance")
     public Mono<ResponseEntity<ResponseWrapper<TestCaseDTO>>>setMaintenanceById
             (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<TestCaseDTO> dto) {
@@ -596,6 +603,7 @@ public abstract class AbstractTestCaseResource {
     * @return Mono<ResponseEntity<TestCaseDTO>>
     */
     @ApiOperation(value = "set_state", tags = {"用例" },  notes = "TestCase-set_state ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-TestCase-set_state-all') or hasPermission(this.testCaseDtoMapping.toDomain(#dto),'ibizplm-TestCase-set_state')")
     @PostMapping("test_cases/{id}/set_state")
     public Mono<ResponseEntity<ResponseWrapper<TestCaseDTO>>>setStateById
             (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<TestCaseDTO> dto) {
@@ -634,6 +642,7 @@ public abstract class AbstractTestCaseResource {
     * @return Mono<ResponseEntity<TestCaseDTO>>
     */
     @ApiOperation(value = "test_case_re_counters", tags = {"用例" },  notes = "TestCase-test_case_re_counters ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-TestCase-test_case_re_counters-all') or hasPermission(this.testCaseDtoMapping.toDomain(#dto),'ibizplm-TestCase-test_case_re_counters')")
     @PostMapping("test_cases/{id}/test_case_re_counters")
     public Mono<ResponseEntity<ResponseWrapper<TestCaseDTO>>>testCaseReCountersById
             (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<TestCaseDTO> dto) {
@@ -754,6 +763,7 @@ public abstract class AbstractTestCaseResource {
     * @return Mono<ResponseEntity<TestCaseDTO>>
     */
     @ApiOperation(value = "case_move_plan", tags = {"用例" },  notes = "TestCase-case_move_plan ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-TestCase-case_move_plan-all') or hasPermission('library',#testLibraryId,this.testCaseDtoMapping.toDomain(#dto),'ibizplm-TestCase-case_move_plan')")
     @PostMapping("libraries/{testLibraryId}/test_cases/{id}/case_move_plan")
     public Mono<ResponseEntity<ResponseWrapper<TestCaseDTO>>>caseMovePlanByTestLibraryIdAndId
             (@PathVariable("testLibraryId") String testLibraryId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<TestCaseDTO> dto) {
@@ -793,6 +803,7 @@ public abstract class AbstractTestCaseResource {
     * @return Mono<ResponseEntity<TestCaseDTO>>
     */
     @ApiOperation(value = "choose_case_template", tags = {"用例" },  notes = "TestCase-choose_case_template ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-TestCase-choose_case_template-all') or hasPermission('library',#testLibraryId,this.testCaseDtoMapping.toDomain(#dto),'ibizplm-TestCase-choose_case_template')")
     @PostMapping("libraries/{testLibraryId}/test_cases/choose_case_template")
     public Mono<ResponseEntity<ResponseWrapper<TestCaseDTO>>>chooseCaseTemplateByTestLibraryId
             (@PathVariable("testLibraryId") String testLibraryId, @Validated @RequestBody RequestWrapper<TestCaseDTO> dto) {
@@ -830,6 +841,7 @@ public abstract class AbstractTestCaseResource {
     * @return Mono<ResponseEntity<TestCaseDTO>>
     */
     @ApiOperation(value = "copy_case", tags = {"用例" },  notes = "TestCase-copy_case ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-TestCase-copy_case-all') or hasPermission('library',#testLibraryId,this.testCaseDtoMapping.toDomain(#dto),'ibizplm-TestCase-copy_case')")
     @PostMapping("libraries/{testLibraryId}/test_cases/{id}/copy_case")
     public Mono<ResponseEntity<ResponseWrapper<TestCaseDTO>>>copyCaseByTestLibraryIdAndId
             (@PathVariable("testLibraryId") String testLibraryId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<TestCaseDTO> dto) {
@@ -952,6 +964,7 @@ public abstract class AbstractTestCaseResource {
     * @return Mono<ResponseEntity<TestCaseDTO>>
     */
     @ApiOperation(value = "move_case", tags = {"用例" },  notes = "TestCase-move_case ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-TestCase-move_case-all') or hasPermission('library',#testLibraryId,this.testCaseDtoMapping.toDomain(#dto),'ibizplm-TestCase-move_case')")
     @PostMapping("libraries/{testLibraryId}/test_cases/{id}/move_case")
     public Mono<ResponseEntity<ResponseWrapper<TestCaseDTO>>>moveCaseByTestLibraryIdAndId
             (@PathVariable("testLibraryId") String testLibraryId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<TestCaseDTO> dto) {
@@ -1033,6 +1046,7 @@ public abstract class AbstractTestCaseResource {
     * @return Mono<ResponseEntity<TestCaseDTO>>
     */
     @ApiOperation(value = "program_test_case", tags = {"用例" },  notes = "TestCase-program_test_case ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-TestCase-program_test_case-all') or hasPermission('library',#testLibraryId,this.testCaseDtoMapping.toDomain(#dto),'ibizplm-TestCase-program_test_case')")
     @PostMapping("libraries/{testLibraryId}/test_cases/{id}/program_test_case")
     public Mono<ResponseEntity<ResponseWrapper<TestCaseDTO>>>programTestCaseByTestLibraryIdAndId
             (@PathVariable("testLibraryId") String testLibraryId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<TestCaseDTO> dto) {
@@ -1152,6 +1166,7 @@ public abstract class AbstractTestCaseResource {
     * @return Mono<ResponseEntity<TestCaseDTO>>
     */
     @ApiOperation(value = "set_level", tags = {"用例" },  notes = "TestCase-set_level ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-TestCase-set_level-all') or hasPermission('library',#testLibraryId,this.testCaseDtoMapping.toDomain(#dto),'ibizplm-TestCase-set_level')")
     @PostMapping("libraries/{testLibraryId}/test_cases/{id}/set_level")
     public Mono<ResponseEntity<ResponseWrapper<TestCaseDTO>>>setLevelByTestLibraryIdAndId
             (@PathVariable("testLibraryId") String testLibraryId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<TestCaseDTO> dto) {
@@ -1192,6 +1207,7 @@ public abstract class AbstractTestCaseResource {
     * @return Mono<ResponseEntity<TestCaseDTO>>
     */
     @ApiOperation(value = "set_maintenance", tags = {"用例" },  notes = "TestCase-set_maintenance ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-TestCase-set_maintenance-all') or hasPermission('library',#testLibraryId,this.testCaseDtoMapping.toDomain(#dto),'ibizplm-TestCase-set_maintenance')")
     @PostMapping("libraries/{testLibraryId}/test_cases/{id}/set_maintenance")
     public Mono<ResponseEntity<ResponseWrapper<TestCaseDTO>>>setMaintenanceByTestLibraryIdAndId
             (@PathVariable("testLibraryId") String testLibraryId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<TestCaseDTO> dto) {
@@ -1232,6 +1248,7 @@ public abstract class AbstractTestCaseResource {
     * @return Mono<ResponseEntity<TestCaseDTO>>
     */
     @ApiOperation(value = "set_state", tags = {"用例" },  notes = "TestCase-set_state ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-TestCase-set_state-all') or hasPermission('library',#testLibraryId,this.testCaseDtoMapping.toDomain(#dto),'ibizplm-TestCase-set_state')")
     @PostMapping("libraries/{testLibraryId}/test_cases/{id}/set_state")
     public Mono<ResponseEntity<ResponseWrapper<TestCaseDTO>>>setStateByTestLibraryIdAndId
             (@PathVariable("testLibraryId") String testLibraryId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<TestCaseDTO> dto) {
@@ -1272,6 +1289,7 @@ public abstract class AbstractTestCaseResource {
     * @return Mono<ResponseEntity<TestCaseDTO>>
     */
     @ApiOperation(value = "test_case_re_counters", tags = {"用例" },  notes = "TestCase-test_case_re_counters ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-TestCase-test_case_re_counters-all') or hasPermission('library',#testLibraryId,this.testCaseDtoMapping.toDomain(#dto),'ibizplm-TestCase-test_case_re_counters')")
     @PostMapping("libraries/{testLibraryId}/test_cases/{id}/test_case_re_counters")
     public Mono<ResponseEntity<ResponseWrapper<TestCaseDTO>>>testCaseReCountersByTestLibraryIdAndId
             (@PathVariable("testLibraryId") String testLibraryId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<TestCaseDTO> dto) {

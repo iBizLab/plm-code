@@ -3,7 +3,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'work_item_re_self_grid_view',
-  deviewId: 'B7438AA3-0DF3-4C77-AE04-B0EBB10F2C9A',
+  deviewId: '4334e5b29248deff678ca1054bff654b',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.RELATION',
@@ -506,15 +506,6 @@ export default {
     ],
     appViewRefs: [
       {
-        realTitle: '工作项关联编辑视图',
-        realTitleLanguageRes: {
-          lanResTag: 'PAGE.TITLE.RELATION.EDITVIEW',
-        },
-        refAppViewId: 'plmweb.relation_edit_view',
-        name: 'NEWDATA',
-        id: 'newdata',
-      },
-      {
         openMode: 'POPUPMODAL',
         navigateContexts: [
           {
@@ -554,6 +545,15 @@ export default {
         refAppViewId: 'plmweb.work_item_dyna_main_view',
         name: 'EDITDATA',
         id: 'editdata',
+      },
+      {
+        realTitle: '工作项关联编辑视图',
+        realTitleLanguageRes: {
+          lanResTag: 'PAGE.TITLE.RELATION.EDITVIEW',
+        },
+        refAppViewId: 'plmweb.relation_edit_view',
+        name: 'NEWDATA',
+        id: 'newdata',
       },
     ],
     controls: [
@@ -596,7 +596,7 @@ export default {
         controlParam: {
           id: 'toolbar',
         },
-        modelId: '1EC05DD6-680A-43DE-8175-2E7D9C1A910B',
+        modelId: '954d0be6cf3388597f3e7afce71744eb',
         modelType: 'PSDETOOLBAR',
         name: 'toolbar',
         id: 'work_item_re_self_grid_view_toolbar',
@@ -717,7 +717,7 @@ export default {
                     cssClass: 'fa fa-unlink',
                     glyph: 'xf127@FontAwesome',
                   },
-                  id: 'ue009d6d',
+                  id: 'ua71fcf1',
                 },
               ],
               appDataEntityId: 'plmweb.relation',
@@ -985,7 +985,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: false,
-  modelId: 'c5b6a1411799b829aced46ffcd2a0162',
+  modelId: '8b7ae24814ec8ee9a11ce678fc5a42f9',
   modelType: 'PSAPPDEVIEW',
   name: 'relationwork_item_re_self_grid_view',
   id: 'plmweb.relation_work_item_re_self_grid_view',

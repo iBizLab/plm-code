@@ -2,7 +2,7 @@ export default {
   showDataInfoBar: true,
   loadDefault: true,
   deviewCodeName: 'tree_exp_view',
-  deviewId: 'ABE948C8-86A8-41E6-8A99-4359BA04A808',
+  deviewId: '65de76dbcba482137bcf58c4f93b7e70',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'PAGE.CAPTION.REVIEW.TREE_EXP_VIEW',
@@ -425,7 +425,7 @@ export default {
                 controlParam: {
                   id: 'node_10_cm',
                 },
-                modelId: 'FC2682ED-3306-48C1-AF42-8DCD3FB4CC91',
+                modelId: '380703d8ba3fc64b19010873bd74948d',
                 modelType: 'PSDETOOLBAR',
                 name: 'node_10_cm',
                 id: 'tree_exp_view_node10_cm',
@@ -657,10 +657,14 @@ export default {
                 controlParam: {
                   id: 'node_8_cm',
                 },
-                modelId: 'FC2682ED-3306-48C1-AF42-8DCD3FB4CC91',
+                modelId: '380703d8ba3fc64b19010873bd74948d',
                 modelType: 'PSDETOOLBAR',
                 name: 'node_8_cm',
                 id: 'tree_exp_view_node8_cm',
+              },
+              sysImage: {
+                cssClass: 'fa fa-table',
+                glyph: 'xf0ce@FontAwesome',
               },
               treeNodeType: 'DE',
               hasDETreeNodeRSs: true,
@@ -753,7 +757,7 @@ export default {
                 controlParam: {
                   id: 'node_9_cm',
                 },
-                modelId: 'FC2682ED-3306-48C1-AF42-8DCD3FB4CC91',
+                modelId: '380703d8ba3fc64b19010873bd74948d',
                 modelType: 'PSDETOOLBAR',
                 name: 'node_9_cm',
                 id: 'tree_exp_view_node9_cm',
@@ -808,6 +812,77 @@ export default {
           autoLoad: true,
           showBusyIndicator: true,
           controls: [
+            {
+              detoolbarItems: [
+                {
+                  actionLevel: 100,
+                  noPrivDisplayMode: 2,
+                  uiactionId:
+                    'toolbar_tree_exp_view_node8_cm_deuiaction1_click@review',
+                  uiactionTarget: 'SINGLEDATA',
+                  valid: true,
+                  caption: '编辑',
+                  itemType: 'DEUIACTION',
+                  controlLogics: [
+                    {
+                      itemName: 'deuiaction1',
+                      logicTag: 'node_8_cm',
+                      logicType: 'SCRIPT',
+                      scriptCode: '!context.srfreadonly',
+                      triggerType: 'ITEMVISIBLE',
+                      id: 'deuiaction1',
+                    },
+                  ],
+                  sysImage: {
+                    cssClass: 'fa fa-edit',
+                    glyph: 'xf044@FontAwesome',
+                  },
+                  tooltip: '编辑',
+                  showCaption: true,
+                  showIcon: true,
+                  id: 'deuiaction1',
+                },
+                {
+                  actionLevel: 100,
+                  noPrivDisplayMode: 2,
+                  uiactionId:
+                    'toolbar_tree_exp_view_node8_cm_deuiaction2_click@review',
+                  uiactionTarget: 'SINGLEDATA',
+                  valid: true,
+                  caption: '删除',
+                  itemType: 'DEUIACTION',
+                  controlLogics: [
+                    {
+                      itemName: 'deuiaction2',
+                      logicTag: 'node_8_cm',
+                      logicType: 'SCRIPT',
+                      scriptCode: '!context.srfreadonly',
+                      triggerType: 'ITEMVISIBLE',
+                      id: 'deuiaction2',
+                    },
+                  ],
+                  sysImage: {
+                    cssClass: 'fa fa-trash-o',
+                    glyph: 'xf014@FontAwesome',
+                  },
+                  tooltip: '删除',
+                  showCaption: true,
+                  showIcon: true,
+                  id: 'deuiaction2',
+                },
+              ],
+              codeName: 'tree_exp_view_node8_cm',
+              controlType: 'CONTEXTMENU',
+              logicName: '树节点上下文菜单',
+              appDataEntityId: 'plmweb.review',
+              controlParam: {
+                id: 'node_8_cm',
+              },
+              modelId: '380703d8ba3fc64b19010873bd74948d',
+              modelType: 'PSDETOOLBAR',
+              name: 'node_8_cm',
+              id: 'tree_exp_view_node8_cm',
+            },
             {
               detoolbarItems: [
                 {
@@ -874,7 +949,7 @@ export default {
               controlParam: {
                 id: 'node_9_cm',
               },
-              modelId: 'FC2682ED-3306-48C1-AF42-8DCD3FB4CC91',
+              modelId: '380703d8ba3fc64b19010873bd74948d',
               modelType: 'PSDETOOLBAR',
               name: 'node_9_cm',
               id: 'tree_exp_view_node9_cm',
@@ -945,81 +1020,10 @@ export default {
               controlParam: {
                 id: 'node_10_cm',
               },
-              modelId: 'FC2682ED-3306-48C1-AF42-8DCD3FB4CC91',
+              modelId: '380703d8ba3fc64b19010873bd74948d',
               modelType: 'PSDETOOLBAR',
               name: 'node_10_cm',
               id: 'tree_exp_view_node10_cm',
-            },
-            {
-              detoolbarItems: [
-                {
-                  actionLevel: 100,
-                  noPrivDisplayMode: 2,
-                  uiactionId:
-                    'toolbar_tree_exp_view_node8_cm_deuiaction1_click@review',
-                  uiactionTarget: 'SINGLEDATA',
-                  valid: true,
-                  caption: '编辑',
-                  itemType: 'DEUIACTION',
-                  controlLogics: [
-                    {
-                      itemName: 'deuiaction1',
-                      logicTag: 'node_8_cm',
-                      logicType: 'SCRIPT',
-                      scriptCode: '!context.srfreadonly',
-                      triggerType: 'ITEMVISIBLE',
-                      id: 'deuiaction1',
-                    },
-                  ],
-                  sysImage: {
-                    cssClass: 'fa fa-edit',
-                    glyph: 'xf044@FontAwesome',
-                  },
-                  tooltip: '编辑',
-                  showCaption: true,
-                  showIcon: true,
-                  id: 'deuiaction1',
-                },
-                {
-                  actionLevel: 100,
-                  noPrivDisplayMode: 2,
-                  uiactionId:
-                    'toolbar_tree_exp_view_node8_cm_deuiaction2_click@review',
-                  uiactionTarget: 'SINGLEDATA',
-                  valid: true,
-                  caption: '删除',
-                  itemType: 'DEUIACTION',
-                  controlLogics: [
-                    {
-                      itemName: 'deuiaction2',
-                      logicTag: 'node_8_cm',
-                      logicType: 'SCRIPT',
-                      scriptCode: '!context.srfreadonly',
-                      triggerType: 'ITEMVISIBLE',
-                      id: 'deuiaction2',
-                    },
-                  ],
-                  sysImage: {
-                    cssClass: 'fa fa-trash-o',
-                    glyph: 'xf014@FontAwesome',
-                  },
-                  tooltip: '删除',
-                  showCaption: true,
-                  showIcon: true,
-                  id: 'deuiaction2',
-                },
-              ],
-              codeName: 'tree_exp_view_node8_cm',
-              controlType: 'CONTEXTMENU',
-              logicName: '树节点上下文菜单',
-              appDataEntityId: 'plmweb.review',
-              controlParam: {
-                id: 'node_8_cm',
-              },
-              modelId: 'FC2682ED-3306-48C1-AF42-8DCD3FB4CC91',
-              modelType: 'PSDETOOLBAR',
-              name: 'node_8_cm',
-              id: 'tree_exp_view_node8_cm',
             },
           ],
           codeName: 'tree_exp_view_tree_view',
@@ -1047,7 +1051,7 @@ export default {
             id: 'treeexpbar_tree',
           },
           sysPFPluginId: 'group_tree',
-          modelId: 'EE8570B5-E036-45F7-91A1-A7FB46CF563F',
+          modelId: '55f72b5ff6153bcb86f096f1a4180b89',
           modelType: 'PSDETREEVIEW',
           name: 'treeexpbar_tree',
           id: 'plmweb.review.tree_exp_view_tree_view',
@@ -1149,7 +1153,7 @@ export default {
           controlParam: {
             id: 'treeexpbar_toolbar',
           },
-          modelId: 'B5B11118-5F00-4529-BD1C-D97E20A1F387',
+          modelId: 'a5755ae578bb5ae1e31f7410d569652b',
           modelType: 'PSDETOOLBAR',
           name: 'treeexpbar_toolbar',
           id: 'tree_exp_view_treeexpbar_toolbar',
@@ -1161,7 +1165,7 @@ export default {
       controlParam: {
         id: 'treeexpbar',
       },
-      modelId: 'c5edb6771600e0bfffe9b921790ecf7d_treeexpbar',
+      modelId: 'c4c70a221cbbe63ecf6dccd057a19ce9_treeexpbar',
       modelType: 'PSEXPBAR',
       name: 'treeexpbar',
       id: 'tree_exp_view_treeexpbar',
@@ -1209,7 +1213,7 @@ export default {
   viewType: 'DETREEEXPVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: 'c5edb6771600e0bfffe9b921790ecf7d',
+  modelId: 'c4c70a221cbbe63ecf6dccd057a19ce9',
   modelType: 'PSAPPDEVIEW',
   name: 'reviewtree_exp_view',
   id: 'plmweb.review_tree_exp_view',

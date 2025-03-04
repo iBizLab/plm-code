@@ -136,6 +136,7 @@ public abstract class AbstractInsightViewResource {
     * @return Mono<ResponseEntity<InsightViewDTO>>
     */
     @ApiOperation(value = "change_admin_role", tags = {"效能视图" },  notes = "InsightView-change_admin_role ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-InsightView-change_admin_role-all') or hasPermission(this.insightViewDtoMapping.toDomain(#dto),'ibizplm-InsightView-change_admin_role')")
     @PostMapping("insight_views/{id}/change_admin_role")
     public Mono<ResponseEntity<ResponseWrapper<InsightViewDTO>>>changeAdminRoleById
             (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<InsightViewDTO> dto) {

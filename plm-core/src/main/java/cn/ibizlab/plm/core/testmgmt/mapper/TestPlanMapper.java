@@ -81,6 +81,25 @@ public interface TestPlanMapper extends BaseMapper<TestPlan> {
     List<TestPlan> listBiSearch(@Param("ctx") TestPlanSearchContext context, @Param("ew") Wrapper<TestPlan> wrapper);
 
     /**
+     * 数据集合cur_project分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<TestPlan> searchCurProject(IPage<TestPlan> page, @Param("ctx") TestPlanSearchContext context, @Param("ew") Wrapper<TestPlan> wrapper);
+    
+    /**
+     * 数据集合cur_project查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<TestPlan> listCurProject(@Param("ctx") TestPlanSearchContext context, @Param("ew") Wrapper<TestPlan> wrapper);
+
+    /**
      * 数据集合my_assignee分页查询
      * 
      * @param page

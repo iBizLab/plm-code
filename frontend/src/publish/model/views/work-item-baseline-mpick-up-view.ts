@@ -1,7 +1,7 @@
 export default {
   openMode: 'POPUPMODAL',
   deviewCodeName: 'baseline_mpick_up_view',
-  deviewId: '52B9B4F1-1FE3-47C5-944B-669B44874BE4',
+  deviewId: '52936e0068da1eca0f29dcc67795c720',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.WORK_ITEM',
@@ -694,7 +694,7 @@ export default {
             controlParam: {
               id: 'treeexpbar_tree',
             },
-            modelId: 'FE496A7A-4075-4220-8C7D-9D29DF35B8A8',
+            modelId: 'b9956d60e414b1195f8529b2751f2023',
             modelType: 'PSDETREEVIEW',
             name: 'treeexpbar_tree',
             id: 'plmweb.work_item.baseline_mpick_up_view_tree_view',
@@ -706,7 +706,7 @@ export default {
         controlParam: {
           id: 'treeexpbar',
         },
-        modelId: '47221cf09d0c8924d00a643675c41526_treeexpbar',
+        modelId: '26c488478f6267d59e01b9b98ccaaa97_treeexpbar',
         modelType: 'PSEXPBAR',
         name: 'treeexpbar',
         id: 'baseline_mpick_up_view_treeexpbar',
@@ -863,7 +863,7 @@ export default {
   viewType: 'DEMPICKUPVIEW2',
   enableDP: true,
   showCaptionBar: false,
-  modelId: '47221cf09d0c8924d00a643675c41526',
+  modelId: '26c488478f6267d59e01b9b98ccaaa97',
   modelType: 'PSAPPDEVIEW',
   name: 'work_itembaseline_mpick_up_view',
   id: 'plmweb.work_item_baseline_mpick_up_view',

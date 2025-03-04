@@ -3,7 +3,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'all_report_grid_view',
-  deviewId: '12CF953D-E7CA-4BB8-BA23-C1A096B21ED5',
+  deviewId: 'a498dd2e11b9aaa801a64732a0a22d1f',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.INSIGHT_REPORT',
@@ -64,6 +64,12 @@ export default {
   ],
   appViewRefs: [
     {
+      realTitle: 'BI报表呈现态面板视图',
+      refAppViewId: 'plmweb.insight_report_bi_report_content_panel_view',
+      name: 'EDITDATA',
+      id: 'editdata',
+    },
+    {
       realTitle: '效能报表编辑视图',
       realTitleLanguageRes: {
         lanResTag: 'PAGE.TITLE.INSIGHT_REPORT.EDITVIEW',
@@ -71,12 +77,6 @@ export default {
       refAppViewId: 'plmweb.insight_report_edit_view',
       name: 'NEWDATA',
       id: 'newdata',
-    },
-    {
-      realTitle: 'BI报表呈现态面板视图',
-      refAppViewId: 'plmweb.insight_report_bi_report_content_panel_view',
-      name: 'EDITDATA',
-      id: 'editdata',
     },
     {
       realTitle: 'BI报表呈现态面板视图',
@@ -106,7 +106,7 @@ export default {
                   cssClass: 'fa fa-plus',
                   glyph: 'xf067@FontAwesome',
                 },
-                id: 'u2de96d0',
+                id: 'ue2f5706',
               },
               {
                 actionLevel: 100,
@@ -121,7 +121,7 @@ export default {
                   cssClass: 'fa fa-plus',
                   glyph: 'xf067@FontAwesome',
                 },
-                id: 'ub29136b',
+                id: 'u3189476',
               },
             ],
             appDataEntityId: 'plmweb.insight_report',
@@ -160,7 +160,7 @@ export default {
       controlParam: {
         id: 'toolbar',
       },
-      modelId: '1397327B-D059-4ED1-B6E9-E2571FB8E1FE',
+      modelId: '3f866a9e69027be9cdd25816aba87b8d',
       modelType: 'PSDETOOLBAR',
       name: 'toolbar',
       id: 'all_report_grid_view_toolbar',
@@ -192,7 +192,7 @@ export default {
                   cssClass: 'fa fa-gears',
                   glyph: 'xf085@FontAwesome',
                 },
-                id: 'u00a9337',
+                id: 'u7472371',
               },
               {
                 actionLevel: 100,
@@ -207,7 +207,7 @@ export default {
                   cssClass: 'fa fa-wrench',
                   glyph: 'xf0ad@FontAwesome',
                 },
-                id: 'u08c3f78',
+                id: 'u85af768',
               },
               {
                 actionLevel: 100,
@@ -222,7 +222,7 @@ export default {
                   cssClass: 'fa fa-remove',
                   glyph: 'xf00d@FontAwesome',
                 },
-                id: 'u58bf5f1',
+                id: 'u2508c7a',
               },
             ],
             appDataEntityId: 'plmweb.insight_report',
@@ -324,7 +324,7 @@ export default {
                 logicName: 'bi报表表格列绘制器',
                 appDataEntityId: 'plmweb.insight_report',
                 controlParam: {},
-                modelId: '6CDFBAD5-C1ED-49F3-B5F3-A898C38BDE49',
+                modelId: '36fdd93343f6c399e0a0f4dab1e82086',
                 modelType: 'PSSYSVIEWPANEL',
                 name: 'layout',
                 id: 'plmweb.insight_report.usr0713866980',
@@ -556,7 +556,7 @@ export default {
       controlParam: {
         id: 'grid',
       },
-      modelId: '6B955A14-2EC0-49AA-8309-FAFC3F09AAA7',
+      modelId: '78656f72d16fbfe8ca3e35123d010d7e',
       modelType: 'PSDEGRID',
       name: 'grid',
       id: 'plmweb.insight_report.all_report_grid_view_grid',
@@ -591,7 +591,7 @@ export default {
       controlParam: {
         id: 'searchform',
       },
-      modelId: '5466781D-9298-4D2F-A6D8-C543C32815F3',
+      modelId: '20e23df8203681e0e2517dd2df02e4b3',
       modelType: 'PSDEFORM_SEARCHFORM',
       name: 'searchform',
       id: 'plmweb.insight_report.usr05200683_search_form',
@@ -636,7 +636,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: 'cf2b1f8ea13b6ff5a199e4de00b895ae',
+  modelId: '83d7d76d0e44adc2509c589003dfb7fd',
   modelType: 'PSAPPDEVIEW',
   name: 'insight_reportall_report_grid_view',
   id: 'plmweb.insight_report_all_report_grid_view',

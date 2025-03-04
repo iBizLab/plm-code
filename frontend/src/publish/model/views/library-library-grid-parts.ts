@@ -3,7 +3,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'library_grid_parts',
-  deviewId: '566D5AB5-F25F-4755-94F4-E307B955408F',
+  deviewId: 'a5bd683846602aae2357765ff713b358',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.LIBRARY',
@@ -390,7 +390,7 @@ export default {
         controlParam: {
           id: 'toolbar',
         },
-        modelId: 'E3BDCBA1-3C6C-4B37-9636-E932798A0E29',
+        modelId: '71c9f7a033fa4a3be63d1f9c19585118',
         modelType: 'PSDETOOLBAR',
         name: 'toolbar',
         id: 'library_grid_parts_toolbar',
@@ -549,7 +549,7 @@ export default {
         controlParam: {
           id: 'grid',
         },
-        modelId: 'E784F58D-BEBA-4DD1-AD9F-F8D58F11210E',
+        modelId: '3d212618365423132ef721f487a0815b',
         modelType: 'PSDEGRID',
         name: 'grid',
         id: 'plmweb.library.library_grid_parts_grid',
@@ -584,7 +584,7 @@ export default {
         controlParam: {
           id: 'searchform',
         },
-        modelId: 'D6E251D6-C770-476E-A5B8-2DAE6B4A7ACA',
+        modelId: 'b8a64d0f685e3f9ec042c0eca5751f56',
         modelType: 'PSDEFORM_SEARCHFORM',
         name: 'searchform',
         id: 'plmweb.library.library_grid_parts_search_form',
@@ -616,7 +616,7 @@ export default {
     logicName: 'library_grid_parts表格视图布局',
     appDataEntityId: 'plmweb.library',
     controlParam: {},
-    modelId: 'CC390789-CE2B-4CEA-A8CD-73D88FB7DD3A',
+    modelId: '6f15141ab59b6ffd089bf3807e5ceaa5',
     modelType: 'PSSYSVIEWLAYOUTPANEL',
     name: 'layoutpanel',
     id: 'usr1112950127',
@@ -626,7 +626,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '9db7dc1fe77650b5eef7af3e49f4883b',
+  modelId: 'ffebf3ebea3a66dbf579590076d0d721',
   modelType: 'PSAPPDEVIEW',
   name: 'librarylibrary_grid_parts',
   id: 'plmweb.library_library_grid_parts',

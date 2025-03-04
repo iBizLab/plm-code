@@ -162,6 +162,250 @@ public abstract class AbstractTransitionHistoryResource {
         return transitionHistoryDtoMapping.toDto(rt);
     }
 
+    /**
+    * 创建Create 流转记录
+    * 
+    *
+    * @param ownerId ownerId
+    * @param dto dto
+    * @return Mono<ResponseEntity<TransitionHistoryDTO>>
+    */
+    @ApiOperation(value = "创建Create", tags = {"流转记录" },  notes = "TransitionHistory-Create ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-TransitionHistory-Create-all') or hasPermission('work_item',#ownerId,this.transitionHistoryDtoMapping.toDomain(#dto),'ibizplm-TransitionHistory-Create')")
+    @PostMapping("work_items/{ownerId}/transition_histories")
+    public Mono<ResponseEntity<ResponseWrapper<TransitionHistoryDTO>>>createByOwnerId
+            (@PathVariable("ownerId") String ownerId, @Validated @RequestBody RequestWrapper<TransitionHistoryDTO> dto) {
+        ResponseWrapper<TransitionHistoryDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray())
+            dto.getList().forEach(item -> rt.add(createByOwnerId(ownerId, item)));
+        else
+            rt.set(createByOwnerId(ownerId, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * 创建Create 流转记录
+    * 
+    *
+    * @param ownerId ownerId
+    * @param dto dto
+    * @return ResponseEntity<TransitionHistoryDTO>
+    */   
+    public TransitionHistoryDTO createByOwnerId
+            (String ownerId, TransitionHistoryDTO dto) {
+        TransitionHistory domain = transitionHistoryDtoMapping.toDomain(dto);
+        domain.setOwnerId(ownerId);
+        transitionHistoryService.create(domain);
+        TransitionHistory rt = domain;
+        return transitionHistoryDtoMapping.toDto(rt);
+    }
+
+    /**
+    * 更新Update 流转记录
+    * 
+    *
+    * @param ownerId ownerId
+    * @param id id
+    * @param dto dto
+    * @return Mono<ResponseEntity<TransitionHistoryDTO>>
+    */
+    @ApiOperation(value = "更新Update", tags = {"流转记录" },  notes = "TransitionHistory-Update ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-TransitionHistory-Update-all') or hasPermission('work_item',#ownerId,this.transitionHistoryService.get(#id),'ibizplm-TransitionHistory-Update')")
+    @VersionCheck(entity = "transitionhistory" , versionfield = "updateTime")
+    @PutMapping("work_items/{ownerId}/transition_histories/{id}")
+    public Mono<ResponseEntity<ResponseWrapper<TransitionHistoryDTO>>>updateByOwnerIdAndId
+            (@PathVariable("ownerId") String ownerId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<TransitionHistoryDTO> dto) {
+        ResponseWrapper<TransitionHistoryDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(updateByOwnerIdAndId(ownerId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(updateByOwnerIdAndId(ownerId, id, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * 更新Update 流转记录
+    * 
+    *
+    * @param ownerId ownerId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<TransitionHistoryDTO>
+    */   
+    public TransitionHistoryDTO updateByOwnerIdAndId
+            (String ownerId, String id, TransitionHistoryDTO dto) {
+        TransitionHistory domain = transitionHistoryDtoMapping.toDomain(dto);
+        domain.setId(id);
+        transitionHistoryService.update(domain);
+        TransitionHistory rt = domain;
+        return transitionHistoryDtoMapping.toDto(rt);
+    }
+
+    /**
+    * 保存Save 流转记录
+    * 
+    *
+    * @param ownerId ownerId
+    * @param dto dto
+    * @return Mono<ResponseEntity<TransitionHistoryDTO>>
+    */
+    @ApiOperation(value = "保存Save", tags = {"流转记录" },  notes = "TransitionHistory-Save ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-TransitionHistory-Save-all') or hasPermission('work_item',#ownerId,this.transitionHistoryDtoMapping.toDomain(#dto),'ibizplm-TransitionHistory-Save')")
+    @PostMapping("work_items/{ownerId}/transition_histories/save")
+    public Mono<ResponseEntity<ResponseWrapper<TransitionHistoryDTO>>>saveByOwnerId
+            (@PathVariable("ownerId") String ownerId, @Validated @RequestBody RequestWrapper<TransitionHistoryDTO> dto) {
+        ResponseWrapper<TransitionHistoryDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray())
+            dto.getList().forEach(item -> rt.add(saveByOwnerId(ownerId, item)));
+        else
+            rt.set(saveByOwnerId(ownerId, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * 保存Save 流转记录
+    * 
+    *
+    * @param ownerId ownerId
+    * @param dto dto
+    * @return ResponseEntity<TransitionHistoryDTO>
+    */   
+    public TransitionHistoryDTO saveByOwnerId
+            (String ownerId, TransitionHistoryDTO dto) {
+        TransitionHistory domain = transitionHistoryDtoMapping.toDomain(dto);
+        domain.setOwnerId(ownerId);
+        transitionHistoryService.save(domain);
+        TransitionHistory rt = domain;
+        return transitionHistoryDtoMapping.toDto(rt);
+    }
+
+    /**
+    * 创建Create 流转记录
+    * 
+    *
+    * @param projectId projectId
+    * @param ownerId ownerId
+    * @param dto dto
+    * @return Mono<ResponseEntity<TransitionHistoryDTO>>
+    */
+    @ApiOperation(value = "创建Create", tags = {"流转记录" },  notes = "TransitionHistory-Create ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-TransitionHistory-Create-all') or hasPermission('project',#projectId,this.transitionHistoryDtoMapping.toDomain(#dto),'ibizplm-TransitionHistory-Create')")
+    @PostMapping("projects/{projectId}/work_items/{ownerId}/transition_histories")
+    public Mono<ResponseEntity<ResponseWrapper<TransitionHistoryDTO>>>createByProjectIdAndOwnerId
+            (@PathVariable("projectId") String projectId, @PathVariable("ownerId") String ownerId, @Validated @RequestBody RequestWrapper<TransitionHistoryDTO> dto) {
+        ResponseWrapper<TransitionHistoryDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray())
+            dto.getList().forEach(item -> rt.add(createByProjectIdAndOwnerId(projectId, ownerId, item)));
+        else
+            rt.set(createByProjectIdAndOwnerId(projectId, ownerId, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * 创建Create 流转记录
+    * 
+    *
+    * @param projectId projectId
+    * @param ownerId ownerId
+    * @param dto dto
+    * @return ResponseEntity<TransitionHistoryDTO>
+    */   
+    public TransitionHistoryDTO createByProjectIdAndOwnerId
+            (String projectId, String ownerId, TransitionHistoryDTO dto) {
+        TransitionHistory domain = transitionHistoryDtoMapping.toDomain(dto);
+        domain.setOwnerId(ownerId);
+        transitionHistoryService.create(domain);
+        TransitionHistory rt = domain;
+        return transitionHistoryDtoMapping.toDto(rt);
+    }
+
+    /**
+    * 更新Update 流转记录
+    * 
+    *
+    * @param projectId projectId
+    * @param ownerId ownerId
+    * @param id id
+    * @param dto dto
+    * @return Mono<ResponseEntity<TransitionHistoryDTO>>
+    */
+    @ApiOperation(value = "更新Update", tags = {"流转记录" },  notes = "TransitionHistory-Update ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-TransitionHistory-Update-all') or hasPermission('project',#projectId,this.transitionHistoryService.get(#id),'ibizplm-TransitionHistory-Update')")
+    @VersionCheck(entity = "transitionhistory" , versionfield = "updateTime")
+    @PutMapping("projects/{projectId}/work_items/{ownerId}/transition_histories/{id}")
+    public Mono<ResponseEntity<ResponseWrapper<TransitionHistoryDTO>>>updateByProjectIdAndOwnerIdAndId
+            (@PathVariable("projectId") String projectId, @PathVariable("ownerId") String ownerId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<TransitionHistoryDTO> dto) {
+        ResponseWrapper<TransitionHistoryDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(updateByProjectIdAndOwnerIdAndId(projectId, ownerId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(updateByProjectIdAndOwnerIdAndId(projectId, ownerId, id, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * 更新Update 流转记录
+    * 
+    *
+    * @param projectId projectId
+    * @param ownerId ownerId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<TransitionHistoryDTO>
+    */   
+    public TransitionHistoryDTO updateByProjectIdAndOwnerIdAndId
+            (String projectId, String ownerId, String id, TransitionHistoryDTO dto) {
+        TransitionHistory domain = transitionHistoryDtoMapping.toDomain(dto);
+        domain.setId(id);
+        transitionHistoryService.update(domain);
+        TransitionHistory rt = domain;
+        return transitionHistoryDtoMapping.toDto(rt);
+    }
+
+    /**
+    * 保存Save 流转记录
+    * 
+    *
+    * @param projectId projectId
+    * @param ownerId ownerId
+    * @param dto dto
+    * @return Mono<ResponseEntity<TransitionHistoryDTO>>
+    */
+    @ApiOperation(value = "保存Save", tags = {"流转记录" },  notes = "TransitionHistory-Save ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-TransitionHistory-Save-all') or hasPermission('project',#projectId,this.transitionHistoryDtoMapping.toDomain(#dto),'ibizplm-TransitionHistory-Save')")
+    @PostMapping("projects/{projectId}/work_items/{ownerId}/transition_histories/save")
+    public Mono<ResponseEntity<ResponseWrapper<TransitionHistoryDTO>>>saveByProjectIdAndOwnerId
+            (@PathVariable("projectId") String projectId, @PathVariable("ownerId") String ownerId, @Validated @RequestBody RequestWrapper<TransitionHistoryDTO> dto) {
+        ResponseWrapper<TransitionHistoryDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray())
+            dto.getList().forEach(item -> rt.add(saveByProjectIdAndOwnerId(projectId, ownerId, item)));
+        else
+            rt.set(saveByProjectIdAndOwnerId(projectId, ownerId, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * 保存Save 流转记录
+    * 
+    *
+    * @param projectId projectId
+    * @param ownerId ownerId
+    * @param dto dto
+    * @return ResponseEntity<TransitionHistoryDTO>
+    */   
+    public TransitionHistoryDTO saveByProjectIdAndOwnerId
+            (String projectId, String ownerId, TransitionHistoryDTO dto) {
+        TransitionHistory domain = transitionHistoryDtoMapping.toDomain(dto);
+        domain.setOwnerId(ownerId);
+        transitionHistoryService.save(domain);
+        TransitionHistory rt = domain;
+        return transitionHistoryDtoMapping.toDto(rt);
+    }
+
 
     /**
     * 获取Get 流转记录
@@ -239,6 +483,199 @@ public abstract class AbstractTransitionHistoryResource {
     @PostMapping("transition_histories/fetch_default")
     public Mono<ResponseEntity<List<TransitionHistoryDTO>>> fetchDefault
             (@Validated @RequestBody TransitionHistoryFilterDTO dto) {
+        TransitionHistorySearchContext context = transitionHistoryFilterDtoMapping.toDomain(dto);
+        Page<TransitionHistory> domains = transitionHistoryService.fetchDefault(context) ;
+        List<TransitionHistoryDTO> list = transitionHistoryDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
+    * 获取Get 流转记录
+    * 
+    *
+    * @param ownerId ownerId
+    * @param id id
+    * @return Mono<ResponseEntity<TransitionHistoryDTO>>
+    */
+    @ApiOperation(value = "获取Get", tags = {"流转记录" },  notes = "TransitionHistory-Get ")
+    @PostAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-TransitionHistory-Get-all')  or hasPermission('work_item',#ownerId,this.transitionHistoryDtoMapping.toDomain(returnObject.block().getBody()),'ibizplm-TransitionHistory-Get')")
+    @GetMapping("work_items/{ownerId}/transition_histories/{id}")
+    public Mono<ResponseEntity<TransitionHistoryDTO>> getByOwnerIdAndId
+            (@PathVariable("ownerId") String ownerId, @PathVariable("id") String id) {
+        TransitionHistory rt = transitionHistoryService.get(id);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(transitionHistoryDtoMapping.toDto(rt)));
+    }
+
+    /**
+    * 删除Remove 流转记录
+    * 
+    *
+    * @param ownerId ownerId
+    * @param id id
+    * @return Mono<ResponseEntity<Boolean>>
+    */
+    @ApiOperation(value = "删除Remove", tags = {"流转记录" },  notes = "TransitionHistory-Remove ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-TransitionHistory-Remove-all') or hasPermission('work_item',#ownerId,this.transitionHistoryService.get(#id),'ibizplm-TransitionHistory-Remove')")
+    @DeleteMapping("work_items/{ownerId}/transition_histories/{id}")
+    public Mono<ResponseEntity<Boolean>> removeByOwnerIdAndId
+            (@PathVariable("ownerId") String ownerId, @PathVariable("id") String id) {
+        Boolean rt = transitionHistoryService.remove(id);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * 校验CheckKey 流转记录
+    * 
+    *
+    * @param ownerId ownerId
+    * @param dto dto
+    * @return Mono<ResponseEntity<Integer>>
+    */
+    @ApiOperation(value = "校验CheckKey", tags = {"流转记录" },  notes = "TransitionHistory-CheckKey ")
+    @PostMapping("work_items/{ownerId}/transition_histories/check_key")
+    public Mono<ResponseEntity<CheckKeyStatus>> checkKeyByOwnerId
+            (@PathVariable("ownerId") String ownerId, @Validated @RequestBody TransitionHistoryDTO dto) {
+        TransitionHistory domain = transitionHistoryDtoMapping.toDomain(dto);
+        domain.setOwnerId(ownerId);
+        CheckKeyStatus rt = transitionHistoryService.checkKey(domain);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * 草稿GetDraft 流转记录
+    * 
+    *
+    * @param ownerId ownerId
+    * @param dto dto
+    * @return Mono<ResponseEntity<TransitionHistoryDTO>>
+    */
+    @ApiOperation(value = "草稿GetDraft", tags = {"流转记录" },  notes = "TransitionHistory-GetDraft ")
+    @GetMapping("work_items/{ownerId}/transition_histories/get_draft")
+    public Mono<ResponseEntity<TransitionHistoryDTO>> getDraftByOwnerId
+            (@PathVariable("ownerId") String ownerId, @SpringQueryMap TransitionHistoryDTO dto) {
+        TransitionHistory domain = transitionHistoryDtoMapping.toDomain(dto);
+        domain.setOwnerId(ownerId);
+        TransitionHistory rt = transitionHistoryService.getDraft(domain);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(transitionHistoryDtoMapping.toDto(rt)));
+    }
+
+    /**
+    * 查询fetch_default 流转记录
+    * 
+    *
+    * @param ownerId ownerId
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<TransitionHistoryDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_default", tags = {"流转记录" },  notes = "TransitionHistory-fetch_default ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-TransitionHistory-fetch_default-all') or hasPermission('work_item',#ownerId,#dto,'ibizplm-TransitionHistory-fetch_default')")
+    @PostMapping("work_items/{ownerId}/transition_histories/fetch_default")
+    public Mono<ResponseEntity<List<TransitionHistoryDTO>>> fetchDefaultByOwnerId
+            (@PathVariable("ownerId") String ownerId, @Validated @RequestBody TransitionHistoryFilterDTO dto) {
+        dto.setOwnerIdEQ(ownerId);
+        TransitionHistorySearchContext context = transitionHistoryFilterDtoMapping.toDomain(dto);
+        Page<TransitionHistory> domains = transitionHistoryService.fetchDefault(context) ;
+        List<TransitionHistoryDTO> list = transitionHistoryDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
+    * 获取Get 流转记录
+    * 
+    *
+    * @param projectId projectId
+    * @param ownerId ownerId
+    * @param id id
+    * @return Mono<ResponseEntity<TransitionHistoryDTO>>
+    */
+    @ApiOperation(value = "获取Get", tags = {"流转记录" },  notes = "TransitionHistory-Get ")
+    @PostAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-TransitionHistory-Get-all')  or hasPermission('project',#projectId,this.transitionHistoryDtoMapping.toDomain(returnObject.block().getBody()),'ibizplm-TransitionHistory-Get')")
+    @GetMapping("projects/{projectId}/work_items/{ownerId}/transition_histories/{id}")
+    public Mono<ResponseEntity<TransitionHistoryDTO>> getByProjectIdAndOwnerIdAndId
+            (@PathVariable("projectId") String projectId, @PathVariable("ownerId") String ownerId, @PathVariable("id") String id) {
+        TransitionHistory rt = transitionHistoryService.get(id);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(transitionHistoryDtoMapping.toDto(rt)));
+    }
+
+    /**
+    * 删除Remove 流转记录
+    * 
+    *
+    * @param projectId projectId
+    * @param ownerId ownerId
+    * @param id id
+    * @return Mono<ResponseEntity<Boolean>>
+    */
+    @ApiOperation(value = "删除Remove", tags = {"流转记录" },  notes = "TransitionHistory-Remove ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-TransitionHistory-Remove-all') or hasPermission('project',#projectId,this.transitionHistoryService.get(#id),'ibizplm-TransitionHistory-Remove')")
+    @DeleteMapping("projects/{projectId}/work_items/{ownerId}/transition_histories/{id}")
+    public Mono<ResponseEntity<Boolean>> removeByProjectIdAndOwnerIdAndId
+            (@PathVariable("projectId") String projectId, @PathVariable("ownerId") String ownerId, @PathVariable("id") String id) {
+        Boolean rt = transitionHistoryService.remove(id);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * 校验CheckKey 流转记录
+    * 
+    *
+    * @param projectId projectId
+    * @param ownerId ownerId
+    * @param dto dto
+    * @return Mono<ResponseEntity<Integer>>
+    */
+    @ApiOperation(value = "校验CheckKey", tags = {"流转记录" },  notes = "TransitionHistory-CheckKey ")
+    @PostMapping("projects/{projectId}/work_items/{ownerId}/transition_histories/check_key")
+    public Mono<ResponseEntity<CheckKeyStatus>> checkKeyByProjectIdAndOwnerId
+            (@PathVariable("projectId") String projectId, @PathVariable("ownerId") String ownerId, @Validated @RequestBody TransitionHistoryDTO dto) {
+        TransitionHistory domain = transitionHistoryDtoMapping.toDomain(dto);
+        domain.setOwnerId(ownerId);
+        CheckKeyStatus rt = transitionHistoryService.checkKey(domain);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * 草稿GetDraft 流转记录
+    * 
+    *
+    * @param projectId projectId
+    * @param ownerId ownerId
+    * @param dto dto
+    * @return Mono<ResponseEntity<TransitionHistoryDTO>>
+    */
+    @ApiOperation(value = "草稿GetDraft", tags = {"流转记录" },  notes = "TransitionHistory-GetDraft ")
+    @GetMapping("projects/{projectId}/work_items/{ownerId}/transition_histories/get_draft")
+    public Mono<ResponseEntity<TransitionHistoryDTO>> getDraftByProjectIdAndOwnerId
+            (@PathVariable("projectId") String projectId, @PathVariable("ownerId") String ownerId, @SpringQueryMap TransitionHistoryDTO dto) {
+        TransitionHistory domain = transitionHistoryDtoMapping.toDomain(dto);
+        domain.setOwnerId(ownerId);
+        TransitionHistory rt = transitionHistoryService.getDraft(domain);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(transitionHistoryDtoMapping.toDto(rt)));
+    }
+
+    /**
+    * 查询fetch_default 流转记录
+    * 
+    *
+    * @param projectId projectId
+    * @param ownerId ownerId
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<TransitionHistoryDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_default", tags = {"流转记录" },  notes = "TransitionHistory-fetch_default ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-TransitionHistory-fetch_default-all') or hasPermission('project',#projectId,#dto,'ibizplm-TransitionHistory-fetch_default')")
+    @PostMapping("projects/{projectId}/work_items/{ownerId}/transition_histories/fetch_default")
+    public Mono<ResponseEntity<List<TransitionHistoryDTO>>> fetchDefaultByProjectIdAndOwnerId
+            (@PathVariable("projectId") String projectId, @PathVariable("ownerId") String ownerId, @Validated @RequestBody TransitionHistoryFilterDTO dto) {
+        dto.setOwnerIdEQ(ownerId);
         TransitionHistorySearchContext context = transitionHistoryFilterDtoMapping.toDomain(dto);
         Page<TransitionHistory> domains = transitionHistoryService.fetchDefault(context) ;
         List<TransitionHistoryDTO> list = transitionHistoryDtoMapping.toDto(domains.getContent());

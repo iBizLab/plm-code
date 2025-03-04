@@ -3,7 +3,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'test_case_grid_view',
-  deviewId: '50144A49-8799-48CD-9DCE-AF92F173A0BB',
+  deviewId: 'c6e9b8e52430cf5909d073239cf29c80',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.TEST_CASE',
@@ -347,14 +347,6 @@ export default {
     ],
     appViewRefs: [
       {
-        openMode: 'INDEXVIEWTAB_POPUPMODAL',
-        realOpenMode: 'INDEXVIEWTAB_POPUPMODAL',
-        realTitle: '用例',
-        refAppViewId: 'plmweb.test_case_main_view',
-        name: 'EDITDATA',
-        id: 'editdata',
-      },
-      {
         realTitle: '用例编辑视图',
         realTitleLanguageRes: {
           lanResTag: 'PAGE.TITLE.TEST_CASE.EDITVIEW',
@@ -362,6 +354,14 @@ export default {
         refAppViewId: 'plmweb.test_case_edit_view',
         name: 'NEWDATA',
         id: 'newdata',
+      },
+      {
+        openMode: 'INDEXVIEWTAB_POPUPMODAL',
+        realOpenMode: 'INDEXVIEWTAB_POPUPMODAL',
+        realTitle: '用例',
+        refAppViewId: 'plmweb.test_case_main_view',
+        name: 'EDITDATA',
+        id: 'editdata',
       },
     ],
     controls: [
@@ -397,7 +397,7 @@ export default {
         controlParam: {
           id: 'toolbar',
         },
-        modelId: '9DE9C72C-1B98-419C-902F-AC9374671DC4',
+        modelId: '1720bebcdfeaaca12f53de968381bdf3',
         modelType: 'PSDETOOLBAR',
         name: 'toolbar',
         id: 'test_case_grid_view_toolbar',
@@ -593,7 +593,7 @@ export default {
         controlParam: {
           id: 'grid',
         },
-        modelId: 'FB9A3AB2-F6D0-45AF-9977-25F262512BDE',
+        modelId: '3e62f00599ccaf8befc877f1972923a7',
         modelType: 'PSDEGRID',
         name: 'grid',
         id: 'plmweb.test_case.test_case_grid_view_grid',
@@ -628,7 +628,7 @@ export default {
         controlParam: {
           id: 'searchform',
         },
-        modelId: '5EF74868-83C3-4AE3-9525-564A61F83A61',
+        modelId: '93a00761b379cc5e675b17e54220d596',
         modelType: 'PSDEFORM_SEARCHFORM',
         name: 'searchform',
         id: 'plmweb.test_case.test_case_grid_view_search_form',
@@ -660,7 +660,7 @@ export default {
     logicName: 'test_case_grid_view表格视图布局',
     appDataEntityId: 'plmweb.test_case',
     controlParam: {},
-    modelId: 'F1AFF640-89EC-4EB4-A8BC-2F573BB16093',
+    modelId: 'fb3c25335e61cdf97ea1ee74bb3558b6',
     modelType: 'PSSYSVIEWLAYOUTPANEL',
     name: 'layoutpanel',
     id: 'usr1112789424',
@@ -670,7 +670,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '42b96926b79963b0a1a0c5fb59c7352d',
+  modelId: '6a6204d14370f467cba1710909aadf30',
   modelType: 'PSAPPDEVIEW',
   name: 'test_casetest_case_grid_view',
   id: 'plmweb.test_case_test_case_grid_view',

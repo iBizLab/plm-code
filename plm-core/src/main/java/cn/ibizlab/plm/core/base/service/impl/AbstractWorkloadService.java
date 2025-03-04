@@ -344,6 +344,17 @@ public abstract class AbstractWorkloadService extends ServiceImpl<WorkloadMapper
         return list;
    }
 	
+   public Page<Workload> fetchMyWorkload(WorkloadSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Workload> pages=baseMapper.searchMyWorkload(context.getPages(),context,context.getSelectCond());
+        List<Workload> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<Workload> listMyWorkload(WorkloadSearchContext context) {
+        List<Workload> list = baseMapper.listMyWorkload(context,context.getSelectCond());
+        return list;
+   }
+	
    public Page<Workload> fetchTestCaseWorkload(WorkloadSearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<Workload> pages=baseMapper.searchTestCaseWorkload(context.getPages(),context,context.getSelectCond());
         List<Workload> list = pages.getRecords();

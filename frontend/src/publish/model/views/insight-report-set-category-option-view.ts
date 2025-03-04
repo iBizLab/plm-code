@@ -5,7 +5,7 @@ export default {
   loadDefault: true,
   openMode: 'POPUPMODAL',
   deviewCodeName: 'set_category_option_view',
-  deviewId: '9B0A4428-A1CE-4672-B9C0-CC519D3EAC4C',
+  deviewId: '54000695f63be580359bf6d8fd2d7a23',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.INSIGHT_REPORT',
@@ -179,7 +179,7 @@ export default {
       controlParam: {
         id: 'form',
       },
-      modelId: '3D9407FC-516A-47FB-B4DF-FF4680BCDADE',
+      modelId: '14b43cd99b5f84bd4a288be8676eceae',
       modelType: 'PSDEFORM_EDITFORM',
       name: 'form',
       id: 'plmweb.insight_report.set_category_option_view_form',
@@ -224,7 +224,7 @@ export default {
   width: 600,
   enableDP: true,
   showCaptionBar: true,
-  modelId: '40f4b190400b24bfccd8a86c87e00fd0',
+  modelId: 'fb5d67b9787eba3dbf41d854e1fcd31c',
   modelType: 'PSAPPDEVIEW',
   name: 'insight_reportset_category_option_view',
   id: 'plmweb.insight_report_set_category_option_view',

@@ -2,7 +2,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'in_progress_grid_view',
-  deviewId: '20ca75612a2d9fe91e66b3acb9a27208',
+  deviewId: 'f80aaf5aebed549909d16cadf1c963c2',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.TEST_PLAN',
@@ -368,7 +368,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '569c83730970d60f6a33661568087bf8',
+  modelId: '3f0f54c9a44bf75846916052d0a13d5c',
   modelType: 'PSAPPDEVIEW',
   name: 'test_planin_progress_grid_view',
   id: 'plmweb.test_plan_in_progress_grid_view',

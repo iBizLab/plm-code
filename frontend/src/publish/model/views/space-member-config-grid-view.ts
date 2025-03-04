@@ -2,7 +2,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'config_grid_view',
-  deviewId: '497520aefed42b2875dece0f91e66429',
+  deviewId: '248a6a9936a9ca101ebe75156b71b44f',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.SPACE_MEMBER',
@@ -85,15 +85,6 @@ export default {
   ],
   appViewRefs: [
     {
-      realTitle: '空间成员编辑视图',
-      realTitleLanguageRes: {
-        lanResTag: 'PAGE.TITLE.SPACE_MEMBER.EDITVIEW',
-      },
-      refAppViewId: 'plmweb.space_member_edit_view',
-      name: 'NEWDATA',
-      id: 'newdata',
-    },
-    {
       realTitle: '空间成员数据重定向视图',
       realTitleLanguageRes: {
         lanResTag: 'PAGE.TITLE.SPACE_MEMBER.REDIRECTVIEW',
@@ -101,6 +92,15 @@ export default {
       refAppViewId: 'plmweb.space_member_redirect_view',
       name: 'EDITDATA',
       id: 'editdata',
+    },
+    {
+      realTitle: '空间成员编辑视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.SPACE_MEMBER.EDITVIEW',
+      },
+      refAppViewId: 'plmweb.space_member_edit_view',
+      name: 'NEWDATA',
+      id: 'newdata',
     },
     {
       realOpenMode: 'POPUPMODAL',
@@ -190,9 +190,10 @@ export default {
           id: 'role_id',
         },
         {
-          clconvertMode: 'NONE',
+          clconvertMode: 'FRONT',
           dataItemName: 'title',
           excelCaption: '职位',
+          appCodeListId: 'plmweb.base__position',
           appDEFieldId: 'title',
           valueType: 'SIMPLE',
           aggMode: 'NONE',
@@ -478,7 +479,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '85130571d7b835e9206c9b31705b683c',
+  modelId: 'cb69f1cd10359947c933a29f5bf7a171',
   modelType: 'PSAPPDEVIEW',
   name: 'space_memberconfig_grid_view',
   id: 'plmweb.space_member_config_grid_view',

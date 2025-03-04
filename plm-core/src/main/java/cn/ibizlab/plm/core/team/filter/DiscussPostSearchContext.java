@@ -104,7 +104,7 @@ public class DiscussPostSearchContext extends QueryWrapperContext<DiscussPost> {
     public void setQuery(String query) {
         this.query=query;
         if(!ObjectUtils.isEmpty(query))
-            this.getFilter().and(QueryFilter.createQuery().or(QueryFilter.createQuery().like("name",query)));
+            this.getFilter().and(QueryFilter.createQuery().or(QueryFilter.createQuery().like("identifier",query),QueryFilter.createQuery().like("name",query)));
     }
 
     @JsonIgnore

@@ -5,7 +5,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'pick_up_grid_view',
-  deviewId: '46d645134f6b4b6bf78aae140a30652d',
+  deviewId: '4b8aa69a454a373ea77fcacb524b4c68',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.SPRINT',
@@ -139,6 +139,7 @@ export default {
           appCodeListId: 'plmweb.prodmgmt__category',
           appDEFieldId: 'categories',
           valueType: 'SIMPLE',
+          enableRowEdit: true,
           aggMode: 'NONE',
           align: 'LEFT',
           caption: '类别',
@@ -423,6 +424,26 @@ export default {
       ],
       degridEditItems: [
         {
+          caption: '类别',
+          codeName: 'categories',
+          enableCond: 3,
+          appDEFieldId: 'categories',
+          editor: {
+            appCodeListId: 'plmweb.prodmgmt__category',
+            editorParams: {
+              readonly: 'true',
+            },
+            editorType: 'MDROPDOWNLIST',
+            valueType: 'SIMPLE',
+            editable: true,
+            readOnly: true,
+            id: 'categories',
+          },
+          allowEmpty: true,
+          needCodeListConfig: true,
+          id: 'categories',
+        },
+        {
           caption: '负责人',
           codeName: 'assignee_name',
           enableCond: 3,
@@ -700,7 +721,7 @@ export default {
   viewType: 'DEPICKUPGRIDVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '8b46fe2b83aa7419db974793005793a5',
+  modelId: '7c74041d95e4aa9cb4cc61c93757d211',
   modelType: 'PSAPPDEVIEW',
   name: 'sprintPickupGridView',
   id: 'plmweb.sprint_pick_up_grid_view',

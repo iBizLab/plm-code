@@ -2,7 +2,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'grid_view',
-  deviewId: '6FD0C995-C5A6-46F5-988C-35E4556FF6F4',
+  deviewId: '5352703f996e0dace18b9cd94a18b28b',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.PROJECT_STATE',
@@ -18,16 +18,6 @@ export default {
     },
   ],
   appViewLogics: [
-    {
-      eventNames: 'onLoadSuccess',
-      logicTrigger: 'VIEWEVENT',
-      logicType: 'APPDEUILOGIC',
-      appDEUILogicId: 'cal_is_system',
-      appDataEntityId: 'plmweb.project_state',
-      builtinLogic: true,
-      name: 'LOGIC_VIEWMSG',
-      id: 'logic_viewmsg',
-    },
     {
       logicTrigger: 'CUSTOM',
       logicType: 'APPUILOGIC',
@@ -76,13 +66,6 @@ export default {
   appViewMsgGroupId: 'usrvmgroup1107155954',
   appViewRefs: [
     {
-      realOpenMode: 'POPUPMODAL',
-      realTitle: '项目状态选项操作视图',
-      refAppViewId: 'plmweb.project_state_quick_create_option_view',
-      name: 'NEWDATA',
-      id: 'newdata',
-    },
-    {
       realTitle: '项目状态数据重定向视图',
       realTitleLanguageRes: {
         lanResTag: 'PAGE.TITLE.PROJECT_STATE.REDIRECTVIEW',
@@ -90,6 +73,13 @@ export default {
       refAppViewId: 'plmweb.project_state_redirect_view',
       name: 'EDITDATA',
       id: 'editdata',
+    },
+    {
+      realOpenMode: 'POPUPMODAL',
+      realTitle: '项目状态选项操作视图',
+      refAppViewId: 'plmweb.project_state_quick_create_option_view',
+      name: 'NEWDATA',
+      id: 'newdata',
     },
   ],
   controls: [
@@ -156,7 +146,7 @@ export default {
                   cssClass: 'fa fa-edit',
                   glyph: 'xf044@FontAwesome',
                 },
-                id: 'u8247bb2',
+                id: 'uf478b96',
               },
               {
                 actionLevel: 100,
@@ -170,7 +160,7 @@ export default {
                   cssClass: 'fa fa-trash-o',
                   glyph: 'xf014@FontAwesome',
                 },
-                id: 'u2cc9dd2',
+                id: 'u8479c1e',
               },
             ],
             appDataEntityId: 'plmweb.project_state',
@@ -298,10 +288,21 @@ export default {
       controlType: 'GRID',
       logicName: '项目状态实体表格视图（工作项全局）_表格',
       appDataEntityId: 'plmweb.project_state',
+      controlLogics: [
+        {
+          eventNames: 'onLoadSuccess',
+          logicTag: 'grid',
+          logicType: 'APPDEUILOGIC',
+          appDEUILogicId: 'judge_column_state',
+          appDataEntityId: 'plmweb.project_state',
+          triggerType: 'CTRLEVENT',
+          id: 'judge_column_state',
+        },
+      ],
       controlParam: {
         id: 'grid',
       },
-      modelId: '0B9F694A-3E01-4C3F-8648-326948528D8D',
+      modelId: 'ff5f2381b3f599736255ad44910d4184',
       modelType: 'PSDEGRID',
       name: 'grid',
       id: 'plmweb.project_state.grid_view_grid',
@@ -361,7 +362,7 @@ export default {
         },
         id: 'tabtoolbar',
       },
-      modelId: 'CA60E60C-1B40-4D51-9BAC-FA1BC1942E2F',
+      modelId: 'e499a8da1c6f64c0b1fbcc70e11eb2f4',
       modelType: 'PSDETOOLBAR',
       name: 'tabtoolbar',
       id: 'grid_view_tabtoolbar',
@@ -404,7 +405,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: false,
-  modelId: '5cdceb3a7d04a40d5010b2b82b24f9ba',
+  modelId: '7058f572587d5d11381d9c30c02069b3',
   modelType: 'PSAPPDEVIEW',
   name: 'project_stategrid_view',
   id: 'plmweb.project_state_grid_view',

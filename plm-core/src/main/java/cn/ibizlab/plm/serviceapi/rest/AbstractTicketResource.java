@@ -187,6 +187,7 @@ public abstract class AbstractTicketResource {
     * @return Mono<ResponseEntity<TicketDTO>>
     */
     @ApiOperation(value = "allocate_person", tags = {"工单" },  notes = "Ticket-allocate_person ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Ticket-allocate_person-all') or hasPermission(this.ticketDtoMapping.toDomain(#dto),'ibizplm-Ticket-allocate_person')")
     @PostMapping("tickets/{id}/allocate_person")
     public Mono<ResponseEntity<ResponseWrapper<TicketDTO>>>allocatePersonById
             (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<TicketDTO> dto) {
@@ -264,6 +265,7 @@ public abstract class AbstractTicketResource {
     * @return Mono<ResponseEntity<TicketDTO>>
     */
     @ApiOperation(value = "choose_tag", tags = {"工单" },  notes = "Ticket-choose_tag ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Ticket-choose_tag-all') or hasPermission(this.ticketDtoMapping.toDomain(#dto),'ibizplm-Ticket-choose_tag')")
     @PostMapping("tickets/{id}/choose_tag")
     public Mono<ResponseEntity<ResponseWrapper<TicketDTO>>>chooseTagById
             (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<TicketDTO> dto) {
@@ -341,6 +343,7 @@ public abstract class AbstractTicketResource {
     * @return Mono<ResponseEntity<TicketDTO>>
     */
     @ApiOperation(value = "customer_del_ticket", tags = {"工单" },  notes = "Ticket-customer_del_ticket ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Ticket-customer_del_ticket-all') or hasPermission(this.ticketDtoMapping.toDomain(#dto),'ibizplm-Ticket-customer_del_ticket')")
     @PostMapping("tickets/{id}/customer_del_ticket")
     public Mono<ResponseEntity<ResponseWrapper<TicketDTO>>>customerDelTicketById
             (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<TicketDTO> dto) {
@@ -496,6 +499,7 @@ public abstract class AbstractTicketResource {
     * @return Mono<ResponseEntity<TicketDTO>>
     */
     @ApiOperation(value = "product_ticket_re_counters", tags = {"工单" },  notes = "Ticket-product_ticket_re_counters ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Ticket-product_ticket_re_counters-all') or hasPermission(this.ticketDtoMapping.toDomain(#dto),'ibizplm-Ticket-product_ticket_re_counters')")
     @PostMapping("tickets/{id}/product_ticket_re_counters")
     public Mono<ResponseEntity<ResponseWrapper<TicketDTO>>>productTicketReCountersById
             (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<TicketDTO> dto) {
@@ -770,6 +774,7 @@ public abstract class AbstractTicketResource {
     * @return Mono<ResponseEntity<TicketDTO>>
     */
     @ApiOperation(value = "allocate_person", tags = {"工单" },  notes = "Ticket-allocate_person ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Ticket-allocate_person-all') or hasPermission('product',#productId,this.ticketDtoMapping.toDomain(#dto),'ibizplm-Ticket-allocate_person')")
     @PostMapping("products/{productId}/tickets/{id}/allocate_person")
     public Mono<ResponseEntity<ResponseWrapper<TicketDTO>>>allocatePersonByProductIdAndId
             (@PathVariable("productId") String productId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<TicketDTO> dto) {
@@ -851,6 +856,7 @@ public abstract class AbstractTicketResource {
     * @return Mono<ResponseEntity<TicketDTO>>
     */
     @ApiOperation(value = "choose_tag", tags = {"工单" },  notes = "Ticket-choose_tag ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Ticket-choose_tag-all') or hasPermission('product',#productId,this.ticketDtoMapping.toDomain(#dto),'ibizplm-Ticket-choose_tag')")
     @PostMapping("products/{productId}/tickets/{id}/choose_tag")
     public Mono<ResponseEntity<ResponseWrapper<TicketDTO>>>chooseTagByProductIdAndId
             (@PathVariable("productId") String productId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<TicketDTO> dto) {
@@ -932,6 +938,7 @@ public abstract class AbstractTicketResource {
     * @return Mono<ResponseEntity<TicketDTO>>
     */
     @ApiOperation(value = "customer_del_ticket", tags = {"工单" },  notes = "Ticket-customer_del_ticket ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Ticket-customer_del_ticket-all') or hasPermission('product',#productId,this.ticketDtoMapping.toDomain(#dto),'ibizplm-Ticket-customer_del_ticket')")
     @PostMapping("products/{productId}/tickets/{id}/customer_del_ticket")
     public Mono<ResponseEntity<ResponseWrapper<TicketDTO>>>customerDelTicketByProductIdAndId
             (@PathVariable("productId") String productId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<TicketDTO> dto) {
@@ -1095,6 +1102,7 @@ public abstract class AbstractTicketResource {
     * @return Mono<ResponseEntity<TicketDTO>>
     */
     @ApiOperation(value = "product_ticket_re_counters", tags = {"工单" },  notes = "Ticket-product_ticket_re_counters ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Ticket-product_ticket_re_counters-all') or hasPermission('product',#productId,this.ticketDtoMapping.toDomain(#dto),'ibizplm-Ticket-product_ticket_re_counters')")
     @PostMapping("products/{productId}/tickets/{id}/product_ticket_re_counters")
     public Mono<ResponseEntity<ResponseWrapper<TicketDTO>>>productTicketReCountersByProductIdAndId
             (@PathVariable("productId") String productId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<TicketDTO> dto) {

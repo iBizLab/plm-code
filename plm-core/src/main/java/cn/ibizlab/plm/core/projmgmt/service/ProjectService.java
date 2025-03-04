@@ -494,6 +494,22 @@ public interface ProjectService extends IService<Project> {
     List<Project> listDefault(ProjectSearchContext context);
 
     /**
+    * fetchView
+    * 
+    * @param context
+    * @return
+    */
+    Page<Project> fetchView(ProjectSearchContext context);
+
+    /**
+    * listView
+    * 
+    * @param context
+    * @return
+    */
+    List<Project> listView(ProjectSearchContext context);
+
+    /**
     * fetchAdmin
     * 
     * @param context
@@ -908,23 +924,6 @@ public interface ProjectService extends IService<Project> {
     default Project getMajorData(Project et) {
         return et;
     }
-
-    /**
-    * fetchView
-    * 
-    * @param context
-    * @return
-    */
-    Page<Project> fetchView(ProjectSearchContext context);
-
-    /**
-    * listView
-    * 
-    * @param context
-    * @return
-    */
-    List<Project> listView(ProjectSearchContext context);
-
 
     default ImportResult importData(String config, Boolean ignoreError, List<Project> list) {
         ImportResult rt = new ImportResult().setTotal(list.size());

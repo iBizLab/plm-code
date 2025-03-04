@@ -376,7 +376,7 @@ export default {
     logicName: 'tab_exp_view分页导航视图布局面板',
     appDataEntityId: 'plmweb.space',
     controlParam: {},
-    modelId: '53EFB63B-B305-4C75-9C28-79867B7B67BC',
+    modelId: '7cfcde648844fa99b98f3f1555defe73',
     modelType: 'PSSYSVIEWLAYOUTPANEL',
     name: 'layoutpanel',
     id: 'usr0416959845',

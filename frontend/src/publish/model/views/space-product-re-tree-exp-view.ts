@@ -802,7 +802,7 @@ export default {
             id: 'treeexpbar_tree',
           },
           sysPFPluginId: 'group_tree',
-          modelId: '7432bec385d110e3a8509da038a7d629',
+          modelId: '546f5756504fc17a5d8312f4ce550ef6',
           modelType: 'PSDETREEVIEW',
           name: 'treeexpbar_tree',
           id: 'plmweb.space.product_relation_tree_view',

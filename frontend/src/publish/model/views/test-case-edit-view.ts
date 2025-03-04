@@ -94,10 +94,10 @@ export default {
           codeName: 'estimated_update',
           defiupdateDetails: [
             {
-              id: 'remaining_workload',
+              id: 'workload_schedule',
             },
             {
-              id: 'workload_schedule',
+              id: 'remaining_workload',
             },
           ],
           scriptCode:

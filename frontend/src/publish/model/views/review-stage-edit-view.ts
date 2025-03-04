@@ -5,7 +5,7 @@ export default {
   loadDefault: true,
   funcViewMode: 'EDITVIEW',
   deviewCodeName: 'EditView',
-  deviewId: '220e568964bffddd6a86e0db6e8254e2',
+  deviewId: '97e570ae50829c715ef2b5635b6f3c45',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.REVIEW_STAGE',
@@ -382,7 +382,7 @@ export default {
       controlParam: {
         id: 'form',
       },
-      modelId: 'caaa2fdea467f02e9c44da4900378017',
+      modelId: '7152e11f10702a7357f6402f72988701',
       modelType: 'PSDEFORM_EDITFORM',
       name: 'form',
       id: 'plmweb.review_stage.main',
@@ -429,7 +429,7 @@ export default {
   viewType: 'DEEDITVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: 'f5a87b6a7bca6b98df2495c5f1dd05e3',
+  modelId: '772adfc25d148fc70f3025c7db4f12bb',
   modelType: 'PSAPPDEVIEW',
   name: 'review_stageEditView',
   id: 'plmweb.review_stage_edit_view',

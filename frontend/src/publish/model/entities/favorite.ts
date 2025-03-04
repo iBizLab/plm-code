@@ -431,6 +431,28 @@ export default {
       id: 'fetch_default',
     },
     {
+      codeName: 'fetch_my_favorite',
+      methodType: 'FETCH',
+      appDEMethodInput: {
+        appDEMethodDTOId: 'favorite_filter_dto',
+        type: 'DTO',
+        id: '输入对象',
+      },
+      appDEMethodReturn: {
+        appDEMethodDTOId: 'favorite_dto',
+        type: 'PAGE',
+        id: '返回对象',
+      },
+      requestMethod: 'POST',
+      requestParamType: 'ENTITY',
+      requestPath: '/fetch_my_favorite',
+      actionType: 'REMOTE',
+      dataSetName: 'my_favorite',
+      dataSetTag: 'my_favorite',
+      dataSetType: 'REMOTE',
+      id: 'fetch_my_favorite',
+    },
+    {
       codeName: 'FilterCreate',
       methodType: 'FILTERACTION',
       builtinMethod: true,

@@ -3,7 +3,7 @@ export default {
   expandSearchForm: true,
   loadDefault: true,
   deviewCodeName: 'overview_dashboard_view',
-  deviewId: 'FE0121CB-2454-4A8D-AC35-3CBE68317552',
+  deviewId: '060e6b1cf4b1314f584a6d94eebda9b2',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.SPRINT',
@@ -42,7 +42,7 @@ export default {
         {
           portletAppView: {
             deviewCodeName: 'base_info_custom_view',
-            deviewId: '34ACB6D7-B1AE-4D59-A47B-3DC8EC008648',
+            deviewId: 'e6e8000c5116773a988cf209818498c7',
             accUserMode: 2,
             capLanguageRes: {
               lanResTag: 'DE.LNAME.SPRINT',
@@ -463,7 +463,7 @@ export default {
                   sysCss: {
                     cssName: 'base-info-form',
                   },
-                  modelId: 'F558829C-575F-42D6-8543-F792FB803F92',
+                  modelId: '9b4e5ac5df3cf9d0abfc6a678d52e9cc',
                   modelType: 'PSDEFORM_EDITFORM',
                   name: 'form',
                   id: 'plmweb.sprint.overview_baseinfo_form',
@@ -486,7 +486,7 @@ export default {
               logicName: '迭代概览基本信息自定义视图布局面板',
               appDataEntityId: 'plmweb.sprint',
               controlParam: {},
-              modelId: 'A62019FF-3F6C-454D-B0DC-C08ECB0E36C5',
+              modelId: '78e3395bba7a5f981e43819c11bc7801',
               modelType: 'PSSYSVIEWLAYOUTPANEL',
               name: 'layoutpanel',
               id: 'usr0528298628',
@@ -496,7 +496,7 @@ export default {
             viewType: 'DECUSTOMVIEW',
             enableDP: true,
             showCaptionBar: true,
-            modelId: '6b820b9d30e488b6068420ba0bb12afe',
+            modelId: 'b1e9ec6889e8625e8b249603ea0289ef',
             modelType: 'PSAPPDEVIEW',
             name: 'sprintbase_info_custom_view',
             id: 'plmweb.sprint_base_info_custom_view',
@@ -518,7 +518,7 @@ export default {
           height: 410,
           appDataEntityId: 'plmweb.sprint',
           controlParam: {},
-          modelId: '31A2B3B9-F7A5-4FFC-A2A7-BFE738F2846A',
+          modelId: 'e74aaedab49476b728935e6239800b9b',
           modelType: 'PSSYSDBPART',
           name: 'dashboard_sysportlet1',
           id: 'base_info',
@@ -526,7 +526,7 @@ export default {
         {
           portletAppView: {
             deviewCodeName: 'burn_out_custom_view',
-            deviewId: '774C1AEE-0F98-4678-AFE9-4F513F872692',
+            deviewId: 'b4ece0a3f2784ab3d0697390483c9363',
             accUserMode: 2,
             capLanguageRes: {
               lanResTag: 'DE.LNAME.WORK_ITEM',
@@ -748,7 +748,7 @@ export default {
                   controlParam: {
                     id: 'chart',
                   },
-                  modelId: '164EA40A-40AA-486A-8B59-CCB3FEF42025',
+                  modelId: '75f43d87f61b49509797d7e0504c6464',
                   modelType: 'PSDECHART',
                   userParam: {
                     'EC.color':
@@ -775,7 +775,7 @@ export default {
               logicName: '燃尽图自定义视图布局面板',
               appDataEntityId: 'plmweb.work_item',
               controlParam: {},
-              modelId: '00968C11-52CB-4330-A47D-8DA653EFFDCA',
+              modelId: '6335a5451f3974e356d2b532e4dd5805',
               modelType: 'PSSYSVIEWLAYOUTPANEL',
               name: 'layoutpanel',
               id: 'usr0614031297',
@@ -785,7 +785,7 @@ export default {
             viewType: 'DECUSTOMVIEW',
             enableDP: true,
             showCaptionBar: true,
-            modelId: '7665fdff78d4150c6520332b4bf38291',
+            modelId: '94a1b17fb0d2a978c9364b56eda053c2',
             modelType: 'PSAPPDEVIEW',
             name: 'work_itemburn_out_custom_view',
             id: 'plmweb.work_item_burn_out_custom_view',
@@ -807,7 +807,7 @@ export default {
           height: 410,
           appDataEntityId: 'plmweb.sprint',
           controlParam: {},
-          modelId: 'EC467ADF-40EA-41D8-8BE6-109DEA2BE43B',
+          modelId: 'b2c7d987660b449449e1d27c67826ca3',
           modelType: 'PSSYSDBPART',
           name: 'dashboard_sysportlet7',
           id: 'burn_out_chart',
@@ -818,7 +818,7 @@ export default {
             xdataControlName: 'grid',
             loadDefault: true,
             deviewCodeName: 'sprint_relation_grid_view',
-            deviewId: '5B6E617A-9E61-45E1-91DC-0A4CEE0F7571',
+            deviewId: 'b5893e06890f981ec28b958656252f4b',
             accUserMode: 2,
             capLanguageRes: {
               lanResTag: 'DE.LNAME.RELEASE',
@@ -876,15 +876,6 @@ export default {
             ],
             appViewRefs: [
               {
-                realTitle: '项目发布数据重定向视图',
-                realTitleLanguageRes: {
-                  lanResTag: 'PAGE.TITLE.RELEASE.REDIRECTVIEW',
-                },
-                refAppViewId: 'plmweb.release_redirect_view',
-                name: 'EDITDATA',
-                id: 'editdata',
-              },
-              {
                 realTitle: '项目发布编辑视图',
                 realTitleLanguageRes: {
                   lanResTag: 'PAGE.TITLE.RELEASE.EDITVIEW',
@@ -892,6 +883,15 @@ export default {
                 refAppViewId: 'plmweb.release_edit_view',
                 name: 'NEWDATA',
                 id: 'newdata',
+              },
+              {
+                realTitle: '项目发布数据重定向视图',
+                realTitleLanguageRes: {
+                  lanResTag: 'PAGE.TITLE.RELEASE.REDIRECTVIEW',
+                },
+                refAppViewId: 'plmweb.release_redirect_view',
+                name: 'EDITDATA',
+                id: 'editdata',
               },
             ],
             controls: [
@@ -921,7 +921,7 @@ export default {
                             cssClass: 'fa fa-unlink',
                             glyph: 'xf127@FontAwesome',
                           },
-                          id: 'u9a3d247',
+                          id: 'u410785d',
                         },
                       ],
                       appDataEntityId: 'plmweb.release',
@@ -1100,7 +1100,7 @@ export default {
                 controlParam: {
                   id: 'grid',
                 },
-                modelId: '493B8759-D631-492D-8FCB-1A47B026C7D8',
+                modelId: '0b74c01493482610e1e96e4bd002d102',
                 modelType: 'PSDEGRID',
                 name: 'grid',
                 id: 'plmweb.release.sprint_relation_grid',
@@ -1143,7 +1143,7 @@ export default {
             viewType: 'DEGRIDVIEW',
             enableDP: true,
             showCaptionBar: false,
-            modelId: '24231cedc94f49c202f83fc0ca4a9bf1',
+            modelId: 'c6372c3ebdf701ef0018acc3d4f4a9b0',
             modelType: 'PSAPPDEVIEW',
             name: 'releasesprint_relation_grid_view',
             id: 'plmweb.release_sprint_relation_grid_view',
@@ -1172,7 +1172,7 @@ export default {
                   cssClass: 'fa fa-plus',
                   glyph: 'xf067@FontAwesome',
                 },
-                id: 'u9d5c3dd',
+                id: 'u2cf135f',
               },
             ],
             appDataEntityId: 'plmweb.sprint',
@@ -1190,7 +1190,7 @@ export default {
           height: 400,
           appDataEntityId: 'plmweb.sprint',
           controlParam: {},
-          modelId: '10895E4C-B392-4C0A-94B0-6E0DA1315002',
+          modelId: 'ce65b3b947730a7870805108f291e3b5',
           modelType: 'PSSYSDBPART',
           name: 'dashboard_sysportlet2',
           id: 'release',
@@ -1201,7 +1201,7 @@ export default {
             xdataControlName: 'grid',
             loadDefault: true,
             deviewCodeName: 'sprint_relation_grid_view',
-            deviewId: '3A0BA382-C933-45CB-AA19-009997D7A76F',
+            deviewId: '29d7706eaf61d99e104c3fdee01a6e3e',
             accUserMode: 2,
             capLanguageRes: {
               lanResTag: 'DE.LNAME.TEST_PLAN',
@@ -1261,13 +1261,6 @@ export default {
             ],
             appViewRefs: [
               {
-                realOpenMode: 'POPUPMODAL',
-                realTitle: '测试计划编辑视图',
-                refAppViewId: 'plmweb.test_plan_update_option_view',
-                name: 'NEWDATA',
-                id: 'newdata',
-              },
-              {
                 realTitle: '测试计划数据重定向视图',
                 realTitleLanguageRes: {
                   lanResTag: 'PAGE.TITLE.TEST_PLAN.REDIRECTVIEW',
@@ -1275,6 +1268,13 @@ export default {
                 refAppViewId: 'plmweb.test_plan_redirect_view',
                 name: 'EDITDATA',
                 id: 'editdata',
+              },
+              {
+                realOpenMode: 'POPUPMODAL',
+                realTitle: '测试计划编辑视图',
+                refAppViewId: 'plmweb.test_plan_update_option_view',
+                name: 'NEWDATA',
+                id: 'newdata',
               },
             ],
             controls: [
@@ -1477,7 +1477,7 @@ export default {
                 controlParam: {
                   id: 'grid',
                 },
-                modelId: '95DADB11-6F8D-4C5B-94C5-E6124707398B',
+                modelId: '892d84ef8a083a014de3adf81de97bab',
                 modelType: 'PSDEGRID',
                 name: 'grid',
                 id: 'plmweb.test_plan.sprint_relation_grid',
@@ -1559,7 +1559,7 @@ export default {
             viewType: 'DEGRIDVIEW',
             enableDP: true,
             showCaptionBar: false,
-            modelId: 'fb572e5b988d8125026706baba478f62',
+            modelId: 'e30c7230c221347bbb40b818265b821b',
             modelType: 'PSAPPDEVIEW',
             name: 'test_plansprint_relation_grid_view',
             id: 'plmweb.test_plan_sprint_relation_grid_view',
@@ -1581,7 +1581,7 @@ export default {
           height: 400,
           appDataEntityId: 'plmweb.sprint',
           controlParam: {},
-          modelId: '5826C443-10A1-4657-8780-4FAC4E0E1EB1',
+          modelId: '1d7ff14540f2c6361468213e0d93c541',
           modelType: 'PSSYSDBPART',
           name: 'dashboard_sysportlet4',
           id: 'relation_test_plan',
@@ -1589,7 +1589,7 @@ export default {
         {
           portletAppView: {
             deviewCodeName: 'sprint_work_item_customView',
-            deviewId: '15C4D264-6405-484B-9CBF-14A9757FDCD8',
+            deviewId: '3b2181b04a8e9ec1da602f85b0f61f0b',
             accUserMode: 2,
             capLanguageRes: {
               lanResTag: 'DE.LNAME.WORK_ITEM',
@@ -2103,7 +2103,7 @@ export default {
                     id: 'chart',
                   },
                   sysPFPluginId: 'custom_label',
-                  modelId: '984E0C99-C984-4074-B1D3-7158D44315C6',
+                  modelId: '2518689225de65cc4edfc1006b96f58d',
                   modelType: 'PSDECHART',
                   userParam: {
                     'EC.color':
@@ -2130,7 +2130,7 @@ export default {
               logicName: '迭代工作项统计布局面板',
               appDataEntityId: 'plmweb.work_item',
               controlParam: {},
-              modelId: '16D1C19A-A2A1-43DC-BBF6-1549AA56173C',
+              modelId: 'e54e32f274a0d6157b3746c7743550ed',
               modelType: 'PSSYSVIEWLAYOUTPANEL',
               name: 'layoutpanel',
               id: 'usr0611741544',
@@ -2140,7 +2140,7 @@ export default {
             viewType: 'DECUSTOMVIEW',
             enableDP: true,
             showCaptionBar: true,
-            modelId: 'fa247606231ec8ba3ed8bf9ba3f4f3f2',
+            modelId: 'c4aab761195c7d2ccc2e17a2a4bdde77',
             modelType: 'PSAPPDEVIEW',
             name: 'work_itemsprint_work_item_customView',
             id: 'plmweb.work_item_sprint_work_item_custom_view',
@@ -2162,7 +2162,7 @@ export default {
           height: 450,
           appDataEntityId: 'plmweb.sprint',
           controlParam: {},
-          modelId: '6E1053FA-6895-4511-A87D-1AF1825D7226',
+          modelId: 'c9b75a792bbf39328c1b4589633ce04c',
           modelType: 'PSSYSDBPART',
           name: 'dashboard_sysportlet3',
           id: 'work_item_rep',
@@ -2323,7 +2323,7 @@ export default {
               appDataEntityId: 'plmweb.work_item',
               controlParam: {},
               sysPFPluginId: 'custom_label',
-              modelId: '4F3457BE-2602-4F8A-A8BE-7CFE6A28AE91',
+              modelId: 'c0a9ca15abd46717678b585fd613be4b',
               modelType: 'PSDECHART',
               userParam: {
                 'EC.color':
@@ -2338,7 +2338,7 @@ export default {
           height: 450,
           appDataEntityId: 'plmweb.sprint',
           controlParam: {},
-          modelId: 'C6496898-5185-4577-8DC2-E6E6937DC69C',
+          modelId: '2d8b9d09467d9bb2fc261aedfecadbdd',
           modelType: 'PSSYSDBPART',
           name: 'dashboard_sysportlet6',
           id: 'sprint_member',
@@ -2348,7 +2348,7 @@ export default {
             xdataControlName: 'grid',
             loadDefault: true,
             deviewCodeName: 'sprint_contribution_grid_view',
-            deviewId: '5C2B881C-A78C-4C3F-BF79-B2AAF2F9C542',
+            deviewId: '55f47c1f82123287e1702c837ddac47f',
             accUserMode: 2,
             capLanguageRes: {
               lanResTag: 'DE.LNAME.WORK_ITEM',
@@ -2829,7 +2829,7 @@ export default {
                 controlParam: {
                   id: 'grid',
                 },
-                modelId: 'ED33EED2-382F-48BA-AE57-EF60099ABA98',
+                modelId: '44258d466245912a6265cf38f5599cec',
                 modelType: 'PSDEGRID',
                 name: 'grid',
                 id: 'plmweb.work_item.sprint_contribution_grid',
@@ -2872,7 +2872,7 @@ export default {
             viewType: 'DEGRIDVIEW',
             enableDP: true,
             showCaptionBar: false,
-            modelId: 'df1e4c1b77bd11c824f381968c8f9a70',
+            modelId: 'd85345267575eefccd389e366bd75fb7',
             modelType: 'PSAPPDEVIEW',
             name: 'work_itemsprint_contribution_grid_view',
             id: 'plmweb.work_item_sprint_contribution_grid_view',
@@ -2893,7 +2893,7 @@ export default {
           height: 500,
           appDataEntityId: 'plmweb.sprint',
           controlParam: {},
-          modelId: '2E53D944-63F3-436B-9CCA-B9DB9C0AC94A',
+          modelId: 'ec23cc78528ec6f10473a3701f485948',
           modelType: 'PSSYSDBPART',
           name: 'dashboard_sysportlet5',
           id: 'contribution',
@@ -2928,7 +2928,7 @@ export default {
       sysCss: {
         cssName: 'recentcustom_dashboard_view_style',
       },
-      modelId: 'dc488a12d1d0d63b1f1339d594571e52',
+      modelId: 'c545586f8bf61a0aac63b1df5bcc2bba',
       modelType: 'PSSYSDASHBOARD',
       name: 'dashboard',
       id: 'plmweb.sprint.overview_dashboard_view_dashboard',
@@ -2962,7 +2962,7 @@ export default {
   viewType: 'DEPORTALVIEW',
   enableDP: true,
   showCaptionBar: false,
-  modelId: 'dc488a12d1d0d63b1f1339d594571e52',
+  modelId: 'c545586f8bf61a0aac63b1df5bcc2bba',
   modelType: 'PSAPPDEVIEW',
   name: 'sprintoverview_dashboard_view',
   id: 'plmweb.sprint_overview_dashboard_view',

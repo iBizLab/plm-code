@@ -1071,6 +1071,182 @@ public abstract class AbstractCommentResource {
     * 创建Create 评论
     * 
     *
+    * @param projectId projectId
+    * @param planId planId
+    * @param principalId principalId
+    * @param dto dto
+    * @return Mono<ResponseEntity<CommentDTO>>
+    */
+    @ApiOperation(value = "创建Create", tags = {"评论" },  notes = "Comment-Create ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Comment-Create-all') or hasPermission('project',#projectId,this.commentDtoMapping.toDomain(#dto),'ibizplm-Comment-Create')")
+    @PostMapping("projects/{projectId}/test_plans/{planId}/runs/{principalId}/comments")
+    public Mono<ResponseEntity<ResponseWrapper<CommentDTO>>>createByProjectIdAndPlanIdAndPrincipalId
+            (@PathVariable("projectId") String projectId, @PathVariable("planId") String planId, @PathVariable("principalId") String principalId, @Validated @RequestBody RequestWrapper<CommentDTO> dto) {
+        ResponseWrapper<CommentDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray())
+            dto.getList().forEach(item -> rt.add(createByProjectIdAndPlanIdAndPrincipalId(projectId, planId, principalId, item)));
+        else
+            rt.set(createByProjectIdAndPlanIdAndPrincipalId(projectId, planId, principalId, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * 创建Create 评论
+    * 
+    *
+    * @param projectId projectId
+    * @param planId planId
+    * @param principalId principalId
+    * @param dto dto
+    * @return ResponseEntity<CommentDTO>
+    */   
+    public CommentDTO createByProjectIdAndPlanIdAndPrincipalId
+            (String projectId, String planId, String principalId, CommentDTO dto) {
+        Comment domain = commentDtoMapping.toDomain(dto);
+        domain.setPrincipalId(principalId);
+        commentService.create(domain);
+        Comment rt = domain;
+        return commentDtoMapping.toDto(rt);
+    }
+
+    /**
+    * 更新Update 评论
+    * 
+    *
+    * @param projectId projectId
+    * @param planId planId
+    * @param principalId principalId
+    * @param id id
+    * @param dto dto
+    * @return Mono<ResponseEntity<CommentDTO>>
+    */
+    @ApiOperation(value = "更新Update", tags = {"评论" },  notes = "Comment-Update ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Comment-Update-all') or hasPermission('project',#projectId,this.commentService.get(#id),'ibizplm-Comment-Update')")
+    @VersionCheck(entity = "comment" , versionfield = "updateTime")
+    @PutMapping("projects/{projectId}/test_plans/{planId}/runs/{principalId}/comments/{id}")
+    public Mono<ResponseEntity<ResponseWrapper<CommentDTO>>>updateByProjectIdAndPlanIdAndPrincipalIdAndId
+            (@PathVariable("projectId") String projectId, @PathVariable("planId") String planId, @PathVariable("principalId") String principalId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<CommentDTO> dto) {
+        ResponseWrapper<CommentDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(updateByProjectIdAndPlanIdAndPrincipalIdAndId(projectId, planId, principalId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(updateByProjectIdAndPlanIdAndPrincipalIdAndId(projectId, planId, principalId, id, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * 更新Update 评论
+    * 
+    *
+    * @param projectId projectId
+    * @param planId planId
+    * @param principalId principalId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<CommentDTO>
+    */   
+    public CommentDTO updateByProjectIdAndPlanIdAndPrincipalIdAndId
+            (String projectId, String planId, String principalId, String id, CommentDTO dto) {
+        Comment domain = commentDtoMapping.toDomain(dto);
+        domain.setId(id);
+        commentService.update(domain);
+        Comment rt = domain;
+        return commentDtoMapping.toDto(rt);
+    }
+
+    /**
+    * delete 评论
+    * 
+    *
+    * @param projectId projectId
+    * @param planId planId
+    * @param principalId principalId
+    * @param id id
+    * @param dto dto
+    * @return Mono<ResponseEntity<CommentDTO>>
+    */
+    @ApiOperation(value = "delete", tags = {"评论" },  notes = "Comment-delete ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Comment-delete-all') or hasPermission('project',#projectId,this.commentDtoMapping.toDomain(#dto),'ibizplm-Comment-delete')")
+    @PostMapping("projects/{projectId}/test_plans/{planId}/runs/{principalId}/comments/{id}/delete")
+    public Mono<ResponseEntity<ResponseWrapper<CommentDTO>>>deleteByProjectIdAndPlanIdAndPrincipalIdAndId
+            (@PathVariable("projectId") String projectId, @PathVariable("planId") String planId, @PathVariable("principalId") String principalId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<CommentDTO> dto) {
+        ResponseWrapper<CommentDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(deleteByProjectIdAndPlanIdAndPrincipalIdAndId(projectId, planId, principalId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(deleteByProjectIdAndPlanIdAndPrincipalIdAndId(projectId, planId, principalId, id, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * delete 评论
+    * 
+    *
+    * @param projectId projectId
+    * @param planId planId
+    * @param principalId principalId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<CommentDTO>
+    */   
+    public CommentDTO deleteByProjectIdAndPlanIdAndPrincipalIdAndId
+            (String projectId, String planId, String principalId, String id, CommentDTO dto) {
+        Comment domain = commentDtoMapping.toDomain(dto);
+        domain.setId(id);
+        Comment rt = commentService.delete(domain);
+        return commentDtoMapping.toDto(rt);
+    }
+
+    /**
+    * 保存Save 评论
+    * 
+    *
+    * @param projectId projectId
+    * @param planId planId
+    * @param principalId principalId
+    * @param dto dto
+    * @return Mono<ResponseEntity<CommentDTO>>
+    */
+    @ApiOperation(value = "保存Save", tags = {"评论" },  notes = "Comment-Save ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Comment-Save-all') or hasPermission('project',#projectId,this.commentDtoMapping.toDomain(#dto),'ibizplm-Comment-Save')")
+    @PostMapping("projects/{projectId}/test_plans/{planId}/runs/{principalId}/comments/save")
+    public Mono<ResponseEntity<ResponseWrapper<CommentDTO>>>saveByProjectIdAndPlanIdAndPrincipalId
+            (@PathVariable("projectId") String projectId, @PathVariable("planId") String planId, @PathVariable("principalId") String principalId, @Validated @RequestBody RequestWrapper<CommentDTO> dto) {
+        ResponseWrapper<CommentDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray())
+            dto.getList().forEach(item -> rt.add(saveByProjectIdAndPlanIdAndPrincipalId(projectId, planId, principalId, item)));
+        else
+            rt.set(saveByProjectIdAndPlanIdAndPrincipalId(projectId, planId, principalId, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * 保存Save 评论
+    * 
+    *
+    * @param projectId projectId
+    * @param planId planId
+    * @param principalId principalId
+    * @param dto dto
+    * @return ResponseEntity<CommentDTO>
+    */   
+    public CommentDTO saveByProjectIdAndPlanIdAndPrincipalId
+            (String projectId, String planId, String principalId, CommentDTO dto) {
+        Comment domain = commentDtoMapping.toDomain(dto);
+        domain.setPrincipalId(principalId);
+        commentService.save(domain);
+        Comment rt = domain;
+        return commentDtoMapping.toDto(rt);
+    }
+
+    /**
+    * 创建Create 评论
+    * 
+    *
     * @param productId productId
     * @param principalId principalId
     * @param dto dto
@@ -2840,6 +3016,110 @@ public abstract class AbstractCommentResource {
     @PostMapping("libraries/{libraryId}/test_plans/{planId}/runs/{principalId}/comments/fetch_default")
     public Mono<ResponseEntity<List<CommentDTO>>> fetchDefaultByLibraryIdAndPlanIdAndPrincipalId
             (@PathVariable("libraryId") String libraryId, @PathVariable("planId") String planId, @PathVariable("principalId") String principalId, @Validated @RequestBody CommentFilterDTO dto) {
+        dto.setPrincipalIdEQ(principalId);
+        CommentSearchContext context = commentFilterDtoMapping.toDomain(dto);
+        Page<Comment> domains = commentService.fetchDefault(context) ;
+        List<CommentDTO> list = commentDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
+    * 获取Get 评论
+    * 
+    *
+    * @param projectId projectId
+    * @param planId planId
+    * @param principalId principalId
+    * @param id id
+    * @return Mono<ResponseEntity<CommentDTO>>
+    */
+    @ApiOperation(value = "获取Get", tags = {"评论" },  notes = "Comment-Get ")
+    @PostAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Comment-Get-all')  or hasPermission('project',#projectId,this.commentDtoMapping.toDomain(returnObject.block().getBody()),'ibizplm-Comment-Get')")
+    @GetMapping("projects/{projectId}/test_plans/{planId}/runs/{principalId}/comments/{id}")
+    public Mono<ResponseEntity<CommentDTO>> getByProjectIdAndPlanIdAndPrincipalIdAndId
+            (@PathVariable("projectId") String projectId, @PathVariable("planId") String planId, @PathVariable("principalId") String principalId, @PathVariable("id") String id) {
+        Comment rt = commentService.get(id);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(commentDtoMapping.toDto(rt)));
+    }
+
+    /**
+    * 删除Remove 评论
+    * 
+    *
+    * @param projectId projectId
+    * @param planId planId
+    * @param principalId principalId
+    * @param id id
+    * @return Mono<ResponseEntity<Boolean>>
+    */
+    @ApiOperation(value = "删除Remove", tags = {"评论" },  notes = "Comment-Remove ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Comment-Remove-all') or hasPermission('project',#projectId,this.commentService.get(#id),'ibizplm-Comment-Remove')")
+    @DeleteMapping("projects/{projectId}/test_plans/{planId}/runs/{principalId}/comments/{id}")
+    public Mono<ResponseEntity<Boolean>> removeByProjectIdAndPlanIdAndPrincipalIdAndId
+            (@PathVariable("projectId") String projectId, @PathVariable("planId") String planId, @PathVariable("principalId") String principalId, @PathVariable("id") String id) {
+        Boolean rt = commentService.remove(id);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * 校验CheckKey 评论
+    * 
+    *
+    * @param projectId projectId
+    * @param planId planId
+    * @param principalId principalId
+    * @param dto dto
+    * @return Mono<ResponseEntity<Integer>>
+    */
+    @ApiOperation(value = "校验CheckKey", tags = {"评论" },  notes = "Comment-CheckKey ")
+    @PostMapping("projects/{projectId}/test_plans/{planId}/runs/{principalId}/comments/check_key")
+    public Mono<ResponseEntity<CheckKeyStatus>> checkKeyByProjectIdAndPlanIdAndPrincipalId
+            (@PathVariable("projectId") String projectId, @PathVariable("planId") String planId, @PathVariable("principalId") String principalId, @Validated @RequestBody CommentDTO dto) {
+        Comment domain = commentDtoMapping.toDomain(dto);
+        domain.setPrincipalId(principalId);
+        CheckKeyStatus rt = commentService.checkKey(domain);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * 草稿GetDraft 评论
+    * 
+    *
+    * @param projectId projectId
+    * @param planId planId
+    * @param principalId principalId
+    * @param dto dto
+    * @return Mono<ResponseEntity<CommentDTO>>
+    */
+    @ApiOperation(value = "草稿GetDraft", tags = {"评论" },  notes = "Comment-GetDraft ")
+    @GetMapping("projects/{projectId}/test_plans/{planId}/runs/{principalId}/comments/get_draft")
+    public Mono<ResponseEntity<CommentDTO>> getDraftByProjectIdAndPlanIdAndPrincipalId
+            (@PathVariable("projectId") String projectId, @PathVariable("planId") String planId, @PathVariable("principalId") String principalId, @SpringQueryMap CommentDTO dto) {
+        Comment domain = commentDtoMapping.toDomain(dto);
+        domain.setPrincipalId(principalId);
+        Comment rt = commentService.getDraft(domain);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(commentDtoMapping.toDto(rt)));
+    }
+
+    /**
+    * 查询fetch_default 评论
+    * 
+    *
+    * @param projectId projectId
+    * @param planId planId
+    * @param principalId principalId
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<CommentDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_default", tags = {"评论" },  notes = "Comment-fetch_default ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Comment-fetch_default-all') or hasPermission('project',#projectId,#dto,'ibizplm-Comment-fetch_default')")
+    @PostMapping("projects/{projectId}/test_plans/{planId}/runs/{principalId}/comments/fetch_default")
+    public Mono<ResponseEntity<List<CommentDTO>>> fetchDefaultByProjectIdAndPlanIdAndPrincipalId
+            (@PathVariable("projectId") String projectId, @PathVariable("planId") String planId, @PathVariable("principalId") String principalId, @Validated @RequestBody CommentFilterDTO dto) {
         dto.setPrincipalIdEQ(principalId);
         CommentSearchContext context = commentFilterDtoMapping.toDomain(dto);
         Page<Comment> domains = commentService.fetchDefault(context) ;

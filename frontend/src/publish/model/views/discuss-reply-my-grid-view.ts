@@ -3,7 +3,7 @@ export default {
   xdataControlName: 'list',
   loadDefault: true,
   deviewCodeName: 'my_grid_view',
-  deviewId: 'D4505E1B-499D-4A38-B276-49C78701FFC7',
+  deviewId: '587f5100ae3edefc9e0a486010114969',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.DISCUSS_REPLY',
@@ -149,7 +149,7 @@ export default {
       controlParam: {
         id: 'searchform',
       },
-      modelId: 'fabc8ef6b9ea6b3d12cfe4d381a884bd',
+      modelId: '6f703755323cec7d6bf031b0397f3846',
       modelType: 'PSDEFORM_SEARCHFORM',
       name: 'searchform',
       id: 'plmweb.discuss_reply.default',
@@ -548,32 +548,27 @@ export default {
           },
         ],
         controlParam: {},
-        modelId: 'F5260C8F-FD9D-4A2F-82E7-CFACD726E922',
+        modelId: '36d06c2405126fa6682fd2dd305f0e08',
         modelType: 'PSSYSVIEWPANEL',
         name: 'list_itempanel',
         id: 'plmweb.discuss_reply.usr0522435547',
       },
       delistDataItems: [
         {
+          appDEFieldId: 'create_man',
+          frontCodeListId: 'plmweb.sysoperator',
+          dataType: 25,
+          id: 'create_man',
+        },
+        {
           appDEFieldId: 'post_id',
           dataType: 25,
           id: 'post_id',
         },
         {
-          appDEFieldId: 'content',
-          dataType: 21,
-          id: 'content',
-        },
-        {
           appDEFieldId: 'comments',
           dataType: 21,
           id: 'comments',
-        },
-        {
-          appDEFieldId: 'create_man',
-          frontCodeListId: 'plmweb.sysoperator',
-          dataType: 25,
-          id: 'create_man',
         },
         {
           appDEFieldId: 'create_time',
@@ -585,6 +580,11 @@ export default {
           appDEFieldId: 'id',
           dataType: 25,
           id: 'id',
+        },
+        {
+          appDEFieldId: 'content',
+          dataType: 21,
+          id: 'content',
         },
         {
           appDEFieldId: 'id',
@@ -634,7 +634,7 @@ export default {
       controlParam: {
         id: 'list',
       },
-      modelId: 'F609B172-5DF6-4189-A637-CFFC472481E1',
+      modelId: 'e34642f171a8dba8f7041096e0bd61e4',
       modelType: 'PSDELIST',
       name: 'list',
       id: 'plmweb.discuss_reply.common',
@@ -679,7 +679,7 @@ export default {
   viewType: 'DELISTVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '752fced311ab3bde40c9516f800e3114',
+  modelId: '0dee66d0460b4c4b888e04f5f6ccb0a4',
   modelType: 'PSAPPDEVIEW',
   name: 'discuss_replymy_grid_view',
   id: 'plmweb.discuss_reply_my_grid_view',

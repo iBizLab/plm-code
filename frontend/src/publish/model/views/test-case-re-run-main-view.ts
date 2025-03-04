@@ -100,6 +100,21 @@ export default {
                 actionGroupExtractMode: 'ITEM',
                 panelItems: [
                   {
+                    rawItem: {
+                      predefinedType: 'COOP_POS',
+                      id: 'coop_pos',
+                    },
+                    caption: '协同编辑消息占位',
+                    itemStyle: 'DEFAULT',
+                    itemType: 'RAWITEM',
+                    layoutPos: {
+                      shrink: 1,
+                      layout: 'FLEX',
+                    },
+                    showCaption: true,
+                    id: 'coop_pos',
+                  },
+                  {
                     caption: '工具栏',
                     itemStyle: 'DEFAULT',
                     itemType: 'CTRLPOS',
@@ -113,7 +128,9 @@ export default {
                 ],
                 layout: {
                   align: 'center',
+                  dir: 'row',
                   layout: 'FLEX',
+                  valign: 'center',
                 },
                 dataRegionType: 'INHERIT',
                 caption: '容器',
@@ -296,7 +313,6 @@ export default {
                                       },
                                     ],
                                     logicType: 'GROUP',
-                                    id: '面板成员[comment_cancel][面板显示]逻辑',
                                   },
                                 ],
                                 showCaption: true,
@@ -333,7 +349,6 @@ export default {
                                       },
                                     ],
                                     logicType: 'GROUP',
-                                    id: '面板成员[comment_send][面板显示]逻辑',
                                   },
                                 ],
                                 showCaption: true,
@@ -629,10 +644,10 @@ export default {
             codeName: 'estimated_update',
             defiupdateDetails: [
               {
-                id: 'remaining_workload',
+                id: 'workload_schedule',
               },
               {
-                id: 'workload_schedule',
+                id: 'remaining_workload',
               },
             ],
             scriptCode:
@@ -3273,7 +3288,7 @@ export default {
       },
     ],
     controlParam: {},
-    modelId: '5a0c60f87c4180a6ecd50f76314c1684',
+    modelId: '9df894d115dba10ca3970b9c27d1990f',
     modelType: 'PSSYSVIEWLAYOUTPANEL',
     name: 'layoutpanel',
     id: 'test_case_main_view',

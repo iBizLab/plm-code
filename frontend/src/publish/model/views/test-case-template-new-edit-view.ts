@@ -4,7 +4,7 @@ export default {
   xdataControlName: 'form',
   loadDefault: true,
   deviewCodeName: 'new_edit_view',
-  deviewId: '1F71ABB6-4405-4D78-B698-4A7A835D32C2',
+  deviewId: 'eb5397cde8fbf627b4c2681b72e4b6a6',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.TEST_CASE_TEMPLATE',
@@ -53,7 +53,7 @@ export default {
       controlParam: {
         id: 'toolbar',
       },
-      modelId: 'A582B993-DD24-48CA-A7E9-F22AD96B7FB6',
+      modelId: 'feea301bae50015601dae0e88ace19cb',
       modelType: 'PSDETOOLBAR',
       name: 'toolbar',
       id: 'new_edit_view_toolbar',
@@ -866,7 +866,7 @@ export default {
       controlParam: {
         id: 'form',
       },
-      modelId: 'B9869241-60B5-4A71-AB90-A46A33D9D6D2',
+      modelId: 'c837a8dd20eef9c4766c217f93fdfd41',
       modelType: 'PSDEFORM_EDITFORM',
       name: 'form',
       id: 'plmweb.test_case_template.usr04121946_edit_view_form',
@@ -910,7 +910,7 @@ export default {
   viewType: 'DEEDITVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: 'db98e45fb5d3e27a1dab6433235c29e2',
+  modelId: 'e15932055d2505cecaf931abd1f5bf7e',
   modelType: 'PSAPPDEVIEW',
   name: 'test_case_templatenew_edit_view',
   id: 'plmweb.test_case_template_new_edit_view',

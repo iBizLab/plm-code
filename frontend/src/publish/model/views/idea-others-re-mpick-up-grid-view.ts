@@ -5,7 +5,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'others_re_mpick_up_grid_view',
-  deviewId: 'e72b1d9e0d642d6fe920cd8b8c7b5924',
+  deviewId: 'ce83d8c4d1a891af15d7cb67834bb3a3',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.IDEA',
@@ -309,7 +309,7 @@ export default {
   viewType: 'DEPICKUPGRIDVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: 'c75e4f00e2e1d386ec16363437241dbc',
+  modelId: '1be34b911f3b6aa42223e30774b26f84',
   modelType: 'PSAPPDEVIEW',
   name: 'ideaothers_re_mpick_up_grid_view',
   id: 'plmweb.idea_others_re_mpick_up_grid_view',

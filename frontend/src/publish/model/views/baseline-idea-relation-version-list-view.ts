@@ -2,7 +2,7 @@ export default {
   xdataControlName: 'list',
   loadDefault: true,
   deviewCodeName: 'relation_version_list_view',
-  deviewId: 'A272B198-E820-431C-88A4-01B5C7C92519',
+  deviewId: '2039bf327eb1f7b00c2eaf27525fdabd',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.BASELINE_IDEA',
@@ -113,7 +113,7 @@ export default {
       controlParam: {
         id: 'toolbar',
       },
-      modelId: '2BD40003-AF0E-4423-8FE7-9CA6DFA9A98D',
+      modelId: '750cd3947dc442ec27d9f75426387333',
       modelType: 'PSDETOOLBAR',
       name: 'toolbar',
       id: 'relation_version_list_view_toolbar',
@@ -152,7 +152,7 @@ export default {
       controlParam: {
         id: 'searchform',
       },
-      modelId: 'fd122cd5ef963ce45b46dc09bea6472b',
+      modelId: '52a9ebd8d00ebeb315c1b00e35ce6b2f',
       modelType: 'PSDEFORM_SEARCHFORM',
       name: 'searchform',
       id: 'plmweb.baseline_idea.default',
@@ -377,21 +377,21 @@ export default {
         logicName: 'baseline_relation_version_列表项面板',
         appDataEntityId: 'plmweb.baseline_idea',
         controlParam: {},
-        modelId: '92EF1B11-A294-4F8B-951E-B5163454D8A1',
+        modelId: 'e1902ff4b7143acb9aeb1a6d0d2b2014',
         modelType: 'PSSYSVIEWPANEL',
         name: 'list_itempanel',
         id: 'plmweb.baseline_idea.usr0507349357',
       },
       delistDataItems: [
         {
-          appDEFieldId: 'baseline',
-          dataType: 21,
-          id: 'baseline',
-        },
-        {
           appDEFieldId: 'target_version',
           dataType: 21,
           id: 'target_version',
+        },
+        {
+          appDEFieldId: 'baseline',
+          dataType: 21,
+          id: 'baseline',
         },
         {
           appDEFieldId: 'id',
@@ -441,7 +441,7 @@ export default {
       controlParam: {
         id: 'list',
       },
-      modelId: '1683DD48-D150-4B6B-A250-9D0305A6F3FB',
+      modelId: '5e277227d4f3a254d8951e3f4583186a',
       modelType: 'PSDELIST',
       name: 'list',
       id: 'plmweb.baseline_idea.baseline_relation_version',
@@ -484,7 +484,7 @@ export default {
   viewType: 'DELISTVIEW',
   enableDP: true,
   showCaptionBar: false,
-  modelId: '5d1bbb4fd6ad8c2d43662fed9bde7d5b',
+  modelId: '610a8b98646666e4c679fcc067e14f11',
   modelType: 'PSAPPDEVIEW',
   name: 'baseline_idearelation_version_list_view',
   id: 'plmweb.baseline_idea_relation_version_list_view',

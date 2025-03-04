@@ -5,7 +5,7 @@ export default {
   loadDefault: true,
   openMode: 'POPUPMODAL',
   deviewCodeName: 'update_view',
-  deviewId: 'A2E2FF8C-444B-4F7D-90D8-EAF4B87E749C',
+  deviewId: '3c0262bf42105e1a9fff190cf8a3a5d3',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.IDEA',
@@ -23,7 +23,6 @@ export default {
   ],
   controls: [
     {
-      autoSaveMode: 1,
       createControlAction: {
         appDEMethodId: 'create',
         appDataEntityId: 'plmweb.idea',
@@ -53,7 +52,6 @@ export default {
         appDataEntityId: 'plmweb.idea',
         id: 'update',
       },
-      enableAutoSave: true,
       deformPages: [
         {
           layout: {
@@ -111,10 +109,10 @@ export default {
                       editor: {
                         editorHeight: 600,
                         editorParams: {
-                          SAVEINTERVAL: '3000',
                           USERINSCRIPT:
                             'value.replaceAll(/\\@\\{\\"(user)?id\\":\\"(.+?)\\",\\"name\\":\\"(.+?)\\"\\}/g,(x, user, id, name) => {return controller.getNodeInfo({ id, name })}).replaceAll(/\\@\\{userid=(.+?),name=(.+?)\\}/g,(x, id, name) => {return controller.getNodeInfo({ id, name })})',
                           MAXHEIGHT: '600',
+                          LINKVIEWID: 'plmweb.recent_custom_redirect_view',
                           QUOTECODELISTMAP:
                             '{"type":"plmweb.base__recent_visite"}',
                           QUOTEFIELDMAP:
@@ -127,7 +125,6 @@ export default {
                             '`@{"id":"${data.id}","name":"${data.name}"}`',
                           QUOTESCRIPT:
                             '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.owner_subtype}","recent_parent":"${data.recent_parent}"}`',
-                          EMITMODE: 'AUTOMATIC',
                           USERURL:
                             "`${context.library ? `libraries/${context.library}/library_members/fetch_default` : context.product ? `products/${context.product}/product_members/fetch_default` : context.project ? `projects/${context.project}/project_members/fetch_default` : ''}`",
                           USERFIELDMAP: '{"id":"user_id","name":"name"}',
@@ -530,10 +527,48 @@ export default {
       controlParam: {
         id: 'form',
       },
-      modelId: 'C528E568-C725-49E4-91C2-9457793E6FF2',
+      modelId: '7196107c16093c7cebf7761fa64db43b',
       modelType: 'PSDEFORM_EDITFORM',
       name: 'form',
       id: 'plmweb.idea.update_form',
+    },
+    {
+      detoolbarItems: [
+        {
+          actionLevel: 100,
+          noPrivDisplayMode: 2,
+          uiactionId: 'editview_saveandexitaction',
+          valid: true,
+          capLanguageRes: {
+            lanResTag: 'TBB.TEXT.EDITVIEW.SAVEANDCLOSE',
+          },
+          caption: '保存',
+          itemType: 'DEUIACTION',
+          sysImage: {
+            cssClass: 'fa fa-save',
+            glyph: 'xf0c7@FontAwesome',
+          },
+          tooltip: '保存',
+          tooltipLanguageRes: {
+            lanResTag: 'TBB.TOOLTIP.EDITVIEW.SAVEANDCLOSE',
+          },
+          showCaption: true,
+          showIcon: true,
+          id: 'deuiaction1',
+        },
+      ],
+      xdataControlName: 'form',
+      codeName: 'update_view_toolbar',
+      controlType: 'TOOLBAR',
+      logicName: '保存需求',
+      appDataEntityId: 'plmweb.idea',
+      controlParam: {
+        id: 'toolbar',
+      },
+      modelId: '2d2f26de58eba52ec7dafb1fe8d1f724',
+      modelType: 'PSDETOOLBAR',
+      name: 'toolbar',
+      id: 'update_view_toolbar',
     },
     {
       codeName: 'update_view_datainfobar',
@@ -575,7 +610,7 @@ export default {
   width: 90,
   enableDP: true,
   showCaptionBar: true,
-  modelId: 'ee14195578ed1bb93bbc07c8e2dc8de6',
+  modelId: 'edbe2bd526fa47c6a1838bef3a020a0d',
   modelType: 'PSAPPDEVIEW',
   name: 'ideaupdate_view',
   id: 'plmweb.idea_update_view',

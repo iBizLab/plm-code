@@ -24,7 +24,7 @@ export default {
   enableWorkflow: true,
   funcViewMode: 'REDIRECTVIEW',
   deviewCodeName: 'RedirectView',
-  deviewId: '888441a8ea7dc0f573d2c9d723ca3c97',
+  deviewId: '9e752a09822596507e36d032c40b3088',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.PSSYSBICUBEDIMENSION',
@@ -66,7 +66,7 @@ export default {
   enableDP: true,
   redirectView: true,
   showCaptionBar: true,
-  modelId: 'da89bc27ea89bdf7714933feb31e8ad2',
+  modelId: 'ec8bfc13153a99142db3bd0dd4f4a7fc',
   modelType: 'PSAPPDEVIEW',
   name: 'PSSysBICubeDimensionRedirectView',
   id: 'plmweb.ps_sys_bi_cube_dimension_redirect_view',

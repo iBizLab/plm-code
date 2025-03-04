@@ -434,7 +434,7 @@ export default {
           lanResTag: 'DE.LNAME.SPACE',
         },
         editItemCaption: '空间',
-        appCounterRefId: 'db48a729f39c55e5c363d94c717bc3f3',
+        appCounterRefId: '03adc70a91b57d016c1343a4d6fe48b3',
         dedrctrlItems: [
           {
             dedrbarGroupId: 'drgroup',
@@ -472,9 +472,9 @@ export default {
             refMode: {
               srfdeid: 'SPACE',
             },
-            tag: 'db48a729f39c55e5c363d94c717bc3f3',
+            tag: '03adc70a91b57d016c1343a4d6fe48b3',
             uniqueTag: 'space_add_on_counters',
-            id: 'db48a729f39c55e5c363d94c717bc3f3',
+            id: '03adc70a91b57d016c1343a4d6fe48b3',
           },
         ],
         codeName: 'space',
@@ -485,7 +485,7 @@ export default {
           id: 'drbar',
         },
         sysPFPluginId: 'drbar_ex',
-        modelId: '648f1e540a676cae9b83c11faf38ea5d',
+        modelId: 'a177dcbb4e39926a572c16db33f18306',
         modelType: 'PSDEDRBAR',
         name: 'drbar',
         id: 'space',

@@ -44,6 +44,25 @@ public interface AuthLogAdminMapper extends BaseMapper<AuthLogAdmin> {
     List<AuthLogAdmin> listDefault(@Param("ctx") AuthLogAdminSearchContext context, @Param("ew") Wrapper<AuthLogAdmin> wrapper);
 
     /**
+     * 数据集合cur_user分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<AuthLogAdmin> searchCurUser(IPage<AuthLogAdmin> page, @Param("ctx") AuthLogAdminSearchContext context, @Param("ew") Wrapper<AuthLogAdmin> wrapper);
+    
+    /**
+     * 数据集合cur_user查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<AuthLogAdmin> listCurUser(@Param("ctx") AuthLogAdminSearchContext context, @Param("ew") Wrapper<AuthLogAdmin> wrapper);
+
+    /**
      * 数据集合distinct_userid分页查询
      * 
      * @param page

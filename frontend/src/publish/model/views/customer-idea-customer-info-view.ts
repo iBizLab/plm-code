@@ -4,7 +4,7 @@ export default {
   xdataControlName: 'form',
   loadDefault: true,
   deviewCodeName: 'idea_customer_info_view',
-  deviewId: '5A124129-8BB0-415B-A55B-CFE95FB3E1F5',
+  deviewId: '2a297cad8ad7e4ebd97854c06e7b3cd8',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.CUSTOMER',
@@ -51,7 +51,7 @@ export default {
       controlParam: {
         id: 'toolbar',
       },
-      modelId: '2E11A60C-B6B1-4918-AAC8-589CF9E8B99A',
+      modelId: 'c68d9d8c016828b7158cb2684d2f07ed',
       modelType: 'PSDETOOLBAR',
       name: 'toolbar',
       id: 'idea_customer_info_view_toolbar',
@@ -619,7 +619,7 @@ export default {
       controlParam: {
         id: 'form',
       },
-      modelId: 'FF9C5373-4171-45E8-A2DC-42FB28B14D27',
+      modelId: '235562bc4b5af0f2d4d7ea3a107dd20a',
       modelType: 'PSDEFORM_EDITFORM',
       name: 'form',
       id: 'plmweb.customer.info_view_form',
@@ -663,7 +663,7 @@ export default {
   viewType: 'DEEDITVIEW',
   enableDP: true,
   showCaptionBar: false,
-  modelId: '927af0872f708e661950c5e9b4969ca5',
+  modelId: '92687b6a323d1e5e0fb507a8a1f16fce',
   modelType: 'PSAPPDEVIEW',
   name: 'customeridea_customer_info_view',
   id: 'plmweb.customer_idea_customer_info_view',

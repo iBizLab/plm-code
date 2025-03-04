@@ -246,6 +246,22 @@ public interface DynaDashboardService extends IService<DynaDashboard> {
     List<DynaDashboard> listIsSystem(DynaDashboardSearchContext context);
 
     /**
+    * fetchMyDashboard
+    * 
+    * @param context
+    * @return
+    */
+    Page<DynaDashboard> fetchMyDashboard(DynaDashboardSearchContext context);
+
+    /**
+    * listMyDashboard
+    * 
+    * @param context
+    * @return
+    */
+    List<DynaDashboard> listMyDashboard(DynaDashboardSearchContext context);
+
+    /**
     * fetchNormal
     * 
     * @param context

@@ -136,6 +136,7 @@ public abstract class AbstractProjectTagResource {
     * @return Mono<ResponseEntity<ProjectTagDTO>>
     */
     @ApiOperation(value = "delete_tag", tags = {"项目标签" },  notes = "ProjectTag-delete_tag ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ProjectTag-delete_tag-all') or hasPermission(this.projectTagDtoMapping.toDomain(#dto),'ibizplm-ProjectTag-delete_tag')")
     @PostMapping("project_tags/{id}/delete_tag")
     public Mono<ResponseEntity<ResponseWrapper<ProjectTagDTO>>>deleteTagById
             (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<ProjectTagDTO> dto) {

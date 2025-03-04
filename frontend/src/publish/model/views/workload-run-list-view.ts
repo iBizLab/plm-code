@@ -486,6 +486,11 @@ export default {
         },
         delistDataItems: [
           {
+            appDEFieldId: 'description',
+            dataType: 21,
+            id: 'description',
+          },
+          {
             appDEFieldId: 'duration',
             dataType: 6,
             id: 'duration',
@@ -495,11 +500,6 @@ export default {
             frontCodeListId: 'plmweb.sysoperator',
             dataType: 25,
             id: 'create_man',
-          },
-          {
-            appDEFieldId: 'description',
-            dataType: 21,
-            id: 'description',
           },
           {
             appDEFieldId: 'register_date',

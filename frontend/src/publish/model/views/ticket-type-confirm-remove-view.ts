@@ -4,7 +4,7 @@ export default {
   loadDefault: true,
   openMode: 'POPUPMODAL',
   deviewCodeName: 'confirm_remove_view',
-  deviewId: 'e8811c66652d70faab64690a48d75a28',
+  deviewId: 'a33004113adc14bb8220ad46b831f496',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.TICKET_TYPE',
@@ -301,7 +301,7 @@ export default {
       sysCss: {
         cssName: 'confirm-remove-view',
       },
-      modelId: 'E81B0F22-EE67-4015-83C3-07C1906D9777',
+      modelId: 'e0e08f7db51c18de82db9ef50223a9c8',
       modelType: 'PSDEFORM_EDITFORM',
       name: 'form',
       id: 'plmweb.ticket_type.confirm_remove_form',
@@ -346,7 +346,7 @@ export default {
   width: 650,
   enableDP: true,
   showCaptionBar: true,
-  modelId: '98039cba7faf1a50e82054c5b423522b',
+  modelId: '0940819d656ca0cf7b4ca5e39d781a93',
   modelType: 'PSAPPDEVIEW',
   name: 'ticket_typeconfirm_remove_view',
   id: 'plmweb.ticket_type_confirm_remove_view',

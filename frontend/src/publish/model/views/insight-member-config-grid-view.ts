@@ -2,7 +2,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'config_grid_view',
-  deviewId: 'B22FD317-E5FE-4387-8452-51704DF93BB1',
+  deviewId: 'd451485de5fa8f6401073938b1bff360',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.INSIGHT_MEMBER',
@@ -85,15 +85,6 @@ export default {
   ],
   appViewRefs: [
     {
-      realTitle: '效能成员编辑视图',
-      realTitleLanguageRes: {
-        lanResTag: 'PAGE.TITLE.INSIGHT_MEMBER.EDITVIEW',
-      },
-      refAppViewId: 'plmweb.insight_member_edit_view',
-      name: 'NEWDATA',
-      id: 'newdata',
-    },
-    {
       realTitle: '效能成员数据重定向视图',
       realTitleLanguageRes: {
         lanResTag: 'PAGE.TITLE.INSIGHT_MEMBER.REDIRECTVIEW',
@@ -101,6 +92,15 @@ export default {
       refAppViewId: 'plmweb.insight_member_redirect_view',
       name: 'EDITDATA',
       id: 'editdata',
+    },
+    {
+      realTitle: '效能成员编辑视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.INSIGHT_MEMBER.EDITVIEW',
+      },
+      refAppViewId: 'plmweb.insight_member_edit_view',
+      name: 'NEWDATA',
+      id: 'newdata',
     },
     {
       name: 'MPICKUPVIEW:INSIGHT_VIEW',
@@ -153,7 +153,7 @@ export default {
       controlParam: {
         id: 'toolbar',
       },
-      modelId: 'F43F51B4-0360-4B46-9A8B-1A8B00D07FCF',
+      modelId: '903e745d415daa9531bc31c2fec2d9ca',
       modelType: 'PSDETOOLBAR',
       name: 'toolbar',
       id: 'config_grid_view_toolbar',
@@ -207,9 +207,10 @@ export default {
           id: 'role_id',
         },
         {
-          clconvertMode: 'NONE',
+          clconvertMode: 'FRONT',
           dataItemName: 'title',
           excelCaption: '职位',
+          appCodeListId: 'plmweb.base__position',
           appDEFieldId: 'title',
           valueType: 'SIMPLE',
           aggMode: 'NONE',
@@ -432,7 +433,7 @@ export default {
           controlParam: {
             id: 'grid_batchtoolbar',
           },
-          modelId: 'A63E8512-629B-496E-81D2-19A76999ABDC',
+          modelId: '7ae75df030dfb65c3154f2e87c2267cc',
           modelType: 'PSDETOOLBAR',
           name: 'grid_batchtoolbar',
           id: 'config_grid_view_grid_batchtoolbar',
@@ -445,7 +446,7 @@ export default {
       controlParam: {
         id: 'grid',
       },
-      modelId: '4003B082-6E50-4FBD-9B8A-5E0580548A39',
+      modelId: 'f7ef56db0f675d4859dce3f8524a1646',
       modelType: 'PSDEGRID',
       name: 'grid',
       id: 'plmweb.insight_member.config_grdi_view_grid',
@@ -480,7 +481,7 @@ export default {
       controlParam: {
         id: 'searchform',
       },
-      modelId: 'C45AD90C-7C49-4F6B-A7E0-8B97CD5A15E8',
+      modelId: 'f7ed84c322dc93434e31a5e75779d0af',
       modelType: 'PSDEFORM_SEARCHFORM',
       name: 'searchform',
       id: 'plmweb.insight_member.config_grdi_view_search_form',
@@ -525,7 +526,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '29a646742bf886aa31474dc4ce1bb383',
+  modelId: '06494c42bd74f0a4b6f2f9d4b539e7ca',
   modelType: 'PSAPPDEVIEW',
   name: 'insight_memberconfig_grid_view',
   id: 'plmweb.insight_member_config_grid_view',

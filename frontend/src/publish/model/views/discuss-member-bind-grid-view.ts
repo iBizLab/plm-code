@@ -2,7 +2,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'bind_grid_view',
-  deviewId: 'ABBBC861-2632-4837-BBDF-10559CABC0FD',
+  deviewId: '5edda0ad18787eb9f31f97430b367175',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.DISCUSS_MEMBER',
@@ -163,7 +163,7 @@ export default {
       controlParam: {
         id: 'toolbar',
       },
-      modelId: 'FA031A65-BBB8-4A07-B32E-DAC7432AC029',
+      modelId: '66320dd4de4fd4071b52135ba6ba3080',
       modelType: 'PSDETOOLBAR',
       name: 'toolbar',
       id: 'bind_grid_view_toolbar',
@@ -212,7 +212,7 @@ export default {
                   cssClass: 'fa fa-trash-o',
                   glyph: 'xf014@FontAwesome',
                 },
-                id: 'uac12646',
+                id: 'u4a84543',
               },
             ],
             appDataEntityId: 'plmweb.discuss_member',
@@ -308,7 +308,7 @@ export default {
       controlParam: {
         id: 'grid',
       },
-      modelId: '0284850b992c53bc9ff48a1f19e15043',
+      modelId: '48ddb77451061a8afcb5d0bc97327b0c',
       modelType: 'PSDEGRID',
       name: 'grid',
       id: 'plmweb.discuss_member.binding',
@@ -347,7 +347,7 @@ export default {
       controlParam: {
         id: 'searchform',
       },
-      modelId: '624a23395c3f0be60961c8dd482be3fb',
+      modelId: 'f5ce40fdf406a43264f0903fe4fe61d1',
       modelType: 'PSDEFORM_SEARCHFORM',
       name: 'searchform',
       id: 'plmweb.discuss_member.default',
@@ -390,7 +390,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: false,
-  modelId: 'cb5549520a0c11013331bbddb1098e59',
+  modelId: '40eb561dde11abdac516614c1b8f0907',
   modelType: 'PSAPPDEVIEW',
   name: 'discuss_memberbind_grid_view',
   id: 'plmweb.discuss_member_bind_grid_view',

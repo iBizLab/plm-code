@@ -2,7 +2,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'my_assignee_grid_view',
-  deviewId: 'f5192488da4ec288e11f8b050f13de42',
+  deviewId: 'f0d25da31a69b6175f76bdd536e1334c',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.TEST_PLAN',
@@ -65,13 +65,6 @@ export default {
   ],
   appViewRefs: [
     {
-      realOpenMode: 'POPUPMODAL',
-      realTitle: '测试计划编辑视图',
-      refAppViewId: 'plmweb.test_plan_update_option_view',
-      name: 'NEWDATA',
-      id: 'newdata',
-    },
-    {
       realTitle: '测试计划数据重定向视图',
       realTitleLanguageRes: {
         lanResTag: 'PAGE.TITLE.TEST_PLAN.REDIRECTVIEW',
@@ -79,6 +72,13 @@ export default {
       refAppViewId: 'plmweb.test_plan_redirect_view',
       name: 'EDITDATA',
       id: 'editdata',
+    },
+    {
+      realOpenMode: 'POPUPMODAL',
+      realTitle: '测试计划编辑视图',
+      refAppViewId: 'plmweb.test_plan_update_option_view',
+      name: 'NEWDATA',
+      id: 'newdata',
     },
   ],
   controls: [
@@ -364,7 +364,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '5f97031d440e195539eff0e77aff4349',
+  modelId: 'dd8ffec86dd86cb9577975ba6da6a70c',
   modelType: 'PSAPPDEVIEW',
   name: 'test_planmy_assignee_grid_view',
   id: 'plmweb.test_plan_my_assignee_grid_view',

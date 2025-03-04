@@ -40,6 +40,13 @@
         <label> ●</label>
       </div>
     </div>
+    <script>
+      const appLoading = document.getElementById('app-loading-x');
+      const appLoadingTheme = window.Environment?.appLoadingTheme || 'DEFAULT';
+      if (appLoading) {
+        appLoading.classList.add(appLoadingTheme.toLowerCase());
+      }
+    </script>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>

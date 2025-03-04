@@ -46,6 +46,14 @@ public class RecentSearchContext extends QueryWrapperContext<Recent> {
     private String ownerIdEQ;
 
     /**
+     * 所属数据对象EQ
+     */
+    @JsonProperty("n_owner_type_eq")
+    @JSONField(name = "n_owner_type_eq")
+    @ApiModelProperty("所属数据对象EQ")
+    private String ownerTypeEQ;
+
+    /**
      * 所属对象子类型EQ
      */
     @JsonProperty("n_owner_subtype_eq")

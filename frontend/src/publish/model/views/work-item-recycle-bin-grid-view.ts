@@ -3,7 +3,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'recycle_bin_grid_view',
-  deviewId: '12bd28e9eaa481fc3c31fd1f8ed2a8a5',
+  deviewId: 'f11e59e17b137225f2b7b0bc0a565c8d',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.WORK_ITEM',
@@ -115,6 +115,15 @@ export default {
   ],
   appViewRefs: [
     {
+      realTitle: '工作项编辑视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.WORK_ITEM.EDITVIEW',
+      },
+      refAppViewId: 'plmweb.work_item_edit_view',
+      name: 'NEWDATA',
+      id: 'newdata',
+    },
+    {
       navigateContexts: [
         {
           key: 'SRFDATATYPE',
@@ -141,15 +150,6 @@ export default {
       refAppViewId: 'plmweb.work_item_dyna_main_view',
       name: 'EDITDATA',
       id: 'editdata',
-    },
-    {
-      realTitle: '工作项编辑视图',
-      realTitleLanguageRes: {
-        lanResTag: 'PAGE.TITLE.WORK_ITEM.EDITVIEW',
-      },
-      refAppViewId: 'plmweb.work_item_edit_view',
-      name: 'NEWDATA',
-      id: 'newdata',
     },
   ],
   controls: [
@@ -547,25 +547,6 @@ export default {
                 appDEACModeId: 'default',
                 appDEDataSetId: 'fetch_main',
                 appDataEntityId: 'plmweb.project',
-                uiactionGroup: {
-                  uiactionGroupDetails: [
-                    {
-                      actionLevel: 100,
-                      afterItemType: 'NONE',
-                      beforeItemType: 'NONE',
-                      caption: '项目配置',
-                      detailType: 'DEUIACTION',
-                      uiactionId: 'open_global_setting@project',
-                      showCaption: true,
-                      showIcon: true,
-                      id: 'u3fee786',
-                    },
-                  ],
-                  appDataEntityId: 'plmweb.project',
-                  uniqueTag: 'project__Usr1221520658',
-                  name: '自填模式行为组',
-                  id: 'usr1221520658',
-                },
                 enableAC: true,
                 forceSelection: true,
                 showTrigger: true,
@@ -690,7 +671,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: 'f6d2051ea27a11e417b98c45c58480c3',
+  modelId: '46129fccb28b154990d80f9eff2545cc',
   modelType: 'PSAPPDEVIEW',
   name: 'work_itemrecycle_bin_grid_view',
   id: 'plmweb.work_item_recycle_bin_grid_view',

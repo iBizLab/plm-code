@@ -451,6 +451,22 @@ public interface WorkloadService extends IService<Workload> {
     List<Workload> listMyWorkItemWorkload(WorkloadSearchContext context);
 
     /**
+    * fetchMyWorkload
+    * 
+    * @param context
+    * @return
+    */
+    Page<Workload> fetchMyWorkload(WorkloadSearchContext context);
+
+    /**
+    * listMyWorkload
+    * 
+    * @param context
+    * @return
+    */
+    List<Workload> listMyWorkload(WorkloadSearchContext context);
+
+    /**
     * fetchTestCaseWorkload
     * 
     * @param context

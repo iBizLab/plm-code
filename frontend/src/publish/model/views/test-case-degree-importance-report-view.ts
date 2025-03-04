@@ -2,7 +2,7 @@ export default {
   enableSearch: true,
   loadDefault: true,
   deviewCodeName: 'degree_importance_report_view',
-  deviewId: '6b6836ae154925e4e5ff1136c32e5803',
+  deviewId: '7147f4897d5a4fb8560361b7ea94b857',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.TEST_CASE',
@@ -618,7 +618,7 @@ export default {
   viewType: 'DECHARTVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '0d003effd9251d1274fc57a91dcf0976',
+  modelId: '961ae12cc804b998a1f63546a007cfd7',
   modelType: 'PSAPPDEVIEW',
   name: 'test_casedegree_importance_report_view',
   id: 'plmweb.test_case_degree_importance_report_view',

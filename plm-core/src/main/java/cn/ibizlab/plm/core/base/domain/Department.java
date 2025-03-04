@@ -18,6 +18,7 @@ import java.io.Serializable;
 import lombok.*;
 import lombok.experimental.Accessors;
 import io.swagger.annotations.*;
+import cn.ibizlab.plm.core.base.domain.Organization;
 import cn.ibizlab.plm.core.base.domain.User;
 
 /**
@@ -41,6 +42,43 @@ public class Department extends EntityBase implements Serializable
     @JsonProperty("identifier")
     @ApiModelProperty(value = "identifier", notes = "部门标识/编号")
     private String identifier;
+
+    /**
+     * 备注
+     */
+    @DEField(name = "description")
+    @JSONField(name = "description")
+    @JsonProperty("description")
+    @ApiModelProperty(value = "description", notes = "备注")
+    private String description;
+
+    /**
+     * 是否叶子节点
+     */
+    @DEField(name = "is_leaf" , defaultValue = "1" , dict = "YesNo")
+    @JSONField(name = "is_leaf")
+    @JsonProperty("is_leaf")
+    @ApiModelProperty(value = "is_leaf", notes = "是否叶子节点")
+    private Integer isLeaf;
+
+    /**
+     * 排序
+     */
+    @DEField(name = "sort")
+    @JSONField(name = "sort")
+    @JsonProperty("sort")
+    @JsonSerialize(using = ToStringSerializer.class)
+    @ApiModelProperty(value = "sort", notes = "排序")
+    private Long sort;
+
+    /**
+     * 父名称
+     */
+    @DEField(name = "pname")
+    @JSONField(name = "pname")
+    @JsonProperty("pname")
+    @ApiModelProperty(value = "pname", notes = "父名称")
+    private String pname;
 
     /**
      * 标识
@@ -118,6 +156,15 @@ public class Department extends EntityBase implements Serializable
     private String parentId;
 
     /**
+     * 组织标识
+     */
+    @DEField(name = "organization_id")
+    @JSONField(name = "organization_id")
+    @JsonProperty("organization_id")
+    @ApiModelProperty(value = "organization_id", notes = "组织标识")
+    private String organizationId;
+
+    /**
      * 父部门
      */
     @DEField()
@@ -125,6 +172,15 @@ public class Department extends EntityBase implements Serializable
     @JSONField(serialize = false)
     @ApiModelProperty(value = "department", notes = "父部门")
     private Department department;
+
+    /**
+     * 名称
+     */
+    @DEField()
+    @JsonIgnore
+    @JSONField(serialize = false)
+    @ApiModelProperty(value = "organization", notes = "名称")
+    private Organization organization;
 
     /**
      * 部门负责人
@@ -141,6 +197,42 @@ public class Department extends EntityBase implements Serializable
     public Department setIdentifier(String identifier) {
         this.identifier = identifier;
         this.modify("identifier", identifier);
+        return this;
+    }
+
+    /**
+    * 设置 [备注]
+    */
+    public Department setDescription(String description) {
+        this.description = description;
+        this.modify("description", description);
+        return this;
+    }
+
+    /**
+    * 设置 [是否叶子节点]
+    */
+    public Department setIsLeaf(Integer isLeaf) {
+        this.isLeaf = isLeaf;
+        this.modify("is_leaf", isLeaf);
+        return this;
+    }
+
+    /**
+    * 设置 [排序]
+    */
+    public Department setSort(Long sort) {
+        this.sort = sort;
+        this.modify("sort", sort);
+        return this;
+    }
+
+    /**
+    * 设置 [父名称]
+    */
+    public Department setPname(String pname) {
+        this.pname = pname;
+        this.modify("pname", pname);
         return this;
     }
 
@@ -168,6 +260,15 @@ public class Department extends EntityBase implements Serializable
     public Department setParentId(String parentId) {
         this.parentId = parentId;
         this.modify("parent_id", parentId);
+        return this;
+    }
+
+    /**
+    * 设置 [组织标识]
+    */
+    public Department setOrganizationId(String organizationId) {
+        this.organizationId = organizationId;
+        this.modify("organization_id", organizationId);
         return this;
     }
 

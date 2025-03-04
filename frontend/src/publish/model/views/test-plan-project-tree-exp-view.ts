@@ -2,7 +2,7 @@ export default {
   showDataInfoBar: true,
   loadDefault: true,
   deviewCodeName: 'project_tree_exp_view',
-  deviewId: '56501dcdd032d32765971b4c9e82ad75',
+  deviewId: '7d38b0d455cd9ca477e4d6d60af97bcb',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.TEST_PLAN',
@@ -62,8 +62,8 @@ export default {
       showBusyIndicator: true,
       appViewRefs: [
         {
-          realTitle: '测试计划表格视图（项目）',
-          refAppViewId: 'plmweb.test_plan_project_grid_view',
+          realTitle: '测试计划表格视图（指定项目）',
+          refAppViewId: 'plmweb.test_plan_cur_project_grid_view',
           name: 'EXPITEM:node',
           id: 'expitem:node',
         },
@@ -105,7 +105,7 @@ export default {
             },
             {
               text: '全部计划',
-              navAppViewId: 'plmweb.test_plan_project_grid_view',
+              navAppViewId: 'plmweb.test_plan_cur_project_grid_view',
               nodeType: 'node',
               navigateParams: [
                 {
@@ -216,7 +216,7 @@ export default {
       controlParam: {
         id: 'treeexpbar',
       },
-      modelId: '047aa2f3b5242f91567340e3d830dc28_treeexpbar',
+      modelId: '265303e7eb3a20763872d83255d8afad_treeexpbar',
       modelType: 'PSEXPBAR',
       name: 'treeexpbar',
       id: 'project_tree_exp_view_treeexpbar',
@@ -261,7 +261,7 @@ export default {
   viewType: 'DETREEEXPVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '047aa2f3b5242f91567340e3d830dc28',
+  modelId: '265303e7eb3a20763872d83255d8afad',
   modelType: 'PSAPPDEVIEW',
   name: 'test_planproject_tree_exp_view',
   id: 'plmweb.test_plan_project_tree_exp_view',

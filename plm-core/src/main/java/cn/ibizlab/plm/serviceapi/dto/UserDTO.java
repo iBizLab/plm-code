@@ -141,11 +141,11 @@ public class UserDTO extends DTOBase implements Serializable {
     private String departmentId;
 
     /**
-     * 部门名称
+     * 部门
      */
     @JsonProperty("department_name")
     @JSONField(name = "department_name")
-    @ApiModelProperty(value = "部门名称", position = 13)
+    @ApiModelProperty(value = "部门", position = 13)
     private String departmentName;
 
     /**
@@ -314,7 +314,7 @@ public class UserDTO extends DTOBase implements Serializable {
     }
 
     /**
-     * 设置 [部门名称]
+     * 设置 [部门]
      */
     public UserDTO setDepartmentName(String departmentName) {
         this.departmentName = departmentName;

@@ -4,7 +4,7 @@ export default {
   loadDefault: true,
   openMode: 'POPUPMODAL',
   deviewCodeName: 'project_tag_confirm_remove_view',
-  deviewId: '0c2e3caf3f4ed542aaf55a093d1a22bf',
+  deviewId: '447153d28d5181f64774dc506958f76e',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.PROJECT_TAG',
@@ -264,7 +264,7 @@ export default {
       sysCss: {
         cssName: 'confirm-remove-view',
       },
-      modelId: 'f45668e69256a0a73e5162501a7f4190',
+      modelId: '28eea9e186211838761beb9a48190e0c',
       modelType: 'PSDEFORM_EDITFORM',
       name: 'form',
       id: 'plmweb.project_tag.project_tag_remove_view_form',
@@ -309,7 +309,7 @@ export default {
   width: 650,
   enableDP: true,
   showCaptionBar: true,
-  modelId: 'd394a03222febe42ffc83d4a76bf1e80',
+  modelId: '355891da0d280ff6534bafd12bbdf3f1',
   modelType: 'PSAPPDEVIEW',
   name: 'project_tagproject_tag_confirm_remove_view',
   id: 'plmweb.project_tag_project_tag_confirm_remove_view',

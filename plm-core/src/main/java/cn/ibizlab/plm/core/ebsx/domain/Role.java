@@ -145,15 +145,6 @@ public class Role extends EntityClient implements Serializable
     private String roleTag;
 
     /**
-     * 系统标记
-     */
-    @DEField(name = "systemflag" , defaultValue = "0" , dict = "YesNo")
-    @JSONField(name = "systemflag")
-    @JsonProperty("systemflag")
-    @ApiModelProperty(value = "systemflag", notes = "系统标记")
-    private Integer systemFlag;
-
-    /**
      * 全局标记
      */
     @DEField(name = "globalflag" , defaultValue = "0" , dict = "YesNo")
@@ -161,6 +152,15 @@ public class Role extends EntityClient implements Serializable
     @JsonProperty("globalflag")
     @ApiModelProperty(value = "globalflag", notes = "全局标记")
     private Integer globalFlag;
+
+    /**
+     * 系统标记
+     */
+    @DEField(name = "systemflag" , defaultValue = "0" , dict = "YesNo")
+    @JSONField(name = "systemflag")
+    @JsonProperty("systemflag")
+    @ApiModelProperty(value = "systemflag", notes = "系统标记")
+    private Integer systemFlag;
 
     /**
     * 设置 [角色名称]
@@ -226,20 +226,20 @@ public class Role extends EntityClient implements Serializable
     }
 
     /**
-    * 设置 [系统标记]
-    */
-    public Role setSystemFlag(Integer systemFlag) {
-        this.systemFlag = systemFlag;
-        this.modify("systemflag", systemFlag);
-        return this;
-    }
-
-    /**
     * 设置 [全局标记]
     */
     public Role setGlobalFlag(Integer globalFlag) {
         this.globalFlag = globalFlag;
         this.modify("globalflag", globalFlag);
+        return this;
+    }
+
+    /**
+    * 设置 [系统标记]
+    */
+    public Role setSystemFlag(Integer systemFlag) {
+        this.systemFlag = systemFlag;
+        this.modify("systemflag", systemFlag);
         return this;
     }
 

@@ -5,7 +5,7 @@ export default {
   loadDefault: true,
   openMode: 'POPUPMODAL',
   deviewCodeName: 'edit_option_view',
-  deviewId: '9186cd0619209bc478be7db8a78fcdbc',
+  deviewId: 'd7e0ec175e2f9202f5b26f5bbed7485c',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.PRODUCT_TAG',
@@ -201,7 +201,7 @@ export default {
   width: 500,
   enableDP: true,
   showCaptionBar: true,
-  modelId: '492adc8c1f7dd06547ea1dfb261380f1',
+  modelId: '5f19b68974988383e665717d1a93ee05',
   modelType: 'PSAPPDEVIEW',
   name: 'product_tagedit_option_view',
   id: 'plmweb.product_tag_edit_option_view',

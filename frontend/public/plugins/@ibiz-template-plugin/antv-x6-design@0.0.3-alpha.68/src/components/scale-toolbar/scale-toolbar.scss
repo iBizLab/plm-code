@@ -1,0 +1,12 @@
+/* stylelint-disable selector-class-pattern */
+@include b(x6-scale-toolbar) {
+  position: absolute;
+  top: 3px;
+  left: 6px;
+  z-index: 10;
+
+  .el-button-group .el-button.el-button--primary {
+    --el-button-bg-color: #{getCssVar(color, primary)};
+    --el-button-text-color: #{getCssVar(color, primary, text)};
+  }
+}

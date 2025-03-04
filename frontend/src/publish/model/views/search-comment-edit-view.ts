@@ -5,7 +5,7 @@ export default {
   loadDefault: true,
   funcViewMode: 'EDITVIEW',
   deviewCodeName: 'EditView',
-  deviewId: '5c2991da14a081972fb9a7ce19056e68',
+  deviewId: 'd3500b42750550a41d50e9ade3e5b46c',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.SEARCH_COMMENT',
@@ -205,7 +205,7 @@ export default {
       controlParam: {
         id: 'form',
       },
-      modelId: '870f83ec85e92ac941040c625e0bf810',
+      modelId: '51aecbd72c33cf7709a5809fb3dcdf12',
       modelType: 'PSDEFORM_EDITFORM',
       name: 'form',
       id: 'plmweb.search_comment.main',
@@ -252,7 +252,7 @@ export default {
   viewType: 'DEEDITVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '859db8eeaa887a9c19dc7315678287d8',
+  modelId: '0ecb01b2fdc15f54cd527276b73cb64f',
   modelType: 'PSAPPDEVIEW',
   name: 'search_commentEditView',
   id: 'plmweb.search_comment_edit_view',

@@ -5,7 +5,7 @@ export default {
   loadDefault: true,
   openMode: 'POPUPMODAL',
   deviewCodeName: 'Implementationresults_option_view',
-  deviewId: 'F3D3BE55-5364-4933-9E94-EA6BDEDCBDB7',
+  deviewId: 'f72b41d535c50243ab0015ba5862d1e7',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.RUN',
@@ -133,7 +133,7 @@ export default {
       controlParam: {
         id: 'form',
       },
-      modelId: '3DE401DF-8561-4812-8AAA-B08265950420',
+      modelId: '68530fc3fbdd6dd27365817e25f2310b',
       modelType: 'PSDEFORM_EDITFORM',
       name: 'form',
       id: 'plmweb.run.usr04302223_form',
@@ -178,7 +178,7 @@ export default {
   width: 500,
   enableDP: true,
   showCaptionBar: true,
-  modelId: '946eb0c9dd718deb933fd4844779c73f',
+  modelId: 'b2a921838d43528fbc073f154854fcfe',
   modelType: 'PSAPPDEVIEW',
   name: 'runImplementationresults_option_view',
   id: 'plmweb.run_implementationresults_option_view',

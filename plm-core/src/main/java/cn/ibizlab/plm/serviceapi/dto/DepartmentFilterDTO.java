@@ -31,11 +31,35 @@ import io.swagger.annotations.ApiModelProperty;
 public class DepartmentFilterDTO extends FilterBase implements Serializable {
 
     /**
+     * 父名称EQ
+     */
+    @JsonProperty("n_pname_eq")
+    @JSONField(name = "n_pname_eq")
+    @ApiModelProperty(value = "父名称EQ", position = 40)
+	private String pnameEQ;
+
+    /**
+     * 父名称LIKE
+     */
+    @JsonProperty("n_pname_like")
+    @JSONField(name = "n_pname_like")
+    @ApiModelProperty(value = "父名称LIKE", position = 41)
+	private String pnameLIKE;
+
+    /**
+     * 标识NOTEQ
+     */
+    @JsonProperty("n_id_noteq")
+    @JSONField(name = "n_id_noteq")
+    @ApiModelProperty(value = "标识NOTEQ", position = 50)
+	private String idNOTEQ;
+
+    /**
      * 标识EQ
      */
     @JsonProperty("n_id_eq")
     @JSONField(name = "n_id_eq")
-    @ApiModelProperty(value = "标识EQ", position = 10)
+    @ApiModelProperty(value = "标识EQ", position = 51)
 	private String idEQ;
 
     /**
@@ -43,7 +67,7 @@ public class DepartmentFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_name_like")
     @JSONField(name = "n_name_like")
-    @ApiModelProperty(value = "名称LIKE", position = 20)
+    @ApiModelProperty(value = "名称LIKE", position = 60)
 	private String nameLIKE;
 
     /**
@@ -51,7 +75,7 @@ public class DepartmentFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_head_id_eq")
     @JSONField(name = "n_head_id_eq")
-    @ApiModelProperty(value = "部门负责人标识EQ", position = 70)
+    @ApiModelProperty(value = "部门负责人标识EQ", position = 110)
 	private String headIdEQ;
 
     /**
@@ -59,8 +83,16 @@ public class DepartmentFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_parent_id_eq")
     @JSONField(name = "n_parent_id_eq")
-    @ApiModelProperty(value = "父部门标识EQ", position = 80)
+    @ApiModelProperty(value = "父部门标识EQ", position = 120)
 	private String parentIdEQ;
+
+    /**
+     * 组织标识EQ
+     */
+    @JsonProperty("n_organization_id_eq")
+    @JSONField(name = "n_organization_id_eq")
+    @ApiModelProperty(value = "组织标识EQ", position = 130)
+	private String organizationIdEQ;
 
 
 }

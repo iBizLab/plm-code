@@ -598,15 +598,15 @@ export default {
     },
     {
       logicName: '更新',
+      name: 'UPDATE',
+      id: 'update',
+    },
+    {
+      logicName: '更新',
       mapDEName: 'PRODUCT',
       mapDEOPPrivName: 'UPDATE',
       name: 'UPDATE',
       id: 'product__update',
-    },
-    {
-      logicName: '更新',
-      name: 'UPDATE',
-      id: 'update',
     },
   ],
   codeName: 'product_ticket_type',

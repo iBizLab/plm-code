@@ -214,6 +214,25 @@ public interface RelationMapper extends BaseMapper<Relation> {
     List<Relation> listIdeaVersionRelation(@Param("ctx") RelationSearchContext context, @Param("ew") Wrapper<Relation> wrapper);
 
     /**
+     * 数据集合my_relation分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Relation> searchMyRelation(IPage<Relation> page, @Param("ctx") RelationSearchContext context, @Param("ew") Wrapper<Relation> wrapper);
+    
+    /**
+     * 数据集合my_relation查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Relation> listMyRelation(@Param("ctx") RelationSearchContext context, @Param("ew") Wrapper<Relation> wrapper);
+
+    /**
      * 数据集合product_plan_idea分页查询
      * 
      * @param page

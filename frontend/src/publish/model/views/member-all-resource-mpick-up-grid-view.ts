@@ -5,7 +5,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'all_resource_mpick_up_grid_view',
-  deviewId: '177FBB27-2BB0-445F-AB33-D7A12F7D96B7',
+  deviewId: '17eb6ead355812845ce66a69203a6325',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.MEMBER',
@@ -195,7 +195,7 @@ export default {
       controlParam: {
         id: 'grid',
       },
-      modelId: 'CE6DC3CB-5689-4455-8FF9-2D380E8CA0A6',
+      modelId: '17eb6ead355812845ce66a69203a6325',
       modelType: 'PSDEGRID',
       name: 'grid',
       id: 'plmweb.member.all_resource_mpick_up_grid_view',
@@ -260,7 +260,7 @@ export default {
       controlParam: {
         id: 'searchform',
       },
-      modelId: 'FAC3FEF0-EF5B-4EF0-95CA-CF8D0A3E2113',
+      modelId: '2ba4f1c83d744a0b2707894582536b2a',
       modelType: 'PSDEFORM_SEARCHFORM',
       name: 'searchform',
       id: 'plmweb.member.usr05300875_search_form',
@@ -303,7 +303,7 @@ export default {
   viewType: 'DEPICKUPGRIDVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '65e8464bb025a5a6730174dd29e24c99',
+  modelId: '26bea98561a49c238dc46fcc7f5a1ced',
   modelType: 'PSAPPDEVIEW',
   name: 'memberall_resource_mpick_up_grid_view',
   id: 'plmweb.member_all_resource_mpick_up_grid_view',

@@ -389,7 +389,7 @@ export default {
       controlParam: {
         id: 'form',
       },
-      modelId: '6b8fb8df36e1e8dfcd1692166bc47061',
+      modelId: '7e37373c7f4e6eef1eaa20625628ce62',
       modelType: 'PSDEFORM_EDITFORM',
       name: 'form',
       id: 'plmweb.idea_template.global_edit_view_form',

@@ -183,6 +183,7 @@ public abstract class AbstractRunResource {
     * @return Mono<ResponseEntity<RunDTO>>
     */
     @ApiOperation(value = "batch_save_run_history", tags = {"执行用例" },  notes = "Run-batch_save_run_history ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-batch_save_run_history-all') or hasPermission(this.runDtoMapping.toDomain(#dto),'ibizplm-Run-batch_save_run_history')")
     @PostMapping("runs/{id}/batch_save_run_history")
     public Mono<ResponseEntity<ResponseWrapper<RunDTO>>>batchSaveRunHistoryById
             (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<RunDTO> dto) {
@@ -435,6 +436,7 @@ public abstract class AbstractRunResource {
     * @return Mono<ResponseEntity<RunDTO>>
     */
     @ApiOperation(value = "run_re_counters", tags = {"执行用例" },  notes = "Run-run_re_counters ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-run_re_counters-all') or hasPermission(this.runDtoMapping.toDomain(#dto),'ibizplm-Run-run_re_counters')")
     @PostMapping("runs/{id}/run_re_counters")
     public Mono<ResponseEntity<ResponseWrapper<RunDTO>>>runReCountersById
             (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<RunDTO> dto) {
@@ -472,6 +474,7 @@ public abstract class AbstractRunResource {
     * @return Mono<ResponseEntity<RunDTO>>
     */
     @ApiOperation(value = "保存Save", tags = {"执行用例" },  notes = "Run-Save ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-Save-all') or hasPermission(this.runDtoMapping.toDomain(#dto),'ibizplm-Run-Save')")
     @PostMapping("runs/save")
     public Mono<ResponseEntity<ResponseWrapper<RunDTO>>>save
             (@Validated @RequestBody RequestWrapper<RunDTO> dto) {
@@ -507,6 +510,7 @@ public abstract class AbstractRunResource {
     * @return Mono<ResponseEntity<RunDTO>>
     */
     @ApiOperation(value = "save_run_history", tags = {"执行用例" },  notes = "Run-save_run_history ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-save_run_history-all') or hasPermission(this.runDtoMapping.toDomain(#dto),'ibizplm-Run-save_run_history')")
     @PostMapping("runs/{id}/save_run_history")
     public Mono<ResponseEntity<ResponseWrapper<RunDTO>>>saveRunHistoryById
             (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<RunDTO> dto) {
@@ -545,6 +549,7 @@ public abstract class AbstractRunResource {
     * @return Mono<ResponseEntity<RunDTO>>
     */
     @ApiOperation(value = "set_executor", tags = {"执行用例" },  notes = "Run-set_executor ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-set_executor-all') or hasPermission(this.runDtoMapping.toDomain(#dto),'ibizplm-Run-set_executor')")
     @PostMapping("runs/{id}/set_executor")
     public Mono<ResponseEntity<ResponseWrapper<RunDTO>>>setExecutorById
             (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<RunDTO> dto) {
@@ -706,6 +711,7 @@ public abstract class AbstractRunResource {
     * @return Mono<ResponseEntity<RunDTO>>
     */
     @ApiOperation(value = "batch_save_run_history", tags = {"执行用例" },  notes = "Run-batch_save_run_history ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-batch_save_run_history-all') or hasPermission('test_case',#caseId,this.runDtoMapping.toDomain(#dto),'ibizplm-Run-batch_save_run_history')")
     @PostMapping("test_cases/{caseId}/runs/{id}/batch_save_run_history")
     public Mono<ResponseEntity<ResponseWrapper<RunDTO>>>batchSaveRunHistoryByCaseIdAndId
             (@PathVariable("caseId") String caseId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<RunDTO> dto) {
@@ -976,6 +982,7 @@ public abstract class AbstractRunResource {
     * @return Mono<ResponseEntity<RunDTO>>
     */
     @ApiOperation(value = "run_re_counters", tags = {"执行用例" },  notes = "Run-run_re_counters ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-run_re_counters-all') or hasPermission('test_case',#caseId,this.runDtoMapping.toDomain(#dto),'ibizplm-Run-run_re_counters')")
     @PostMapping("test_cases/{caseId}/runs/{id}/run_re_counters")
     public Mono<ResponseEntity<ResponseWrapper<RunDTO>>>runReCountersByCaseIdAndId
             (@PathVariable("caseId") String caseId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<RunDTO> dto) {
@@ -1015,6 +1022,7 @@ public abstract class AbstractRunResource {
     * @return Mono<ResponseEntity<RunDTO>>
     */
     @ApiOperation(value = "保存Save", tags = {"执行用例" },  notes = "Run-Save ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-Save-all') or hasPermission('test_case',#caseId,this.runDtoMapping.toDomain(#dto),'ibizplm-Run-Save')")
     @PostMapping("test_cases/{caseId}/runs/save")
     public Mono<ResponseEntity<ResponseWrapper<RunDTO>>>saveByCaseId
             (@PathVariable("caseId") String caseId, @Validated @RequestBody RequestWrapper<RunDTO> dto) {
@@ -1053,6 +1061,7 @@ public abstract class AbstractRunResource {
     * @return Mono<ResponseEntity<RunDTO>>
     */
     @ApiOperation(value = "save_run_history", tags = {"执行用例" },  notes = "Run-save_run_history ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-save_run_history-all') or hasPermission('test_case',#caseId,this.runDtoMapping.toDomain(#dto),'ibizplm-Run-save_run_history')")
     @PostMapping("test_cases/{caseId}/runs/{id}/save_run_history")
     public Mono<ResponseEntity<ResponseWrapper<RunDTO>>>saveRunHistoryByCaseIdAndId
             (@PathVariable("caseId") String caseId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<RunDTO> dto) {
@@ -1093,6 +1102,7 @@ public abstract class AbstractRunResource {
     * @return Mono<ResponseEntity<RunDTO>>
     */
     @ApiOperation(value = "set_executor", tags = {"执行用例" },  notes = "Run-set_executor ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-set_executor-all') or hasPermission('test_case',#caseId,this.runDtoMapping.toDomain(#dto),'ibizplm-Run-set_executor')")
     @PostMapping("test_cases/{caseId}/runs/{id}/set_executor")
     public Mono<ResponseEntity<ResponseWrapper<RunDTO>>>setExecutorByCaseIdAndId
             (@PathVariable("caseId") String caseId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<RunDTO> dto) {
@@ -1262,6 +1272,7 @@ public abstract class AbstractRunResource {
     * @return Mono<ResponseEntity<RunDTO>>
     */
     @ApiOperation(value = "batch_save_run_history", tags = {"执行用例" },  notes = "Run-batch_save_run_history ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-batch_save_run_history-all') or hasPermission('library',#testLibraryId,this.runDtoMapping.toDomain(#dto),'ibizplm-Run-batch_save_run_history')")
     @PostMapping("libraries/{testLibraryId}/test_cases/{caseId}/runs/{id}/batch_save_run_history")
     public Mono<ResponseEntity<ResponseWrapper<RunDTO>>>batchSaveRunHistoryByTestLibraryIdAndCaseIdAndId
             (@PathVariable("testLibraryId") String testLibraryId, @PathVariable("caseId") String caseId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<RunDTO> dto) {
@@ -1546,6 +1557,7 @@ public abstract class AbstractRunResource {
     * @return Mono<ResponseEntity<RunDTO>>
     */
     @ApiOperation(value = "run_re_counters", tags = {"执行用例" },  notes = "Run-run_re_counters ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-run_re_counters-all') or hasPermission('library',#testLibraryId,this.runDtoMapping.toDomain(#dto),'ibizplm-Run-run_re_counters')")
     @PostMapping("libraries/{testLibraryId}/test_cases/{caseId}/runs/{id}/run_re_counters")
     public Mono<ResponseEntity<ResponseWrapper<RunDTO>>>runReCountersByTestLibraryIdAndCaseIdAndId
             (@PathVariable("testLibraryId") String testLibraryId, @PathVariable("caseId") String caseId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<RunDTO> dto) {
@@ -1587,6 +1599,7 @@ public abstract class AbstractRunResource {
     * @return Mono<ResponseEntity<RunDTO>>
     */
     @ApiOperation(value = "保存Save", tags = {"执行用例" },  notes = "Run-Save ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-Save-all') or hasPermission('library',#testLibraryId,this.runDtoMapping.toDomain(#dto),'ibizplm-Run-Save')")
     @PostMapping("libraries/{testLibraryId}/test_cases/{caseId}/runs/save")
     public Mono<ResponseEntity<ResponseWrapper<RunDTO>>>saveByTestLibraryIdAndCaseId
             (@PathVariable("testLibraryId") String testLibraryId, @PathVariable("caseId") String caseId, @Validated @RequestBody RequestWrapper<RunDTO> dto) {
@@ -1627,6 +1640,7 @@ public abstract class AbstractRunResource {
     * @return Mono<ResponseEntity<RunDTO>>
     */
     @ApiOperation(value = "save_run_history", tags = {"执行用例" },  notes = "Run-save_run_history ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-save_run_history-all') or hasPermission('library',#testLibraryId,this.runDtoMapping.toDomain(#dto),'ibizplm-Run-save_run_history')")
     @PostMapping("libraries/{testLibraryId}/test_cases/{caseId}/runs/{id}/save_run_history")
     public Mono<ResponseEntity<ResponseWrapper<RunDTO>>>saveRunHistoryByTestLibraryIdAndCaseIdAndId
             (@PathVariable("testLibraryId") String testLibraryId, @PathVariable("caseId") String caseId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<RunDTO> dto) {
@@ -1669,6 +1683,7 @@ public abstract class AbstractRunResource {
     * @return Mono<ResponseEntity<RunDTO>>
     */
     @ApiOperation(value = "set_executor", tags = {"执行用例" },  notes = "Run-set_executor ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-set_executor-all') or hasPermission('library',#testLibraryId,this.runDtoMapping.toDomain(#dto),'ibizplm-Run-set_executor')")
     @PostMapping("libraries/{testLibraryId}/test_cases/{caseId}/runs/{id}/set_executor")
     public Mono<ResponseEntity<ResponseWrapper<RunDTO>>>setExecutorByTestLibraryIdAndCaseIdAndId
             (@PathVariable("testLibraryId") String testLibraryId, @PathVariable("caseId") String caseId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<RunDTO> dto) {
@@ -1832,6 +1847,7 @@ public abstract class AbstractRunResource {
     * @return Mono<ResponseEntity<RunDTO>>
     */
     @ApiOperation(value = "batch_save_run_history", tags = {"执行用例" },  notes = "Run-batch_save_run_history ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-batch_save_run_history-all') or hasPermission('test_plan',#planId,this.runDtoMapping.toDomain(#dto),'ibizplm-Run-batch_save_run_history')")
     @PostMapping("test_plans/{planId}/runs/{id}/batch_save_run_history")
     public Mono<ResponseEntity<ResponseWrapper<RunDTO>>>batchSaveRunHistoryByPlanIdAndId
             (@PathVariable("planId") String planId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<RunDTO> dto) {
@@ -2102,6 +2118,7 @@ public abstract class AbstractRunResource {
     * @return Mono<ResponseEntity<RunDTO>>
     */
     @ApiOperation(value = "run_re_counters", tags = {"执行用例" },  notes = "Run-run_re_counters ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-run_re_counters-all') or hasPermission('test_plan',#planId,this.runDtoMapping.toDomain(#dto),'ibizplm-Run-run_re_counters')")
     @PostMapping("test_plans/{planId}/runs/{id}/run_re_counters")
     public Mono<ResponseEntity<ResponseWrapper<RunDTO>>>runReCountersByPlanIdAndId
             (@PathVariable("planId") String planId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<RunDTO> dto) {
@@ -2141,6 +2158,7 @@ public abstract class AbstractRunResource {
     * @return Mono<ResponseEntity<RunDTO>>
     */
     @ApiOperation(value = "保存Save", tags = {"执行用例" },  notes = "Run-Save ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-Save-all') or hasPermission('test_plan',#planId,this.runDtoMapping.toDomain(#dto),'ibizplm-Run-Save')")
     @PostMapping("test_plans/{planId}/runs/save")
     public Mono<ResponseEntity<ResponseWrapper<RunDTO>>>saveByPlanId
             (@PathVariable("planId") String planId, @Validated @RequestBody RequestWrapper<RunDTO> dto) {
@@ -2179,6 +2197,7 @@ public abstract class AbstractRunResource {
     * @return Mono<ResponseEntity<RunDTO>>
     */
     @ApiOperation(value = "save_run_history", tags = {"执行用例" },  notes = "Run-save_run_history ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-save_run_history-all') or hasPermission('test_plan',#planId,this.runDtoMapping.toDomain(#dto),'ibizplm-Run-save_run_history')")
     @PostMapping("test_plans/{planId}/runs/{id}/save_run_history")
     public Mono<ResponseEntity<ResponseWrapper<RunDTO>>>saveRunHistoryByPlanIdAndId
             (@PathVariable("planId") String planId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<RunDTO> dto) {
@@ -2219,6 +2238,7 @@ public abstract class AbstractRunResource {
     * @return Mono<ResponseEntity<RunDTO>>
     */
     @ApiOperation(value = "set_executor", tags = {"执行用例" },  notes = "Run-set_executor ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-set_executor-all') or hasPermission('test_plan',#planId,this.runDtoMapping.toDomain(#dto),'ibizplm-Run-set_executor')")
     @PostMapping("test_plans/{planId}/runs/{id}/set_executor")
     public Mono<ResponseEntity<ResponseWrapper<RunDTO>>>setExecutorByPlanIdAndId
             (@PathVariable("planId") String planId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<RunDTO> dto) {
@@ -2388,6 +2408,7 @@ public abstract class AbstractRunResource {
     * @return Mono<ResponseEntity<RunDTO>>
     */
     @ApiOperation(value = "batch_save_run_history", tags = {"执行用例" },  notes = "Run-batch_save_run_history ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-batch_save_run_history-all') or hasPermission('library',#libraryId,this.runDtoMapping.toDomain(#dto),'ibizplm-Run-batch_save_run_history')")
     @PostMapping("libraries/{libraryId}/test_plans/{planId}/runs/{id}/batch_save_run_history")
     public Mono<ResponseEntity<ResponseWrapper<RunDTO>>>batchSaveRunHistoryByLibraryIdAndPlanIdAndId
             (@PathVariable("libraryId") String libraryId, @PathVariable("planId") String planId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<RunDTO> dto) {
@@ -2672,6 +2693,7 @@ public abstract class AbstractRunResource {
     * @return Mono<ResponseEntity<RunDTO>>
     */
     @ApiOperation(value = "run_re_counters", tags = {"执行用例" },  notes = "Run-run_re_counters ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-run_re_counters-all') or hasPermission('library',#libraryId,this.runDtoMapping.toDomain(#dto),'ibizplm-Run-run_re_counters')")
     @PostMapping("libraries/{libraryId}/test_plans/{planId}/runs/{id}/run_re_counters")
     public Mono<ResponseEntity<ResponseWrapper<RunDTO>>>runReCountersByLibraryIdAndPlanIdAndId
             (@PathVariable("libraryId") String libraryId, @PathVariable("planId") String planId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<RunDTO> dto) {
@@ -2713,6 +2735,7 @@ public abstract class AbstractRunResource {
     * @return Mono<ResponseEntity<RunDTO>>
     */
     @ApiOperation(value = "保存Save", tags = {"执行用例" },  notes = "Run-Save ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-Save-all') or hasPermission('library',#libraryId,this.runDtoMapping.toDomain(#dto),'ibizplm-Run-Save')")
     @PostMapping("libraries/{libraryId}/test_plans/{planId}/runs/save")
     public Mono<ResponseEntity<ResponseWrapper<RunDTO>>>saveByLibraryIdAndPlanId
             (@PathVariable("libraryId") String libraryId, @PathVariable("planId") String planId, @Validated @RequestBody RequestWrapper<RunDTO> dto) {
@@ -2753,6 +2776,7 @@ public abstract class AbstractRunResource {
     * @return Mono<ResponseEntity<RunDTO>>
     */
     @ApiOperation(value = "save_run_history", tags = {"执行用例" },  notes = "Run-save_run_history ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-save_run_history-all') or hasPermission('library',#libraryId,this.runDtoMapping.toDomain(#dto),'ibizplm-Run-save_run_history')")
     @PostMapping("libraries/{libraryId}/test_plans/{planId}/runs/{id}/save_run_history")
     public Mono<ResponseEntity<ResponseWrapper<RunDTO>>>saveRunHistoryByLibraryIdAndPlanIdAndId
             (@PathVariable("libraryId") String libraryId, @PathVariable("planId") String planId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<RunDTO> dto) {
@@ -2795,6 +2819,7 @@ public abstract class AbstractRunResource {
     * @return Mono<ResponseEntity<RunDTO>>
     */
     @ApiOperation(value = "set_executor", tags = {"执行用例" },  notes = "Run-set_executor ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-set_executor-all') or hasPermission('library',#libraryId,this.runDtoMapping.toDomain(#dto),'ibizplm-Run-set_executor')")
     @PostMapping("libraries/{libraryId}/test_plans/{planId}/runs/{id}/set_executor")
     public Mono<ResponseEntity<ResponseWrapper<RunDTO>>>setExecutorByLibraryIdAndPlanIdAndId
             (@PathVariable("libraryId") String libraryId, @PathVariable("planId") String planId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<RunDTO> dto) {
@@ -2820,6 +2845,588 @@ public abstract class AbstractRunResource {
     */   
     public RunDTO setExecutorByLibraryIdAndPlanIdAndId
             (String libraryId, String planId, String id, RunDTO dto) {
+        Run domain = runDtoMapping.toDomain(dto);
+        domain.setId(id);
+        Run rt = runService.setExecutor(domain);
+        return runDtoMapping.toDto(rt);
+    }
+
+    /**
+    * 创建Create 执行用例
+    * 
+    *
+    * @param projectId projectId
+    * @param planId planId
+    * @param dto dto
+    * @return Mono<ResponseEntity<RunDTO>>
+    */
+    @ApiOperation(value = "创建Create", tags = {"执行用例" },  notes = "Run-Create ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-Create-all') or hasPermission('project',#projectId,this.runDtoMapping.toDomain(#dto),'ibizplm-Run-Create')")
+    @PostMapping("projects/{projectId}/test_plans/{planId}/runs")
+    public Mono<ResponseEntity<ResponseWrapper<RunDTO>>>createByProjectIdAndPlanId
+            (@PathVariable("projectId") String projectId, @PathVariable("planId") String planId, @Validated @RequestBody RequestWrapper<RunDTO> dto) {
+        ResponseWrapper<RunDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray())
+            dto.getList().forEach(item -> rt.add(createByProjectIdAndPlanId(projectId, planId, item)));
+        else
+            rt.set(createByProjectIdAndPlanId(projectId, planId, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * 创建Create 执行用例
+    * 
+    *
+    * @param projectId projectId
+    * @param planId planId
+    * @param dto dto
+    * @return ResponseEntity<RunDTO>
+    */   
+    public RunDTO createByProjectIdAndPlanId
+            (String projectId, String planId, RunDTO dto) {
+        Run domain = runDtoMapping.toDomain(dto);
+        domain.setPlanId(planId);
+        runService.create(domain);
+        Run rt = domain;
+        return runDtoMapping.toDto(rt);
+    }
+
+    /**
+    * 更新Update 执行用例
+    * 
+    *
+    * @param projectId projectId
+    * @param planId planId
+    * @param id id
+    * @param dto dto
+    * @return Mono<ResponseEntity<RunDTO>>
+    */
+    @ApiOperation(value = "更新Update", tags = {"执行用例" },  notes = "Run-Update ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-Update-all') or hasPermission('project',#projectId,this.runService.get(#id),'ibizplm-Run-Update')")
+    @VersionCheck(entity = "run" , versionfield = "updateTime")
+    @PutMapping("projects/{projectId}/test_plans/{planId}/runs/{id}")
+    public Mono<ResponseEntity<ResponseWrapper<RunDTO>>>updateByProjectIdAndPlanIdAndId
+            (@PathVariable("projectId") String projectId, @PathVariable("planId") String planId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<RunDTO> dto) {
+        ResponseWrapper<RunDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(updateByProjectIdAndPlanIdAndId(projectId, planId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(updateByProjectIdAndPlanIdAndId(projectId, planId, id, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * 更新Update 执行用例
+    * 
+    *
+    * @param projectId projectId
+    * @param planId planId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<RunDTO>
+    */   
+    public RunDTO updateByProjectIdAndPlanIdAndId
+            (String projectId, String planId, String id, RunDTO dto) {
+        Run domain = runDtoMapping.toDomain(dto);
+        domain.setId(id);
+        runService.update(domain);
+        Run rt = domain;
+        return runDtoMapping.toDto(rt);
+    }
+
+    /**
+    * add_plan_run 执行用例
+    * 
+    *
+    * @param projectId projectId
+    * @param planId planId
+    * @param id id
+    * @param dto dto
+    * @return Mono<ResponseEntity<RunDTO>>
+    */
+    @ApiOperation(value = "add_plan_run", tags = {"执行用例" },  notes = "Run-add_plan_run ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-add_plan_run-all') or hasPermission('project',#projectId,this.runDtoMapping.toDomain(#dto),'ibizplm-Run-add_plan_run')")
+    @PostMapping("projects/{projectId}/test_plans/{planId}/runs/{id}/add_plan_run")
+    public Mono<ResponseEntity<ResponseWrapper<RunDTO>>>addPlanRunByProjectIdAndPlanIdAndId
+            (@PathVariable("projectId") String projectId, @PathVariable("planId") String planId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<RunDTO> dto) {
+        ResponseWrapper<RunDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(addPlanRunByProjectIdAndPlanIdAndId(projectId, planId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(addPlanRunByProjectIdAndPlanIdAndId(projectId, planId, id, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * add_plan_run 执行用例
+    * 
+    *
+    * @param projectId projectId
+    * @param planId planId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<RunDTO>
+    */   
+    public RunDTO addPlanRunByProjectIdAndPlanIdAndId
+            (String projectId, String planId, String id, RunDTO dto) {
+        Run domain = runDtoMapping.toDomain(dto);
+        domain.setId(id);
+        Run rt = runService.addPlanRun(domain);
+        return runDtoMapping.toDto(rt);
+    }
+
+    /**
+    * batch_save_run_history 执行用例
+    * 
+    *
+    * @param projectId projectId
+    * @param planId planId
+    * @param id id
+    * @param dto dto
+    * @return Mono<ResponseEntity<RunDTO>>
+    */
+    @ApiOperation(value = "batch_save_run_history", tags = {"执行用例" },  notes = "Run-batch_save_run_history ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-batch_save_run_history-all') or hasPermission('project',#projectId,this.runDtoMapping.toDomain(#dto),'ibizplm-Run-batch_save_run_history')")
+    @PostMapping("projects/{projectId}/test_plans/{planId}/runs/{id}/batch_save_run_history")
+    public Mono<ResponseEntity<ResponseWrapper<RunDTO>>>batchSaveRunHistoryByProjectIdAndPlanIdAndId
+            (@PathVariable("projectId") String projectId, @PathVariable("planId") String planId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<RunDTO> dto) {
+        ResponseWrapper<RunDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(batchSaveRunHistoryByProjectIdAndPlanIdAndId(projectId, planId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(batchSaveRunHistoryByProjectIdAndPlanIdAndId(projectId, planId, id, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * batch_save_run_history 执行用例
+    * 
+    *
+    * @param projectId projectId
+    * @param planId planId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<RunDTO>
+    */   
+    public RunDTO batchSaveRunHistoryByProjectIdAndPlanIdAndId
+            (String projectId, String planId, String id, RunDTO dto) {
+        Run domain = runDtoMapping.toDomain(dto);
+        domain.setId(id);
+        Run rt = runService.batchSaveRunHistory(domain);
+        return runDtoMapping.toDto(rt);
+    }
+
+    /**
+    * other_relation_run 执行用例
+    * 
+    *
+    * @param projectId projectId
+    * @param planId planId
+    * @param id id
+    * @param dto dto
+    * @return Mono<ResponseEntity<RunDTO>>
+    */
+    @ApiOperation(value = "other_relation_run", tags = {"执行用例" },  notes = "Run-other_relation_run ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-other_relation_run-all') or hasPermission('project',#projectId,this.runDtoMapping.toDomain(#dto),'ibizplm-Run-other_relation_run')")
+    @PutMapping("projects/{projectId}/test_plans/{planId}/runs/{id}/other_relation_run")
+    public Mono<ResponseEntity<ResponseWrapper<RunDTO>>>otherRelationRunByProjectIdAndPlanIdAndId
+            (@PathVariable("projectId") String projectId, @PathVariable("planId") String planId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<RunDTO> dto) {
+        ResponseWrapper<RunDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(otherRelationRunByProjectIdAndPlanIdAndId(projectId, planId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(otherRelationRunByProjectIdAndPlanIdAndId(projectId, planId, id, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * other_relation_run 执行用例
+    * 
+    *
+    * @param projectId projectId
+    * @param planId planId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<RunDTO>
+    */   
+    public RunDTO otherRelationRunByProjectIdAndPlanIdAndId
+            (String projectId, String planId, String id, RunDTO dto) {
+        Run domain = runDtoMapping.toDomain(dto);
+        domain.setId(id);
+        Run rt = runService.otherRelationRun(domain);
+        return runDtoMapping.toDto(rt);
+    }
+
+    /**
+    * program_plan 执行用例
+    * 
+    *
+    * @param projectId projectId
+    * @param planId planId
+    * @param dto dto
+    * @return Mono<ResponseEntity<RunDTO>>
+    */
+    @ApiOperation(value = "program_plan", tags = {"执行用例" },  notes = "Run-program_plan ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-program_plan-all') or hasPermission('project',#projectId,this.runDtoMapping.toDomain(#dto),'ibizplm-Run-program_plan')")
+    @PostMapping("projects/{projectId}/test_plans/{planId}/runs/program_plan")
+    public Mono<ResponseEntity<ResponseWrapper<RunDTO>>>programPlanByProjectIdAndPlanId
+            (@PathVariable("projectId") String projectId, @PathVariable("planId") String planId, @Validated @RequestBody RequestWrapper<RunDTO> dto) {
+        ResponseWrapper<RunDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray())
+            dto.getList().forEach(item -> rt.add(programPlanByProjectIdAndPlanId(projectId, planId, item)));
+        else
+            rt.set(programPlanByProjectIdAndPlanId(projectId, planId, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * program_plan 执行用例
+    * 
+    *
+    * @param projectId projectId
+    * @param planId planId
+    * @param dto dto
+    * @return ResponseEntity<RunDTO>
+    */   
+    public RunDTO programPlanByProjectIdAndPlanId
+            (String projectId, String planId, RunDTO dto) {
+        Run domain = runDtoMapping.toDomain(dto);
+        domain.setPlanId(planId);
+        Run rt = runService.programPlan(domain);
+        return runDtoMapping.toDto(rt);
+    }
+
+    /**
+    * program_plan_by_release 执行用例
+    * 
+    *
+    * @param projectId projectId
+    * @param planId planId
+    * @param dto dto
+    * @return Mono<ResponseEntity<RunDTO>>
+    */
+    @ApiOperation(value = "program_plan_by_release", tags = {"执行用例" },  notes = "Run-program_plan_by_release ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-program_plan_by_release-all') or hasPermission('project',#projectId,this.runDtoMapping.toDomain(#dto),'ibizplm-Run-program_plan_by_release')")
+    @PostMapping("projects/{projectId}/test_plans/{planId}/runs/program_plan_by_release")
+    public Mono<ResponseEntity<ResponseWrapper<RunDTO>>>programPlanByReleaseByProjectIdAndPlanId
+            (@PathVariable("projectId") String projectId, @PathVariable("planId") String planId, @Validated @RequestBody RequestWrapper<RunDTO> dto) {
+        ResponseWrapper<RunDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray())
+            dto.getList().forEach(item -> rt.add(programPlanByReleaseByProjectIdAndPlanId(projectId, planId, item)));
+        else
+            rt.set(programPlanByReleaseByProjectIdAndPlanId(projectId, planId, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * program_plan_by_release 执行用例
+    * 
+    *
+    * @param projectId projectId
+    * @param planId planId
+    * @param dto dto
+    * @return ResponseEntity<RunDTO>
+    */   
+    public RunDTO programPlanByReleaseByProjectIdAndPlanId
+            (String projectId, String planId, RunDTO dto) {
+        Run domain = runDtoMapping.toDomain(dto);
+        domain.setPlanId(planId);
+        Run rt = runService.programPlanByRelease(domain);
+        return runDtoMapping.toDto(rt);
+    }
+
+    /**
+    * program_plan_by_sprint 执行用例
+    * 
+    *
+    * @param projectId projectId
+    * @param planId planId
+    * @param dto dto
+    * @return Mono<ResponseEntity<RunDTO>>
+    */
+    @ApiOperation(value = "program_plan_by_sprint", tags = {"执行用例" },  notes = "Run-program_plan_by_sprint ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-program_plan_by_sprint-all') or hasPermission('project',#projectId,this.runDtoMapping.toDomain(#dto),'ibizplm-Run-program_plan_by_sprint')")
+    @PostMapping("projects/{projectId}/test_plans/{planId}/runs/program_plan_by_sprint")
+    public Mono<ResponseEntity<ResponseWrapper<RunDTO>>>programPlanBySprintByProjectIdAndPlanId
+            (@PathVariable("projectId") String projectId, @PathVariable("planId") String planId, @Validated @RequestBody RequestWrapper<RunDTO> dto) {
+        ResponseWrapper<RunDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray())
+            dto.getList().forEach(item -> rt.add(programPlanBySprintByProjectIdAndPlanId(projectId, planId, item)));
+        else
+            rt.set(programPlanBySprintByProjectIdAndPlanId(projectId, planId, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * program_plan_by_sprint 执行用例
+    * 
+    *
+    * @param projectId projectId
+    * @param planId planId
+    * @param dto dto
+    * @return ResponseEntity<RunDTO>
+    */   
+    public RunDTO programPlanBySprintByProjectIdAndPlanId
+            (String projectId, String planId, RunDTO dto) {
+        Run domain = runDtoMapping.toDomain(dto);
+        domain.setPlanId(planId);
+        Run rt = runService.programPlanBySprint(domain);
+        return runDtoMapping.toDto(rt);
+    }
+
+    /**
+    * program_plan_by_workitem 执行用例
+    * 
+    *
+    * @param projectId projectId
+    * @param planId planId
+    * @param dto dto
+    * @return Mono<ResponseEntity<RunDTO>>
+    */
+    @ApiOperation(value = "program_plan_by_workitem", tags = {"执行用例" },  notes = "Run-program_plan_by_workitem ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-program_plan_by_workitem-all') or hasPermission('project',#projectId,this.runDtoMapping.toDomain(#dto),'ibizplm-Run-program_plan_by_workitem')")
+    @PostMapping("projects/{projectId}/test_plans/{planId}/runs/program_plan_by_workitem")
+    public Mono<ResponseEntity<ResponseWrapper<RunDTO>>>programPlanByWorkitemByProjectIdAndPlanId
+            (@PathVariable("projectId") String projectId, @PathVariable("planId") String planId, @Validated @RequestBody RequestWrapper<RunDTO> dto) {
+        ResponseWrapper<RunDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray())
+            dto.getList().forEach(item -> rt.add(programPlanByWorkitemByProjectIdAndPlanId(projectId, planId, item)));
+        else
+            rt.set(programPlanByWorkitemByProjectIdAndPlanId(projectId, planId, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * program_plan_by_workitem 执行用例
+    * 
+    *
+    * @param projectId projectId
+    * @param planId planId
+    * @param dto dto
+    * @return ResponseEntity<RunDTO>
+    */   
+    public RunDTO programPlanByWorkitemByProjectIdAndPlanId
+            (String projectId, String planId, RunDTO dto) {
+        Run domain = runDtoMapping.toDomain(dto);
+        domain.setPlanId(planId);
+        Run rt = runService.programPlanByWorkitem(domain);
+        return runDtoMapping.toDto(rt);
+    }
+
+    /**
+    * reset_not_test 执行用例
+    * 
+    *
+    * @param projectId projectId
+    * @param planId planId
+    * @param id id
+    * @param dto dto
+    * @return Mono<ResponseEntity<RunDTO>>
+    */
+    @ApiOperation(value = "reset_not_test", tags = {"执行用例" },  notes = "Run-reset_not_test ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-reset_not_test-all') or hasPermission('project',#projectId,this.runDtoMapping.toDomain(#dto),'ibizplm-Run-reset_not_test')")
+    @PostMapping("projects/{projectId}/test_plans/{planId}/runs/{id}/reset_not_test")
+    public Mono<ResponseEntity<ResponseWrapper<RunDTO>>>resetNotTestByProjectIdAndPlanIdAndId
+            (@PathVariable("projectId") String projectId, @PathVariable("planId") String planId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<RunDTO> dto) {
+        ResponseWrapper<RunDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(resetNotTestByProjectIdAndPlanIdAndId(projectId, planId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(resetNotTestByProjectIdAndPlanIdAndId(projectId, planId, id, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * reset_not_test 执行用例
+    * 
+    *
+    * @param projectId projectId
+    * @param planId planId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<RunDTO>
+    */   
+    public RunDTO resetNotTestByProjectIdAndPlanIdAndId
+            (String projectId, String planId, String id, RunDTO dto) {
+        Run domain = runDtoMapping.toDomain(dto);
+        domain.setId(id);
+        Run rt = runService.resetNotTest(domain);
+        return runDtoMapping.toDto(rt);
+    }
+
+    /**
+    * run_re_counters 执行用例
+    * 
+    *
+    * @param projectId projectId
+    * @param planId planId
+    * @param id id
+    * @param dto dto
+    * @return Mono<ResponseEntity<RunDTO>>
+    */
+    @ApiOperation(value = "run_re_counters", tags = {"执行用例" },  notes = "Run-run_re_counters ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-run_re_counters-all') or hasPermission('project',#projectId,this.runDtoMapping.toDomain(#dto),'ibizplm-Run-run_re_counters')")
+    @PostMapping("projects/{projectId}/test_plans/{planId}/runs/{id}/run_re_counters")
+    public Mono<ResponseEntity<ResponseWrapper<RunDTO>>>runReCountersByProjectIdAndPlanIdAndId
+            (@PathVariable("projectId") String projectId, @PathVariable("planId") String planId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<RunDTO> dto) {
+        ResponseWrapper<RunDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(runReCountersByProjectIdAndPlanIdAndId(projectId, planId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(runReCountersByProjectIdAndPlanIdAndId(projectId, planId, id, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * run_re_counters 执行用例
+    * 
+    *
+    * @param projectId projectId
+    * @param planId planId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<RunDTO>
+    */   
+    public RunDTO runReCountersByProjectIdAndPlanIdAndId
+            (String projectId, String planId, String id, RunDTO dto) {
+        Run domain = runDtoMapping.toDomain(dto);
+        domain.setId(id);
+        Run rt = runService.runReCounters(domain);
+        return runDtoMapping.toDto(rt);
+    }
+
+    /**
+    * 保存Save 执行用例
+    * 
+    *
+    * @param projectId projectId
+    * @param planId planId
+    * @param dto dto
+    * @return Mono<ResponseEntity<RunDTO>>
+    */
+    @ApiOperation(value = "保存Save", tags = {"执行用例" },  notes = "Run-Save ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-Save-all') or hasPermission('project',#projectId,this.runDtoMapping.toDomain(#dto),'ibizplm-Run-Save')")
+    @PostMapping("projects/{projectId}/test_plans/{planId}/runs/save")
+    public Mono<ResponseEntity<ResponseWrapper<RunDTO>>>saveByProjectIdAndPlanId
+            (@PathVariable("projectId") String projectId, @PathVariable("planId") String planId, @Validated @RequestBody RequestWrapper<RunDTO> dto) {
+        ResponseWrapper<RunDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray())
+            dto.getList().forEach(item -> rt.add(saveByProjectIdAndPlanId(projectId, planId, item)));
+        else
+            rt.set(saveByProjectIdAndPlanId(projectId, planId, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * 保存Save 执行用例
+    * 
+    *
+    * @param projectId projectId
+    * @param planId planId
+    * @param dto dto
+    * @return ResponseEntity<RunDTO>
+    */   
+    public RunDTO saveByProjectIdAndPlanId
+            (String projectId, String planId, RunDTO dto) {
+        Run domain = runDtoMapping.toDomain(dto);
+        domain.setPlanId(planId);
+        runService.save(domain);
+        Run rt = domain;
+        return runDtoMapping.toDto(rt);
+    }
+
+    /**
+    * save_run_history 执行用例
+    * 
+    *
+    * @param projectId projectId
+    * @param planId planId
+    * @param id id
+    * @param dto dto
+    * @return Mono<ResponseEntity<RunDTO>>
+    */
+    @ApiOperation(value = "save_run_history", tags = {"执行用例" },  notes = "Run-save_run_history ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-save_run_history-all') or hasPermission('project',#projectId,this.runDtoMapping.toDomain(#dto),'ibizplm-Run-save_run_history')")
+    @PostMapping("projects/{projectId}/test_plans/{planId}/runs/{id}/save_run_history")
+    public Mono<ResponseEntity<ResponseWrapper<RunDTO>>>saveRunHistoryByProjectIdAndPlanIdAndId
+            (@PathVariable("projectId") String projectId, @PathVariable("planId") String planId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<RunDTO> dto) {
+        ResponseWrapper<RunDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(saveRunHistoryByProjectIdAndPlanIdAndId(projectId, planId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(saveRunHistoryByProjectIdAndPlanIdAndId(projectId, planId, id, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * save_run_history 执行用例
+    * 
+    *
+    * @param projectId projectId
+    * @param planId planId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<RunDTO>
+    */   
+    public RunDTO saveRunHistoryByProjectIdAndPlanIdAndId
+            (String projectId, String planId, String id, RunDTO dto) {
+        Run domain = runDtoMapping.toDomain(dto);
+        domain.setId(id);
+        Run rt = runService.saveRunHistory(domain);
+        return runDtoMapping.toDto(rt);
+    }
+
+    /**
+    * set_executor 执行用例
+    * 
+    *
+    * @param projectId projectId
+    * @param planId planId
+    * @param id id
+    * @param dto dto
+    * @return Mono<ResponseEntity<RunDTO>>
+    */
+    @ApiOperation(value = "set_executor", tags = {"执行用例" },  notes = "Run-set_executor ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-set_executor-all') or hasPermission('project',#projectId,this.runDtoMapping.toDomain(#dto),'ibizplm-Run-set_executor')")
+    @PostMapping("projects/{projectId}/test_plans/{planId}/runs/{id}/set_executor")
+    public Mono<ResponseEntity<ResponseWrapper<RunDTO>>>setExecutorByProjectIdAndPlanIdAndId
+            (@PathVariable("projectId") String projectId, @PathVariable("planId") String planId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<RunDTO> dto) {
+        ResponseWrapper<RunDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(setExecutorByProjectIdAndPlanIdAndId(projectId, planId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(setExecutorByProjectIdAndPlanIdAndId(projectId, planId, id, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * set_executor 执行用例
+    * 
+    *
+    * @param projectId projectId
+    * @param planId planId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<RunDTO>
+    */   
+    public RunDTO setExecutorByProjectIdAndPlanIdAndId
+            (String projectId, String planId, String id, RunDTO dto) {
         Run domain = runDtoMapping.toDomain(dto);
         domain.setId(id);
         Run rt = runService.setExecutor(domain);
@@ -2883,6 +3490,7 @@ public abstract class AbstractRunResource {
     * @return Mono<ResponseEntity<RunDTO>>
     */
     @ApiOperation(value = "get_actual_workload", tags = {"执行用例" },  notes = "Run-get_actual_workload ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-get_actual_workload-all') or hasPermission(this.runService.get(#id),'ibizplm-Run-get_actual_workload')")
     @GetMapping("runs/{id}/get_actual_workload")
     public Mono<ResponseEntity<RunDTO>> getActualWorkloadById
             (@PathVariable("id") String id) {
@@ -3238,6 +3846,7 @@ public abstract class AbstractRunResource {
     * @return Mono<ResponseEntity<RunDTO>>
     */
     @ApiOperation(value = "get_actual_workload", tags = {"执行用例" },  notes = "Run-get_actual_workload ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-get_actual_workload-all') or hasPermission('test_case',#caseId,this.runService.get(#id),'ibizplm-Run-get_actual_workload')")
     @GetMapping("test_cases/{caseId}/runs/{id}/get_actual_workload")
     public Mono<ResponseEntity<RunDTO>> getActualWorkloadByCaseIdAndId
             (@PathVariable("caseId") String caseId, @PathVariable("id") String id) {
@@ -3624,6 +4233,7 @@ public abstract class AbstractRunResource {
     * @return Mono<ResponseEntity<RunDTO>>
     */
     @ApiOperation(value = "get_actual_workload", tags = {"执行用例" },  notes = "Run-get_actual_workload ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-get_actual_workload-all') or hasPermission('library',#testLibraryId,this.runService.get(#id),'ibizplm-Run-get_actual_workload')")
     @GetMapping("libraries/{testLibraryId}/test_cases/{caseId}/runs/{id}/get_actual_workload")
     public Mono<ResponseEntity<RunDTO>> getActualWorkloadByTestLibraryIdAndCaseIdAndId
             (@PathVariable("testLibraryId") String testLibraryId, @PathVariable("caseId") String caseId, @PathVariable("id") String id) {
@@ -4020,6 +4630,7 @@ public abstract class AbstractRunResource {
     * @return Mono<ResponseEntity<RunDTO>>
     */
     @ApiOperation(value = "get_actual_workload", tags = {"执行用例" },  notes = "Run-get_actual_workload ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-get_actual_workload-all') or hasPermission('test_plan',#planId,this.runService.get(#id),'ibizplm-Run-get_actual_workload')")
     @GetMapping("test_plans/{planId}/runs/{id}/get_actual_workload")
     public Mono<ResponseEntity<RunDTO>> getActualWorkloadByPlanIdAndId
             (@PathVariable("planId") String planId, @PathVariable("id") String id) {
@@ -4406,6 +5017,7 @@ public abstract class AbstractRunResource {
     * @return Mono<ResponseEntity<RunDTO>>
     */
     @ApiOperation(value = "get_actual_workload", tags = {"执行用例" },  notes = "Run-get_actual_workload ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-get_actual_workload-all') or hasPermission('library',#libraryId,this.runService.get(#id),'ibizplm-Run-get_actual_workload')")
     @GetMapping("libraries/{libraryId}/test_plans/{planId}/runs/{id}/get_actual_workload")
     public Mono<ResponseEntity<RunDTO>> getActualWorkloadByLibraryIdAndPlanIdAndId
             (@PathVariable("libraryId") String libraryId, @PathVariable("planId") String planId, @PathVariable("id") String id) {
@@ -4730,6 +5342,407 @@ public abstract class AbstractRunResource {
     @PostMapping("libraries/{libraryId}/test_plans/{planId}/runs/fetch_reader")
     public Mono<ResponseEntity<List<RunDTO>>> fetchReaderByLibraryIdAndPlanId
             (@PathVariable("libraryId") String libraryId, @PathVariable("planId") String planId, @Validated @RequestBody RunFilterDTO dto) {
+        dto.setPlanIdEQ(planId);
+        RunSearchContext context = runFilterDtoMapping.toDomain(dto);
+        Page<Run> domains = runService.fetchReader(context) ;
+        List<RunDTO> list = runDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
+    * 获取Get 执行用例
+    * 
+    *
+    * @param projectId projectId
+    * @param planId planId
+    * @param id id
+    * @return Mono<ResponseEntity<RunDTO>>
+    */
+    @ApiOperation(value = "获取Get", tags = {"执行用例" },  notes = "Run-Get ")
+    @PostAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-Get-all')  or hasPermission('project',#projectId,this.runDtoMapping.toDomain(returnObject.block().getBody()),'ibizplm-Run-Get')")
+    @GetMapping("projects/{projectId}/test_plans/{planId}/runs/{id}")
+    public Mono<ResponseEntity<RunDTO>> getByProjectIdAndPlanIdAndId
+            (@PathVariable("projectId") String projectId, @PathVariable("planId") String planId, @PathVariable("id") String id) {
+        Run rt = runService.get(id);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(runDtoMapping.toDto(rt)));
+    }
+
+    /**
+    * 删除Remove 执行用例
+    * 
+    *
+    * @param projectId projectId
+    * @param planId planId
+    * @param id id
+    * @return Mono<ResponseEntity<Boolean>>
+    */
+    @ApiOperation(value = "删除Remove", tags = {"执行用例" },  notes = "Run-Remove ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-Remove-all') or hasPermission('project',#projectId,this.runService.get(#id),'ibizplm-Run-Remove')")
+    @DeleteMapping("projects/{projectId}/test_plans/{planId}/runs/{id}")
+    public Mono<ResponseEntity<Boolean>> removeByProjectIdAndPlanIdAndId
+            (@PathVariable("projectId") String projectId, @PathVariable("planId") String planId, @PathVariable("id") String id) {
+        Boolean rt = runService.remove(id);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * 校验CheckKey 执行用例
+    * 
+    *
+    * @param projectId projectId
+    * @param planId planId
+    * @param dto dto
+    * @return Mono<ResponseEntity<Integer>>
+    */
+    @ApiOperation(value = "校验CheckKey", tags = {"执行用例" },  notes = "Run-CheckKey ")
+    @PostMapping("projects/{projectId}/test_plans/{planId}/runs/check_key")
+    public Mono<ResponseEntity<CheckKeyStatus>> checkKeyByProjectIdAndPlanId
+            (@PathVariable("projectId") String projectId, @PathVariable("planId") String planId, @Validated @RequestBody RunDTO dto) {
+        Run domain = runDtoMapping.toDomain(dto);
+        domain.setPlanId(planId);
+        CheckKeyStatus rt = runService.checkKey(domain);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * get_actual_workload 执行用例
+    * 
+    *
+    * @param projectId projectId
+    * @param planId planId
+    * @param id id
+    * @return Mono<ResponseEntity<RunDTO>>
+    */
+    @ApiOperation(value = "get_actual_workload", tags = {"执行用例" },  notes = "Run-get_actual_workload ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-get_actual_workload-all') or hasPermission('project',#projectId,this.runService.get(#id),'ibizplm-Run-get_actual_workload')")
+    @GetMapping("projects/{projectId}/test_plans/{planId}/runs/{id}/get_actual_workload")
+    public Mono<ResponseEntity<RunDTO>> getActualWorkloadByProjectIdAndPlanIdAndId
+            (@PathVariable("projectId") String projectId, @PathVariable("planId") String planId, @PathVariable("id") String id) {
+        Run rt = runService.getActualWorkload(id);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(runDtoMapping.toDto(rt)));
+    }
+
+    /**
+    * 草稿GetDraft 执行用例
+    * 
+    *
+    * @param projectId projectId
+    * @param planId planId
+    * @param dto dto
+    * @return Mono<ResponseEntity<RunDTO>>
+    */
+    @ApiOperation(value = "草稿GetDraft", tags = {"执行用例" },  notes = "Run-GetDraft ")
+    @GetMapping("projects/{projectId}/test_plans/{planId}/runs/get_draft")
+    public Mono<ResponseEntity<RunDTO>> getDraftByProjectIdAndPlanId
+            (@PathVariable("projectId") String projectId, @PathVariable("planId") String planId, @SpringQueryMap RunDTO dto) {
+        Run domain = runDtoMapping.toDomain(dto);
+        domain.setPlanId(planId);
+        Run rt = runService.getDraft(domain);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(runDtoMapping.toDto(rt)));
+    }
+
+    /**
+    * run_history_get 执行用例
+    * 
+    *
+    * @param projectId projectId
+    * @param planId planId
+    * @param dto dto
+    * @return Mono<ResponseEntity<RunDTO>>
+    */
+    @ApiOperation(value = "run_history_get", tags = {"执行用例" },  notes = "Run-run_history_get ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-run_history_get-all') or hasPermission('project',#projectId,this.runDtoMapping.toDomain(#dto),'ibizplm-Run-run_history_get')")
+    @GetMapping("projects/{projectId}/test_plans/{planId}/runs/run_history_get")
+    public Mono<ResponseEntity<RunDTO>> runHistoryGetByProjectIdAndPlanId
+            (@PathVariable("projectId") String projectId, @PathVariable("planId") String planId, @SpringQueryMap RunDTO dto) {
+        Run domain = runDtoMapping.toDomain(dto);
+        domain.setPlanId(planId);
+        Run rt = runService.runHistoryGet(domain);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(runDtoMapping.toDto(rt)));
+    }
+
+    /**
+    * this_run_details 执行用例
+    * 
+    *
+    * @param projectId projectId
+    * @param planId planId
+    * @param id id
+    * @return Mono<ResponseEntity<RunDTO>>
+    */
+    @ApiOperation(value = "this_run_details", tags = {"执行用例" },  notes = "Run-this_run_details ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-this_run_details-all') or hasPermission('project',#projectId,this.runService.get(#id),'ibizplm-Run-this_run_details')")
+    @GetMapping("projects/{projectId}/test_plans/{planId}/runs/{id}/this_run_details")
+    public Mono<ResponseEntity<RunDTO>> thisRunDetailsByProjectIdAndPlanIdAndId
+            (@PathVariable("projectId") String projectId, @PathVariable("planId") String planId, @PathVariable("id") String id) {
+        Run rt = runService.thisRunDetails(id);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(runDtoMapping.toDto(rt)));
+    }
+
+    /**
+    * 查询fetch_bi_detail 执行用例
+    * 
+    *
+    * @param projectId projectId
+    * @param planId planId
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<RunDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_bi_detail", tags = {"执行用例" },  notes = "Run-fetch_bi_detail ")
+    @PostMapping("projects/{projectId}/test_plans/{planId}/runs/fetch_bi_detail")
+    public Mono<ResponseEntity<List<RunDTO>>> fetchBiDetailByProjectIdAndPlanId
+            (@PathVariable("projectId") String projectId, @PathVariable("planId") String planId, @Validated @RequestBody RunFilterDTO dto) {
+        dto.setPlanIdEQ(planId);
+        RunSearchContext context = runFilterDtoMapping.toDomain(dto);
+        Page<Run> domains = runService.fetchBiDetail(context) ;
+        List<RunDTO> list = runDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
+    * 查询fetch_bi_search 执行用例
+    * 
+    *
+    * @param projectId projectId
+    * @param planId planId
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<RunBiSearchGroupDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_bi_search", tags = {"执行用例" },  notes = "Run-fetch_bi_search ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-fetch_bi_search-all') or hasPermission('project',#projectId,#dto,'ibizplm-Run-fetch_bi_search')")
+    @PostMapping("projects/{projectId}/test_plans/{planId}/runs/fetch_bi_search")
+    public Mono<ResponseEntity<List<RunBiSearchGroupDTO>>> fetchBiSearchByProjectIdAndPlanId
+            (@PathVariable("projectId") String projectId, @PathVariable("planId") String planId, @Validated @RequestBody RunFilterDTO dto) {
+        dto.setPlanIdEQ(planId);
+        RunSearchContext context = runFilterDtoMapping.toDomain(dto);
+        Page<Run> domains = runService.fetchBiSearch(context) ;
+        List<RunBiSearchGroupDTO> list = runBiSearchGroupDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
+    * 查询fetch_case_person 执行用例
+    * 
+    *
+    * @param projectId projectId
+    * @param planId planId
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<RunDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_case_person", tags = {"执行用例" },  notes = "Run-fetch_case_person ")
+    @PostMapping("projects/{projectId}/test_plans/{planId}/runs/fetch_case_person")
+    public Mono<ResponseEntity<List<RunDTO>>> fetchCasePersonByProjectIdAndPlanId
+            (@PathVariable("projectId") String projectId, @PathVariable("planId") String planId, @Validated @RequestBody RunFilterDTO dto) {
+        dto.setPlanIdEQ(planId);
+        RunSearchContext context = runFilterDtoMapping.toDomain(dto);
+        Page<Run> domains = runService.fetchCasePerson(context) ;
+        List<RunDTO> list = runDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
+    * 查询fetch_comment_notify_executor 执行用例
+    * 
+    *
+    * @param projectId projectId
+    * @param planId planId
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<RunExecutorDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_comment_notify_executor", tags = {"执行用例" },  notes = "Run-fetch_comment_notify_executor ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-fetch_comment_notify_executor-all') or hasPermission('project',#projectId,#dto,'ibizplm-Run-fetch_comment_notify_executor')")
+    @PostMapping("projects/{projectId}/test_plans/{planId}/runs/fetch_comment_notify_executor")
+    public Mono<ResponseEntity<List<RunExecutorDTO>>> fetchCommentNotifyExecutorByProjectIdAndPlanId
+            (@PathVariable("projectId") String projectId, @PathVariable("planId") String planId, @Validated @RequestBody RunFilterDTO dto) {
+        dto.setPlanIdEQ(planId);
+        RunSearchContext context = runFilterDtoMapping.toDomain(dto);
+        Page<Run> domains = runService.fetchCommentNotifyExecutor(context) ;
+        List<RunExecutorDTO> list = runExecutorDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
+    * 查询fetch_default 执行用例
+    * 
+    *
+    * @param projectId projectId
+    * @param planId planId
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<RunDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_default", tags = {"执行用例" },  notes = "Run-fetch_default ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-fetch_default-all') or hasPermission('project',#projectId,#dto,'ibizplm-Run-fetch_default')")
+    @PostMapping("projects/{projectId}/test_plans/{planId}/runs/fetch_default")
+    public Mono<ResponseEntity<List<RunDTO>>> fetchDefaultByProjectIdAndPlanId
+            (@PathVariable("projectId") String projectId, @PathVariable("planId") String planId, @Validated @RequestBody RunFilterDTO dto) {
+        dto.setPlanIdEQ(planId);
+        RunSearchContext context = runFilterDtoMapping.toDomain(dto);
+        Page<Run> domains = runService.fetchDefault(context) ;
+        List<RunDTO> list = runDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
+    * 查询fetch_implementation_results 执行用例
+    * 
+    *
+    * @param projectId projectId
+    * @param planId planId
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<RunDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_implementation_results", tags = {"执行用例" },  notes = "Run-fetch_implementation_results ")
+    @PostMapping("projects/{projectId}/test_plans/{planId}/runs/fetch_implementation_results")
+    public Mono<ResponseEntity<List<RunDTO>>> fetchImplementationResultsByProjectIdAndPlanId
+            (@PathVariable("projectId") String projectId, @PathVariable("planId") String planId, @Validated @RequestBody RunFilterDTO dto) {
+        dto.setPlanIdEQ(planId);
+        RunSearchContext context = runFilterDtoMapping.toDomain(dto);
+        Page<Run> domains = runService.fetchImplementationResults(context) ;
+        List<RunDTO> list = runDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
+    * 查询fetch_my_filter 执行用例
+    * 
+    *
+    * @param projectId projectId
+    * @param planId planId
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<RunDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_my_filter", tags = {"执行用例" },  notes = "Run-fetch_my_filter ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-fetch_my_filter-all') or hasPermission('project',#projectId,#dto,'ibizplm-Run-fetch_my_filter')")
+    @PostMapping("projects/{projectId}/test_plans/{planId}/runs/fetch_my_filter")
+    public Mono<ResponseEntity<List<RunDTO>>> fetchMyFilterByProjectIdAndPlanId
+            (@PathVariable("projectId") String projectId, @PathVariable("planId") String planId, @Validated @RequestBody RunFilterDTO dto) {
+        dto.setPlanIdEQ(planId);
+        RunSearchContext context = runFilterDtoMapping.toDomain(dto);
+        Page<Run> domains = runService.fetchMyFilter(context) ;
+        List<RunDTO> list = runDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
+    * 查询fetch_normal 执行用例
+    * 
+    *
+    * @param projectId projectId
+    * @param planId planId
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<RunDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_normal", tags = {"执行用例" },  notes = "Run-fetch_normal ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-fetch_normal-all') or hasPermission('project',#projectId,#dto,'ibizplm-Run-fetch_normal')")
+    @PostMapping("projects/{projectId}/test_plans/{planId}/runs/fetch_normal")
+    public Mono<ResponseEntity<List<RunDTO>>> fetchNormalByProjectIdAndPlanId
+            (@PathVariable("projectId") String projectId, @PathVariable("planId") String planId, @Validated @RequestBody RunFilterDTO dto) {
+        dto.setPlanIdEQ(planId);
+        RunSearchContext context = runFilterDtoMapping.toDomain(dto);
+        Page<Run> domains = runService.fetchNormal(context) ;
+        List<RunDTO> list = runDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
+    * 查询fetch_plan_run_history 执行用例
+    * 
+    *
+    * @param projectId projectId
+    * @param planId planId
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<RunDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_plan_run_history", tags = {"执行用例" },  notes = "Run-fetch_plan_run_history ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-fetch_plan_run_history-all') or hasPermission('project',#projectId,#dto,'ibizplm-Run-fetch_plan_run_history')")
+    @PostMapping("projects/{projectId}/test_plans/{planId}/runs/fetch_plan_run_history")
+    public Mono<ResponseEntity<List<RunDTO>>> fetchPlanRunHistoryByProjectIdAndPlanId
+            (@PathVariable("projectId") String projectId, @PathVariable("planId") String planId, @Validated @RequestBody RunFilterDTO dto) {
+        dto.setPlanIdEQ(planId);
+        RunSearchContext context = runFilterDtoMapping.toDomain(dto);
+        Page<Run> domains = runService.fetchPlanRunHistory(context) ;
+        List<RunDTO> list = runDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
+    * 查询fetch_priority_distributions 执行用例
+    * 
+    *
+    * @param projectId projectId
+    * @param planId planId
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<RunDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_priority_distributions", tags = {"执行用例" },  notes = "Run-fetch_priority_distributions ")
+    @PostMapping("projects/{projectId}/test_plans/{planId}/runs/fetch_priority_distributions")
+    public Mono<ResponseEntity<List<RunDTO>>> fetchPriorityDistributionsByProjectIdAndPlanId
+            (@PathVariable("projectId") String projectId, @PathVariable("planId") String planId, @Validated @RequestBody RunFilterDTO dto) {
+        dto.setPlanIdEQ(planId);
+        RunSearchContext context = runFilterDtoMapping.toDomain(dto);
+        Page<Run> domains = runService.fetchPriorityDistributions(context) ;
+        List<RunDTO> list = runDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
+    * 查询fetch_reader 执行用例
+    * 
+    *
+    * @param projectId projectId
+    * @param planId planId
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<RunDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_reader", tags = {"执行用例" },  notes = "Run-fetch_reader ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Run-fetch_reader-all') or hasPermission('project',#projectId,#dto,'ibizplm-Run-fetch_reader')")
+    @PostMapping("projects/{projectId}/test_plans/{planId}/runs/fetch_reader")
+    public Mono<ResponseEntity<List<RunDTO>>> fetchReaderByProjectIdAndPlanId
+            (@PathVariable("projectId") String projectId, @PathVariable("planId") String planId, @Validated @RequestBody RunFilterDTO dto) {
         dto.setPlanIdEQ(planId);
         RunSearchContext context = runFilterDtoMapping.toDomain(dto);
         Page<Run> domains = runService.fetchReader(context) ;

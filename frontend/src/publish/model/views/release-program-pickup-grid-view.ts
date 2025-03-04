@@ -5,7 +5,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'program_pickup_grid_view',
-  deviewId: '20FE5126-BE38-45C8-9998-0956C91342A6',
+  deviewId: '42dbeb290e01127fd014edac60db5351',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.RELEASE',
@@ -557,7 +557,7 @@ export default {
       controlParam: {
         id: 'grid',
       },
-      modelId: '56EC97B9-F9BF-4F6A-85BC-539B563C7158',
+      modelId: '1e6a4b359c31b51643a42022ec3e46a3',
       modelType: 'PSDEGRID',
       name: 'grid',
       id: 'plmweb.release.program_pickup_grid_view_grid',
@@ -622,7 +622,7 @@ export default {
       controlParam: {
         id: 'searchform',
       },
-      modelId: 'E1B2EF76-1583-476F-AFE3-34BA0E302E9C',
+      modelId: '3df9747b9225ceba56c76ef3dc48afa8',
       modelType: 'PSDEFORM_SEARCHFORM',
       name: 'searchform',
       id: 'plmweb.release.usr11134031_search_form',
@@ -665,7 +665,7 @@ export default {
   viewType: 'DEPICKUPGRIDVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: 'e1c540359175dbe7817cb57b5b669cc1',
+  modelId: '9695754f2c9c0142b1315b437e15bda3',
   modelType: 'PSAPPDEVIEW',
   name: 'releaseprogram_pickup_grid_view',
   id: 'plmweb.release_program_pickup_grid_view',

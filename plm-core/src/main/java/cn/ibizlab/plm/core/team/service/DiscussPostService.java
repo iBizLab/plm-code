@@ -281,6 +281,16 @@ public interface DiscussPostService extends IService<DiscussPost> {
     }
 
     /**
+    * updateComment
+    * 
+    * @param et
+    * @return
+    */
+    default DiscussPost updateComment(DiscussPost et) {
+        return et;
+    }
+
+    /**
     * fetchDefault
     * 
     * @param context
@@ -359,6 +369,22 @@ public interface DiscussPostService extends IService<DiscussPost> {
     * @return
     */
     List<DiscussPost> listMyCreate(DiscussPostSearchContext context);
+
+    /**
+    * fetchMyPost
+    * 
+    * @param context
+    * @return
+    */
+    Page<DiscussPost> fetchMyPost(DiscussPostSearchContext context);
+
+    /**
+    * listMyPost
+    * 
+    * @param context
+    * @return
+    */
+    List<DiscussPost> listMyPost(DiscussPostSearchContext context);
 
     /**
     * fetchMyReply

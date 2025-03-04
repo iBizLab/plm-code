@@ -214,6 +214,7 @@ public abstract class AbstractLibraryResource {
     * @return Mono<ResponseEntity<LibraryDTO>>
     */
     @ApiOperation(value = "change_admin_role", tags = {"测试库" },  notes = "Library-change_admin_role ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Library-change_admin_role-all') or hasPermission(this.libraryDtoMapping.toDomain(#dto),'ibizplm-Library-change_admin_role')")
     @PostMapping("libraries/{id}/change_admin_role")
     public Mono<ResponseEntity<ResponseWrapper<LibraryDTO>>>changeAdminRoleById
             (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<LibraryDTO> dto) {

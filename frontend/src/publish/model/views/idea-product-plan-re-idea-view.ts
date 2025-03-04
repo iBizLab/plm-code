@@ -1,7 +1,7 @@
 export default {
   openMode: 'POPUPMODAL',
   deviewCodeName: 'product_plan_re_idea_view',
-  deviewId: '35c8b359df7daed64eb87f357394b4ab',
+  deviewId: 'f42c20a33c55fbf0a21684bf2939f909',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'PAGE.CAPTION.IDEA.OTHERS_RELATION_IDEA_VIEW',
@@ -801,7 +801,7 @@ export default {
         controlParam: {
           id: 'treeexpbar',
         },
-        modelId: '856b41305c77213cccd90be73656a71b_treeexpbar',
+        modelId: 'bd663eca020b0ec5a957ca93ece57a1b_treeexpbar',
         modelType: 'PSEXPBAR',
         name: 'treeexpbar',
         id: 'product_plan_re_idea_view_treeexpbar',
@@ -854,7 +854,7 @@ export default {
                 colMD: 24,
                 layout: 'TABLE_24COL',
               },
-              id: '161d1de771f02e4708102c0b3f8d786e',
+              id: '6c989f2e6134f88eb4344bfc5c68a867',
             },
           ],
           codeName: 'usr0306299894',
@@ -972,7 +972,7 @@ export default {
   viewType: 'DEMPICKUPVIEW2',
   enableDP: true,
   showCaptionBar: false,
-  modelId: '856b41305c77213cccd90be73656a71b',
+  modelId: 'bd663eca020b0ec5a957ca93ece57a1b',
   modelType: 'PSAPPDEVIEW',
   name: 'ideaproduct_plan_re_idea_view',
   id: 'plmweb.idea_product_plan_re_idea_view',

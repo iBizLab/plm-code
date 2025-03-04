@@ -3,7 +3,7 @@ export default {
   expandSearchForm: true,
   loadDefault: true,
   deviewCodeName: 'daily_tendencies_report_view',
-  deviewId: '3cfa6df8c630a0a34a2d7cafa3f4f0d5',
+  deviewId: '8b074033f334e7fd0a8223989d48ab89',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.RUN',
@@ -980,7 +980,7 @@ export default {
   viewType: 'DECHARTVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '39b759cf6a1739a4b9527d28429cc41f',
+  modelId: '0e80320993809a779d3ccc0892387a4e',
   modelType: 'PSAPPDEVIEW',
   name: 'rundaily_tendencies_report_view',
   id: 'plmweb.run_daily_tendencies_report_view',

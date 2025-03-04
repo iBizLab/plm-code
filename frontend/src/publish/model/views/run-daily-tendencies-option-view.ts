@@ -5,7 +5,7 @@ export default {
   loadDefault: true,
   openMode: 'POPUPMODAL',
   deviewCodeName: 'daily_tendencies_option_view',
-  deviewId: '029017B3-596C-4149-8A2E-C10C8B365C62',
+  deviewId: '631c85ff2618b2aa4b79e6119bf3a147',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.RUN',
@@ -241,7 +241,7 @@ export default {
       controlParam: {
         id: 'form',
       },
-      modelId: '76A2700B-AE92-4B48-ABFA-F0EA81B378BC',
+      modelId: 'bfceb17b803d7a868696e9bb90ec8769',
       modelType: 'PSDEFORM_EDITFORM',
       name: 'form',
       id: 'plmweb.run.usr04261930_form',
@@ -286,7 +286,7 @@ export default {
   width: 500,
   enableDP: true,
   showCaptionBar: true,
-  modelId: 'f47a300f17e85621cc9b8c348e568994',
+  modelId: '8774ed37cc621a0315741643ee288719',
   modelType: 'PSAPPDEVIEW',
   name: 'rundaily_tendencies_option_view',
   id: 'plmweb.run_daily_tendencies_option_view',

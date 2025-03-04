@@ -170,6 +170,7 @@ public abstract class AbstractBaselineWorkItemResource {
     * @return Mono<ResponseEntity<BaselineWorkItemDTO>>
     */
     @ApiOperation(value = "shift_in_baseline", tags = {"基线工作项" },  notes = "BaselineWorkItem-shift_in_baseline ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-BaselineWorkItem-shift_in_baseline-all') or hasPermission(this.baselineWorkItemDtoMapping.toDomain(#dto),'ibizplm-BaselineWorkItem-shift_in_baseline')")
     @PostMapping("baseline_work_items/shift_in_baseline")
     public Mono<ResponseEntity<ResponseWrapper<BaselineWorkItemDTO>>>shiftInBaseline
             (@Validated @RequestBody RequestWrapper<BaselineWorkItemDTO> dto) {
@@ -199,18 +200,22 @@ public abstract class AbstractBaselineWorkItemResource {
     * shift_out_baseline 基线工作项
     * 
     *
+    * @param id id
     * @param dto dto
     * @return Mono<ResponseEntity<BaselineWorkItemDTO>>
     */
     @ApiOperation(value = "shift_out_baseline", tags = {"基线工作项" },  notes = "BaselineWorkItem-shift_out_baseline ")
-    @PostMapping("baseline_work_items/shift_out_baseline")
-    public Mono<ResponseEntity<ResponseWrapper<BaselineWorkItemDTO>>>shiftOutBaseline
-            (@Validated @RequestBody RequestWrapper<BaselineWorkItemDTO> dto) {
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-BaselineWorkItem-shift_out_baseline-all') or hasPermission(this.baselineWorkItemDtoMapping.toDomain(#dto),'ibizplm-BaselineWorkItem-shift_out_baseline')")
+    @PostMapping("baseline_work_items/{id}/shift_out_baseline")
+    public Mono<ResponseEntity<ResponseWrapper<BaselineWorkItemDTO>>>shiftOutBaselineById
+            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<BaselineWorkItemDTO> dto) {
         ResponseWrapper<BaselineWorkItemDTO> rt = new ResponseWrapper<>();
-        if (dto.isArray())
-            dto.getList().forEach(item -> rt.add(shiftOutBaseline(item)));
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(shiftOutBaselineById(ids[i], dto.getList().get(i))));
+        }
         else
-            rt.set(shiftOutBaseline(dto.getDto()));
+            rt.set(shiftOutBaselineById(id, dto.getDto()));
         return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
@@ -218,12 +223,14 @@ public abstract class AbstractBaselineWorkItemResource {
     * shift_out_baseline 基线工作项
     * 
     *
+    * @param id id
     * @param dto dto
     * @return ResponseEntity<BaselineWorkItemDTO>
     */   
-    public BaselineWorkItemDTO shiftOutBaseline
-            (BaselineWorkItemDTO dto) {
+    public BaselineWorkItemDTO shiftOutBaselineById
+            (String id, BaselineWorkItemDTO dto) {
         BaselineWorkItem domain = baselineWorkItemDtoMapping.toDomain(dto);
+        domain.setId(id);
         BaselineWorkItem rt = baselineWorkItemService.shiftOutBaseline(domain);
         return baselineWorkItemDtoMapping.toDto(rt);
     }
@@ -237,6 +244,7 @@ public abstract class AbstractBaselineWorkItemResource {
     * @return Mono<ResponseEntity<BaselineWorkItemDTO>>
     */
     @ApiOperation(value = "snapshot_set_baseline", tags = {"基线工作项" },  notes = "BaselineWorkItem-snapshot_set_baseline ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-BaselineWorkItem-snapshot_set_baseline-all') or hasPermission(this.baselineWorkItemDtoMapping.toDomain(#dto),'ibizplm-BaselineWorkItem-snapshot_set_baseline')")
     @PostMapping("baseline_work_items/{id}/snapshot_set_baseline")
     public Mono<ResponseEntity<ResponseWrapper<BaselineWorkItemDTO>>>snapshotSetBaselineById
             (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<BaselineWorkItemDTO> dto) {
@@ -401,6 +409,7 @@ public abstract class AbstractBaselineWorkItemResource {
     * @return Mono<ResponseEntity<BaselineWorkItemDTO>>
     */
     @ApiOperation(value = "shift_in_baseline", tags = {"基线工作项" },  notes = "BaselineWorkItem-shift_in_baseline ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-BaselineWorkItem-shift_in_baseline-all') or hasPermission('library',#ownerId,this.baselineWorkItemDtoMapping.toDomain(#dto),'ibizplm-BaselineWorkItem-shift_in_baseline')")
     @PostMapping("libraries/{ownerId}/baselines/{principalId}/baseline_work_items/shift_in_baseline")
     public Mono<ResponseEntity<ResponseWrapper<BaselineWorkItemDTO>>>shiftInBaselineByOwnerIdAndPrincipalId
             (@PathVariable("ownerId") String ownerId, @PathVariable("principalId") String principalId, @Validated @RequestBody RequestWrapper<BaselineWorkItemDTO> dto) {
@@ -435,18 +444,22 @@ public abstract class AbstractBaselineWorkItemResource {
     *
     * @param ownerId ownerId
     * @param principalId principalId
+    * @param id id
     * @param dto dto
     * @return Mono<ResponseEntity<BaselineWorkItemDTO>>
     */
     @ApiOperation(value = "shift_out_baseline", tags = {"基线工作项" },  notes = "BaselineWorkItem-shift_out_baseline ")
-    @PostMapping("libraries/{ownerId}/baselines/{principalId}/baseline_work_items/shift_out_baseline")
-    public Mono<ResponseEntity<ResponseWrapper<BaselineWorkItemDTO>>>shiftOutBaselineByOwnerIdAndPrincipalId
-            (@PathVariable("ownerId") String ownerId, @PathVariable("principalId") String principalId, @Validated @RequestBody RequestWrapper<BaselineWorkItemDTO> dto) {
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-BaselineWorkItem-shift_out_baseline-all') or hasPermission('library',#ownerId,this.baselineWorkItemDtoMapping.toDomain(#dto),'ibizplm-BaselineWorkItem-shift_out_baseline')")
+    @PostMapping("libraries/{ownerId}/baselines/{principalId}/baseline_work_items/{id}/shift_out_baseline")
+    public Mono<ResponseEntity<ResponseWrapper<BaselineWorkItemDTO>>>shiftOutBaselineByOwnerIdAndPrincipalIdAndId
+            (@PathVariable("ownerId") String ownerId, @PathVariable("principalId") String principalId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<BaselineWorkItemDTO> dto) {
         ResponseWrapper<BaselineWorkItemDTO> rt = new ResponseWrapper<>();
-        if (dto.isArray())
-            dto.getList().forEach(item -> rt.add(shiftOutBaselineByOwnerIdAndPrincipalId(ownerId, principalId, item)));
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(shiftOutBaselineByOwnerIdAndPrincipalIdAndId(ownerId, principalId, ids[i], dto.getList().get(i))));
+        }
         else
-            rt.set(shiftOutBaselineByOwnerIdAndPrincipalId(ownerId, principalId, dto.getDto()));
+            rt.set(shiftOutBaselineByOwnerIdAndPrincipalIdAndId(ownerId, principalId, id, dto.getDto()));
         return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
@@ -456,13 +469,14 @@ public abstract class AbstractBaselineWorkItemResource {
     *
     * @param ownerId ownerId
     * @param principalId principalId
+    * @param id id
     * @param dto dto
     * @return ResponseEntity<BaselineWorkItemDTO>
     */   
-    public BaselineWorkItemDTO shiftOutBaselineByOwnerIdAndPrincipalId
-            (String ownerId, String principalId, BaselineWorkItemDTO dto) {
+    public BaselineWorkItemDTO shiftOutBaselineByOwnerIdAndPrincipalIdAndId
+            (String ownerId, String principalId, String id, BaselineWorkItemDTO dto) {
         BaselineWorkItem domain = baselineWorkItemDtoMapping.toDomain(dto);
-        domain.setPrincipalId(principalId);
+        domain.setId(id);
         BaselineWorkItem rt = baselineWorkItemService.shiftOutBaseline(domain);
         return baselineWorkItemDtoMapping.toDto(rt);
     }
@@ -478,6 +492,7 @@ public abstract class AbstractBaselineWorkItemResource {
     * @return Mono<ResponseEntity<BaselineWorkItemDTO>>
     */
     @ApiOperation(value = "snapshot_set_baseline", tags = {"基线工作项" },  notes = "BaselineWorkItem-snapshot_set_baseline ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-BaselineWorkItem-snapshot_set_baseline-all') or hasPermission('library',#ownerId,this.baselineWorkItemDtoMapping.toDomain(#dto),'ibizplm-BaselineWorkItem-snapshot_set_baseline')")
     @PostMapping("libraries/{ownerId}/baselines/{principalId}/baseline_work_items/{id}/snapshot_set_baseline")
     public Mono<ResponseEntity<ResponseWrapper<BaselineWorkItemDTO>>>snapshotSetBaselineByOwnerIdAndPrincipalIdAndId
             (@PathVariable("ownerId") String ownerId, @PathVariable("principalId") String principalId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<BaselineWorkItemDTO> dto) {

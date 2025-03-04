@@ -2,7 +2,7 @@ export default {
   enableSearch: true,
   loadDefault: true,
   deviewCodeName: 'daily_test_report_view',
-  deviewId: 'bf38e4dfc4078ab4a2c61dec3f20f133',
+  deviewId: '11abd43c5093e727327709032029ceb7',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.RUN',
@@ -895,7 +895,7 @@ export default {
   viewType: 'DECHARTVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '4e1f818f756d75561d99a03bfeb1c04d',
+  modelId: '74f2764517d90fcbc2bfa38c420e050e',
   modelType: 'PSAPPDEVIEW',
   name: 'rundaily_test_report_view',
   id: 'plmweb.run_daily_test_report_view',

@@ -140,6 +140,17 @@ public abstract class AbstractAuthLogAdminService extends ServiceImpl<AuthLogAdm
         return list;
    }
 	
+   public Page<AuthLogAdmin> fetchCurUser(AuthLogAdminSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<AuthLogAdmin> pages=baseMapper.searchCurUser(context.getPages(),context,context.getSelectCond());
+        List<AuthLogAdmin> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<AuthLogAdmin> listCurUser(AuthLogAdminSearchContext context) {
+        List<AuthLogAdmin> list = baseMapper.listCurUser(context,context.getSelectCond());
+        return list;
+   }
+	
    public Page<AuthLogAdmin> fetchDistinctUserid(AuthLogAdminSearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<Map> pages=baseMapper.searchDistinctUserid(context.getPages(),context,context.getSelectCond());
         return new PageImpl<AuthLogAdmin>(cn.ibizlab.util.helper.JacksonUtils.toArray(pages.getRecords(),AuthLogAdmin.class), context.getPageable(), pages.getTotal());

@@ -5,7 +5,7 @@ export default {
   loadDefault: true,
   openMode: 'POPUPMODAL',
   deviewCodeName: 'baseinfo_edit_view',
-  deviewId: 'E5B76386-95B1-4061-A732-0D28BFB3FE3E',
+  deviewId: '4371720859b80b32e338a6d767ed2120',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.INSIGHT_REPORT',
@@ -31,7 +31,7 @@ export default {
       controlParam: {
         id: 'toolbar',
       },
-      modelId: 'B526CE3A-B1A4-49DC-9EDE-2C57D3FEB847',
+      modelId: '9a193300a87818cd03f334dfbee50aa5',
       modelType: 'PSDETOOLBAR',
       name: 'toolbar',
       id: 'baseinfo_edit_view_toolbar',
@@ -373,7 +373,7 @@ export default {
       controlParam: {
         id: 'form',
       },
-      modelId: '45A8FC0F-D4FB-41FF-888A-64C40B6BB597',
+      modelId: '36198fe082ed954a85a6aeef4c6ecc5a',
       modelType: 'PSDEFORM_EDITFORM',
       name: 'form',
       id: 'plmweb.insight_report.baseinfo_edit_view_form',
@@ -418,7 +418,7 @@ export default {
   width: 600,
   enableDP: true,
   showCaptionBar: true,
-  modelId: '91c60b693fe13946806313f7f2cb05fc',
+  modelId: '24a3c4c3b99e90962dbca753d60b723e',
   modelType: 'PSAPPDEVIEW',
   name: 'insight_reportbaseinfo_edit_view',
   id: 'plmweb.insight_report_baseinfo_edit_view',

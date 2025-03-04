@@ -5,7 +5,7 @@ export default {
   loadDefault: true,
   openMode: 'POPUPMODAL',
   deviewCodeName: 'upload_icon_option_view',
-  deviewId: 'F5AF2950-A27A-44AC-A1A9-4FE520CD4505',
+  deviewId: '554594934d0fc5fd08a7145d2dfd3a57',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.PAGE',
@@ -155,7 +155,7 @@ export default {
       controlParam: {
         id: 'form',
       },
-      modelId: '195617C8-5CB5-493E-A792-7748A0139E05',
+      modelId: 'cb5eb7968b9281752a0ecef4e2d74f04',
       modelType: 'PSDEFORM_EDITFORM',
       name: 'form',
       id: 'plmweb.article_page.upload_icon_option_view_form',
@@ -200,7 +200,7 @@ export default {
   width: 300,
   enableDP: true,
   showCaptionBar: true,
-  modelId: '4f8afddd5f9638e239f47bc71efe3450',
+  modelId: '69040ec22b10e091f7df40c21f88ef25',
   modelType: 'PSAPPDEVIEW',
   name: 'article_pageupload_icon_option_view',
   id: 'plmweb.article_page_upload_icon_option_view',

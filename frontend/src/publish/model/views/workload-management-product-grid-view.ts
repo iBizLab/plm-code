@@ -234,15 +234,6 @@ export default {
     ],
     appViewRefs: [
       {
-        realTitle: '工时编辑视图',
-        realTitleLanguageRes: {
-          lanResTag: 'PAGE.TITLE.WORKLOAD.EDITVIEW',
-        },
-        refAppViewId: 'plmweb.workload_edit_view',
-        name: 'NEWDATA',
-        id: 'newdata',
-      },
-      {
         realTitle: '工时数据重定向视图',
         realTitleLanguageRes: {
           lanResTag: 'PAGE.TITLE.WORKLOAD.REDIRECTVIEW',
@@ -250,6 +241,15 @@ export default {
         refAppViewId: 'plmweb.workload_redirect_view',
         name: 'EDITDATA',
         id: 'editdata',
+      },
+      {
+        realTitle: '工时编辑视图',
+        realTitleLanguageRes: {
+          lanResTag: 'PAGE.TITLE.WORKLOAD.EDITVIEW',
+        },
+        refAppViewId: 'plmweb.workload_edit_view',
+        name: 'NEWDATA',
+        id: 'newdata',
       },
     ],
     controls: [

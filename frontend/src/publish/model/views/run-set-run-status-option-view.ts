@@ -4,7 +4,7 @@ export default {
   loadDefault: true,
   openMode: 'POPOVER',
   deviewCodeName: 'set_run_status_option_view',
-  deviewId: '246e11e283e0586f5ad5b4bac4e7d44c',
+  deviewId: '5c82cdf6c88200fa4c7eb8fc69ad6352',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.RUN',
@@ -198,7 +198,7 @@ export default {
   viewType: 'DEOPTVIEW',
   enableDP: true,
   showCaptionBar: false,
-  modelId: '0fe293b401ec273c3cab6e08eb9a30c6',
+  modelId: 'dd6d70262e725a106cc7e2a02921aa89',
   modelType: 'PSAPPDEVIEW',
   name: 'runset_run_status_option_view',
   id: 'plmweb.run_set_run_status_option_view',

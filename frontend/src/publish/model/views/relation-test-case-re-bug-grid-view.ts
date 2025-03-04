@@ -3,7 +3,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'test_case_re_bug_grid_view',
-  deviewId: '19BD9E12-2AF3-4A42-8DBF-CC2F29EA2850',
+  deviewId: '40ff19865f1c96823fa03f3aad0602d3',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.RELATION',
@@ -451,6 +451,15 @@ export default {
     ],
     appViewRefs: [
       {
+        realTitle: '工作项关联编辑视图',
+        realTitleLanguageRes: {
+          lanResTag: 'PAGE.TITLE.RELATION.EDITVIEW',
+        },
+        refAppViewId: 'plmweb.relation_edit_view',
+        name: 'NEWDATA',
+        id: 'newdata',
+      },
+      {
         openMode: 'POPUPMODAL',
         navigateContexts: [
           {
@@ -490,15 +499,6 @@ export default {
         refAppViewId: 'plmweb.work_item_dyna_main_view',
         name: 'EDITDATA',
         id: 'editdata',
-      },
-      {
-        realTitle: '工作项关联编辑视图',
-        realTitleLanguageRes: {
-          lanResTag: 'PAGE.TITLE.RELATION.EDITVIEW',
-        },
-        refAppViewId: 'plmweb.relation_edit_view',
-        name: 'NEWDATA',
-        id: 'newdata',
       },
     ],
     controls: [
@@ -541,7 +541,7 @@ export default {
         controlParam: {
           id: 'toolbar',
         },
-        modelId: 'DBA6F2AC-5881-45C9-84D9-5A2E2E1A8B33',
+        modelId: '6fdd8c74f273fe7327979f9e491faab9',
         modelType: 'PSDETOOLBAR',
         name: 'toolbar',
         id: 'test_case_re_bug_grid_view_toolbar',
@@ -645,7 +645,7 @@ export default {
                     cssClass: 'fa fa-unlink',
                     glyph: 'xf127@FontAwesome',
                   },
-                  id: 'uf8c37ea',
+                  id: 'u1a5c2b0',
                 },
               ],
               appDataEntityId: 'plmweb.relation',
@@ -930,7 +930,7 @@ export default {
       },
     ],
     controlParam: {},
-    modelId: 'fd4bc8791cb0a0d9c0712385087706f3',
+    modelId: '6f5e692ea0dcf6bdfe080f89cba70c1c',
     modelType: 'PSSYSVIEWLAYOUTPANEL',
     name: 'layoutpanel',
     id: 'test_case_re_bug',
@@ -940,7 +940,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: false,
-  modelId: '8cf909e5ff30c3f40359e5ad236a2249',
+  modelId: '75b1293ecacdf1c539677bd204e4af63',
   modelType: 'PSAPPDEVIEW',
   name: 'relationtest_case_re_bug_grid_view',
   id: 'plmweb.relation_test_case_re_bug_grid_view',

@@ -98,6 +98,21 @@ export default {
                 actionGroupExtractMode: 'ITEM',
                 panelItems: [
                   {
+                    rawItem: {
+                      predefinedType: 'COOP_POS',
+                      id: 'coop_pos',
+                    },
+                    caption: '协同编辑消息占位',
+                    itemStyle: 'DEFAULT',
+                    itemType: 'RAWITEM',
+                    layoutPos: {
+                      shrink: 1,
+                      layout: 'FLEX',
+                    },
+                    showCaption: true,
+                    id: 'coop_pos',
+                  },
+                  {
                     caption: '工具栏',
                     itemStyle: 'DEFAULT',
                     itemType: 'CTRLPOS',
@@ -111,7 +126,9 @@ export default {
                 ],
                 layout: {
                   align: 'center',
+                  dir: 'row',
                   layout: 'FLEX',
+                  valign: 'center',
                 },
                 dataRegionType: 'INHERIT',
                 caption: '容器',
@@ -263,7 +280,6 @@ export default {
                                       },
                                     ],
                                     logicType: 'GROUP',
-                                    id: '面板成员[comment_cancel][面板显示]逻辑',
                                   },
                                 ],
                                 showCaption: true,
@@ -300,7 +316,6 @@ export default {
                                       },
                                     ],
                                     logicType: 'GROUP',
-                                    id: '面板成员[comment_send][面板显示]逻辑',
                                   },
                                 ],
                                 showCaption: true,
@@ -684,7 +699,7 @@ export default {
         controlParam: {
           id: 'toolbar',
         },
-        modelId: '319A586F-618C-4719-9254-CDD56F02D94F',
+        modelId: '2cecd572d2a8b37d367d897f67439a33',
         modelType: 'PSDETOOLBAR',
         name: 'toolbar',
         id: 'main_view_toolbar',
@@ -1511,7 +1526,7 @@ export default {
       },
     ],
     controlParam: {},
-    modelId: 'cb12dcfb678c79c1c02a7db9091e5b2d',
+    modelId: 'efdd479356ededa78d45fed693896c3c',
     modelType: 'PSSYSVIEWLAYOUTPANEL',
     name: 'layoutpanel',
     id: 'customer_main_view',

@@ -458,14 +458,14 @@ export default {
         id: '输入对象',
       },
       appDEMethodReturn: {
-        type: 'VOID',
+        appDEMethodDTOId: 'login_log_dto',
+        type: 'DTO',
         id: '返回对象',
       },
       requestMethod: 'POST',
       requestParamType: 'ENTITY',
       requestPath: '/active_member',
-      needResourceKey: true,
-      actionMode: 'CUSTOM',
+      actionMode: 'GETDRAFT',
       actionType: 'REMOTE',
       dataSetType: 'REMOTE',
       id: 'active_member',
@@ -845,22 +845,6 @@ export default {
           id: 'end1',
         },
         {
-          code: 'let nums = uiLogic.view.layoutPanel.panelItems;\r\nif (uiLogic && uiLogic.datas.lastday_active_count) {\r\n    //昨日活跃人数\r\n    nums.lastday_active_count.data.lastday_active_count = uiLogic.datas.lastday_active_count;\r\n}\r\nif (uiLogic && uiLogic.datas.lastday_active_rate) {\r\n    //昨日活跃率\r\n    nums.lastday_active_rate.data.lastday_active_rate = uiLogic.datas.lastday_active_rate;\r\n}\r\nif (uiLogic && uiLogic.datas.sevenday_active_count) {\r\n    //近七日活跃人数\r\n    nums.sevenday_active_count.data.sevenday_active_count = Math.floor(uiLogic.datas.sevenday_active_count);\r\n}\r\nif (uiLogic && uiLogic.datas.sevenday_active_rate) {\r\n    //近七日活跃率\r\n    nums.sevenday_active_rate.data.sevenday_active_rate = uiLogic.datas.sevenday_active_rate;\r\n}\r\n\r\n\r\n      \r\n    \r\n',
-          codeName: 'RAWJSCODE1',
-          leftPos: 280,
-          logicNodeType: 'RAWJSCODE',
-          deuilogicLinks: [
-            {
-              dstDEUILogicNodeId: 'end1',
-              srcDEUILogicNodeId: 'rawjscode1',
-              id: '连接名称',
-            },
-          ],
-          topPos: 538,
-          name: '计算活跃成员数据信息',
-          id: 'rawjscode1',
-        },
-        {
           dstAppDEActionId: 'active_member',
           dstAppDataEntityId: 'plmweb.login_log',
           retDEUILogicParamId: 'datas',
@@ -878,19 +862,35 @@ export default {
           name: '实体行为',
           id: 'deaction1',
         },
+        {
+          code: 'let nums = uiLogic.view.layoutPanel.panelItems;\r\nif (uiLogic && uiLogic.datas.lastday_active_count) {\r\n    //昨日活跃人数\r\n    nums.lastday_active_count.data.lastday_active_count = uiLogic.datas.lastday_active_count;\r\n}\r\nif (uiLogic && uiLogic.datas.lastday_active_rate) {\r\n    //昨日活跃率\r\n    nums.lastday_active_rate.data.lastday_active_rate = uiLogic.datas.lastday_active_rate;\r\n}\r\nif (uiLogic && uiLogic.datas.sevenday_active_count) {\r\n    //近七日活跃人数\r\n    nums.sevenday_active_count.data.sevenday_active_count = Math.floor(uiLogic.datas.sevenday_active_count);\r\n}\r\nif (uiLogic && uiLogic.datas.sevenday_active_rate) {\r\n    //近七日活跃率\r\n    nums.sevenday_active_rate.data.sevenday_active_rate = uiLogic.datas.sevenday_active_rate;\r\n}\r\n\r\n\r\n      \r\n    \r\n',
+          codeName: 'RAWJSCODE1',
+          leftPos: 280,
+          logicNodeType: 'RAWJSCODE',
+          deuilogicLinks: [
+            {
+              dstDEUILogicNodeId: 'end1',
+              srcDEUILogicNodeId: 'rawjscode1',
+              id: '连接名称',
+            },
+          ],
+          topPos: 538,
+          name: '计算活跃成员数据信息',
+          id: 'rawjscode1',
+        },
       ],
       deuilogicParams: [
+        {
+          codeName: 'view',
+          activeViewParam: true,
+          id: 'view',
+        },
         {
           codeName: 'Default',
           default: true,
           entityParam: true,
           name: '传入变量',
           id: 'default',
-        },
-        {
-          codeName: 'view',
-          activeViewParam: true,
-          id: 'view',
         },
         {
           codeName: 'datas',

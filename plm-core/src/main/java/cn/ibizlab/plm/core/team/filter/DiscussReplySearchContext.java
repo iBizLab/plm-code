@@ -38,6 +38,14 @@ import cn.ibizlab.plm.core.team.domain.DiscussReply;
 public class DiscussReplySearchContext extends QueryWrapperContext<DiscussReply> {
 
     /**
+     * 话题标识EQ
+     */
+    @JsonProperty("n_topic_id_eq")
+    @JSONField(name = "n_topic_id_eq")
+    @ApiModelProperty("话题标识EQ")
+    private String topicIdEQ;
+
+    /**
      * 标识EQ
      */
     @JsonProperty("n_id_eq")

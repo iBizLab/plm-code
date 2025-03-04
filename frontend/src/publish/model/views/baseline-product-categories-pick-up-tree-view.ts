@@ -5,7 +5,7 @@ export default {
   xdataControlName: 'tree',
   loadDefault: true,
   deviewCodeName: 'product_categories_pick_up_tree_view',
-  deviewId: '17569343-4E27-4D0A-822A-ECE1F81B540A',
+  deviewId: '6347f61f37b82908b55b073d862a3f73',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.BASELINE',
@@ -184,7 +184,7 @@ export default {
       controlParam: {
         id: 'tree',
       },
-      modelId: 'FCF8B9B5-2077-4015-AE36-8324282820B5',
+      modelId: '63fbb0c7957e1bf3f0dc8f413c7b1a35',
       modelType: 'PSDETREEVIEW',
       name: 'tree',
       id: 'plmweb.baseline.pick_up_tree_view_tree_view',
@@ -227,7 +227,7 @@ export default {
   viewType: 'DEPICKUPTREEVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '2d8901aa45706a88e203174a5f2365a1',
+  modelId: '1c08f1e0aca4fca5758ea54afc956ced',
   modelType: 'PSAPPDEVIEW',
   name: 'baselineproduct_categories_pick_up_tree_view',
   id: 'plmweb.baseline_product_categories_pick_up_tree_view',

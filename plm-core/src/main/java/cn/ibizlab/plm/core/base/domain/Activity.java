@@ -110,16 +110,6 @@ public class Activity extends EntityMP implements Serializable
     private String auditInfo;
 
     /**
-    * 对象标识
-    */
-    @TableField(value = "objectid")
-    @DEField(name = "objectid")
-    @JSONField(name = "objectid")
-    @JsonProperty("objectid")
-    @ApiModelProperty(value = "objectid", notes = "对象标识")
-    private String objectId;
-
-    /**
     * 操作人
     */
     @TableField(value = "oppersonid")
@@ -148,6 +138,16 @@ public class Activity extends EntityMP implements Serializable
     @JsonProperty("ipaddress")
     @ApiModelProperty(value = "ipaddress", notes = "访问地址")
     private String ipAddress;
+
+    /**
+    * 对象标识
+    */
+    @TableField(value = "objectid")
+    @DEField(name = "objectid")
+    @JSONField(name = "objectid")
+    @JsonProperty("objectid")
+    @ApiModelProperty(value = "objectid", notes = "对象标识")
+    private String objectId;
 
     /**
     * 审计类型
@@ -188,15 +188,6 @@ public class Activity extends EntityMP implements Serializable
     }
 
     /**
-    * 设置 [对象标识]
-    */
-    public Activity setObjectId(String objectId) {
-        this.objectId = objectId;
-        this.modify("objectid", objectId);
-        return this;
-    }
-
-    /**
     * 设置 [操作人]
     */
     public Activity setOpPersonId(String opPersonId) {
@@ -220,6 +211,15 @@ public class Activity extends EntityMP implements Serializable
     public Activity setIpAddress(String ipAddress) {
         this.ipAddress = ipAddress;
         this.modify("ipaddress", ipAddress);
+        return this;
+    }
+
+    /**
+    * 设置 [对象标识]
+    */
+    public Activity setObjectId(String objectId) {
+        this.objectId = objectId;
+        this.modify("objectid", objectId);
         return this;
     }
 

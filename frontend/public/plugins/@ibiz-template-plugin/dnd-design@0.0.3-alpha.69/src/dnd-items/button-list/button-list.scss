@@ -1,0 +1,22 @@
+@include b(dnd-design-button-list) {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  height: 100%;
+  min-height: 38px;
+  color: getCssVar(color, text, 1);
+}
+
+@include b(dnd-design-button-list-placeholder) {
+  display: flex;
+  align-items: center;
+
+  @include e(icon) {
+    padding: 0 4px;
+    font-size: 38px;
+  }
+}
+
+@include b(dnd-design-button-list-item) {
+  padding: 3px 4px;
+}

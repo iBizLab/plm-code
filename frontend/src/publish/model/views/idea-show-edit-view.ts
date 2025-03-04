@@ -4,7 +4,7 @@ export default {
   xdataControlName: 'form',
   loadDefault: true,
   deviewCodeName: 'show_edit_view',
-  deviewId: '5C0FF87F-7455-4CF4-93CD-586E0D28C1F4',
+  deviewId: '3910a0a7c29d789574deb558e57b4d00',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.IDEA',
@@ -60,69 +60,6 @@ export default {
                 actionGroupExtractMode: 'ITEM',
                 panelItems: [
                   {
-                    editor: {
-                      halign: 'LEFT',
-                      renderMode: 'TEXT_DYNAMIC',
-                      valign: 'MIDDLE',
-                      wrapMode: 'NOWRAP',
-                      editorType: 'SPAN',
-                      predefinedType: 'FIELD_TEXT_DYNAMIC',
-                      valueType: 'SIMPLE',
-                      editable: true,
-                      id: 'title',
-                    },
-                    viewFieldName: 'title',
-                    allowEmpty: true,
-                    caption: '文本(动态)',
-                    itemStyle: 'DEFAULT',
-                    itemType: 'FIELD',
-                    layoutPos: {
-                      shrink: 1,
-                      layout: 'FLEX',
-                    },
-                    id: 'title',
-                  },
-                ],
-                layout: {
-                  layout: 'FLEX',
-                },
-                dataRegionType: 'INHERIT',
-                caption: '容器',
-                itemStyle: 'DEFAULT',
-                itemType: 'CONTAINER',
-                layoutPos: {
-                  shrink: 1,
-                  layout: 'FLEX',
-                },
-                sysCss: {
-                  cssName: 'wiki_page_title_style',
-                },
-                id: 'container1',
-              },
-            ],
-            predefinedType: 'CONTAINER_SINGLEDATA',
-            layout: {
-              layout: 'FLEX',
-            },
-            dataName: 'srfactiveviewdata',
-            dataRegionType: 'SINGLEDATA',
-            dataSourceType: 'VIEWSESSIONPARAM',
-            caption: '单项数据容器',
-            itemStyle: 'DEFAULT',
-            itemType: 'CONTAINER',
-            layoutPos: {
-              shrink: 1,
-              layout: 'FLEX',
-            },
-            id: 'container_caption',
-          },
-          {
-            actionGroupExtractMode: 'ITEM',
-            panelItems: [
-              {
-                actionGroupExtractMode: 'ITEM',
-                panelItems: [
-                  {
                     caption: '页面标题',
                     itemStyle: 'DEFAULT',
                     itemType: 'CTRLPOS',
@@ -130,7 +67,9 @@ export default {
                       shrink: 1,
                       layout: 'FLEX',
                     },
+                    sysPFPluginId: 'identifier_title',
                     showCaption: true,
+                    userTag: 'identifier',
                     id: 'captionbar',
                   },
                 ],
@@ -383,7 +322,6 @@ export default {
                                                   },
                                                 ],
                                                 logicType: 'GROUP',
-                                                id: '面板成员[comment_cancel][面板显示]逻辑',
                                               },
                                             ],
                                             showCaption: true,
@@ -424,7 +362,6 @@ export default {
                                                   },
                                                 ],
                                                 logicType: 'GROUP',
-                                                id: '面板成员[comment_send][面板显示]逻辑',
                                               },
                                             ],
                                             showCaption: true,
@@ -723,6 +660,16 @@ export default {
             valid: true,
             caption: '编辑',
             itemType: 'DEUIACTION',
+            controlLogics: [
+              {
+                itemName: 'deuiaction1',
+                logicTag: 'toolbar',
+                logicType: 'SCRIPT',
+                scriptCode: 'context.srfreadonly != true',
+                triggerType: 'ITEMVISIBLE',
+                id: 'logic1',
+              },
+            ],
             sysImage: {
               cssClass: 'fa fa-pencil',
               glyph: 'xf040@FontAwesome',
@@ -814,7 +761,7 @@ export default {
         controlParam: {
           id: 'toolbar',
         },
-        modelId: 'C3051056-29D8-4863-8773-2D7B90C7A4CF',
+        modelId: '483e37041ae6d18aae92a9cc4ea19227',
         modelType: 'PSDETOOLBAR',
         name: 'toolbar',
         id: 'show_edit_view_toolbar',
@@ -911,35 +858,6 @@ export default {
                       layout: 'TABLE_24COL',
                     },
                     id: 'grouppanel1',
-                  },
-                  {
-                    dataType: 25,
-                    enableCond: 3,
-                    labelPos: 'NONE',
-                    noPrivDisplayMode: 1,
-                    appDEFieldId: 'show_identifier',
-                    editor: {
-                      halign: 'LEFT',
-                      valign: 'MIDDLE',
-                      wrapMode: 'NOWRAP',
-                      editorType: 'SPAN',
-                      valueType: 'SIMPLE',
-                      editable: true,
-                      id: 'show_identifier',
-                    },
-                    allowEmpty: true,
-                    emptyCaption: true,
-                    capLanguageRes: {
-                      lanResTag: 'DEF.LNAME.SHOW_IDENTIFIER',
-                    },
-                    codeName: 'show_identifier',
-                    detailStyle: 'DEFAULT',
-                    detailType: 'FORMITEM',
-                    layoutPos: {
-                      colMD: 24,
-                      layout: 'TABLE_24COL',
-                    },
-                    id: 'show_identifier',
                   },
                   {
                     layout: {
@@ -1279,6 +1197,21 @@ export default {
                     codeName: 'grouppanel_attachments_grid',
                     detailStyle: 'DEFAULT',
                     detailType: 'GROUPPANEL',
+                    defdgroupLogics: [
+                      {
+                        logicCat: 'PANELVISIBLE',
+                        relatedDetailNames: ['attachments'],
+                        groupOP: 'AND',
+                        defdlogics: [
+                          {
+                            condOP: 'ISNOTNULL',
+                            defdname: 'attachments',
+                            logicType: 'SINGLE',
+                          },
+                        ],
+                        logicType: 'GROUP',
+                      },
+                    ],
                     layoutPos: {
                       colMD: 24,
                       layout: 'TABLE_24COL',
@@ -1500,7 +1433,7 @@ export default {
         controlParam: {
           id: 'form',
         },
-        modelId: '58634C78-E807-47DC-96F7-9E147DBC6B88',
+        modelId: 'b4dd973de3caccc8ee6f40207065b5b4',
         modelType: 'PSDEFORM_EDITFORM',
         name: 'form',
         id: 'plmweb.idea.show_edit_view_form',
@@ -1761,7 +1694,6 @@ export default {
                             },
                           ],
                           logicType: 'GROUP',
-                          id: '面板成员[container2][面板显示]逻辑',
                         },
                       ],
                       id: 'container2',
@@ -1923,7 +1855,6 @@ export default {
                             },
                           ],
                           logicType: 'GROUP',
-                          id: '面板成员[container3][面板显示]逻辑',
                         },
                       ],
                       sysCss: {
@@ -1979,17 +1910,6 @@ export default {
             id: 'content',
           },
           {
-            appDEFieldId: 'pcontent',
-            dataType: 21,
-            id: 'pcontent',
-          },
-          {
-            appDEFieldId: 'create_time',
-            dataType: 5,
-            format: 'YYYY-MM-DD HH:mm:ss',
-            id: 'create_time',
-          },
-          {
             appDEFieldId: 'pid',
             dataType: 25,
             id: 'pid',
@@ -2001,15 +1921,26 @@ export default {
             id: 'create_man',
           },
           {
-            appDEFieldId: 'id',
-            dataType: 25,
-            id: 'id',
-          },
-          {
             appDEFieldId: 'pcreate_man',
             frontCodeListId: 'plmweb.sysoperator',
             dataType: 25,
             id: 'pcreate_man',
+          },
+          {
+            appDEFieldId: 'pcontent',
+            dataType: 21,
+            id: 'pcontent',
+          },
+          {
+            appDEFieldId: 'create_time',
+            dataType: 5,
+            format: 'YYYY-MM-DD HH:mm:ss',
+            id: 'create_time',
+          },
+          {
+            appDEFieldId: 'id',
+            dataType: 25,
+            id: 'id',
           },
           {
             appDEFieldId: 'id',
@@ -2127,7 +2058,7 @@ export default {
       },
     ],
     controlParam: {},
-    modelId: 'EFDD196E-1A9D-4192-9F56-39AD5F187A71',
+    modelId: 'd7fa0db6eb30a052aab093d8db8951e2',
     modelType: 'PSSYSVIEWLAYOUTPANEL',
     name: 'layoutpanel',
     id: 'usr0521426708',
@@ -2136,8 +2067,8 @@ export default {
   viewStyle: 'DEFAULT',
   viewType: 'DEEDITVIEW',
   enableDP: true,
-  showCaptionBar: false,
-  modelId: '64deb42a96f2fc396358117216cab066',
+  showCaptionBar: true,
+  modelId: 'dd20a66d4ff5bcdf757904ffeadb8821',
   modelType: 'PSAPPDEVIEW',
   name: 'ideashow_edit_view',
   id: 'plmweb.idea_show_edit_view',

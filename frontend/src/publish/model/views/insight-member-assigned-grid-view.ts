@@ -2,7 +2,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'assigned_grid_view',
-  deviewId: '3BC2CB00-0067-4F55-8328-20B6A3187F02',
+  deviewId: 'ab83e54b8626ee8c7c6b09409cd236b8',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'PAGE.CAPTION.INSIGHT_MEMBER.ASSIGNED_GRID_VIEW',
@@ -163,7 +163,7 @@ export default {
       controlParam: {
         id: 'toolbar',
       },
-      modelId: '78EBD6E9-70DA-4D6D-93D9-56133E58F5E0',
+      modelId: 'c29986c16af737419f2b2dedd82355d9',
       modelType: 'PSDETOOLBAR',
       name: 'toolbar',
       id: 'assigned_grid_view_toolbar',
@@ -210,7 +210,7 @@ export default {
                   cssClass: 'fa fa-trash-o',
                   glyph: 'xf014@FontAwesome',
                 },
-                id: 'u179f60c',
+                id: 'u806005d',
               },
             ],
             appDataEntityId: 'plmweb.insight_member',
@@ -307,7 +307,7 @@ export default {
       controlParam: {
         id: 'grid',
       },
-      modelId: '0EC96688-E56C-4413-8A19-18FA11BB6F28',
+      modelId: 'd21f6ab8ebbbcff6b27dfe1d3ef90a49',
       modelType: 'PSDEGRID',
       name: 'grid',
       id: 'plmweb.insight_member.assigned_grid_view_grid',
@@ -346,7 +346,7 @@ export default {
       controlParam: {
         id: 'searchform',
       },
-      modelId: 'BA6BAF3C-87C5-46B6-A0FB-0D52DD41514C',
+      modelId: '0db62d50970a4ba8361707d04c298759',
       modelType: 'PSDEFORM_SEARCHFORM',
       name: 'searchform',
       id: 'plmweb.insight_member.assigned_grid_view_search_form',
@@ -392,7 +392,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: false,
-  modelId: '3aecf8ad74bab2d8e96376a1d75d4f4f',
+  modelId: '7ec11f5f26557d343a410f77a9c99b94',
   modelType: 'PSAPPDEVIEW',
   name: 'insight_memberassigned_grid_view',
   id: 'plmweb.insight_member_assigned_grid_view',

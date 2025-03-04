@@ -1,7 +1,7 @@
 export default {
   funcViewMode: 'PICKUPVIEW',
   deviewCodeName: 'pick_up_view',
-  deviewId: '0375749f915dc8adbc5d18192665384f',
+  deviewId: '03694b050cf120830689fd2bddff51ed',
   accUserMode: 2,
   caption: '选择项目',
   codeName: 'project_pick_up_view',
@@ -51,7 +51,7 @@ export default {
   viewType: 'DEPICKUPVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '0f8e8be36bf57a1f18475a9c355fe213',
+  modelId: '00559316f1fa441ab5008acc4888ea3b',
   modelType: 'PSAPPDEVIEW',
   name: 'projectpick_up_view',
   id: 'plmweb.project_pick_up_view',

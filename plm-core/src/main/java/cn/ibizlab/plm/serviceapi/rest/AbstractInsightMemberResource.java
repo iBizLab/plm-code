@@ -136,6 +136,7 @@ public abstract class AbstractInsightMemberResource {
     * @return Mono<ResponseEntity<InsightMemberDTO>>
     */
     @ApiOperation(value = "change_role", tags = {"效能成员" },  notes = "InsightMember-change_role ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-InsightMember-change_role-all') or hasPermission(this.insightMemberDtoMapping.toDomain(#dto),'ibizplm-InsightMember-change_role')")
     @PostMapping("insight_members/{id}/change_role")
     public Mono<ResponseEntity<ResponseWrapper<InsightMemberDTO>>>changeRoleById
             (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<InsightMemberDTO> dto) {
@@ -330,6 +331,7 @@ public abstract class AbstractInsightMemberResource {
     * @return Mono<ResponseEntity<InsightMemberDTO>>
     */
     @ApiOperation(value = "change_role", tags = {"效能成员" },  notes = "InsightMember-change_role ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-InsightMember-change_role-all') or hasPermission('insight_view',#ownerId,this.insightMemberDtoMapping.toDomain(#dto),'ibizplm-InsightMember-change_role')")
     @PostMapping("insight_views/{ownerId}/insight_members/{id}/change_role")
     public Mono<ResponseEntity<ResponseWrapper<InsightMemberDTO>>>changeRoleByOwnerIdAndId
             (@PathVariable("ownerId") String ownerId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<InsightMemberDTO> dto) {
@@ -530,6 +532,7 @@ public abstract class AbstractInsightMemberResource {
     * @return Mono<ResponseEntity<InsightMemberDTO>>
     */
     @ApiOperation(value = "change_role", tags = {"效能成员" },  notes = "InsightMember-change_role ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-InsightMember-change_role-all') or hasPermission('user',#userId,this.insightMemberDtoMapping.toDomain(#dto),'ibizplm-InsightMember-change_role')")
     @PostMapping("users/{userId}/insight_members/{id}/change_role")
     public Mono<ResponseEntity<ResponseWrapper<InsightMemberDTO>>>changeRoleByUserIdAndId
             (@PathVariable("userId") String userId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<InsightMemberDTO> dto) {
@@ -632,6 +635,217 @@ public abstract class AbstractInsightMemberResource {
     */   
     public InsightMemberDTO saveByUserId
             (String userId, InsightMemberDTO dto) {
+        InsightMember domain = insightMemberDtoMapping.toDomain(dto);
+        domain.setUserId(userId);
+        insightMemberService.save(domain);
+        InsightMember rt = domain;
+        return insightMemberDtoMapping.toDto(rt);
+    }
+
+    /**
+    * 创建Create 效能成员
+    * 
+    *
+    * @param departmentId departmentId
+    * @param userId userId
+    * @param dto dto
+    * @return Mono<ResponseEntity<InsightMemberDTO>>
+    */
+    @ApiOperation(value = "创建Create", tags = {"效能成员" },  notes = "InsightMember-Create ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-InsightMember-Create-all') or hasPermission('department',#departmentId,this.insightMemberDtoMapping.toDomain(#dto),'ibizplm-InsightMember-Create')")
+    @PostMapping("departments/{departmentId}/users/{userId}/insight_members")
+    public Mono<ResponseEntity<ResponseWrapper<InsightMemberDTO>>>createByDepartmentIdAndUserId
+            (@PathVariable("departmentId") String departmentId, @PathVariable("userId") String userId, @Validated @RequestBody RequestWrapper<InsightMemberDTO> dto) {
+        ResponseWrapper<InsightMemberDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray())
+            dto.getList().forEach(item -> rt.add(createByDepartmentIdAndUserId(departmentId, userId, item)));
+        else
+            rt.set(createByDepartmentIdAndUserId(departmentId, userId, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * 创建Create 效能成员
+    * 
+    *
+    * @param departmentId departmentId
+    * @param userId userId
+    * @param dto dto
+    * @return ResponseEntity<InsightMemberDTO>
+    */   
+    public InsightMemberDTO createByDepartmentIdAndUserId
+            (String departmentId, String userId, InsightMemberDTO dto) {
+        InsightMember domain = insightMemberDtoMapping.toDomain(dto);
+        domain.setUserId(userId);
+        insightMemberService.create(domain);
+        InsightMember rt = domain;
+        return insightMemberDtoMapping.toDto(rt);
+    }
+
+    /**
+    * 更新Update 效能成员
+    * 
+    *
+    * @param departmentId departmentId
+    * @param userId userId
+    * @param id id
+    * @param dto dto
+    * @return Mono<ResponseEntity<InsightMemberDTO>>
+    */
+    @ApiOperation(value = "更新Update", tags = {"效能成员" },  notes = "InsightMember-Update ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-InsightMember-Update-all') or hasPermission('department',#departmentId,this.insightMemberService.get(#id),'ibizplm-InsightMember-Update')")
+    @VersionCheck(entity = "insightmember" , versionfield = "updateTime")
+    @PutMapping("departments/{departmentId}/users/{userId}/insight_members/{id}")
+    public Mono<ResponseEntity<ResponseWrapper<InsightMemberDTO>>>updateByDepartmentIdAndUserIdAndId
+            (@PathVariable("departmentId") String departmentId, @PathVariable("userId") String userId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<InsightMemberDTO> dto) {
+        ResponseWrapper<InsightMemberDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(updateByDepartmentIdAndUserIdAndId(departmentId, userId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(updateByDepartmentIdAndUserIdAndId(departmentId, userId, id, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * 更新Update 效能成员
+    * 
+    *
+    * @param departmentId departmentId
+    * @param userId userId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<InsightMemberDTO>
+    */   
+    public InsightMemberDTO updateByDepartmentIdAndUserIdAndId
+            (String departmentId, String userId, String id, InsightMemberDTO dto) {
+        InsightMember domain = insightMemberDtoMapping.toDomain(dto);
+        domain.setId(id);
+        insightMemberService.update(domain);
+        InsightMember rt = domain;
+        return insightMemberDtoMapping.toDto(rt);
+    }
+
+    /**
+    * change_role 效能成员
+    * 
+    *
+    * @param departmentId departmentId
+    * @param userId userId
+    * @param id id
+    * @param dto dto
+    * @return Mono<ResponseEntity<InsightMemberDTO>>
+    */
+    @ApiOperation(value = "change_role", tags = {"效能成员" },  notes = "InsightMember-change_role ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-InsightMember-change_role-all') or hasPermission('department',#departmentId,this.insightMemberDtoMapping.toDomain(#dto),'ibizplm-InsightMember-change_role')")
+    @PostMapping("departments/{departmentId}/users/{userId}/insight_members/{id}/change_role")
+    public Mono<ResponseEntity<ResponseWrapper<InsightMemberDTO>>>changeRoleByDepartmentIdAndUserIdAndId
+            (@PathVariable("departmentId") String departmentId, @PathVariable("userId") String userId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<InsightMemberDTO> dto) {
+        ResponseWrapper<InsightMemberDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(changeRoleByDepartmentIdAndUserIdAndId(departmentId, userId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(changeRoleByDepartmentIdAndUserIdAndId(departmentId, userId, id, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * change_role 效能成员
+    * 
+    *
+    * @param departmentId departmentId
+    * @param userId userId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<InsightMemberDTO>
+    */   
+    public InsightMemberDTO changeRoleByDepartmentIdAndUserIdAndId
+            (String departmentId, String userId, String id, InsightMemberDTO dto) {
+        InsightMember domain = insightMemberDtoMapping.toDomain(dto);
+        domain.setId(id);
+        InsightMember rt = insightMemberService.changeRole(domain);
+        return insightMemberDtoMapping.toDto(rt);
+    }
+
+    /**
+    * choose_position 效能成员
+    * 
+    *
+    * @param departmentId departmentId
+    * @param userId userId
+    * @param id id
+    * @param dto dto
+    * @return Mono<ResponseEntity<InsightMemberDTO>>
+    */
+    @ApiOperation(value = "choose_position", tags = {"效能成员" },  notes = "InsightMember-choose_position ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-InsightMember-choose_position-all') or hasPermission('department',#departmentId,this.insightMemberDtoMapping.toDomain(#dto),'ibizplm-InsightMember-choose_position')")
+    @PostMapping("departments/{departmentId}/users/{userId}/insight_members/{id}/choose_position")
+    public Mono<ResponseEntity<ResponseWrapper<InsightMemberDTO>>>choosePositionByDepartmentIdAndUserIdAndId
+            (@PathVariable("departmentId") String departmentId, @PathVariable("userId") String userId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<InsightMemberDTO> dto) {
+        ResponseWrapper<InsightMemberDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(choosePositionByDepartmentIdAndUserIdAndId(departmentId, userId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(choosePositionByDepartmentIdAndUserIdAndId(departmentId, userId, id, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * choose_position 效能成员
+    * 
+    *
+    * @param departmentId departmentId
+    * @param userId userId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<InsightMemberDTO>
+    */   
+    public InsightMemberDTO choosePositionByDepartmentIdAndUserIdAndId
+            (String departmentId, String userId, String id, InsightMemberDTO dto) {
+        InsightMember domain = insightMemberDtoMapping.toDomain(dto);
+        domain.setId(id);
+        InsightMember rt = insightMemberService.choosePosition(domain);
+        return insightMemberDtoMapping.toDto(rt);
+    }
+
+    /**
+    * 保存Save 效能成员
+    * 
+    *
+    * @param departmentId departmentId
+    * @param userId userId
+    * @param dto dto
+    * @return Mono<ResponseEntity<InsightMemberDTO>>
+    */
+    @ApiOperation(value = "保存Save", tags = {"效能成员" },  notes = "InsightMember-Save ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-InsightMember-Save-all') or hasPermission('department',#departmentId,this.insightMemberDtoMapping.toDomain(#dto),'ibizplm-InsightMember-Save')")
+    @PostMapping("departments/{departmentId}/users/{userId}/insight_members/save")
+    public Mono<ResponseEntity<ResponseWrapper<InsightMemberDTO>>>saveByDepartmentIdAndUserId
+            (@PathVariable("departmentId") String departmentId, @PathVariable("userId") String userId, @Validated @RequestBody RequestWrapper<InsightMemberDTO> dto) {
+        ResponseWrapper<InsightMemberDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray())
+            dto.getList().forEach(item -> rt.add(saveByDepartmentIdAndUserId(departmentId, userId, item)));
+        else
+            rt.set(saveByDepartmentIdAndUserId(departmentId, userId, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * 保存Save 效能成员
+    * 
+    *
+    * @param departmentId departmentId
+    * @param userId userId
+    * @param dto dto
+    * @return ResponseEntity<InsightMemberDTO>
+    */   
+    public InsightMemberDTO saveByDepartmentIdAndUserId
+            (String departmentId, String userId, InsightMemberDTO dto) {
         InsightMember domain = insightMemberDtoMapping.toDomain(dto);
         domain.setUserId(userId);
         insightMemberService.save(domain);
@@ -903,6 +1117,105 @@ public abstract class AbstractInsightMemberResource {
     @PostMapping("users/{userId}/insight_members/fetch_default")
     public Mono<ResponseEntity<List<InsightMemberDTO>>> fetchDefaultByUserId
             (@PathVariable("userId") String userId, @Validated @RequestBody InsightMemberFilterDTO dto) {
+        dto.setUserIdEQ(userId);
+        InsightMemberSearchContext context = insightMemberFilterDtoMapping.toDomain(dto);
+        Page<InsightMember> domains = insightMemberService.fetchDefault(context) ;
+        List<InsightMemberDTO> list = insightMemberDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
+    * 获取Get 效能成员
+    * 
+    *
+    * @param departmentId departmentId
+    * @param userId userId
+    * @param id id
+    * @return Mono<ResponseEntity<InsightMemberDTO>>
+    */
+    @ApiOperation(value = "获取Get", tags = {"效能成员" },  notes = "InsightMember-Get ")
+    @PostAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-InsightMember-Get-all')  or hasPermission('department',#departmentId,this.insightMemberDtoMapping.toDomain(returnObject.block().getBody()),'ibizplm-InsightMember-Get')")
+    @GetMapping("departments/{departmentId}/users/{userId}/insight_members/{id}")
+    public Mono<ResponseEntity<InsightMemberDTO>> getByDepartmentIdAndUserIdAndId
+            (@PathVariable("departmentId") String departmentId, @PathVariable("userId") String userId, @PathVariable("id") String id) {
+        InsightMember rt = insightMemberService.get(id);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(insightMemberDtoMapping.toDto(rt)));
+    }
+
+    /**
+    * 删除Remove 效能成员
+    * 
+    *
+    * @param departmentId departmentId
+    * @param userId userId
+    * @param id id
+    * @return Mono<ResponseEntity<Boolean>>
+    */
+    @ApiOperation(value = "删除Remove", tags = {"效能成员" },  notes = "InsightMember-Remove ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-InsightMember-Remove-all') or hasPermission('department',#departmentId,this.insightMemberService.get(#id),'ibizplm-InsightMember-Remove')")
+    @DeleteMapping("departments/{departmentId}/users/{userId}/insight_members/{id}")
+    public Mono<ResponseEntity<Boolean>> removeByDepartmentIdAndUserIdAndId
+            (@PathVariable("departmentId") String departmentId, @PathVariable("userId") String userId, @PathVariable("id") String id) {
+        Boolean rt = insightMemberService.remove(id);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * 校验CheckKey 效能成员
+    * 
+    *
+    * @param departmentId departmentId
+    * @param userId userId
+    * @param dto dto
+    * @return Mono<ResponseEntity<Integer>>
+    */
+    @ApiOperation(value = "校验CheckKey", tags = {"效能成员" },  notes = "InsightMember-CheckKey ")
+    @PostMapping("departments/{departmentId}/users/{userId}/insight_members/check_key")
+    public Mono<ResponseEntity<CheckKeyStatus>> checkKeyByDepartmentIdAndUserId
+            (@PathVariable("departmentId") String departmentId, @PathVariable("userId") String userId, @Validated @RequestBody InsightMemberDTO dto) {
+        InsightMember domain = insightMemberDtoMapping.toDomain(dto);
+        domain.setUserId(userId);
+        CheckKeyStatus rt = insightMemberService.checkKey(domain);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * 草稿GetDraft 效能成员
+    * 
+    *
+    * @param departmentId departmentId
+    * @param userId userId
+    * @param dto dto
+    * @return Mono<ResponseEntity<InsightMemberDTO>>
+    */
+    @ApiOperation(value = "草稿GetDraft", tags = {"效能成员" },  notes = "InsightMember-GetDraft ")
+    @GetMapping("departments/{departmentId}/users/{userId}/insight_members/get_draft")
+    public Mono<ResponseEntity<InsightMemberDTO>> getDraftByDepartmentIdAndUserId
+            (@PathVariable("departmentId") String departmentId, @PathVariable("userId") String userId, @SpringQueryMap InsightMemberDTO dto) {
+        InsightMember domain = insightMemberDtoMapping.toDomain(dto);
+        domain.setUserId(userId);
+        InsightMember rt = insightMemberService.getDraft(domain);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(insightMemberDtoMapping.toDto(rt)));
+    }
+
+    /**
+    * 查询fetch_default 效能成员
+    * 
+    *
+    * @param departmentId departmentId
+    * @param userId userId
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<InsightMemberDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_default", tags = {"效能成员" },  notes = "InsightMember-fetch_default ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-InsightMember-fetch_default-all') or hasPermission('department',#departmentId,#dto,'ibizplm-InsightMember-fetch_default')")
+    @PostMapping("departments/{departmentId}/users/{userId}/insight_members/fetch_default")
+    public Mono<ResponseEntity<List<InsightMemberDTO>>> fetchDefaultByDepartmentIdAndUserId
+            (@PathVariable("departmentId") String departmentId, @PathVariable("userId") String userId, @Validated @RequestBody InsightMemberFilterDTO dto) {
         dto.setUserIdEQ(userId);
         InsightMemberSearchContext context = insightMemberFilterDtoMapping.toDomain(dto);
         Page<InsightMember> domains = insightMemberService.fetchDefault(context) ;

@@ -740,7 +740,7 @@ export default {
         controlParam: {
           id: 'searchform',
         },
-        modelId: '3D61BDCB-153F-43CF-BB16-6DD8EA8E90DB',
+        modelId: '598d45a6023c73995458e6822fae89ea',
         modelType: 'PSDEFORM_SEARCHFORM',
         name: 'searchform',
         id: 'plmweb.workload.log_management_search_form',
@@ -810,7 +810,7 @@ export default {
     logicName: 'log_management_view表格视图布局',
     appDataEntityId: 'plmweb.workload',
     controlParam: {},
-    modelId: '43051671-B595-4DAD-99DF-0D002CD44B96',
+    modelId: '9180301d9e81139394a3d66b497ec5c5',
     modelType: 'PSSYSVIEWLAYOUTPANEL',
     name: 'layoutpanel',
     id: 'usr0407743019',

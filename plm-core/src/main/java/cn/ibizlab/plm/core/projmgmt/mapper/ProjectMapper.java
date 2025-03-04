@@ -43,6 +43,25 @@ public interface ProjectMapper extends BaseMapper<Project> {
     List<Project> listDefault(@Param("ctx") ProjectSearchContext context, @Param("ew") Wrapper<Project> wrapper);
 
     /**
+     * 数据集合VIEW分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Project> searchView(IPage<Project> page, @Param("ctx") ProjectSearchContext context, @Param("ew") Wrapper<Project> wrapper);
+    
+    /**
+     * 数据集合VIEW查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Project> listView(@Param("ctx") ProjectSearchContext context, @Param("ew") Wrapper<Project> wrapper);
+
+    /**
      * 数据集合admin分页查询
      * 
      * @param page
@@ -418,25 +437,6 @@ public interface ProjectMapper extends BaseMapper<Project> {
     * @return
     */
     List<Project> findById(@Param("ids") List<String> ids);
-
-    /**
-     * 数据集合View分页查询
-     * 
-     * @param page
-     * @param context
-     * @param wrapper
-     * @return
-     */
-    Page<Project> searchView(IPage<Project> page, @Param("ctx") ProjectSearchContext context, @Param("ew") Wrapper<Project> wrapper);
-    
-    /**
-     * 数据集合View查询
-     * 
-     * @param context
-     * @param wrapper
-     * @return
-     */
-    List<Project> listView(@Param("ctx") ProjectSearchContext context, @Param("ew") Wrapper<Project> wrapper);
 
     /**
      * 主键查询

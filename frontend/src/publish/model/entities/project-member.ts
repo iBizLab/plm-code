@@ -1297,17 +1297,17 @@ export default {
       ],
       deuilogicParams: [
         {
+          codeName: 'user',
+          entityParam: true,
+          name: '当前人员',
+          id: 'user',
+        },
+        {
           codeName: 'Default',
           default: true,
           entityParam: true,
           name: '传入变量',
           id: 'default',
-        },
-        {
-          codeName: 'user',
-          entityParam: true,
-          name: '当前人员',
-          id: 'user',
         },
       ],
       startDEUILogicNodeId: 'begin',
@@ -1334,41 +1334,6 @@ export default {
           parallelOutput: true,
           name: '开始',
           id: 'begin',
-        },
-        {
-          buttonsType: 'OKCANCEL',
-          message: '是否要跳转至成员设置',
-          msgBoxType: 'QUESTION',
-          codeName: 'MSGBOX1',
-          leftPos: 355,
-          logicNodeType: 'MSGBOX',
-          deuilogicLinks: [
-            {
-              dstDEUILogicNodeId: 'rawjscode1',
-              deuilogicLinkGroupCond: {
-                groupOP: 'AND',
-                deuilogicLinkConds: [
-                  {
-                    condOP: 'EQ',
-                    dstLogicParamId: 'lastreturn',
-                    paramType: 'SRCENTITYFIELD',
-                    paramValue: 'ok',
-                    srcLogicParamId: 'msg',
-                    value: 'ok',
-                    logicType: 'SINGLE',
-                    name: 'lastReturn 等于(=) ok',
-                    id: 'lastreturn 等于(=) ok',
-                  },
-                ],
-                logicType: 'GROUP',
-              },
-              srcDEUILogicNodeId: 'msgbox1',
-              id: '连接名称',
-            },
-          ],
-          topPos: 208,
-          name: '操作提示',
-          id: 'msgbox1',
         },
         {
           codeName: 'PREPAREJSPARAM1',
@@ -1412,6 +1377,41 @@ export default {
           id: 'rawjscode1',
         },
         {
+          buttonsType: 'OKCANCEL',
+          message: '是否要跳转至成员设置',
+          msgBoxType: 'QUESTION',
+          codeName: 'MSGBOX1',
+          leftPos: 355,
+          logicNodeType: 'MSGBOX',
+          deuilogicLinks: [
+            {
+              dstDEUILogicNodeId: 'rawjscode1',
+              deuilogicLinkGroupCond: {
+                groupOP: 'AND',
+                deuilogicLinkConds: [
+                  {
+                    condOP: 'EQ',
+                    dstLogicParamId: 'lastreturn',
+                    paramType: 'SRCENTITYFIELD',
+                    paramValue: 'ok',
+                    srcLogicParamId: 'msg',
+                    value: 'ok',
+                    logicType: 'SINGLE',
+                    name: 'lastReturn 等于(=) ok',
+                    id: 'lastreturn 等于(=) ok',
+                  },
+                ],
+                logicType: 'GROUP',
+              },
+              srcDEUILogicNodeId: 'msgbox1',
+              id: '连接名称',
+            },
+          ],
+          topPos: 208,
+          name: '操作提示',
+          id: 'msgbox1',
+        },
+        {
           codeName: 'END1',
           leftPos: 1169,
           logicNodeType: 'END',
@@ -1422,12 +1422,6 @@ export default {
       ],
       deuilogicParams: [
         {
-          codeName: 'project',
-          entityParam: true,
-          name: '项目标识',
-          id: 'project',
-        },
-        {
           codeName: 'Default',
           default: true,
           entityParam: true,
@@ -1435,10 +1429,16 @@ export default {
           id: 'default',
         },
         {
-          codeName: 'view',
-          activeViewParam: true,
-          name: '视图',
-          id: 'view',
+          codeName: 'msg',
+          entityParam: true,
+          name: '消息确认标识',
+          id: 'msg',
+        },
+        {
+          codeName: 'project',
+          entityParam: true,
+          name: '项目标识',
+          id: 'project',
         },
         {
           codeName: 'lastReturn',
@@ -1447,10 +1447,10 @@ export default {
           id: 'lastreturn',
         },
         {
-          codeName: 'msg',
-          entityParam: true,
-          name: '消息确认标识',
-          id: 'msg',
+          codeName: 'view',
+          activeViewParam: true,
+          name: '视图',
+          id: 'view',
         },
       ],
       startDEUILogicNodeId: 'begin',

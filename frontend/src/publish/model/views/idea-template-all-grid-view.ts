@@ -3,7 +3,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'all_grid_view',
-  deviewId: '32A21F95-59FE-4803-8312-169FFB588083',
+  deviewId: '0522046f4104817f7920136d567c82d8',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.IDEA_TEMPLATE',
@@ -121,7 +121,7 @@ export default {
       controlParam: {
         id: 'toolbar',
       },
-      modelId: 'B28D310E-65CA-4BDB-B54C-C3FCC2E14BAB',
+      modelId: '560f5f2113a9b4f92008f662cfaf6d81',
       modelType: 'PSDETOOLBAR',
       name: 'toolbar',
       id: 'all_grid_view_toolbar',
@@ -210,7 +210,7 @@ export default {
                   cssClass: 'fa fa-edit',
                   glyph: 'xf044@FontAwesome',
                 },
-                id: 'uba334fc',
+                id: 'uc69d69d',
               },
               {
                 actionLevel: 200,
@@ -224,7 +224,7 @@ export default {
                   cssClass: 'fa fa-trash-o',
                   glyph: 'xf014@FontAwesome',
                 },
-                id: 'u140bf07',
+                id: 'u60fa50d',
               },
             ],
             appDataEntityId: 'plmweb.idea_template',
@@ -335,7 +335,7 @@ export default {
       controlParam: {
         id: 'grid',
       },
-      modelId: 'C988DCC1-324F-44FD-B1EB-8D443BE72DBC',
+      modelId: '6be6566087a39e41da68033824ce3002',
       modelType: 'PSDEGRID',
       name: 'grid',
       id: 'plmweb.idea_template.all_grid_view_grid',
@@ -400,7 +400,7 @@ export default {
       controlParam: {
         id: 'searchform',
       },
-      modelId: '558F3AC9-1002-49BF-B775-20083435260C',
+      modelId: '60c1873ae1b911ef845c88631901bae0',
       modelType: 'PSDEFORM_SEARCHFORM',
       name: 'searchform',
       id: 'plmweb.idea_template.all_grid_view_search_form',
@@ -445,7 +445,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '119748f0454aef14dfdf02daaaa824dd',
+  modelId: 'e484c1751a78b9eb43854876ae928418',
   modelType: 'PSAPPDEVIEW',
   name: 'idea_templateall_grid_view',
   id: 'plmweb.idea_template_all_grid_view',

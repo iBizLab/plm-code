@@ -149,6 +149,17 @@ public abstract class AbstractDeliverableService extends ServiceImpl<Deliverable
         return list;
    }
 	
+   public Page<Deliverable> fetchMyDeliverable(DeliverableSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Deliverable> pages=baseMapper.searchMyDeliverable(context.getPages(),context,context.getSelectCond());
+        List<Deliverable> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<Deliverable> listMyDeliverable(DeliverableSearchContext context) {
+        List<Deliverable> list = baseMapper.listMyDeliverable(context,context.getSelectCond());
+        return list;
+   }
+	
    public Page<Deliverable> fetchProjectDeliverable(DeliverableSearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<Deliverable> pages=baseMapper.searchProjectDeliverable(context.getPages(),context,context.getSelectCond());
         List<Deliverable> list = pages.getRecords();

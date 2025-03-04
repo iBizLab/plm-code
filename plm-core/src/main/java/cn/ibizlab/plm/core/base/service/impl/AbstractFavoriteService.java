@@ -171,6 +171,17 @@ public abstract class AbstractFavoriteService extends ServiceImpl<FavoriteMapper
         return list;
    }
 	
+   public Page<Favorite> fetchMyFavorite(FavoriteSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Favorite> pages=baseMapper.searchMyFavorite(context.getPages(),context,context.getSelectCond());
+        List<Favorite> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<Favorite> listMyFavorite(FavoriteSearchContext context) {
+        List<Favorite> list = baseMapper.listMyFavorite(context,context.getSelectCond());
+        return list;
+   }
+	
 	public List<Favorite> findByOwnerId(List<String> ownerIds){
         List<Favorite> list = baseMapper.findByOwnerId(ownerIds);
         return list;	

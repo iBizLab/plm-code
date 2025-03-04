@@ -4,7 +4,7 @@ export default {
   enableCustomGetDataAction: true,
   enableWorkflow: true,
   deviewCodeName: 'custom_redirect_view',
-  deviewId: 'AFF4B833-DC41-48C4-9463-585D0A6DE01A',
+  deviewId: '322672802d5c2d4d713d500982417661',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.RECENT',
@@ -13,6 +13,101 @@ export default {
   codeName: 'recent_custom_redirect_view',
   appDataEntityId: 'plmweb.recent',
   appViewRefs: [
+    {
+      navigateContexts: [
+        {
+          key: 'PROJECT',
+          value: 'openid',
+          name: 'PROJECT',
+          id: 'project',
+        },
+      ],
+      navigateParams: [
+        {
+          key: 'project',
+          value: 'openid',
+          id: 'project',
+        },
+      ],
+      realTitle: '主数据视图scrum',
+      refAppViewId: 'plmweb.project_scrum_index_view',
+      name: 'SCRUM',
+      id: 'scrum',
+    },
+    {
+      openMode: 'INDEXVIEWTAB_POPUPMODAL',
+      navigateContexts: [
+        {
+          key: 'ARTICLE_PAGE',
+          value: 'owner_id',
+          name: 'ARTICLE_PAGE',
+          id: 'article_page',
+        },
+        {
+          key: 'SPACE',
+          value: 'recent_parent',
+          name: 'SPACE',
+          id: 'space',
+        },
+      ],
+      realOpenMode: 'INDEXVIEWTAB_POPUPMODAL',
+      realTitle: '页面',
+      refAppViewId: 'plmweb.article_page_model_show_view_noupdown',
+      name: 'PAGE',
+      id: 'page',
+    },
+    {
+      openMode: 'INDEXVIEWTAB_POPUPMODAL',
+      navigateContexts: [
+        {
+          key: 'LIBRARY',
+          value: 'recent_parent',
+          name: 'LIBRARY',
+          id: 'library',
+        },
+        {
+          key: 'TEST_CASE',
+          value: 'owner_id',
+          name: 'TEST_CASE',
+          id: 'test_case',
+        },
+        {
+          key: 'SRFNAVCTRLID',
+          rawValue: true,
+          name: 'SRFNAVCTRLID',
+          id: 'srfnavctrlid',
+        },
+      ],
+      realOpenMode: 'INDEXVIEWTAB_POPUPMODAL',
+      realTitle: '用例',
+      refAppViewId: 'plmweb.test_case_main_view',
+      name: 'TEST_CASE',
+      id: 'test_case',
+    },
+    {
+      navigateContexts: [
+        {
+          key: 'ID',
+          value: 'id',
+          name: 'ID',
+          id: 'id',
+        },
+      ],
+      navigateParams: [
+        {
+          key: 'id',
+          value: 'id',
+          id: 'id',
+        },
+      ],
+      realTitle: '空间',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.SPACE.INDEX_VIEW',
+      },
+      refAppViewId: 'plmweb.space_index_view',
+      name: 'SPACE',
+      id: 'space',
+    },
     {
       openMode: 'INDEXVIEWTAB_POPUPMODAL',
       navigateContexts: [
@@ -63,94 +158,28 @@ export default {
       id: 'product',
     },
     {
-      openMode: 'INDEXVIEWTAB_POPUPMODAL',
-      navigateContexts: [
-        {
-          key: 'ARTICLE_PAGE',
-          value: 'owner_id',
-          name: 'ARTICLE_PAGE',
-          id: 'article_page',
-        },
-        {
-          key: 'SPACE',
-          value: 'recent_parent',
-          name: 'SPACE',
-          id: 'space',
-        },
-      ],
-      realOpenMode: 'INDEXVIEWTAB_POPUPMODAL',
-      realTitle: '页面',
-      refAppViewId: 'plmweb.article_page_model_show_view_noupdown',
-      name: 'PAGE',
-      id: 'page',
-    },
-    {
-      openMode: 'INDEXVIEWTAB_POPUPMODAL',
-      navigateContexts: [
-        {
-          key: 'TICKET',
-          value: 'recent_parent',
-          name: 'TICKET',
-          id: 'ticket',
-        },
-        {
-          key: 'SRFNAVCTRLID',
-          rawValue: true,
-          name: 'SRFNAVCTRLID',
-          id: 'srfnavctrlid',
-        },
-        {
-          key: 'PRODUCT',
-          value: 'owner_id',
-          name: 'PRODUCT',
-          id: 'product',
-        },
-      ],
-      realOpenMode: 'INDEXVIEWTAB_POPUPMODAL',
-      realTitle: '工单',
-      refAppViewId: 'plmweb.ticket_main_view',
-      name: 'TICKET',
-      id: 'ticket',
-    },
-    {
-      realTitle: '主数据视图hybrid',
-      refAppViewId: 'plmweb.project_hybrid_index_view',
-      name: 'HYBRID',
-      id: 'hybrid',
-    },
-    {
-      openMode: 'INDEXVIEWTAB_POPUPMODAL',
-      navigateContexts: [
-        {
-          key: 'LIBRARY',
-          value: 'recent_parent',
-          name: 'LIBRARY',
-          id: 'library',
-        },
-        {
-          key: 'TEST_CASE',
-          value: 'owner_id',
-          name: 'TEST_CASE',
-          id: 'test_case',
-        },
-        {
-          key: 'SRFNAVCTRLID',
-          rawValue: true,
-          name: 'SRFNAVCTRLID',
-          id: 'srfnavctrlid',
-        },
-      ],
-      realOpenMode: 'INDEXVIEWTAB_POPUPMODAL',
-      realTitle: '用例',
-      refAppViewId: 'plmweb.test_case_main_view',
-      name: 'TEST_CASE',
-      id: 'test_case',
+      realTitle: '主数据视图waterfall',
+      refAppViewId: 'plmweb.project_waterfall_index_view',
+      name: 'WATERFALL',
+      id: 'waterfall',
     },
     {
       realTitle: '主数据视图kanban',
       refAppViewId: 'plmweb.project_kanban_index_view',
       name: 'KANBAN',
       id: 'kanban',
+    },
+    {
+      realTitle: '测试库',
+      refAppViewId: 'plmweb.library_index_view',
+      name: 'LIBRARY',
+      id: 'library',
+    },
+    {
+      realTitle: '主数据视图hybrid',
+      refAppViewId: 'plmweb.project_hybrid_index_view',
+      name: 'HYBRID',
+      id: 'hybrid',
     },
     {
       openMode: 'INDEXVIEWTAB_POPUPMODAL',
@@ -184,61 +213,32 @@ export default {
       id: 'idea',
     },
     {
+      openMode: 'INDEXVIEWTAB_POPUPMODAL',
       navigateContexts: [
         {
-          key: 'PROJECT',
-          value: 'openid',
-          name: 'PROJECT',
-          id: 'project',
+          key: 'TICKET',
+          value: 'recent_parent',
+          name: 'TICKET',
+          id: 'ticket',
         },
-      ],
-      navigateParams: [
         {
-          key: 'project',
-          value: 'openid',
-          id: 'project',
+          key: 'SRFNAVCTRLID',
+          rawValue: true,
+          name: 'SRFNAVCTRLID',
+          id: 'srfnavctrlid',
         },
-      ],
-      realTitle: '主数据视图scrum',
-      refAppViewId: 'plmweb.project_scrum_index_view',
-      name: 'SCRUM',
-      id: 'scrum',
-    },
-    {
-      realTitle: '主数据视图waterfall',
-      refAppViewId: 'plmweb.project_waterfall_index_view',
-      name: 'WATERFALL',
-      id: 'waterfall',
-    },
-    {
-      realTitle: '测试库',
-      refAppViewId: 'plmweb.library_index_view',
-      name: 'LIBRARY',
-      id: 'library',
-    },
-    {
-      navigateContexts: [
         {
-          key: 'ID',
-          value: 'id',
-          name: 'ID',
-          id: 'id',
+          key: 'PRODUCT',
+          value: 'owner_id',
+          name: 'PRODUCT',
+          id: 'product',
         },
       ],
-      navigateParams: [
-        {
-          key: 'id',
-          value: 'id',
-          id: 'id',
-        },
-      ],
-      realTitle: '空间',
-      realTitleLanguageRes: {
-        lanResTag: 'PAGE.TITLE.SPACE.INDEX_VIEW',
-      },
-      refAppViewId: 'plmweb.space_index_view',
-      name: 'SPACE',
-      id: 'space',
+      realOpenMode: 'INDEXVIEWTAB_POPUPMODAL',
+      realTitle: '工单',
+      refAppViewId: 'plmweb.ticket_main_view',
+      name: 'TICKET',
+      id: 'ticket',
     },
   ],
   controls: [
@@ -272,7 +272,7 @@ export default {
   enableDP: true,
   redirectView: true,
   showCaptionBar: true,
-  modelId: 'ccc6b8be5ebe9bf4616f22825d516455',
+  modelId: '3faf3b915012de792f527c4e15b98095',
   modelType: 'PSAPPDEVIEW',
   name: 'recentcustom_redirect_view',
   id: 'plmweb.recent_custom_redirect_view',

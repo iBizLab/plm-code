@@ -83,15 +83,6 @@ export default {
   ],
   appViewRefs: [
     {
-      realTitle: '用例编辑视图',
-      realTitleLanguageRes: {
-        lanResTag: 'PAGE.TITLE.TEST_CASE.EDITVIEW',
-      },
-      refAppViewId: 'plmweb.test_case_edit_view',
-      name: 'NEWDATA',
-      id: 'newdata',
-    },
-    {
       openMode: 'INDEXVIEWTAB_POPUPMODAL',
       navigateContexts: [
         {
@@ -106,6 +97,15 @@ export default {
       refAppViewId: 'plmweb.test_case_main_view',
       name: 'EDITDATA',
       id: 'editdata',
+    },
+    {
+      realTitle: '用例编辑视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.TEST_CASE.EDITVIEW',
+      },
+      refAppViewId: 'plmweb.test_case_edit_view',
+      name: 'NEWDATA',
+      id: 'newdata',
     },
   ],
   controls: [
@@ -683,7 +683,7 @@ export default {
         },
         id: 'tabsearchform',
       },
-      modelId: 'A6609726-A698-45CF-9E8A-92030D5BBD56',
+      modelId: 'ac970f1a038d0900b8a2e927ab63c613',
       modelType: 'PSDEFORM_SEARCHFORM',
       name: 'tabsearchform',
       id: 'plmweb.test_case.advanced_search_form',

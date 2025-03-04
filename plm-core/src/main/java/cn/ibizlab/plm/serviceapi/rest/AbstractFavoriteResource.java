@@ -249,6 +249,28 @@ public abstract class AbstractFavoriteResource {
             .body(list));
     }
 
+    /**
+    * 查询fetch_my_favorite 收藏
+    * 
+    *
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<FavoriteDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_my_favorite", tags = {"收藏" },  notes = "Favorite-fetch_my_favorite ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Favorite-fetch_my_favorite-all') or hasPermission(#dto,'ibizplm-Favorite-fetch_my_favorite')")
+    @PostMapping("favorites/fetch_my_favorite")
+    public Mono<ResponseEntity<List<FavoriteDTO>>> fetchMyFavorite
+            (@Validated @RequestBody FavoriteFilterDTO dto) {
+        FavoriteSearchContext context = favoriteFilterDtoMapping.toDomain(dto);
+        Page<Favorite> domains = favoriteService.fetchMyFavorite(context) ;
+        List<FavoriteDTO> list = favoriteDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
 
     /**
     * 批量新建收藏

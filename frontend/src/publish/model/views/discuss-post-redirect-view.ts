@@ -22,7 +22,7 @@ export default {
   enableWorkflow: true,
   funcViewMode: 'REDIRECTVIEW',
   deviewCodeName: 'RedirectView',
-  deviewId: '131c270cb5558ecc5b071a2a28f096ae',
+  deviewId: '35ad9a429ad60ee59b21546f303200ab',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.DISCUSS_POST',
@@ -64,7 +64,7 @@ export default {
   enableDP: true,
   redirectView: true,
   showCaptionBar: true,
-  modelId: '3c8c314162641311cb8d51adb3e60404',
+  modelId: '5b4a7fb61a96afd29330abc17db9b404',
   modelType: 'PSAPPDEVIEW',
   name: 'discuss_postRedirectView',
   id: 'plmweb.discuss_post_redirect_view',

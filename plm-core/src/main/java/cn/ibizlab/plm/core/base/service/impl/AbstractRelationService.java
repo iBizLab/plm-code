@@ -358,6 +358,17 @@ public abstract class AbstractRelationService extends ServiceImpl<RelationMapper
         return list;
    }
 	
+   public Page<Relation> fetchMyRelation(RelationSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Relation> pages=baseMapper.searchMyRelation(context.getPages(),context,context.getSelectCond());
+        List<Relation> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<Relation> listMyRelation(RelationSearchContext context) {
+        List<Relation> list = baseMapper.listMyRelation(context,context.getSelectCond());
+        return list;
+   }
+	
    public Page<Relation> fetchProductPlanIdea(RelationSearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<Relation> pages=baseMapper.searchProductPlanIdea(context.getPages(),context,context.getSelectCond());
         List<Relation> list = pages.getRecords();

@@ -3,7 +3,7 @@ export default {
   expandSearchForm: true,
   loadDefault: true,
   deviewCodeName: 'scrum_defect_total_trend_report_view',
-  deviewId: '67036ab670d5e65620b79e57d830fa7b',
+  deviewId: 'af0a685298bbea35a08299c9af7f561e',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.WORK_ITEM',
@@ -761,7 +761,7 @@ export default {
   viewType: 'DECHARTVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '44de444dd349ad57059a38fd000b1e3d',
+  modelId: '0163af63f2c976ea8eda58c4e304c592',
   modelType: 'PSAPPDEVIEW',
   name: 'work_itemscrum_defect_total_trend_report_view',
   id: 'plmweb.work_item_scrum_defect_total_trend_report_view',

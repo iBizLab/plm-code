@@ -2,7 +2,7 @@ export default {
   enableSearch: true,
   loadDefault: true,
   deviewCodeName: 'members_distribution_report_view',
-  deviewId: 'c49564117d861124b31f1a9d389c13a9',
+  deviewId: '70449a9368c2316f8ed1d6e8d8853fcf',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.RUN',
@@ -767,7 +767,7 @@ export default {
   viewType: 'DECHARTVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: 'b40d085d4e746e5704e69f5c6c33e2ab',
+  modelId: '1fd01406b15ad6364947c62080c54a07',
   modelType: 'PSAPPDEVIEW',
   name: 'runmembers_distribution_report_view',
   id: 'plmweb.run_members_distribution_report_view',

@@ -214,6 +214,7 @@ public abstract class AbstractDiscussTopicResource {
     * @return Mono<ResponseEntity<DiscussTopicDTO>>
     */
     @ApiOperation(value = "change_admin_role", tags = {"话题" },  notes = "DiscussTopic-change_admin_role ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-DiscussTopic-change_admin_role-all') or hasPermission(this.discussTopicDtoMapping.toDomain(#dto),'ibizplm-DiscussTopic-change_admin_role')")
     @PostMapping("discuss_topics/{id}/change_admin_role")
     public Mono<ResponseEntity<ResponseWrapper<DiscussTopicDTO>>>changeAdminRoleById
             (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<DiscussTopicDTO> dto) {
@@ -330,6 +331,7 @@ public abstract class AbstractDiscussTopicResource {
     * @return Mono<ResponseEntity<DiscussTopicDTO>>
     */
     @ApiOperation(value = "mob_change_admin_role", tags = {"话题" },  notes = "DiscussTopic-mob_change_admin_role ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-DiscussTopic-mob_change_admin_role-all') or hasPermission(this.discussTopicDtoMapping.toDomain(#dto),'ibizplm-DiscussTopic-mob_change_admin_role')")
     @PostMapping("discuss_topics/{id}/mob_change_admin_role")
     public Mono<ResponseEntity<ResponseWrapper<DiscussTopicDTO>>>mobChangeAdminRoleById
             (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<DiscussTopicDTO> dto) {
@@ -766,6 +768,28 @@ public abstract class AbstractDiscussTopicResource {
             (@Validated @RequestBody DiscussTopicFilterDTO dto) {
         DiscussTopicSearchContext context = discussTopicFilterDtoMapping.toDomain(dto);
         Page<DiscussTopic> domains = discussTopicService.fetchNormal(context) ;
+        List<DiscussTopicDTO> list = discussTopicDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
+    * 查询fetch_oss_main 话题
+    * 
+    *
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<DiscussTopicDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_oss_main", tags = {"话题" },  notes = "DiscussTopic-fetch_oss_main ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-DiscussTopic-fetch_oss_main-all') or hasPermission(#dto,'ibizplm-DiscussTopic-fetch_oss_main')")
+    @PostMapping("discuss_topics/fetch_oss_main")
+    public Mono<ResponseEntity<List<DiscussTopicDTO>>> fetchOssMain
+            (@Validated @RequestBody DiscussTopicFilterDTO dto) {
+        DiscussTopicSearchContext context = discussTopicFilterDtoMapping.toDomain(dto);
+        Page<DiscussTopic> domains = discussTopicService.fetchOssMain(context) ;
         List<DiscussTopicDTO> list = discussTopicDtoMapping.toDto(domains.getContent());
             return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))

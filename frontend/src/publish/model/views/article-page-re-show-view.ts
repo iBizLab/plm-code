@@ -106,7 +106,6 @@ export default {
                       },
                     ],
                     logicType: 'GROUP',
-                    id: '面板成员[static_image][面板显示]逻辑',
                   },
                 ],
                 sysImage: {
@@ -453,7 +452,6 @@ export default {
                                               },
                                             ],
                                             logicType: 'GROUP',
-                                            id: '面板成员[comment_cancel][面板显示]逻辑',
                                           },
                                         ],
                                         showCaption: true,
@@ -490,7 +488,6 @@ export default {
                                               },
                                             ],
                                             logicType: 'GROUP',
-                                            id: '面板成员[comment_send][面板显示]逻辑',
                                           },
                                         ],
                                         showCaption: true,
@@ -773,9 +770,9 @@ export default {
           name: '页面评论计数器',
           id: 'plmweb.comment_counter',
         },
-        tag: 'ce58d4a404e3975df7dc9c9e1ea433c3',
+        tag: '3430515908d2f53ec704f29d1c37c465',
         uniqueTag: 'comment_counter',
-        id: 'ce58d4a404e3975df7dc9c9e1ea433c3',
+        id: '3430515908d2f53ec704f29d1c37c465',
       },
     ],
     appViewEngines: [
@@ -2051,7 +2048,6 @@ export default {
                             },
                           ],
                           logicType: 'GROUP',
-                          id: '面板成员[container2][面板显示]逻辑',
                         },
                       ],
                       id: 'container2',
@@ -2213,7 +2209,6 @@ export default {
                             },
                           ],
                           logicType: 'GROUP',
-                          id: '面板成员[container3][面板显示]逻辑',
                         },
                       ],
                       sysCss: {
@@ -2269,17 +2264,6 @@ export default {
             id: 'content',
           },
           {
-            appDEFieldId: 'pcontent',
-            dataType: 21,
-            id: 'pcontent',
-          },
-          {
-            appDEFieldId: 'create_time',
-            dataType: 5,
-            format: 'YYYY-MM-DD HH:mm:ss',
-            id: 'create_time',
-          },
-          {
             appDEFieldId: 'pid',
             dataType: 25,
             id: 'pid',
@@ -2291,15 +2275,26 @@ export default {
             id: 'create_man',
           },
           {
-            appDEFieldId: 'id',
-            dataType: 25,
-            id: 'id',
-          },
-          {
             appDEFieldId: 'pcreate_man',
             frontCodeListId: 'plmweb.sysoperator',
             dataType: 25,
             id: 'pcreate_man',
+          },
+          {
+            appDEFieldId: 'pcontent',
+            dataType: 21,
+            id: 'pcontent',
+          },
+          {
+            appDEFieldId: 'create_time',
+            dataType: 5,
+            format: 'YYYY-MM-DD HH:mm:ss',
+            id: 'create_time',
+          },
+          {
+            appDEFieldId: 'id',
+            dataType: 25,
+            id: 'id',
           },
           {
             appDEFieldId: 'id',

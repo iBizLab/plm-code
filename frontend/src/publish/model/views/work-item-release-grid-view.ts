@@ -3,7 +3,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'release_grid_view',
-  deviewId: 'a3d3c52f288f319d856d2e095ba22301',
+  deviewId: '1d13299f3163fa03ccf93bb28cef25e4',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.WORK_ITEM',
@@ -133,6 +133,15 @@ export default {
   ],
   appViewRefs: [
     {
+      realTitle: '工作项编辑视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.WORK_ITEM.EDITVIEW',
+      },
+      refAppViewId: 'plmweb.work_item_edit_view',
+      name: 'NEWDATA',
+      id: 'newdata',
+    },
+    {
       openMode: 'INDEXVIEWTAB_POPUPMODAL',
       navigateContexts: [
         {
@@ -160,15 +169,6 @@ export default {
       refAppViewId: 'plmweb.work_item_dyna_main_view',
       name: 'EDITDATA',
       id: 'editdata',
-    },
-    {
-      realTitle: '工作项编辑视图',
-      realTitleLanguageRes: {
-        lanResTag: 'PAGE.TITLE.WORK_ITEM.EDITVIEW',
-      },
-      refAppViewId: 'plmweb.work_item_edit_view',
-      name: 'NEWDATA',
-      id: 'newdata',
     },
   ],
   controls: [
@@ -217,7 +217,7 @@ export default {
                   cssClass: 'fa fa-mail-reply',
                   glyph: 'xf112@FontAwesome',
                 },
-                id: 'u7f7a6c8',
+                id: 'u2ab25a1',
               },
               {
                 actionLevel: 100,
@@ -232,7 +232,7 @@ export default {
                   cssClass: 'fa fa-copy',
                   glyph: 'xf0c5@FontAwesome',
                 },
-                id: 'u0636c2b',
+                id: 'u578ed85',
               },
               {
                 actionLevel: 100,
@@ -247,7 +247,7 @@ export default {
                   cssClass: 'fa fa-arrows',
                   glyph: 'xf047@FontAwesome',
                 },
-                id: 'u5000221',
+                id: 'u55f7735',
               },
               {
                 actionLevel: 100,
@@ -262,7 +262,7 @@ export default {
                   cssClass: 'fa fa-archive',
                   glyph: 'xf187@FontAwesome',
                 },
-                id: 'u61a79ff',
+                id: 'ue66c072',
               },
               {
                 actionLevel: 100,
@@ -277,7 +277,7 @@ export default {
                   cssClass: 'fa fa-trash-o',
                   glyph: 'xf014@FontAwesome',
                 },
-                id: 'uf0451e2',
+                id: 'u7a298e4',
               },
               {
                 actionLevel: 100,
@@ -291,7 +291,7 @@ export default {
                 sysImage: {
                   cssClass: 'key',
                 },
-                id: 'ua43ae3e',
+                id: 'u4b4723e',
               },
               {
                 actionLevel: 100,
@@ -305,7 +305,7 @@ export default {
                 sysImage: {
                   cssClass: 'git-branch',
                 },
-                id: 'u69fb918',
+                id: 'u71eae0d',
               },
               {
                 actionLevel: 100,
@@ -320,7 +320,7 @@ export default {
                   cssClass: 'fa fa-link',
                   glyph: 'xf0c1@FontAwesome',
                 },
-                id: 'u7fdf8bb',
+                id: 'u729f254',
               },
             ],
             appDataEntityId: 'plmweb.work_item',
@@ -1307,7 +1307,7 @@ export default {
         },
         id: 'tabsearchbar',
       },
-      modelId: 'A504090D-D400-43C0-BA86-6167FF81C68A',
+      modelId: '940c8571b7a827b15b0afce7ab79af74',
       modelType: 'PSSYSSEARCHBAR',
       name: 'tabsearchbar',
       id: 'plmweb.work_item.query_searchbar',
@@ -1350,7 +1350,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: false,
-  modelId: 'b935aabc70b126c03f4fdf064d0bd712',
+  modelId: '7adc58d6c8c66e45fb9f5414648c2231',
   modelType: 'PSAPPDEVIEW',
   name: 'work_itemrelease_grid_view',
   id: 'plmweb.work_item_release_grid_view',

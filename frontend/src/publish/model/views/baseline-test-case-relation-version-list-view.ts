@@ -2,7 +2,7 @@ export default {
   xdataControlName: 'list',
   loadDefault: true,
   deviewCodeName: 'relation_version_list_view',
-  deviewId: '8BA4789A-62A0-4621-9699-957DF7AD74BC',
+  deviewId: 'e6a2d4c0266f73c5d401e18e3f5764f2',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.BASELINE_TEST_CASE',
@@ -123,7 +123,7 @@ export default {
       controlParam: {
         id: 'searchform',
       },
-      modelId: 'd06d72eac7d7733e90735156b5910fb4',
+      modelId: '3eb862eda7fe4a0c7644748d8fa2a680',
       modelType: 'PSDEFORM_SEARCHFORM',
       name: 'searchform',
       id: 'plmweb.baseline_test_case.default',
@@ -348,7 +348,7 @@ export default {
         logicName: 'baseline_relation_version_列表项面板',
         appDataEntityId: 'plmweb.baseline_test_case',
         controlParam: {},
-        modelId: '91449A25-CAA2-4F29-A035-B45CBC53A9C0',
+        modelId: 'e8c32d09e94203b1970737b6fbd1c227',
         modelType: 'PSSYSVIEWPANEL',
         name: 'list_itempanel',
         id: 'plmweb.baseline_test_case.usr0507607843',
@@ -402,7 +402,7 @@ export default {
       controlParam: {
         id: 'list',
       },
-      modelId: '00EDAF6B-CE4B-4CFE-B496-A71FE972CA99',
+      modelId: 'e6d017f08bdc8a10442ca960b2f24873',
       modelType: 'PSDELIST',
       name: 'list',
       id: 'plmweb.baseline_test_case.baseline_relation_version',
@@ -431,7 +431,7 @@ export default {
       controlParam: {
         id: 'toolbar',
       },
-      modelId: '5EF86D7B-64BF-4F79-A124-52AA262CF693',
+      modelId: 'f660bbea33fa20bc965e23ee12104dc7',
       modelType: 'PSDETOOLBAR',
       name: 'toolbar',
       id: 'relation_version_list_view_toolbar',
@@ -474,7 +474,7 @@ export default {
   viewType: 'DELISTVIEW',
   enableDP: true,
   showCaptionBar: false,
-  modelId: '0633644fbc83dcbd2ea01c47657a9f84',
+  modelId: '83ce330544c6d30868c698a7cb0f53c3',
   modelType: 'PSAPPDEVIEW',
   name: 'baseline_test_caserelation_version_list_view',
   id: 'plmweb.baseline_test_case_relation_version_list_view',

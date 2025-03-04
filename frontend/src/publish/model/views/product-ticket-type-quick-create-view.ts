@@ -5,7 +5,7 @@ export default {
   loadDefault: true,
   openMode: 'POPUPMODAL',
   deviewCodeName: 'quick_create_view',
-  deviewId: 'B3E522F6-A3A8-48DB-9E0E-15FA08AA083E',
+  deviewId: '2711f71873a2685fb88828ab841a10a9',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.PRODUCT_TICKET_TYPE',
@@ -322,7 +322,7 @@ export default {
   width: 660,
   enableDP: true,
   showCaptionBar: true,
-  modelId: '2d6f6b2be0aa27da3abe57c247217e4d',
+  modelId: '37230d30274fb2932b5c62c1800fc5dd',
   modelType: 'PSAPPDEVIEW',
   name: 'product_ticket_typequick_create_view',
   id: 'plmweb.product_ticket_type_quick_create_view',

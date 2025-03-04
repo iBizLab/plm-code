@@ -3,7 +3,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'test_plan_bug_grid_view',
-  deviewId: '6bb7d30a420481a95ccee4bdcf8ce344',
+  deviewId: '2977e0214c37a44c3aa7365b587dd41e',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.WORK_ITEM',
@@ -219,7 +219,7 @@ export default {
       controlParam: {
         id: 'toolbar',
       },
-      modelId: '57493061-DE36-4BD9-AB4F-19A758EE3598',
+      modelId: 'df51987301c7d2a011a272595a2012f2',
       modelType: 'PSDETOOLBAR',
       name: 'toolbar',
       id: 'test_plan_bug_grid_view_toolbar',
@@ -387,7 +387,7 @@ export default {
                   cssClass: 'fa fa-send-o',
                   glyph: 'xf1d9@FontAwesome',
                 },
-                id: 'u0f2b72c',
+                id: 'ud7b3a0b',
               },
               {
                 actionLevel: 100,
@@ -1367,7 +1367,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: 'b724823d78ebac2cc61dc47da6d6d1fb',
+  modelId: '3d6ab15598857aa59615e03e65c96ec2',
   modelType: 'PSAPPDEVIEW',
   name: 'work_itemtest_plan_bug_grid_view',
   id: 'plmweb.work_item_test_plan_bug_grid_view',

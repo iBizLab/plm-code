@@ -333,22 +333,6 @@ export default {
     ],
     appViewRefs: [
       {
-        realTitle: '工作项编辑视图',
-        realTitleLanguageRes: {
-          lanResTag: 'PAGE.TITLE.WORK_ITEM.EDITVIEW',
-        },
-        refAppViewId: 'plmweb.work_item_edit_view',
-        name: 'NEWDATA',
-        id: 'newdata',
-      },
-      {
-        realOpenMode: 'POPUPMODAL',
-        realTitle: '测试关注编辑视图',
-        refAppViewId: 'plmweb.work_item_test_follow_edit_view',
-        name: 'OPENDATA',
-        id: 'opendata',
-      },
-      {
         openMode: 'INDEXVIEWTAB_POPUPMODAL',
         navigateContexts: [
           {
@@ -376,6 +360,22 @@ export default {
         refAppViewId: 'plmweb.work_item_dyna_main_view',
         name: 'EDITDATA',
         id: 'editdata',
+      },
+      {
+        realOpenMode: 'POPUPMODAL',
+        realTitle: '测试关注编辑视图',
+        refAppViewId: 'plmweb.work_item_test_follow_edit_view',
+        name: 'OPENDATA',
+        id: 'opendata',
+      },
+      {
+        realTitle: '工作项编辑视图',
+        realTitleLanguageRes: {
+          lanResTag: 'PAGE.TITLE.WORK_ITEM.EDITVIEW',
+        },
+        refAppViewId: 'plmweb.work_item_edit_view',
+        name: 'NEWDATA',
+        id: 'newdata',
       },
     ],
     controls: [
@@ -632,7 +632,7 @@ export default {
                     cssClass: 'fa fa-plus-square-o',
                     glyph: 'xf196@FontAwesome',
                   },
-                  id: 'ub0c62d2',
+                  id: 'u3c9dda0',
                 },
                 {
                   actionLevel: 100,
@@ -647,7 +647,7 @@ export default {
                     rawContent:
                       '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18" class="design-iconfont" width="16" height="16" fill="currentColor">\n  <g  fill-rule="nonzero">\n    <path d="M13.6455424,2.16588314 L12.8264426,2.16588314 C12.8264426,1.5157824 12.2975172,1 11.6308507,1 L6.50872206,1 C5.84205562,1 5.31313018,1.5157824 5.31313018,2.16588314 L4.35628937,2.16588314 C3.72451732,2.16588314 3.12763965,2.39870159 2.68319536,2.83210208 C2.25711653,3.26550257 2,3.84754869 2,4.46362212 L2,14.702261 C2,15.3183345 2.25527999,15.9003806 2.69972428,16.3337811 C3.14416857,16.7671816 3.74104624,17 4.35628937,17 L13.6602348,17 C14.9403078,16.9838818 16,15.9505261 16,14.6861428 L16,4.46362212 C16.0018318,3.19744795 14.9439809,2.16588314 13.6455424,2.16588314 Z M6.33792322,2.16588314 C6.33792322,2.06559212 6.40587545,1.99932841 6.50872206,1.99932841 L11.6308507,1.99932841 C11.7336973,1.99932841 11.8016496,2.06559212 11.8016496,2.16588314 L11.8016496,3.83143049 C11.8016496,3.93172151 11.7336973,3.99798522 11.6308507,3.99798522 L6.50872206,3.99798522 C6.40587545,3.99798522 6.33792322,3.93172151 6.33792322,3.83143049 L6.33792322,2.16588314 Z M14.9770387,14.6861428 C14.9770387,15.4025073 14.3801611,15.9845534 13.6455424,15.9845534 L4.35812592,15.9845534 C3.62350725,15.9845534 3.02662959,15.4025073 3.02662959,14.6861428 L3.02662959,4.46362212 C3.02662959,3.74725767 3.62350725,3.16521155 4.35812592,3.16521155 L5.31496673,3.16521155 L5.31496673,3.83143049 C5.31496673,4.48153123 5.84389217,4.99731363 6.51055861,4.99731363 L11.6326873,4.99731363 C12.2993537,4.99731363 12.8282791,4.48153123 12.8282791,3.83143049 L12.8282791,3.16521155 L13.63085,3.16521155 C14.3819976,3.16521155 14.9623464,3.74725767 14.9623464,4.46362212 L14.9623464,14.6861428 L14.9770387,14.6861428 L14.9770387,14.6861428 Z"></path>\n    <path d="M11.6308507,0.85 C12.2914473,0.85 12.8338913,1.30317897 12.952382,1.91389537 L12.967,2.015 L13.6455424,2.01588314 C14.9710976,2.01588314 16.0614943,3.02802349 16.1448778,4.30294277 L16.15,4.46362212 L16.15,14.6861428 C16.15,16.02856 15.0285422,17.1327827 13.6602348,17.15 L4.35628937,17.15 C3.69561853,17.15 3.06311541,16.8976555 2.59500092,16.441173 C2.11832551,15.9763422 1.85,15.3544013 1.85,14.702261 L1.85,4.46362212 C1.85,3.81908501 2.11436864,3.19674101 2.578472,2.72471019 C3.04820718,2.26664726 3.68135931,2.01588314 4.35628937,2.01588314 L5.172,2.015 L5.18719075,1.91389537 C5.29778205,1.34389339 5.77768381,0.911124029 6.37826871,0.855954789 L6.50872206,0.85 L11.6308507,0.85 Z M5.31496673,3.01521155 L4.35812592,3.01521155 C3.54149752,3.01521155 2.87662959,3.66355847 2.87662959,4.46362212 L2.87662959,14.6861428 C2.87662959,15.4862065 3.54149752,16.1345534 4.35812592,16.1345534 L13.6455424,16.1345534 L13.7879735,16.1279242 C14.53809,16.0577523 15.1270387,15.4391439 15.1270387,14.6861428 L15.112,14.671 L15.1123464,4.46362212 C15.1123464,3.65824133 14.4585832,3.01521155 13.63085,3.01521155 L12.8282791,3.01521155 L12.6782791,3.16521155 L12.6782791,3.83143049 C12.6782791,4.39783203 12.217344,4.84731363 11.6326873,4.84731363 L6.51055861,4.84731363 C5.92590191,4.84731363 5.46496673,4.39783203 5.46496673,3.83143049 L5.46496673,3.16521155 L5.31496673,3.01521155 Z M11.6308507,1.84932841 L6.50872206,1.84932841 C6.32386571,1.84932841 6.18792322,1.98189292 6.18792322,2.16588314 L6.18792322,3.83143049 C6.18792322,4.01542071 6.32386571,4.14798522 6.50872206,4.14798522 L11.6308507,4.14798522 C11.8157071,4.14798522 11.9516496,4.01542071 11.9516496,3.83143049 L11.9516496,2.16588314 C11.9516496,1.98189292 11.8157071,1.84932841 11.6308507,1.84932841 Z"></path>\n    <path d="M11.9559195,7.17728901 C12.1213765,7.17728901 12.2927003,7.24560624 12.4136502,7.36377844 C12.6856847,7.605368 12.6856847,8.02149904 12.4187694,8.28178186 L8.56018489,12.0444861 L8.53270947,12.0702847 C8.39895028,12.1774281 8.2465248,12.2357399 8.08080601,12.2357399 C7.89526419,12.2357399 7.74404657,12.1835617 7.61795605,12.0606043 L5.69010692,10.180657 C5.43661702,9.93586586 5.44334698,9.52314322 5.71705747,9.25722822 C5.85081666,9.15008481 6.00324214,9.091773 6.16896093,9.091773 C6.35450275,9.091773 6.50572037,9.14395118 6.63181089,9.26690853 L8.08043341,10.679289 L11.4930695,7.37033365 C11.5974206,7.26857558 11.7186136,7.20608185 11.852853,7.18515468 L11.9559195,7.17728901 Z"></path>\n  </g>\n</svg>',
                   },
-                  id: 'uf261ab8',
+                  id: 'u2c46790',
                 },
                 {
                   actionLevel: 100,
@@ -662,7 +662,7 @@ export default {
                     cssClass: 'fa fa-copy',
                     glyph: 'xf0c5@FontAwesome',
                   },
-                  id: 'ube6b778',
+                  id: 'ue1f03d7',
                 },
                 {
                   actionLevel: 100,
@@ -677,7 +677,7 @@ export default {
                     cssClass: 'fa fa-arrows',
                     glyph: 'xf047@FontAwesome',
                   },
-                  id: 'u5fd8511',
+                  id: 'u42bcaff',
                 },
                 {
                   actionLevel: 100,
@@ -692,7 +692,7 @@ export default {
                     cssClass: 'fa fa-archive',
                     glyph: 'xf187@FontAwesome',
                   },
-                  id: 'ua9a5e80',
+                  id: 'udce863d',
                 },
                 {
                   actionLevel: 100,
@@ -707,7 +707,7 @@ export default {
                     cssClass: 'fa fa-trash-o',
                     glyph: 'xf014@FontAwesome',
                   },
-                  id: 'u5e6edb2',
+                  id: 'u647d149',
                 },
                 {
                   actionLevel: 100,
@@ -721,7 +721,7 @@ export default {
                   sysImage: {
                     cssClass: 'key',
                   },
-                  id: 'u9ecea9d',
+                  id: 'u937f312',
                 },
                 {
                   actionLevel: 100,
@@ -735,7 +735,7 @@ export default {
                   sysImage: {
                     cssClass: 'git-branch',
                   },
-                  id: 'u6cda0ac',
+                  id: 'u3ba3ce6',
                 },
                 {
                   actionLevel: 100,
@@ -750,7 +750,7 @@ export default {
                     cssClass: 'fa fa-link',
                     glyph: 'xf0c1@FontAwesome',
                   },
-                  id: 'ue3078fa',
+                  id: 'ub99ec38',
                 },
                 {
                   actionLevel: 100,
@@ -765,7 +765,7 @@ export default {
                     cssClass: 'fa fa-send-o',
                     glyph: 'xf1d9@FontAwesome',
                   },
-                  id: 'ubb2cdca',
+                  id: 'u7b98993',
                 },
                 {
                   actionLevel: 100,
@@ -776,7 +776,7 @@ export default {
                   uiactionId: 'get_editor_column',
                   showCaption: true,
                   showIcon: true,
-                  id: 'u92d27a8',
+                  id: 'u3feec83',
                 },
               ],
               appDataEntityId: 'plmweb.work_item',
@@ -2710,6 +2710,64 @@ export default {
             itemType: 'FILTER',
             appDEFieldId: 'end_at',
             id: 'end_at_lt',
+          },
+          {
+            dataType: 21,
+            labelPos: 'NONE',
+            defsearchMode: {
+              codeName: 'N_EXECUTORS_EXISTS__N_USER_ID_EQ',
+              stdDataType: 25,
+              valueOP: 'EXISTS',
+              name: 'N_EXECUTORS_EXISTS__N_USER_ID_EQ',
+              id: 'n_executors_exists__n_user_id_eq',
+            },
+            editor: {
+              singleSelect: true,
+              enableAC: true,
+              forceSelection: true,
+              showTrigger: true,
+              valueItemName: 'user_id',
+              editorParams: {
+                'SRFNAVPARAM.n_department_id_eq': '%srforgsectorid%',
+                AC: 'TRUE',
+                'SRFNAVPARAM.n_status_eq': '1',
+                TRIGGER: 'TRUE',
+                URL: 'projects/${context.project}/project_members/fetch_default',
+                PICKUPVIEW: 'FALSE',
+                USERMETHOD: 'post',
+                USERMAP: '{"id":"user_id","name":"name"}',
+                DEPTMAP: '{"id":"id","name":"display_name"}',
+                DEPTMETHOD: 'get',
+                DEPTURL: '/users/fetch_default',
+              },
+              editorStyle: 'PERSONEL_SELECT_PROJECT',
+              editorType: 'PICKEREX_TRIGGER',
+              sysPFPluginId: 'person_select',
+              valueType: 'SIMPLE',
+              editable: true,
+              navigateParams: [
+                {
+                  key: 'n_department_id_eq',
+                  value: 'srforgsectorid',
+                  id: 'n_department_id_eq',
+                },
+                {
+                  key: 'n_status_eq',
+                  value: '1',
+                  rawValue: true,
+                  id: 'n_status_eq',
+                },
+              ],
+              id: 'executors_user_id',
+            },
+            allowEmpty: true,
+            caption: '执行人',
+            itemType: 'FILTER',
+            appDEFieldId: 'executors',
+            userParam: {
+              ITEMTYPE: 'SIMPLE',
+            },
+            id: 'executors_user_id',
           },
         ],
         searchBarGroups: [

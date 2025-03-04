@@ -5,7 +5,7 @@ export default {
   xdataControlName: 'tree',
   loadDefault: true,
   deviewCodeName: 'catrgories_pick_up_tree_view',
-  deviewId: 'D56965BE-C6D3-4B6B-B1E4-A2CD8A628C32',
+  deviewId: '7ae9477d03e3adaa029acea5a044bad6',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.SPRINT',
@@ -184,7 +184,7 @@ export default {
       controlParam: {
         id: 'tree',
       },
-      modelId: '42A9A4B9-62F4-4B5E-B3F7-1FB8B2695A7A',
+      modelId: '6f92b6226c4f056837b36fcf96436ea7',
       modelType: 'PSDETREEVIEW',
       name: 'tree',
       id: 'plmweb.sprint.catrgories_pick_up_tree_view_tree_view',
@@ -227,7 +227,7 @@ export default {
   viewType: 'DEPICKUPTREEVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: 'b866b2cb8ca9192092c3b0eb900533a5',
+  modelId: '40e5a93b546087a5b38bea9b62c3cdc1',
   modelType: 'PSAPPDEVIEW',
   name: 'sprintcatrgories_pick_up_tree_view',
   id: 'plmweb.sprint_catrgories_pick_up_tree_view',

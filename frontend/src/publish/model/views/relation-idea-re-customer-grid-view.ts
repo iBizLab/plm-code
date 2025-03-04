@@ -3,7 +3,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'idea_re_customer_grid_view',
-  deviewId: '88AD7B05-BD84-41B8-A827-A19A4E579D6B',
+  deviewId: 'c699d581ee2c285e339646831478a334',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.RELATION',
@@ -188,7 +188,6 @@ export default {
                               },
                             ],
                             logicType: 'GROUP',
-                            id: '面板成员[score_precent][表单项启用]逻辑',
                           },
                         ],
                         width: 150,
@@ -568,6 +567,15 @@ export default {
     ],
     appViewRefs: [
       {
+        realTitle: '工作项关联编辑视图',
+        realTitleLanguageRes: {
+          lanResTag: 'PAGE.TITLE.RELATION.EDITVIEW',
+        },
+        refAppViewId: 'plmweb.relation_edit_view',
+        name: 'NEWDATA',
+        id: 'newdata',
+      },
+      {
         openMode: 'POPUPMODAL',
         navigateContexts: [
           {
@@ -588,15 +596,6 @@ export default {
         refAppViewId: 'plmweb.customer_main_view',
         name: 'EDITDATA',
         id: 'editdata',
-      },
-      {
-        realTitle: '工作项关联编辑视图',
-        realTitleLanguageRes: {
-          lanResTag: 'PAGE.TITLE.RELATION.EDITVIEW',
-        },
-        refAppViewId: 'plmweb.relation_edit_view',
-        name: 'NEWDATA',
-        id: 'newdata',
       },
     ],
     controls: [
@@ -639,7 +638,7 @@ export default {
         controlParam: {
           id: 'toolbar',
         },
-        modelId: '38AD6739-099C-4743-B71C-547DE35E09CE',
+        modelId: '0b1fec27a17297a9931a521000dead61',
         modelType: 'PSDETOOLBAR',
         name: 'toolbar',
         id: 'idea_re_customer_grid_view_toolbar',
@@ -730,7 +729,7 @@ export default {
                     cssClass: 'fa fa-unlink',
                     glyph: 'xf127@FontAwesome',
                   },
-                  id: 'ue009d6d',
+                  id: 'ua71fcf1',
                 },
               ],
               appDataEntityId: 'plmweb.relation',
@@ -906,7 +905,7 @@ export default {
           },
           id: 'grid',
         },
-        modelId: '05BEDC84-10A6-4961-89F6-00105BE42389',
+        modelId: '35d0fba32a534838497e2d9c613176e9',
         modelType: 'PSDEGRID',
         name: 'grid',
         id: 'plmweb.relation.relation_customer_grid',
@@ -1007,7 +1006,7 @@ export default {
       },
     ],
     controlParam: {},
-    modelId: '61f0163bec69b4d50cdd4bf6c73fb7db',
+    modelId: '8313f02a19c7f7bfa8de0c33d37eca7f',
     modelType: 'PSSYSVIEWLAYOUTPANEL',
     name: 'layoutpanel',
     id: 'idea_re_customer_grid_view',
@@ -1017,7 +1016,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: false,
-  modelId: '1cd5a1de43abd2dfd8e88c525fc58814',
+  modelId: '0fd1241d187c88ac6ef2391885318d9b',
   modelType: 'PSAPPDEVIEW',
   name: 'relationidea_re_customer_grid_view',
   id: 'plmweb.relation_idea_re_customer_grid_view',

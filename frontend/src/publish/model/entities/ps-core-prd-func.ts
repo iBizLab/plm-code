@@ -1073,7 +1073,7 @@ export default {
     {
       actionLevel: 100,
       actionTarget: 'NONE',
-      caption: 'Gitlab',
+      caption: 'Git',
       codeName: 'skip_gitlab',
       frontProcessType: 'OTHER',
       fullCodeName: 'PSCorePrdFunc_skip_gitlab',
@@ -1185,13 +1185,6 @@ export default {
       ],
       deuilogicParams: [
         {
-          codeName: 'Default',
-          default: true,
-          entityParam: true,
-          name: '传入变量',
-          id: 'default',
-        },
-        {
           codeName: 'form',
           ctrlParam: true,
           id: 'form',
@@ -1200,6 +1193,13 @@ export default {
           codeName: 'view',
           activeViewParam: true,
           id: 'view',
+        },
+        {
+          codeName: 'Default',
+          default: true,
+          entityParam: true,
+          name: '传入变量',
+          id: 'default',
         },
       ],
       startDEUILogicNodeId: 'begin',
@@ -1226,6 +1226,14 @@ export default {
           parallelOutput: true,
           name: '开始',
           id: 'begin',
+        },
+        {
+          codeName: 'END1',
+          leftPos: 1308,
+          logicNodeType: 'END',
+          topPos: 200,
+          name: '结束',
+          id: 'end1',
         },
         {
           dstAppDEUIActionId: 'open_info_view@pscoreprdfunc',
@@ -1261,28 +1269,20 @@ export default {
           name: '刷新导航占位',
           id: 'rawjscode1',
         },
-        {
-          codeName: 'END1',
-          leftPos: 1308,
-          logicNodeType: 'END',
-          topPos: 200,
-          name: '结束',
-          id: 'end1',
-        },
       ],
       deuilogicParams: [
+        {
+          codeName: 'cvt',
+          activeCtrlParam: true,
+          ctrlParam: true,
+          id: 'cvt',
+        },
         {
           codeName: 'Default',
           default: true,
           entityParam: true,
           name: '传入变量',
           id: 'default',
-        },
-        {
-          codeName: 'cvt',
-          activeCtrlParam: true,
-          ctrlParam: true,
-          id: 'cvt',
         },
       ],
       startDEUILogicNodeId: 'begin',
@@ -1410,16 +1410,16 @@ export default {
       ],
       deuilogicParams: [
         {
-          codeName: 'form',
-          ctrlParam: true,
-          id: 'form',
-        },
-        {
           codeName: 'Default',
           default: true,
           entityParam: true,
           name: '传入变量',
           id: 'default',
+        },
+        {
+          codeName: 'form',
+          ctrlParam: true,
+          id: 'form',
         },
       ],
       startDEUILogicNodeId: 'begin',

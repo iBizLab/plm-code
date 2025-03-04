@@ -178,21 +178,19 @@ public abstract class AbstractProductPlanResource {
     * 
     *
     * @param productId productId
-    * @param id id
     * @param dto dto
     * @return Mono<ResponseEntity<ProductPlanDTO>>
     */
     @ApiOperation(value = "delete_categories", tags = {"排期" },  notes = "ProductPlan-delete_categories ")
-    @PostMapping("products/{productId}/product_plans/{id}/delete_categories")
-    public Mono<ResponseEntity<ResponseWrapper<ProductPlanDTO>>>deleteCategoriesByProductIdAndId
-            (@PathVariable("productId") String productId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<ProductPlanDTO> dto) {
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-ProductPlan-delete_categories-all') or hasPermission('product',#productId,this.productPlanDtoMapping.toDomain(#dto),'ibizplm-ProductPlan-delete_categories')")
+    @PostMapping("products/{productId}/product_plans/delete_categories")
+    public Mono<ResponseEntity<ResponseWrapper<ProductPlanDTO>>>deleteCategoriesByProductId
+            (@PathVariable("productId") String productId, @Validated @RequestBody RequestWrapper<ProductPlanDTO> dto) {
         ResponseWrapper<ProductPlanDTO> rt = new ResponseWrapper<>();
-        if (dto.isArray()) {
-            String [] ids = id.split(";");
-            IntStream.range(0, ids.length).forEach(i -> rt.add(deleteCategoriesByProductIdAndId(productId, ids[i], dto.getList().get(i))));
-        }
+        if (dto.isArray())
+            dto.getList().forEach(item -> rt.add(deleteCategoriesByProductId(productId, item)));
         else
-            rt.set(deleteCategoriesByProductIdAndId(productId, id, dto.getDto()));
+            rt.set(deleteCategoriesByProductId(productId, dto.getDto()));
         return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
@@ -201,14 +199,13 @@ public abstract class AbstractProductPlanResource {
     * 
     *
     * @param productId productId
-    * @param id id
     * @param dto dto
     * @return ResponseEntity<ProductPlanDTO>
     */   
-    public ProductPlanDTO deleteCategoriesByProductIdAndId
-            (String productId, String id, ProductPlanDTO dto) {
+    public ProductPlanDTO deleteCategoriesByProductId
+            (String productId, ProductPlanDTO dto) {
         ProductPlan domain = productPlanDtoMapping.toDomain(dto);
-        domain.setId(id);
+        domain.setProductId(productId);
         ProductPlan rt = productPlanService.deleteCategories(domain);
         return productPlanDtoMapping.toDto(rt);
     }

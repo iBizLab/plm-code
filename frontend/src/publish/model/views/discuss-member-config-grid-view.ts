@@ -2,7 +2,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'config_grid_view',
-  deviewId: '31061614-B485-4D93-91C7-08ED37575ADF',
+  deviewId: '7a1f41f1ff8dec1b237fdd57edda3db7',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.DISCUSS_MEMBER',
@@ -140,7 +140,7 @@ export default {
       controlParam: {
         id: 'toolbar',
       },
-      modelId: 'FA031A65-BBB8-4A07-B32E-DAC7432AC029',
+      modelId: '66320dd4de4fd4071b52135ba6ba3080',
       modelType: 'PSDETOOLBAR',
       name: 'toolbar',
       id: 'config_grid_view_toolbar',
@@ -191,9 +191,10 @@ export default {
           id: 'role_id',
         },
         {
-          clconvertMode: 'NONE',
+          clconvertMode: 'FRONT',
           dataItemName: 'title',
           excelCaption: '职位',
+          appCodeListId: 'plmweb.base__position',
           appDEFieldId: 'title',
           valueType: 'SIMPLE',
           aggMode: 'NONE',
@@ -415,7 +416,7 @@ export default {
           controlParam: {
             id: 'grid_batchtoolbar',
           },
-          modelId: '80610DB2-95CE-465F-82F2-9757B6863EFB',
+          modelId: 'e40918527c816b879ef3309ffbd0cfdb',
           modelType: 'PSDETOOLBAR',
           name: 'grid_batchtoolbar',
           id: 'config_grid_view_grid_batchtoolbar',
@@ -428,7 +429,7 @@ export default {
       controlParam: {
         id: 'grid',
       },
-      modelId: 'A89FBAB8-3101-4F3C-B3F6-EC1C4E07F341',
+      modelId: '4ee06ba83b98d5baf0b133fed3f617cf',
       modelType: 'PSDEGRID',
       name: 'grid',
       id: 'plmweb.discuss_member.setting_table',
@@ -467,7 +468,7 @@ export default {
       controlParam: {
         id: 'searchform',
       },
-      modelId: '624a23395c3f0be60961c8dd482be3fb',
+      modelId: 'f5ce40fdf406a43264f0903fe4fe61d1',
       modelType: 'PSDEFORM_SEARCHFORM',
       name: 'searchform',
       id: 'plmweb.discuss_member.default',
@@ -512,7 +513,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '609259cc4538a57268f9d765c463f62e',
+  modelId: 'a3e1c8bc26519531a755f4a2b040e242',
   modelType: 'PSAPPDEVIEW',
   name: 'discuss_memberconfig_grid_view',
   id: 'plmweb.discuss_member_config_grid_view',

@@ -2,7 +2,7 @@ export default {
   enableSearch: true,
   loadDefault: true,
   deviewCodeName: 'scrum_bug_state_report_view',
-  deviewId: '8344cbc06096a2be69ca89b59259e631',
+  deviewId: '0587a6908b1b1089701535acebcc1eb1',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.WORK_ITEM',
@@ -742,7 +742,7 @@ export default {
         controlParam: {
           id: 'toolbar',
         },
-        modelId: '39CBDECE-BDDD-4C5C-A49A-51F8980ACC50',
+        modelId: '609bf7530ae5e2c44389d7d08e457f08',
         modelType: 'PSDETOOLBAR',
         name: 'toolbar',
         id: 'scrum_bug_state_report_view_toolbar',
@@ -784,7 +784,7 @@ export default {
   viewType: 'DECHARTVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '167501f4a314432f1858e6260e3fdca3',
+  modelId: '172404bdf3ef3c4a32f399020882ab5d',
   modelType: 'PSAPPDEVIEW',
   name: 'work_itemscrum_bug_state_report_view',
   id: 'plmweb.work_item_scrum_bug_state_report_view',

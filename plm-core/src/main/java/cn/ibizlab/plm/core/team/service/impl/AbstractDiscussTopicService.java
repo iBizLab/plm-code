@@ -264,6 +264,17 @@ public abstract class AbstractDiscussTopicService extends ServiceImpl<DiscussTop
         return list;
    }
 	
+   public Page<DiscussTopic> fetchOssMain(DiscussTopicSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<DiscussTopic> pages=baseMapper.searchOssMain(context.getPages(),context,context.getSelectCond());
+        List<DiscussTopic> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<DiscussTopic> listOssMain(DiscussTopicSearchContext context) {
+        List<DiscussTopic> list = baseMapper.listOssMain(context,context.getSelectCond());
+        return list;
+   }
+	
    public Page<DiscussTopic> fetchQuickUser(DiscussTopicSearchContext context) {
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<DiscussTopic> pages=baseMapper.searchQuickUser(context.getPages(),context,context.getSelectCond());
         List<DiscussTopic> list = pages.getRecords();

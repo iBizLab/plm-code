@@ -97,22 +97,6 @@ export default {
   ],
   appViewRefs: [
     {
-      navigateParams: [
-        {
-          key: 'library',
-          value: 'TEST_LIBRARY_ID',
-          id: 'library',
-        },
-      ],
-      realTitle: '用例编辑视图',
-      realTitleLanguageRes: {
-        lanResTag: 'PAGE.TITLE.TEST_CASE.EDITVIEW',
-      },
-      refAppViewId: 'plmweb.test_case_edit_view',
-      name: 'NEWDATA',
-      id: 'newdata',
-    },
-    {
       openMode: 'INDEXVIEWTAB_POPUPMODAL',
       navigateContexts: [
         {
@@ -127,6 +111,22 @@ export default {
       refAppViewId: 'plmweb.test_case_main_view',
       name: 'EDITDATA',
       id: 'editdata',
+    },
+    {
+      navigateParams: [
+        {
+          key: 'library',
+          value: 'TEST_LIBRARY_ID',
+          id: 'library',
+        },
+      ],
+      realTitle: '用例编辑视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.TEST_CASE.EDITVIEW',
+      },
+      refAppViewId: 'plmweb.test_case_edit_view',
+      name: 'NEWDATA',
+      id: 'newdata',
     },
   ],
   controls: [

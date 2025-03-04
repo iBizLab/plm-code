@@ -136,6 +136,7 @@ public abstract class AbstractBoardResource {
     * @return Mono<ResponseEntity<BoardDTO>>
     */
     @ApiOperation(value = "check_board_is_deleted", tags = {"看板" },  notes = "Board-check_board_is_deleted ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Board-check_board_is_deleted-all') or hasPermission(this.boardDtoMapping.toDomain(#dto),'ibizplm-Board-check_board_is_deleted')")
     @PostMapping("boards/{id}/check_board_is_deleted")
     public Mono<ResponseEntity<ResponseWrapper<BoardDTO>>>checkBoardIsDeletedById
             (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<BoardDTO> dto) {
@@ -291,6 +292,7 @@ public abstract class AbstractBoardResource {
     * @return Mono<ResponseEntity<BoardDTO>>
     */
     @ApiOperation(value = "check_board_is_deleted", tags = {"看板" },  notes = "Board-check_board_is_deleted ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Board-check_board_is_deleted-all') or hasPermission('project',#projectId,this.boardDtoMapping.toDomain(#dto),'ibizplm-Board-check_board_is_deleted')")
     @PostMapping("projects/{projectId}/boards/{id}/check_board_is_deleted")
     public Mono<ResponseEntity<ResponseWrapper<BoardDTO>>>checkBoardIsDeletedByProjectIdAndId
             (@PathVariable("projectId") String projectId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<BoardDTO> dto) {

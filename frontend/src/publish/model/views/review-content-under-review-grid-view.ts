@@ -3,7 +3,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'under_review_grid_view',
-  deviewId: '19784D1C-0900-48D2-A886-71B63D4C4B85',
+  deviewId: '89abb3b56002d4ad7c565ae7c2fd679a',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.REVIEW_CONTENT',
@@ -89,15 +89,6 @@ export default {
   ],
   appViewRefs: [
     {
-      realTitle: '评审内容数据重定向视图',
-      realTitleLanguageRes: {
-        lanResTag: 'PAGE.TITLE.REVIEW_CONTENT.REDIRECTVIEW',
-      },
-      refAppViewId: 'plmweb.review_content_redirect_view',
-      name: 'EDITDATA',
-      id: 'editdata',
-    },
-    {
       openMode: 'POPUPMODAL',
       realOpenMode: 'POPUPMODAL',
       realTitle: '评审内容编辑视图',
@@ -107,6 +98,15 @@ export default {
       refAppViewId: 'plmweb.review_content_edit_view',
       name: 'NEWDATA',
       id: 'newdata',
+    },
+    {
+      realTitle: '评审内容数据重定向视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.REVIEW_CONTENT.REDIRECTVIEW',
+      },
+      refAppViewId: 'plmweb.review_content_redirect_view',
+      name: 'EDITDATA',
+      id: 'editdata',
     },
     {
       name: 'MPICKUPVIEW:REVIEW_WIZARD',
@@ -155,7 +155,7 @@ export default {
       controlParam: {
         id: 'toolbar',
       },
-      modelId: '37019F30-6359-4221-9BA6-11636D910A10',
+      modelId: '68d96d4c87c102957ef3e7dcaeda8a6b',
       modelType: 'PSDETOOLBAR',
       name: 'toolbar',
       id: 'under_review_grid_view_toolbar',
@@ -203,7 +203,7 @@ export default {
                   cssClass: 'fa fa-mail-reply',
                   glyph: 'xf112@FontAwesome',
                 },
-                id: 'u4a8deca',
+                id: 'u4fb0bbd',
               },
               {
                 actionLevel: 200,
@@ -217,7 +217,7 @@ export default {
                   cssClass: 'fa fa-exchange',
                   glyph: 'xf0ec@FontAwesome',
                 },
-                id: 'ub1f5df7',
+                id: 'u1a93324',
               },
             ],
             appDataEntityId: 'plmweb.review_content',
@@ -483,7 +483,7 @@ export default {
       controlParam: {
         id: 'grid',
       },
-      modelId: 'EDD62D8C-95CF-480C-BE37-9526541CFFFF',
+      modelId: '5e0397009813b0a2b6bc1aa0628f9ef8',
       modelType: 'PSDEGRID',
       name: 'grid',
       id: 'plmweb.review_content.under_review_grid_view_grid',
@@ -518,7 +518,7 @@ export default {
       controlParam: {
         id: 'searchform',
       },
-      modelId: 'CDA91C30-D0FB-4485-9986-B92768B5397D',
+      modelId: '3de845d7624e39999add4ab7aedcaf0c',
       modelType: 'PSDEFORM_SEARCHFORM',
       name: 'searchform',
       id: 'plmweb.review_content.usr04199724_search_form',
@@ -563,7 +563,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '00d5b392176a792730459bf681891b06',
+  modelId: '2d676aa1b73a63a10fd9f26e095d72f1',
   modelType: 'PSAPPDEVIEW',
   name: 'review_contentunder_review_grid_view',
   id: 'plmweb.review_content_under_review_grid_view',

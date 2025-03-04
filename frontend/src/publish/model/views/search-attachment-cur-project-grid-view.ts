@@ -2,7 +2,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'cur_project_grid_view',
-  deviewId: '4C7605F5-476D-41F3-9D05-7F04E36941C9',
+  deviewId: 'c9f1162c6c8232578c89c1799fcb131c',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.SEARCH_ATTACHMENT',
@@ -63,15 +63,6 @@ export default {
   ],
   appViewRefs: [
     {
-      realTitle: '附件搜索数据重定向视图',
-      realTitleLanguageRes: {
-        lanResTag: 'PAGE.TITLE.SEARCH_ATTACHMENT.REDIRECTVIEW',
-      },
-      refAppViewId: 'plmweb.search_attachment_redirect_view',
-      name: 'EDITDATA',
-      id: 'editdata',
-    },
-    {
       realTitle: '附件搜索编辑视图',
       realTitleLanguageRes: {
         lanResTag: 'PAGE.TITLE.SEARCH_ATTACHMENT.EDITVIEW',
@@ -79,6 +70,15 @@ export default {
       refAppViewId: 'plmweb.search_attachment_edit_view',
       name: 'NEWDATA',
       id: 'newdata',
+    },
+    {
+      realTitle: '附件搜索数据重定向视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.SEARCH_ATTACHMENT.REDIRECTVIEW',
+      },
+      refAppViewId: 'plmweb.search_attachment_redirect_view',
+      name: 'EDITDATA',
+      id: 'editdata',
     },
   ],
   controls: [
@@ -109,7 +109,7 @@ export default {
                   cssClass: 'fa fa-download',
                   glyph: 'xf019@FontAwesome',
                 },
-                id: 'ud599dea',
+                id: 'u1bd9b6a',
               },
             ],
             appDataEntityId: 'plmweb.search_attachment',
@@ -323,7 +323,7 @@ export default {
       controlParam: {
         id: 'grid',
       },
-      modelId: '00FDC5B0-9346-4AA9-BB06-9E489B610912',
+      modelId: '6b7cff1c1839ec631f7f44040d36684a',
       modelType: 'PSDEGRID',
       name: 'grid',
       id: 'plmweb.search_attachment.cur_project_grid',
@@ -368,7 +368,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: 'f8a6a7afdecc4c4ca3da775d482e6aca',
+  modelId: '62d798c8db7d95b0a721d53e18622c3a',
   modelType: 'PSAPPDEVIEW',
   name: 'search_attachmentcur_project_grid_view',
   id: 'plmweb.search_attachment_cur_project_grid_view',

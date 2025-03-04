@@ -340,7 +340,6 @@ export default {
                                     },
                                   ],
                                   logicType: 'GROUP',
-                                  id: '面板成员[static_image][面板显示]逻辑',
                                 },
                               ],
                               sysImage: {
@@ -385,7 +384,6 @@ export default {
                                     },
                                   ],
                                   logicType: 'GROUP',
-                                  id: '面板成员[static_image1][面板显示]逻辑',
                                 },
                               ],
                               sysImage: {
@@ -556,13 +554,13 @@ export default {
         orderValueAppDEFieldId: 'ordervalue',
         dedataViewDataItems: [
           {
+            dataType: 25,
+            id: 'psdelogicname',
+          },
+          {
             frontCodeListId: 'plmweb.extension__delogicsubtype',
             dataType: 25,
             id: 'logicsubtype',
-          },
-          {
-            dataType: 25,
-            id: 'psdelogicname',
           },
           {
             appDEFieldId: 'psdelogicid',
@@ -577,6 +575,14 @@ export default {
         ],
         dedataViewItems: [
           {
+            caption: '规则名称',
+            dataItemName: 'psdelogicname',
+            itemType: 'DATAITEM',
+            appDEFieldId: 'psdelogicname',
+            name: 'PSDELOGICNAME',
+            id: 'psdelogicname',
+          },
+          {
             clconvertMode: 'FRONT',
             caption: '逻辑子类',
             dataItemName: 'logicsubtype',
@@ -585,14 +591,6 @@ export default {
             codeListId: 'plmweb.extension__delogicsubtype',
             name: 'LOGICSUBTYPE',
             id: 'logicsubtype',
-          },
-          {
-            caption: '规则名称',
-            dataItemName: 'psdelogicname',
-            itemType: 'DATAITEM',
-            appDEFieldId: 'psdelogicname',
-            name: 'PSDELOGICNAME',
-            id: 'psdelogicname',
           },
         ],
         pagingSize: 1000,

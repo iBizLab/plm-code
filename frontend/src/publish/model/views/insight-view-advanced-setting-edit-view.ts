@@ -4,7 +4,7 @@ export default {
   xdataControlName: 'form',
   loadDefault: true,
   deviewCodeName: 'advanced_setting_edit_view',
-  deviewId: 'F48C7E82-E53E-4526-92E2-9B66DAC1F5F9',
+  deviewId: 'b1b8a57d04fde0a0fd583de3e1113d8b',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.INSIGHT_VIEW',
@@ -265,7 +265,7 @@ export default {
   viewType: 'DEEDITVIEW',
   enableDP: true,
   showCaptionBar: false,
-  modelId: '7bb28feb506f34e7d3bcab6612574802',
+  modelId: '4d577be5b2e1a6944b4e8ace1b8f8311',
   modelType: 'PSAPPDEVIEW',
   name: 'insight_viewadvanced_setting_edit_view',
   id: 'plmweb.insight_view_advanced_setting_edit_view',

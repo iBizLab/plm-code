@@ -72,7 +72,7 @@ export default {
                               cssClass: 'fa fa-sun-o',
                               glyph: 'xf185@FontAwesome',
                             },
-                            id: 'u8a50616',
+                            id: 'u49ac520',
                           },
                         ],
                         appDataEntityId: 'plmweb.board',
@@ -608,25 +608,6 @@ export default {
                   appDEACModeId: 'default',
                   appDEDataSetId: 'fetch_main',
                   appDataEntityId: 'plmweb.project',
-                  uiactionGroup: {
-                    uiactionGroupDetails: [
-                      {
-                        actionLevel: 100,
-                        afterItemType: 'NONE',
-                        beforeItemType: 'NONE',
-                        caption: '项目配置',
-                        detailType: 'DEUIACTION',
-                        uiactionId: 'open_global_setting@project',
-                        showCaption: true,
-                        showIcon: true,
-                        id: 'u3fee786',
-                      },
-                    ],
-                    appDataEntityId: 'plmweb.project',
-                    uniqueTag: 'project__Usr1221520658',
-                    name: '自填模式行为组',
-                    id: 'usr1221520658',
-                  },
                   enableAC: true,
                   forceSelection: true,
                   showTrigger: true,
@@ -1058,7 +1039,6 @@ export default {
                                 },
                               ],
                               logicType: 'GROUP',
-                              id: '面板成员[assignee_name][面板显示]逻辑',
                             },
                           ],
                           sysCss: {
@@ -1169,7 +1149,6 @@ export default {
                                 },
                               ],
                               logicType: 'GROUP',
-                              id: '面板成员[state][面板显示]逻辑',
                             },
                           ],
                           sysCss: {
@@ -1267,7 +1246,6 @@ export default {
                                 },
                               ],
                               logicType: 'GROUP',
-                              id: '面板成员[container7][面板显示]逻辑',
                             },
                           ],
                           sysCss: {
@@ -1385,7 +1363,6 @@ export default {
                                 },
                               ],
                               logicType: 'GROUP',
-                              id: '面板成员[container5][面板显示]逻辑',
                             },
                           ],
                           sysCss: {
@@ -1451,16 +1428,6 @@ export default {
         minorSortAppDEFieldId: 'entry_position',
         orderValueAppDEFieldId: 'sequence',
         dedataViewDataItems: [
-          {
-            appDEFieldId: 'identifier',
-            dataType: 25,
-            id: 'identifier',
-          },
-          {
-            appDEFieldId: 'title',
-            dataType: 25,
-            id: 'title',
-          },
           {
             appDEFieldId: 'id',
             dataType: 25,
@@ -1539,24 +1506,6 @@ export default {
           },
         ],
         dedataViewItems: [
-          {
-            caption: '编号',
-            dataItemName: 'identifier',
-            itemType: 'DATAITEM',
-            appDEFieldId: 'identifier',
-            enableSort: true,
-            name: 'IDENTIFIER',
-            id: 'identifier',
-          },
-          {
-            caption: '标题',
-            dataItemName: 'title',
-            itemType: 'DATAITEM',
-            appDEFieldId: 'title',
-            enableSort: true,
-            name: 'TITLE',
-            id: 'title',
-          },
           {
             dataItemName: 'operate',
             itemType: 'ACTIONITEM',
@@ -1638,20 +1587,6 @@ export default {
                     glyph: 'xf187@FontAwesome',
                   },
                   id: 'u81c69d9',
-                },
-                {
-                  actionLevel: 250,
-                  afterItemType: 'NONE',
-                  beforeItemType: 'NONE',
-                  caption: '激活',
-                  detailType: 'DEUIACTION',
-                  uiactionId: 'activate@work_item',
-                  showCaption: true,
-                  showIcon: true,
-                  sysImage: {
-                    cssClass: 'key',
-                  },
-                  id: 'u0fe1155',
                 },
                 {
                   actionLevel: 250,
@@ -1755,7 +1690,7 @@ export default {
                     cssClass: 'fa fa-send-o',
                     glyph: 'xf1d9@FontAwesome',
                   },
-                  id: 'u683f35b',
+                  id: 'ub66f18a',
                 },
               ],
               appDataEntityId: 'plmweb.work_item',
@@ -1812,26 +1747,6 @@ export default {
         controlType: 'KANBAN',
         logicName: '工作项看板视图_看板',
         appDataEntityId: 'plmweb.work_item',
-        controlLogics: [
-          {
-            eventNames: 'onLoadSuccess',
-            logicTag: 'kanban',
-            logicType: 'APPDEUILOGIC',
-            appDEUILogicId: 'calc_kanban_item_action_state',
-            appDataEntityId: 'plmweb.work_item',
-            triggerType: 'CTRLEVENT',
-            id: 'logic4',
-          },
-          {
-            eventNames: 'onSelectionChange',
-            logicTag: 'kanban',
-            logicType: 'APPDEUILOGIC',
-            appDEUILogicId: 'calc_kanban_item_action_state',
-            appDataEntityId: 'plmweb.work_item',
-            triggerType: 'CTRLEVENT',
-            id: 'logic2',
-          },
-        ],
         controlParam: {
           id: 'kanban',
         },

@@ -359,7 +359,7 @@ export default {
         },
         id: 'calendar',
       },
-      modelId: '8948343a22e6f3e2feaef4c63535db9a',
+      modelId: '0ce99aef6f6f851a642d204e3d68efa6',
       modelType: 'PSSYSCALENDAR',
       name: 'calendar',
       id: 'plmweb.work_item.work_item_calendar_view_calendar',

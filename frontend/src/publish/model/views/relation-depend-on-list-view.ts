@@ -2,7 +2,7 @@ export default {
   xdataControlName: 'list',
   loadDefault: true,
   deviewCodeName: 'depend_on_list_view',
-  deviewId: '35343218-A1CB-413A-AE0A-2EF19E61A7B2',
+  deviewId: '8b4f91a445c27b230b48039a7f824117',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.RELATION',
@@ -513,7 +513,7 @@ export default {
         controlParam: {
           id: 'toolbar',
         },
-        modelId: '762B8C03-DFBF-4BB4-B9A0-180C69E1A5C3',
+        modelId: '9565eb6d5de2b5827be7ab867ab55db1',
         modelType: 'PSDETOOLBAR',
         name: 'toolbar',
         id: 'depend_on_list_view_toolbar',
@@ -820,7 +820,6 @@ export default {
                         },
                       ],
                       logicType: 'GROUP',
-                      id: '面板成员[container][面板显示]逻辑',
                     },
                   ],
                   id: 'container',
@@ -1202,21 +1201,21 @@ export default {
             },
           ],
           controlParam: {},
-          modelId: '59D5BF01-50D1-4E23-BDEB-796E202FFBE0',
+          modelId: '9398482f81c6eea20a29a4e2f762c0e9',
           modelType: 'PSSYSVIEWPANEL',
           name: 'list_itempanel',
           id: 'plmweb.relation.usr0710859560',
         },
         delistDataItems: [
           {
+            appDEFieldId: 'id',
+            dataType: 25,
+            id: 'id',
+          },
+          {
             appDEFieldId: 'relation_type',
             dataType: 25,
             id: 'relation_type',
-          },
-          {
-            appDEFieldId: 'target_id',
-            dataType: 25,
-            id: 'target_id',
           },
           {
             appDEFieldId: 'principal_id',
@@ -1224,19 +1223,19 @@ export default {
             id: 'principal_id',
           },
           {
-            appDEFieldId: 'id',
+            appDEFieldId: 'work_item',
+            dataType: 21,
+            id: 'work_item',
+          },
+          {
+            appDEFieldId: 'target_id',
             dataType: 25,
-            id: 'id',
+            id: 'target_id',
           },
           {
             appDEFieldId: 'principal_work_item',
             dataType: 21,
             id: 'principal_work_item',
-          },
-          {
-            appDEFieldId: 'work_item',
-            dataType: 21,
-            id: 'work_item',
           },
           {
             appDEFieldId: 'id',
@@ -1293,7 +1292,7 @@ export default {
         sysCss: {
           cssName: 'dependency_style',
         },
-        modelId: '3AEB5516-9F2B-4635-927D-2BAFBE439D32',
+        modelId: '303e222746506bfc63671390c9d83a08',
         modelType: 'PSDELIST',
         name: 'list',
         id: 'plmweb.relation.depend_on_list',
@@ -1338,7 +1337,7 @@ export default {
       },
     ],
     controlParam: {},
-    modelId: 'E5D889C3-5E06-479B-A01A-4DA4CFD4D345',
+    modelId: '3b0016b1f57d3e764df4e464d4e54884',
     modelType: 'PSSYSVIEWLAYOUTPANEL',
     name: 'layoutpanel',
     id: 'usr0710853392',
@@ -1348,7 +1347,7 @@ export default {
   viewType: 'DELISTVIEW',
   enableDP: true,
   showCaptionBar: false,
-  modelId: '3a86e4731e8f9007da0fe6c54df9da38',
+  modelId: '7ed429698b4e720ef170267beb75f238',
   modelType: 'PSAPPDEVIEW',
   name: 'relationdepend_on_list_view',
   id: 'plmweb.relation_depend_on_list_view',

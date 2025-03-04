@@ -1,7 +1,7 @@
 export default {
   loadDefault: true,
   deviewCodeName: 'index_view',
-  deviewId: 'BC272B19-19C0-4E02-90FC-1218FACF2711',
+  deviewId: '2b0f11fb9105b2d665fd3ee10007db5f',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.DISCUSS_TOPIC',
@@ -350,7 +350,7 @@ export default {
           id: 'drbar',
         },
         sysPFPluginId: 'drbar_ex',
-        modelId: 'AAE23438-32BF-4B01-9653-BDF55E4F3A16',
+        modelId: 'e81d77860b5084d5a49733f2cab44d4e',
         modelType: 'PSDEDRBAR',
         name: 'drbar',
         id: 'index_view_dr',
@@ -444,7 +444,7 @@ export default {
         controlParam: {
           id: 'form',
         },
-        modelId: 'C0E254D3-FFBF-4FDD-82E1-4C8BC6EB9F20',
+        modelId: '5ed430005bd67da3a690d6e9d11b981b',
         modelType: 'PSDEFORM_EDITFORM',
         name: 'form',
         id: 'plmweb.discuss_topic.index_view_form',
@@ -612,7 +612,7 @@ export default {
         controlParam: {
           id: 'toolbar',
         },
-        modelId: 'FF00A306-D405-4214-A186-AE361920A942',
+        modelId: '222fece32bde0a4effe0801a504b1566',
         modelType: 'PSDETOOLBAR',
         name: 'toolbar',
         id: 'index_view_toolbar',
@@ -645,7 +645,7 @@ export default {
   viewType: 'DEINDEXVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '2d356d536ff7ae3410a9f315faa42b68',
+  modelId: '7109669bd5fdef22ab8a5403a12c0c6c',
   modelType: 'PSAPPDEVIEW',
   name: 'discuss_topicindex_view',
   id: 'plmweb.discuss_topic_index_view',

@@ -4,7 +4,7 @@ export default {
   xdataControlName: 'form',
   loadDefault: true,
   deviewCodeName: 'setting_view',
-  deviewId: '57F21CBF-6136-49A1-8435-EDD22935D9B9',
+  deviewId: '4d62d73a3b9627622d211ce0c6416f7c',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.DISCUSS_TOPIC',
@@ -117,7 +117,7 @@ export default {
       controlParam: {
         id: 'form',
       },
-      modelId: '957551B5-0D1D-4AF6-8593-0D29BEABD8A3',
+      modelId: 'bbf1e58cd24604a2cc534f5de23fc04a',
       modelType: 'PSDEFORM_EDITFORM',
       name: 'form',
       id: 'plmweb.discuss_topic.setting_view_form',
@@ -183,7 +183,7 @@ export default {
       controlParam: {
         id: 'drbar',
       },
-      modelId: 'FF8F64C6-A92F-4201-962F-C359566D9CA9',
+      modelId: 'f3af9b46c19536d0ee41982996cc0d34',
       modelType: 'PSDEDRBAR',
       name: 'drbar',
       id: 'setting_view_dr',
@@ -230,7 +230,7 @@ export default {
   viewType: 'DEEDITVIEW2',
   enableDP: true,
   showCaptionBar: false,
-  modelId: '9410b0a0c89631ef2ce8baab9f983c6d',
+  modelId: 'f653f5d546772dddb47e1481b6e8f821',
   modelType: 'PSAPPDEVIEW',
   name: 'discuss_topicsetting_view',
   id: 'plmweb.discuss_topic_setting_view',

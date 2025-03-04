@@ -1,6 +1,6 @@
 export default {
   deviewCodeName: 'release_work_item_customView',
-  deviewId: 'DA7A0D8C-FBCE-4B28-A3B7-D93CAE55E415',
+  deviewId: 'c774454ddae2d0e484bb9df0964eac83',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.WORK_ITEM',
@@ -511,7 +511,7 @@ export default {
           id: 'chart',
         },
         sysPFPluginId: 'custom_label',
-        modelId: '35B7F99C-3E99-43D9-818E-F2FB72289A35',
+        modelId: '2b65aed31075c62e6f48a283b124e433',
         modelType: 'PSDECHART',
         userParam: {
           'EC.color':
@@ -538,7 +538,7 @@ export default {
     logicName: '发布工作项统计布局面板',
     appDataEntityId: 'plmweb.work_item',
     controlParam: {},
-    modelId: '299B1180-DB8A-4D7B-99BF-AD0FE895F1D2',
+    modelId: '3988bcad153ab52317c17bc2792cf06a',
     modelType: 'PSSYSVIEWLAYOUTPANEL',
     name: 'layoutpanel',
     id: 'usr0613992922',
@@ -548,7 +548,7 @@ export default {
   viewType: 'DECUSTOMVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '85c17e381ed6afab0116376e8a1ca4be',
+  modelId: '0f9b6e801f9f3c62d9e84b7019002da6',
   modelType: 'PSAPPDEVIEW',
   name: 'work_itemrelease_work_item_customView',
   id: 'plmweb.work_item_release_work_item_custom_view',

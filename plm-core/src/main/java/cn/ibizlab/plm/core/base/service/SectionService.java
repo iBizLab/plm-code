@@ -233,6 +233,22 @@ public interface SectionService extends IService<Section> {
     List<Section> listIdeaSection(SectionSearchContext context);
 
     /**
+    * fetchMySection
+    * 
+    * @param context
+    * @return
+    */
+    Page<Section> fetchMySection(SectionSearchContext context);
+
+    /**
+    * listMySection
+    * 
+    * @param context
+    * @return
+    */
+    List<Section> listMySection(SectionSearchContext context);
+
+    /**
     * fetchView
     * 
     * @param context

@@ -114,6 +114,21 @@ export default {
                 actionGroupExtractMode: 'ITEM',
                 panelItems: [
                   {
+                    rawItem: {
+                      predefinedType: 'COOP_POS',
+                      id: 'coop_pos',
+                    },
+                    caption: '协同编辑消息占位',
+                    itemStyle: 'DEFAULT',
+                    itemType: 'RAWITEM',
+                    layoutPos: {
+                      shrink: 1,
+                      layout: 'FLEX',
+                    },
+                    showCaption: true,
+                    id: 'coop_pos',
+                  },
+                  {
                     caption: '工具栏',
                     itemStyle: 'DEFAULT',
                     itemType: 'CTRLPOS',
@@ -127,7 +142,9 @@ export default {
                 ],
                 layout: {
                   align: 'center',
+                  dir: 'row',
                   layout: 'FLEX',
+                  valign: 'center',
                 },
                 dataRegionType: 'INHERIT',
                 caption: '容器',
@@ -279,7 +296,6 @@ export default {
                                       },
                                     ],
                                     logicType: 'GROUP',
-                                    id: '面板成员[comment_cancel][面板显示]逻辑',
                                   },
                                 ],
                                 showCaption: true,
@@ -316,7 +332,6 @@ export default {
                                       },
                                     ],
                                     logicType: 'GROUP',
-                                    id: '面板成员[comment_send][面板显示]逻辑',
                                   },
                                 ],
                                 showCaption: true,
@@ -849,12 +864,36 @@ export default {
                                 appDEFieldId: 'precondition',
                                 editor: {
                                   editorParams: {
-                                    enableEdit: 'false',
-                                    enableFullScre: 'true',
+                                    USERINSCRIPT:
+                                      'value.replaceAll(/\\@\\{\\"(user)?id\\":\\"(.+?)\\",\\"name\\":\\"(.+?)\\"\\}/g,(x, user, id, name) => {return controller.getNodeInfo({ id, name })}).replaceAll(/\\@\\{userid=(.+?),name=(.+?)\\}/g,(x, id, name) => {return controller.getNodeInfo({ id, name })})',
                                     LINKVIEWID:
                                       'plmweb.recent_custom_redirect_view',
+                                    MAXHEIGHT: '450',
+                                    QUOTECODELISTMAP:
+                                      '{"type":"plmweb.base__recent_visite"}',
+                                    enableFullScre: 'true',
+                                    enableEdit: 'false',
+                                    QUOTEFIELDMAP:
+                                      '{"identifier":"show_identifier","name":"name","id":"id","owner_subtype":"owner_subtype","owner_id":"owner_id","owner_type":"owner_type","recent_parent":"recent_parent"}',
+                                    QUOTEPARAMS: '{"sort":"update_time,desc"}',
+                                    MODE: 'default',
+                                    QUOTEINSCRIPT:
+                                      'value.replaceAll(/\\#\\{(\\".+?\\":\\".+?\\")(,\\"icon\\":\\"((.|[\\t\\r\\f\\n\\s])+?)\\")*\\}/g,(x, value, icon) => { const item = JSON.parse("{" + value + "}"); if (icon) { icon = icon.slice(8).slice(1, -1); } return controller.getNodeInfo({ icon, ...item })})',
+                                    USERSCRIPT:
+                                      '`@{"id":"${data.id}","name":"${data.name}"}`',
+                                    QUOTESCRIPT:
+                                      '`#{"id":"${data.id}","name":"${data.name}","identifier":"${data.identifier}","owner_id":"${data.owner_id}","owner_type":"${data.owner_type}","owner_subtype":"${data.owner_subtype}","recent_parent":"${data.recent_parent}"}`',
+                                    USERURL:
+                                      "`${context.library ? `libraries/${context.library}/library_members/fetch_default` : context.product ? `products/${context.product}/product_members/fetch_default` : context.project ? `projects/${context.project}/project_members/fetch_default` : ''}`",
+                                    USERFIELDMAP:
+                                      '{"id":"user_id","name":"name"}',
+                                    INSERTKEYS:
+                                      '[{"index":66,"keys":["marker"]},{"index":5,"keys":["paintformat"]}]',
+                                    QUOTEURL: '`recents/fetch_recent_access`',
                                   },
+                                  editorStyle: 'COLLAPSE',
                                   editorType: 'HTMLEDITOR',
+                                  sysPFPluginId: 'comment',
                                   valueType: 'SIMPLE',
                                   editable: true,
                                   id: 'precondition',
@@ -1898,6 +1937,7 @@ export default {
                               },
                               {
                                 dataType: 25,
+                                ignoreInput: 4,
                                 labelPos: 'LEFT',
                                 labelWidth: 130,
                                 noPrivDisplayMode: 1,
@@ -1978,8 +2018,10 @@ export default {
                                 dataType: 25,
                                 enableCond: 3,
                                 fieldName: 'status',
+                                ignoreInput: 4,
                                 labelPos: 'NONE',
                                 noPrivDisplayMode: 1,
+                                appDEFieldId: 'status',
                                 editor: {
                                   appCodeListId: 'plmweb.testmgmt__run_status',
                                   editorParams: {
@@ -1992,18 +2034,19 @@ export default {
                                   sysPFPluginId: 'extend',
                                   valueType: 'SIMPLE',
                                   editable: true,
-                                  id: 'formitem2',
+                                  id: 'status2',
                                 },
                                 allowEmpty: true,
                                 needCodeListConfig: true,
-                                codeName: 'formitem2',
+                                caption: '执行结果',
+                                codeName: 'status2',
                                 detailStyle: 'DEFAULT',
                                 detailType: 'FORMITEM',
                                 layoutPos: {
                                   colMD: 24,
                                   layout: 'TABLE_24COL',
                                 },
-                                id: 'formitem2',
+                                id: 'status2',
                               },
                               {
                                 dataType: 25,
@@ -3189,7 +3232,7 @@ export default {
       },
     ],
     controlParam: {},
-    modelId: '2016b838b6d2de4cb2c98e45fe45c1f2',
+    modelId: 'bef8a601ead78246bf20cf778ad4a77a',
     modelType: 'PSSYSVIEWLAYOUTPANEL',
     name: 'layoutpanel',
     id: 'run_main_view',

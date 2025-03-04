@@ -5,7 +5,7 @@ export default {
   loadDefault: true,
   openMode: 'POPUPMODAL',
   deviewCodeName: 'space_create_view',
-  deviewId: '29D763AA-EB41-49B0-8D87-55209DB6F2E4',
+  deviewId: 'f76b52dfe7f683ff31deb288354d61c3',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.BASELINE',
@@ -519,7 +519,7 @@ export default {
   width: 800,
   enableDP: true,
   showCaptionBar: true,
-  modelId: '7979c6aa50aa91bd4114183799fa12e8',
+  modelId: '03d601cf4958a41defc0a2cc7f8db03d',
   modelType: 'PSAPPDEVIEW',
   name: 'baselinespace_create_view',
   id: 'plmweb.baseline_space_create_view',

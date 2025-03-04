@@ -5,7 +5,7 @@ export default {
   loadDefault: true,
   openMode: 'POPUPMODAL',
   deviewCodeName: 'project_update_view',
-  deviewId: '4E7E6385-BD55-40CF-927B-81244E5DA284',
+  deviewId: 'dab01ac875b6efd7dac0bd049aaa728f',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.BASELINE',
@@ -431,7 +431,7 @@ export default {
       controlParam: {
         id: 'form',
       },
-      modelId: '3475D90A-3E6A-4348-A141-220ABC44F27C',
+      modelId: '7e146960834530ae23879d66e27f6c4d',
       modelType: 'PSDEFORM_EDITFORM',
       name: 'form',
       id: 'plmweb.baseline.project_create_form',
@@ -476,7 +476,7 @@ export default {
   width: 800,
   enableDP: true,
   showCaptionBar: true,
-  modelId: '338030e1d749f0ea95e5e809dcd98c4e',
+  modelId: 'e82627099f22927d516a7a266fbdf16a',
   modelType: 'PSAPPDEVIEW',
   name: 'baselineproject_update_view',
   id: 'plmweb.baseline_project_update_view',

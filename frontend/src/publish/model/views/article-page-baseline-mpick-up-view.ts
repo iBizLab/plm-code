@@ -1,7 +1,7 @@
 export default {
   openMode: 'POPUPMODAL',
   deviewCodeName: 'baseline_mpick_up_view',
-  deviewId: '5C611C4D-29FF-4CF5-A41C-904ADBB30B27',
+  deviewId: 'b18c7c333cc2b3b0d6943add2bc67946',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.PAGE',
@@ -571,7 +571,7 @@ export default {
             controlParam: {
               id: 'treeexpbar_tree',
             },
-            modelId: '3CE81251-813C-4830-9B30-222E952B635A',
+            modelId: 'a105ecb1b8647979d41220a55b7f8976',
             modelType: 'PSDETREEVIEW',
             name: 'treeexpbar_tree',
             id: 'plmweb.article_page.baseline_mpick_up_view_tree_view',
@@ -583,7 +583,7 @@ export default {
         controlParam: {
           id: 'treeexpbar',
         },
-        modelId: 'cf1b851113e4e56c1703e55c0d28b6de_treeexpbar',
+        modelId: 'd3c7371f647f0d5afb405ffcf4b12e90_treeexpbar',
         modelType: 'PSEXPBAR',
         name: 'treeexpbar',
         id: 'baseline_mpick_up_view_treeexpbar',
@@ -683,7 +683,7 @@ export default {
   viewType: 'DEMPICKUPVIEW2',
   enableDP: true,
   showCaptionBar: false,
-  modelId: 'cf1b851113e4e56c1703e55c0d28b6de',
+  modelId: 'd3c7371f647f0d5afb405ffcf4b12e90',
   modelType: 'PSAPPDEVIEW',
   name: 'article_pagebaseline_mpick_up_view',
   id: 'plmweb.article_page_baseline_mpick_up_view',

@@ -2,7 +2,7 @@ export default {
   enableSearch: true,
   loadDefault: true,
   deviewCodeName: 'activities_status_report_view',
-  deviewId: 'ee46f58312bf9da2a1ab609509c2da65',
+  deviewId: 'b4524a6672a1f696882f8baa5a92ed07',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.TEST_CASE',
@@ -847,7 +847,7 @@ export default {
   viewType: 'DECHARTVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '2b66a6c99125e263a5b6e934e7c614f0',
+  modelId: 'd5f2d1aa8ef4ac435d66def7531679f4',
   modelType: 'PSAPPDEVIEW',
   name: 'test_caseactivities_status_report_view',
   id: 'plmweb.test_case_activities_status_report_view',

@@ -136,6 +136,7 @@ public abstract class AbstractPortfolioMemberResource {
     * @return Mono<ResponseEntity<PortfolioMemberDTO>>
     */
     @ApiOperation(value = "change_role", tags = {"文件夹成员" },  notes = "PortfolioMember-change_role ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-PortfolioMember-change_role-all') or hasPermission(this.portfolioMemberDtoMapping.toDomain(#dto),'ibizplm-PortfolioMember-change_role')")
     @PostMapping("portfolio_members/{id}/change_role")
     public Mono<ResponseEntity<ResponseWrapper<PortfolioMemberDTO>>>changeRoleById
             (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<PortfolioMemberDTO> dto) {
@@ -291,6 +292,7 @@ public abstract class AbstractPortfolioMemberResource {
     * @return Mono<ResponseEntity<PortfolioMemberDTO>>
     */
     @ApiOperation(value = "change_role", tags = {"文件夹成员" },  notes = "PortfolioMember-change_role ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-PortfolioMember-change_role-all') or hasPermission('portfolio',#portfolioId,this.portfolioMemberDtoMapping.toDomain(#dto),'ibizplm-PortfolioMember-change_role')")
     @PostMapping("portfolios/{portfolioId}/portfolio_members/{id}/change_role")
     public Mono<ResponseEntity<ResponseWrapper<PortfolioMemberDTO>>>changeRoleByPortfolioIdAndId
             (@PathVariable("portfolioId") String portfolioId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<PortfolioMemberDTO> dto) {
@@ -450,6 +452,7 @@ public abstract class AbstractPortfolioMemberResource {
     * @return Mono<ResponseEntity<PortfolioMemberDTO>>
     */
     @ApiOperation(value = "change_role", tags = {"文件夹成员" },  notes = "PortfolioMember-change_role ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-PortfolioMember-change_role-all') or hasPermission('user',#userId,this.portfolioMemberDtoMapping.toDomain(#dto),'ibizplm-PortfolioMember-change_role')")
     @PostMapping("users/{userId}/portfolio_members/{id}/change_role")
     public Mono<ResponseEntity<ResponseWrapper<PortfolioMemberDTO>>>changeRoleByUserIdAndId
             (@PathVariable("userId") String userId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<PortfolioMemberDTO> dto) {
@@ -511,6 +514,174 @@ public abstract class AbstractPortfolioMemberResource {
     */   
     public PortfolioMemberDTO saveByUserId
             (String userId, PortfolioMemberDTO dto) {
+        PortfolioMember domain = portfolioMemberDtoMapping.toDomain(dto);
+        domain.setUserId(userId);
+        portfolioMemberService.save(domain);
+        PortfolioMember rt = domain;
+        return portfolioMemberDtoMapping.toDto(rt);
+    }
+
+    /**
+    * 创建Create 文件夹成员
+    * 
+    *
+    * @param departmentId departmentId
+    * @param userId userId
+    * @param dto dto
+    * @return Mono<ResponseEntity<PortfolioMemberDTO>>
+    */
+    @ApiOperation(value = "创建Create", tags = {"文件夹成员" },  notes = "PortfolioMember-Create ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-PortfolioMember-Create-all') or hasPermission('department',#departmentId,this.portfolioMemberDtoMapping.toDomain(#dto),'ibizplm-PortfolioMember-Create')")
+    @PostMapping("departments/{departmentId}/users/{userId}/portfolio_members")
+    public Mono<ResponseEntity<ResponseWrapper<PortfolioMemberDTO>>>createByDepartmentIdAndUserId
+            (@PathVariable("departmentId") String departmentId, @PathVariable("userId") String userId, @Validated @RequestBody RequestWrapper<PortfolioMemberDTO> dto) {
+        ResponseWrapper<PortfolioMemberDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray())
+            dto.getList().forEach(item -> rt.add(createByDepartmentIdAndUserId(departmentId, userId, item)));
+        else
+            rt.set(createByDepartmentIdAndUserId(departmentId, userId, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * 创建Create 文件夹成员
+    * 
+    *
+    * @param departmentId departmentId
+    * @param userId userId
+    * @param dto dto
+    * @return ResponseEntity<PortfolioMemberDTO>
+    */   
+    public PortfolioMemberDTO createByDepartmentIdAndUserId
+            (String departmentId, String userId, PortfolioMemberDTO dto) {
+        PortfolioMember domain = portfolioMemberDtoMapping.toDomain(dto);
+        domain.setUserId(userId);
+        portfolioMemberService.create(domain);
+        PortfolioMember rt = domain;
+        return portfolioMemberDtoMapping.toDto(rt);
+    }
+
+    /**
+    * 更新Update 文件夹成员
+    * 
+    *
+    * @param departmentId departmentId
+    * @param userId userId
+    * @param id id
+    * @param dto dto
+    * @return Mono<ResponseEntity<PortfolioMemberDTO>>
+    */
+    @ApiOperation(value = "更新Update", tags = {"文件夹成员" },  notes = "PortfolioMember-Update ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-PortfolioMember-Update-all') or hasPermission('department',#departmentId,this.portfolioMemberService.get(#id),'ibizplm-PortfolioMember-Update')")
+    @VersionCheck(entity = "portfoliomember" , versionfield = "updateTime")
+    @PutMapping("departments/{departmentId}/users/{userId}/portfolio_members/{id}")
+    public Mono<ResponseEntity<ResponseWrapper<PortfolioMemberDTO>>>updateByDepartmentIdAndUserIdAndId
+            (@PathVariable("departmentId") String departmentId, @PathVariable("userId") String userId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<PortfolioMemberDTO> dto) {
+        ResponseWrapper<PortfolioMemberDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(updateByDepartmentIdAndUserIdAndId(departmentId, userId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(updateByDepartmentIdAndUserIdAndId(departmentId, userId, id, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * 更新Update 文件夹成员
+    * 
+    *
+    * @param departmentId departmentId
+    * @param userId userId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<PortfolioMemberDTO>
+    */   
+    public PortfolioMemberDTO updateByDepartmentIdAndUserIdAndId
+            (String departmentId, String userId, String id, PortfolioMemberDTO dto) {
+        PortfolioMember domain = portfolioMemberDtoMapping.toDomain(dto);
+        domain.setId(id);
+        portfolioMemberService.update(domain);
+        PortfolioMember rt = domain;
+        return portfolioMemberDtoMapping.toDto(rt);
+    }
+
+    /**
+    * change_role 文件夹成员
+    * 
+    *
+    * @param departmentId departmentId
+    * @param userId userId
+    * @param id id
+    * @param dto dto
+    * @return Mono<ResponseEntity<PortfolioMemberDTO>>
+    */
+    @ApiOperation(value = "change_role", tags = {"文件夹成员" },  notes = "PortfolioMember-change_role ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-PortfolioMember-change_role-all') or hasPermission('department',#departmentId,this.portfolioMemberDtoMapping.toDomain(#dto),'ibizplm-PortfolioMember-change_role')")
+    @PostMapping("departments/{departmentId}/users/{userId}/portfolio_members/{id}/change_role")
+    public Mono<ResponseEntity<ResponseWrapper<PortfolioMemberDTO>>>changeRoleByDepartmentIdAndUserIdAndId
+            (@PathVariable("departmentId") String departmentId, @PathVariable("userId") String userId, @PathVariable("id") String id, @Validated @RequestBody RequestWrapper<PortfolioMemberDTO> dto) {
+        ResponseWrapper<PortfolioMemberDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray()) {
+            String [] ids = id.split(";");
+            IntStream.range(0, ids.length).forEach(i -> rt.add(changeRoleByDepartmentIdAndUserIdAndId(departmentId, userId, ids[i], dto.getList().get(i))));
+        }
+        else
+            rt.set(changeRoleByDepartmentIdAndUserIdAndId(departmentId, userId, id, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * change_role 文件夹成员
+    * 
+    *
+    * @param departmentId departmentId
+    * @param userId userId
+    * @param id id
+    * @param dto dto
+    * @return ResponseEntity<PortfolioMemberDTO>
+    */   
+    public PortfolioMemberDTO changeRoleByDepartmentIdAndUserIdAndId
+            (String departmentId, String userId, String id, PortfolioMemberDTO dto) {
+        PortfolioMember domain = portfolioMemberDtoMapping.toDomain(dto);
+        domain.setId(id);
+        PortfolioMember rt = portfolioMemberService.changeRole(domain);
+        return portfolioMemberDtoMapping.toDto(rt);
+    }
+
+    /**
+    * 保存Save 文件夹成员
+    * 
+    *
+    * @param departmentId departmentId
+    * @param userId userId
+    * @param dto dto
+    * @return Mono<ResponseEntity<PortfolioMemberDTO>>
+    */
+    @ApiOperation(value = "保存Save", tags = {"文件夹成员" },  notes = "PortfolioMember-Save ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-PortfolioMember-Save-all') or hasPermission('department',#departmentId,this.portfolioMemberDtoMapping.toDomain(#dto),'ibizplm-PortfolioMember-Save')")
+    @PostMapping("departments/{departmentId}/users/{userId}/portfolio_members/save")
+    public Mono<ResponseEntity<ResponseWrapper<PortfolioMemberDTO>>>saveByDepartmentIdAndUserId
+            (@PathVariable("departmentId") String departmentId, @PathVariable("userId") String userId, @Validated @RequestBody RequestWrapper<PortfolioMemberDTO> dto) {
+        ResponseWrapper<PortfolioMemberDTO> rt = new ResponseWrapper<>();
+        if (dto.isArray())
+            dto.getList().forEach(item -> rt.add(saveByDepartmentIdAndUserId(departmentId, userId, item)));
+        else
+            rt.set(saveByDepartmentIdAndUserId(departmentId, userId, dto.getDto()));
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * 保存Save 文件夹成员
+    * 
+    *
+    * @param departmentId departmentId
+    * @param userId userId
+    * @param dto dto
+    * @return ResponseEntity<PortfolioMemberDTO>
+    */   
+    public PortfolioMemberDTO saveByDepartmentIdAndUserId
+            (String departmentId, String userId, PortfolioMemberDTO dto) {
         PortfolioMember domain = portfolioMemberDtoMapping.toDomain(dto);
         domain.setUserId(userId);
         portfolioMemberService.save(domain);
@@ -852,6 +1023,130 @@ public abstract class AbstractPortfolioMemberResource {
     @PostMapping("users/{userId}/portfolio_members/fetch_default")
     public Mono<ResponseEntity<List<PortfolioMemberDTO>>> fetchDefaultByUserId
             (@PathVariable("userId") String userId, @Validated @RequestBody PortfolioMemberFilterDTO dto) {
+        dto.setUserIdEQ(userId);
+        PortfolioMemberSearchContext context = portfolioMemberFilterDtoMapping.toDomain(dto);
+        Page<PortfolioMember> domains = portfolioMemberService.fetchDefault(context) ;
+        List<PortfolioMemberDTO> list = portfolioMemberDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
+    * 获取Get 文件夹成员
+    * 
+    *
+    * @param departmentId departmentId
+    * @param userId userId
+    * @param id id
+    * @return Mono<ResponseEntity<PortfolioMemberDTO>>
+    */
+    @ApiOperation(value = "获取Get", tags = {"文件夹成员" },  notes = "PortfolioMember-Get ")
+    @PostAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-PortfolioMember-Get-all')  or hasPermission('department',#departmentId,this.portfolioMemberDtoMapping.toDomain(returnObject.block().getBody()),'ibizplm-PortfolioMember-Get')")
+    @GetMapping("departments/{departmentId}/users/{userId}/portfolio_members/{id}")
+    public Mono<ResponseEntity<PortfolioMemberDTO>> getByDepartmentIdAndUserIdAndId
+            (@PathVariable("departmentId") String departmentId, @PathVariable("userId") String userId, @PathVariable("id") String id) {
+        PortfolioMember rt = portfolioMemberService.get(id);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(portfolioMemberDtoMapping.toDto(rt)));
+    }
+
+    /**
+    * 删除Remove 文件夹成员
+    * 
+    *
+    * @param departmentId departmentId
+    * @param userId userId
+    * @param id id
+    * @return Mono<ResponseEntity<Boolean>>
+    */
+    @ApiOperation(value = "删除Remove", tags = {"文件夹成员" },  notes = "PortfolioMember-Remove ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-PortfolioMember-Remove-all') or hasPermission('department',#departmentId,this.portfolioMemberService.get(#id),'ibizplm-PortfolioMember-Remove')")
+    @DeleteMapping("departments/{departmentId}/users/{userId}/portfolio_members/{id}")
+    public Mono<ResponseEntity<Boolean>> removeByDepartmentIdAndUserIdAndId
+            (@PathVariable("departmentId") String departmentId, @PathVariable("userId") String userId, @PathVariable("id") String id) {
+        Boolean rt = portfolioMemberService.remove(id);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * 校验CheckKey 文件夹成员
+    * 
+    *
+    * @param departmentId departmentId
+    * @param userId userId
+    * @param dto dto
+    * @return Mono<ResponseEntity<Integer>>
+    */
+    @ApiOperation(value = "校验CheckKey", tags = {"文件夹成员" },  notes = "PortfolioMember-CheckKey ")
+    @PostMapping("departments/{departmentId}/users/{userId}/portfolio_members/check_key")
+    public Mono<ResponseEntity<CheckKeyStatus>> checkKeyByDepartmentIdAndUserId
+            (@PathVariable("departmentId") String departmentId, @PathVariable("userId") String userId, @Validated @RequestBody PortfolioMemberDTO dto) {
+        PortfolioMember domain = portfolioMemberDtoMapping.toDomain(dto);
+        domain.setUserId(userId);
+        CheckKeyStatus rt = portfolioMemberService.checkKey(domain);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
+    }
+
+    /**
+    * 草稿GetDraft 文件夹成员
+    * 
+    *
+    * @param departmentId departmentId
+    * @param userId userId
+    * @param dto dto
+    * @return Mono<ResponseEntity<PortfolioMemberDTO>>
+    */
+    @ApiOperation(value = "草稿GetDraft", tags = {"文件夹成员" },  notes = "PortfolioMember-GetDraft ")
+    @GetMapping("departments/{departmentId}/users/{userId}/portfolio_members/get_draft")
+    public Mono<ResponseEntity<PortfolioMemberDTO>> getDraftByDepartmentIdAndUserId
+            (@PathVariable("departmentId") String departmentId, @PathVariable("userId") String userId, @SpringQueryMap PortfolioMemberDTO dto) {
+        PortfolioMember domain = portfolioMemberDtoMapping.toDomain(dto);
+        domain.setUserId(userId);
+        PortfolioMember rt = portfolioMemberService.getDraft(domain);
+        return Mono.just(ResponseEntity.status(HttpStatus.OK).body(portfolioMemberDtoMapping.toDto(rt)));
+    }
+
+    /**
+    * 查询fetch_cur_project_set 文件夹成员
+    * 
+    *
+    * @param departmentId departmentId
+    * @param userId userId
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<PortfolioMemberDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_cur_project_set", tags = {"文件夹成员" },  notes = "PortfolioMember-fetch_cur_project_set ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-PortfolioMember-fetch_cur_project_set-all') or hasPermission('department',#departmentId,#dto,'ibizplm-PortfolioMember-fetch_cur_project_set')")
+    @PostMapping("departments/{departmentId}/users/{userId}/portfolio_members/fetch_cur_project_set")
+    public Mono<ResponseEntity<List<PortfolioMemberDTO>>> fetchCurProjectSetByDepartmentIdAndUserId
+            (@PathVariable("departmentId") String departmentId, @PathVariable("userId") String userId, @Validated @RequestBody PortfolioMemberFilterDTO dto) {
+        dto.setUserIdEQ(userId);
+        PortfolioMemberSearchContext context = portfolioMemberFilterDtoMapping.toDomain(dto);
+        Page<PortfolioMember> domains = portfolioMemberService.fetchCurProjectSet(context) ;
+        List<PortfolioMemberDTO> list = portfolioMemberDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
+    * 查询fetch_default 文件夹成员
+    * 
+    *
+    * @param departmentId departmentId
+    * @param userId userId
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<PortfolioMemberDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_default", tags = {"文件夹成员" },  notes = "PortfolioMember-fetch_default ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-PortfolioMember-fetch_default-all') or hasPermission('department',#departmentId,#dto,'ibizplm-PortfolioMember-fetch_default')")
+    @PostMapping("departments/{departmentId}/users/{userId}/portfolio_members/fetch_default")
+    public Mono<ResponseEntity<List<PortfolioMemberDTO>>> fetchDefaultByDepartmentIdAndUserId
+            (@PathVariable("departmentId") String departmentId, @PathVariable("userId") String userId, @Validated @RequestBody PortfolioMemberFilterDTO dto) {
         dto.setUserIdEQ(userId);
         PortfolioMemberSearchContext context = portfolioMemberFilterDtoMapping.toDomain(dto);
         Page<PortfolioMember> domains = portfolioMemberService.fetchDefault(context) ;

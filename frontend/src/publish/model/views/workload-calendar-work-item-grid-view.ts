@@ -798,7 +798,7 @@ export default {
         controlParam: {
           id: 'searchbar',
         },
-        modelId: '9e66d0978a22655408f23e3408865b87',
+        modelId: 'e9d668862bff4ce59e43c4a5abc27f3e',
         modelType: 'PSSYSSEARCHBAR',
         name: 'searchbar',
         id: 'plmweb.workload.work_item_calendar_searchbar',

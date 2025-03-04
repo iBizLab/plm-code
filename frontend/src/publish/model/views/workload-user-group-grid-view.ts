@@ -405,7 +405,7 @@ export default {
           id: 'grid',
         },
         sysPFPluginId: 'workload_table',
-        modelId: 'CC35A3F4-EE63-4A05-81B3-4A12E97FC211',
+        modelId: 'cc1b960b7011e22ed4530defd203aa99',
         modelType: 'PSDEGRID',
         name: 'grid',
         id: 'plmweb.workload.user_group_grid',
@@ -567,7 +567,7 @@ export default {
         controlParam: {
           id: 'searchbar',
         },
-        modelId: 'C7B543F6-B17D-4EA0-B260-61D5FC09270C',
+        modelId: 'ee349d5f6bb5b56ce9de024cda919ef1',
         modelType: 'PSSYSSEARCHBAR',
         name: 'searchbar',
         id: 'plmweb.workload.default',

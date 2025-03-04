@@ -4,7 +4,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'all_scrum_grid_view',
-  deviewId: '860968c08b5a0aa4cc5dcc7e851eddb6',
+  deviewId: 'aafa5b1c4a50b7f6b3eaf2454abf522d',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.WORK_ITEM',
@@ -90,15 +90,6 @@ export default {
   ],
   appViewRefs: [
     {
-      realTitle: '工作项编辑视图',
-      realTitleLanguageRes: {
-        lanResTag: 'PAGE.TITLE.WORK_ITEM.EDITVIEW',
-      },
-      refAppViewId: 'plmweb.work_item_edit_view',
-      name: 'NEWDATA',
-      id: 'newdata',
-    },
-    {
       openMode: 'INDEXVIEWTAB_POPUPMODAL',
       navigateContexts: [
         {
@@ -113,6 +104,15 @@ export default {
       refAppViewId: 'plmweb.work_item_main_view',
       name: 'EDITDATA',
       id: 'editdata',
+    },
+    {
+      realTitle: '工作项编辑视图',
+      realTitleLanguageRes: {
+        lanResTag: 'PAGE.TITLE.WORK_ITEM.EDITVIEW',
+      },
+      refAppViewId: 'plmweb.work_item_edit_view',
+      name: 'NEWDATA',
+      id: 'newdata',
     },
   ],
   controls: [
@@ -319,7 +319,7 @@ export default {
       controlParam: {
         id: 'toolbar',
       },
-      modelId: '661B8348-1FBE-4226-8154-1E363F1D1D6C',
+      modelId: 'eaf436ac7ccc105476fdfb83828bcabc',
       modelType: 'PSDETOOLBAR',
       name: 'toolbar',
       id: 'all_scrum_grid_view_toolbar',
@@ -487,7 +487,7 @@ export default {
                   cssClass: 'fa fa-send-o',
                   glyph: 'xf1d9@FontAwesome',
                 },
-                id: 'u0f2b72c',
+                id: 'ud7b3a0b',
               },
               {
                 actionLevel: 100,
@@ -2137,6 +2137,64 @@ export default {
           appDEFieldId: 'end_at',
           id: 'end_at_lt',
         },
+        {
+          dataType: 21,
+          labelPos: 'NONE',
+          defsearchMode: {
+            codeName: 'N_EXECUTORS_EXISTS__N_USER_ID_EQ',
+            stdDataType: 25,
+            valueOP: 'EXISTS',
+            name: 'N_EXECUTORS_EXISTS__N_USER_ID_EQ',
+            id: 'n_executors_exists__n_user_id_eq',
+          },
+          editor: {
+            singleSelect: true,
+            enableAC: true,
+            forceSelection: true,
+            showTrigger: true,
+            valueItemName: 'user_id',
+            editorParams: {
+              'SRFNAVPARAM.n_department_id_eq': '%srforgsectorid%',
+              AC: 'TRUE',
+              'SRFNAVPARAM.n_status_eq': '1',
+              TRIGGER: 'TRUE',
+              URL: 'projects/${context.project}/project_members/fetch_default',
+              PICKUPVIEW: 'FALSE',
+              USERMETHOD: 'post',
+              USERMAP: '{"id":"user_id","name":"name"}',
+              DEPTMAP: '{"id":"id","name":"display_name"}',
+              DEPTMETHOD: 'get',
+              DEPTURL: '/users/fetch_default',
+            },
+            editorStyle: 'PERSONEL_SELECT_PROJECT',
+            editorType: 'PICKEREX_TRIGGER',
+            sysPFPluginId: 'person_select',
+            valueType: 'SIMPLE',
+            editable: true,
+            navigateParams: [
+              {
+                key: 'n_department_id_eq',
+                value: 'srforgsectorid',
+                id: 'n_department_id_eq',
+              },
+              {
+                key: 'n_status_eq',
+                value: '1',
+                rawValue: true,
+                id: 'n_status_eq',
+              },
+            ],
+            id: 'executors_user_id',
+          },
+          allowEmpty: true,
+          caption: '执行人',
+          itemType: 'FILTER',
+          appDEFieldId: 'executors',
+          userParam: {
+            ITEMTYPE: 'SIMPLE',
+          },
+          id: 'executors_user_id',
+        },
       ],
       searchBarGroups: [
         {
@@ -2230,7 +2288,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '7386d5b91e61cd16260d39e744538ef3',
+  modelId: 'baeae2f9b8a1b9601c72ed3ae774dc5f',
   modelType: 'PSAPPDEVIEW',
   name: 'work_itemall_scrum_grid_view',
   id: 'plmweb.work_item_all_scrum_grid_view',

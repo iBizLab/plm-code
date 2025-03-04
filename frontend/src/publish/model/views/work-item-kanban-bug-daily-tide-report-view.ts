@@ -4,7 +4,7 @@ export default {
   expandSearchForm: true,
   loadDefault: true,
   deviewCodeName: 'kanban_bug_daily_tide_report_view',
-  deviewId: '2eaef968d63ffb3f0ff71a27ac5e89a2',
+  deviewId: '3b84ed19398c11b8223d14af6fc88bf9',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.WORK_ITEM',
@@ -871,7 +871,7 @@ export default {
   viewType: 'DECHARTVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '29519bdf5c5199405fd06cd36fe4acb5',
+  modelId: '56dbd9e9a4d8ac8bc7fe75acaf285e91',
   modelType: 'PSAPPDEVIEW',
   name: 'work_itemkanban_bug_daily_tide_report_view',
   id: 'plmweb.work_item_kanban_bug_daily_tide_report_view',

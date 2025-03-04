@@ -64,6 +64,15 @@ public class DupCheckAspect {
         check(point, "fetchDefault");
     }
     /**
+     * 实体[DiscussPost]
+     *
+     * @param point
+     */
+    @AfterReturning(value = "execution(* cn.ibizlab.plm.core.*.service.DiscussPostService.create*(..))||execution(* cn.ibizlab.plm.core.*.service.DiscussPostService.update*(..))")
+    public void checkDiscussPost(JoinPoint point) {
+        check(point, "fetchDefault");
+    }
+    /**
      * 实体[DiscussTopic]
      *
      * @param point

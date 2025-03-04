@@ -31,11 +31,19 @@ import io.swagger.annotations.ApiModelProperty;
 public class DiscussReplyFilterDTO extends FilterBase implements Serializable {
 
     /**
+     * 话题标识EQ
+     */
+    @JsonProperty("n_topic_id_eq")
+    @JSONField(name = "n_topic_id_eq")
+    @ApiModelProperty(value = "话题标识EQ", position = 40)
+	private String topicIdEQ;
+
+    /**
      * 标识EQ
      */
     @JsonProperty("n_id_eq")
     @JSONField(name = "n_id_eq")
-    @ApiModelProperty(value = "标识EQ", position = 50)
+    @ApiModelProperty(value = "标识EQ", position = 60)
 	private String idEQ;
 
     /**
@@ -43,7 +51,7 @@ public class DiscussReplyFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_name_like")
     @JSONField(name = "n_name_like")
-    @ApiModelProperty(value = "名称LIKE", position = 60)
+    @ApiModelProperty(value = "名称LIKE", position = 70)
 	private String nameLIKE;
 
     /**
@@ -51,7 +59,7 @@ public class DiscussReplyFilterDTO extends FilterBase implements Serializable {
      */
     @JsonProperty("n_post_id_eq")
     @JSONField(name = "n_post_id_eq")
-    @ApiModelProperty(value = "讨论标识EQ", position = 110)
+    @ApiModelProperty(value = "讨论标识EQ", position = 120)
 	private String postIdEQ;
 
 

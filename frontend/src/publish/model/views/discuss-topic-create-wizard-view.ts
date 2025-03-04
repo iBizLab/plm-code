@@ -1,7 +1,7 @@
 export default {
   openMode: 'POPUPMODAL',
   deviewCodeName: 'create_wizard_view',
-  deviewId: '362BFB98-95C5-44D9-BD2C-BE2032AC9031',
+  deviewId: '9e1904138969a076470f3f473d3a659a',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'PAGE.CAPTION.DISCUSS_TOPIC.CREATE_WIZARD_VIEW',
@@ -447,7 +447,7 @@ export default {
           controlParam: {
             id: 'wizardpanel_form_fill_info',
           },
-          modelId: '072CA485-290A-4AA7-A3D9-C1B74BA291B3',
+          modelId: 'beb165c708b5e0fcd5ea452261da35c4',
           modelType: 'PSDEFORM_EDITFORM',
           name: 'wizardpanel_form_fill_info',
           id: 'plmweb.discuss_topic.wizard_create',
@@ -813,7 +813,7 @@ export default {
           controlParam: {
             id: 'wizardpanel_form_bind_member',
           },
-          modelId: '6CDF9E00-7403-4A87-A171-B4162E3A5EC3',
+          modelId: '24720afd7e70fecb92ec0a1f42ebaa4d',
           modelType: 'PSDEFORM_EDITFORM',
           name: 'wizardpanel_form_bind_member',
           id: 'plmweb.discuss_topic.wizard_member_bind',
@@ -872,7 +872,7 @@ export default {
       controlParam: {
         id: 'wizardpanel',
       },
-      modelId: '58F7EE8D-1337-41D2-A4BC-F54C7AF05F9D',
+      modelId: 'ee76803fe2d885c08fc5b08e100e4342',
       modelType: 'PSDEWIZARDPANEL',
       name: 'wizardpanel',
       id: 'plmweb.discuss_topic.discuss_topic_wizard',
@@ -910,7 +910,7 @@ export default {
   width: 1024,
   enableDP: true,
   showCaptionBar: true,
-  modelId: '16de83014d28bec9030fa2efa4da8b5c',
+  modelId: '511bccf7b4eb59fe9362c8f30b7f5e94',
   modelType: 'PSAPPDEVIEW',
   name: 'discuss_topiccreate_wizard_view',
   id: 'plmweb.discuss_topic_create_wizard_view',

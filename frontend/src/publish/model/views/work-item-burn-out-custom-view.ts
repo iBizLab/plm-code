@@ -1,6 +1,6 @@
 export default {
   deviewCodeName: 'burn_out_custom_view',
-  deviewId: '774C1AEE-0F98-4678-AFE9-4F513F872692',
+  deviewId: 'b4ece0a3f2784ab3d0697390483c9363',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.WORK_ITEM',
@@ -222,7 +222,7 @@ export default {
         controlParam: {
           id: 'chart',
         },
-        modelId: '164EA40A-40AA-486A-8B59-CCB3FEF42025',
+        modelId: '75f43d87f61b49509797d7e0504c6464',
         modelType: 'PSDECHART',
         userParam: {
           'EC.color':
@@ -249,7 +249,7 @@ export default {
     logicName: '燃尽图自定义视图布局面板',
     appDataEntityId: 'plmweb.work_item',
     controlParam: {},
-    modelId: '00968C11-52CB-4330-A47D-8DA653EFFDCA',
+    modelId: '6335a5451f3974e356d2b532e4dd5805',
     modelType: 'PSSYSVIEWLAYOUTPANEL',
     name: 'layoutpanel',
     id: 'usr0614031297',
@@ -259,7 +259,7 @@ export default {
   viewType: 'DECUSTOMVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '7665fdff78d4150c6520332b4bf38291',
+  modelId: '94a1b17fb0d2a978c9364b56eda053c2',
   modelType: 'PSAPPDEVIEW',
   name: 'work_itemburn_out_custom_view',
   id: 'plmweb.work_item_burn_out_custom_view',

@@ -5,7 +5,7 @@ export default {
   loadDefault: true,
   openMode: 'POPUPMODAL',
   deviewCodeName: 'choose_position_option_view',
-  deviewId: '4756B19A-6580-4C7B-8FD6-C0E81968F233',
+  deviewId: '52e88e867021cb49dd981ccc12d44d3d',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.DISCUSS_MEMBER',
@@ -139,7 +139,7 @@ export default {
       controlParam: {
         id: 'form',
       },
-      modelId: 'AA605726-DFA6-4AC6-AF3D-527585B76D6A',
+      modelId: 'a879402a9de6de27e8448a04e3b47ffb',
       modelType: 'PSDEFORM_EDITFORM',
       name: 'form',
       id: 'plmweb.discuss_member.usr12129643_form',
@@ -184,7 +184,7 @@ export default {
   width: 400,
   enableDP: true,
   showCaptionBar: true,
-  modelId: 'c242d751c67fdc4b809996e145d672f2',
+  modelId: 'b9ad6bc0026942c72a9259ac190c71fd',
   modelType: 'PSAPPDEVIEW',
   name: 'discuss_memberchoose_position_option_view',
   id: 'plmweb.discuss_member_choose_position_option_view',

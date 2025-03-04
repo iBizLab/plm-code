@@ -1,6 +1,6 @@
 export default {
   deviewCodeName: 'base_info_custom_view',
-  deviewId: '34ACB6D7-B1AE-4D59-A47B-3DC8EC008648',
+  deviewId: 'e6e8000c5116773a988cf209818498c7',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.SPRINT',
@@ -421,7 +421,7 @@ export default {
         sysCss: {
           cssName: 'base-info-form',
         },
-        modelId: 'F558829C-575F-42D6-8543-F792FB803F92',
+        modelId: '9b4e5ac5df3cf9d0abfc6a678d52e9cc',
         modelType: 'PSDEFORM_EDITFORM',
         name: 'form',
         id: 'plmweb.sprint.overview_baseinfo_form',
@@ -444,7 +444,7 @@ export default {
     logicName: '迭代概览基本信息自定义视图布局面板',
     appDataEntityId: 'plmweb.sprint',
     controlParam: {},
-    modelId: 'A62019FF-3F6C-454D-B0DC-C08ECB0E36C5',
+    modelId: '78e3395bba7a5f981e43819c11bc7801',
     modelType: 'PSSYSVIEWLAYOUTPANEL',
     name: 'layoutpanel',
     id: 'usr0528298628',
@@ -454,7 +454,7 @@ export default {
   viewType: 'DECUSTOMVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '6b820b9d30e488b6068420ba0bb12afe',
+  modelId: 'b1e9ec6889e8625e8b249603ea0289ef',
   modelType: 'PSAPPDEVIEW',
   name: 'sprintbase_info_custom_view',
   id: 'plmweb.sprint_base_info_custom_view',

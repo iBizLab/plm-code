@@ -2,7 +2,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'all_grid_view',
-  deviewId: 'D1E0B618-30D5-491F-8B15-82018E213853',
+  deviewId: 'cab6efe517be6efbaff6382f411a21d6',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.PSSYSBICUBEDIMENSION',
@@ -119,7 +119,7 @@ export default {
       controlParam: {
         id: 'toolbar',
       },
-      modelId: '7282BF8D-D08F-4D5E-9BA7-9BFF384B1780',
+      modelId: '988a8985dd3bd5c713e72906027ba5cc',
       modelType: 'PSDETOOLBAR',
       name: 'toolbar',
       id: 'all_grid_view_toolbar',
@@ -196,7 +196,7 @@ export default {
                   cssClass: 'fa fa-edit',
                   glyph: 'xf044@FontAwesome',
                 },
-                id: 'uf39f28e',
+                id: 'ub4e923b',
               },
               {
                 actionLevel: 200,
@@ -209,7 +209,7 @@ export default {
                   cssClass: 'fa fa-trash-o',
                   glyph: 'xf014@FontAwesome',
                 },
-                id: 'u43890cc',
+                id: 'ubb79d39',
               },
             ],
             appDataEntityId: 'plmweb.pssysbicubedimension',
@@ -305,7 +305,7 @@ export default {
       controlParam: {
         id: 'grid',
       },
-      modelId: '62F5BE55-E952-4721-84C5-D691426C6611',
+      modelId: 'aa6b42b4f996c3c9050c265725d25605',
       modelType: 'PSDEGRID',
       name: 'grid',
       id: 'plmweb.pssysbicubedimension.all_grid_view_grid',
@@ -340,7 +340,7 @@ export default {
       controlParam: {
         id: 'searchform',
       },
-      modelId: 'D948AAD1-24FC-443D-AA64-D27E3AE1301E',
+      modelId: 'a28c02bbdac987efdbe02bdacd900d51',
       modelType: 'PSDEFORM_SEARCHFORM',
       name: 'searchform',
       id: 'plmweb.pssysbicubedimension.all_grid_view_search_form',
@@ -385,7 +385,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: 'fd439989ffc3a7ce70118c7df9b0448f',
+  modelId: 'a7ab097ac8420d5da9f73c57fdf39c63',
   modelType: 'PSAPPDEVIEW',
   name: 'PSSysBICubeDimensionall_grid_view',
   id: 'plmweb.ps_sys_bi_cube_dimension_all_grid_view',

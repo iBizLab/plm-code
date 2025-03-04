@@ -180,6 +180,17 @@ public abstract class AbstractDynaDashboardService extends ServiceImpl<DynaDashb
         return list;
    }
 	
+   public Page<DynaDashboard> fetchMyDashboard(DynaDashboardSearchContext context) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<DynaDashboard> pages=baseMapper.searchMyDashboard(context.getPages(),context,context.getSelectCond());
+        List<DynaDashboard> list = pages.getRecords();
+        return new PageImpl<>(list, context.getPageable(), pages.getTotal());
+    }
+
+   public List<DynaDashboard> listMyDashboard(DynaDashboardSearchContext context) {
+        List<DynaDashboard> list = baseMapper.listMyDashboard(context,context.getSelectCond());
+        return list;
+   }
+	
    public Page<DynaDashboard> fetchNormal(DynaDashboardSearchContext context) {
         if(context.getPageSort() == null || context.getPageSort() == Sort.unsorted())
             context.setSort("SEQUENCES,ASC");

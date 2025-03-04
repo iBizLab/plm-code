@@ -4,7 +4,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'library_all_grid_view',
-  deviewId: 'E41EA045-B948-415B-9018-DD78CC0762F9',
+  deviewId: 'dd5e9cbef0f7641923893a7bd01be541',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.GUIDELINE',
@@ -68,6 +68,13 @@ export default {
   appViewMsgGroupId: 'usrvmgroup0514237398',
   appViewRefs: [
     {
+      realOpenMode: 'POPUPMODAL',
+      realTitle: '流程配置选项操作视图',
+      refAppViewId: 'plmweb.guideline_config_option_view',
+      name: 'EDITDATA',
+      id: 'editdata',
+    },
+    {
       realTitle: '流程准则编辑视图',
       realTitleLanguageRes: {
         lanResTag: 'PAGE.TITLE.GUIDELINE.EDITVIEW',
@@ -75,13 +82,6 @@ export default {
       refAppViewId: 'plmweb.guideline_edit_view',
       name: 'NEWDATA',
       id: 'newdata',
-    },
-    {
-      realOpenMode: 'POPUPMODAL',
-      realTitle: '流程配置选项操作视图',
-      refAppViewId: 'plmweb.guideline_config_option_view',
-      name: 'EDITDATA',
-      id: 'editdata',
     },
   ],
   controls: [
@@ -94,7 +94,7 @@ export default {
       controlParam: {
         id: 'toolbar',
       },
-      modelId: 'B1C67FE6-5DB8-42DD-8325-43D3B08310A6',
+      modelId: '6e643bfcea36c98c409f26a98376c200',
       modelType: 'PSDETOOLBAR',
       name: 'toolbar',
       id: 'library_all_grid_view_toolbar',
@@ -202,7 +202,7 @@ export default {
                   cssClass: 'fa fa-sun-o',
                   glyph: 'xf185@FontAwesome',
                 },
-                id: 'u33840fe',
+                id: 'uad3db1c',
               },
             ],
             appDataEntityId: 'plmweb.guideline',
@@ -342,7 +342,7 @@ export default {
       controlParam: {
         id: 'grid',
       },
-      modelId: 'FD44AF7E-FD46-4D82-9C16-3C71EF357A38',
+      modelId: '9737e76b0aac5833fb58cb837eee65c2',
       modelType: 'PSDEGRID',
       name: 'grid',
       id: 'plmweb.guideline.all_grid_view_grid',
@@ -377,7 +377,7 @@ export default {
       controlParam: {
         id: 'searchform',
       },
-      modelId: 'E4841424-2925-4A95-8050-C9A0AD82F3D5',
+      modelId: '1355af4a5d2a259606899431bc59383a',
       modelType: 'PSDEFORM_SEARCHFORM',
       name: 'searchform',
       id: 'plmweb.guideline.usr05137803_search_form',
@@ -422,7 +422,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '990037ea48adc58d3cb36d662de2c6d0',
+  modelId: '6bbea2e714e45e986b7be1eadbfdd434',
   modelType: 'PSAPPDEVIEW',
   name: 'guidelinelibrary_all_grid_view',
   id: 'plmweb.guideline_library_all_grid_view',

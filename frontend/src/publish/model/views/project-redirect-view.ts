@@ -25,6 +25,18 @@ export default {
   appDataEntityId: 'plmweb.project',
   appViewRefs: [
     {
+      realTitle: '主数据视图scrum',
+      refAppViewId: 'plmweb.project_scrum_index_view',
+      name: 'SCRUM',
+      id: 'scrum',
+    },
+    {
+      realTitle: '主数据视图hybrid',
+      refAppViewId: 'plmweb.project_hybrid_index_view',
+      name: 'HYBRID',
+      id: 'hybrid',
+    },
+    {
       realTitle: '主数据视图kanban',
       refAppViewId: 'plmweb.project_kanban_index_view',
       name: 'KANBAN',
@@ -35,18 +47,6 @@ export default {
       refAppViewId: 'plmweb.project_waterfall_index_view',
       name: 'WATERFALL',
       id: 'waterfall',
-    },
-    {
-      realTitle: '主数据视图hybrid',
-      refAppViewId: 'plmweb.project_hybrid_index_view',
-      name: 'HYBRID',
-      id: 'hybrid',
-    },
-    {
-      realTitle: '主数据视图scrum',
-      refAppViewId: 'plmweb.project_scrum_index_view',
-      name: 'SCRUM',
-      id: 'scrum',
     },
   ],
   controls: [

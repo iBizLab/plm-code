@@ -99,7 +99,6 @@ export default {
                   noPrivDisplayMode: 1,
                   appDEFieldId: 'work_item_title',
                   editor: {
-                    enablePickupView: true,
                     singleSelect: true,
                     handlerType: 'PickupText',
                     appDEACModeId: 'default',
@@ -111,9 +110,10 @@ export default {
                     valueItemName: 'owner_id',
                     editorParams: {
                       AC: 'TRUE',
-                      PICKUPVIEW: 'TRUE',
+                      TRIGGER: 'TRUE',
+                      PICKUPVIEW: 'FALSE',
                     },
-                    editorType: 'PICKER',
+                    editorType: 'PICKEREX_TRIGGER',
                     editorItems: [
                       {
                         id: 'owner_id',

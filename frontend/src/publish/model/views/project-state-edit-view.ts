@@ -6,7 +6,7 @@ export default {
   funcViewMode: 'EDITVIEW',
   openMode: 'POPUPMODAL',
   deviewCodeName: 'edit_view',
-  deviewId: '8e288d0b2181bd295131b8d141c0c9bb',
+  deviewId: '26059b052d71ea6b621c75c9a9819756',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.PROJECT_STATE',
@@ -237,7 +237,7 @@ export default {
       controlParam: {
         id: 'form',
       },
-      modelId: 'acacda37897a34522e547e69b1dbe762',
+      modelId: '3150fc058f1db1cfdfd01d81045d7791',
       modelType: 'PSDEFORM_EDITFORM',
       name: 'form',
       id: 'plmweb.project_state.main',
@@ -285,7 +285,7 @@ export default {
   width: 800,
   enableDP: true,
   showCaptionBar: true,
-  modelId: 'ac891334028e844106d079aae3e046bc',
+  modelId: 'd2afe0e514f8e089125d1ead0e845ef1',
   modelType: 'PSAPPDEVIEW',
   name: 'project_stateedit_view',
   id: 'plmweb.project_state_edit_view',

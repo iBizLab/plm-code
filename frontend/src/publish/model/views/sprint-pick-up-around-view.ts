@@ -1,7 +1,7 @@
 export default {
   openMode: 'POPUPMODAL',
   deviewCodeName: 'pick_up_around_view',
-  deviewId: '4fbf1376d3e76930c2c99d57fb7b6263',
+  deviewId: '3db95d24407962213833d00954205450',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.SPRINT',
@@ -254,7 +254,7 @@ export default {
       controlParam: {
         id: 'treeexpbar',
       },
-      modelId: '02f8b5fc0ac977528533aa835db10f54_treeexpbar',
+      modelId: 'b359380f3411204eb1e5846517696c8f_treeexpbar',
       modelType: 'PSEXPBAR',
       name: 'treeexpbar',
       id: 'pick_up_around_view_treeexpbar',
@@ -567,7 +567,7 @@ export default {
   viewType: 'DEPICKUPVIEW2',
   enableDP: true,
   showCaptionBar: false,
-  modelId: '02f8b5fc0ac977528533aa835db10f54',
+  modelId: 'b359380f3411204eb1e5846517696c8f',
   modelType: 'PSAPPDEVIEW',
   name: 'sprintpick_up_around_view',
   id: 'plmweb.sprint_pick_up_around_view',

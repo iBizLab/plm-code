@@ -18,6 +18,8 @@ import java.io.Serializable;
 import lombok.*;
 import lombok.experimental.Accessors;
 import io.swagger.annotations.*;
+import cn.ibizlab.plm.core.base.domain.Role;
+import cn.ibizlab.plm.core.base.domain.User;
 
 /**
  * 系统角色成员实体类[RoleMember]
@@ -61,12 +63,12 @@ public class RoleMember extends EntityBase implements Serializable
     private String id;
 
     /**
-     * 名称
+     * 姓名
      */
     @DEField(name = "name")
     @JSONField(name = "name")
     @JsonProperty("name")
-    @ApiModelProperty(value = "name", notes = "名称")
+    @ApiModelProperty(value = "name", notes = "姓名")
     private String name;
 
     /**
@@ -108,6 +110,24 @@ public class RoleMember extends EntityBase implements Serializable
     private Date updateTime;
 
     /**
+     * 名称
+     */
+    @DEField()
+    @JsonIgnore
+    @JSONField(serialize = false)
+    @ApiModelProperty(value = "role", notes = "名称")
+    private Role role;
+
+    /**
+     * 名称
+     */
+    @DEField()
+    @JsonIgnore
+    @JSONField(serialize = false)
+    @ApiModelProperty(value = "user", notes = "名称")
+    private User user;
+
+    /**
     * 设置 [用户组/人员标识]
     */
     public RoleMember setMemberUid(String memberUid) {
@@ -126,7 +146,7 @@ public class RoleMember extends EntityBase implements Serializable
     }
 
     /**
-    * 设置 [名称]
+    * 设置 [姓名]
     */
     public RoleMember setName(String name) {
         this.name = name;

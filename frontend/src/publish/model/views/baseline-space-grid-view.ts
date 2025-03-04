@@ -3,7 +3,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'space_grid_view',
-  deviewId: 'CBE025A6-82F7-45EC-B7CE-5B9B9E5386A4',
+  deviewId: '266d0a4d28cd49ab02dc4123d37d88a6',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.BASELINE',
@@ -82,13 +82,6 @@ export default {
   ],
   appViewRefs: [
     {
-      realOpenMode: 'POPUPMODAL',
-      realTitle: '空间基线快速建立视图',
-      refAppViewId: 'plmweb.baseline_space_create_view',
-      name: 'NEWDATA',
-      id: 'newdata',
-    },
-    {
       navigateContexts: [
         {
           key: 'BASELINE_STATUS',
@@ -101,6 +94,13 @@ export default {
       refAppViewId: 'plmweb.baseline_space_main_view',
       name: 'EDITDATA',
       id: 'editdata',
+    },
+    {
+      realOpenMode: 'POPUPMODAL',
+      realTitle: '空间基线快速建立视图',
+      refAppViewId: 'plmweb.baseline_space_create_view',
+      name: 'NEWDATA',
+      id: 'newdata',
     },
   ],
   controls: [
@@ -188,7 +188,7 @@ export default {
       controlParam: {
         id: 'toolbar',
       },
-      modelId: 'F4C7FDFF-9067-4458-8533-CF79BB9ED78D',
+      modelId: '9da2c91cf886e834d5c0fb4bf956ca1f',
       modelType: 'PSDETOOLBAR',
       name: 'toolbar',
       id: 'space_grid_view_toolbar',
@@ -219,7 +219,7 @@ export default {
                   cssClass: 'fa fa-dot-circle-o',
                   glyph: 'xf192@FontAwesome',
                 },
-                id: 'uc5d5fe3',
+                id: 'u65e1b62',
               },
               {
                 actionLevel: 100,
@@ -234,7 +234,7 @@ export default {
                   cssClass: 'fa fa-edit',
                   glyph: 'xf044@FontAwesome',
                 },
-                id: 'u2e3d8c0',
+                id: 'ub201b8f',
               },
               {
                 actionLevel: 100,
@@ -249,7 +249,7 @@ export default {
                   cssClass: 'fa fa-trash-o',
                   glyph: 'xf014@FontAwesome',
                 },
-                id: 'u80a6b80',
+                id: 'u1e5141f',
               },
             ],
             appDataEntityId: 'plmweb.baseline',
@@ -521,7 +521,7 @@ export default {
       controlParam: {
         id: 'grid',
       },
-      modelId: 'db225c57bf09ee64f9e44697669b54c2',
+      modelId: '7f3c8ce2e44bc49f20a1be0c098357bc',
       modelType: 'PSDEGRID',
       name: 'grid',
       id: 'plmweb.baseline.space_baseline_grid',
@@ -604,7 +604,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '5f4c3a6d5568b6e4fbd3be5efce601a7',
+  modelId: '63b67804871dab53ecec062243b249f2',
   modelType: 'PSAPPDEVIEW',
   name: 'baselinespace_grid_view',
   id: 'plmweb.baseline_space_grid_view',

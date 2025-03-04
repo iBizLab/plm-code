@@ -1,6 +1,6 @@
 export default {
   deviewCodeName: 'active_members',
-  deviewId: '99A5FAE5-FAC5-41A2-A5FA-3FEDF5C8DB45',
+  deviewId: 'c75aaa190b36800698998c41aaaec7ce',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.LOGIN_LOG',
@@ -631,8 +631,8 @@ export default {
           {
             chartGrid: {
               chartGridXAxis0Id: '0',
-              chartGridYAxis0Id: '1',
-              chartGridYAxis1Id: '0',
+              chartGridYAxis0Id: '0',
+              chartGridYAxis1Id: '1',
               chartCoordinateSystemId: '0',
               type: 'grid',
               name: '[line_1]直角坐标系[0]',
@@ -661,7 +661,7 @@ export default {
             chartDataSetId: '0',
             chartSeriesEncode: {
               chartXAxisId: '0',
-              chartYAxisId: '0',
+              chartYAxisId: '1',
               x: ['AUTHTIME'],
               y: ['ACTIVE_RATE'],
               type: 'XY',
@@ -686,7 +686,7 @@ export default {
             chartDataSetId: '1',
             chartSeriesEncode: {
               chartXAxisId: '0',
-              chartYAxisId: '1',
+              chartYAxisId: '0',
               x: ['AUTHTIME'],
               y: ['ACTIVE_MEMBERS'],
               type: 'XY',
@@ -757,8 +757,8 @@ export default {
         chartGrids: [
           {
             chartGridXAxis0Id: '0',
-            chartGridYAxis0Id: '1',
-            chartGridYAxis1Id: '0',
+            chartGridYAxis0Id: '0',
+            chartGridYAxis1Id: '1',
             chartCoordinateSystemId: '0',
             type: 'grid',
             name: '[line_1]直角坐标系[0]',
@@ -782,8 +782,20 @@ export default {
           {
             echartsPos: 'yAxis',
             echartsType: 'value',
+            position: 'left',
+            type: 'numeric',
+            userParam: {
+              'EC.alignTicks': 'true',
+            },
+            name: 'axis_yAxis_0',
+            id: '0',
+          },
+          {
+            echartsPos: 'yAxis',
+            echartsType: 'value',
             position: 'right',
             type: 'numeric',
+            index: 1,
             userParam: {
               'EC.axisTick': '{"show":0,"length":2}',
               'EC.axisLine': '{"show":0}',
@@ -791,18 +803,6 @@ export default {
               'EC.axisLabel': '{"rotate":0,"formatter":"{value}%"}',
             },
             name: 'axis_yAxis_2',
-            id: '0',
-          },
-          {
-            echartsPos: 'yAxis',
-            echartsType: 'value',
-            position: 'left',
-            type: 'numeric',
-            index: 1,
-            userParam: {
-              'EC.alignTicks': 'true',
-            },
-            name: 'axis_yAxis_0',
             id: '1',
           },
         ],
@@ -823,11 +823,9 @@ export default {
         controlParam: {
           id: 'chart',
         },
-        modelId: '4529CDEA-184A-46D5-9862-913ACDFAF2CD',
+        modelId: 'c75aaa190b36800698998c41aaaec7ce',
         modelType: 'PSDECHART',
         userParam: {
-          'EC.tooltip':
-            "{\"trigger\":\"axis\",\"formatter\": \"function (params, ticket, callback) {const newDiv = document.createElement('div');Object.assign(newDiv, { style: 'margin: 0px 0 0;line-height:1;' });const items = Array.isArray(params) ? params : [params];const axisVal = items[0].axisValue;const nodes = items.map((item, index) => {const margin = index === 0 ? '0px 0 0' : '10px 0 0';const { seriesName, marker, data } = item;const yData = data[1];const yValue = data[2] || {};const showValue =  yValue._seriesModelId === 'line_1' ? `${yData}%` : yData;return `<div style='margin: 0px 0 0;line-height:1;'><div style='margin:${margin};line-height:1;'>${marker}<span style='font-size:14px;color:#666;font-weight:400;margin-left:2px'>${seriesName}</span><span style='float:right;margin-left:20px;font-size:14px;color:#666;font-weight:900'>${showValue}</span><div style='clear:both'></div></div><div style='clear:both'></div></div>`;});const newDivContent = `<div style='margin: 0px 0 0;line-height:1;'><div style='font-size:14px;color:#666;font-weight:400;line-height:1;'>${axisVal}</div><div style='margin: 10px 0 0;line-height:1;'>${nodes.join('')}<div style='clear:both'></div></div><div style='clear:both'></div></div><div style='clear:both'></div>`;newDiv.innerHTML = newDivContent;return newDiv;}\"}",
           'EC.grid': '{"left":"64px","right":"64px"}',
           'EC.color':
             '["#5470c6","#91cc75","#fac858","#ee6666","#73c0de","#3ba272","#fc8452","#9a60b4","#ea7ccc","#5470c6","#91cc75"]',
@@ -853,7 +851,7 @@ export default {
     logicName: '实体自定义视图（活跃成员）布局面板',
     appDataEntityId: 'plmweb.login_log',
     controlParam: {},
-    modelId: '9C79D9D5-C950-4A06-A533-4B51A0B22FA4',
+    modelId: '45b8a0fdfff659003d1e7f08a70a0a96',
     modelType: 'PSSYSVIEWLAYOUTPANEL',
     name: 'layoutpanel',
     id: 'usr0422936268',
@@ -863,7 +861,7 @@ export default {
   viewType: 'DECUSTOMVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '9fefc58e6cbe09a1e2862b25c9fba9e3',
+  modelId: '3823b00a90d8e8fe2a9f6cc16f261608',
   modelType: 'PSAPPDEVIEW',
   name: 'login_logactive_members',
   id: 'plmweb.login_log_active_members',

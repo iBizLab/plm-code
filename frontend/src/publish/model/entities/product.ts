@@ -2890,6 +2890,14 @@ export default {
           id: 'deaction1',
         },
         {
+          codeName: 'END1',
+          leftPos: 988,
+          logicNodeType: 'END',
+          topPos: 200,
+          name: '结束',
+          id: 'end1',
+        },
+        {
           codeName: 'PREPAREJSPARAM1',
           leftPos: 290,
           logicNodeType: 'PREPAREJSPARAM',
@@ -2942,14 +2950,6 @@ export default {
           topPos: 208,
           name: '准备参数',
           id: 'preparejsparam1',
-        },
-        {
-          codeName: 'END1',
-          leftPos: 988,
-          logicNodeType: 'END',
-          topPos: 200,
-          name: '结束',
-          id: 'end1',
         },
       ],
       deuilogicParams: [
@@ -3065,6 +3065,14 @@ export default {
           id: 'begin',
         },
         {
+          codeName: 'END1',
+          leftPos: 650,
+          logicNodeType: 'END',
+          topPos: 200,
+          name: '结束',
+          id: 'end1',
+        },
+        {
           code: 'const total = uiLogic.ctrl.state.total;\r\nuiLogic.view.layoutPanel.state.data.total = total;',
           codeName: 'RAWJSCODE1',
           leftPos: 360,
@@ -3079,14 +3087,6 @@ export default {
           topPos: 208,
           name: '设置总条数',
           id: 'rawjscode1',
-        },
-        {
-          codeName: 'END1',
-          leftPos: 650,
-          logicNodeType: 'END',
-          topPos: 200,
-          name: '结束',
-          id: 'end1',
         },
       ],
       deuilogicParams: [
@@ -3137,14 +3137,6 @@ export default {
           id: 'begin',
         },
         {
-          codeName: 'END1',
-          leftPos: 680,
-          logicNodeType: 'END',
-          topPos: 200,
-          name: '结束',
-          id: 'end1',
-        },
-        {
           code: "ibiz.mc.command.update.send({ srfdecodename: 'product', srfkey: params.owner_id})",
           codeName: 'RAWJSCODE1',
           leftPos: 383,
@@ -3159,6 +3151,14 @@ export default {
           topPos: 208,
           name: '通知刷新',
           id: 'rawjscode1',
+        },
+        {
+          codeName: 'END1',
+          leftPos: 680,
+          logicNodeType: 'END',
+          topPos: 200,
+          name: '结束',
+          id: 'end1',
         },
       ],
       deuilogicParams: [
@@ -3194,24 +3194,6 @@ export default {
           parallelOutput: true,
           name: '开始',
           id: 'begin',
-        },
-        {
-          dstAppDEActionId: 'other_re_product',
-          dstAppDataEntityId: 'plmweb.product',
-          codeName: 'DEACTION1',
-          dstDEUILogicParamId: 'default',
-          leftPos: 599,
-          logicNodeType: 'DEACTION',
-          deuilogicLinks: [
-            {
-              dstDEUILogicNodeId: 'end1',
-              srcDEUILogicNodeId: 'deaction1',
-              id: '连接名称',
-            },
-          ],
-          topPos: 208,
-          name: '实体行为',
-          id: 'deaction1',
         },
         {
           codeName: 'PREPAREJSPARAM1',
@@ -3251,6 +3233,24 @@ export default {
           id: 'preparejsparam1',
         },
         {
+          dstAppDEActionId: 'other_re_product',
+          dstAppDataEntityId: 'plmweb.product',
+          codeName: 'DEACTION1',
+          dstDEUILogicParamId: 'default',
+          leftPos: 599,
+          logicNodeType: 'DEACTION',
+          deuilogicLinks: [
+            {
+              dstDEUILogicNodeId: 'end1',
+              srcDEUILogicNodeId: 'deaction1',
+              id: '连接名称',
+            },
+          ],
+          topPos: 208,
+          name: '实体行为',
+          id: 'deaction1',
+        },
+        {
           codeName: 'END1',
           leftPos: 919,
           logicNodeType: 'END',
@@ -3261,17 +3261,17 @@ export default {
       ],
       deuilogicParams: [
         {
-          codeName: 'ctx',
-          navContextParam: true,
-          name: '上下文',
-          id: 'ctx',
-        },
-        {
           codeName: 'Default',
           default: true,
           entityParam: true,
           name: '传入变量',
           id: 'default',
+        },
+        {
+          codeName: 'ctx',
+          navContextParam: true,
+          name: '上下文',
+          id: 'ctx',
         },
       ],
       startDEUILogicNodeId: 'begin',
@@ -3332,16 +3332,16 @@ export default {
           id: 'list',
         },
         {
+          codeName: 'view',
+          activeViewParam: true,
+          id: 'view',
+        },
+        {
           codeName: 'Default',
           default: true,
           entityParam: true,
           name: '传入变量',
           id: 'default',
-        },
-        {
-          codeName: 'view',
-          activeViewParam: true,
-          id: 'view',
         },
       ],
       startDEUILogicNodeId: 'begin',

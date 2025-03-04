@@ -32,7 +32,7 @@ export default {
         id: 'loaddraftfrom',
       },
       getDraftControlAction: {
-        appDEMethodId: 'nothing',
+        appDEMethodId: 'get_draft',
         appDataEntityId: 'plmweb.work_item',
         id: 'loaddraft',
       },
@@ -79,25 +79,6 @@ export default {
                     appDEACModeId: 'default',
                     appDEDataSetId: 'fetch_same_type',
                     appDataEntityId: 'plmweb.project',
-                    uiactionGroup: {
-                      uiactionGroupDetails: [
-                        {
-                          actionLevel: 100,
-                          afterItemType: 'NONE',
-                          beforeItemType: 'NONE',
-                          caption: '项目配置',
-                          detailType: 'DEUIACTION',
-                          uiactionId: 'open_global_setting@project',
-                          showCaption: true,
-                          showIcon: true,
-                          id: 'u3fee786',
-                        },
-                      ],
-                      appDataEntityId: 'plmweb.project',
-                      uniqueTag: 'project__Usr1221520658',
-                      name: '自填模式行为组',
-                      id: 'usr1221520658',
-                    },
                     enableAC: true,
                     forceSelection: true,
                     showTrigger: true,
@@ -113,6 +94,7 @@ export default {
                         id: 'target_project_id',
                       },
                     ],
+                    placeHolder: '请选择项目',
                     valueType: 'SIMPLE',
                     editable: true,
                     navigateParams: [

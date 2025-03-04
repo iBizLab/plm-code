@@ -174,6 +174,22 @@ public interface AuthLogAdminService extends IService<AuthLogAdmin> {
     List<AuthLogAdmin> listDefault(AuthLogAdminSearchContext context);
 
     /**
+    * fetchCurUser
+    * 
+    * @param context
+    * @return
+    */
+    Page<AuthLogAdmin> fetchCurUser(AuthLogAdminSearchContext context);
+
+    /**
+    * listCurUser
+    * 
+    * @param context
+    * @return
+    */
+    List<AuthLogAdmin> listCurUser(AuthLogAdminSearchContext context);
+
+    /**
     * fetchDistinctUserid
     * 
     * @param context

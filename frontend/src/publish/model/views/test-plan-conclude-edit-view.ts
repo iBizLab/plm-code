@@ -4,7 +4,7 @@ export default {
   xdataControlName: 'form',
   loadDefault: true,
   deviewCodeName: 'conclude_edit_view',
-  deviewId: 'A939EA58-CE48-40D4-957A-D3CC00AFAE40',
+  deviewId: '938677f241efe4b37fdc96b8dac1d117',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.TEST_PLAN',
@@ -166,7 +166,7 @@ export default {
       sysCss: {
         cssName: 'html-readonly-bg-white',
       },
-      modelId: 'C4F4EBFB-C29D-4ECB-9F88-659AFAF1F74D',
+      modelId: '847942d79d2ff72253c23cc8400d8d48',
       modelType: 'PSDEFORM_EDITFORM',
       name: 'form',
       id: 'plmweb.test_plan.report_conclude',
@@ -210,7 +210,7 @@ export default {
   viewType: 'DEEDITVIEW',
   enableDP: true,
   showCaptionBar: false,
-  modelId: '6fe42ea9c04a963d5abd05747916af62',
+  modelId: 'ee73e342db23a2a21a705874936dc9a8',
   modelType: 'PSAPPDEVIEW',
   name: 'test_planconclude_edit_view',
   id: 'plmweb.test_plan_conclude_edit_view',

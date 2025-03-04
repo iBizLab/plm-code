@@ -251,14 +251,6 @@ export default {
     ],
     appViewRefs: [
       {
-        openMode: 'INDEXVIEWTAB_POPUPMODAL',
-        realOpenMode: 'INDEXVIEWTAB_POPUPMODAL',
-        realTitle: '页面',
-        refAppViewId: 'plmweb.article_page_model_show_view',
-        name: 'EDITDATA',
-        id: 'editdata',
-      },
-      {
         realTitle: '页面编辑视图',
         realTitleLanguageRes: {
           lanResTag: 'PAGE.TITLE.PAGE.EDITVIEW',
@@ -266,6 +258,14 @@ export default {
         refAppViewId: 'plmweb.article_page_edit_view',
         name: 'NEWDATA',
         id: 'newdata',
+      },
+      {
+        openMode: 'INDEXVIEWTAB_POPUPMODAL',
+        realOpenMode: 'INDEXVIEWTAB_POPUPMODAL',
+        realTitle: '页面',
+        refAppViewId: 'plmweb.article_page_model_show_view',
+        name: 'EDITDATA',
+        id: 'editdata',
       },
     ],
     controls: [
@@ -550,7 +550,7 @@ export default {
         controlParam: {
           id: 'searchform',
         },
-        modelId: '0e1ac8b39dd90e1851c4111e37156ed6',
+        modelId: '28aaba706c593cc29e50601ea52df534',
         modelType: 'PSDEFORM_SEARCHFORM',
         name: 'searchform',
         id: 'plmweb.article_page.choose_search_form',

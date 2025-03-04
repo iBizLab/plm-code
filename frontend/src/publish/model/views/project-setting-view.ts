@@ -227,7 +227,7 @@ export default {
           caption: '工作项属性',
           dataAccessAction: 'UPDATE',
           enableMode: 'DEOPPRIV',
-          appViewId: 'plmweb.psde_field_data_extend_grid_view',
+          appViewId: 'plmweb.psde_field_work_item_extend_transmit_grid_view',
           navigateContexts: [
             {
               key: 'PSDATAENTITY',

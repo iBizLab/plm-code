@@ -2,7 +2,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'config_grid_view',
-  deviewId: '2f3e78d0e1a8446a870a42d2a858e79e',
+  deviewId: 'd9316602785091e4c926b2b71de48e5f',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.PRODUCT_MEMBER',
@@ -190,9 +190,10 @@ export default {
           id: 'role_id',
         },
         {
-          clconvertMode: 'NONE',
+          clconvertMode: 'FRONT',
           dataItemName: 'title',
           excelCaption: '职位',
+          appCodeListId: 'plmweb.base__position',
           appDEFieldId: 'title',
           valueType: 'SIMPLE',
           aggMode: 'NONE',
@@ -414,7 +415,7 @@ export default {
           controlParam: {
             id: 'grid_batchtoolbar',
           },
-          modelId: 'DF1CE5E4-8970-4B83-81A8-B84EE37560ED',
+          modelId: '32f7afc5a4c526990c392cbbc45f4a69',
           modelType: 'PSDETOOLBAR',
           name: 'grid_batchtoolbar',
           id: 'config_grid_view_grid_batchtoolbar',
@@ -472,7 +473,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: 'fc673378e1cfcbf265abb5be40ea9f2b',
+  modelId: '25b30af7d61ca864f56603d077b6c0cf',
   modelType: 'PSAPPDEVIEW',
   name: 'product_memberconfig_grid_view',
   id: 'plmweb.product_member_config_grid_view',

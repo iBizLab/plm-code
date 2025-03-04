@@ -68,11 +68,19 @@ public class DiscussReplyDTO extends DTOBase implements Serializable {
     private String commentCount;
 
     /**
+     * 话题标识
+     */
+    @JsonProperty("topic_id")
+    @JSONField(name = "topic_id")
+    @ApiModelProperty(value = "话题标识", position = 4)
+    private String topicId;
+
+    /**
      * 回复内容
      */
     @JsonProperty("content")
     @JSONField(name = "content")
-    @ApiModelProperty(value = "回复内容", position = 4)
+    @ApiModelProperty(value = "回复内容", position = 5)
     private String content;
 
     /**
@@ -80,7 +88,7 @@ public class DiscussReplyDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("create_man")
     @JSONField(name = "create_man")
-    @ApiModelProperty(value = "建立人", position = 5)
+    @ApiModelProperty(value = "建立人", position = 6)
     private String createMan;
 
     /**
@@ -89,7 +97,7 @@ public class DiscussReplyDTO extends DTOBase implements Serializable {
     @JsonProperty("create_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "create_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "建立时间", position = 6)
+    @ApiModelProperty(value = "建立时间", position = 7)
     private Date createTime;
 
     /**
@@ -97,7 +105,7 @@ public class DiscussReplyDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("id")
     @JSONField(name = "id")
-    @ApiModelProperty(value = "标识", position = 7)
+    @ApiModelProperty(value = "标识", position = 8)
     private String id;
 
     /**
@@ -105,7 +113,7 @@ public class DiscussReplyDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("name")
     @JSONField(name = "name")
-    @ApiModelProperty(value = "名称", position = 8)
+    @ApiModelProperty(value = "名称", position = 9)
     private String name;
 
     /**
@@ -113,7 +121,7 @@ public class DiscussReplyDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("post_id")
     @JSONField(name = "post_id")
-    @ApiModelProperty(value = "讨论标识", position = 9)
+    @ApiModelProperty(value = "讨论标识", position = 10)
     private String postId;
 
     /**
@@ -121,7 +129,7 @@ public class DiscussReplyDTO extends DTOBase implements Serializable {
      */
     @JsonProperty("update_man")
     @JSONField(name = "update_man")
-    @ApiModelProperty(value = "更新人", position = 10)
+    @ApiModelProperty(value = "更新人", position = 11)
     private String updateMan;
 
     /**
@@ -130,7 +138,7 @@ public class DiscussReplyDTO extends DTOBase implements Serializable {
     @JsonProperty("update_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @JSONField(name = "update_time" , format = "yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "更新时间", position = 11)
+    @ApiModelProperty(value = "更新时间", position = 12)
     private Date updateTime;
 
 
@@ -167,6 +175,15 @@ public class DiscussReplyDTO extends DTOBase implements Serializable {
     public DiscussReplyDTO setCommentCount(String commentCount) {
         this.commentCount = commentCount;
         this.modify("comment_count", commentCount);
+        return this;
+    }
+
+    /**
+     * 设置 [话题标识]
+     */
+    public DiscussReplyDTO setTopicId(String topicId) {
+        this.topicId = topicId;
+        this.modify("topic_id", topicId);
         return this;
     }
 

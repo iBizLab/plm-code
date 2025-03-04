@@ -135,6 +135,7 @@ public abstract class AbstractRelationResource {
     * @return Mono<ResponseEntity<RelationDTO>>
     */
     @ApiOperation(value = "add_dependency", tags = {"关联" },  notes = "Relation-add_dependency ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Relation-add_dependency-all') or hasPermission(this.relationDtoMapping.toDomain(#dto),'ibizplm-Relation-add_dependency')")
     @PostMapping("relations/add_dependency")
     public Mono<ResponseEntity<ResponseWrapper<RelationDTO>>>addDependency
             (@Validated @RequestBody RequestWrapper<RelationDTO> dto) {
@@ -169,6 +170,7 @@ public abstract class AbstractRelationResource {
     * @return Mono<ResponseEntity<RelationDTO>>
     */
     @ApiOperation(value = "del_relation", tags = {"关联" },  notes = "Relation-del_relation ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Relation-del_relation-all') or hasPermission(this.relationDtoMapping.toDomain(#dto),'ibizplm-Relation-del_relation')")
     @PostMapping("relations/{id}/del_relation")
     public Mono<ResponseEntity<ResponseWrapper<RelationDTO>>>delRelationById
             (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<RelationDTO> dto) {
@@ -202,21 +204,19 @@ public abstract class AbstractRelationResource {
     * program_test_case 关联
     * 
     *
-    * @param id id
     * @param dto dto
     * @return Mono<ResponseEntity<RelationDTO>>
     */
     @ApiOperation(value = "program_test_case", tags = {"关联" },  notes = "Relation-program_test_case ")
-    @PostMapping("relations/{id}/program_test_case")
-    public Mono<ResponseEntity<ResponseWrapper<RelationDTO>>>programTestCaseById
-            (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<RelationDTO> dto) {
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Relation-program_test_case-all') or hasPermission(this.relationDtoMapping.toDomain(#dto),'ibizplm-Relation-program_test_case')")
+    @PostMapping("relations/program_test_case")
+    public Mono<ResponseEntity<ResponseWrapper<RelationDTO>>>programTestCase
+            (@Validated @RequestBody RequestWrapper<RelationDTO> dto) {
         ResponseWrapper<RelationDTO> rt = new ResponseWrapper<>();
-        if (dto.isArray()) {
-            String [] ids = id.split(";");
-            IntStream.range(0, ids.length).forEach(i -> rt.add(programTestCaseById(ids[i], dto.getList().get(i))));
-        }
+        if (dto.isArray())
+            dto.getList().forEach(item -> rt.add(programTestCase(item)));
         else
-            rt.set(programTestCaseById(id, dto.getDto()));
+            rt.set(programTestCase(dto.getDto()));
         return Mono.just(ResponseEntity.status(HttpStatus.OK).body(rt));
     }
 
@@ -224,14 +224,12 @@ public abstract class AbstractRelationResource {
     * program_test_case 关联
     * 
     *
-    * @param id id
     * @param dto dto
     * @return ResponseEntity<RelationDTO>
     */   
-    public RelationDTO programTestCaseById
-            (String id, RelationDTO dto) {
+    public RelationDTO programTestCase
+            (RelationDTO dto) {
         Relation domain = relationDtoMapping.toDomain(dto);
-        domain.setId(id);
         Relation rt = relationService.programTestCase(domain);
         return relationDtoMapping.toDto(rt);
     }
@@ -245,6 +243,7 @@ public abstract class AbstractRelationResource {
     * @return Mono<ResponseEntity<RelationDTO>>
     */
     @ApiOperation(value = "run_del_relation_bug", tags = {"关联" },  notes = "Relation-run_del_relation_bug ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Relation-run_del_relation_bug-all') or hasPermission(this.relationDtoMapping.toDomain(#dto),'ibizplm-Relation-run_del_relation_bug')")
     @PostMapping("relations/{id}/run_del_relation_bug")
     public Mono<ResponseEntity<ResponseWrapper<RelationDTO>>>runDelRelationBugById
             (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<RelationDTO> dto) {
@@ -318,6 +317,7 @@ public abstract class AbstractRelationResource {
     * @return Mono<ResponseEntity<RelationDTO>>
     */
     @ApiOperation(value = "test_case_del_relation_bug", tags = {"关联" },  notes = "Relation-test_case_del_relation_bug ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Relation-test_case_del_relation_bug-all') or hasPermission(this.relationDtoMapping.toDomain(#dto),'ibizplm-Relation-test_case_del_relation_bug')")
     @PostMapping("relations/{id}/test_case_del_relation_bug")
     public Mono<ResponseEntity<ResponseWrapper<RelationDTO>>>testCaseDelRelationBugById
             (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<RelationDTO> dto) {
@@ -356,6 +356,7 @@ public abstract class AbstractRelationResource {
     * @return Mono<ResponseEntity<RelationDTO>>
     */
     @ApiOperation(value = "work_item_del_relation_case", tags = {"关联" },  notes = "Relation-work_item_del_relation_case ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Relation-work_item_del_relation_case-all') or hasPermission(this.relationDtoMapping.toDomain(#dto),'ibizplm-Relation-work_item_del_relation_case')")
     @PostMapping("relations/{id}/work_item_del_relation_case")
     public Mono<ResponseEntity<ResponseWrapper<RelationDTO>>>workItemDelRelationCaseById
             (@PathVariable("id") String id, @Validated @RequestBody RequestWrapper<RelationDTO> dto) {
@@ -662,6 +663,28 @@ public abstract class AbstractRelationResource {
             (@Validated @RequestBody RelationFilterDTO dto) {
         RelationSearchContext context = relationFilterDtoMapping.toDomain(dto);
         Page<Relation> domains = relationService.fetchIdeaVersionRelation(context) ;
+        List<RelationDTO> list = relationDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
+    * 查询fetch_my_relation 关联
+    * 
+    *
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<RelationDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_my_relation", tags = {"关联" },  notes = "Relation-fetch_my_relation ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Relation-fetch_my_relation-all') or hasPermission(#dto,'ibizplm-Relation-fetch_my_relation')")
+    @PostMapping("relations/fetch_my_relation")
+    public Mono<ResponseEntity<List<RelationDTO>>> fetchMyRelation
+            (@Validated @RequestBody RelationFilterDTO dto) {
+        RelationSearchContext context = relationFilterDtoMapping.toDomain(dto);
+        Page<Relation> domains = relationService.fetchMyRelation(context) ;
         List<RelationDTO> list = relationDtoMapping.toDto(domains.getContent());
             return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))

@@ -854,6 +854,28 @@ export default {
       id: 'fetch_default',
     },
     {
+      codeName: 'fetch_my_category',
+      methodType: 'FETCH',
+      appDEMethodInput: {
+        appDEMethodDTOId: 'category_filter_dto',
+        type: 'DTO',
+        id: '输入对象',
+      },
+      appDEMethodReturn: {
+        appDEMethodDTOId: 'category_dto',
+        type: 'PAGE',
+        id: '返回对象',
+      },
+      requestMethod: 'POST',
+      requestParamType: 'ENTITY',
+      requestPath: '/fetch_my_category',
+      actionType: 'REMOTE',
+      dataSetName: 'my_category',
+      dataSetTag: 'my_category',
+      dataSetType: 'REMOTE',
+      id: 'fetch_my_category',
+    },
+    {
       codeName: 'fetch_no_parent',
       methodType: 'FETCH',
       appDEMethodInput: {
@@ -1259,17 +1281,6 @@ export default {
           id: 'begin',
         },
         {
-          invokeCtrlId: 'treeexpbar_tree',
-          invokeMethod: 'removeTreeNode',
-          invokeParamId: 'node_param',
-          codeName: 'VIEWCTRLINVOKE1',
-          leftPos: 640,
-          logicNodeType: 'VIEWCTRLINVOKE',
-          topPos: 208,
-          name: '视图部件调用',
-          id: 'viewctrlinvoke1',
-        },
-        {
           codeName: 'PREPAREJSPARAM1',
           leftPos: 390,
           logicNodeType: 'PREPAREJSPARAM',
@@ -1295,6 +1306,17 @@ export default {
           name: '准备参数',
           id: 'preparejsparam1',
         },
+        {
+          invokeCtrlId: 'treeexpbar_tree',
+          invokeMethod: 'removeTreeNode',
+          invokeParamId: 'node_param',
+          codeName: 'VIEWCTRLINVOKE1',
+          leftPos: 640,
+          logicNodeType: 'VIEWCTRLINVOKE',
+          topPos: 208,
+          name: '视图部件调用',
+          id: 'viewctrlinvoke1',
+        },
       ],
       deuilogicParams: [
         {
@@ -1305,17 +1327,17 @@ export default {
           id: 'default',
         },
         {
+          codeName: 'treeexpbar_tree',
+          ctrlParam: true,
+          name: '树部件',
+          id: 'treeexpbar_tree',
+        },
+        {
           codeName: 'node_param',
           stdDataType: 25,
           simpleParam: true,
           name: '节点参数',
           id: 'node_param',
-        },
-        {
-          codeName: 'treeexpbar_tree',
-          ctrlParam: true,
-          name: '树部件',
-          id: 'treeexpbar_tree',
         },
       ],
       startDEUILogicNodeId: 'begin',

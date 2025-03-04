@@ -3,7 +3,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'idea_grid_parts',
-  deviewId: 'A465E1CB-63FB-4D08-AA52-FE609F094A83',
+  deviewId: '9b0b3e725d53adf8a70436a939c229cd',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.IDEA',
@@ -431,7 +431,7 @@ export default {
         controlParam: {
           id: 'toolbar',
         },
-        modelId: '7765FAB8-75C3-4F5A-A78E-E78452E8C9EF',
+        modelId: '44c57bfc91edb046f7a78818f1005af2',
         modelType: 'PSDETOOLBAR',
         name: 'toolbar',
         id: 'idea_grid_parts_toolbar',
@@ -702,7 +702,7 @@ export default {
         controlParam: {
           id: 'grid',
         },
-        modelId: '5F3BCA5D-F500-4FAE-8B2D-0077D6F83192',
+        modelId: 'd7a40e1f15dac2705ae2429bc1ac15ab',
         modelType: 'PSDEGRID',
         name: 'grid',
         id: 'plmweb.idea.idea_grid_parts_grid',
@@ -737,7 +737,7 @@ export default {
         controlParam: {
           id: 'searchform',
         },
-        modelId: 'B71AB262-A1A5-4A1C-9A87-1DCCF2FAE437',
+        modelId: '714ca8c7830b9476ce9663b2634e5a99',
         modelType: 'PSDEFORM_SEARCHFORM',
         name: 'searchform',
         id: 'plmweb.idea.idea_grid_parts_search_form',
@@ -769,7 +769,7 @@ export default {
     logicName: 'idea_grid_parts表格视图布局',
     appDataEntityId: 'plmweb.idea',
     controlParam: {},
-    modelId: 'CF8C219A-92FB-485B-A596-FB1F99EA06A1',
+    modelId: 'c8fb5f631c41b2e3dca12780a641a730',
     modelType: 'PSSYSVIEWLAYOUTPANEL',
     name: 'layoutpanel',
     id: 'usr1114964356',
@@ -779,7 +779,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: 'c1d7bf88e3c05b58687aa5f2197cea77',
+  modelId: '3ea975d43ffdd4b78ea278c4a6a8b725',
   modelType: 'PSAPPDEVIEW',
   name: 'ideaidea_grid_parts',
   id: 'plmweb.idea_idea_grid_parts',

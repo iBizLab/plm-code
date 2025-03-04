@@ -3,7 +3,7 @@ export default {
   loadDefault: true,
   showDataInfoBar: true,
   deviewCodeName: 'tab_exp_view',
-  deviewId: 'B29F0B90-469A-4AE6-8060-BE31DC9DC9FD',
+  deviewId: '36763889046774efa597f9e9b68ae3a4',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'PAGE.CAPTION.DISCUSS_TOPIC.TAB_EXP_VIEW',
@@ -42,7 +42,7 @@ export default {
       controlParam: {
         id: 'tabexppanel',
       },
-      modelId: '25fa0f9e6291fea83fbd79bc16aa15bb',
+      modelId: '437606e84cea8d28219a18561c24c190',
       modelType: 'PSDEDRTAB',
       name: 'tabexppanel',
       id: 'default',
@@ -79,7 +79,7 @@ export default {
   viewType: 'DETABEXPVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '89320e946c791733dec82e48d6853c4d',
+  modelId: '67fb5f4940f485846fa213160ca0c581',
   modelType: 'PSAPPDEVIEW',
   name: 'discuss_topictab_exp_view',
   id: 'plmweb.discuss_topic_tab_exp_view',

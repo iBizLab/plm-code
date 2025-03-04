@@ -3,7 +3,7 @@ export default {
   loadDefault: true,
   showDataInfoBar: true,
   deviewCodeName: 'global_setting_view',
-  deviewId: 'CD2D1F09-B009-415F-B228-BFFB1C4870E4',
+  deviewId: '80ab794153ac9dd3ffdc1f031f43f3e9',
   accUserMode: 2,
   caption: '项目配置',
   codeName: 'project_global_setting_view',
@@ -273,7 +273,7 @@ export default {
       {
         dedrtabPages: [
           {
-            caption: '项目配置',
+            caption: '项目属性',
             appViewId: 'plmweb.psde_field_grid_view',
             navigateContexts: [
               {
@@ -311,7 +311,7 @@ export default {
         controlParam: {
           id: 'tabexppanel',
         },
-        modelId: '81710B2A-7BE0-409C-A9D6-E3CED156E7C8',
+        modelId: '0d816dd8a447ce91b7eea04abe945975',
         modelType: 'PSDEDRTAB',
         name: 'tabexppanel',
         id: 'global_setting_view_dr',
@@ -331,7 +331,7 @@ export default {
     logicName: 'global_tab_exp_view分页导航视图布局面板',
     appDataEntityId: 'plmweb.project',
     controlParam: {},
-    modelId: '7AA98CC2-7C1B-45A0-A2D8-25755F2FC4C9',
+    modelId: '50317b7932ff64655b24a60bb95cefeb',
     modelType: 'PSSYSVIEWLAYOUTPANEL',
     name: 'layoutpanel',
     id: 'usr0530020295',
@@ -341,7 +341,7 @@ export default {
   viewType: 'DETABEXPVIEW',
   enableDP: true,
   showCaptionBar: false,
-  modelId: 'e5d58584e4923f0bf2b8f4dcde39b73b',
+  modelId: '9f89c643fe7b48fda28e416ee3b9f069',
   modelType: 'PSAPPDEVIEW',
   name: 'projectglobal_setting_view',
   id: 'plmweb.project_global_setting_view',

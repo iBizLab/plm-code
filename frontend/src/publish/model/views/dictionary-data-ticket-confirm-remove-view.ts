@@ -4,7 +4,7 @@ export default {
   loadDefault: true,
   openMode: 'POPUPMODAL',
   deviewCodeName: 'ticket_confirm_remove_view',
-  deviewId: '692f8375f48c623440acabc468b3c1d1',
+  deviewId: 'f6da3a1e7d5a901748c40cedb75ce5dd',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.DICTIONARY',
@@ -289,7 +289,7 @@ export default {
       sysCss: {
         cssName: 'confirm-remove-view',
       },
-      modelId: '713DBCFC-41DC-4A2D-AE1C-023471DBBAB6',
+      modelId: 'cd6be0e9cbda1001011680076da393f9',
       modelType: 'PSDEFORM_EDITFORM',
       name: 'form',
       id: 'plmweb.dictionary_data.ticket_remove_view_form',
@@ -334,7 +334,7 @@ export default {
   width: 650,
   enableDP: true,
   showCaptionBar: true,
-  modelId: '43b07043ef815b0a611f8f185d85ab7d',
+  modelId: '51d3a58884374c32acf05747113ab64f',
   modelType: 'PSAPPDEVIEW',
   name: 'dictionary_dataticket_confirm_remove_view',
   id: 'plmweb.dictionary_data_ticket_confirm_remove_view',

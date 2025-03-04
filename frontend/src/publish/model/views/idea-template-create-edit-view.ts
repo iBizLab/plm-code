@@ -4,7 +4,7 @@ export default {
   xdataControlName: 'form',
   loadDefault: true,
   deviewCodeName: 'create_edit_view',
-  deviewId: '4977BDD8-D93A-47E1-856F-3396BAA691BE',
+  deviewId: '1119d31b52ef2b33841a5a07e84da5a0',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.IDEA_TEMPLATE',
@@ -53,7 +53,7 @@ export default {
       controlParam: {
         id: 'toolbar',
       },
-      modelId: '5482908C-A4DC-441E-982B-DAB87B8C674D',
+      modelId: '3a78159ad74aa88e52e00fbfd5d6fbb5',
       modelType: 'PSDETOOLBAR',
       name: 'toolbar',
       id: 'create_edit_view_toolbar',
@@ -552,7 +552,7 @@ export default {
       controlParam: {
         id: 'form',
       },
-      modelId: '56CE0685-6324-4882-92D4-F492B0FB81CD',
+      modelId: '260a43be8bc683228ac771ce30da3506',
       modelType: 'PSDEFORM_EDITFORM',
       name: 'form',
       id: 'plmweb.idea_template.create_edit_view_form',
@@ -596,7 +596,7 @@ export default {
   viewType: 'DEEDITVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '896da222eb4ffa89d27c2da97865e9af',
+  modelId: 'c33b87831ba96a34eefbbad177d8b0fb',
   modelType: 'PSAPPDEVIEW',
   name: 'idea_templatecreate_edit_view',
   id: 'plmweb.idea_template_create_edit_view',

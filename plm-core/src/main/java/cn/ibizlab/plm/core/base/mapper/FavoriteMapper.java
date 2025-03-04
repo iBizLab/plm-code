@@ -43,6 +43,25 @@ public interface FavoriteMapper extends BaseMapper<Favorite> {
     List<Favorite> listDefault(@Param("ctx") FavoriteSearchContext context, @Param("ew") Wrapper<Favorite> wrapper);
 
     /**
+     * 数据集合my_favorite分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Favorite> searchMyFavorite(IPage<Favorite> page, @Param("ctx") FavoriteSearchContext context, @Param("ew") Wrapper<Favorite> wrapper);
+    
+    /**
+     * 数据集合my_favorite查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Favorite> listMyFavorite(@Param("ctx") FavoriteSearchContext context, @Param("ew") Wrapper<Favorite> wrapper);
+
+    /**
     * 根据ownerId查询
     *
     * @param ownerIds

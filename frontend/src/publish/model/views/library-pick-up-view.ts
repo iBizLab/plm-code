@@ -1,7 +1,7 @@
 export default {
   funcViewMode: 'PICKUPVIEW',
   deviewCodeName: 'pick_up_view',
-  deviewId: 'e1f3ac5960b65ec5e23f5c20fff341ba',
+  deviewId: '956392d9390f3143598ae6996e236c0c',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.LIBRARY',
@@ -60,7 +60,7 @@ export default {
   viewType: 'DEPICKUPVIEW',
   enableDP: true,
   showCaptionBar: false,
-  modelId: 'f8528550af8f1440115abc78da1370c6',
+  modelId: '19d7f7ef5d2d3f4f7d31c2c9a166834e',
   modelType: 'PSAPPDEVIEW',
   name: 'libraryPickupView',
   id: 'plmweb.library_pick_up_view',

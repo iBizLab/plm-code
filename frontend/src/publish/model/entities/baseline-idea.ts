@@ -943,14 +943,14 @@ export default {
         id: '输入对象',
       },
       appDEMethodReturn: {
-        appDEMethodDTOId: 'baseline_idea_dto',
-        type: 'DTO',
+        type: 'VOID',
         id: '返回对象',
       },
       requestMethod: 'POST',
       requestParamType: 'ENTITY',
       requestPath: '/shift_out_baseline',
-      actionMode: 'GETDRAFT',
+      needResourceKey: true,
+      actionMode: 'CUSTOM',
       actionType: 'REMOTE',
       dataSetType: 'REMOTE',
       id: 'shift_out_baseline',
@@ -1277,6 +1277,13 @@ export default {
   deopprivs: [
     {
       logicName: '建立',
+      mapDEName: 'BASELINE',
+      mapDEOPPrivName: 'CREATE',
+      name: 'CREATE',
+      id: 'baseline_principal_idea__create',
+    },
+    {
+      logicName: '建立',
       name: 'CREATE',
       id: 'create',
     },
@@ -1286,9 +1293,30 @@ export default {
       id: 'delete',
     },
     {
+      logicName: '删除',
+      mapDEName: 'BASELINE',
+      mapDEOPPrivName: 'DELETE',
+      name: 'DELETE',
+      id: 'baseline_principal_idea__delete',
+    },
+    {
+      logicName: '读取',
+      mapDEName: 'BASELINE',
+      mapDEOPPrivName: 'READ',
+      name: 'READ',
+      id: 'baseline_principal_idea__read',
+    },
+    {
       logicName: '读取',
       name: 'READ',
       id: 'read',
+    },
+    {
+      logicName: '更新',
+      mapDEName: 'BASELINE',
+      mapDEOPPrivName: 'UPDATE',
+      name: 'UPDATE',
+      id: 'baseline_principal_idea__update',
     },
     {
       logicName: '更新',

@@ -928,6 +928,28 @@ public abstract class AbstractWorkloadResource {
     }
 
     /**
+    * 查询fetch_my_workload 工时
+    * 
+    *
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<WorkloadDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_my_workload", tags = {"工时" },  notes = "Workload-fetch_my_workload ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Workload-fetch_my_workload-all') or hasPermission(#dto,'ibizplm-Workload-fetch_my_workload')")
+    @PostMapping("workloads/fetch_my_workload")
+    public Mono<ResponseEntity<List<WorkloadDTO>>> fetchMyWorkload
+            (@Validated @RequestBody WorkloadFilterDTO dto) {
+        WorkloadSearchContext context = workloadFilterDtoMapping.toDomain(dto);
+        Page<Workload> domains = workloadService.fetchMyWorkload(context) ;
+        List<WorkloadDTO> list = workloadDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
     * 查询fetch_test_case_workload 工时
     * 
     *
@@ -1476,6 +1498,30 @@ public abstract class AbstractWorkloadResource {
         dto.setTypeIdEQ(typeId);
         WorkloadSearchContext context = workloadFilterDtoMapping.toDomain(dto);
         Page<Workload> domains = workloadService.fetchMyWorkItemWorkload(context) ;
+        List<WorkloadDTO> list = workloadDtoMapping.toDto(domains.getContent());
+            return Mono.just(ResponseEntity.status(HttpStatus.OK)
+            .header("x-page", String.valueOf(context.getPageable().getPageNumber()))
+            .header("x-per-page", String.valueOf(context.getPageable().getPageSize()))
+            .header("x-total", String.valueOf(domains.getTotalElements()))
+            .body(list));
+    }
+
+    /**
+    * 查询fetch_my_workload 工时
+    * 
+    *
+    * @param typeId typeId
+    * @param dto dto
+    * @return Mono<ResponseEntity<List<WorkloadDTO>>>
+    */
+    @ApiOperation(value = "查询fetch_my_workload", tags = {"工时" },  notes = "Workload-fetch_my_workload ")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPERADMIN','ibizplm-Workload-fetch_my_workload-all') or hasPermission('workload_type',#typeId,#dto,'ibizplm-Workload-fetch_my_workload')")
+    @PostMapping("workload_types/{typeId}/workloads/fetch_my_workload")
+    public Mono<ResponseEntity<List<WorkloadDTO>>> fetchMyWorkloadByTypeId
+            (@PathVariable("typeId") String typeId, @Validated @RequestBody WorkloadFilterDTO dto) {
+        dto.setTypeIdEQ(typeId);
+        WorkloadSearchContext context = workloadFilterDtoMapping.toDomain(dto);
+        Page<Workload> domains = workloadService.fetchMyWorkload(context) ;
         List<WorkloadDTO> list = workloadDtoMapping.toDto(domains.getContent());
             return Mono.just(ResponseEntity.status(HttpStatus.OK)
             .header("x-page", String.valueOf(context.getPageable().getPageNumber()))

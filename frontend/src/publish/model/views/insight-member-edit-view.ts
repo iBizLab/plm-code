@@ -5,7 +5,7 @@ export default {
   loadDefault: true,
   funcViewMode: 'EDITVIEW',
   deviewCodeName: 'EditView',
-  deviewId: '1f689dfda4eb0869f5cc54f904355e89',
+  deviewId: '0ed846e6110b3660e9e80b194e1106f5',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.INSIGHT_MEMBER',
@@ -205,7 +205,7 @@ export default {
       controlParam: {
         id: 'form',
       },
-      modelId: '4e98a2d42ca9f53549909222fe0e6741',
+      modelId: '1ee96e81978080b305ad77f155b9d7e3',
       modelType: 'PSDEFORM_EDITFORM',
       name: 'form',
       id: 'plmweb.insight_member.main',
@@ -252,7 +252,7 @@ export default {
   viewType: 'DEEDITVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: 'dcf202e9094229d809bfa63b3f2fb345',
+  modelId: '8112caf090bd4dfb2accd9ff69ad3bde',
   modelType: 'PSAPPDEVIEW',
   name: 'insight_memberEditView',
   id: 'plmweb.insight_member_edit_view',

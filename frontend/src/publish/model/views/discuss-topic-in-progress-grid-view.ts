@@ -3,7 +3,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'in_progress_grid_view',
-  deviewId: 'A461F6F6-B848-404C-8353-619FD3B1BE2C',
+  deviewId: '563e7f9d5daaf22749beaa567665d362',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.DISCUSS_TOPIC',
@@ -66,13 +66,6 @@ export default {
   ],
   appViewRefs: [
     {
-      realOpenMode: 'POPUPMODAL',
-      realTitle: '话题信息展示视图',
-      refAppViewId: 'plmweb.discuss_topic_show_edit_view',
-      name: 'EDITDATA',
-      id: 'editdata',
-    },
-    {
       realTitle: '话题编辑视图',
       realTitleLanguageRes: {
         lanResTag: 'PAGE.TITLE.DISCUSS_TOPIC.EDITVIEW',
@@ -80,6 +73,13 @@ export default {
       refAppViewId: 'plmweb.discuss_topic_edit_view',
       name: 'NEWDATA',
       id: 'newdata',
+    },
+    {
+      realOpenMode: 'POPUPMODAL',
+      realTitle: '话题信息展示视图',
+      refAppViewId: 'plmweb.discuss_topic_show_edit_view',
+      name: 'EDITDATA',
+      id: 'editdata',
     },
   ],
   controls: [
@@ -167,7 +167,7 @@ export default {
                   cssClass: 'fa fa-sun-o',
                   glyph: 'xf185@FontAwesome',
                 },
-                id: 'u33febb4',
+                id: 'u7e25990',
               },
               {
                 actionLevel: 100,
@@ -181,7 +181,7 @@ export default {
                   cssClass: 'fa fa-file-archive-o',
                   glyph: 'xf1c6@FontAwesome',
                 },
-                id: 'ub3eadc6',
+                id: 'ubbc0414',
               },
               {
                 actionLevel: 100,
@@ -195,7 +195,7 @@ export default {
                   cssClass: 'fa fa-trash-o',
                   glyph: 'xf014@FontAwesome',
                 },
-                id: 'u636c111',
+                id: 'uc483994',
               },
             ],
             appDataEntityId: 'plmweb.discuss_topic',
@@ -295,7 +295,7 @@ export default {
       controlParam: {
         id: 'grid',
       },
-      modelId: '0E012A9C-50B6-4F16-9587-AD10A30E3B64',
+      modelId: '51a187f4ac9dd028c1bc2274d8467e3f',
       modelType: 'PSDEGRID',
       name: 'grid',
       id: 'plmweb.discuss_topic.in_progress_grid_view_grid',
@@ -314,7 +314,7 @@ export default {
         },
         id: 'tabsearchbar',
       },
-      modelId: '434BF532-5BEB-4CF8-9187-0F909A41F7FC',
+      modelId: '01bc411277100d02f486c97e6916e2db',
       modelType: 'PSSYSSEARCHBAR',
       name: 'tabsearchbar',
       id: 'plmweb.discuss_topic.query_search_bar',
@@ -357,7 +357,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: false,
-  modelId: '28c593ec5a3902a1ed6707c31719d478',
+  modelId: 'a30c17d72782b0963c98ff36bd236e7f',
   modelType: 'PSAPPDEVIEW',
   name: 'discuss_topicin_progress_grid_view',
   id: 'plmweb.discuss_topic_in_progress_grid_view',

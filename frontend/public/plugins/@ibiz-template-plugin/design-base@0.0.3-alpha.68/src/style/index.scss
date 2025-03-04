@@ -1,0 +1,530 @@
+/* stylelint-disable selector-class-pattern */
+
+.#{bem('design-property-view')} {
+  --el-font-size-base: #{getCssVar('font-size', small)};
+
+  &.#{bem(view)} {
+    #{getCssVarName(view, bg-color)}: getCssVar(color, bg, 0);
+  }
+  .#{bem(view)} {
+    #{getCssVarName(view, bg-color)}: getCssVar(color, bg, 0);
+  }
+
+  $form-item: (
+    'font-size': getCssVar(font-size, small),
+  );
+
+  @include b(form-item) {
+    @include set-component-css-var('form-item', $form-item);
+  }
+
+  @include b(panel-view-header) {
+    height: 35px;
+    padding: 9px 12px 5px;
+    margin: getCssVar('spacing', 'none');
+
+    .#{bem(panel-container, '', view_header_right)} {
+      padding: 0;
+      padding-left: getCssVar('spacing', 'tight');
+    }
+
+    @include b(control-captionbar) {
+      $control-captionbar: (
+        padding: getCssVar('spacing', 'none'),
+      );
+
+      @include set-component-css-var(control-captionbar, $control-captionbar);
+
+      @include b(control-captionbar-caption) {
+        padding-left: 0;
+
+        &::before {
+          display: none;
+        }
+        $control-captionbar: (
+          font-size: getCssVar('font-size', 'regular'),
+          font-weight: getCssVar('font-weight', 'regular'),
+        );
+
+        @include set-component-css-var(
+          control-captionbar,
+          $control-captionbar
+        );
+      }
+    }
+
+    @include b(control-toolbar) {
+      $control-toolbar: (
+        'icon-margin': getCssVar('spacing', 'none'),
+        'item-bg-color': transparent,
+        'item-disabled-button': transparent,
+        'item-padding': getCssVar('spacing', 'none'),
+        'icon-max-width': getCssVar('font-size', 'regular'),
+        'icon-max-height': getCssVar('font-size', 'regular'),
+        'text-margin': 0 0 0 getCssVar('spacing', 'tight'),
+      );
+
+      @include set-component-css-var(control-toolbar, $control-toolbar);
+    }
+
+    .#{bem('control-toolbar', 'item')} {
+      .el-button {
+        --el-button-bg-color: transparent;
+        --el-button-disabled-bg-color: transparent;
+        --el-button-hover-bg-color: transparent;
+        --el-button-active-bg-color: transparent;
+        --el-button-text-color: #{getCssVar(color, primary)};
+        --el-button-disabled-text-color: #{getCssVar(color, text, 1)};
+        --el-button-hover-text-color: #{getCssVar(color, text, 1)};
+        --el-button-border-color: #{getCssVar(color, text, 1)};
+
+        height: auto;
+
+        > span {
+          font-size: getCssVar('font-size', 'small');
+        }
+      }
+    }
+  }
+
+  @include b(panel-view-content) {
+    #{getCssVarName(panel-view-content, padding)}: 6px getCssVar('spacing', 'tight')
+    getCssVar('spacing', 'none') 6px;
+
+    @include when(no-caption) {
+      #{getCssVarName(panel-view-content, padding)}: 0;
+    }
+  }
+
+  @include b(form-group) {
+    $form-group-header: (
+      'padding': 5px getCssVar('spacing', 'none') 5px getCssVar('spacing', 'tight'),
+      'height': 35px,
+      'margin': getCssVar('spacing', 'none'),
+    );
+
+    $form-group-caption: (
+      'font-size': getCssVar('font-size', 'regular'),
+      'font-weight': getCssVar('font-weight', 'regular'),
+    );
+
+    @include set-component-css-var('form-group-header', $form-group-header);
+    @include set-component-css-var('form-group-caption', $form-group-caption);
+  }
+
+  @include b(form-group-header) {
+    margin: getCssVar('spacing', 'none');
+    
+    .#{bem(form-group-header, left)} {
+      display: flex;
+      align-items: center;
+    }
+
+    @include e(right) {
+      .el-button {
+        font-size: getCssVar('font-size', 'regular');
+      }
+    }
+  }
+
+  @include b(form-item-container) {
+    $form-item-container: (
+      'label-left-padding': 0 var(--ibiz-spacing-base-tight) 0 0,
+      'padding': getCssVar('spacing', 'none')
+        getCssVar('spacing', 'extra-tight') getCssVar('spacing', 'base')
+        getCssVar('spacing', 'extra-tight'),
+      'font-size': getCssVar('font-size', 'small'),
+    );
+
+    @include set-component-css-var('form-item-container', $form-item-container);
+  }
+
+  @include b(form-druipart) {
+    @include b(panel-view-header) {
+      height: 42px;
+      @include b(control-captionbar) {
+        $control-captionbar: (
+          padding: getCssVar('spacing', 'none'),
+        );
+  
+        @include set-component-css-var(control-captionbar, $control-captionbar);
+  
+        @include b(control-captionbar-caption) {
+          $control-captionbar: (
+            font-size: getCssVar('font-size', 'regular'),
+            font-weight: getCssVar('font-weight', 'bold'),
+          );
+  
+          @include set-component-css-var(
+            control-captionbar,
+            $control-captionbar
+          );
+        }
+      }
+
+      .#{bem('panel-container', '', 'view_header_right')} {
+        padding: getCssVar('spacing', 'none');
+      }
+
+      @include b(control-toolbar) {
+        $control-toolbar: (
+          'item-padding': getCssVar('spacing', 'none')
+            getCssVar('spacing', 'tight'),
+          'icon-max-width': getCssVar('width-icon', 'small'),
+          'icon-max-height': getCssVar('width-icon', 'small'),
+        );
+
+        @include set-component-css-var(control-toolbar, $control-toolbar);
+      }
+    }
+
+    @include b(panel-view-content) {
+      $panel-view-content: (
+        'padding': getCssVar('spacing', 'extra-tight')
+          getCssVar('spacing', 'tight') getCssVar('spacing', 'tight'),
+      );
+
+      @include set-component-css-var(panel-view-content, $panel-view-content);
+    }
+
+    @include b(control-grid) {
+      $control-grid-content: (
+        row-height: getCssVar('height-control', 'default'),
+      );
+
+      @include set-component-css-var(
+        control-grid-content,
+        $control-grid-content
+      );
+    }
+
+    @include b(grid-field-column) {
+      $grid-field-column: (
+        cell-padding: getCssVar('spacing', 'extra-tight')
+          getCssVar('spacing', 'tight'),
+      );
+
+      @include set-component-css-var(grid-field-column, $grid-field-column);
+    }
+
+    .#{bem('grid-field-column', 'text')} {
+      font-size: getCssVar('font-size', 'small');
+    }
+  }
+
+  @include b(form-page) {
+    $form-page: (
+      'font-size': getCssVar('font-size', 'regular'),
+    );
+
+    @include set-component-css-var('form-page', $form-page);
+
+  }
+  
+  // 表单分页8px，与分组对齐
+  .#{bem(form-page)}.el-tabs {
+    div.el-tabs__item {
+      padding: 0 getCssVar(spacing, base);
+    }
+  }
+  @include b(form-raw-item) {
+    $form-rawitem: (
+      'line-height': normal,
+      'font-size': getCssVar(font-size, small),
+    );
+
+    @include set-component-css-var('form-rawitem', $form-rawitem);
+  }
+}
+
+.form-design-tabs {
+  --el-tabs-header-height: 28px;
+
+  .el-tabs__nav {
+    width: 100%;
+  }
+
+  .el-tabs__active-bar {
+    display: none;
+  }
+
+  .el-tabs__item {
+    --el-font-size-base: 12px;
+
+    flex: 1;
+    width: 0;
+    padding: 0;
+    color: getCssVar(color, text, 1);
+    background: getCssVar(color, fill, 2);
+
+    &.is-active {
+      color: getCssVar(color, primary);
+      background: getCssVar(color, fill, 1);
+    }
+
+    &:focus-visible {
+      box-shadow: none;
+    }
+
+    &:hover {
+      color: getCssVar(color, primary, hover);
+    }
+  }
+
+  .el-tabs__nav-wrap::after {
+    display: none;
+  }
+
+  .el-tabs__content {
+    >.#{bem(panel-tab-panel-tab-item)} {
+      height: 100%;
+      >.#{bem(panel-tab-page)} {
+        height: 100%;
+        >.#{bem(col)}:last-child {
+          height: calc(100% - 36px);
+          overflow: auto;
+
+          >.#{bem(panel-container)} {
+            height: auto;
+          }
+        }
+      }
+    }
+
+  }
+
+  &.el-tabs .el-tabs__nav-wrap.is-top .el-tabs__nav-scroll {
+    --el-tabs-header-height: 28px;
+  }
+}
+
+.#{bem('design-property-interactive')} {
+  --el-font-size-base: #{getCssVar('font-size', small)};
+
+  $form-item: (
+    'font-size': getCssVar(font-size, small),
+  );
+
+  @include b(form-item) {
+    @include set-component-css-var('form-item', $form-item);
+  }
+
+  // header
+  .#{bem('panel-view-header')} {
+    height: 48px;
+    padding-left: getCssVar('spacing', 'base');
+  }
+
+  .#{bem(panel-container, '', view_header_right)} {
+    padding: getCssVar('spacing', 'none');
+  }
+
+  .#{bem('control-captionbar')} {
+    padding: getCssVar('spacing', 'none');
+  }
+
+  .#{bem('control-captionbar-caption')} {
+    padding-left: getCssVar('spacing', 'tight');
+    font-size: getCssVar('font-size', 'regular');
+    font-weight: 600;
+
+    &::before {
+      width: 2px;
+      height: 12px;
+    }
+  }
+
+  .#{bem('form-group-header')} {
+    height: auto;
+    padding: getCssVar('spacing', 'tight') getCssVar('spacing', 'none')
+      getCssVar('spacing', 'extra-tight') getCssVar('spacing', 'none');
+    margin: getCssVar('spacing', 'none') getCssVar('spacing', 'none')
+      getCssVar('spacing', 'none') 6px;
+  }
+
+  .#{bem('form-group','caption')} {
+    font-size: getCssVar('font-size', 'regular');
+    font-weight: getCssVar('font-weight', 'regular');
+  }
+
+  .#{bem('form-item-container','label')} {
+    font-size: getCssVar('font-size', 'small');
+  }
+
+  .#{bem('form-item-container')} {
+    padding: getCssVar('spacing', 'none') getCssVar('spacing', 'extra-tight')
+      getCssVar('spacing', 'tight') getCssVar('spacing', 'tight');
+  }
+
+  .#{bem('control-grid','table')} {
+    .el-table__header-wrapper {
+      .cell {
+        font-size: getCssVar('font-size', 'small');
+        font-weight: 700;
+      }
+    }
+  }
+
+  .#{bem('control-toolbar','item')} {
+    margin: getCssVar('spacing', 'none') getCssVar('spacing', 'tight');
+
+    .el-button {
+      padding: getCssVar('spacing', 'tight') getCssVar('spacing', 'tight')
+        getCssVar('spacing', 'tight') getCssVar('spacing', 'tight');
+
+      > span {
+        font-size: getCssVar('font-size', 'small');
+      }
+
+      .#{bem(icon)} {
+        margin: 0;
+      }
+    }
+  }
+
+  .#{bem('form-page')} {
+    $form-page: (
+      'font-size': getCssVar('font-size', 'small'),
+    );
+    @include set-component-css-var('form-page', $form-page);
+
+    > .el-tabs__header {
+      padding-left: getCssVar('spacing', 'base-tight');
+      border-bottom: 1px solid getCssVar('color', 'border');
+    }
+  }
+
+  .#{bem('form-tab-panel')} {
+    $form-tab-panel: (
+      'font-size': getCssVar('font-size', 'small'),
+    );
+    @include set-component-css-var('form-tab-panel', $form-tab-panel);
+
+    > .el-tabs__header {
+      padding-left: getCssVar('spacing', 'base-tight');
+      border-bottom: 1px solid getCssVar('color', 'border');
+    }
+  }
+
+  .#{bem('form-tab-panel')} {
+    > .el-tabs__header.is-top {
+      .el-tabs__item {
+        padding: 0 20px;
+        margin-left: 4px;
+      }
+
+      .el-tabs__item.is-top {
+        border: 1px solid getCssVar('color', 'border');
+        border-bottom: none;
+        border-radius: getCssVar('border-radius', 'small')
+          getCssVar('border-radius', 'small') 0 0;
+      }
+
+      .el-tabs__item.is-top.is-active {
+        border: 1px solid #57a3f3;
+        border-bottom: 1px solid white;
+      }
+
+      .el-tabs__active-bar.is-top {
+        display: none;
+      }
+    }
+
+    // 分页头部底边
+    .el-tabs__nav-wrap::after {
+      display: none;
+    }
+  }
+}
+
+.#{bem('design-property-interactive-process-processing-role-grid')} {
+  padding-right: getCssVar('spacing', 'base-tight');
+  padding-left: getCssVar('spacing', 'base-tight');
+
+  .#{bem('view')} {
+    border-radius: 0;
+  }
+
+  .#{bem('panel-view-content')} {
+    padding: getCssVar('spacing', 'tight') getCssVar('spacing', 'none')
+      getCssVar('spacing', 'none') getCssVar('spacing', 'none');
+  }
+
+  // header
+  .#{bem('panel-view-header')} {
+    height: 40px;
+    padding-left: getCssVar('spacing', 'none');
+  }
+
+  .#{bem('control-toolbar','item')} {
+    margin: getCssVar('spacing', 'none') getCssVar('spacing', 'tight');
+
+    .el-button {
+      padding: getCssVar('spacing', 'tight') getCssVar('spacing', 'tight')
+        getCssVar('spacing', 'tight') getCssVar('spacing', 'tight');
+
+      > span {
+        font-size: getCssVar('font-size', 'small');
+      }
+
+      .#{bem(icon)} {
+        margin: 0;
+      }
+    }
+  }
+
+  .#{bem('control-toolbar','item-separator')} {
+    margin: getCssVar('spacing', 'none');
+  }
+
+  .#{bem('panel-view-header')} {
+    .#{bem('panel-container', '', 'view_header_right')} {
+      padding: getCssVar('spacing', 'none');
+    }
+  }
+}
+
+.#{bem(drawer)} {
+  .el-drawer__header {
+    .el-drawer__close-btn {
+      display: none;
+    }
+  }
+
+  .el-drawer__body {
+    > .#{bem(view)} {
+      .#{bem('design-property-interactive-process-processing-role-grid')} {
+        .#{bem(panel-view-header)} {
+          padding-right: getCssVar('spacing', 'none');
+        }
+      }
+
+      &.#{bem('design-property-interactive')} {
+        .#{bem('panel-view-header')} {
+          padding-right: getCssVar('spacing', 'tight');
+        }
+      }
+    }
+  }
+}
+
+// 设计视图头
+.#{bem('design-view-header')} {
+  box-shadow: 0 2px 2px 0 getCssVar(color, shadow);
+  .#{bem(control-captionbar)} {
+    #{getCssVarName(control-captionbar, font-size)}: getCssVar(font-size, regular);
+  }
+  .#{bem(control-captionbar-caption)} {
+    padding: 0;
+
+    &::before {
+      display: none;
+    }
+  }
+}
+
+// 设计视图操作区
+.#{bem('design-view-operate')} {
+  border-right: 1px solid getCssVar(color, border);
+  border-left: 1px solid getCssVar(color, border);
+}

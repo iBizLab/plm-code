@@ -333,7 +333,7 @@ export default {
           lanResTag: 'DE.LNAME.PORTFOLIO',
         },
         editItemCaption: '文件夹',
-        appCounterRefId: '3370a213527b742d8094a795ccb3a0fd',
+        appCounterRefId: '102d43e74a3f9fec3e1930d6851a2947',
         dedrctrlItems: [
           {
             dedrbarGroupId: 'drgroup',
@@ -388,9 +388,9 @@ export default {
             refMode: {
               srfdeid: 'PORTFOLIO',
             },
-            tag: '3370a213527b742d8094a795ccb3a0fd',
+            tag: '102d43e74a3f9fec3e1930d6851a2947',
             uniqueTag: 'portfolio_addon_counters',
-            id: '3370a213527b742d8094a795ccb3a0fd',
+            id: '102d43e74a3f9fec3e1930d6851a2947',
           },
         ],
         codeName: 'portfolio',
@@ -401,7 +401,7 @@ export default {
           id: 'drbar',
         },
         sysPFPluginId: 'drbar_ex',
-        modelId: '85ad58ed355f7e90d7746b0a458f8262',
+        modelId: '8ea9ef2bebfcfad073f8429d1fb19246',
         modelType: 'PSDEDRBAR',
         name: 'drbar',
         id: 'portfolio',

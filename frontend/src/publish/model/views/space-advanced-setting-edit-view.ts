@@ -4,7 +4,7 @@ export default {
   xdataControlName: 'form',
   loadDefault: true,
   deviewCodeName: 'advanced_setting_edit_view',
-  deviewId: '5e5d2b94e3efca03c40382512f138591',
+  deviewId: '953ad9ab568176e92c78dde7e9bd403e',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.SPACE',
@@ -359,7 +359,7 @@ export default {
   viewType: 'DEEDITVIEW',
   enableDP: true,
   showCaptionBar: false,
-  modelId: 'e721d1550b7c0fb4e573eef984aa3049',
+  modelId: 'c2861a589f36024576bc84220790efbd',
   modelType: 'PSAPPDEVIEW',
   name: 'spaceadvanced_setting_edit_view',
   id: 'plmweb.space_advanced_setting_edit_view',

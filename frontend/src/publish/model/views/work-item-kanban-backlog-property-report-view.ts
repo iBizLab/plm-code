@@ -3,7 +3,7 @@ export default {
   expandSearchForm: true,
   loadDefault: true,
   deviewCodeName: 'kanban_backlog_property_report_view',
-  deviewId: 'd0971fb771d12ab98dcfbc407241da37',
+  deviewId: 'fefe0dc421ed00d0a47063980556d778',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.WORK_ITEM',
@@ -936,7 +936,7 @@ export default {
   viewType: 'DECHARTVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '971f3e0495b3f17de55a2e7c9f9155b7',
+  modelId: '88896508c87f84b8da8c5c664b86edb8',
   modelType: 'PSAPPDEVIEW',
   name: 'work_itemkanban_backlog_property_report_view',
   id: 'plmweb.work_item_kanban_backlog_property_report_view',

@@ -3,7 +3,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'history_grid_view',
-  deviewId: '90e815c4639c2fe2911e6d4e9df60a52',
+  deviewId: '87708b96eadb0fa42e0e70c4b962a65d',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.RUN',
@@ -529,7 +529,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '823c20406cd1fe1aa9a276dc93f34c74',
+  modelId: '675597cf59bb500bb493147b37c74aa1',
   modelType: 'PSAPPDEVIEW',
   name: 'runhistory_grid_view',
   id: 'plmweb.run_history_grid_view',

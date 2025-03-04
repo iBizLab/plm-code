@@ -43,6 +43,25 @@ public interface DeliverableMapper extends BaseMapper<Deliverable> {
     List<Deliverable> listDefault(@Param("ctx") DeliverableSearchContext context, @Param("ew") Wrapper<Deliverable> wrapper);
 
     /**
+     * 数据集合my_deliverable分页查询
+     * 
+     * @param page
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    Page<Deliverable> searchMyDeliverable(IPage<Deliverable> page, @Param("ctx") DeliverableSearchContext context, @Param("ew") Wrapper<Deliverable> wrapper);
+    
+    /**
+     * 数据集合my_deliverable查询
+     * 
+     * @param context
+     * @param wrapper
+     * @return
+     */
+    List<Deliverable> listMyDeliverable(@Param("ctx") DeliverableSearchContext context, @Param("ew") Wrapper<Deliverable> wrapper);
+
+    /**
      * 数据集合project_deliverable分页查询
      * 
      * @param page

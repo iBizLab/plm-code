@@ -5,7 +5,7 @@ export default {
   loadDefault: true,
   funcViewMode: 'EDITVIEW',
   deviewCodeName: 'EditView',
-  deviewId: 'cf9030c63dfef249f554f94e263eee70',
+  deviewId: '0584762948e9f599ca9789c982a6f24c',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.DISCUSS_MEMBER',
@@ -205,7 +205,7 @@ export default {
       controlParam: {
         id: 'form',
       },
-      modelId: '3c8f3301984e3a25700291b3add62440',
+      modelId: '739ec36421e330d127235551acc5f018',
       modelType: 'PSDEFORM_EDITFORM',
       name: 'form',
       id: 'plmweb.discuss_member.main',
@@ -252,7 +252,7 @@ export default {
   viewType: 'DEEDITVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '36fdb39fc9c563a0d8125097f67b6d65',
+  modelId: '10b896c5e3a3eed7ea27b32e7d886b25',
   modelType: 'PSAPPDEVIEW',
   name: 'discuss_memberEditView',
   id: 'plmweb.discuss_member_edit_view',

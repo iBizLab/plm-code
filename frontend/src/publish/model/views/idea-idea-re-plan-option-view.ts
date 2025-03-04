@@ -4,7 +4,7 @@ export default {
   loadDefault: true,
   openMode: 'POPOVER',
   deviewCodeName: 'idea_re_plan_option_view',
-  deviewId: 'c2de842ac8faf65c6dfa6b08198f6557',
+  deviewId: '4849abd0f92d71204cfc987b369b9d73',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.IDEA',
@@ -222,7 +222,7 @@ export default {
   viewType: 'DEOPTVIEW',
   enableDP: true,
   showCaptionBar: false,
-  modelId: '9df86738ada91c75e2522d3519e07bb7',
+  modelId: '400045b6e9ddfa6733fcacf4f4cda16d',
   modelType: 'PSAPPDEVIEW',
   name: 'ideaidea_re_plan_option_view',
   id: 'plmweb.idea_idea_re_plan_option_view',

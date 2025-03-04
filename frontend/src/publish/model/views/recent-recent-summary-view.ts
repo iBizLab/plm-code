@@ -1,6 +1,6 @@
 export default {
   deviewCodeName: 'recent_summary_view',
-  deviewId: 'C407A25F-AEED-48E8-AECB-A9D85CF71072',
+  deviewId: '5596b1daf053da19f7cab87392cf0ab0',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.RECENT',
@@ -561,7 +561,7 @@ export default {
       },
     ],
     controlParam: {},
-    modelId: '30CB4B09-E01F-4193-84B6-D3E2162B0CB4',
+    modelId: '713399615bb9d5a13e76412e50d44254',
     modelType: 'PSSYSVIEWLAYOUTPANEL',
     name: 'layoutpanel',
     id: 'usr1113171912',
@@ -571,7 +571,7 @@ export default {
   viewType: 'DECUSTOMVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '4e378825969ef7cf365fef019640b6b2',
+  modelId: '83f3f4ce8d1db811e08ac5acbc30095c',
   modelType: 'PSAPPDEVIEW',
   name: 'recentrecent_summary_view',
   id: 'plmweb.recent_recent_summary_view',

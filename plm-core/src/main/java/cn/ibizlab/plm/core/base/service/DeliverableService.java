@@ -193,6 +193,22 @@ public interface DeliverableService extends IService<Deliverable> {
     List<Deliverable> listDefault(DeliverableSearchContext context);
 
     /**
+    * fetchMyDeliverable
+    * 
+    * @param context
+    * @return
+    */
+    Page<Deliverable> fetchMyDeliverable(DeliverableSearchContext context);
+
+    /**
+    * listMyDeliverable
+    * 
+    * @param context
+    * @return
+    */
+    List<Deliverable> listMyDeliverable(DeliverableSearchContext context);
+
+    /**
     * fetchProjectDeliverable
     * 
     * @param context

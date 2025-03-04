@@ -3,7 +3,7 @@ export default {
   xdataControlName: 'grid',
   loadDefault: true,
   deviewCodeName: 'progress_grid_view',
-  deviewId: '85eefc2ff36aba11818da826680d9fa2',
+  deviewId: '8451eeaa304e97bf92dedf8e7cc551fa',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.TICKET',
@@ -1300,7 +1300,7 @@ export default {
   viewType: 'DEGRIDVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: '0df0da0ac08aa6557a084bf47db18402',
+  modelId: '1d2cc830f3891158e5d2e9f43e9e71e9',
   modelType: 'PSAPPDEVIEW',
   name: 'ticketprogress_grid_view',
   id: 'plmweb.ticket_progress_grid_view',

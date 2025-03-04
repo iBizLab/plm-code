@@ -1,6 +1,6 @@
 export default {
   deviewCodeName: 'BIReportPanelView',
-  deviewId: '18326E3A-5B29-4743-AF40-8D4F3E94BE16',
+  deviewId: 'abb3200ad93d6153714e9f008a52332e',
   accUserMode: 2,
   capLanguageRes: {
     lanResTag: 'DE.LNAME.INSIGHT_REPORT',
@@ -67,7 +67,7 @@ export default {
       controlParam: {
         id: 'panel',
       },
-      modelId: 'B6D07E95-FC22-40EF-8184-FB030521F643',
+      modelId: '5d1f320aae6f0180809ee882a744b584',
       modelType: 'PSSYSVIEWPANEL',
       name: 'panel',
       id: 'plmweb.insight_report.usr0705422481',
@@ -99,7 +99,7 @@ export default {
       controlParam: {
         id: 'dimension_toolbar',
       },
-      modelId: '53B07257-5EC8-465E-A84E-D0EDAA4C41EA',
+      modelId: '2048428e44d93dfb0328a70080b3b570',
       modelType: 'PSDETOOLBAR',
       name: 'dimension_toolbar',
       id: 'bi_report_panel_view_dimension_toolbar',
@@ -131,7 +131,7 @@ export default {
       controlParam: {
         id: 'measure_toolbar',
       },
-      modelId: 'A27065D5-ED14-420D-8547-54AB1160BB07',
+      modelId: '20866c627bf569d58919f54f54e9b5bc',
       modelType: 'PSDETOOLBAR',
       name: 'measure_toolbar',
       id: 'bi_report_panel_view_measure_toolbar',
@@ -205,7 +205,7 @@ export default {
     logicName: 'BI报表设计态',
     appDataEntityId: 'plmweb.insight_report',
     controlParam: {},
-    modelId: 'B6D07E95-FC22-40EF-8184-FB030521F643',
+    modelId: '5d1f320aae6f0180809ee882a744b584',
     modelType: 'PSSYSVIEWLAYOUTPANEL',
     name: 'layoutpanel',
     id: 'usr0705422481',
@@ -215,7 +215,7 @@ export default {
   viewType: 'DEPANELVIEW',
   enableDP: true,
   showCaptionBar: true,
-  modelId: 'a7e6b0d280f2ea2d060a809eb58dbdc5',
+  modelId: '4c9c37f16cf4556773d8a7158a47fbfc',
   modelType: 'PSAPPDEVIEW',
   name: 'insight_reportBIReportPanelView',
   id: 'plmweb.insight_report_bi_report_panel_view',
