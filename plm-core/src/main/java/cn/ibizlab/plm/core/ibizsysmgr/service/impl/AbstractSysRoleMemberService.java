@@ -7,7 +7,6 @@ import java.util.*;
 import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
 import cn.ibizlab.plm.core.ibizsysmgr.client.SysRoleMemberFeignClient;
-;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Page;
