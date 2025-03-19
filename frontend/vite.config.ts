@@ -100,6 +100,7 @@ export default defineConfig({
     },
   },
   server: {
+    host: '0.0.0.0',
     proxy: {
       '/api/ibizplm__plmweb/uaa/': {
         target: 'http://nacos.ibizcloud.cn:30086',
