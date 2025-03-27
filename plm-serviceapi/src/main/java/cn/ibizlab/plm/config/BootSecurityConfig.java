@@ -56,7 +56,7 @@ public class BootSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Value("${ibiz.file.previewpath:ibizutil/preview}")
     private String previewpath;
-    
+
     @Value("${ibiz.auth.excludesPattern:}")
     private String[] excludesPattern;
 
@@ -77,8 +77,8 @@ public class BootSecurityConfig extends WebSecurityConfigurerAdapter {
     public AuthenticationManager authenticationManagerBean() throws Exception {
         return super.authenticationManagerBean();
     }
-	
-	@Bean
+
+    @Bean
     public HttpFirewall httpFirewall(){
         StrictHttpFirewall firewall = new StrictHttpFirewall();
         firewall.setAllowSemicolon(true);
@@ -94,7 +94,7 @@ public class BootSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
 
-               httpSecurity
+        httpSecurity
                 // 禁用 CSRF
                 .csrf().disable()
                 // 授权异常
@@ -125,19 +125,20 @@ public class BootSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/swagger-resources/**",
                         "/v2/**"
                 ).permitAll()
-                    //放行登录请求
-                   .antMatchers( HttpMethod.POST, "/"+loginPath).permitAll()
-                    //放行注销请求
-                    .antMatchers( HttpMethod.GET, "/"+logoutPath).permitAll()
-                    // 文件操作
-                   .antMatchers("/"+downloadpath+"/**").permitAll()
-                   .antMatchers("/"+uploadpath).permitAll()
-                   .antMatchers("/"+previewpath+"/**").permitAll();
-                   
+                //放行登录请求
+                .antMatchers( HttpMethod.POST, "/"+loginPath).permitAll()
+                //放行注销请求
+                .antMatchers( HttpMethod.GET, "/"+logoutPath).permitAll()
+                // 文件操作
+                .antMatchers("/"+downloadpath+"/**").permitAll()
+                .antMatchers("/"+uploadpath).permitAll()
+                .antMatchers("/**/dynamodels/pssysapps/**").permitAll()
+                .antMatchers("/"+previewpath+"/**").permitAll();
 
-        for (String excludePattern : excludesPattern) 
+
+        for (String excludePattern : excludesPattern)
             httpSecurity.authorizeRequests().antMatchers(excludePattern).permitAll();
-        
+
         httpSecurity.authorizeRequests().anyRequest().authenticated();
         httpSecurity
                 .addFilterBefore(authenticationTokenFilter, UsernamePasswordAuthenticationFilter.class);

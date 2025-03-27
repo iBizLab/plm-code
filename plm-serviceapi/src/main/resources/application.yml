@@ -27,8 +27,8 @@ ibiz:
     basePath:
       serviceapi: /ibizplm/serviceapi
   servicehub:
-    id: ibizplm-dev
-    register-naming-service: false
+    id: demo
+    register-naming-service: true
     enable-model-snapshot: false
     publish-config: false
     system-runtime-class:
